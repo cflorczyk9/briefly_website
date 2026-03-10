@@ -1,0 +1,1683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Briefly - AI-Powered Meeting Prep for Financial Advisors</title>
+    
+    <link rel="canonical" href="https://www.brieflywealth.com/" />
+    <link rel="icon" type="image/png" sizes="32x32" href="images/briefly_logo_favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/briefly_logo_favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/briefly_logo_favicon.png">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-92NXKY9W1S"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-92NXKY9W1S', { 'send_page_view': true });
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --navy: #0B2545;
+            --navy-light: #13315C;
+            --blue: #0B5394;
+            --blue-accent: #1a6fd1;
+            --warm-white: #FAFAF8;
+            --off-white: #F5F4F0;
+            --text: #1d1d1f;
+            --text-secondary: #6b7280;
+            --border: #e5e7eb;
+            --green: #059669;
+            --red: #dc2626;
+            --amber: #d97706;
+            --teal: #0d9488;
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
+            background: #fff;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ========== NAV ========== */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            z-index: 1000;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+        }
+        .nav-inner {
+            max-width: 1200px; margin: 0 auto;
+            padding: 0 32px;
+            display: flex; align-items: center; justify-content: space-between;
+            height: 72px;
+        }
+        .nav-logo img { height: 56px; }
+        .nav-links { display: flex; align-items: center; gap: 32px; }
+        .nav-links a {
+            font-size: 14px; font-weight: 500; color: var(--text-secondary);
+            text-decoration: none; transition: color 0.2s;
+            letter-spacing: 0.01em;
+        }
+        .nav-links a:hover { color: var(--text); }
+        .nav-links .nav-btn {
+            background: var(--navy); color: #fff;
+            padding: 10px 24px; border-radius: 8px;
+            font-size: 14px; font-weight: 600;
+            text-decoration: none; transition: all 0.2s;
+            border: none; cursor: pointer;
+        }
+        .nav-links .nav-btn:hover { background: var(--navy-light); color: #fff; transform: translateY(-1px); }
+        .nav-signin {
+            background: none; border: 1.5px solid var(--border);
+            color: var(--text); padding: 9px 20px; border-radius: 8px;
+            font-size: 14px; font-weight: 500; cursor: pointer;
+            text-decoration: none; transition: all 0.2s;
+        }
+        .nav-signin:hover { border-color: var(--text-secondary); }
+
+        /* ========== HERO ========== */
+        .hero {
+            padding: 160px 32px 100px;
+            text-align: center;
+            position: relative; overflow: hidden;
+            background: var(--navy);
+        }
+        .hero-video {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%; min-height: 100%;
+            width: auto; height: auto;
+            object-fit: cover;
+            z-index: 0;
+        }
+        .hero-tint {
+            position: absolute; inset: 0;
+            background: rgba(11, 37, 69, 0.7);
+            z-index: 1;
+        }
+        .hero-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(180deg, rgba(11,37,69,0.3) 0%, rgba(11,37,69,0.95) 100%);
+            z-index: 2;
+        }
+        .hero-inner {
+            max-width: 780px; margin: 0 auto;
+            position: relative; z-index: 3;
+        }
+        .hero h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(40px, 5.5vw, 64px);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: #fff;
+            margin-bottom: 24px;
+        }
+        .hero p {
+            font-size: clamp(17px, 2vw, 20px);
+            color: rgba(255,255,255,0.75);
+            max-width: 560px;
+            margin: 0 auto 40px;
+            line-height: 1.65;
+        }
+        .hero-cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .btn-primary {
+            background: #fff; color: var(--navy);
+            padding: 14px 32px; border-radius: 10px;
+            font-size: 16px; font-weight: 600; border: none;
+            cursor: pointer; transition: all 0.25s;
+            font-family: inherit;
+        }
+        .btn-primary:hover { background: #f0f0ee; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+        .btn-secondary {
+            background: none; color: #fff;
+            padding: 14px 32px; border-radius: 10px;
+            font-size: 16px; font-weight: 500; border: 1.5px solid rgba(255,255,255,0.3);
+            cursor: pointer; transition: all 0.25s;
+            font-family: inherit;
+        }
+        .btn-secondary:hover { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.05); }
+        .btn-navy {
+            background: var(--navy); color: #fff;
+            padding: 14px 32px; border-radius: 10px;
+            font-size: 16px; font-weight: 600; border: none;
+            cursor: pointer; transition: all 0.25s;
+            font-family: inherit;
+        }
+        .btn-navy:hover { background: var(--navy-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(11,37,69,0.15); }
+
+        /* ========== DASHBOARD SHOWCASE ========== */
+        .dashboard-showcase {
+            padding: 0 32px 80px;
+            background: var(--off-white);
+        }
+        .dashboard-showcase-inner {
+            max-width: 1100px; margin: 0 auto;
+        }
+        .dashboard-headline {
+            text-align: center;
+            padding: 64px 0 40px;
+        }
+        .dashboard-headline h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(24px, 3.5vw, 36px);
+            color: var(--navy);
+            margin-bottom: 12px;
+        }
+        .dashboard-headline p {
+            font-size: 17px;
+            color: var(--text-secondary);
+            max-width: 540px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .dashboard-frame {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .dashboard-browser {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow:
+                0 24px 80px rgba(11,37,69,0.12),
+                0 8px 32px rgba(11,37,69,0.06),
+                0 2px 8px rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.08);
+            background: #fff;
+        }
+        .dashboard-browser-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .browser-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+        }
+        .browser-dot-red { background: #ff5f57; }
+        .browser-dot-yellow { background: #ffbd2e; }
+        .browser-dot-green { background: #28c840; }
+        .browser-url {
+            flex: 1;
+            margin-left: 12px;
+            padding: 5px 14px;
+            background: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-family: 'DM Sans', sans-serif;
+        }
+        .dashboard-img-container {
+            max-height: 560px;
+            overflow: hidden;
+            position: relative;
+        }
+        .dashboard-img-container img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+            object-position: top center;
+        }
+        .dashboard-img-fade {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 80px;
+            background: linear-gradient(transparent, #fff);
+            pointer-events: none;
+        }
+        .dashboard-callouts {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 32px;
+        }
+        .dashboard-callout {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 18px;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+        .callout-icon {
+            width: 28px; height: 28px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .callout-icon-red { background: #fef2f2; }
+        .callout-icon-blue { background: #dbeafe; }
+        .callout-icon-green { background: #ecfdf5; }
+        .callout-icon-amber { background: #fffbeb; }
+        .callout-icon-purple { background: #f3e8ff; }
+        .dashboard-mobile { display: none; }
+
+        /* ========== INTEGRATIONS CAROUSEL ========== */
+        .integrations-section {
+            padding: 60px 32px 80px;
+            background: var(--off-white);
+        }
+        .integrations-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+        .integrations-inner h2 {
+            font-size: 16px; font-weight: 600;
+            color: var(--text-secondary);
+            letter-spacing: 0.02em;
+            margin-bottom: 32px;
+        }
+        .carousel-wrapper {
+            position: relative; overflow: hidden;
+        }
+        .carousel-fade-left,
+        .carousel-fade-right {
+            position: absolute; top: 0; bottom: 0; width: 100px;
+            z-index: 2; pointer-events: none;
+        }
+        .carousel-fade-left {
+            left: 0;
+            background: linear-gradient(90deg, var(--off-white) 0%, transparent 100%);
+        }
+        .carousel-fade-right {
+            right: 0;
+            background: linear-gradient(270deg, var(--off-white) 0%, transparent 100%);
+        }
+        .carousel-track {
+            display: flex; align-items: center; gap: 64px;
+            animation: scroll-logos 25s linear infinite;
+            width: max-content;
+        }
+        .carousel-logo {
+            flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .carousel-logo img {
+            height: 40px; max-width: 140px;
+            object-fit: contain;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+            filter: grayscale(100%);
+        }
+        .carousel-logo img:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+        }
+        @keyframes scroll-logos {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ========== PROBLEM SECTION ========== */
+        .problem-section {
+            padding: 100px 32px;
+            background: #fff;
+        }
+        .problem-inner {
+            max-width: 720px; margin: 0 auto;
+            text-align: center;
+        }
+        .section-label {
+            font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+            text-transform: uppercase; color: var(--blue);
+            margin-bottom: 20px; display: block;
+        }
+        .problem-inner h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(28px, 4vw, 40px);
+            color: var(--navy);
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+        .problem-inner p {
+            font-size: 18px; color: var(--text-secondary);
+            line-height: 1.7; margin-bottom: 16px;
+        }
+        .problem-quote {
+            margin-top: 48px;
+            padding: 32px;
+            background: var(--off-white);
+            border-radius: 12px;
+            border-left: 3px solid var(--blue);
+        }
+        .problem-quote p {
+            font-family: 'Source Serif 4', serif;
+            font-size: 18px;
+            font-style: italic;
+            color: var(--text);
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+        .problem-quote cite {
+            font-family: 'DM Sans', sans-serif;
+            font-style: normal;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* ========== HOW IT WORKS ========== */
+        .how-it-works {
+            padding: 100px 32px;
+            background: var(--off-white);
+        }
+        .how-inner { max-width: 1100px; margin: 0 auto; }
+        .how-inner > .section-label,
+        .how-inner > h2,
+        .how-inner > p { text-align: center; }
+        .how-inner > h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(28px, 4vw, 40px);
+            color: var(--navy); margin-bottom: 16px;
+        }
+        .how-inner > p {
+            font-size: 18px; color: var(--text-secondary);
+            margin-bottom: 56px; max-width: 560px; margin-left: auto; margin-right: auto;
+        }
+        .steps-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+        .step-card {
+            background: #fff; border-radius: 16px;
+            padding: 36px 32px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+        .step-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.06); }
+        .step-num {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 36px; height: 36px;
+            background: var(--navy); color: #fff;
+            border-radius: 10px; font-size: 14px; font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .step-card h3 {
+            font-size: 20px; font-weight: 700;
+            margin-bottom: 12px; color: var(--navy);
+        }
+        .step-card p { font-size: 15px; color: var(--text-secondary); line-height: 1.65; }
+
+        /* ========== BRIEF SHOWCASE (looks like product) ========== */
+        .brief-showcase {
+            padding: 100px 32px;
+            background: #fff;
+        }
+        .brief-showcase-inner { max-width: 1100px; margin: 0 auto; }
+        .brief-showcase-inner > .section-label,
+        .brief-showcase-inner > h2,
+        .brief-showcase-inner > p.brief-subtitle { text-align: center; }
+        .brief-showcase-inner > h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(28px, 4vw, 40px);
+            color: var(--navy); margin-bottom: 16px;
+        }
+        .brief-subtitle {
+            font-size: 18px; color: var(--text-secondary);
+            margin-bottom: 48px;
+        }
+
+        /* Tab navigation */
+        .brief-tabs {
+            display: flex; gap: 4px; justify-content: center;
+            flex-wrap: wrap; margin-bottom: 40px;
+        }
+        .brief-tab {
+            padding: 10px 20px; border-radius: 8px;
+            font-size: 14px; font-weight: 500;
+            color: var(--text-secondary);
+            background: none; border: 1px solid transparent;
+            cursor: pointer; transition: all 0.2s;
+            font-family: inherit;
+        }
+        .brief-tab:hover { background: var(--off-white); }
+        .brief-tab.active {
+            background: var(--navy); color: #fff;
+            border-color: var(--navy);
+        }
+
+        /* Brief card (looks like dashboard) */
+        .brief-card-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: start;
+        }
+        .brief-card-copy h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 28px; color: var(--navy);
+            margin-bottom: 16px; line-height: 1.25;
+        }
+        .brief-card-copy p {
+            font-size: 16px; color: var(--text-secondary);
+            line-height: 1.7; margin-bottom: 24px;
+        }
+
+        /* Product-like card */
+        .brief-product-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+        }
+        .bpc-header {
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .bpc-header h4 {
+            font-size: 14px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.06em;
+        }
+        .bpc-header .bpc-badge {
+            font-size: 11px; font-weight: 700;
+            padding: 3px 10px; border-radius: 4px;
+        }
+        .bpc-body { padding: 20px 24px; }
+
+        /* Action items style */
+        .action-row {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #f3f4f6;
+            font-size: 14px;
+        }
+        .action-row:last-child { border-bottom: none; }
+        .action-dot {
+            width: 6px; height: 6px; border-radius: 50%;
+            margin-right: 12px; flex-shrink: 0;
+        }
+        .action-text { flex: 1; color: var(--text); }
+        .tag {
+            font-size: 10px; font-weight: 700; letter-spacing: 0.06em;
+            padding: 3px 8px; border-radius: 4px; text-transform: uppercase;
+            flex-shrink: 0; margin-left: 12px;
+        }
+        .tag-open { background: #ecfdf5; color: var(--green); }
+        .tag-pending { background: #fffbeb; color: var(--amber); }
+        .tag-followup { background: #fef2f2; color: var(--red); }
+
+        /* Portfolio table style */
+        .portfolio-bar {
+            display: flex; align-items: baseline; gap: 12px;
+            margin-bottom: 16px; padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+        .portfolio-bar .big-num {
+            font-size: 28px; font-weight: 700; color: var(--navy);
+        }
+        .portfolio-bar .gain {
+            font-size: 14px; font-weight: 600; color: var(--green);
+        }
+        .ptable { width: 100%; font-size: 13px; }
+        .ptable th {
+            text-align: left; font-weight: 600; color: var(--text-secondary);
+            padding: 6px 0; border-bottom: 1px solid var(--border);
+            font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
+        }
+        .ptable th:not(:first-child) { text-align: right; }
+        .ptable td { padding: 8px 0; border-bottom: 1px solid #f9fafb; }
+        .ptable td:not(:first-child) { text-align: right; }
+        .ptable .gain { color: var(--green); font-weight: 600; }
+        .ptable .loss { color: var(--red); font-weight: 600; }
+        .alloc-bar {
+            display: flex; height: 8px; border-radius: 4px; overflow: hidden;
+            margin-top: 16px;
+        }
+        .alloc-bar span { display: block; }
+        .alloc-eq { background: var(--navy); }
+        .alloc-fi { background: var(--blue-accent); }
+        .alloc-cash { background: #94a3b8; }
+        .alloc-alt { background: #cbd5e1; }
+
+        /* Sentiment style */
+        .sentiment-label {
+            font-size: 12px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.06em; margin-bottom: 8px; margin-top: 16px;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .sentiment-label:first-child { margin-top: 0; }
+        .sentiment-label .count {
+            font-size: 11px; width: 20px; height: 20px;
+            display: inline-flex; align-items: center; justify-content: center;
+            background: #f3f4f6; border-radius: 50%;
+            color: var(--text-secondary);
+        }
+        .sentiment-item {
+            font-size: 14px; color: var(--text);
+            padding: 6px 0 6px 16px;
+            border-left: 2px solid #e5e7eb;
+            margin-bottom: 4px;
+        }
+
+        /* Life planning style */
+        .life-row {
+            display: flex; align-items: center; gap: 12px;
+            padding: 8px 0;
+            font-size: 14px;
+            border-bottom: 1px solid #f9fafb;
+        }
+        .life-row:last-child { border-bottom: none; }
+        .life-tag {
+            font-size: 10px; font-weight: 700; padding: 2px 0;
+            border-radius: 4px; letter-spacing: 0.04em;
+            text-transform: uppercase; flex-shrink: 0;
+            width: 90px; text-align: center; box-sizing: border-box;
+        }
+        .life-tag-life { background: #dbeafe; color: #1d4ed8; }
+        .life-tag-career { background: #fef3c7; color: #92400e; }
+        .life-tag-philanthropy { background: #d1fae5; color: #065f46; }
+        .life-tag-liquidity { background: #fee2e2; color: #991b1b; }
+        .life-date { color: var(--text-secondary); font-size: 13px; width: 60px; flex-shrink: 0; text-align: right; }
+
+        /* Tax style */
+        .tax-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        .tax-col-label {
+            font-size: 11px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.08em; color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+        .tax-ticker {
+            display: flex; justify-content: space-between;
+            font-size: 14px; padding: 6px 0;
+        }
+        .tax-highlight {
+            margin-top: 16px; padding: 10px 16px;
+            background: #fffbeb; border-radius: 8px;
+            font-size: 13px; color: var(--amber);
+            font-weight: 500;
+        }
+
+        /* Decisions style */
+        .dtable { width: 100%; font-size: 13px; }
+        .dtable th {
+            text-align: left; font-weight: 600; color: var(--text-secondary);
+            padding: 6px 0; border-bottom: 1px solid var(--border);
+            font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
+        }
+        .dtable th:last-child { text-align: right; }
+        .dtable td { padding: 10px 0; border-bottom: 1px solid #f9fafb; font-size: 14px; }
+        .dtable td:first-child { white-space: nowrap; }
+        .dtable td:last-child { text-align: right; font-weight: 600; }
+        .dtable .total-row td { border-top: 2px solid var(--border); border-bottom: none; font-weight: 700; }
+
+        /* Context style */
+        .context-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+        .context-grid > div {
+            padding: 16px 20px;
+            border-left: 1px solid var(--border);
+        }
+        .context-grid > div:first-child { border-left: none; padding-left: 0; }
+        .context-col-label {
+            font-size: 11px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.08em; color: var(--text-secondary);
+            margin-bottom: 10px; padding-bottom: 8px;
+            border-bottom: 2px solid var(--border);
+        }
+        .context-item {
+            font-size: 14px; padding: 6px 0; color: var(--text);
+            line-height: 1.5;
+        }
+        .context-item + .context-item { border-top: 1px solid rgba(0,0,0,0.04); }
+
+        /* ========== COMPOUNDING VALUE ========== */
+        .compounding-section {
+            padding: 100px 32px;
+            background: var(--navy);
+            color: #fff;
+        }
+        .compounding-inner {
+            max-width: 720px; margin: 0 auto;
+            text-align: center;
+        }
+        .compounding-inner .section-label { color: rgba(255,255,255,0.5); }
+        .compounding-inner h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(28px, 4vw, 40px);
+            color: #fff; margin-bottom: 24px;
+        }
+        .compounding-inner p {
+            font-size: 18px; color: rgba(255,255,255,0.7);
+            line-height: 1.7; margin-bottom: 16px;
+        }
+        .compounding-inner p:last-of-type { margin-bottom: 0; }
+
+        /* ========== TESTIMONIALS SECTION ========== */
+        .testimonials-section {
+            padding: 100px 32px;
+            background: #fff;
+        }
+        .testimonials-inner {
+            max-width: 1100px; margin: 0 auto;
+            text-align: center;
+        }
+        .testimonials-inner h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(28px, 4vw, 40px);
+            color: var(--navy); margin-bottom: 56px;
+        }
+        .testimonials-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+        }
+        .testimonial-card {
+            background: var(--off-white);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: left;
+            border-left: 3px solid var(--blue);
+            transition: all 0.3s;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+        }
+        .testimonial-quote {
+            font-family: 'Source Serif 4', serif;
+            font-size: 17px;
+            font-style: italic;
+            color: var(--text);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+        .testimonial-author {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-style: normal;
+        }
+        .testimonial-author strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        /* ========== NEWSLETTER SECTION ========== */
+        .newsletter-section {
+            padding: 100px 32px;
+            background: var(--off-white);
+        }
+        .newsletter-inner {
+            max-width: 1000px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 64px; align-items: center;
+        }
+        .newsletter-copy .section-label { color: var(--blue); }
+        .newsletter-copy h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(24px, 3.5vw, 36px);
+            color: var(--navy); margin-bottom: 16px;
+        }
+        .newsletter-copy p {
+            font-size: 16px; color: var(--text-secondary);
+            line-height: 1.7; margin-bottom: 28px;
+        }
+        .newsletter-form { display: flex; gap: 12px; }
+        .newsletter-input {
+            flex: 1; padding: 14px 18px;
+            border: 1.5px solid var(--border); border-radius: 10px;
+            font-size: 15px; font-family: inherit;
+            background: #fff; outline: none;
+            transition: border-color 0.2s;
+        }
+        .newsletter-input:focus { border-color: var(--blue); }
+        .newsletter-submit {
+            padding: 14px 28px; border-radius: 10px;
+            background: var(--navy); color: #fff;
+            font-size: 15px; font-weight: 600;
+            border: none; cursor: pointer;
+            font-family: inherit; transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .newsletter-submit:hover { background: var(--navy-light); }
+
+        /* Newsletter preview card */
+        .newsletter-preview {
+            background: #fff; border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+            overflow: hidden;
+        }
+        .np-header {
+            text-align: center; padding: 28px 32px 20px;
+            border-bottom: 1px solid var(--border);
+        }
+        .np-brand {
+            font-size: 10px; font-weight: 600; letter-spacing: 0.2em;
+            text-transform: uppercase; color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+        .np-title {
+            font-family: 'Source Serif 4', serif;
+            font-size: 24px; font-weight: 600; color: var(--navy);
+            margin-bottom: 6px;
+        }
+        .np-date {
+            font-size: 12px; color: var(--text-secondary);
+            display: flex; justify-content: space-between;
+        }
+        .np-greeting {
+            padding: 16px 32px 0;
+            font-size: 14px; color: var(--text);
+        }
+        .np-markets {
+            padding: 16px 32px;
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+        .np-market-item { text-align: center; }
+        .np-market-label {
+            font-size: 9px; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.1em; color: var(--text-secondary);
+        }
+        .np-market-value { font-size: 16px; font-weight: 700; color: var(--navy); }
+        .np-market-change { font-size: 12px; font-weight: 600; }
+        .np-market-change.up { color: var(--green); }
+        .np-market-change.down { color: var(--red); }
+        .np-section-title {
+            padding: 8px 32px;
+            font-size: 15px; font-weight: 700; color: var(--navy);
+        }
+        .np-section-text {
+            padding: 0 32px 12px;
+            font-size: 13px; color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        .np-talking-point {
+            margin: 8px 32px 24px;
+            padding: 14px 18px;
+            background: var(--off-white);
+            border-radius: 8px;
+            border-left: 3px solid var(--blue);
+        }
+        .np-talking-point h5 {
+            font-size: 13px; font-weight: 700; color: var(--navy);
+            margin-bottom: 6px;
+        }
+        .np-talking-point p {
+            font-size: 12px; color: var(--text-secondary);
+            line-height: 1.55; margin: 0;
+        }
+        .np-section-labels {
+            display: flex; flex-wrap: wrap; gap: 6px;
+            padding: 4px 32px 14px;
+        }
+        .np-label {
+            font-size: 10px; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.05em; color: var(--navy);
+            background: var(--off-white); border: 1px solid var(--border);
+            border-radius: 4px; padding: 4px 10px;
+        }
+        .np-view-sample {
+            display: block; text-align: center;
+            margin: 12px 32px 20px; padding: 10px;
+            font-size: 13px; font-weight: 600; color: var(--navy);
+            border: 1px solid var(--border); border-radius: 8px;
+            text-decoration: none; transition: all 0.2s;
+            background: var(--off-white);
+        }
+        .np-view-sample:hover {
+            background: var(--navy); color: #fff;
+            border-color: var(--navy);
+        }
+
+        /* ========== CONTACT SECTION ========== */
+        .contact-section {
+            padding: 100px 32px;
+            background: #fff;
+        }
+        .contact-inner {
+            max-width: 600px; margin: 0 auto;
+            text-align: center;
+        }
+        .contact-inner h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(28px, 4vw, 36px);
+            color: var(--navy); margin-bottom: 16px;
+        }
+        .contact-inner > p {
+            font-size: 17px; color: var(--text-secondary);
+            margin-bottom: 40px; line-height: 1.6;
+        }
+        .contact-form { text-align: left; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+        .form-group { display: flex; flex-direction: column; }
+        .form-group.full { grid-column: 1 / -1; }
+        .form-label {
+            font-size: 13px; font-weight: 600; color: var(--text);
+            margin-bottom: 6px;
+        }
+        .form-input, .form-textarea {
+            padding: 12px 16px; border: 1.5px solid var(--border);
+            border-radius: 8px; font-size: 15px; font-family: inherit;
+            outline: none; transition: border-color 0.2s;
+            background: #fff;
+        }
+        .form-input:focus, .form-textarea:focus { border-color: var(--blue); }
+        .form-textarea { min-height: 100px; resize: vertical; }
+        .form-submit {
+            width: 100%; padding: 14px; margin-top: 8px;
+            background: var(--navy); color: #fff;
+            border: none; border-radius: 10px;
+            font-size: 16px; font-weight: 600;
+            cursor: pointer; font-family: inherit;
+            transition: all 0.2s;
+        }
+        .form-submit:hover { background: var(--navy-light); }
+        .contact-meta {
+            margin-top: 32px;
+            display: flex; justify-content: center; gap: 40px;
+            font-size: 14px; color: var(--text-secondary);
+        }
+        .contact-meta strong { color: var(--text); display: block; font-size: 13px; margin-bottom: 2px; }
+
+        /* ========== CTA SECTION ========== */
+        .cta-section {
+            padding: 80px 32px;
+            text-align: center;
+            background: var(--off-white);
+        }
+        .cta-section h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(24px, 3.5vw, 36px);
+            color: var(--navy); margin-bottom: 16px;
+        }
+        .cta-section p {
+            font-size: 17px; color: var(--text-secondary);
+            margin-bottom: 32px; max-width: 500px; margin-left: auto; margin-right: auto;
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            padding: 60px 32px 32px;
+            background: var(--navy);
+            color: rgba(255,255,255,0.6);
+        }
+        .footer-inner {
+            max-width: 1100px; margin: 0 auto;
+        }
+        .footer-grid {
+            display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 48px; margin-bottom: 48px;
+        }
+        .footer-grid h4 {
+            font-size: 14px; font-weight: 700; color: #fff;
+            margin-bottom: 16px;
+        }
+        .footer-grid p { font-size: 14px; line-height: 1.6; }
+        .footer-grid ul { list-style: none; }
+        .footer-grid li { margin-bottom: 8px; }
+        .footer-grid a {
+            color: rgba(255,255,255,0.6); text-decoration: none;
+            font-size: 14px; transition: color 0.2s;
+        }
+        .footer-grid a:hover { color: #fff; }
+        .footer-bottom {
+            padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 13px; text-align: center;
+        }
+
+        /* ========== MODALS ========== */
+        .modal-overlay {
+            display: none; position: fixed; inset: 0;
+            background: rgba(0,0,0,0.5); z-index: 2000;
+            justify-content: center; align-items: center;
+            backdrop-filter: blur(4px);
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-box {
+            background: #fff; border-radius: 16px;
+            padding: 48px 40px; max-width: 480px; width: 90%;
+            position: relative;
+        }
+        .modal-close {
+            position: absolute; top: 16px; right: 16px;
+            background: none; border: none; font-size: 24px;
+            color: var(--text-secondary); cursor: pointer;
+            width: 36px; height: 36px; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            transition: background 0.2s;
+        }
+        .modal-close:hover { background: #f3f4f6; }
+        .modal-box h2 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+        .modal-box p.modal-sub { font-size: 15px; color: var(--text-secondary); margin-bottom: 28px; }
+
+        /* ========== ANIMATIONS ========== */
+        .reveal {
+            opacity: 0; transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 900px) {
+            .brief-card-wrapper { grid-template-columns: 1fr; }
+            .newsletter-inner { grid-template-columns: 1fr; }
+            .steps-grid { grid-template-columns: 1fr; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .context-grid { grid-template-columns: 1fr; }
+            .context-grid > div { border-left: none; padding: 16px 0; border-bottom: 1px solid var(--border); }
+            .context-grid > div:last-child { border-bottom: none; }
+        }
+        @media (max-width: 680px) {
+            .nav-links a:not(.nav-btn):not(.nav-signin) { display: none; }
+            .nav-links .nav-btn { color: #fff; }
+            .hero { padding: 130px 20px 80px; }
+            .form-row { grid-template-columns: 1fr; }
+            .newsletter-form { flex-direction: column; }
+            .brief-tabs { gap: 2px; }
+            .brief-tab { padding: 8px 14px; font-size: 12px; }
+            .contact-meta { flex-direction: column; gap: 16px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+            .np-markets { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+            .dashboard-desktop { display: none; }
+            .dashboard-mobile { display: block !important; }
+            .dashboard-callouts { gap: 10px; }
+            .dashboard-callout { padding: 8px 12px; font-size: 12px; }
+            .callout-icon { width: 24px; height: 24px; font-size: 12px; }
+            .dashboard-img-container { max-height: 420px; }
+            .tax-cols { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+            <img src="images/briefly_logo_2.0.png" alt="Briefly">
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="#features" onclick="event.preventDefault(); document.getElementById('features').scrollIntoView({behavior:'smooth'});">Features</a>
+            <a href="blog.html">Blog</a>
+            <a href="about.html">About</a>
+            <a href="#contact" onclick="event.preventDefault(); document.getElementById('contact').scrollIntoView({behavior:'smooth'});">Contact</a>
+            <a href="#" class="nav-signin" onclick="event.preventDefault(); openSignIn();">Sign In</a>
+            <a href="#" class="nav-btn" onclick="event.preventDefault(); openDemo();">Request a Demo</a>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <video class="hero-video" autoplay muted loop playsinline>
+        <source src="images/Network.mp4" type="video/mp4">
+    </video>
+    <div class="hero-tint"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-inner reveal">
+        <h1>Know every client like they're your only client</h1>
+        <p>Briefly turns your documents into structured, scannable meeting briefs. No new software to learn. No CRM migration. Five minutes of review instead of an hour of digging.</p>
+        <div class="hero-cta">
+            <button class="btn-primary" onclick="openDemo()">Request a Demo</button>
+            <button class="btn-secondary" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">See the Product</button>
+        </div>
+    </div>
+</section>
+
+<!-- DASHBOARD IMAGE -->
+<section class="dashboard-showcase">
+    <div class="dashboard-showcase-inner">
+        <div class="dashboard-headline reveal">
+            <h2>One brief. Everything you need to walk in prepared.</h2>
+            <p>Action items, portfolio changes, tax opportunities, and client context — all generated from your existing documents.</p>
+        </div>
+        <div class="dashboard-frame reveal">
+            <div class="dashboard-browser">
+                <div class="dashboard-browser-bar">
+                    <span class="browser-dot browser-dot-red"></span>
+                    <span class="browser-dot browser-dot-yellow"></span>
+                    <span class="browser-dot browser-dot-green"></span>
+                    <span class="browser-url">app.brieflywealth.com</span>
+                </div>
+                <div class="dashboard-img-container">
+                    <img src="images/briefly_app_demo.png" alt="Briefly meeting brief — action items, portfolio summary, tax considerations, client sentiment, and notes" class="dashboard-desktop">
+                    <div class="dashboard-img-fade"></div>
+                </div>
+            </div>
+        </div>
+        <div class="dashboard-callouts reveal">
+            <div class="dashboard-callout">
+                <div class="callout-icon callout-icon-red">&#9679;</div>
+                Action Items & Follow-ups
+            </div>
+            <div class="dashboard-callout">
+                <div class="callout-icon callout-icon-blue">&#9679;</div>
+                Portfolio & Performance
+            </div>
+            <div class="dashboard-callout">
+                <div class="callout-icon callout-icon-green">&#9679;</div>
+                Tax Opportunities
+            </div>
+            <div class="dashboard-callout">
+                <div class="callout-icon callout-icon-amber">&#9679;</div>
+                Client Sentiment
+            </div>
+            <div class="dashboard-callout">
+                <div class="callout-icon callout-icon-purple">&#9679;</div>
+                Notes & History
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- INTEGRATIONS CAROUSEL -->
+<section class="integrations-section">
+    <div class="integrations-inner">
+        <h2 class="reveal">Integrates with your existing systems</h2>
+        <div class="carousel-wrapper">
+            <div class="carousel-fade-left"></div>
+            <div class="carousel-fade-right"></div>
+            <div class="carousel-track">
+                <div class="carousel-logo"><img src="images/gmail-logo.png" alt="Gmail" style="height:48px;max-width:144px;"></div>
+                <div class="carousel-logo"><img src="images/fidelity-logo.png" alt="Fidelity"></div>
+                <div class="carousel-logo"><img src="images/outlook-logo.png" alt="Outlook"></div>
+                <div class="carousel-logo"><img src="images/bny-mellon-logo.png" alt="BNY Mellon" style="height:54px;max-width:162px;"></div>
+                <div class="carousel-logo"><img src="images/schwab-logo.png" alt="Charles Schwab" style="height:48px;max-width:144px;"></div>
+                <!-- Duplicate for seamless loop -->
+                <div class="carousel-logo"><img src="images/gmail-logo.png" alt="Gmail" style="height:48px;max-width:144px;"></div>
+                <div class="carousel-logo"><img src="images/fidelity-logo.png" alt="Fidelity"></div>
+                <div class="carousel-logo"><img src="images/outlook-logo.png" alt="Outlook"></div>
+                <div class="carousel-logo"><img src="images/bny-mellon-logo.png" alt="BNY Mellon" style="height:54px;max-width:162px;"></div>
+                <div class="carousel-logo"><img src="images/schwab-logo.png" alt="Charles Schwab" style="height:48px;max-width:144px;"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- THE PROBLEM -->
+<section class="problem-section">
+    <div class="problem-inner reveal">
+        <span class="section-label">The Problem</span>
+        <h2>What if your meeting prep took two minutes instead of twenty?</h2>
+        <p>Before every review, it's the same routine. Pull up the portfolio. Check the CRM. Search your inbox. Skim your last notes. Twenty minutes later, you've got a decent picture. But across dozens of clients and years of conversations, the details your clients expect you to remember are the hardest ones to find.</p>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works">
+    <div class="how-inner">
+        <span class="section-label reveal">How It Works</span>
+        <h2 class="reveal">Upload your documents. Get a structured brief.<br>Walk in prepared.</h2>
+        <p class="reveal"><strong>No new software to learn. No CRM migration.</strong> Briefly reads what you already have.</p>
+        <div class="steps-grid">
+            <div class="step-card reveal">
+                <div class="step-num">1</div>
+                <h3>Upload & Connect</h3>
+                <p>Drop in financial statements, notes, and client documents. Link your email to pull in recent communications automatically.</p>
+            </div>
+            <div class="step-card reveal">
+                <div class="step-num">2</div>
+                <h3>Get Your Brief</h3>
+                <p>AI reads everything and builds a structured meeting brief with action items, portfolio changes, tax considerations, and client context.</p>
+            </div>
+            <div class="step-card reveal">
+                <div class="step-num">3</div>
+                <h3>Walk In Prepared</h3>
+                <p>Review in five minutes what used to take an hour. Know every open item, every life event, every concern before you sit down.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- BRIEF SHOWCASE -->
+<section class="brief-showcase" id="features">
+    <div class="brief-showcase-inner">
+        <span class="section-label reveal">The Product</span>
+        <h2 class="reveal">See What's in a Briefly Brief</h2>
+        <p class="brief-subtitle reveal">Every section below is generated automatically from your existing documents.</p>
+
+        <div class="brief-tabs reveal" id="briefTabs">
+            <button class="brief-tab active" data-section="action-items">Action Items</button>
+            <button class="brief-tab" data-section="portfolio">Portfolio Summary</button>
+            <button class="brief-tab" data-section="decisions">Recent Decisions</button>
+            <button class="brief-tab" data-section="tax">Tax Considerations</button>
+            <button class="brief-tab" data-section="sentiment">Client Sentiment</button>
+            <button class="brief-tab" data-section="life">Life & Planning</button>
+            <button class="brief-tab" data-section="context">Client Context</button>
+        </div>
+
+        <!-- ACTION ITEMS -->
+        <div class="brief-card-wrapper reveal" id="panel-action-items">
+            <div class="brief-card-copy">
+                <h3>Nothing falls through the cracks.</h3>
+                <p>Open tasks, pending follow-ups, and next steps pulled from your documents and past meetings. Each item is tracked with status so you know exactly where things stand before every conversation.</p>
+            </div>
+            <div class="brief-product-card">
+                <div class="bpc-header">
+                    <h4 style="color: var(--red);">Action Items</h4>
+                    <span class="bpc-badge" style="background:#fef2f2;color:var(--red);">4 open</span>
+                </div>
+                <div class="bpc-body">
+                    <div class="action-row"><div class="action-dot" style="background:var(--green)"></div><span class="action-text">Call John to confirm if AJXA position should be sold to pay off personal loan</span><span class="tag tag-open">Open</span></div>
+                    <div class="action-row"><div class="action-dot" style="background:var(--amber)"></div><span class="action-text">Review PPM and operating agreement for John's Austin real estate deal once received</span><span class="tag tag-pending">Pending</span></div>
+                    <div class="action-row"><div class="action-dot" style="background:var(--green)"></div><span class="action-text">Update financial plan to include trust inflow, Jane's reduced income, and revised 50/50 allocation request</span><span class="tag tag-open">Open</span></div>
+                    <div class="action-row"><div class="action-dot" style="background:var(--red)"></div><span class="action-text">Provide updated 2025 W-2 for tax projection</span><span class="tag tag-followup">Follow Up</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PORTFOLIO SUMMARY -->
+        <div class="brief-card-wrapper" id="panel-portfolio" style="display:none;">
+            <div class="brief-card-copy">
+                <h3>Every account at a glance.</h3>
+                <p>Values, performance, and allocation across every custodian, including held-away assets. No logging into three different portals before a meeting.</p>
+            </div>
+            <div class="brief-product-card">
+                <div class="bpc-header">
+                    <h4>Portfolio Summary</h4>
+                </div>
+                <div class="bpc-body">
+                    <div class="portfolio-bar">
+                        <span class="big-num">$2.14M</span>
+                        <span class="gain">+2.31% YTD</span>
+                    </div>
+                    <table class="ptable">
+                        <thead><tr><th>Account</th><th>Value</th><th>YTD $</th><th>YTD %</th><th>EQ</th><th>FI</th></tr></thead>
+                        <tbody>
+                            <tr><td>John Doe and Jane Smith &middot; 6789</td><td>$630k</td><td class="loss">-$197</td><td class="loss">-0.03%</td><td>4%</td><td>68%</td></tr>
+                            <tr><td>John Doe IRA &middot; 4521</td><td>$485k</td><td class="gain">+$14,200</td><td class="gain">+3.01%</td><td>62%</td><td>30%</td></tr>
+                            <tr><td>Jane Smith Roth IRA &middot; 7833</td><td>$312k</td><td class="gain">+$9,870</td><td class="gain">+3.27%</td><td>78%</td><td>15%</td></tr>
+                            <tr><td>John Doe 401(k) &middot; Fidelity <span class="tag tag-pending" style="font-size:10px;padding:1px 6px;margin-left:6px;">Held Away</span></td><td>$713k</td><td class="gain">+$25,600</td><td class="gain">+3.72%</td><td>55%</td><td>35%</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="alloc-bar">
+                        <span class="alloc-eq" style="width:42%"></span>
+                        <span class="alloc-fi" style="width:40%"></span>
+                        <span class="alloc-cash" style="width:18%"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RECENT DECISIONS -->
+        <div class="brief-card-wrapper" id="panel-decisions" style="display:none;">
+            <div class="brief-card-copy">
+                <h3>Walk in knowing what's changed.</h3>
+                <p>Trades, conversions, distributions, and their dollar impact since the last meeting. One table, full picture.</p>
+            </div>
+            <div class="brief-product-card">
+                <div class="bpc-header">
+                    <h4>Recent Decisions</h4>
+                    <span class="bpc-badge" style="background:#ecfdf5;color:var(--green);">Net $12k</span>
+                </div>
+                <div class="bpc-body">
+                    <table class="dtable">
+                        <thead><tr><th>Date</th><th>Action</th><th>Return</th></tr></thead>
+                        <tbody>
+                            <tr><td>2/27/26</td><td>Liquidated Miller Intermediate Bond Fund Cl I and multiple notes</td><td class="gain">$12k</td></tr>
+                            <tr><td>12/31/25</td><td>Roth Conversion of $55,000</td><td>—</td></tr>
+                            <tr class="total-row"><td><strong>Net Impact</strong></td><td></td><td class="gain"><strong>$12k</strong></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAX CONSIDERATIONS -->
+        <div class="brief-card-wrapper" id="panel-tax" style="display:none;">
+            <div class="brief-card-copy">
+                <h3>Opportunities you'd otherwise miss.</h3>
+                <p>Appreciated positions and harvestable losses surfaced automatically from the latest statements. Plus realized gains tracked year-to-date.</p>
+            </div>
+            <div class="brief-product-card">
+                <div class="bpc-header">
+                    <h4>Tax Considerations</h4>
+                    <span style="font-size:12px;color:var(--text-secondary);">Joint Taxable Account 456789</span>
+                </div>
+                <div class="bpc-body">
+                    <div class="tax-cols">
+                        <div>
+                            <div class="tax-col-label" style="color:var(--green);">Appreciated</div>
+                            <div class="tax-ticker"><span>AJXA</span><span class="gain">$723 (5.78%)</span></div>
+                            <div class="tax-ticker"><span>MCIFX</span><span class="gain">$929 (1.22%)</span></div>
+                            <div class="tax-ticker"><span>VTSAX</span><span class="gain">$4,312 (8.41%)</span></div>
+                            <div class="tax-ticker"><span>AAPL</span><span class="gain">$2,187 (14.6%)</span></div>
+                            <div class="tax-ticker"><span>SCHD</span><span class="gain">$561 (3.02%)</span></div>
+                        </div>
+                        <div>
+                            <div class="tax-col-label" style="color:var(--red);">Harvestable Losses</div>
+                            <div class="tax-ticker"><span>RCA</span><span class="loss">$0 (0%)</span></div>
+                            <div class="tax-ticker"><span>INTC</span><span class="loss">-$1,430 (-12.3%)</span></div>
+                            <div class="tax-ticker"><span>ARKK</span><span class="loss">-$876 (-7.8%)</span></div>
+                        </div>
+                    </div>
+                    <div class="tax-highlight">Realized YTD net gain of $11,764.82 as of 2/28.</div>
+                    <div class="tax-highlight">Potential harvest: -$2,306 available to offset gains.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CLIENT SENTIMENT -->
+        <div class="brief-card-wrapper" id="panel-sentiment" style="display:none;">
+            <div class="brief-card-copy">
+                <h3>Know the temperature before you sit down.</h3>
+                <p>Concerns, frustrations, and discussion topics pulled from notes and emails so you're never caught off guard.</p>
+            </div>
+            <div class="brief-product-card">
+                <div class="bpc-header">
+                    <h4>Client Sentiment</h4>
+                    <span style="font-size:12px;color:var(--text-secondary);">2 concerns &middot; 1 frustration</span>
+                </div>
+                <div class="bpc-body">
+                    <div class="sentiment-label" style="color:var(--amber);">Concerns <span class="count">2</span></div>
+                    <div class="sentiment-item">Feeling increasingly risk-averse regarding market volatility</div>
+                    <div class="sentiment-item">Stressed regarding legal contest of mother's trust by brother Tom</div>
+                    <div class="sentiment-label" style="color:var(--red);">Frustrations <span class="count">1</span></div>
+                    <div class="sentiment-item">Overwhelmed by estate settlement complexity and Fidelity retitling</div>
+                    <div class="sentiment-label" style="color:var(--blue);">Discussion Topics</div>
+                    <div class="sentiment-item">Discuss shifting portfolio to 50/50 allocation</div>
+                    <div class="sentiment-item">Information on Donor Advised Funds (DAF) in 'plain English'</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LIFE & PLANNING -->
+        <div class="brief-card-wrapper" id="panel-life" style="display:none;">
+            <div class="brief-card-copy">
+                <h3>The context that makes it personal.</h3>
+                <p>Major life events, career changes, and upcoming milestones with dates. The things that make a meeting feel like a real conversation instead of a portfolio review.</p>
+            </div>
+            <div class="brief-product-card">
+                <div class="bpc-header">
+                    <h4>Life & Planning</h4>
+                    <span class="bpc-badge" style="background:#dbeafe;color:#1d4ed8;">3 active</span>
+                </div>
+                <div class="bpc-body">
+                    <div class="life-row"><span class="life-tag life-tag-life">Life Event</span><span class="life-date">3/26</span><span>Tuscany vineyard purchase deposit and exploration</span></div>
+                    <div class="life-row"><span class="life-tag life-tag-career">Career</span><span class="life-date">3/26</span><span>Jane transitioning to part-time work with $40k income reduction</span></div>
+                    <div class="life-row"><span class="life-tag life-tag-philanthropy">Philanthropy</span><span class="life-date">9/26</span><span>Gifting $10,000 to niece for college</span></div>
+                    <div class="life-row"><span class="life-tag life-tag-liquidity">Liquidity</span><span class="life-date">Late 2025</span><span>$80,000 liquidity need for kitchen renovation</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CLIENT CONTEXT -->
+        <div class="brief-card-wrapper" id="panel-context" style="display:none;">
+            <div class="brief-card-copy">
+                <h3>Their whole world, one view.</h3>
+                <p>Family, professional network, risk profile, and planning themes. Everything you need to make every client feel like your only client.</p>
+            </div>
+            <div class="brief-product-card">
+                <div class="bpc-header">
+                    <h4>Client Context</h4>
+                    <span style="font-size:12px;color:var(--text-secondary);">60/40 Moderate (Transitioning to 50/50 requested)</span>
+                </div>
+                <div class="bpc-body">
+                    <div class="context-grid">
+                        <div>
+                            <div class="context-col-label">Family</div>
+                            <div class="context-item">Tom (sibling) — Jane's brother; contesting trust split</div>
+                            <div class="context-item">Emma (child, age 14) — Starting high school Fall 2026; 529 planning needed</div>
+                        </div>
+                        <div>
+                            <div class="context-col-label">Professional Network</div>
+                            <div class="context-item">Estate Attorney</div>
+                            <div class="context-item">Family education support</div>
+                        </div>
+                        <div>
+                            <div class="context-col-label">Planning Themes</div>
+                            <div class="context-item">Philanthropy (Open Lands, Food Depository)</div>
+                            <div class="context-item">Real estate diversification</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- COMPOUNDING VALUE -->
+<section class="compounding-section">
+    <div class="compounding-inner reveal">
+        <span class="section-label">Why It Gets Better Over Time</span>
+        <h2>Every meeting makes the next one smarter.</h2>
+        <p>EBriefly gets smarter the more you use it. As it learns each client's priorities and communication style, your briefs get more relevant and your meetings get stronger.</p>
+    </div>
+</section>
+
+
+<!-- NEWSLETTER -->
+<section class="newsletter-section" id="newsletter">
+    <div class="newsletter-inner">
+        <div class="newsletter-copy reveal">
+            <span class="section-label">The Morning Brief</span>
+            <h2>Start every day market-ready.</h2>
+            <p>A daily weekday email covering what moved overnight, what's on the calendar, and a talking point you can use with clients today. Free for advisors.</p>
+            <div class="newsletter-form" id="newsletterForm">
+                <input type="email" class="newsletter-input" id="newsletterEmail" placeholder="you@company.com" required>
+                <button class="newsletter-submit" onclick="handleNewsletterSubmit()">Subscribe</button>
+            </div>
+            <p id="newsletterSuccess" style="display:none;color:var(--green);font-size:14px;margin-top:12px;font-weight:500;">You're in. Look for The Morning Brief in your inbox.</p>
+        </div>
+        <div class="newsletter-preview reveal">
+            <div class="np-header">
+                <div class="np-brand">Briefly Wealth</div>
+                <div class="np-title">The Morning Brief</div>
+                <div class="np-date">
+                    <span>Monday, March 09, 2026</span>
+                    <span style="font-style:italic;">Pre-Market Edition</span>
+                </div>
+            </div>
+            <div class="np-greeting">Good morning, Connor.</div>
+            <div class="np-markets">
+                <div class="np-market-item">
+                    <div class="np-market-label">S&P 500</div>
+                    <div class="np-market-value">6,740.02</div>
+                    <div class="np-market-change up">+1.22%</div>
+                </div>
+                <div class="np-market-item">
+                    <div class="np-market-label">Nasdaq</div>
+                    <div class="np-market-value">22,387.68</div>
+                    <div class="np-market-change down">-1.56%</div>
+                </div>
+                <div class="np-market-item">
+                    <div class="np-market-label">Dow Jones</div>
+                    <div class="np-market-value">47,501.55</div>
+                    <div class="np-market-change down">-0.95%</div>
+                </div>
+                <div class="np-market-item">
+                    <div class="np-market-label">10Y Yield</div>
+                    <div class="np-market-value">4.15%</div>
+                    <div class="np-market-change up">+22bp</div>
+                </div>
+                <div class="np-market-item">
+                    <div class="np-market-label">WTI Crude</div>
+                    <div class="np-market-value">$90.50</div>
+                    <div class="np-market-change up">+6.50%</div>
+                </div>
+                <div class="np-market-item">
+                    <div class="np-market-label">Gold</div>
+                    <div class="np-market-value">$5,158.70</div>
+                    <div class="np-market-change down">-1.18%</div>
+                </div>
+            </div>
+            <div class="np-section-text" style="padding-top:4px;">Each morning covers a market recap, equities, fixed income &amp; rates, commodities &amp; currencies, what to watch today, and an advisor talking point you can use with clients.</div>
+            <a href="sample-brief.html" target="_blank" class="np-view-sample">See a real example &rarr;</a>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+    <div class="contact-inner">
+        <h2 class="reveal">Let's talk about your workflow.</h2>
+        <p class="reveal">Interested in seeing how Briefly fits your practice? We'd love to learn more.</p>
+        <form class="contact-form reveal" id="contactForm" onsubmit="handleContactSubmit(event)">
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label" for="contactName">Full Name</label>
+                    <input type="text" id="contactName" name="name" class="form-input" placeholder="John Smith" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="contactEmail">Email Address</label>
+                    <input type="email" id="contactEmail" name="email" class="form-input" placeholder="john@company.com" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label" for="contactCompany">Company / Firm</label>
+                    <input type="text" id="contactCompany" name="company" class="form-input" placeholder="Your company name" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="contactAUM">AUM (Optional)</label>
+                    <input type="text" id="contactAUM" name="aum" class="form-input" placeholder="e.g., $50M–$500M">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group full">
+                    <label class="form-label" for="contactMessage">How can we help?</label>
+                    <textarea id="contactMessage" name="message" class="form-textarea" placeholder="Tell us about your practice and what you're looking for..." required></textarea>
+                </div>
+            </div>
+            <button type="submit" class="form-submit">Send Message</button>
+        </form>
+        <div class="contact-meta reveal">
+            <div><strong>Email</strong>contact@brieflywealth.com</div>
+            <div><strong>Location</strong>Chicago, IL</div>
+            <div><strong>Built for</strong>Wealth Advisors &amp; RIAs</div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <h2 class="reveal">Your clients notice when you remember the details.</h2>
+    <p class="reveal">They definitely notice when you don't.</p>
+    <button class="btn-navy reveal" onclick="openDemo()">Request a Demo</button>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-grid">
+            <div>
+                <h4>Briefly</h4>
+                <p>AI-powered meeting prep for financial advisors.</p>
+            </div>
+            <div>
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#">Security</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#" onclick="event.preventDefault();">Privacy Policy</a></li>
+                    <li><a href="#" onclick="event.preventDefault();">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">&copy; 2026 Briefly Wealth, LLC. All rights reserved.</div>
+    </div>
+</footer>
+
+<!-- DEMO MODAL -->
+<div class="modal-overlay" id="demoModal">
+    <div class="modal-box">
+        <button class="modal-close" onclick="closeDemo()">&times;</button>
+        <h2>Request a Demo</h2>
+        <p class="modal-sub">See how Briefly can save you hours each week.</p>
+        <form id="demoForm" onsubmit="handleDemoSubmit(event)">
+            <div class="form-group" style="margin-bottom:16px;">
+                <label class="form-label" for="demoName">Full Name</label>
+                <input type="text" id="demoName" name="name" class="form-input" placeholder="John Smith" required style="width:100%">
+            </div>
+            <div class="form-group" style="margin-bottom:24px;">
+                <label class="form-label" for="demoEmail">Email Address</label>
+                <input type="email" id="demoEmail" name="email" class="form-input" placeholder="you@company.com" required style="width:100%">
+            </div>
+            <button type="submit" class="form-submit">Request Demo</button>
+        </form>
+    </div>
+</div>
+
+<!-- SIGN IN MODAL -->
+<div class="modal-overlay" id="signinModal">
+    <div class="modal-box">
+        <button class="modal-close" onclick="closeSignIn()">&times;</button>
+        <h2>Sign In</h2>
+        <p class="modal-sub">Welcome back to Briefly.</p>
+        <form onsubmit="handleSignInSubmit(event)">
+            <div class="form-group" style="margin-bottom:16px;">
+                <label class="form-label" for="signinEmail">Email Address</label>
+                <input type="email" id="signinEmail" class="form-input" placeholder="you@company.com" required style="width:100%">
+            </div>
+            <div class="form-group" style="margin-bottom:24px;">
+                <label class="form-label" for="signinPassword">Password</label>
+                <input type="password" id="signinPassword" class="form-input" placeholder="Enter your password" required style="width:100%">
+            </div>
+            <p id="signinError" style="display:none;color:#dc2626;font-size:14px;margin-bottom:16px;text-align:center;">Invalid email or password. Please try again.</p>
+            <button type="submit" class="form-submit">Sign In</button>
+        </form>
+        <p style="text-align:center;margin-top:20px;font-size:14px;color:var(--text-secondary);">
+            Don't have an account? <a href="#" style="color:var(--blue)" onclick="event.preventDefault();closeSignIn();openDemo();">Request a demo</a>
+        </p>
+    </div>
+</div>
+
+<!-- SUCCESS MODAL -->
+<div class="modal-overlay" id="successModal">
+    <div class="modal-box" style="text-align:center;">
+        <button class="modal-close" onclick="document.getElementById('successModal').classList.remove('active')">&times;</button>
+        <div style="font-size:48px;margin-bottom:16px;">&#10003;</div>
+        <h2>Got it! We'll reach out soon.</h2>
+        <p class="modal-sub">Thank you for your interest. We'll be in touch to show you how Briefly can save you hours each week.</p>
+        <button class="btn-navy" onclick="document.getElementById('successModal').classList.remove('active')" style="width:100%;">Close</button>
+    </div>
+</div>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Brief tabs
+document.querySelectorAll('.brief-tab').forEach(tab => {
+    tab.addEventListener('click', function() {
+        document.querySelectorAll('.brief-tab').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+        const section = this.dataset.section;
+        
+        // Hide all panels
+        document.querySelectorAll('[id^="panel-"]').forEach(p => p.style.display = 'none');
+        
+        // Map tab section to panel id
+        const map = {
+            'action-items': 'panel-action-items',
+            'portfolio': 'panel-portfolio',
+            'decisions': 'panel-decisions',
+            'tax': 'panel-tax',
+            'sentiment': 'panel-sentiment',
+            'life': 'panel-life',
+            'context': 'panel-context'
+        };
+        
+        const panel = document.getElementById(map[section]);
+        if (panel) {
+            panel.style.display = 'grid';
+            panel.classList.add('visible');
+        }
+    });
+});
+
+// Modals
+function openDemo() { document.getElementById('demoModal').classList.add('active'); }
+function closeDemo() { document.getElementById('demoModal').classList.remove('active'); }
+function openSignIn() { document.getElementById('signinModal').classList.add('active'); }
+function closeSignIn() { document.getElementById('signinModal').classList.remove('active'); }
+
+// Close modals on overlay click
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', function(e) {
+        if (e.target === this) this.classList.remove('active');
+    });
+});
+
+// Form handlers
+async function handleDemoSubmit(e) {
+    e.preventDefault();
+    const name = document.getElementById('demoName').value;
+    const email = document.getElementById('demoEmail').value;
+    
+    // TODO: Wire up to match existing index.html form handling
+    console.log('Demo request:', name, email);
+    
+    closeDemo();
+    document.getElementById('successModal').classList.add('active');
+    document.getElementById('demoForm').reset();
+}
+
+async function handleContactSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    
+    // TODO: Wire up to match existing index.html form handling
+    console.log('Contact form submitted');
+    
+    document.getElementById('successModal').classList.add('active');
+    form.reset();
+}
+
+function handleNewsletterSubmit() {
+    const email = document.getElementById('newsletterEmail').value;
+    if (!email) return;
+    
+    // Submit to your newsletter service
+    console.log('Newsletter signup:', email);
+    
+    document.getElementById('newsletterForm').style.display = 'none';
+    document.getElementById('newsletterSuccess').style.display = 'block';
+}
+
+async function handleSignInSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.form-submit');
+    const errEl = document.getElementById('signinError');
+    btn.textContent = 'Signing in...';
+    btn.disabled = true;
+    errEl.style.display = 'none';
+
+    await new Promise(r => setTimeout(r, 800));
+
+    btn.textContent = 'Sign In';
+    btn.disabled = false;
+    errEl.style.display = 'block';
+}
+
+// Nav background on scroll
+window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 20) {
+        nav.style.boxShadow = '0 1px 8px rgba(0,0,0,0.06)';
+    } else {
+        nav.style.boxShadow = 'none';
+    }
+});
+</script>
+
+</body>
+</html>
