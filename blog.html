@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Briefly</title>
+    
+    <link rel="canonical" href="https://www.brieflywealth.com/blog" />
+    <link rel="icon" type="image/png" sizes="32x32" href="images/briefly_logo_favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/briefly_logo_favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/briefly_logo_favicon.png">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-92NXKY9W1S"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-92NXKY9W1S', { 'send_page_view': true });
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --navy: #0B2545;
+            --navy-light: #13315C;
+            --blue: #0B5394;
+            --blue-accent: #1a6fd1;
+            --warm-white: #FAFAF8;
+            --off-white: #F5F4F0;
+            --text: #1d1d1f;
+            --text-secondary: #6b7280;
+            --border: #e5e7eb;
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
+            background: #fff;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ========== NAV ========== */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            z-index: 1000;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+        }
+        .nav-inner {
+            max-width: 1200px; margin: 0 auto;
+            padding: 0 32px;
+            display: flex; align-items: center; justify-content: space-between;
+            height: 72px;
+        }
+        .nav-logo img { height: 56px; }
+        .nav-links { display: flex; align-items: center; gap: 32px; }
+        .nav-links a {
+            font-size: 14px; font-weight: 500; color: var(--text-secondary);
+            text-decoration: none; transition: color 0.2s;
+            letter-spacing: 0.01em;
+        }
+        .nav-links a:hover { color: var(--text); }
+        .nav-btn {
+            background: var(--navy); color: #fff;
+            padding: 10px 24px; border-radius: 8px;
+            font-size: 14px; font-weight: 600;
+            text-decoration: none; transition: all 0.2s;
+            border: none; cursor: pointer;
+        }
+        .nav-btn:hover { background: var(--navy-light); transform: translateY(-1px); }
+        .nav-signin {
+            background: none; border: 1.5px solid var(--border);
+            color: var(--text); padding: 9px 20px; border-radius: 8px;
+            font-size: 14px; font-weight: 500; cursor: pointer;
+            text-decoration: none; transition: all 0.2s;
+        }
+        .nav-signin:hover { border-color: var(--text-secondary); }
+
+        /* ========== BLOG SECTION ========== */
+        .blog-section {
+            padding: 140px 32px 100px;
+            background: #fff;
+        }
+        .blog-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .section-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(32px, 4.5vw, 48px);
+            color: var(--navy);
+            margin-bottom: 16px;
+        }
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 60px;
+        }
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-bottom: 48px;
+        }
+        .blog-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(11, 83, 148, 0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+            text-align: left;
+        }
+        .blog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(11, 83, 148, 0.15);
+            border-color: #0B5394;
+        }
+        .blog-card-image {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+        }
+        .blog-card-content {
+            padding: 24px;
+        }
+        .blog-card-tag {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 10px;
+            background: #eff6ff;
+            color: #0B5394;
+            border-radius: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+        .blog-card-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+        .blog-card-excerpt {
+            font-size: 14px;
+            color: #6e6e73;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        .blog-card-meta {
+            font-size: 12px;
+            color: #9ca3af;
+        }
+        .blog-cta {
+            text-align: center;
+            margin-top: 48px;
+        }
+        .blog-cta a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            background: transparent;
+            color: #0B5394;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            border: 2px solid #0B5394;
+            transition: all 0.3s ease;
+        }
+        .blog-cta a:hover {
+            background: #0B5394;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* ========== ARTICLE MODAL ========== */
+        .article-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+            padding: 24px;
+        }
+        .article-modal-overlay.active {
+            display: flex;
+        }
+        .article-modal {
+            background: white;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 700px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        .article-modal-header {
+            padding: 32px 32px 0;
+        }
+        .article-modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #6e6e73;
+            cursor: pointer;
+            padding: 8px;
+            line-height: 1;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .article-modal-close:hover {
+            background: #f3f4f6;
+            color: #1d1d1f;
+        }
+        .article-modal-tag {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 10px;
+            background: #eff6ff;
+            color: #0B5394;
+            border-radius: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+        .article-modal-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1d1d1f;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+        .article-modal-meta {
+            font-size: 14px;
+            color: #6e6e73;
+            margin-bottom: 24px;
+        }
+        .article-modal-content {
+            padding: 0 32px 32px;
+        }
+        .article-modal-content p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #374151;
+            margin-bottom: 20px;
+        }
+        .article-modal-content h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin: 28px 0 16px;
+        }
+        .article-modal-content ul {
+            margin: 16px 0;
+            padding-left: 24px;
+        }
+        .article-modal-content li {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #374151;
+            margin-bottom: 8px;
+        }
+        .article-modal-footer {
+            padding: 24px 32px;
+            border-top: 1px solid #e5e7eb;
+            text-align: center;
+        }
+        .article-modal-footer a {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #0B5394;
+            color: white;
+            text-decoration: none;
+            border-radius: 24px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .article-modal-footer a:hover {
+            background: #083d6b;
+            transform: translateY(-2px);
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            padding: 60px 32px 32px;
+            background: var(--navy);
+            color: rgba(255,255,255,0.6);
+        }
+        .footer-inner {
+            max-width: 1100px; margin: 0 auto;
+        }
+        .footer-grid {
+            display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 48px; margin-bottom: 48px;
+        }
+        .footer-grid h4 {
+            font-size: 14px; font-weight: 700; color: #fff;
+            margin-bottom: 16px;
+        }
+        .footer-grid p { font-size: 14px; line-height: 1.6; }
+        .footer-grid ul { list-style: none; }
+        .footer-grid li { margin-bottom: 8px; }
+        .footer-grid a {
+            color: rgba(255,255,255,0.6); text-decoration: none;
+            font-size: 14px; transition: color 0.2s;
+        }
+        .footer-grid a:hover { color: #fff; }
+        .footer-bottom {
+            padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 13px; text-align: center;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 900px) {
+            .blog-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 680px) {
+            .nav-links a:not(.nav-btn):not(.nav-signin) { display: none; }
+            .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+            <img src="images/briefly_logo_2.0.png" alt="Briefly">
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="index.html#features">Features</a>
+            <a href="blog.html">Blog</a>
+            <a href="about.html">About</a>
+            <a href="index.html#contact">Contact</a>
+            <a href="#" class="nav-signin" onclick="event.preventDefault(); alert('Sign in functionality coming soon');">Sign In</a>
+            <a href="index.html#contact" class="nav-btn">Request a Demo</a>
+        </div>
+    </div>
+</nav>
+
+<!-- BLOG SECTION -->
+<section class="blog-section">
+    <div class="blog-container">
+        <h2 class="section-title">From Our Blog</h2>
+        <p class="section-subtitle">Practical insights on advisor workflows, portfolio prep, and client communication</p>
+        
+        <div class="blog-grid">
+            <div class="blog-card" onclick="openArticle(1)">
+                <div class="blog-card-image" style="background-image: url('images/robot_image_substack.png');"></div>
+                <div class="blog-card-content">
+                    <span class="blog-card-tag">AI & Technology</span>
+                    <h3 class="blog-card-title">The Jobs AI Won't Replace</h3>
+                    <p class="blog-card-excerpt">Why financial advisors, lawyers, and doctors are actually the most protected from AI disruption, and what's really about to change.</p>
+                    <span class="blog-card-meta">2 min read</span>
+                </div>
+            </div>
+            
+            <div class="blog-card" onclick="openArticle(2)">
+                <div class="blog-card-image" style="background-image: url('images/the_cognitive_limit_substack.png');"></div>
+                <div class="blog-card-content">
+                    <span class="blog-card-tag">Advisor Workflows</span>
+                    <h3 class="blog-card-title">Your Brain Doesn't Have Enough RAM</h3>
+                    <p class="blog-card-excerpt">Your brain isn't built to remember this much and Outlook's search function isn't helping.</p>
+                    <span class="blog-card-meta">3 min read</span>
+                </div>
+            </div>
+            
+            <div class="blog-card" onclick="openArticle(3)">
+                <div class="blog-card-image" style="background-image: url('images/wealth_transfer_image_substack.png');"></div>
+                <div class="blog-card-content">
+                    <span class="blog-card-tag">Wealth Management</span>
+                    <h3 class="blog-card-title">The Great Wealth Transfer Trap</h3>
+                    <p class="blog-card-excerpt">The $80 trillion wealth transfer isn't a windfall, it's an operational crisis. Learn how to scale client relationships without breaking your business model.</p>
+                    <span class="blog-card-meta">3 min read</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="blog-cta">
+            <a href="https://substack.com/@connorflorczyk" target="_blank" rel="noopener noreferrer">
+                Read More on Substack →
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-grid">
+            <div>
+                <h4>Briefly</h4>
+                <p>AI-powered meeting prep for financial advisors.</p>
+            </div>
+            <div>
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="index.html#features">Features</a></li>
+                    <li><a href="index.html">Security</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">&copy; 2026 Briefly Wealth, LLC. All rights reserved.</div>
+    </div>
+</footer>
+
+<!-- ARTICLE MODAL -->
+<div id="articleModal" class="article-modal-overlay">
+    <div class="article-modal">
+        <button class="article-modal-close" onclick="closeArticle()">&times;</button>
+        <div class="article-modal-header">
+            <span class="article-modal-tag" id="articleTag"></span>
+            <h1 class="article-modal-title" id="articleTitle"></h1>
+            <p class="article-modal-meta" id="articleMeta"></p>
+        </div>
+        <div class="article-modal-content" id="articleContent"></div>
+        <div class="article-modal-footer">
+            <a href="https://substack.com/@connorflorczyk" target="_blank" rel="noopener noreferrer" id="articleLink">
+                Read Full Article on Substack
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+// Nav background on scroll
+window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 20) {
+        nav.style.boxShadow = '0 1px 8px rgba(0,0,0,0.06)';
+    } else {
+        nav.style.boxShadow = 'none';
+    }
+});
+
+// Article data
+const articles = {
+    1: {
+        tag: 'AI & Technology',
+        title: 'The Jobs AI Won\'t Replace',
+        meta: 'By Connor Florczyk • 2 min read • December 17, 2025',
+        url: 'https://open.substack.com/pub/connorflorczyk/p/the-jobs-ai-wont-replace?utm_campaign=post-expanded-she',
+        content: `
+            <p>The professions people assume AI will replace first (financial advisors, lawyers, doctors, consultants) are actually the most protected. Not because the technology isn't advancing, but because these predictions misunderstand what the work actually is.</p>
+
+            <p>From a distance, these jobs look like information processing. Up close, they're trust, judgment, and accountability.</p>
+
+            <h3>Why Human Professionals Remain Essential</h3>
+            
+            <p><strong>Trust matters more than accuracy.</strong> Only 28% of retail investors trust AI-generated investment recommendations. Majority of patients are uneasy receiving a diagnosis without a clinician present. The value of any plan depends on whether it can be carried out, and that requires human guidance through volatility and uncertainty.</p>
+
+            <p><strong>Professionals work with data AI never sees.</strong> An estimated 80% of medical diagnoses come from patient history gathered through conversation and observation. Advisors recognize when stated risk tolerance doesn't match behavior. Attorneys sense tension before anything gets written down. Tone, hesitation, body language, context. None of this shows up in a spreadsheet.</p>
+
+            <p><strong>Responsibility can't be assigned to a model.</strong> Advisors remain legally responsible for recommendations even when using AI analysis. Attorneys are accountable for any filing under their name. Physicians bear legal liability for clinical decisions. When things go wrong, people need someone to hold accountable. A system can't be sued.</p>
+
+            <h3>What Changes</h3>
+            
+            <p>AI will handle data-heavy, pattern-matching work that consumes professional time. It will surface insights faster and catch errors humans miss. The advisors, lawyers, and doctors who learn to work effectively with AI will dramatically outperform those who don't.</p>
+
+            <p><strong>But they'll still be needed for what they've always done: building trust, exercising judgment, taking responsibility, and helping people navigate decisions that matter.</strong></p>
+        `
+    },
+    2: {
+        tag: 'Productivity',
+        title: 'Your Brain Doesn\'t Have Enough RAM for This Job',
+        meta: 'By Connor Florczyk • 3 min read • January 3, 2026',
+        url: 'https://open.substack.com/pub/connorflorczyk/p/your-brain-doesnt-have-enough-ram?utm_campaign=post-',
+        content: `
+            <p>You have 200 unread emails. Somewhere in there is a detail your client mentioned three weeks ago that you promised to follow up on. The meeting is in twenty minutes. This isn't a failure of effort. It's a failure of biology.</p>
+
+            <h3>The Core Problem</h3>
+            <p>Dunbar's number limits us to roughly 150 meaningful relationships. The average financial advisor manages 100 households. A therapist sees 40 clients per week. A teacher has 150 students. Each relationship involves not just names and faces, but context: family dynamics, past conversations, unspoken concerns, and years of accumulated history.</p>
+
+            <p>Memory has hard limits. You can hold about four to seven things in your head at once. We forget roughly 70% of new information within a day unless we actively work to remember it. Task work gets completed. Relationship work accumulates indefinitely.</p>
+
+            <h3>Why Current Tools Fail</h3>
+            <p>CRMs track the data. Email holds the conversations. Meeting notes capture the context. Portfolio systems show the numbers. But none of them talk to each other, and none of them know what you actually need to remember for the meeting in twenty minutes.</p>
+
+            <h3>The Real Constraint</h3>
+            <p>The solution isn't to remember everything. It's to get the right information in front of you at the right time so your brain can focus on what it actually does well: reading people, understanding what someone values, and helping them navigate hard decisions.</p>
+
+            <p>No one can remember everything about 100 people across years of interactions. That's not a personal failure. It's just how humans work. The question is whether we're going to keep pretending otherwise, or build systems that let people focus on what makes them irreplaceable.</p>
+        `
+    },
+    3: {
+        tag: 'Wealth Management',
+        title: 'The Great Wealth Transfer Trap: When Assets Stay Flat But Relationships Explode',
+        meta: 'By Connor Florczyk • 3 min read • November 5, 2025',
+        url: 'https://open.substack.com/pub/connorflorczyk/p/the-great-wealth-transfer-trap-when?utm_campaign=post-e',
+        content: `
+            <p>The promised $80 trillion wealth transfer isn't a windfall. It's an operational crisis. When a $10 million family divides across three heirs, the same assets require three times as many relationships to manage.</p>
+
+            <h3>The Core Problem</h3>
+            <p>A typical advisor handles 100 households and $300M in AUM. If one-third of those families transfer wealth and fragment into 3-4 heir households, that book swells to 180 relationships. That's an 80% increase with zero additional revenue.</p>
+
+            <p><strong>The economics don't work:</strong> Servicing 80% more households requires 70-90% more headcount. With compensation already consuming 50% of revenue, that math breaks the business model.</p>
+
+            <h3>The Real Bottleneck</h3>
+            <p>Most wealth-tech tackles back-office efficiency: rebalancing, compliance, billing. But the true constraint is <strong>front-office cognitive load:</strong> preparing for meetings, following up, staying contextually relevant. Advisors spend 40% of their time on coordination that should take minutes.</p>
+
+            <p><strong>Automation can't scale trust.</strong> Email templates reduce clicks, not mental friction. When data lives in silos, every meeting begins with manual reconstruction across CRMs, emails, and portfolio systems.</p>
+
+            <h3>The Market Reality</h3>
+            <ul>
+                <li>Global financial wealth hit $300 trillion in 2024, but organic growth among advisors has stalled</li>
+                <li>One-third of households will change their primary advisor relationship within a decade</li>
+                <li>Less than 25% of firms have integrated intelligent automation into client workflows</li>
+                <li>Industry IP (understanding of relationships) remains unstructured and inaccessible</li>
+            </ul>
+
+            <h3>The Opportunity</h3>
+            <p>Tools like Altruist, Addepar, and Orion have modernized execution. The white space is <strong>relationship intelligence:</strong> knowing who to call, what to say, when to reach out.</p>
+
+            <p>The next competitive edge goes to firms that can double relationship capacity without doubling staff. Those that preserve personalization while scaling from 100 to 200 clients per advisor.</p>
+
+            <p><strong>The future belongs to firms that scale context and trust.</strong></p>
+        `
+    }
+};
+
+function openArticle(articleId) {
+    const article = articles[articleId];
+    if (!article) return;
+
+    document.getElementById('articleTag').textContent = article.tag;
+    document.getElementById('articleTitle').textContent = article.title;
+    document.getElementById('articleMeta').textContent = article.meta;
+    document.getElementById('articleContent').innerHTML = article.content;
+
+    // Update the Substack link
+    const articleLink = document.getElementById('articleLink');
+    if (article.url) {
+        articleLink.href = article.url;
+    }
+
+    document.getElementById('articleModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeArticle() {
+    document.getElementById('articleModal').classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Close article modal when clicking outside
+document.getElementById('articleModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeArticle();
+    }
+});
+</script>
+
+</body>
+</html>
