@@ -66,7 +66,7 @@
             display: flex; align-items: center; justify-content: space-between;
             height: 72px;
         }
-        .nav-logo img { height: 56px; }
+        .nav-logo img { height: 68px; }
         .nav-links { display: flex; align-items: center; gap: 32px; }
         .nav-links a {
             font-size: 14px; font-weight: 500; color: var(--text-secondary);
@@ -721,9 +721,9 @@
             background: var(--off-white);
         }
         .newsletter-inner {
-            max-width: 1000px; margin: 0 auto;
-            display: grid; grid-template-columns: 1fr 1fr;
-            gap: 64px; align-items: center;
+            max-width: 1140px; margin: 0 auto;
+            display: grid; grid-template-columns: 5fr 7fr;
+            gap: 56px; align-items: center;
         }
         .newsletter-copy .section-label { color: var(--blue); }
         .newsletter-copy h2 {
@@ -756,92 +756,106 @@
 
         /* Newsletter preview card */
         .newsletter-preview {
-            background: #fff; border-radius: 12px;
-            border: 1px solid var(--border);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+            background: #fff; border-radius: 4px;
+            border: 1px solid #d0dae4;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
             overflow: hidden;
+            font-family: Georgia, 'Times New Roman', serif;
         }
         .np-header {
-            text-align: center; padding: 28px 32px 20px;
-            border-bottom: 1px solid var(--border);
+            text-align: center; padding: 32px 32px 0;
         }
         .np-brand {
-            font-size: 10px; font-weight: 600; letter-spacing: 0.2em;
-            text-transform: uppercase; color: var(--text-secondary);
-            margin-bottom: 8px;
+            font-size: 10px; font-weight: 400; letter-spacing: 3px;
+            text-transform: uppercase; color: #8aacc8;
+            margin-bottom: 10px;
+        }
+        .np-divider-thick {
+            border: none; border-top: 2px solid var(--navy); margin: 0;
         }
         .np-title {
-            font-family: 'Source Serif 4', serif;
-            font-size: 24px; font-weight: 600; color: var(--navy);
-            margin-bottom: 6px;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 26px; font-weight: normal; color: var(--navy);
+            margin: 10px 0 8px; letter-spacing: -0.5px; line-height: 1.1;
+        }
+        .np-divider-thin {
+            border: none; border-top: 1px solid var(--navy); margin: 0;
         }
         .np-date {
-            font-size: 12px; color: var(--text-secondary);
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 12px; color: #5a7a94;
             display: flex; justify-content: space-between;
+            margin-top: 10px;
+        }
+        .np-divider-light {
+            border: none; border-top: 1px solid #d0dae4; margin: 10px 0 0;
         }
         .np-greeting {
-            padding: 16px 32px 0;
-            font-size: 14px; color: var(--text);
+            padding: 20px 32px 0;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 14px; color: #2c3e50; line-height: 1.65;
         }
-        .np-markets {
-            padding: 16px 32px;
-            display: grid; grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
+        .np-ticker-tape {
+            margin: 16px 0 20px;
+            background: var(--navy);
+            padding: 10px 0;
+            overflow: hidden;
+            position: relative;
         }
-        .np-market-item { text-align: center; }
-        .np-market-label {
-            font-size: 9px; font-weight: 600; text-transform: uppercase;
-            letter-spacing: 0.1em; color: var(--text-secondary);
+        .np-ticker-track {
+            display: flex; gap: 32px;
+            animation: np-scroll 18s linear infinite;
+            width: max-content;
         }
-        .np-market-value { font-size: 16px; font-weight: 700; color: var(--navy); }
-        .np-market-change { font-size: 12px; font-weight: 600; }
-        .np-market-change.up { color: var(--green); }
-        .np-market-change.down { color: var(--red); }
-        .np-section-title {
-            padding: 8px 32px;
-            font-size: 15px; font-weight: 700; color: var(--navy);
+        .np-ticker-item {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 12px; color: rgba(255,255,255,0.95);
+            white-space: nowrap;
+            display: flex; align-items: center; gap: 6px;
+            letter-spacing: 0.02em;
         }
-        .np-section-text {
-            padding: 0 32px 12px;
-            font-size: 13px; color: var(--text-secondary);
-            line-height: 1.6;
+        .np-ticker-item .np-ticker { font-weight: 700; }
+        .np-ticker-item .np-chg { font-weight: 600; }
+        .np-ticker-item .np-up { color: #4ade80; }
+        .np-ticker-item .np-down { color: #f87171; }
+        .np-ticker-sep {
+            color: rgba(255,255,255,0.2);
+            font-size: 10px;
         }
-        .np-talking-point {
-            margin: 8px 32px 24px;
-            padding: 14px 18px;
-            background: var(--off-white);
-            border-radius: 8px;
-            border-left: 3px solid var(--blue);
+        @keyframes np-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
-        .np-talking-point h5 {
-            font-size: 13px; font-weight: 700; color: var(--navy);
-            margin-bottom: 6px;
+        .np-section-label {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 9px; font-weight: bold; letter-spacing: 2.5px;
+            text-transform: uppercase; color: #8aacc8;
+            margin: 0 0 8px;
         }
-        .np-talking-point p {
-            font-size: 12px; color: var(--text-secondary);
-            line-height: 1.55; margin: 0;
+        .np-whats-inside {
+            padding: 20px 32px 24px;
+            border-top: 1px solid #e4e9f0;
         }
-        .np-section-labels {
-            display: flex; flex-wrap: wrap; gap: 6px;
-            padding: 4px 32px 14px;
+        .np-inside-bullets {
+            margin: 8px 0 0 16px; padding: 0;
+            list-style: disc;
         }
-        .np-label {
-            font-size: 10px; font-weight: 600; text-transform: uppercase;
-            letter-spacing: 0.05em; color: var(--navy);
-            background: var(--off-white); border: 1px solid var(--border);
-            border-radius: 4px; padding: 4px 10px;
+        .np-inside-bullets li {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 13px; color: #3a4a5c; line-height: 1.6;
+            padding: 2px 0;
         }
         .np-view-sample {
             display: block; text-align: center;
-            margin: 12px 32px 20px; padding: 10px;
-            font-size: 13px; font-weight: 600; color: var(--navy);
-            border: 1px solid var(--border); border-radius: 8px;
+            margin: 0; padding: 14px 32px;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 13px; font-weight: bold; color: var(--navy);
+            border-top: 1px solid #d0dae4;
             text-decoration: none; transition: all 0.2s;
-            background: var(--off-white);
+            background: #f4f7fa;
         }
         .np-view-sample:hover {
             background: var(--navy); color: #fff;
-            border-color: var(--navy);
         }
 
         /* ========== CONTACT SECTION ========== */
@@ -1380,46 +1394,58 @@
         <div class="newsletter-preview reveal">
             <div class="np-header">
                 <div class="np-brand">Briefly Wealth</div>
+                <hr class="np-divider-thick">
                 <div class="np-title">The Morning Brief</div>
+                <hr class="np-divider-thin">
                 <div class="np-date">
-                    <span>Monday, March 09, 2026</span>
+                    <span>Thursday, March 12, 2026</span>
                     <span style="font-style:italic;">Pre-Market Edition</span>
                 </div>
+                <hr class="np-divider-light">
             </div>
-            <div class="np-greeting">Good morning, Connor.</div>
-            <div class="np-markets">
-                <div class="np-market-item">
-                    <div class="np-market-label">S&P 500</div>
-                    <div class="np-market-value">6,740.02</div>
-                    <div class="np-market-change up">+1.22%</div>
-                </div>
-                <div class="np-market-item">
-                    <div class="np-market-label">Nasdaq</div>
-                    <div class="np-market-value">22,387.68</div>
-                    <div class="np-market-change down">-1.56%</div>
-                </div>
-                <div class="np-market-item">
-                    <div class="np-market-label">Dow Jones</div>
-                    <div class="np-market-value">47,501.55</div>
-                    <div class="np-market-change down">-0.95%</div>
-                </div>
-                <div class="np-market-item">
-                    <div class="np-market-label">10Y Yield</div>
-                    <div class="np-market-value">4.15%</div>
-                    <div class="np-market-change up">+22bp</div>
-                </div>
-                <div class="np-market-item">
-                    <div class="np-market-label">WTI Crude</div>
-                    <div class="np-market-value">$90.50</div>
-                    <div class="np-market-change up">+6.50%</div>
-                </div>
-                <div class="np-market-item">
-                    <div class="np-market-label">Gold</div>
-                    <div class="np-market-value">$5,158.70</div>
-                    <div class="np-market-change down">-1.18%</div>
+            <div class="np-greeting">Good morning. Private credit funds are freezing withdrawals, and oil just cleared $100 again despite the largest emergency reserve release in history.</div>
+            <div class="np-ticker-tape">
+                <div class="np-ticker-track">
+                    <span class="np-ticker-item"><span class="np-ticker">S&amp;P 500</span> 6,775.80 <span class="np-chg np-down">&#9660; 1.2%</span></span>
+                    <span class="np-ticker-sep">|</span>
+                    <span class="np-ticker-item"><span class="np-ticker">Nasdaq</span> 22,716 <span class="np-chg np-down">&#9660; 2.2%</span></span>
+                    <span class="np-ticker-sep">|</span>
+                    <span class="np-ticker-item"><span class="np-ticker">Dow</span> 47,417 <span class="np-chg np-down">&#9660; 2.0%</span></span>
+                    <span class="np-ticker-sep">|</span>
+                    <span class="np-ticker-item"><span class="np-ticker">10Y</span> 4.21% <span class="np-chg np-up">&#9650; 2bp</span></span>
+                    <span class="np-ticker-sep">|</span>
+                    <span class="np-ticker-item"><span class="np-ticker">WTI</span> $87.25 <span class="np-chg np-up">&#9650; 52%</span></span>
+                    <span class="np-ticker-sep">|</span>
+                    <span class="np-ticker-item"><span class="np-ticker">Gold</span> $5,167 <span class="np-chg np-up">&#9650; 20%</span></span>
+                    <span class="np-ticker-sep">|</span>
+                    <span class="np-ticker-item"><span class="np-ticker">BTC</span> $70,205 <span class="np-chg np-down">&#9660; 21%</span></span>
+                    <span class="np-ticker-sep" style="margin-right:32px;">|</span>
+                    <!-- duplicate for seamless loop -->
+                    <span class="np-ticker-item"><span class="np-ticker">S&amp;P 500</span> 6,775.80 <span class="np-chg np-down">&#9660; 1.2%</span></span>
+                    <span class="np-ticker-sep">|</span>
+                    <span class="np-ticker-item"><span class="np-ticker">Nasdaq</span> 22,716 <span class="np-chg np-down">&#9660; 2.2%</span></span>
+                    <span class="np-ticker-sep">|</span>
+                    <span class="np-ticker-item"><span class="np-ticker">Dow</span> 47,417 <span class="np-chg np-down">&#9660; 2.0%</span></span>
+                    <span class="np-ticker-sep">|</span>
+                    <span class="np-ticker-item"><span class="np-ticker">10Y</span> 4.21% <span class="np-chg np-up">&#9650; 2bp</span></span>
+                    <span class="np-ticker-sep">|</span>
+                    <span class="np-ticker-item"><span class="np-ticker">WTI</span> $87.25 <span class="np-chg np-up">&#9650; 52%</span></span>
+                    <span class="np-ticker-sep">|</span>
+                    <span class="np-ticker-item"><span class="np-ticker">Gold</span> $5,167 <span class="np-chg np-up">&#9650; 20%</span></span>
+                    <span class="np-ticker-sep">|</span>
+                    <span class="np-ticker-item"><span class="np-ticker">BTC</span> $70,205 <span class="np-chg np-down">&#9660; 21%</span></span>
                 </div>
             </div>
-            <div class="np-section-text" style="padding-top:4px;">Each morning covers a market recap, equities, fixed income &amp; rates, commodities &amp; currencies, what to watch today, and an advisor talking point you can use with clients.</div>
+            <div class="np-whats-inside">
+                <div class="np-section-label">Each Morning Includes</div>
+                <ul class="np-inside-bullets">
+                    <li>Markets at a glance &mdash; S&amp;P, Nasdaq, Dow, yields, oil, gold, bitcoin</li>
+                    <li>The bottom line &mdash; what moved overnight and why it matters</li>
+                    <li>Advisor talking point &mdash; a ready-to-use angle for client conversations</li>
+                    <li>What to watch &mdash; data releases, earnings, and events on the calendar</li>
+                    <li>Water cooler &mdash; one story worth knowing about before your first meeting</li>
+                </ul>
+            </div>
             <a href="sample-brief.html" target="_blank" class="np-view-sample">See a real example &rarr;</a>
         </div>
     </div>
