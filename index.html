@@ -9,7 +9,17 @@
     <link rel="icon" type="image/png" sizes="32x32" href="images/briefly_logo_favicon.png">
     <link rel="icon" type="image/png" sizes="16x16" href="images/briefly_logo_favicon.png">
     <link rel="apple-touch-icon" sizes="180x180" href="images/briefly_logo_favicon.png">
-    
+
+    <meta property="og:title" content="Briefly — AI-Powered Meeting Prep for Financial Advisors">
+    <meta property="og:description" content="Briefly turns CRM data, market signals, and client history into actionable meeting prep — so advisors walk in ready.">
+    <meta property="og:image" content="https://www.brieflywealth.com/images/briefly_app_demo.png">
+    <meta property="og:url" content="https://www.brieflywealth.com/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Briefly — AI-Powered Meeting Prep for Financial Advisors">
+    <meta name="twitter:description" content="Briefly turns CRM data, market signals, and client history into actionable meeting prep — so advisors walk in ready.">
+    <meta name="twitter:image" content="https://www.brieflywealth.com/images/briefly_app_demo.png">
+
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-92NXKY9W1S"></script>
     <script>
@@ -998,8 +1008,12 @@
             .context-grid > div:last-child { border-bottom: none; }
         }
         @media (max-width: 680px) {
+            .nav-inner { padding: 0 16px; height: 64px; }
+            .nav-logo img { height: 56px; }
+            .nav-links { gap: 10px; }
             .nav-links a:not(.nav-btn):not(.nav-signin) { display: none; }
-            .nav-links .nav-btn { color: #fff; }
+            .nav-links .nav-btn { color: #fff; padding: 8px 16px; font-size: 13px; }
+            .nav-links .nav-signin { padding: 7px 14px; font-size: 13px; }
             .hero { padding: 130px 20px 80px; }
             .form-row { grid-template-columns: 1fr; }
             .newsletter-form { flex-direction: column; }
