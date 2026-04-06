@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Subscribe | The Morning Brief</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B2545;
+    --navy-light: #13315C;
+    --blue: #0B5394;
+    --off-white: #F5F4F0;
+    --text-secondary: #6b7280;
+    --border: #e5e7eb;
+    --green: #059669;
+    --red: #dc2626;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--off-white);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 32px;
+  }
+
+  .subscribe-inner {
+    max-width: 1140px;
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: 56px;
+    align-items: center;
+  }
+
+  /* Left column — copy & form */
+  .subscribe-copy .section-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 12px;
+    display: block;
+  }
+  .subscribe-copy h1 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: clamp(24px, 3.5vw, 36px);
+    color: var(--navy);
+    font-weight: normal;
+    margin-bottom: 16px;
+    line-height: 1.15;
+  }
+  .subscribe-copy .description {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 28px;
+  }
+
+  label {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #8aacc8;
+    margin-bottom: 6px;
+  }
+  .required { color: var(--red); }
+
+  input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    color: var(--navy);
+    margin-bottom: 16px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  input:focus { border-color: var(--blue); }
+  input::placeholder { color: #b0bfcc; }
+
+  button {
+    width: 100%;
+    padding: 14px;
+    background: var(--navy);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 0.3px;
+    margin-top: 4px;
+    transition: background 0.2s;
+  }
+  button:hover { background: var(--navy-light); }
+  button:disabled { background: #8aacc8; cursor: not-allowed; }
+
+  .note {
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-top: 14px;
+  }
+  .message {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 14px;
+    line-height: 1.5;
+  }
+  .message.error { color: var(--red); }
+  .message.success { color: var(--green); }
+  .message.hidden { display: none; }
+
+  .success-card {
+    text-align: center;
+    padding: 16px 0;
+  }
+  .success-card h2 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 22px;
+    color: var(--navy);
+    font-weight: normal;
+    margin-bottom: 12px;
+  }
+  .success-card p {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  /* Right column — newsletter preview card */
+  .newsletter-preview {
+    background: #fff;
+    border-radius: 4px;
+    border: 1px solid #d0dae4;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    overflow: hidden;
+    font-family: Georgia, 'Times New Roman', serif;
+  }
+  .np-header {
+    text-align: center;
+    padding: 32px 32px 0;
+  }
+  .np-brand {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #8aacc8;
+    margin-bottom: 10px;
+  }
+  .np-divider-thick { border: none; border-top: 2px solid var(--navy); margin: 0; }
+  .np-title {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 26px;
+    font-weight: normal;
+    color: var(--navy);
+    margin: 10px 0 8px;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+  }
+  .np-divider-thin { border: none; border-top: 1px solid var(--navy); margin: 0; }
+  .np-date {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 12px;
+    color: #5a7a94;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  .np-divider-light { border: none; border-top: 1px solid #d0dae4; margin: 10px 0 0; }
+  .np-greeting {
+    padding: 20px 32px 0;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 14px;
+    color: #2c3e50;
+    line-height: 1.65;
+  }
+
+  /* Ticker tape */
+  .np-ticker-tape {
+    margin: 16px 0 20px;
+    background: var(--navy);
+    padding: 10px 0;
+    overflow: hidden;
+    position: relative;
+  }
+  .np-ticker-track {
+    display: flex;
+    gap: 32px;
+    animation: np-scroll 18s linear infinite;
+    width: max-content;
+  }
+  .np-ticker-item {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: rgba(255,255,255,0.95);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: 0.02em;
+  }
+  .np-ticker-item .np-ticker { font-weight: 700; }
+  .np-ticker-item .np-chg { font-weight: 600; }
+  .np-ticker-item .np-up { color: #4ade80; }
+  .np-ticker-item .np-down { color: #f87171; }
+  .np-ticker-sep {
+    color: rgba(255,255,255,0.2);
+    font-size: 10px;
+  }
+  @keyframes np-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .np-section-label {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 9px;
+    font-weight: bold;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #8aacc8;
+    margin: 0 0 8px;
+  }
+  .np-whats-inside {
+    padding: 20px 32px 24px;
+    border-top: 1px solid #e4e9f0;
+  }
+  .np-inside-bullets {
+    margin: 8px 0 0 16px;
+    padding: 0;
+    list-style: disc;
+  }
+  .np-inside-bullets li {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 13px;
+    color: #3a4a5c;
+    line-height: 1.6;
+    padding: 2px 0;
+  }
+  .np-view-sample {
+    display: block;
+    text-align: center;
+    margin: 0;
+    padding: 14px 32px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--navy);
+    border-top: 1px solid #d0dae4;
+    text-decoration: none;
+    transition: all 0.2s;
+    background: #f4f7fa;
+  }
+  .np-view-sample:hover {
+    background: var(--navy);
+    color: #fff;
+  }
+
+  /* Responsive */
+  @media (max-width: 860px) {
+    .subscribe-inner {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    body { padding: 40px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="subscribe-inner">
+  <!-- Left column: copy & form -->
+  <div class="subscribe-copy">
+    <span class="section-label">The Morning Brief</span>
+    <h1>Start every day market-ready.</h1>
+    <p class="description">A daily weekday email covering what moved overnight, what's on the calendar, and a talking point you can use with clients today. Free for advisors.</p>
+
+    <div id="formSection">
+      <label for="email">Email <span class="required">*</span></label>
+      <input type="email" id="email" placeholder="you@yourfirm.com" required>
+
+      <label for="name">Name</label>
+      <input type="text" id="name" placeholder="First Last">
+
+      <label for="firm">Firm</label>
+      <input type="text" id="firm" placeholder="Your firm name">
+
+      <button id="submitBtn" onclick="subscribe()">Subscribe</button>
+      <p class="note">Free. Weekdays only. Unsubscribe anytime.</p>
+      <p id="messageBox" class="message hidden"></p>
+    </div>
+
+    <div id="successSection" style="display:none;">
+      <div class="success-card">
+        <h2>You're subscribed</h2>
+        <p>Look for The Morning Brief in your inbox on the next market day.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right column: newsletter preview card -->
+  <div class="newsletter-preview">
+    <div class="np-header">
+      <div class="np-brand">Briefly Wealth</div>
+      <hr class="np-divider-thick">
+      <div class="np-title">The Morning Brief</div>
+      <hr class="np-divider-thin">
+      <div class="np-date">
+        <span>Thursday, March 12, 2026</span>
+        <span style="font-style:italic;">Pre-Market Edition</span>
+      </div>
+      <hr class="np-divider-light">
+    </div>
+    <div class="np-greeting">Good morning. Private credit funds are freezing withdrawals, and oil just cleared $100 again despite the largest emergency reserve release in history.</div>
+    <div class="np-ticker-tape">
+      <div class="np-ticker-track">
+        <span class="np-ticker-item"><span class="np-ticker">S&amp;P 500</span> 6,775.80 <span class="np-chg np-down">&#9660; 1.2%</span></span>
+        <span class="np-ticker-sep">|</span>
+        <span class="np-ticker-item"><span class="np-ticker">Nasdaq</span> 22,716 <span class="np-chg np-down">&#9660; 2.2%</span></span>
+        <span class="np-ticker-sep">|</span>
+        <span class="np-ticker-item"><span class="np-ticker">Dow</span> 47,417 <span class="np-chg np-down">&#9660; 2.0%</span></span>
+        <span class="np-ticker-sep">|</span>
+        <span class="np-ticker-item"><span class="np-ticker">10Y</span> 4.21% <span class="np-chg np-up">&#9650; 2bp</span></span>
+        <span class="np-ticker-sep">|</span>
+        <span class="np-ticker-item"><span class="np-ticker">WTI</span> $87.25 <span class="np-chg np-up">&#9650; 52%</span></span>
+        <span class="np-ticker-sep">|</span>
+        <span class="np-ticker-item"><span class="np-ticker">Gold</span> $5,167 <span class="np-chg np-up">&#9650; 20%</span></span>
+        <span class="np-ticker-sep">|</span>
+        <span class="np-ticker-item"><span class="np-ticker">BTC</span> $70,205 <span class="np-chg np-down">&#9660; 21%</span></span>
+        <span class="np-ticker-sep" style="margin-right:32px;">|</span>
+        <!-- duplicate for seamless loop -->
+        <span class="np-ticker-item"><span class="np-ticker">S&amp;P 500</span> 6,775.80 <span class="np-chg np-down">&#9660; 1.2%</span></span>
+        <span class="np-ticker-sep">|</span>
+        <span class="np-ticker-item"><span class="np-ticker">Nasdaq</span> 22,716 <span class="np-chg np-down">&#9660; 2.2%</span></span>
+        <span class="np-ticker-sep">|</span>
+        <span class="np-ticker-item"><span class="np-ticker">Dow</span> 47,417 <span class="np-chg np-down">&#9660; 2.0%</span></span>
+        <span class="np-ticker-sep">|</span>
+        <span class="np-ticker-item"><span class="np-ticker">10Y</span> 4.21% <span class="np-chg np-up">&#9650; 2bp</span></span>
+        <span class="np-ticker-sep">|</span>
+        <span class="np-ticker-item"><span class="np-ticker">WTI</span> $87.25 <span class="np-chg np-up">&#9650; 52%</span></span>
+        <span class="np-ticker-sep">|</span>
+        <span class="np-ticker-item"><span class="np-ticker">Gold</span> $5,167 <span class="np-chg np-up">&#9650; 20%</span></span>
+        <span class="np-ticker-sep">|</span>
+        <span class="np-ticker-item"><span class="np-ticker">BTC</span> $70,205 <span class="np-chg np-down">&#9660; 21%</span></span>
+      </div>
+    </div>
+    <div class="np-whats-inside">
+      <div class="np-section-label">Each Morning Includes</div>
+      <ul class="np-inside-bullets">
+        <li>Markets at a glance &mdash; S&amp;P, Nasdaq, Dow, yields, oil, gold, bitcoin</li>
+        <li>The bottom line &mdash; what moved overnight and why it matters</li>
+        <li>Advisor talking point &mdash; a ready-to-use angle for client conversations</li>
+        <li>What to watch &mdash; data releases, earnings, and events on the calendar</li>
+        <li>Water cooler &mdash; one story worth knowing about before your first meeting</li>
+      </ul>
+    </div>
+    <a href="sample-brief.html" target="_blank" class="np-view-sample">See a real example &rarr;</a>
+  </div>
+</div>
+
+<script>
+  const SUPABASE_URL = 'https://vlptwnnnuqclbkkoxqjk.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZscHR3bm5udXFjbGJra294cWprIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwMDI3NTgsImV4cCI6MjA4ODU3ODc1OH0.HoxutLeRJZqz4lJ7T8JIQ-v3wNjRQa3VpXORmTgEimo';
+
+  async function subscribe() {
+    const btn = document.getElementById('submitBtn');
+    const msg = document.getElementById('messageBox');
+    const email = document.getElementById('email').value.trim();
+    const name = document.getElementById('name').value.trim();
+    const firm = document.getElementById('firm').value.trim();
+
+    if (!email) {
+      msg.className = 'message error';
+      msg.textContent = 'Please enter your email address.';
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Subscribing...';
+    msg.className = 'message hidden';
+
+    try {
+      const resp = await fetch(SUPABASE_URL + '/rest/v1/rpc/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+        },
+        body: JSON.stringify({ p_email: email, p_name: name, p_firm: firm }),
+      });
+
+      if (!resp.ok) throw new Error('Server error');
+      const data = await resp.json();
+
+      if (data.success) {
+        document.getElementById('formSection').style.display = 'none';
+        document.getElementById('successSection').style.display = 'block';
+      } else {
+        msg.className = 'message error';
+        msg.textContent = 'Something went wrong. Please try again.';
+        btn.disabled = false;
+        btn.textContent = 'Subscribe';
+      }
+    } catch (err) {
+      msg.className = 'message error';
+      msg.textContent = 'Could not subscribe: ' + err.message;
+      btn.disabled = false;
+      btn.textContent = 'Subscribe';
+    }
+  }
+
+  document.querySelectorAll('input').forEach(function(input) {
+    input.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') subscribe();
+    });
+  });
+</script>
+</body>
+</html>
