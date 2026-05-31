@@ -433,6 +433,118 @@
     .legal-head h1 { font-size: 36px; }
   }
 </style>
+<!-- canonical-nav -->
+<style id="canonical-nav">
+  nav.nav {
+    position: sticky;
+    top: 0;
+    z-index: 60;
+    height: 64px;
+    padding: 0 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter: saturate(140%) blur(8px);
+    -webkit-backdrop-filter: saturate(140%) blur(8px);
+    border-bottom: 1px solid var(--rule);
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+  }
+  nav.nav .brand { position: relative; display: inline-flex; align-items: center; padding-right: 14px; text-decoration: none; }
+  nav.nav .brand-word {
+    font-family: var(--sans);
+    font-weight: 900;
+    font-size: 26px;
+    line-height: .78;
+    letter-spacing: -.085em;
+    text-transform: uppercase;
+    color: var(--ink);
+    transform: scaleY(.88);
+    transform-origin: left center;
+  }
+  nav.nav .brand-pin {
+    position: absolute;
+    top: 4px;
+    right: 0;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--blue);
+    box-shadow: 0 0 0 2px rgba(47,140,255,.10);
+  }
+  nav.nav .brand-icon { display: none; }
+  nav.nav .nav-links {
+    display: flex;
+    align-items: stretch;
+    border: 1px solid var(--rule);
+    background: transparent;
+    gap: 0;
+  }
+  nav.nav .nav-links a {
+    color: var(--ink-soft, rgba(28,29,31,.72));
+    text-decoration: none;
+    padding: 14px 14px;
+    min-height: 44px;
+    border-right: 1px solid var(--rule);
+    display: inline-flex;
+    align-items: center;
+    transition: color .15s ease, background .15s ease;
+    height: auto;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+  }
+  nav.nav .nav-links a:last-child { border-right: 0; }
+  nav.nav .nav-links a:hover { background: transparent; color: var(--blue); }
+  nav.nav .nav-actions { display: inline-flex; align-items: center; gap: 10px; }
+  nav.nav .nav-signin {
+    border: 1px solid var(--ink);
+    border-radius: 0;
+    background: transparent;
+    color: var(--ink);
+    height: 44px;
+    padding: 0 16px;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    transition: color .15s ease, border-color .15s ease, background .15s ease;
+  }
+  nav.nav .nav-signin:hover { background: transparent; color: var(--blue); border-color: var(--blue); }
+  nav.nav .nav-cta {
+    border: 1px solid var(--ink);
+    border-radius: 0;
+    background: var(--ink);
+    color: var(--paper);
+    height: 44px;
+    padding: 0 18px;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  nav.nav .nav-cta:hover { background: var(--blue); border-color: var(--blue); color: #fff; }
+  @media (max-width: 820px) {
+    nav.nav { padding: 0 16px; height: 56px; }
+    nav.nav .nav-links { display: none; }
+  }
+</style>
 </head>
 <body>
 
