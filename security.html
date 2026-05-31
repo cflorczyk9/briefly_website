@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security | Briefly Wealth</title>
+    <meta name="description" content="Briefly protects advisor and client data with source-backed outputs, advisor review, least-privilege access, encryption, vendor review, and a security program aligned to SOC 2 principles.">
+    <link rel="canonical" href="https://www.brieflywealth.com/security">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/briefly_logo_favicon.png?v=2">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/briefly_logo_favicon.png?v=2">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/briefly_logo_favicon.png?v=2">
+    <meta property="og:title" content="Briefly Security">
+    <meta property="og:description" content="How Briefly protects advisor and client data while generating source-backed V2 workflow surfaces for wealth firms.">
+    <meta property="og:image" content="https://www.brieflywealth.com/images/briefly-og-main-2x.png">
+    <meta property="og:url" content="https://www.brieflywealth.com/security">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Briefly Security">
+    <meta name="twitter:description" content="How Briefly protects advisor and client data while generating source-backed V2 workflow surfaces for wealth firms.">
+    <meta name="twitter:image" content="https://www.brieflywealth.com/images/briefly-og-main-2x.png">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Briefly Security",
+        "url": "https://www.brieflywealth.com/security",
+        "description": "Briefly security practices for advisor and client data.",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Briefly Wealth",
+            "url": "https://www.brieflywealth.com/"
+        }
+    }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root { --navy:#0B2545; --blue:#0B5394; --off:#F5F4F0; --text:#1d1d1f; --muted:#6b7280; --border:#e5e7eb; --green:#059669; }
+        body { font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif; color: var(--text); background:#fff; line-height: 1.65; }
+        nav { position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,0.94); backdrop-filter: blur(18px); border-bottom: 1px solid rgba(0,0,0,0.06); }
+        .nav-inner { max-width: 1120px; height: 72px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; }
+        .nav-logo img { height: 56px; }
+        .nav-links { display: flex; gap: 26px; align-items: center; }
+        .nav-links a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; }
+        .nav-btn { background: var(--navy); color: #fff !important; padding: 10px 18px; border-radius: 8px; }
+        .hero { background: var(--navy); color: #fff; padding: 108px 32px 78px; }
+        .hero-inner { max-width: 900px; margin: 0 auto; }
+        .eyebrow { display:block; color: rgba(255,255,255,0.62); font-size: 12px; font-weight:700; text-transform: uppercase; margin-bottom: 14px; }
+        h1 { font-family: 'DM Serif Display', serif; font-size: clamp(38px, 6vw, 60px); line-height: 1.1; margin-bottom: 20px; }
+        .hero p { color: rgba(255,255,255,0.76); font-size: 20px; max-width: 720px; }
+        main { padding: 72px 32px; }
+        .content { max-width: 1000px; margin: 0 auto; }
+        .intro { max-width: 760px; color: #334155; font-size: 17px; margin-bottom: 44px; }
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .card { border: 1px solid var(--border); border-radius: 12px; padding: 24px; background: #fff; }
+        .card h2 { color: var(--navy); font-size: 20px; margin-bottom: 10px; }
+        .card p { color: var(--muted); font-size: 15px; }
+        .note { margin-top: 44px; padding: 28px; border-radius: 12px; background: var(--off); border: 1px solid var(--border); color: #334155; }
+        .note strong { color: var(--navy); }
+        footer { padding: 44px 32px; background: var(--navy); color: rgba(255,255,255,0.68); text-align: center; }
+        footer a { color:#fff; text-decoration:none; margin:0 10px; font-size:14px; }
+        @media (max-width: 760px) { .nav-links a:not(.nav-btn) { display:none; } .grid { grid-template-columns: 1fr; } .hero { padding-top: 88px; } }
+    </style>
+</head>
+<body>
+<nav class="nav" aria-label="Primary">
+  <a class="brand" href="index.html"><span class="brand-word">Briefly</span><span class="brand-pin" aria-hidden="true"></span></a>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu"><span></span><span></span><span></span></button>
+  <div class="nav-links" id="nav-links">
+    <a href="index.html#os">Demo</a>
+    <a href="index.html#platform">Platform</a>
+    <a href="index.html#engineered">How it works</a>
+    <a href="blog.html">Blog</a>
+    <a href="subscribe.html">Morning Brief</a>
+    <a href="about.html">About</a>
+  </div>
+  <div class="nav-actions">
+    <a class="nav-signin" href="https://demo.app.brieflywealth.com/">Sign in</a>
+    <a class="nav-cta" href="index.html#contact">Request a demo</a>
+  </div>
+</nav>
+<section class="hero">
+    <div class="hero-inner">
+        <span class="eyebrow">Security</span>
+        <h1>Built for sensitive advisor and client context.</h1>
+        <p>Briefly is designed around source-backed outputs, advisor review, controlled access, and a security program aligned to the expectations of wealth management firms.</p>
+    </div>
+</section>
+<main>
+    <div class="content">
+        <p class="intro">The information Briefly processes is relationship-critical and often client-sensitive. Our product and operating model are built to keep that context controlled, reviewable, and traceable.</p>
+        <div class="grid">
+            <div class="card">
+                <h2>Source-backed outputs</h2>
+                <p>Briefs and workflow outputs are designed to remain traceable to the documents, notes, emails, and records that support them.</p>
+            </div>
+            <div class="card">
+                <h2>Advisor review</h2>
+                <p>Briefly supports advisor-in-the-loop workflows. AI-generated outputs are intended to assist professionals, not replace professional judgment.</p>
+            </div>
+            <div class="card">
+                <h2>Least-privilege access</h2>
+                <p>Access controls are designed so users only access the data and workflows required for their role and firm configuration.</p>
+            </div>
+            <div class="card">
+                <h2>Encryption and vendor review</h2>
+                <p>We use modern cloud infrastructure patterns, encrypted transport, and vendor review for critical service providers.</p>
+            </div>
+            <div class="card">
+                <h2>No general model training on client data</h2>
+                <p>Client data is processed to provide the service. It is not used to train general-purpose models for other customers.</p>
+            </div>
+            <div class="card">
+                <h2>SOC 2 aligned controls</h2>
+                <p>Our information security program is aligned with SOC 2 Trust Services Criteria while formal certification work progresses.</p>
+            </div>
+        </div>
+        <div class="note">
+            <strong>Need a security review?</strong> Contact <a href="mailto:contact@brieflywealth.com">contact@brieflywealth.com</a> for architecture, vendor, and data-processing questions.
+        </div>
+    </div>
+</main>
+<footer>
+    <a href="index.html">Home</a>
+    <a href="blog.html">Blog</a>
+    <a href="privacy-policy.html">Privacy</a>
+    <a href="terms-of-service.html">Terms</a>
+    <div style="margin-top:18px;">&copy; 2026 Briefly Wealth, LLC. All rights reserved.</div>
+</footer>
+<!-- Canonical nav system (added 2026-05-30) -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&display=swap">
+<style>
+  :root { --paper:#d9d7cb; --paper-2:#e6e3d6; --paper-3:#f1eee2; --ink:#1c1d1f; --rule:rgba(28,29,31,.18); --blue:#2f8cff; }
+  nav.nav { position:sticky; top:0; z-index:50; height:72px; display:flex; align-items:center; gap:18px; padding:0 28px; background:var(--paper); border-bottom:1px solid var(--rule); backdrop-filter:none; }
+  nav.nav .brand { position: relative; display: inline-flex; align-items: center; padding-right: 14px; text-decoration: none; }
+  nav.nav .brand-icon { display: none; }
+  nav.nav .brand-word {
+    font-family: var(--sans);
+    font-weight: 900;
+    font-size: 26px;
+    line-height: .78;
+    letter-spacing: -.085em;
+    text-transform: uppercase;
+    color: var(--ink);
+    transform: scaleY(.88);
+    transform-origin: left center;
+  }
+  .brand-pin {
+    position: absolute;
+    top: 4px;
+    right: 0;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--blue);
+    box-shadow: 0 0 0 2px rgba(47,140,255,.10);
+  }
+  nav.nav .nav-links { display:flex; gap:0; margin-left:auto; border:1px solid var(--ink); background:var(--paper); }
+  nav.nav .nav-links a { display:inline-flex; align-items:center; height:38px; padding:0 14px; border-right:1px solid var(--ink); font-family:"JetBrains Mono",SFMono-Regular,monospace; font-size:12px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--ink); text-decoration:none; background:transparent; }
+  nav.nav .nav-links a:last-child { border-right:0; }
+  nav.nav .nav-links a:hover { background:var(--ink); color:var(--paper); }
+  nav.nav .nav-actions { display:inline-flex; align-items:center; gap:10px; }
+  nav.nav .nav-cta { display:inline-flex; align-items:center; height:38px; padding:0 16px; background:var(--ink); color:var(--paper); border:1px solid var(--ink); font-family:"JetBrains Mono",SFMono-Regular,monospace; font-size:12px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; text-decoration:none; }
+  nav.nav .nav-cta:hover { background:var(--blue); border-color:var(--blue); color:#fff; }
+  nav.nav .nav-signin { display:inline-flex; align-items:center; height:38px; padding:0 14px; background:transparent; color:var(--ink); border:1px solid var(--ink); font-family:"JetBrains Mono",SFMono-Regular,monospace; font-size:12px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; text-decoration:none; }
+  nav.nav .nav-signin:hover { background:var(--ink); color:var(--paper); }
+  nav.nav .nav-links a:focus-visible, nav.nav .nav-cta:focus-visible, nav.nav .nav-signin:focus-visible, nav.nav .nav-toggle:focus-visible { outline:2px solid var(--blue); outline-offset:2px; }
+  nav.nav .nav-toggle { display:none; width:44px; height:44px; border:1px solid var(--ink); background:var(--paper); cursor:pointer; padding:0; margin-left:auto; flex-direction:column; justify-content:center; align-items:center; gap:4px; }
+  nav.nav .nav-toggle span { display:block; width:18px; height:1.5px; background:var(--ink); transition:transform .2s,opacity .2s; }
+  nav.nav .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform:translateY(5.5px) rotate(45deg); }
+  nav.nav .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity:0; }
+  nav.nav .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform:translateY(-5.5px) rotate(-45deg); }
+  @media (max-width:820px) {
+    nav.nav .nav-toggle { display:inline-flex; }
+    nav.nav .nav-links { display:none; position:fixed; top:72px; left:0; right:0; flex-direction:column; gap:0; padding:12px 20px 20px; background:var(--paper-2); border:0; border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); z-index:90; }
+    nav.nav .nav-links.open { display:flex; }
+    nav.nav .nav-links a { width:100%; padding:14px 12px; border-right:0; border-bottom:1px solid var(--rule); }
+    nav.nav .nav-links a:last-child { border-bottom:0; }
+  }
+</style>
+<script>
+  (() => {
+    const btn = document.querySelector("nav.nav .nav-toggle");
+    const list = document.getElementById("nav-links");
+    if (!btn || !list) return;
+    const setOpen = (open) => {
+      list.classList.toggle("open", open);
+      btn.setAttribute("aria-expanded", String(open));
+      btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    };
+    btn.addEventListener("click", () => setOpen(!list.classList.contains("open")));
+    list.querySelectorAll("a").forEach(a => a.addEventListener("click", () => setOpen(false)));
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && list.classList.contains("open")) setOpen(false); });
+  })();
+</script>
+</body>
+</html>
