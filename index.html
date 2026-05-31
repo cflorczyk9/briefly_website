@@ -1228,9 +1228,12 @@
   .cfos-text {
     max-width: 320px;
     text-align: right;
-    opacity: 0;
-    transform: translateX(12px);
+    opacity: .55;
+    transform: none;
     transition: opacity .45s ease .1s, transform .45s ease .1s;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cfos-text { opacity: 1; }
   }
   .cfos-text h3 {
     margin: 0;
