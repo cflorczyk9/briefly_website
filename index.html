@@ -1851,7 +1851,7 @@
   <div class="center-word">Briefly</div>
   <p>See Briefly live on your firm's records. We run the walkthrough with the advisor in the room.</p>
   <div class="hero-ctas">
-    <a class="btn" href="mailto:connor.florczyk@brieflywealth.com?subject=Briefly%20demo">Book a live demo</a>
+    <a class="btn" href="#" onclick="openDemoModal();return false;">Book a live demo</a>
   </div>
 </section>
 
@@ -2881,5 +2881,128 @@
   })();
 </script>
 
+<!-- ==================== DEMO MODAL ==================== -->
+<style>
+  .demo-modal { position:fixed; inset:0; z-index:200; display:none; align-items:center; justify-content:center; padding:20px; }
+  .demo-modal.active { display:flex; }
+  .demo-modal-backdrop { position:absolute; inset:0; background:rgba(28,29,31,.56); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
+  .demo-modal-card {
+    position:relative; z-index:1; width:100%; max-width:440px;
+    background:var(--paper, #d9d7cb); border:1px solid var(--ink, #1c1d1f);
+    padding:32px 28px 28px; box-shadow:0 24px 60px rgba(28,29,31,.28);
+    font-family:var(--sans, "DM Sans", system-ui, sans-serif);
+  }
+  .demo-modal-close {
+    position:absolute; top:10px; right:14px; background:transparent; border:0;
+    font-size:24px; color:var(--ink, #1c1d1f); cursor:pointer; line-height:1; padding:6px 8px;
+  }
+  .demo-modal-eyebrow {
+    font-family:var(--mono, monospace); font-size:11px; font-weight:800;
+    letter-spacing:.16em; text-transform:uppercase; color:var(--navy, #0b5394);
+    margin:0 0 8px;
+  }
+  .demo-modal-title {
+    font-weight:900; font-size:32px; line-height:1; letter-spacing:-.04em;
+    margin:0 0 18px; color:var(--ink, #1c1d1f);
+  }
+  .demo-modal-field { display:block; margin:0 0 14px; }
+  .demo-modal-field label {
+    display:block; font-family:var(--mono, monospace); font-size:11px; font-weight:700;
+    letter-spacing:.08em; text-transform:uppercase; color:rgba(28,29,31,.72); margin-bottom:6px;
+  }
+  .demo-modal-field input {
+    width:100%; padding:11px 12px; font-family:var(--sans, "DM Sans", system-ui, sans-serif);
+    font-size:15px; border:1px solid var(--ink, #1c1d1f); background:#fff; color:var(--ink, #1c1d1f);
+    border-radius:0;
+  }
+  .demo-modal-field input:focus { outline:2px solid var(--blue, #2f8cff); outline-offset:1px; }
+  .demo-modal-submit {
+    width:100%; height:44px; border:1px solid var(--ink, #1c1d1f); background:var(--ink, #1c1d1f);
+    color:var(--paper, #d9d7cb); font-family:var(--mono, monospace); font-size:12px; font-weight:800;
+    letter-spacing:.08em; text-transform:uppercase; cursor:pointer; margin-top:6px;
+    transition:background .15s ease, border-color .15s ease, color .15s ease;
+  }
+  .demo-modal-submit:hover { background:var(--blue, #2f8cff); border-color:var(--blue, #2f8cff); color:#fff; }
+  .demo-modal-submit:disabled { opacity:.6; cursor:wait; }
+  .demo-modal-error { display:none; margin-top:10px; padding:10px 12px; border:1px solid #dc2626; color:#dc2626; font-size:13px; }
+  .demo-modal-success {
+    display:none; padding:18px 0 4px; text-align:center;
+  }
+  .demo-modal-success.active { display:block; }
+  .demo-modal-success-title { font-weight:900; font-size:22px; letter-spacing:-.02em; margin:0 0 6px; color:var(--ink, #1c1d1f); }
+  .demo-modal-success-body { font-size:14px; color:rgba(28,29,31,.72); line-height:1.5; margin:0 0 16px; }
+</style>
+<div class="demo-modal" id="demoModal" role="dialog" aria-modal="true" aria-labelledby="demoModalTitle">
+  <div class="demo-modal-backdrop" onclick="closeDemoModal()"></div>
+  <div class="demo-modal-card">
+    <button class="demo-modal-close" type="button" onclick="closeDemoModal()" aria-label="Close">&times;</button>
+    <div id="demoModalForm">
+      <p class="demo-modal-eyebrow">Briefly · Demo</p>
+      <h2 class="demo-modal-title" id="demoModalTitle">Book a live demo</h2>
+      <form onsubmit="return handleDemoSubmit(event);" novalidate>
+        <div class="demo-modal-field">
+          <label for="demoName">Full name</label>
+          <input type="text" id="demoName" name="name" autocomplete="name" required>
+        </div>
+        <div class="demo-modal-field">
+          <label for="demoEmail">Work email</label>
+          <input type="email" id="demoEmail" name="email" autocomplete="email" required>
+        </div>
+        <div class="demo-modal-field">
+          <label for="demoFirm">Firm (optional)</label>
+          <input type="text" id="demoFirm" name="firm" autocomplete="organization">
+        </div>
+        <button class="demo-modal-submit" type="submit" id="demoSubmitBtn">Request demo</button>
+        <div class="demo-modal-error" id="demoModalError">Something went wrong sending that. Try again or email connor.florczyk@brieflywealth.com.</div>
+      </form>
+    </div>
+    <div class="demo-modal-success" id="demoModalSuccess">
+      <p class="demo-modal-success-title">Thanks. I'll be in touch.</p>
+      <p class="demo-modal-success-body">I'll reach out within a day to set up a 30-minute walkthrough on your firm's records.</p>
+      <button class="demo-modal-submit" type="button" onclick="closeDemoModal()">Close</button>
+    </div>
+  </div>
+</div>
+<script>
+  function openDemoModal() {
+    document.getElementById('demoModal').classList.add('active');
+    document.getElementById('demoModalForm').style.display = '';
+    document.getElementById('demoModalSuccess').classList.remove('active');
+    document.getElementById('demoModalError').style.display = 'none';
+    setTimeout(function(){ var n = document.getElementById('demoName'); if (n) n.focus(); }, 50);
+  }
+  function closeDemoModal() {
+    document.getElementById('demoModal').classList.remove('active');
+  }
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && document.getElementById('demoModal').classList.contains('active')) closeDemoModal();
+  });
+  async function handleDemoSubmit(e) {
+    e.preventDefault();
+    var btn = document.getElementById('demoSubmitBtn');
+    var err = document.getElementById('demoModalError');
+    var name = document.getElementById('demoName').value.trim();
+    var email = document.getElementById('demoEmail').value.trim();
+    var firm = document.getElementById('demoFirm').value.trim();
+    if (!name || !email) return false;
+    btn.disabled = true; btn.textContent = 'Sending...';
+    err.style.display = 'none';
+    try {
+      var res = await fetch('https://formspree.io/f/mjgygdyd', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ name: name, email: email, firm: firm, source: 'brieflywealth.com / book a live demo' })
+      });
+      if (!res.ok) throw new Error('Request failed');
+      document.getElementById('demoModalForm').style.display = 'none';
+      document.getElementById('demoModalSuccess').classList.add('active');
+    } catch (e) {
+      err.style.display = 'block';
+    } finally {
+      btn.disabled = false; btn.textContent = 'Request demo';
+    }
+    return false;
+  }
+</script>
 </body>
 </html>
