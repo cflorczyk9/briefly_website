@@ -1600,6 +1600,7 @@
 </style>
 <!-- mobile-strip: hide pills + agent-workflow section on mobile only -->
 <style id="mobile-strip">
+  .hero-ctas .cta-mobile { display: none; }
   @media (max-width: 820px) {
     .hero .source-node,
     .hero .node,
@@ -1611,6 +1612,8 @@
     .hero .field { pointer-events: none; }
     section.agent-workflow,
     section#os { display: none !important; }
+    .hero-ctas .cta-desktop { display: none !important; }
+    .hero-ctas .cta-mobile { display: inline-flex !important; }
   }
 </style>
 </head>
@@ -1665,7 +1668,8 @@
       <h1>Know every client like they're your only client.</h1>
       <p>Briefly connects every note, email, statement, meeting, and CRM record into one source-backed client file: what changed, what matters now, and what needs advisor approval.</p>
       <div class="hero-ctas">
-        <a class="btn" href="#engineered">See how it works</a>
+        <a class="btn cta-desktop" href="#engineered">See how it works</a>
+        <a class="btn cta-mobile" href="#" onclick="openDemoModal();return false;">Book a live demo</a>
       </div>
     </div>
 
