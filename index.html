@@ -1613,10 +1613,25 @@
     section.agent-workflow,
     section#os { display: none !important; }
     .hero-ctas .cta-desktop { display: none !important; }
-    .hero-ctas .cta-mobile { display: inline-flex !important; }
+    .hero-ctas .cta-mobile {
+      display: inline-flex !important;
+      position: relative;
+      z-index: 5;
+      pointer-events: auto !important;
+      min-height: 48px;
+      cursor: pointer;
+      -webkit-tap-highlight-color: rgba(47,140,255,.2);
+      touch-action: manipulation;
+    }
     nav.nav .nav-signin { display: none !important; }
     /* Any link that points to the now-hidden agent-workflow section is dead. Hide it. */
     a[href="#os"] { display: none !important; }
+    /* The hidden source-pill field + SVG connector still intercept taps on the
+       hero CTA on mobile. Disable their pointer-events so the button receives. */
+    .hero .field,
+    .hero .field-connector,
+    .hero svg.field-connector,
+    .hero #fieldConnector { pointer-events: none !important; }
   }
 </style>
 </head>
