@@ -1614,6 +1614,7 @@
     section#os { display: none !important; }
     .hero-ctas .cta-desktop { display: none !important; }
     .hero-ctas .cta-mobile { display: inline-flex !important; }
+    nav.nav .nav-signin { display: none !important; }
   }
 </style>
 </head>
@@ -1669,7 +1670,7 @@
       <p>Briefly connects every note, email, statement, meeting, and CRM record into one source-backed client file: what changed, what matters now, and what needs advisor approval.</p>
       <div class="hero-ctas">
         <a class="btn cta-desktop" href="#engineered">See how it works</a>
-        <a class="btn cta-mobile" href="#" onclick="openDemoModal();return false;">Book a live demo</a>
+        <button type="button" class="btn cta-mobile" onclick="openDemoModal()">Book a live demo</button>
       </div>
     </div>
 
