@@ -545,6 +545,85 @@
     nav.nav .nav-links { display: none; }
   }
 </style>
+<!-- mobile-redux -->
+<style id="mobile-redux-subprocessors">
+  /* mobile-redux: long-form legal pages (privacy/terms/subprocessors) */
+  @media (max-width: 820px) {
+    /* tighten page padding so body text has full width */
+    main.legal { padding: 40px 18px 64px; }
+    .legal-inner { max-width: 100%; }
+
+    /* hero typography */
+    .legal-head { padding-bottom: 24px; }
+    .legal-head h1 { font-size: 32px; line-height: 1.08; letter-spacing: -.02em; }
+    .legal-head .eyebrow { font-size: 10px; }
+    .legal-head .meta { margin-top: 12px; }
+
+    /* body rhythm */
+    .legal-body { padding-top: 28px; }
+    .legal-body section { margin-bottom: 36px; }
+    .section-eyebrow { margin-bottom: 8px; }
+    .legal-body h2 { font-size: 22px; line-height: 1.2; margin: 0 0 12px; }
+    .legal-body h3 { font-size: 17px; margin: 22px 0 6px; }
+
+    /* readable body text */
+    .legal-body p { font-size: 16px; line-height: 1.6; }
+    .legal-body ul li,
+    .legal-body ol li { font-size: 16px; line-height: 1.55; padding-left: 22px; }
+    .legal-body ol li::before { font-size: 10px; }
+
+    /* break long URLs/emails so they don't push the layout */
+    .legal-body a, .legal-body p, .legal-body li { overflow-wrap: anywhere; }
+
+    /* address rows stack so labels don't crush values */
+    .legal-body address .row { flex-direction: column; gap: 2px; margin-bottom: 14px; }
+    .legal-body address .label { min-width: 0; }
+    .legal-body address .value { font-size: 16px; }
+
+    /* tables: horizontal scroll inside a block-level frame */
+    .legal-body table.categories,
+    .legal-body table.subprocessors {
+      display: block;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      max-width: 100%;
+      border: 1px solid var(--rule);
+      margin: 18px 0 22px;
+    }
+    .legal-body table.categories thead,
+    .legal-body table.subprocessors thead,
+    .legal-body table.categories tbody,
+    .legal-body table.subprocessors tbody {
+      display: table;
+      width: 100%;
+      min-width: 520px;
+      table-layout: fixed;
+    }
+    .legal-body table.categories th,
+    .legal-body table.subprocessors th,
+    .legal-body table.categories td,
+    .legal-body table.subprocessors td {
+      font-size: 13px;
+      padding: 10px 11px;
+      word-break: break-word;
+    }
+
+    /* quick-take callout */
+    .legal-body .quick-take { padding: 16px 18px; margin-bottom: 28px; }
+    .legal-body .quick-take p { font-size: 15px; line-height: 1.55; }
+
+    /* footer */
+    footer { padding: 44px 20px 32px; }
+  }
+  @media (max-width: 480px) {
+    main.legal { padding: 32px 16px 56px; }
+    .legal-head h1 { font-size: 28px; }
+    .legal-body h2 { font-size: 20px; }
+    .legal-body p { font-size: 16px; }
+    footer .foot-grid { grid-template-columns: 1fr; gap: 24px; }
+    footer { padding: 36px 18px 28px; }
+  }
+</style>
 </head>
 <body>
 
@@ -683,14 +762,13 @@
       <a href="index.html#os">Demo</a>
       <a href="index.html#platform">Platform</a>
       <a href="index.html#engineered">How it works</a>
-      <a href="sample-brief.html">Sample brief</a>
     </div>
     <div>
       <h4>Company</h4>
       <a href="about.html">About</a>
       <a href="blog.html">Blog</a>
       <a href="subscribe.html">Morning Brief</a>
-      <a href="mailto:connor.florczyk@brieflywealth.com">Contact</a>
+      <a href="mailto:contact@brieflywealth.com">Contact</a>
     </div>
     <div>
       <h4>Legal</h4>

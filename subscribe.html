@@ -10,13 +10,13 @@
 <link rel="apple-touch-icon" sizes="180x180" href="images/briefly_logo_favicon.png?v=2">
 <meta property="og:title" content="Morning Brief · Briefly">
 <meta property="og:description" content="A daily weekday market briefing for financial advisors. What moved overnight, what's on the calendar, a talking point for clients. Free.">
-<meta property="og:image" content="https://www.brieflywealth.com/images/morning-brief-og-2x.png">
+<meta property="og:image" content="https://www.brieflywealth.com/images/morning-brief-og-2x.png?v=2">
 <meta property="og:url" content="https://www.brieflywealth.com/subscribe.html">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Morning Brief · Briefly">
 <meta name="twitter:description" content="A daily weekday market briefing for financial advisors. Free.">
-<meta name="twitter:image" content="https://www.brieflywealth.com/images/morning-brief-og-2x.png">
+<meta name="twitter:image" content="https://www.brieflywealth.com/images/morning-brief-og-2x.png?v=2">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -276,6 +276,60 @@
     nav.nav .nav-links { display: none; }
   }
 </style>
+<!-- mobile-redux -->
+<style id="mobile-redux-subscribe">
+  @media (max-width: 820px) {
+    /* Tighten nav so brand + actions + toggle fit 375px without crowding */
+    nav.nav { gap: 8px; padding: 0 14px; }
+    nav.nav .nav-signin { display: none; }
+    nav.nav .nav-cta { height: 40px; padding: 0 12px; font-size: 10.5px; letter-spacing: .06em; }
+    nav.nav .nav-actions { gap: 6px; }
+    nav.nav .brand-word { font-size: 22px; }
+
+    /* Page chrome: cleaner edge padding, less vertical air */
+    .wrap { padding: 36px 20px 24px; }
+    .grid { gap: 28px; }
+    h1.hero { font-size: clamp(28px, 8.4vw, 40px); line-height: 1; }
+    .lede { font-size: 16px; line-height: 1.55; margin-bottom: 22px; max-width: 100%; }
+    .eyebrow { margin-bottom: 12px; }
+
+    /* Form fields: 16px font (no iOS zoom) + comfortable height + full width */
+    form { max-width: 100%; }
+    input { font-size: 16px; padding: 13px 14px; margin-bottom: 14px; }
+    button.btn { height: 48px; margin-top: 6px; }
+    label { font-size: 11px; }
+
+    /* Newspaper preview: tighter internal padding so it doesn't dominate */
+    .preview { border-radius: 0; }
+    .np-header { padding: 22px 20px 0; }
+    .np-title { font-size: 26px; line-height: 1.05; }
+    .np-date { flex-wrap: wrap; gap: 4px; font-size: 10px; }
+    .np-greeting { padding: 16px 20px 0; font-size: 14px; line-height: 1.55; }
+    .np-whats-inside { padding: 18px 20px 22px; }
+    .np-inside-bullets li { font-size: 13.5px; }
+    .np-view-sample { padding: 14px 20px; font-size: 11px; }
+
+    /* "Each morning includes" grid: single column with tight rule rhythm */
+    .inside { padding: 0 20px 56px; margin-top: 16px; }
+    .inside-head { padding-top: 28px; }
+    .inside-head h2 { font-size: 26px; margin: 8px 0 16px; }
+    .feat { grid-template-columns: 1fr; gap: 0; }
+    .feat .f { padding: 14px 0; }
+    .feat .f p { font-size: 14px; line-height: 1.55; }
+
+    /* Footer: brand spans full width, links 2-col below */
+    footer.foot { padding: 44px 20px 28px; }
+    footer.foot .foot-grid { grid-template-columns: 1fr 1fr; gap: 24px 20px; }
+    footer.foot .foot-grid > div:first-child { grid-column: 1 / -1; }
+    footer.foot .foot-desc { max-width: 100%; }
+    footer.foot .foot-bottom { flex-direction: column; gap: 8px; align-items: flex-start; margin-top: 24px; }
+  }
+  @media (max-width: 480px) {
+    .np-title { font-size: 23px; }
+    .np-ticker-tape { margin: 14px 0 18px; padding: 9px 0; }
+    .np-ticker-item { font-size: 10.5px; }
+  }
+</style>
 </head>
 <body>
 
@@ -412,14 +466,13 @@
       <a href="index.html#os">Demo</a>
       <a href="index.html#platform">Platform</a>
       <a href="index.html#engineered">How it works</a>
-      <a href="sample-brief.html">Sample brief</a>
     </div>
     <div>
       <h4>Company</h4>
       <a href="about.html">About</a>
       <a href="blog.html">Blog</a>
       <a href="subscribe.html">Morning Brief</a>
-      <a href="mailto:connor.florczyk@brieflywealth.com">Contact</a>
+      <a href="mailto:contact@brieflywealth.com">Contact</a>
     </div>
     <div>
       <h4>Legal</h4>
