@@ -11,13 +11,13 @@
     <link rel="apple-touch-icon" sizes="180x180" href="images/briefly_logo_favicon.png?v=2">
     <meta property="og:title" content="Client Context Graph for Financial Advisors">
     <meta property="og:description" content="Briefly connects advisor data into a source-backed relationship graph that powers the V2 app surfaces: Meetings, Inbox, Clients, Documents, Investment thesis, and Settings.">
-    <meta property="og:image" content="https://www.brieflywealth.com/images/briefly-og-main-2x.png">
+    <meta property="og:image" content="https://www.brieflywealth.com/images/briefly-og-main-2x.png?v=2">
     <meta property="og:url" content="https://www.brieflywealth.com/context-graph">
     <meta property="og:type" content="article">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Client Context Graph for Financial Advisors">
     <meta name="twitter:description" content="Briefly connects advisor data into a source-backed relationship graph that powers the V2 app surfaces: Meetings, Inbox, Clients, Documents, Investment thesis, and Settings.">
-    <meta name="twitter:image" content="https://www.brieflywealth.com/images/briefly-og-main-2x.png">
+    <meta name="twitter:image" content="https://www.brieflywealth.com/images/briefly-og-main-2x.png?v=2">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -175,6 +175,48 @@
   @media (max-width: 820px) {
     nav.nav { padding: 0 16px; height: 56px; }
     nav.nav .nav-links { display: none; }
+  }
+</style>
+<!-- mobile-redux -->
+<style id="mobile-redux-context-graph">
+  @media (max-width: 820px) {
+    /* Nav: prevent button text wrapping, tighten spacing.
+       !important needed because a later end-of-body style block re-declares these. */
+    nav.nav { gap: 10px !important; }
+    nav.nav .nav-actions { gap: 8px !important; }
+    nav.nav .nav-signin,
+    nav.nav .nav-cta { white-space: nowrap !important; height: 40px !important; padding: 0 12px !important; font-size: 10.5px !important; line-height: 1 !important; }
+    nav.nav .brand-word { font-size: 22px !important; }
+
+    /* Hero: tighter padding, sharper headline */
+    .hero { padding: 72px 20px 56px; }
+    h1 { font-size: clamp(32px, 8vw, 44px); margin-bottom: 16px; }
+    .hero p { font-size: 17px; }
+
+    /* Body: improve legibility */
+    main { padding: 48px 20px; }
+    .article h2 { font-size: 26px; margin: 36px 0 12px; }
+    .article p, .article li { font-size: 16px; line-height: 1.6; }
+    .article ul { margin-left: 18px; }
+
+    /* Diagram cards stack cleaner */
+    .diagram { margin: 28px 0; gap: 12px; }
+    .diagram-card { padding: 16px 18px; }
+    .diagram-card span { font-size: 14px; line-height: 1.5; }
+
+    /* CTA: full-width tap target */
+    .cta { padding: 24px 20px; margin-top: 40px; }
+    .cta a { display: block; text-align: center; padding: 14px 20px; }
+
+    /* Footer breathing room */
+    footer { padding: 32px 20px; }
+    footer a { display: inline-block; margin: 4px 8px; padding: 4px 0; }
+  }
+  @media (max-width: 480px) {
+    nav.nav .nav-signin { display: none !important; }
+    nav.nav .nav-cta { padding: 0 14px !important; }
+    h1 { font-size: 30px; }
+    .hero p { font-size: 16px; }
   }
 </style>
 </head>

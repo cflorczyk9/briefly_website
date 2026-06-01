@@ -11,13 +11,13 @@
     <link rel="apple-touch-icon" sizes="180x180" href="images/briefly_logo_favicon.png?v=2">
     <meta property="og:title" content="AI Meeting Briefs for Financial Advisors">
     <meta property="og:description" content="Generate advisor-ready meeting prep from the same client context graph behind the V2 Meetings, Clients, Documents, and client detail surfaces.">
-    <meta property="og:image" content="https://www.brieflywealth.com/images/briefly-og-main-2x.png">
+    <meta property="og:image" content="https://www.brieflywealth.com/images/briefly-og-main-2x.png?v=2">
     <meta property="og:url" content="https://www.brieflywealth.com/meeting-briefs">
     <meta property="og:type" content="article">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="AI Meeting Briefs for Financial Advisors">
     <meta name="twitter:description" content="Generate advisor-ready meeting prep from the same client context graph behind the V2 Meetings, Clients, Documents, and client detail surfaces.">
-    <meta name="twitter:image" content="https://www.brieflywealth.com/images/briefly-og-main-2x.png">
+    <meta name="twitter:image" content="https://www.brieflywealth.com/images/briefly-og-main-2x.png?v=2">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -164,6 +164,49 @@
   @media (max-width: 820px) {
     nav.nav { padding: 0 16px; height: 56px; }
     nav.nav .nav-links { display: none; }
+  }
+</style>
+<!-- mobile-redux -->
+<style id="mobile-redux-meeting-briefs">
+  @media (max-width: 820px) {
+    /* Nav: prevent button text wrapping.
+       !important needed because a later end-of-body style block re-declares these. */
+    nav.nav { gap: 10px !important; }
+    nav.nav .nav-actions { gap: 8px !important; }
+    nav.nav .nav-signin,
+    nav.nav .nav-cta { white-space: nowrap !important; height: 40px !important; padding: 0 12px !important; font-size: 10.5px !important; line-height: 1 !important; }
+    nav.nav .brand-word { font-size: 22px !important; }
+
+    /* Hero: stack copy + brief-card vertically with breathing room */
+    .hero { padding: 72px 20px 56px; }
+    .hero-inner { gap: 28px; }
+    h1 { font-size: clamp(32px, 8vw, 44px); margin-bottom: 16px; }
+    .hero p { font-size: 17px; }
+
+    /* Brief preview card: pad and lighten on mobile */
+    .brief-card { box-shadow: 0 12px 36px rgba(0,0,0,0.18); }
+    .brief-head { padding: 14px 18px; }
+    .brief-body { padding: 14px 18px; }
+    .row { font-size: 14px; gap: 12px; padding: 12px 0; }
+
+    /* Body */
+    main { padding: 48px 20px; }
+    .article h2 { font-size: 26px; margin: 36px 0 12px; }
+    .article p, .article li { font-size: 16px; line-height: 1.6; }
+    .article ul { margin-left: 18px; }
+
+    /* CTA */
+    .cta { padding: 24px 20px; margin-top: 40px; }
+    .cta a { display: block; text-align: center; padding: 14px 20px; }
+
+    footer { padding: 32px 20px; }
+    footer a { display: inline-block; margin: 4px 8px; padding: 4px 0; }
+  }
+  @media (max-width: 480px) {
+    nav.nav .nav-signin { display: none !important; }
+    nav.nav .nav-cta { padding: 0 14px !important; }
+    h1 { font-size: 30px; }
+    .hero p { font-size: 16px; }
   }
 </style>
 </head>

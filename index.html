@@ -12,13 +12,13 @@
 
 <meta property="og:title" content="Briefly — Source-backed client files for wealth advisor teams">
 <meta property="og:description" content="Briefly connects every note, email, statement, meeting, and CRM record into one source-backed client file. Know what changed, what matters now, and what needs advisor approval.">
-<meta property="og:image" content="https://www.brieflywealth.com/images/briefly-og-main-2x.png">
+<meta property="og:image" content="https://www.brieflywealth.com/images/briefly-og-main-2x.png?v=2">
 <meta property="og:url" content="https://www.brieflywealth.com/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Briefly — Source-backed client files for wealth advisor teams">
 <meta name="twitter:description" content="Briefly connects every note, email, statement, meeting, and CRM record into one source-backed client file.">
-<meta name="twitter:image" content="https://www.brieflywealth.com/images/briefly-og-main-2x.png">
+<meta name="twitter:image" content="https://www.brieflywealth.com/images/briefly-og-main-2x.png?v=2">
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-92NXKY9W1S"></script>
 <script>
@@ -871,7 +871,7 @@
   }
   .aw-connectors path.is-drawing {
     opacity: 1;
-    transition: stroke-dashoffset 760ms cubic-bezier(.4,0,.2,1), opacity .3s ease;
+    transition: stroke-dashoffset 1200ms cubic-bezier(.4,0,.2,1), opacity .35s ease;
   }
   .aw-connectors path.is-flowing {
     opacity: 1;
@@ -1457,6 +1457,162 @@
     .field-connector path, .wires path.live, .core::after { animation: none; }
   }
 </style>
+<!-- mobile-redux -->
+<style id="mobile-redux-home">
+  /* ============================================================
+     Mobile redux for the homepage. CSS-only, no markup changes.
+     Scoped to <=820px (mobile + small tablet) with tighter rules
+     under 480px (phones). Uses existing vars: --paper, --paper-2,
+     --ink, --ink-soft, --blue, --rule, --sans, --mono.
+     ============================================================ */
+  @media (max-width: 820px) {
+    /* ----- HERO: stop the BRIEFLY wordmark from crashing into the H1 ----- */
+    .hero { min-height: 760px; padding-bottom: 24px; }
+    .field { min-height: 760px; }
+    .center-word {
+      top: 14%;
+      font-size: clamp(56px, 19vw, 96px);
+      opacity: .55;
+    }
+    .hero-copy {
+      bottom: auto;
+      top: 200px;
+      left: 16px;
+      right: 16px;
+      width: auto;
+      padding: 18px 18px 22px;
+    }
+    .hero-copy h1 { font-size: clamp(28px, 7.6vw, 34px); line-height: .96; }
+    .hero-copy p { font-size: 15px; line-height: 1.55; }
+    .hero-ctas { gap: 10px; margin-top: 18px; }
+    .hero-ctas .btn {
+      flex: 1 1 auto;
+      min-height: 48px;
+      padding: 0 18px;
+      justify-content: center;
+      display: inline-flex;
+      align-items: center;
+    }
+    .readout {
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      width: auto;
+      padding: 14px 16px;
+    }
+
+    /* ----- AGENT WORKFLOW: kill the huge dead whitespace ----- */
+    .agent-workflow { padding: 64px 16px 72px; }
+    .aw-head { margin-bottom: 22px; }
+    .aw-head h2 { font-size: clamp(28px, 7vw, 36px); }
+    .aw-head p { font-size: 15px; margin-top: 14px; }
+    .aw-stage {
+      padding: 18px 16px 22px;
+      min-height: 0;
+      box-shadow: 0 8px 20px rgba(0,0,0,.05);
+    }
+    .aw-command {
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 10px 12px;
+      margin-bottom: 18px;
+    }
+    .aw-command-text { font-size: 12px; word-break: break-word; }
+    .aw-columns {
+      grid-template-columns: 1fr;
+      min-height: 0;
+      row-gap: 22px;
+    }
+    .aw-connectors { display: none; }
+    .aw-agent-step { margin: 0; }
+    .aw-draft { padding: 16px 14px; }
+    .aw-draft-head { flex-wrap: wrap; gap: 8px; }
+    .aw-draft h3 { font-size: 17px; }
+    .aw-rows li { font-size: 13.5px; }
+    .aw-tabs { gap: 6px; }
+    .aw-tab { padding: 8px 11px; font-size: 10.5px; }
+
+    /* ----- PLATFORM: keep title inside the viewport, tighten padding ----- */
+    .platform { padding: 64px 16px 76px; }
+    .platform-head { margin-bottom: 36px; gap: 18px; }
+    .platform-title {
+      font-size: clamp(40px, 12vw, 56px);
+      letter-spacing: -.045em;
+    }
+    .platform-head-right p { font-size: 15px; margin-bottom: 22px; }
+    .platform-rule { margin-bottom: 16px; }
+
+    /* ----- CFOS TIMELINE: give text more room next to the 01-06 numbers ----- */
+    .cfos { padding: 56px 16px 80px; }
+    .cfos-header { padding: 22px 18px; margin-bottom: 36px; }
+    .cfos-row {
+      grid-template-columns: 52px 1fr;
+      gap: 14px;
+      padding: 20px 0;
+    }
+    .cfos-rail-track { left: 26px; }
+    .cfos-checkpoint { left: 26px; top: 32px; }
+    .cfos-num { font-size: 44px; }
+    .cfos-row.active .cfos-num { font-size: 30px; }
+    .cfos-text h3 { font-size: 17px; }
+    .cfos-text p { font-size: 13.5px; }
+    .cfos-chips { gap: 6px; }
+    .cfos-chip { font-size: 10px; padding: 4px 7px; }
+
+    /* ----- CLOSER: tighter, room for CTAs ----- */
+    .closer { padding: 64px 16px 72px; min-height: 0; }
+    .closer .center-word { font-size: clamp(56px, 18vw, 110px); }
+    .closer p { font-size: 16px; margin-top: 10px; }
+    .closer .hero-ctas { margin-top: 22px; gap: 10px; }
+    .closer .hero-ctas .btn {
+      flex: 1 1 auto;
+      min-height: 48px;
+      padding: 0 18px;
+      justify-content: center;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    /* ----- MODAL: tighter padding on small screens ----- */
+    .demo-modal { padding: 14px; }
+    .demo-modal-card { padding: 26px 22px 22px; }
+    .demo-modal-title { font-size: 26px; }
+
+    /* ----- NAV: keep toggle a 44px touch target ----- */
+    .nav-toggle { min-width: 44px; min-height: 44px; }
+  }
+
+  @media (max-width: 480px) {
+    /* Phones: collapse footer columns + push wordmark down a touch more */
+    footer { padding: 48px 18px 32px; }
+    footer .foot-grid { grid-template-columns: 1fr 1fr; gap: 22px; }
+    footer .foot-brand { grid-column: 1 / -1; }
+    footer .foot-brand p { max-width: none; }
+    footer .foot-bottom { margin-top: 32px; }
+
+    /* Hero CTAs go full-width on phones for clean stack + thumb reach */
+    .hero-ctas .btn,
+    .closer .hero-ctas .btn { flex: 1 1 100%; }
+
+    /* Tighten the platform title so very narrow phones still fit cleanly */
+    .platform-title { font-size: clamp(36px, 11.5vw, 48px); }
+  }
+</style>
+<!-- mobile-strip: hide pills + agent-workflow section on mobile only -->
+<style id="mobile-strip">
+  @media (max-width: 820px) {
+    .hero .source-node,
+    .hero .node,
+    .hero .field-connector,
+    .hero #fieldConnector,
+    .hero aside.readout,
+    .hero .hint-strip,
+    .hero .source-readout { display: none !important; }
+    .hero .field { pointer-events: none; }
+    section.agent-workflow,
+    section#os { display: none !important; }
+  }
+</style>
 </head>
 <body>
 
@@ -1867,14 +2023,13 @@
       <a href="#os">Demo</a>
       <a href="#platform">Platform</a>
       <a href="#engineered">How it works</a>
-      <a href="sample-brief.html">Sample brief</a>
     </div>
     <div>
       <h4>Company</h4>
       <a href="about.html">About</a>
       <a href="blog.html">Blog</a>
       <a href="subscribe.html">Morning Brief</a>
-      <a href="mailto:connor.florczyk@brieflywealth.com">Contact</a>
+      <a href="mailto:contact@brieflywealth.com">Contact</a>
     </div>
     <div>
       <h4>Legal</h4>
@@ -2648,13 +2803,13 @@
       }).join("");
 
       requestAnimationFrame(() => {
-        sourcesList.querySelectorAll(".aw-source").forEach((el, i) => defer(() => el.classList.add("in"), 90 + i * 80));
-        agentsList.querySelectorAll(".aw-agent-step").forEach((el, i) => defer(() => el.classList.add("in"), 600 + i * 140));
-        defer(drawConnectors, 700);
-        defer(() => { const d = section.querySelector(".aw-draft"); if (d) d.classList.add("in"); }, 1500);
+        sourcesList.querySelectorAll(".aw-source").forEach((el, i) => defer(() => el.classList.add("in"), 180 + i * 140));
+        agentsList.querySelectorAll(".aw-agent-step").forEach((el, i) => defer(() => el.classList.add("in"), 1050 + i * 240));
+        defer(drawConnectors, 1200);
+        defer(() => { const d = section.querySelector(".aw-draft"); if (d) d.classList.add("in"); }, 2500);
         defer(() => {
-          rowsEl.querySelectorAll("li").forEach((el, i) => defer(() => el.classList.add("in"), i * 110));
-        }, 1650);
+          rowsEl.querySelectorAll("li").forEach((el, i) => defer(() => el.classList.add("in"), i * 180));
+        }, 2750);
       });
     }
 
@@ -2713,14 +2868,14 @@
         const len = path.getTotalLength();
         path.style.strokeDasharray = `${len} ${len}`;
         path.style.strokeDashoffset = `${len}`;
-        const delay = i * 90;
+        const delay = i * 150;
         defer(() => { path.classList.add("is-drawing"); path.style.strokeDashoffset = "0"; }, delay);
         defer(() => {
           path.classList.remove("is-drawing");
           path.style.strokeDasharray = "5 6";
           path.style.strokeDashoffset = "0";
           path.classList.add("is-flowing");
-        }, delay + 800);
+        }, delay + 1300);
       });
     }
 
@@ -2734,7 +2889,21 @@
       });
     });
 
-    render(currentCase);
+    // Defer first render until the section is scrolled into view.
+    // Reduced motion or no-IO fallback renders immediately.
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+      render(currentCase);
+    } else {
+      const startObs = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            render(currentCase);
+            startObs.disconnect();
+          }
+        });
+      }, { threshold: 0.2, rootMargin: '0px 0px -10% 0px' });
+      startObs.observe(section);
+    }
 
     let resizeTimer;
     window.addEventListener("resize", () => {

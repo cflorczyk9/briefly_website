@@ -9,13 +9,13 @@
 <link rel="canonical" href="https://www.brieflywealth.com/about" />
 <meta property="og:title" content="About Briefly — Meeting prep automation for financial advisors">
 <meta property="og:description" content="Why we built Briefly: founder Connor Florczyk on giving advisors back their time by automating client meeting prep across custodians, CRMs, and emails.">
-<meta property="og:image" content="https://www.brieflywealth.com/images/briefly-og-main-2x.png">
+<meta property="og:image" content="https://www.brieflywealth.com/images/briefly-og-main-2x.png?v=2">
 <meta property="og:url" content="https://www.brieflywealth.com/about">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="About Briefly — Meeting prep automation for financial advisors">
 <meta name="twitter:description" content="Founder Connor Florczyk on giving advisors back their time by automating client meeting prep.">
-<meta name="twitter:image" content="https://www.brieflywealth.com/images/briefly-og-main-2x.png">
+<meta name="twitter:image" content="https://www.brieflywealth.com/images/briefly-og-main-2x.png?v=2">
 <link rel="icon" type="image/png" sizes="32x32" href="images/briefly_logo_favicon.png?v=2">
 <link rel="icon" type="image/png" sizes="16x16" href="images/briefly_logo_favicon.png?v=2">
 <link rel="apple-touch-icon" sizes="180x180" href="images/briefly_logo_favicon.png?v=2">
@@ -605,6 +605,59 @@
     nav.nav .nav-links { display: none; }
   }
 </style>
+<!-- mobile-redux -->
+<style id="mobile-redux-about">
+  @media (max-width: 820px) {
+    /* Tighten nav so brand + actions + toggle fit 375px without crowding */
+    nav.nav { gap: 8px; padding: 0 14px; }
+    nav.nav .nav-signin { display: none; }
+    nav.nav .nav-cta { height: 40px; padding: 0 12px; font-size: 10.5px; letter-spacing: .06em; }
+    nav.nav .nav-actions { gap: 6px; }
+    nav.nav .brand-word { font-size: 22px; }
+
+    /* Mission hero: less vertical space, edge padding closer to grid */
+    .mission-hero { padding: 56px 20px 56px; background-size: 36px 36px, 36px 36px, auto; }
+    .mission-hero .eyebrow { margin-bottom: 16px; }
+    .mission-hero h1 { font-size: clamp(30px, 8.6vw, 38px); line-height: 1; letter-spacing: -.035em; }
+
+    /* Founder bio: stacks, photo grows to a usable size, copy tightens */
+    .founder-section { padding: 56px 20px 64px; }
+    .founder-inner { gap: 28px; }
+    .founder-photo { max-width: 100%; width: 100%; }
+    .founder-content { max-width: 100%; }
+    .founder-content h2 { font-size: 30px; }
+    .founder-content .title { margin-bottom: 18px; }
+    .founder-content p { font-size: 16px; line-height: 1.6; margin-bottom: 14px; }
+
+    /* Card sections (Why now / Values): trim padding + head spacing */
+    .card-section { padding: 56px 20px 64px; }
+    .card-section.gridded { background-size: 36px 36px, 36px 36px, auto; }
+    .section-head { margin: 0 0 28px; }
+    .section-head h2 { font-size: clamp(28px, 8vw, 36px); line-height: 1; }
+    .cards-grid { gap: 14px; }
+    .info-card { padding: 22px 20px; }
+    .info-card h3 { font-size: 18px; }
+    .info-card p { font-size: 15px; }
+
+    /* Closer */
+    .about-closer { padding: 56px 20px 64px; }
+    .about-closer h2 { font-size: clamp(26px, 7.4vw, 34px); }
+    .about-closer p { font-size: 16px; }
+    .about-closer .ctas .btn { flex: 1 1 auto; justify-content: center; }
+
+    /* Footer: single column at small widths, brand column doesn't get crammed */
+    footer { padding: 44px 20px 32px; }
+    footer .foot-grid { grid-template-columns: 1fr 1fr; gap: 24px 20px; }
+    footer .foot-brand { grid-column: 1 / -1; }
+    footer .foot-brand p { max-width: 100%; }
+  }
+  @media (max-width: 480px) {
+    .cards-grid { gap: 12px; }
+    .founder-content h2 { font-size: 26px; }
+    .about-closer .ctas { flex-direction: column; align-items: stretch; }
+    .about-closer .ctas .btn { width: 100%; }
+  }
+</style>
 </head>
 <body>
 
@@ -729,14 +782,13 @@
       <a href="index.html#os">Demo</a>
       <a href="index.html#platform">Platform</a>
       <a href="index.html#engineered">How it works</a>
-      <a href="sample-brief.html">Sample brief</a>
     </div>
     <div>
       <h4>Company</h4>
       <a href="about.html">About</a>
       <a href="blog.html">Blog</a>
       <a href="subscribe.html">Morning Brief</a>
-      <a href="mailto:connor.florczyk@brieflywealth.com">Contact</a>
+      <a href="mailto:contact@brieflywealth.com">Contact</a>
     </div>
     <div>
       <h4>Legal</h4>
