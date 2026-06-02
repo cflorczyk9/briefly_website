@@ -1,0 +1,408 @@
+---
+# Briefly — Source-backed client files for wealth advisor teams
+Source: https://www.brieflywealth.com/
+---
+
+statement rollover form transcript insurance estate email custodian alert cpa email slack thread plan doc calendar crm activity risk profile text signed letter voicemail tax doc trust doc advisor note held-away
+
+Source-backed client files for advisor teams
+
+# Know every client like they're your only client.
+
+Briefly connects every note, email, statement, meeting, and CRM record into one source-backed client file: what changed, what matters now, and what needs advisor approval.
+
+See how it works Book a live demo
+
+01 / source reviewable
+
+Fidelity Q1 statement
+
+Portfolio drift becomes a source-backed fact before the advisor enters the review.
+
+move through evidence lines
+
+Agent workflow
+
+## Ask for the next meeting. Briefly builds the agenda.
+
+Briefly reads every source on the client, runs the agent steps in order, and drafts a review-ready document with sources attached.
+
+Build agenda Find changes Collect open loops Prepare follow-up Create handoff brief
+
+Advisor request › Build an agenda for the Miller review meeting next Tuesday.
+
+Inputs
+
+Agent steps
+
+Reviewable draft
+
+Draft agenda ready for advisor review
+
+Review Edit Approve
+
+### Miller Annual Review Agenda
+
+Source-backed draft
+
+Review Edit Approve
+
+The platform
+
+## Source matters. Approval wins.
+
+Briefly turns one client file into structured, reviewable, reusable work. Every claim sourced, every change held for advisor approval, every output ready for the team workflow.
+
+See it work See it work →
+
+01
+
+### Source intake
+
+Notes, emails, statements, transcripts, planning docs, and CRM activity enter the file as evidence — not generic data.
+
+02
+
+### Client memory
+
+Sources resolve into the household, accounts, outside professionals, and the planning issues that actually matter.
+
+03
+
+### Advisor review
+
+Drafts, conflicts, and sensitive context come up for advisor approval before they leave Briefly.
+
+04
+
+### Workflow output
+
+Approved next moves land in Salesforce, prep docs, and inboxes — with the source still attached.
+
+The system
+
+## The Client File Operating System
+
+Every client file is assembled from the work your team already creates. Briefly keeps the source attached, shows uncertainty, and waits for advisor approval before anything moves.
+
+01
+
+### Sources arrive untouched
+
+Notes, emails, statements, transcripts, planning documents, and CRM activity enter without migration.
+
+Advisor note CPA email Fidelity Q1 Salesforce activity
+
+02
+
+### Briefly resolves the client context
+
+Households, accounts, outside professionals, relationships, and planning issues connect to the right file.
+
+Household Outside pro Account Planning issue
+
+03
+
+### Claims are extracted with sources
+
+Actions, preferences, portfolio changes, deadlines, and risks become reviewable facts.
+
+AMZN 31% [Fidelity Q1] Roth conv. [CPA email] Action Preference
+
+04
+
+### Trust is checked before workflow
+
+Conflicts, sensitive facts, stale records, and low-confidence claims are held for advisor review.
+
+Conflict Sensitive Low confidence Needs review
+
+05
+
+### The client file compounds
+
+Every new source and every advisor correction improves the durable memory layer.
+
+Sentiment history Firm voice Audit trail Durable memory
+
+06
+
+### Advisor approval controls writeback
+
+Briefly suggests. The advisor approves before anything reaches Salesforce, a client, or the team workflow.
+
+Approve Edit Reject Salesforce task
+
+See Briefly live on your firm's records. We run the walkthrough with the advisor in the room.
+
+×
+
+Briefly · Demo
+
+Full name
+
+Work email
+
+Firm (optional)
+
+Request demo
+
+Something went wrong sending that. Try again or email connor.florczyk@brieflywealth.com.
+
+Thanks. We'll be in touch.
+
+We'll be in touch to set up a demo.
+
+Close
+
+
+---
+# Client Context Graph for Financial Advisors
+Source: https://www.brieflywealth.com/context-graph
+---
+
+Context Graphs
+
+# Why advisors need a client context graph.
+
+Meetings, Inbox, Clients, Documents, Investment thesis, and Settings all depend on the same missing layer: structured context that connects every source back to the client relationship.
+
+Most wealth firms do not have a data problem. They have a context problem. Client facts exist across CRM records, emails, meeting notes, custodial statements, financial plans, spreadsheets, and the memory of individual advisors. The hard part is that none of those systems share a model of the relationship.
+
+A client context graph gives the firm that model. It connects people, households, entities, accounts, goals, concerns, events, tasks, and source citations so every workflow starts from the same client understanding.
+
+Source Layer Emails, notes, meetings, PDFs, CRM, portfolio data, and planning documents.
+
+Graph Layer Resolved people, households, entities, relationships, tasks, goals, and evidence.
+
+V2 Surfaces Meetings, Inbox, Clients, Documents, Investment thesis, and Settings.
+
+## The brief is an output, not the moat.
+
+A meeting brief is valuable because it gives the advisor immediate leverage before a client conversation. But the enduring value is the graph underneath it. Once the source-backed graph exists, the firm can generate more than a brief: open-loop tracking, relationship maps, inherited-wealth workflows, cross-client themes, and advisor handoff context.
+
+## Why this matters in wealth management.
+
+- Households are becoming more complex as wealth transfers across generations.
+
+- Advisors are responsible for more relationships without proportional support staff.
+
+- Client context is often trapped in individual memory, not firm infrastructure.
+
+- Generic AI summaries are risky unless they are traceable to source material.
+
+## What Briefly builds.
+
+Briefly turns fragmented advisor sources into a living relationship graph. It preserves provenance, keeps outputs reviewable, and gives each workflow the context it needs without forcing a CRM migration.
+
+The result is a firm memory layer: one graph underneath meeting prep, client detail, document workflows, and investment policy review.
+
+## See the context layer in action.
+
+Briefly maps your existing source systems into the V2 workspace we are coding now.
+
+
+---
+# Advisor Context Layer for Financial Advisors
+Source: https://www.brieflywealth.com/relationship-intelligence
+---
+
+Context Layer
+
+# Your brain does not have enough RAM for this job.
+
+Advisors are expected to remember hundreds of relationships, years of conversations, family dynamics, planning decisions, and open loops. The bottleneck is not effort. It is memory architecture.
+
+Wealth management is relationship work disguised as information work. The portfolio matters, but so does the daughter starting high school, the brother contesting the trust, the CPA who needs the tax projection, and the client who says they are comfortable with risk but gets anxious every time markets fall.
+
+Those details are not secondary. They are the context that makes advice feel personal and trustworthy.
+
+The advisor does not need another place to store notes. The advisor needs the right context to appear before the next decision.
+
+## Why CRMs are not enough.
+
+CRMs are important systems of record, but they are not built to reconstruct a relationship across every source. The meaningful context often lives in a note, a forwarded email, a PDF, a meeting transcript, a planning doc, or the head of a senior advisor.
+
+Search helps when you know what to search for. The context layer helps when you need the system to know what matters before you ask.
+
+## What the context layer should include.
+
+- Family and household relationships, including heirs and decision makers.
+
+- Professional network context, including CPAs, attorneys, trustees, and centers of influence.
+
+- Planning themes such as liquidity, philanthropy, estate complexity, concentrated positions, and tax deadlines.
+
+- Open loops, follow-ups, unresolved concerns, and promises made in prior meetings.
+
+- Source citations so advisors can verify the context before using it with a client.
+
+## Why Briefly starts here.
+
+Briefly builds the memory layer underneath advisor workflows. It connects scattered context, keeps it source-backed, and turns it into the V2 surfaces we are coding now: Meetings, Inbox, Clients, Documents, Investment thesis, Settings, and client detail.
+
+## Scale memory without scaling headcount.
+
+Briefly gives each advisor a source-backed view of the relationship before the meeting starts.
+
+
+---
+# AI Meeting Briefs for Financial Advisors
+Source: https://www.brieflywealth.com/meeting-briefs
+---
+
+Meeting Prep
+
+# AI meeting briefs are the first output of the context graph.
+
+Briefly helps advisors walk into every client meeting with the relationship history, open loops, portfolio context, and planning themes that matter most.
+
+Briefly Meeting Brief
+
+Open loops and follow-ups
+
+Portfolio and liquidity context
+
+Tax and planning opportunities
+
+Family, sentiment, and relationship history
+
+Meeting prep is where the value of advisor context becomes immediately visible. A good brief saves time. A great brief makes the advisor feel like they remember the whole relationship.
+
+But better meeting prep cannot be built from isolated summaries alone. It needs the context graph behind it: the people, accounts, decisions, conversations, documents, tasks, and source citations that explain what matters now.
+
+## What an advisor-ready brief needs.
+
+- Open tasks and promises made in prior meetings.
+
+- Portfolio changes, liquidity needs, concentrated positions, and tax themes.
+
+- Client sentiment, concerns, frustrations, and language that signals risk.
+
+- Life events, family dynamics, professional network, and planning milestones.
+
+- Source evidence that lets the advisor verify before acting.
+
+## Why the context layer matters after the meeting.
+
+The meeting brief should not be a dead-end document. The same context should inform the V2 Meetings page, client detail view, Documents workspace, and the next meeting. That is why Briefly treats the brief as an output surface, not the platform itself.
+
+## The compounding effect.
+
+Each meeting adds more source-backed memory to the graph. The next prep cycle gets faster, the client detail page gets richer, and the firm becomes less dependent on any one person's memory.
+
+## Turn meeting prep into firm memory.
+
+Briefly creates advisor-ready briefs from a context layer that keeps improving over time.
+
+
+---
+# Security at Briefly Wealth
+Source: https://www.brieflywealth.com/security
+---
+
+Security
+
+# Built for sensitive advisor and client context.
+
+Briefly is designed around source-backed outputs, advisor review, controlled access, and a security program aligned to the expectations of wealth management firms.
+
+The information Briefly processes is relationship-critical and often client-sensitive. Our product and operating model are built to keep that context controlled, reviewable, and traceable.
+
+## Source-backed outputs
+
+Briefs and workflow outputs are designed to remain traceable to the documents, notes, emails, and records that support them.
+
+## Advisor review
+
+Briefly supports advisor-in-the-loop workflows. AI-generated outputs are intended to assist professionals, not replace professional judgment.
+
+## Least-privilege access
+
+Access controls are designed so users only access the data and workflows required for their role and firm configuration.
+
+## Encryption and vendor review
+
+We use modern cloud infrastructure patterns, encrypted transport, and vendor review for critical service providers.
+
+## No general model training on client data
+
+Client data is processed to provide the service. It is not used to train general-purpose models for other customers.
+
+## SOC 2 aligned controls
+
+Our information security program is aligned with SOC 2 Trust Services Criteria while formal certification work progresses.
+
+Need a security review? Contact contact@brieflywealth.com for architecture, vendor, and data-processing questions.
+
+
+---
+# About Briefly
+Source: https://www.brieflywealth.com/about
+---
+
+Our mission
+
+# We exist to give advisors back their time, so they can focus on clients, not manual prep.
+
+Our founder
+
+## Connor Florczyk
+
+Founder, Briefly Wealth
+
+Connor began his career at Crescent Bay Advisors, Inc. (acquired by Evoke Advisors in 2024), a boutique multi-family office serving ultra-high-net-worth families with complex, multi-entity structures. He later joined a top-performing private wealth team at Morgan Stanley, coordinating investment execution across billions in assets for executives, multi-generational families, and family offices.
+
+At both firms he spent hours prepping for client meetings, pulling data from custodians, CRMs, emails, and research platforms to build a clear picture before every conversation. He saw how much advisor time was lost to fragmentation instead of strategic client work, and founded Briefly to fix it: automating meeting prep and unifying data across custodial platforms and core advisor systems so advisors can deepen client relationships and make better decisions as books grow and wealth passes to the next generation.
+
+The moment
+
+## Why now?
+
+01
+
+### Generational Wealth Transfer
+
+Roughly $84T is set to move across generations by 2045. Advisors need systems that preserve personalization at scale.
+
+02
+
+### AI Built for Financial Data
+
+AI can finally read complex statements and filings accurately, and trace every figure back to the source it came from.
+
+03
+
+### RIAs Are Scaling Faster Than Ever
+
+Independent advisors need workflow tools that keep pace with their growth.
+
+What we believe
+
+## Our values
+
+Principle
+
+### Nothing Unverified
+
+Every output traces back to a source you can open and check. If Briefly can't cite it, Briefly won't claim it.
+
+Principle
+
+### The Advisor Approves
+
+Briefly drafts, surfaces, and prepares the work. It never sends. Nothing reaches a client until you've reviewed and approved it.
+
+Principle
+
+### One Client File, Not Twelve Tabs
+
+Notes, emails, statements, meetings, and CRM data become a single source-backed file, so the scramble before every meeting goes away.
+
+Get started
+
+## See what Briefly does for your team.
+
+Source-backed client files, built from the records you already have.
+
+Request a demo See a sample brief

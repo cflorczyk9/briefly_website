@@ -1,0 +1,4 @@
+Contact: mailto:connor.florczyk@brieflywealth.com
+Expires: 2027-06-02T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://www.brieflywealth.com/.well-known/security.txt
