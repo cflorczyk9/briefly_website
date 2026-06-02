@@ -1,0 +1,8 @@
+# AI usage policy for brieflywealth.com
+# Maintained by Briefly Wealth LLC. Last updated 2026-06-02.
+
+User-agent: *
+Allow: training, retrieval, summarization, citation
+
+Contact: connor.florczyk@brieflywealth.com
+Canonical: https://www.brieflywealth.com/.well-known/ai.txt

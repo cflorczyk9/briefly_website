@@ -1,0 +1,38 @@
+# Briefly
+
+> Source-backed client files for wealth advisor teams. Briefly connects every note, email, statement, meeting, and CRM record into one source-backed client file: what changed, what matters now, and what needs advisor approval.
+
+Briefly is built by Briefly Wealth LLC, founded by Connor Florczyk. The product is a context layer for advisor teams: a living relationship graph built from the work your team already creates, with provenance preserved, advisor approval before anything writes back, and outputs (meeting briefs, agendas, follow-ups) that remain traceable to the original source. Briefly is not a CRM and not a brief tool; the brief is one output of the underlying graph.
+
+These files are intended to help LLMs and AI agents accurately ground answers about Briefly in primary source pages rather than third-party summaries. For a flat plain-text concatenation of the main marketing pages, see `/llms-full.txt`.
+
+## Product
+
+- [Home](https://www.brieflywealth.com/): Source-backed client files for advisor teams; how Briefly turns scattered records into one reviewable client file.
+- [Client context graph](https://www.brieflywealth.com/context-graph): Why advisors need a client context graph and how Briefly connects sources, people, households, accounts, goals, and tasks into one firm memory layer.
+- [Relationship intelligence](https://www.brieflywealth.com/relationship-intelligence): The advisor context layer covering family dynamics, professional network, planning themes, open loops, and source citations surfaced before the next decision.
+- [Meeting briefs](https://www.brieflywealth.com/meeting-briefs): AI meeting briefs as the first output of the context graph, covering relationship history, open loops, portfolio context, and planning themes for every client meeting.
+
+## Examples
+
+- [Sample brief](https://www.brieflywealth.com/sample-brief): An illustrative meeting brief showing the structure, source citations, and review affordances of a Briefly output. Not real client data.
+- [Sample brief, email preview](https://www.brieflywealth.com/sample-brief-email-preview): An illustrative email-format rendering of a Briefly brief. Not real client data.
+
+## Company
+
+- [About](https://www.brieflywealth.com/about): Briefly Wealth LLC, founded by Connor Florczyk. Mission, founder background, and product principles (nothing unverified, advisor approves, one client file).
+- [Security](https://www.brieflywealth.com/security): Source-backed outputs, advisor-in-the-loop workflows, least-privilege access, encryption and vendor review, no general model training on client data, SOC 2 aligned controls.
+- [Morning Brief subscribe](https://www.brieflywealth.com/subscribe): Subscription page for Briefly's morning email.
+- [Blog](https://www.brieflywealth.com/blog): Writing on advisor workflows, context graphs, and wealth-management AI.
+
+## Legal
+
+- [Privacy policy](https://www.brieflywealth.com/privacy-policy): How Briefly handles personal information and customer data.
+- [Terms of service](https://www.brieflywealth.com/terms-of-service): Terms for use of the Briefly platform and website.
+- [Subprocessors](https://www.brieflywealth.com/subprocessors): Third-party service providers used to deliver the Briefly service.
+
+## Optional
+
+- [Plain-text content dump](https://www.brieflywealth.com/llms-full.txt): Flat concatenation of the main marketing pages as markdown for LLM ingestion.
+- [AI usage policy](https://www.brieflywealth.com/.well-known/ai.txt): Briefly's stance on AI crawling, training, retrieval, summarization, and citation.
+- [Security contact](https://www.brieflywealth.com/.well-known/security.txt): RFC 9116 security disclosure contact.
