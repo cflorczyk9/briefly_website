@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unsubscribe | Briefly</title>
+<meta name="description" content="Unsubscribe from the Briefly Morning Brief.">
+<meta name="author" content="Briefly Wealth LLC">
+<meta name="robots" content="noindex,nofollow">
+<link rel="canonical" href="https://www.brieflywealth.com/unsubscribe">
+<link rel="icon" type="image/png" sizes="32x32" href="images/briefly_logo_favicon.png?v=2">
+<link rel="icon" type="image/png" sizes="16x16" href="images/briefly_logo_favicon.png?v=2">
+<link rel="apple-touch-icon" sizes="180x180" href="images/briefly_logo_favicon.png?v=2">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --paper:#d9d7cb; --paper-2:#e6e3d6; --paper-3:#f1eee2;
+    --ink:#1c1d1f; --ink-soft:rgba(28,29,31,.72); --ink-muted:rgba(28,29,31,.52); --rule:rgba(28,29,31,.18);
+    --blue:#2f8cff;
+    --sans:'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+    --mono:'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;
+  }
+  html, body { height: 100%; }
+  body {
+    background: var(--paper);
+    font-family: var(--sans);
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .card {
+    background: var(--paper-3);
+    border: 1px solid var(--ink);
+    max-width: 480px;
+    width: 100%;
+    padding: 44px 36px 36px;
+    text-align: center;
+  }
+  .kicker {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 14px;
+  }
+  .rule { border-top: 2px solid var(--ink); margin-bottom: 18px; }
+  h1 {
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: -.025em;
+    line-height: 1.1;
+    margin-bottom: 14px;
+  }
+  p { font-size: 15px; line-height: 1.6; color: var(--ink-soft); margin-bottom: 10px; }
+  .email-chip {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--ink);
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+    padding: 6px 10px;
+    display: inline-block;
+    margin: 6px 0 14px;
+    word-break: break-all;
+  }
+  .actions { margin-top: 22px; }
+  .btn {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--blue);
+    padding: 13px 22px;
+    text-decoration: none;
+  }
+  .foot-note {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-top: 26px;
+  }
+  .foot-note a { color: var(--ink-soft); }
+  .hidden { display: none; }
+  .spinner {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <p class="kicker">Briefly Wealth</p>
+  <div class="rule"></div>
+
+  <div id="working">
+    <h1>One moment</h1>
+    <p class="spinner">Processing your request&hellip;</p>
+  </div>
+
+  <div id="done" class="hidden">
+    <h1>You're unsubscribed</h1>
+    <p>This address will no longer receive the Morning Brief:</p>
+    <span class="email-chip" id="doneEmail"></span>
+    <p>Changed your mind? You can rejoin any time.</p>
+    <div class="actions"><a class="btn" href="/subscribe">Resubscribe</a></div>
+  </div>
+
+  <div id="already" class="hidden">
+    <h1>Nothing to do</h1>
+    <p>This link has already been used, or it isn't valid. If you're still receiving the Morning Brief, use the unsubscribe link from your most recent email.</p>
+  </div>
+
+  <div id="failed" class="hidden">
+    <h1>Something went wrong</h1>
+    <p>We couldn't process the unsubscribe automatically. Email us and we'll remove you right away.</p>
+    <div class="actions"><a class="btn" href="mailto:connor.florczyk@brieflywealth.com?subject=Unsubscribe">Email to unsubscribe</a></div>
+  </div>
+
+  <p class="foot-note">Questions? <a href="mailto:connor.florczyk@brieflywealth.com">connor.florczyk@brieflywealth.com</a></p>
+</div>
+
+<script>
+  const SUPABASE_URL = 'https://vlptwnnnuqclbkkoxqjk.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZscHR3bm5udXFjbGJra294cWprIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwMDI3NTgsImV4cCI6MjA4ODU3ODc1OH0.HoxutLeRJZqz4lJ7T8JIQ-v3wNjRQa3VpXORmTgEimo';
+  const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+  function show(id) {
+    for (const el of ['working', 'done', 'already', 'failed']) {
+      document.getElementById(el).classList.toggle('hidden', el !== id);
+    }
+  }
+
+  async function run() {
+    const token = new URLSearchParams(window.location.search).get('token') || '';
+    if (!UUID_RE.test(token)) { show('already'); return; }
+    try {
+      const resp = await fetch(SUPABASE_URL + '/rest/v1/rpc/unsubscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY },
+        body: JSON.stringify({ p_token: token }),
+      });
+      if (!resp.ok) throw new Error('Server error');
+      const data = await resp.json();
+      if (data.success) {
+        document.getElementById('doneEmail').textContent = data.email || '';
+        show('done');
+      } else {
+        show('already');
+      }
+    } catch (err) {
+      show('failed');
+    }
+  }
+  run();
+</script>
+
+</body>
+</html>
