@@ -307,7 +307,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&display=swap">
 <style>
   :root { --paper:#d9d7cb; --paper-2:#e6e3d6; --paper-3:#f1eee2; --ink:#1c1d1f; --rule:rgba(28,29,31,.18); --blue:#2f8cff; }
-  nav.nav { position:sticky; top:0; z-index:50; height:72px; display:flex; align-items:center; gap:18px; padding:0 28px; background:var(--paper); border-bottom:1px solid var(--rule); backdrop-filter:none; }
+  nav.nav { position:sticky; top:0; z-index:50; height:72px; display:flex; align-items:center; justify-content:space-between; gap:18px; padding:0 28px; background:var(--paper); border-bottom:1px solid var(--rule); backdrop-filter:none; }
   nav.nav .brand { position: relative; display: inline-flex; align-items: center; padding-right: 14px; text-decoration: none; }
   nav.nav .brand-icon { display: none; }
   nav.nav .brand-word {
@@ -331,7 +331,7 @@
     background: var(--blue);
     box-shadow: 0 0 0 2px rgba(47,140,255,.10);
   }
-  nav.nav .nav-links { display:flex; gap:0; margin-left:auto; border:1px solid var(--ink); background:var(--paper); }
+  nav.nav .nav-links { display:flex; gap:0; border:1px solid var(--ink); background:var(--paper); }
   nav.nav .nav-links a { display:inline-flex; align-items:center; height:38px; padding:0 14px; border-right:1px solid var(--ink); font-family:"JetBrains Mono",SFMono-Regular,monospace; font-size:12px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--ink); text-decoration:none; background:transparent; }
   nav.nav .nav-links a:last-child { border-right:0; }
   nav.nav .nav-links a:hover { background:var(--ink); color:var(--paper); }
