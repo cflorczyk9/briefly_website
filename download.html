@@ -76,7 +76,11 @@
   .dl-eyebrow { display:block; font-family: var(--mono); font-size: 12px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color: var(--blue); margin-bottom:16px; }
   .dl-hero h1 { font-family: var(--serif); font-weight:400; font-size: clamp(40px, 6vw, 66px); line-height:1.04; letter-spacing:-.01em; }
   .dl-hero p { margin-top:18px; max-width:640px; font-size:19px; line-height:1.6; color: rgba(247,243,234,.78); }
-  .dl-cta-row { margin-top:36px; display:flex; align-items:center; gap:22px; flex-wrap:wrap; }
+  .dl-2step { list-style:none; margin:26px 0 0; display:flex; flex-direction:column; gap:11px; max-width:560px; }
+  .dl-2step li { display:flex; align-items:center; gap:13px; font-size:16px; line-height:1.45; color:rgba(247,243,234,.84); }
+  .dl-2step li b { color:var(--cream); font-weight:700; }
+  .dl-2step .n { flex-shrink:0; width:26px; height:26px; border-radius:50%; border:1px solid var(--blue); color:var(--blue); display:inline-flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:13px; font-weight:800; }
+  .dl-cta-row { margin-top:24px; display:flex; align-items:center; gap:22px; flex-wrap:wrap; }
   .dl-btn { display:inline-flex; align-items:center; gap:11px; background: var(--cream); color: var(--navy); font-family: var(--mono); font-size:15px; font-weight:800; letter-spacing:.01em; text-decoration:none; padding:18px 30px; border:1px solid var(--cream); transition: background .15s, color .15s; }
   .dl-btn:hover { background:transparent; color: var(--cream); }
   .dl-btn .arr { font-size:18px; line-height:1; }
@@ -149,7 +153,11 @@
   <div class="dl-hero-inner">
     <span class="dl-eyebrow">Download &middot; Claude Desktop</span>
     <h1>Add Briefly to Claude.</h1>
-    <p>Briefly runs inside the Claude desktop app, on your firm's own files. Download the connector, double-click it, and you are set up in about five minutes.</p>
+    <p>Briefly runs inside the Claude desktop app, on your firm's own files. Two clicks to set it up, then about five minutes to your first brief.</p>
+    <ol class="dl-2step">
+      <li><span class="n">1</span> Click <b>Download</b> below to add Briefly to Claude.</li>
+      <li><span class="n">2</span> Switch to <b>Claude Desktop</b> and click <b>Install</b>.</li>
+    </ol>
     <div class="dl-cta-row">
       <a class="dl-btn" id="dl" href="/briefly-mcp.mcpb" download>Download Briefly <span class="arr" aria-hidden="true">&darr;</span></a>
       <span class="dl-meta">For Mac and Windows.<br>Requires the Claude desktop app.</span>
