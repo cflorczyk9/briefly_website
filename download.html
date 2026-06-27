@@ -126,7 +126,7 @@
   .dl-card p { margin: 14px 0 0; font-size: 15.5px; line-height: 1.6; color: #33404f; }
   .dl-card p b { color: var(--ink); }
   .dl-card .dl-fallback { font-size: 13px; color: var(--muted); margin-top: 14px; }
-  .dl-card .dl-fallback code { font-family: var(--mono); font-size: 12px; background: rgba(28,29,31,.06); border: 1px solid var(--rule); border-radius: 4px; padding: 1px 5px; }
+  .dl-card code { font-family: var(--mono); font-size: 12px; background: rgba(28,29,31,.06); border: 1px solid var(--rule); border-radius: 4px; padding: 1px 5px; }
   .dl-card .dl-fallback a { color: var(--blue); text-decoration: none; font-weight: 700; }
   .dl-ovbtn { margin-top: 22px; background: var(--ink); color: var(--cream); border: 1px solid var(--ink); font-family: var(--mono); font-size: 12.5px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; padding: 12px 22px; cursor: pointer; }
   .dl-ovbtn:hover { background: var(--blue); border-color: var(--blue); }
@@ -153,10 +153,10 @@
   <div class="dl-hero-inner">
     <span class="dl-eyebrow">Download &middot; Claude Desktop</span>
     <h1>Add Briefly to Claude.</h1>
-    <p>Briefly runs inside the Claude desktop app, on your firm's own files. Two clicks to set it up, then about five minutes to your first brief.</p>
+    <p>Briefly runs inside the Claude desktop app, on your firm's own files. Quick to set up, then about five minutes to your first brief.</p>
     <ol class="dl-2step">
-      <li><span class="n">1</span> Click <b>Download</b> below to add Briefly to Claude.</li>
-      <li><span class="n">2</span> Switch to <b>Claude Desktop</b> and click <b>Install</b>.</li>
+      <li><span class="n">1</span> Click <b>Download</b> below to save Briefly.</li>
+      <li><span class="n">2</span> Open the downloaded <b>briefly-mcp.mcpb</b> file to install it in <b>Claude Desktop</b>.</li>
     </ol>
     <div class="dl-cta-row">
       <a class="dl-btn" id="dl" href="/briefly-mcp.mcpb" download>Download Briefly <span class="arr" aria-hidden="true">&darr;</span></a>
@@ -199,10 +199,10 @@
 <div class="dl-overlay" id="dlOverlay" role="dialog" aria-modal="true" aria-labelledby="dlOvTitle" hidden>
   <div class="dl-card">
     <div class="dl-arrow" aria-hidden="true">&darr;</div>
-    <div class="dl-badge">Installing</div>
-    <h2 id="dlOvTitle">Now switch to Claude</h2>
-    <p>Briefly just downloaded and is opening in the Claude desktop app. <b>Switch to Claude Desktop and click Install</b> to finish.</p>
-    <p class="dl-fallback">Nothing opened? Double-click the downloaded <code>briefly-mcp.mcpb</code> file, or <a href="/briefly-mcp.mcpb" download>download it again</a>.</p>
+    <div class="dl-badge">Almost there</div>
+    <h2 id="dlOvTitle">Open the download to install</h2>
+    <p>Briefly saved to your computer. <b>Open the downloaded <code>briefly-mcp.mcpb</code> file</b> to launch Claude Desktop, then click <b>Install</b>.</p>
+    <p class="dl-fallback">Find it in your browser downloads (top of the window) or your Downloads folder. <a href="/briefly-mcp.mcpb" download>Download again</a> if you need it.</p>
     <button type="button" class="dl-ovbtn" id="dlOvClose">Got it</button>
   </div>
 </div>
