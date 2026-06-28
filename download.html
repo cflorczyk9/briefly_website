@@ -77,7 +77,8 @@
   .dl-hero h1 { font-family: var(--serif); font-weight:400; font-size: clamp(40px, 6vw, 66px); line-height:1.04; letter-spacing:-.01em; }
   .dl-hero p { margin-top:18px; max-width:640px; font-size:19px; line-height:1.6; color: rgba(247,243,234,.78); }
   .dl-2step { list-style:none; margin:26px 0 0; display:flex; flex-direction:column; gap:11px; max-width:560px; }
-  .dl-2step li { display:flex; align-items:center; gap:13px; font-size:16px; line-height:1.45; color:rgba(247,243,234,.84); }
+  .dl-2step li { display:flex; align-items:flex-start; gap:13px; font-size:16px; line-height:1.5; color:rgba(247,243,234,.84); }
+  .dl-2step li .t { flex:1; min-width:0; }
   .dl-2step li b { color:var(--cream); font-weight:700; }
   .dl-2step .n { flex-shrink:0; width:26px; height:26px; border-radius:50%; border:1px solid var(--blue); color:var(--blue); display:inline-flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:13px; font-weight:800; }
   .dl-cta-row { margin-top:24px; display:flex; align-items:center; gap:22px; flex-wrap:wrap; }
@@ -99,8 +100,51 @@
   .step .sn { font-family: var(--mono); font-size:12px; font-weight:800; letter-spacing:.1em; color: var(--blue); }
   .step h3 { margin-top:10px; font-size:19px; font-weight:800; letter-spacing:-.01em; color: var(--ink); }
   .step p { margin-top:9px; font-size:14.5px; line-height:1.62; color:#46505d; }
+  .step p b { color: var(--ink); font-weight: 700; }
   .step code { font-family: var(--mono); font-size:12.5px; background: rgba(28,29,31,.06); border:1px solid var(--rule); border-radius:4px; padding:1px 5px; color: var(--ink); }
   .req { margin-top:30px; font-family: var(--mono); font-size:12px; color: var(--muted); letter-spacing:.02em; }
+
+  /* ---------- Intuitiveness fixes ---------- */
+  .dl-meta a { color: var(--cream); font-weight:800; text-decoration:underline; }
+  .dl-trust { margin-top:18px; max-width:560px; font-size:14px; line-height:1.55; color: rgba(247,243,234,.74); }
+  .dl-trust a { color: var(--cream); font-weight:700; text-decoration:underline; }
+  .dl-note a.dl-note-btn { display:inline-block; margin-top:14px; background: var(--ink); color: var(--paper); font-family: var(--mono); font-size:12px; font-weight:800; letter-spacing:.05em; text-transform:uppercase; padding:10px 16px; text-decoration:none; }
+  .dl-note a.dl-note-btn:hover { background: var(--blue); color:#fff; }
+  /* ---------- Pinned step player (lock to screen + advance) ---------- */
+  .setup-pin { position:relative; height:520vh; margin-top:6px; }
+  .setup-pin-inner { position:sticky; top:0; height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; overflow:hidden; }
+  .setup-dots { position:absolute; top:90px; left:50%; transform:translateX(-50%); display:flex; gap:9px; z-index:4; }
+  .setup-dots button { width:26px; height:5px; border-radius:3px; border:0; padding:0; background:rgba(28,29,31,.16); cursor:pointer; transition:background .3s, width .3s; }
+  .setup-dots button.on { background:var(--blue); width:42px; }
+  .setup-stack { position:relative; width:100%; max-width:1100px; height:100%; }
+  .setup-panel { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:22px; padding:92px 24px 36px; opacity:0; pointer-events:none; transition:opacity .35s ease; }
+  .setup-panel.active { opacity:1; pointer-events:auto; animation:panelPop .6s cubic-bezier(.2,.9,.3,1); }
+  @keyframes panelPop { from { opacity:0; transform:translateY(46px); } to { opacity:1; transform:none; } }
+  .p-head { text-align:center; max-width:680px; }
+  .p-head .s-num { display:block; font-family:var(--mono); font-size:13px; font-weight:800; letter-spacing:.16em; color:var(--blue); }
+  .p-head h3 { margin-top:9px; font-family:var(--serif); font-weight:400; font-size:clamp(27px,3.6vw,42px); line-height:1.04; letter-spacing:-.01em; color:var(--ink); }
+  .p-head .cap { margin-top:11px; font-size:16px; line-height:1.5; color:#46505d; }
+  .p-head .cap b { color:var(--ink); font-weight:700; }
+  .p-head .cap a { color:var(--blue); font-weight:700; text-decoration:none; }
+  .p-head .cap a:hover { text-decoration:underline; }
+  .p-head .cap code { font-family:var(--mono); font-size:13px; background:rgba(28,29,31,.06); border:1px solid var(--rule); border-radius:4px; padding:2px 6px; color:var(--ink); }
+  .setup-frame { height:54vh; aspect-ratio:16/9; max-width:92vw; border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,.07); background:#1a1a19; box-shadow:0 26px 72px -34px rgba(11,37,69,.6); flex-shrink:0; }
+  .setup-vid { width:100%; height:100%; object-fit:cover; display:block; }
+  .setup-trust { margin-top:10px; background:var(--navy); color:rgba(247,243,234,.84); border-radius:10px; padding:18px 22px; font-size:14.5px; line-height:1.55; }
+  .setup-trust b { color:var(--cream); }
+  .setup-trust a { color:var(--cream); font-weight:700; text-decoration:underline; }
+  /* static fallback (reduced motion / mobile): stack the panels, no lock */
+  .setup-pin.no-pin { height:auto; }
+  .setup-pin.no-pin .setup-pin-inner { position:static; height:auto; display:block; overflow:visible; }
+  .setup-pin.no-pin .setup-stack { height:auto; max-width:none; }
+  .setup-pin.no-pin .setup-panel { position:static; opacity:1; pointer-events:auto; animation:none; padding:0 0 52px; }
+  .setup-pin.no-pin .setup-frame { height:auto; width:100%; max-width:none; }
+  .setup-pin.no-pin .setup-dots { display:none; }
+  @media (max-width:860px) {
+    .p-head h3 { font-size:25px; }
+    .p-head .cap { font-size:15px; }
+    .setup-pin.no-pin .setup-panel { gap:16px; padding:0 0 40px; }
+  }
 
   /* ---------- Footer ---------- */
   footer { background: var(--paper); border-top:1px solid var(--rule); padding: 40px 28px; text-align:center; font-size:14px; }
@@ -153,46 +197,75 @@
   <div class="dl-hero-inner">
     <span class="dl-eyebrow">Download &middot; Claude Desktop</span>
     <h1>Add Briefly to Claude.</h1>
-    <p>Briefly runs inside the Claude desktop app, on your firm's own files. Quick to set up, then about five minutes to your first brief.</p>
-    <ol class="dl-2step">
-      <li><span class="n">1</span> Click <b>Download</b> below to save Briefly.</li>
-      <li><span class="n">2</span> Open the downloaded <b>briefly-mcp.mcpb</b> file to install it in <b>Claude Desktop</b>.</li>
-    </ol>
+    <p>Briefly runs inside the Claude desktop app, on your firm's own files. Quick to set up, then about five minutes to your first brief. The full walkthrough is just below.</p>
     <div class="dl-cta-row">
-      <a class="dl-btn" id="dl" href="/briefly-mcp.mcpb" download>Download Briefly <span class="arr" aria-hidden="true">&darr;</span></a>
-      <span class="dl-meta">For Mac and Windows.<br>Requires the Claude desktop app.</span>
+      <a class="dl-btn" id="dl" href="briefly-mcp.mcpb" download="briefly_wealth.mcpb">Download Briefly <span class="arr" aria-hidden="true">&darr;</span></a>
+      <span class="dl-meta">For Mac and Windows.<br>Requires the free <a href="https://claude.ai/download" target="_blank" rel="noopener">Claude desktop app</a>.</span>
     </div>
+    <p class="dl-trust">Your original client files stay on your machine, and Briefly never uploads them. The brief itself is written by your own Claude, so its content follows your Claude plan and privacy settings. <a href="security.html">How we handle data</a></p>
   </div>
 </section>
 
 <main>
   <div class="dl-wrap">
-    <div class="dl-note"><strong>Briefly runs on a firm seat.</strong> The connector installs for anyone and briefs build on your own machine. To turn on your firm's shared learning layer, you sign in with a seat we set up for you. Not set up yet? <a href="index.html#contact">Request access</a> and we will provision your firm.</div>
+    <div class="dl-note"><strong>Using Briefly starts with a login we set up for you.</strong> Request access and we will provision your firm's account, so your whole team shares how your firm likes its briefs written. Briefly is currently free to use. <a class="dl-note-btn" href="index.html#contact">Request access</a></div>
 
     <h2 class="steps-head">Five minutes to your first brief.</h2>
-    <div class="steps">
-      <div class="step">
-        <div class="sn">STEP 01</div>
-        <h3>Install</h3>
-        <p>Double-click <code>briefly-mcp.mcpb</code>. The Claude desktop app opens and asks to install Briefly. Click Install. If it offers to set up Node.js, allow it.</p>
-      </div>
-      <div class="step">
-        <div class="sn">STEP 02</div>
-        <h3>Point Briefly at your folder</h3>
-        <p>Pick your firm's folder, enter your firm's short name, and your own advisor identifier. Leave the folder blank and Briefly makes a starter one for you.</p>
-      </div>
-      <div class="step">
-        <div class="sn">STEP 03</div>
-        <h3>Give Briefly a document</h3>
-        <p>Drop a client file in, or hand it to Briefly in chat: <code>Add this to the Smith family's file.</code> Briefly reads it and builds that client's profile.</p>
-      </div>
-      <div class="step">
-        <div class="sn">STEP 04</div>
-        <h3>Ask for a brief</h3>
-        <p>Ask: <code>Prepare a meeting brief for the Smith family.</code> Briefly builds it from your files, with a source you can click behind every line.</p>
+    <div class="setup-pin" id="setupPin">
+      <div class="setup-pin-inner">
+        <div class="setup-dots">
+          <button type="button" data-go="0" class="on" aria-label="Step 1"></button>
+          <button type="button" data-go="1" aria-label="Step 2"></button>
+          <button type="button" data-go="2" aria-label="Step 3"></button>
+          <button type="button" data-go="3" aria-label="Step 4"></button>
+          <button type="button" data-go="4" aria-label="Step 5"></button>
+        </div>
+        <div class="setup-stack">
+          <article class="setup-panel active">
+            <div class="p-head">
+              <span class="s-num">STEP 01</span>
+              <h3>Get the free Claude app</h3>
+              <p class="cap">Briefly runs inside <b>Claude</b>, Anthropic's free desktop app. <a href="https://claude.ai/download" target="_blank" rel="noopener">Get Claude</a>, then come back.</p>
+            </div>
+            <div class="setup-frame"><video class="setup-vid" muted loop playsinline preload="metadata" poster="media/setup/GetClaude.jpg"><source src="media/setup/GetClaude.mp4" type="video/mp4"></video></div>
+          </article>
+          <article class="setup-panel">
+            <div class="p-head">
+              <span class="s-num">STEP 02</span>
+              <h3>Install Briefly</h3>
+              <p class="cap">Double-click <b>briefly_wealth.mcpb</b>, then click <b>Install</b> in Claude. You only do this once.</p>
+            </div>
+            <div class="setup-frame"><video class="setup-vid" muted loop playsinline preload="metadata" poster="media/setup/InstallBriefly.jpg"><source src="media/setup/InstallBriefly.mp4" type="video/mp4"></video></div>
+          </article>
+          <article class="setup-panel">
+            <div class="p-head">
+              <span class="s-num">STEP 03</span>
+              <h3>Tell Briefly where to live</h3>
+              <p class="cap">Pick a folder (<b>Documents</b> is great), then add your firm name and your own name. Leave the folder blank and Briefly picks one for you.</p>
+            </div>
+            <div class="setup-frame"><video class="setup-vid" muted loop playsinline preload="metadata" poster="media/setup/ConfigureFolder.jpg"><source src="media/setup/ConfigureFolder.mp4" type="video/mp4"></video></div>
+          </article>
+          <article class="setup-panel">
+            <div class="p-head">
+              <span class="s-num">STEP 04</span>
+              <h3>Add a client document</h3>
+              <p class="cap">Attach any client file and say <code>Add this to the Johnson family file</code> (use your client's name).</p>
+            </div>
+            <div class="setup-frame"><video class="setup-vid" muted loop playsinline preload="metadata" poster="media/setup/AddDocument.jpg"><source src="media/setup/AddDocument.mp4" type="video/mp4"></video></div>
+          </article>
+          <article class="setup-panel">
+            <div class="p-head">
+              <span class="s-num">STEP 05</span>
+              <h3>Ask for a brief</h3>
+              <p class="cap">Ask <code>Prepare a meeting brief for the Johnson family</code>. Every fact gets a clickable source.</p>
+            </div>
+            <div class="setup-frame"><video class="setup-vid" muted loop playsinline preload="metadata" poster="media/setup/AskBrief.jpg"><source src="media/setup/AskBrief.mp4" type="video/mp4"></video></div>
+          </article>
+        </div>
       </div>
     </div>
-    <p class="req">Works in Claude Desktop on macOS and Windows &middot; Your client files stay on your machine</p>
+    <div class="setup-trust"><b>Your original files stay on your machine.</b> Briefly saves them in your folder, builds every brief locally, and never uploads your files. The finished brief is written by your own Claude, so its content follows your Claude plan and privacy settings. <a href="security.html">How we handle data</a></div>
+    <p class="req">Works in Claude Desktop on macOS and Windows &middot; Your original client files stay on your machine</p>
   </div>
 </main>
 
@@ -201,8 +274,9 @@
     <div class="dl-arrow" aria-hidden="true">&darr;</div>
     <div class="dl-badge">Almost there</div>
     <h2 id="dlOvTitle">Open the download to install</h2>
-    <p>Briefly saved to your computer. <b>Open the downloaded <code>briefly-mcp.mcpb</code> file</b> to launch Claude Desktop, then click <b>Install</b>.</p>
-    <p class="dl-fallback">Find it in your browser downloads (top of the window) or your Downloads folder. <a href="/briefly-mcp.mcpb" download>Download again</a> if you need it.</p>
+    <p>Briefly saved to your computer. <b>Open the downloaded <code>briefly_wealth.mcpb</code> file</b> to launch Claude Desktop, then click <b>Install</b>.</p>
+    <p class="dl-fallback">Find it in your browser downloads (top of the window) or your Downloads folder. <a href="briefly-mcp.mcpb" download="briefly_wealth.mcpb">Download again</a> if you need it.</p>
+    <p class="dl-fallback">Opened it and nothing happened? You need the free <a href="https://claude.ai/download" target="_blank" rel="noopener">Claude desktop app</a> first, then open <code>briefly_wealth.mcpb</code> again.</p>
     <button type="button" class="dl-ovbtn" id="dlOvClose">Got it</button>
   </div>
 </div>
@@ -243,6 +317,80 @@
     if (closeBtn) closeBtn.addEventListener("click", hide);
     ov.addEventListener("click", (e) => { if (e.target === ov) hide(); });
     document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !ov.hidden) hide(); });
+  })();
+
+  // Pinned step player: the section locks to the screen and scrolling advances
+  // through the steps, swapping the big video and popping the next step in.
+  (() => {
+    const section = document.getElementById("setupPin");
+    if (!section) return;
+    const panels = [...section.querySelectorAll(".setup-panel")];
+    const dots = [...section.querySelectorAll(".setup-dots button")];
+    const vids = panels.map((p) => p.querySelector("video"));
+    const total = panels.length;
+    if (!total) return;
+    const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const mobile = matchMedia("(max-width: 860px)").matches;
+
+    const playOnly = (i) => {
+      vids.forEach((v, idx) => {
+        if (!v) return;
+        if (idx === i) { try { v.currentTime = 0; } catch (e) {} const p = v.play(); if (p && p.catch) p.catch(() => {}); }
+        else { try { v.pause(); } catch (e) {} }
+      });
+    };
+
+    // Reduced motion or mobile: don't lock. Stack the panels and play whichever
+    // one is on screen.
+    if (reduced || mobile) {
+      section.classList.add("no-pin");
+      panels.forEach((p) => p.classList.add("active"));
+      if ("IntersectionObserver" in window) {
+        const io = new IntersectionObserver((ents) => {
+          ents.forEach((e) => {
+            const v = e.target.querySelector("video");
+            if (!v) return;
+            if (e.isIntersecting) { const p = v.play(); if (p && p.catch) p.catch(() => {}); }
+            else { try { v.pause(); } catch (err) {} }
+          });
+        }, { threshold: 0.4 });
+        panels.forEach((p) => io.observe(p));
+      } else {
+        vids.forEach((v) => { if (v) { const p = v.play(); if (p && p.catch) p.catch(() => {}); } });
+      }
+      return;
+    }
+
+    // Desktop: locked scroll-player. Scroll progress through the tall section
+    // maps to a step index; each step gets an equal slice.
+    let current = -1;
+    const setActive = (i) => {
+      if (i === current) return;
+      current = i;
+      panels.forEach((p, idx) => p.classList.toggle("active", idx === i));
+      dots.forEach((d, idx) => d.classList.toggle("on", idx === i));
+      playOnly(i);
+    };
+    const update = () => {
+      const rect = section.getBoundingClientRect();
+      const scrollable = section.offsetHeight - window.innerHeight;
+      const passed = Math.min(Math.max(-rect.top, 0), scrollable);
+      const prog = scrollable > 0 ? passed / scrollable : 0;
+      let idx = Math.floor(prog * total);
+      if (idx >= total) idx = total - 1;
+      if (idx < 0) idx = 0;
+      setActive(idx);
+    };
+    dots.forEach((d, idx) => d.addEventListener("click", () => {
+      const scrollable = section.offsetHeight - window.innerHeight;
+      const y = section.offsetTop + ((idx + 0.5) / total) * scrollable;
+      scrollTo({ top: y, behavior: "smooth" });
+    }));
+    let raf = 0;
+    addEventListener("scroll", () => { if (raf) return; raf = requestAnimationFrame(() => { raf = 0; update(); }); }, { passive: true });
+    addEventListener("resize", update);
+    setActive(0);
+    update();
   })();
 </script>
 </body>
