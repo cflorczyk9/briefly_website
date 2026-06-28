@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Briefly — Source-backed client files for wealth advisor teams</title>
-<meta name="description" content="Briefly connects every note, email, statement, meeting, and CRM record into one source-backed client file for financial advisors. Know what changed, what matters now.">
+<title>Briefly — Source-backed client intelligence for advisors, inside Claude</title>
+<meta name="description" content="Briefly runs inside Claude as a source-backed client intelligence connector (MCP) for wealth advisor teams. Ask in plain English; get answers from your firm's own notes, emails, statements, and CRM records, with citations.">
 <meta name="author" content="Briefly Wealth LLC">
 
 <link rel="canonical" href="https://www.brieflywealth.com/">
@@ -12,14 +12,14 @@
 <link rel="icon" type="image/png" sizes="16x16" href="images/briefly_logo_favicon.png?v=2">
 <link rel="apple-touch-icon" sizes="180x180" href="images/briefly_logo_favicon.png?v=2">
 
-<meta property="og:title" content="Briefly — Source-backed client files for wealth advisor teams">
-<meta property="og:description" content="Briefly connects every note, email, statement, meeting, and CRM record into one source-backed client file. Know what changed, what matters now, and what needs advisor approval.">
+<meta property="og:title" content="Briefly — Source-backed client intelligence for advisors, inside Claude">
+<meta property="og:description" content="Briefly runs inside Claude as a source-backed client intelligence connector (MCP). Your whole team asks in plain English and gets answers from your firm's own files, with citations.">
 <meta property="og:image" content="https://www.brieflywealth.com/images/briefly-og-main-2x.png?v=2">
 <meta property="og:url" content="https://www.brieflywealth.com/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Briefly — Source-backed client files for wealth advisor teams">
-<meta name="twitter:description" content="Briefly connects every note, email, statement, meeting, and CRM record into one source-backed client file.">
+<meta name="twitter:title" content="Briefly — Source-backed client intelligence for advisors, inside Claude">
+<meta name="twitter:description" content="Briefly runs inside Claude as a source-backed client intelligence connector (MCP) for wealth advisor teams.">
 <meta name="twitter:image" content="https://www.brieflywealth.com/images/briefly-og-main-2x.png?v=2">
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-92NXKY9W1S"></script>
@@ -1673,7 +1673,7 @@
     "name": "Briefly",
     "applicationCategory": "BusinessApplication",
     "operatingSystem": "Web",
-    "description": "Source-backed client context graph and meeting prep for financial advisors. Connects notes, email, statements, meetings, and CRM records into one client file.",
+    "description": "Source-backed client intelligence connector (MCP) for wealth advisors that runs inside Claude. Connects notes, email, statements, meetings, and CRM records into one client file, with citations on every answer.",
     "url": "https://www.brieflywealth.com/",
     "publisher": { "@id": "https://www.brieflywealth.com/#org" },
     "offers": {
@@ -1693,8 +1693,9 @@
   <a class="brand" href="/"><span class="brand-word">Briefly</span><span class="brand-pin" aria-hidden="true"></span></a>
   <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu"><span></span><span></span><span></span></button>
   <div class="nav-links" id="nav-links">
+    <a href="#mcp" data-spy="mcp">Inside Claude</a>
     <a href="#os" data-spy="os">Demo</a>
-    <a href="#platform" data-spy="platform">Platform</a>
+    <a href="#different" data-spy="different">Why Briefly</a>
     <a href="#engineered" data-spy="engineered">How it works</a>
     <a href="blog.html">Blog</a>
     <a href="subscribe.html">Morning Brief</a>
@@ -1740,6 +1741,7 @@
         <a class="btn cta-desktop" href="#engineered">See how it works</a>
         <button type="button" class="btn cta-mobile" onclick="openDemoModal()">Book a live demo</button>
       </div>
+      <div class="hero-mcp-note"><span class="hmn-dot" aria-hidden="true"></span>Runs inside <b>Claude</b> as a secure MCP connector</div>
     </div>
 
     <aside class="readout" aria-live="polite">
@@ -1749,6 +1751,160 @@
     </aside>
 
     <div class="hint-strip" aria-hidden="true">move through evidence lines</div>
+  </div>
+</section>
+
+<!-- ==================== 1.5 MCP BAND ==================== -->
+<style id="mcp-band-styles">
+  .hero-mcp-note {
+    margin-top: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: .03em;
+    color: var(--ink-muted);
+  }
+  .hero-mcp-note b { color: var(--ink); font-weight: 800; }
+  .hero-mcp-note .hmn-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--blue);
+    box-shadow: 0 0 0 3px rgba(47,140,255,.18);
+    flex-shrink: 0;
+  }
+
+  .mcp {
+    position: relative;
+    background: var(--navy);
+    color: var(--cream);
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding: 96px 32px 104px;
+    overflow: hidden;
+  }
+  .mcp::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(90deg, rgba(247,243,234,.05) 1px, transparent 1px) 0 0 / 56px 56px,
+      linear-gradient(180deg, rgba(247,243,234,.04) 1px, transparent 1px) 0 0 / 56px 56px;
+    pointer-events: none;
+  }
+  .mcp-inner { position: relative; max-width: 1140px; margin: 0 auto; }
+  .mcp .eyebrow { color: var(--cyan); margin-bottom: 14px; }
+  .mcp h2 {
+    margin: 0;
+    font-size: clamp(32px, 4.4vw, 58px);
+    line-height: .96;
+    letter-spacing: -.045em;
+    font-weight: 900;
+    color: var(--cream);
+  }
+  .mcp-lede {
+    margin: 18px 0 0;
+    max-width: 660px;
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--cream-soft);
+  }
+  .mcp-pipe {
+    margin-top: 44px;
+    display: flex;
+    align-items: stretch;
+    gap: 14px;
+  }
+  .mcp-node {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 22px 22px 24px;
+    border: 1px solid var(--cream-line);
+    background: rgba(247,243,234,.03);
+  }
+  .mcp-node .mn-k {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--cyan);
+  }
+  .mcp-node .mn-t {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--cream);
+    letter-spacing: -.01em;
+  }
+  .mcp-node .mn-p {
+    margin-top: 9px;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--cream-muted);
+  }
+  .mcp-step {
+    display: flex;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 24px;
+    color: var(--cyan);
+    flex-shrink: 0;
+  }
+  .mcp-badges {
+    margin-top: 28px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .mcp-badge {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    color: var(--cream-soft);
+    border: 1px solid var(--cream-line);
+    padding: 8px 12px;
+  }
+  @media (max-width: 760px) {
+    .mcp { padding: 64px 18px 72px; }
+    .mcp-pipe { flex-direction: column; gap: 10px; }
+    .mcp-step { justify-content: center; transform: rotate(90deg); padding: 2px 0; }
+  }
+</style>
+<section class="mcp" id="mcp" aria-label="Briefly runs inside Claude">
+  <div class="mcp-inner reveal">
+    <div class="eyebrow">Model Context Protocol &middot; MCP</div>
+    <h2>Briefly runs inside Claude.</h2>
+    <p class="mcp-lede">Add Briefly as a connector once. From then on, every advisor on your team just asks, in plain English, and Briefly answers from your firm's own source-backed files. No new app to learn, no tab to keep open.</p>
+
+    <div class="mcp-pipe">
+      <div class="mcp-node">
+        <div class="mn-k">You ask</div>
+        <div class="mn-t">In Claude, in plain English</div>
+        <div class="mn-p">&ldquo;What's changed with the Millers since our last review, and what needs a decision?&rdquo;</div>
+      </div>
+      <div class="mcp-step" aria-hidden="true">&rarr;</div>
+      <div class="mcp-node">
+        <div class="mn-k">Briefly answers</div>
+        <div class="mn-t">The MCP connector</div>
+        <div class="mn-p">Reads the right client files, runs the work, and returns a grounded answer with every claim cited.</div>
+      </div>
+      <div class="mcp-step" aria-hidden="true">&rarr;</div>
+      <div class="mcp-node">
+        <div class="mn-k">From your files</div>
+        <div class="mn-t">Your firm's own data</div>
+        <div class="mn-p">Notes, emails, statements, and CRM records that stay in your firm's control and never get handed off.</div>
+      </div>
+    </div>
+
+    <div class="mcp-badges">
+      <span class="mcp-badge">Works in Claude Desktop</span>
+      <span class="mcp-badge">One-time connector setup</span>
+      <span class="mcp-badge">Citations on every answer</span>
+      <span class="mcp-badge">Your data stays yours</span>
+    </div>
   </div>
 </section>
 
@@ -2075,6 +2231,124 @@
 </section>
 
 
+<!-- ==================== 7.5 WHAT MAKES BRIEFLY DIFFERENT ==================== -->
+<style id="feat-styles">
+  .feat {
+    background: var(--paper);
+    border-top: 1px solid var(--rule);
+    padding: 100px 32px 110px;
+  }
+  .feat-inner { max-width: 1200px; margin: 0 auto; }
+  .feat-head { max-width: 780px; }
+  .feat-head .eyebrow { margin-bottom: 14px; }
+  .feat-head h2 {
+    margin: 0;
+    font-size: clamp(32px, 4.4vw, 58px);
+    line-height: .96;
+    letter-spacing: -.045em;
+    font-weight: 900;
+    color: var(--ink);
+  }
+  .feat-head p {
+    margin: 18px 0 0;
+    color: var(--ink-soft);
+    font-size: 17px;
+    line-height: 1.6;
+    max-width: 640px;
+  }
+  .feat-grid {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+  .feat-card {
+    border: 1px solid var(--ink);
+    background: var(--paper-3);
+    padding: 30px 30px 32px;
+    position: relative;
+  }
+  .feat-card .fc-num {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .1em;
+    color: var(--blue);
+  }
+  .feat-card h3 {
+    margin: 14px 0 0;
+    font-size: 23px;
+    line-height: 1.14;
+    letter-spacing: -.02em;
+    font-weight: 900;
+    color: var(--ink);
+  }
+  .feat-card p {
+    margin: 12px 0 0;
+    color: var(--ink-soft);
+    font-size: 15.5px;
+    line-height: 1.62;
+  }
+  .feat-card .fc-tag {
+    margin-top: 18px;
+    display: inline-flex;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--blue);
+    border: 1px solid rgba(11,83,148,.42);
+    background: rgba(11,83,148,.06);
+    padding: 5px 9px;
+  }
+  @media (max-width: 820px) {
+    .feat { padding: 64px 16px 76px; }
+    .feat-grid { grid-template-columns: 1fr; gap: 14px; }
+    .feat-card { padding: 24px 22px 26px; }
+    .feat-card h3 { font-size: 21px; }
+  }
+</style>
+<section class="feat" id="different" aria-label="What makes Briefly different">
+  <div class="feat-inner">
+    <header class="feat-head reveal">
+      <div class="eyebrow">Why Briefly</div>
+      <h2>What you can't get from another brief tool.</h2>
+      <p>Anyone can summarize a meeting. Briefly is built so the value stays inside your firm and gets sharper every time your team uses it.</p>
+    </header>
+
+    <div class="feat-grid reveal">
+      <article class="feat-card">
+        <div class="fc-num">01</div>
+        <h3>Your whole team's intelligence compounds</h3>
+        <p>Every correction your team makes, a renamed household, a fixed number, the way a senior advisor likes a recap written, is remembered and shared across everyone. The more your firm uses Briefly, the sharper it gets for the whole team, not just the person who taught it.</p>
+        <span class="fc-tag">Firm-owned memory</span>
+      </article>
+
+      <article class="feat-card">
+        <div class="fc-num">02</div>
+        <h3>Every answer is source-backed</h3>
+        <p>Briefly cites the original note, email, or statement behind every claim. Open the source in one click and check it yourself. Nothing important reaches a client or a meeting without evidence you can trace.</p>
+        <span class="fc-tag">Citations on every claim</span>
+      </article>
+
+      <article class="feat-card">
+        <div class="fc-num">03</div>
+        <h3>One graph across your whole book</h3>
+        <p>Households, accounts, outside professionals, and relationships connect into a single graph. You can ask questions that span the entire book, not just one client file, and get a grounded answer instead of a guess.</p>
+        <span class="fc-tag">Cross-client context</span>
+      </article>
+
+      <article class="feat-card">
+        <div class="fc-num">04</div>
+        <h3>Your firm's data stays yours</h3>
+        <p>Most tools keep your history locked inside their app. Briefly reads your firm's files where they already live and never holds them hostage. Export everything, any time, and walk away with your data and your firm's memory intact.</p>
+        <span class="fc-tag">No lock-in</span>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- ==================== 8. CLOSER ==================== -->
 <section class="closer" id="contact">
   <div class="center-word">Briefly</div>
@@ -2093,7 +2367,9 @@
     </div>
     <div>
       <h4>Product</h4>
+      <a href="#mcp">Inside Claude</a>
       <a href="#os">Demo</a>
+      <a href="#different">Why Briefly</a>
       <a href="#platform">Platform</a>
       <a href="#engineered">How it works</a>
     </div>
