@@ -74,14 +74,8 @@
   .dl-hero::before { content:""; position:absolute; inset:0; background: linear-gradient(90deg, rgba(247,243,234,.05) 1px, transparent 1px) 0 0 / 56px 56px, linear-gradient(180deg, rgba(247,243,234,.04) 1px, transparent 1px) 0 0 / 56px 56px; pointer-events:none; }
   .dl-hero::after { content:""; position:absolute; inset:0; background: radial-gradient(ellipse 900px 500px at 12% 0%, rgba(47,140,255,.10), transparent 60%); pointer-events:none; }
   .dl-hero-inner { position:relative; max-width: 960px; margin: 0 auto; }
-  .dl-eyebrow { display:block; font-family: var(--mono); font-size: 12px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color: var(--blue); margin-bottom:16px; }
   .dl-hero h1 { font-family: var(--serif); font-weight:400; font-size: clamp(44px, 6.4vw, 74px); line-height:1.0; letter-spacing:-.015em; }
   .dl-hero p { margin-top:18px; max-width:640px; font-size:19px; line-height:1.6; color: rgba(247,243,234,.78); }
-  .dl-2step { list-style:none; margin:26px 0 0; display:flex; flex-direction:column; gap:11px; max-width:560px; }
-  .dl-2step li { display:flex; align-items:flex-start; gap:13px; font-size:16px; line-height:1.5; color:rgba(247,243,234,.84); }
-  .dl-2step li .t { flex:1; min-width:0; }
-  .dl-2step li b { color:var(--cream); font-weight:700; }
-  .dl-2step .n { flex-shrink:0; width:26px; height:26px; border-radius:50%; border:1px solid var(--blue); color:var(--blue); display:inline-flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:13px; font-weight:800; }
   .dl-cta-row { margin-top:24px; display:flex; align-items:center; gap:22px; flex-wrap:wrap; }
   .dl-btn { display:inline-flex; align-items:center; gap:11px; background: var(--cream); color: var(--navy); font-family: var(--mono); font-size:15px; font-weight:800; letter-spacing:.01em; text-decoration:none; padding:18px 30px; border:1px solid var(--cream); transition: background .15s, color .15s; }
   .dl-btn:hover { background:transparent; color: var(--cream); }
@@ -108,8 +102,6 @@
 
   /* ---------- Intuitiveness fixes ---------- */
   .dl-meta a { color: var(--cream); font-weight:800; text-decoration:underline; }
-  .dl-trust { margin-top:18px; max-width:560px; font-size:14px; line-height:1.55; color: rgba(247,243,234,.74); }
-  .dl-trust a { color: var(--cream); font-weight:700; text-decoration:underline; }
   .dl-note a.dl-note-btn { display:block; width:fit-content; margin-top:14px; background: var(--ink); color: var(--paper); font-family: var(--mono); font-size:12px; font-weight:800; letter-spacing:.05em; text-transform:uppercase; padding:10px 16px; text-decoration:none; }
   .dl-note a.dl-note-btn:hover { background: var(--blue); color:#fff; }
   /* ---------- Pinned step player (lock to screen + advance) ---------- */
@@ -129,6 +121,7 @@
   .p-head .cap b { color:var(--ink); font-weight:700; }
   .p-head .cap a { color:var(--blue); font-weight:700; text-decoration:none; }
   .p-head .cap a:hover { text-decoration:underline; }
+  .p-head .cap .side { display:block; margin-top:7px; font-size:13.5px; color:#8d94a0; }
   .p-head .cap code { font-family:var(--mono); font-size:13px; background:rgba(28,29,31,.06); border:1px solid var(--rule); border-radius:4px; padding:2px 6px; color:var(--ink); white-space:nowrap; }
   .setup-frame { height:54vh; aspect-ratio:16/9; max-width:92vw; border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,.07); background:#1a1a19; box-shadow:0 26px 72px -34px rgba(11,37,69,.6); flex-shrink:0; }
   .setup-vid { width:100%; height:100%; object-fit:cover; display:block; }
@@ -177,162 +170,655 @@
   .dl-ovbtn { margin-top: 22px; background: var(--ink); color: var(--cream); border: 1px solid var(--ink); font-family: var(--mono); font-size: 12.5px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; padding: 12px 22px; cursor: pointer; }
   .dl-ovbtn:hover { background: var(--blue); border-color: var(--blue); }
 
-  /* ---------- Walkthrough scenes (drawn recreations of the real screens) ---------- */
+  /* ---------- Walkthrough scenes (v2: the exact advisor path) ---------- */
 
 /* ==========================================================================
-   Shared foundation — every rule below is namespaced under .bw-scene /
-   #bw-scene-N. No global resets, no body/html rules, no position:fixed.
+   Briefly download-page walkthrough v2 -- three looping scenes.
+   Namespace: every class/keyframe/selector is prefixed bwv2- and scoped
+   under .bwv2-scene / #bwv2-scene-N so this coexists with the shipped
+   .bw-scene / #bw-scene-N system in download.html during assembly.
    ========================================================================== */
 
-.bw-scene {
+@property --bwv2-p {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 0;
+}
+
+.bwv2-scene, .bwv2-scene * { box-sizing: border-box; }
+
+.bwv2-scene {
   position: relative;
   width: 100%;
-  height: 100%;
   aspect-ratio: 16 / 9;
   overflow: hidden;
-  border-radius: clamp(8px, 1.6cqw, 18px);
+  border-radius: clamp(8px, 1.6cqi, 18px);
   background: radial-gradient(120% 140% at 50% -10%, #242320 0%, #1a1a19 55%, #131211 100%);
   container-type: inline-size;
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   color: #f1ede4;
   isolation: isolate;
 
-  --bw-canvas: #1a1a19;
-  --bw-panel: #171613;
-  --bw-panel-alt: #201f1c;
-  --bw-border: rgba(255, 255, 255, 0.09);
-  --bw-border-strong: rgba(255, 255, 255, 0.18);
-  --bw-text: #f1ede4;
-  --bw-text-dim: #a5a197;
-  --bw-text-faint: #756f66;
-  --bw-white: #f7f4ee;
-  --bw-accent-claude: #d97757;
-  --bw-accent-claude-soft: rgba(217, 119, 87, 0.28);
-  --bw-accent-blue: #2f8cff;
-  --bw-accent-blue-soft: rgba(47, 140, 255, 0.22);
-  --bw-shadow: 0 8% 22% rgba(0, 0, 0, 0.5);
+  --bwv2-panel: #201f1c;
+  --bwv2-panel-alt: #171613;
+  --bwv2-border: rgba(255, 255, 255, 0.09);
+  --bwv2-border-strong: rgba(255, 255, 255, 0.18);
+  --bwv2-text: #f1ede4;
+  --bwv2-text-dim: #a5a197;
+  --bwv2-text-faint: #756f66;
+  --bwv2-white: #f7f4ee;
+  --bwv2-accent: #d97757;
+  --bwv2-accent-soft: rgba(217, 119, 87, 0.28);
+  --bwv2-blue: #2f8cff;
+  --bwv2-blue-soft: rgba(47, 140, 255, 0.22);
+  --bwv2-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 
-  --fs-xs: clamp(7px, 1.7cqw, 12px);
-  --fs-sm: clamp(8px, 1.95cqw, 14px);
-  --fs-md: clamp(9.5px, 2.3cqw, 16px);
-  --fs-lg: clamp(13px, 3.2cqw, 23px);
-  --fs-xl: clamp(19px, 6.2cqw, 42px);
+  --fs-xs: clamp(7px, 1.7cqi, 12px);
+  --fs-sm: clamp(8px, 1.95cqi, 14px);
+  --fs-md: clamp(9.5px, 2.3cqi, 16px);
+  --fs-lg: clamp(13px, 3.2cqi, 23px);
+  --fs-xl: clamp(18px, 5.4cqi, 38px);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .bw-scene { }
-}
-
-/* ---- window chrome ---- */
-.bw-scene .bw-window {
+/* ---- window chrome (shared: browser + app windows) ---- */
+.bwv2-scene .bwv2-window {
   position: relative;
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  background: var(--bw-panel);
-  border: 1px solid var(--bw-border);
-  border-radius: clamp(8px, 1.6cqw, 18px);
+  background: var(--bwv2-panel);
+  border: 1px solid var(--bwv2-border);
+  border-radius: clamp(8px, 1.6cqi, 18px);
   box-shadow: 0 2% 6% rgba(0, 0, 0, 0.45);
   overflow: hidden;
 }
 
-.bw-scene .bw-titlebar {
+.bwv2-scene .bwv2-titlebar {
   position: relative;
   flex-shrink: 0;
   height: 13%;
   display: flex;
   align-items: center;
-  gap: clamp(4px, 1cqw, 9px);
+  gap: clamp(4px, 1cqi, 9px);
   padding: 0 4%;
-  border-bottom: 1px solid var(--bw-border);
+  background: var(--bwv2-panel);
+  border-bottom: 1px solid var(--bwv2-border);
+  z-index: 2;
+}
+.bwv2-scene .bwv2-titlebar--plain { justify-content: flex-start; }
+.bwv2-scene .bwv2-titlebar-title {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  margin: 0; font-size: var(--fs-sm); color: var(--bwv2-text-dim); font-weight: 600;
 }
 
-.bw-scene .bw-titlebar--plain {
-  justify-content: flex-start;
-}
+.bwv2-scene .bwv2-dot { width: clamp(6px, 1.5cqi, 12px); height: clamp(6px, 1.5cqi, 12px); border-radius: 50%; flex-shrink: 0; }
+.bwv2-scene .bwv2-dot--red { background: #e2685c; }
+.bwv2-scene .bwv2-dot--yellow { background: #e8b94d; }
+.bwv2-scene .bwv2-dot--green { background: #57bd58; }
 
-.bw-scene .bw-titlebar-title {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  margin: 0;
-  font-size: var(--fs-sm);
-  color: var(--bw-text-dim);
-  font-weight: 600;
-}
-
-.bw-scene .bw-dot {
-  width: clamp(6px, 1.5cqw, 12px);
-  height: clamp(6px, 1.5cqw, 12px);
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-.bw-scene .bw-dot--red { background: #e2685c; }
-.bw-scene .bw-dot--yellow { background: #e8b94d; }
-.bw-scene .bw-dot--green { background: #57bd58; }
-
-.bw-scene .bw-addressbar {
+.bwv2-scene .bwv2-addressbar {
   margin: 0 auto;
-  width: 44%;
-  background: var(--bw-panel-alt);
-  border: 1px solid var(--bw-border);
-  border-radius: clamp(6px, 1.4cqw, 10px);
-  padding: clamp(2px, 0.7cqw, 6px) clamp(6px, 1.6cqw, 14px);
+  width: 50%;
+  background: var(--bwv2-panel-alt);
+  border: 1px solid var(--bwv2-border);
+  border-radius: clamp(6px, 1.4cqi, 10px);
+  padding: clamp(2px, 0.7cqi, 6px) clamp(6px, 1.6cqi, 14px);
   font-size: var(--fs-sm);
-  color: var(--bw-text-dim);
-  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  color: var(--bwv2-text-dim);
+  font-family: var(--bwv2-mono);
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-/* ---- generic buttons ---- */
-.bw-scene .bw-btn {
+/* ---- buttons ---- */
+.bwv2-scene .bwv2-btn {
   font-family: inherit;
   font-size: var(--fs-md);
   font-weight: 600;
   line-height: 1;
-  border-radius: clamp(7px, 1.8cqw, 15px);
-  padding: clamp(6px, 1.7cqw, 13px) clamp(10px, 3.1cqw, 22px);
+  border-radius: clamp(7px, 1.8cqi, 15px);
+  padding: clamp(6px, 1.7cqi, 13px) clamp(10px, 3.1cqi, 22px);
   border: 1px solid transparent;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(4px, 1cqw, 8px);
+  gap: clamp(4px, 1cqi, 8px);
   white-space: nowrap;
   transform-origin: center;
 }
-.bw-scene .bw-btn--primary { background: var(--bw-white); color: #171410; }
-.bw-scene .bw-btn--ghost { background: transparent; color: var(--bw-text-dim); border-color: var(--bw-border-strong); }
-.bw-scene .bw-btn--accent { background: var(--bw-accent-claude); color: #fff7f2; }
-.bw-scene .bw-btn--browse { font-size: var(--fs-sm); padding: clamp(4px, 1.3cqw, 9px) clamp(8px, 2.2cqw, 14px); }
+.bwv2-scene .bwv2-btn--primary { background: var(--bwv2-white); color: #171410; }
+.bwv2-scene .bwv2-btn--ghost { background: transparent; color: var(--bwv2-text-dim); border-color: var(--bwv2-border-strong); }
+.bwv2-scene .bwv2-btn--accent { background: var(--bwv2-accent); color: #fff7f2; }
+.bwv2-scene .bwv2-btn--browse { font-size: var(--fs-sm); padding: clamp(4px, 1.3cqi, 9px) clamp(8px, 2.2cqi, 14px); }
 
-.bw-scene .bw-icon-download { position: relative; width: clamp(9px, 2.1cqw, 15px); height: clamp(9px, 2.1cqw, 15px); flex-shrink: 0; }
-.bw-scene .bw-icon-download::before {
+.bwv2-scene .bwv2-icon-download { position: relative; width: clamp(9px, 2.1cqi, 15px); height: clamp(9px, 2.1cqi, 15px); flex-shrink: 0; }
+.bwv2-scene .bwv2-icon-download::before {
   content: ""; position: absolute; left: 50%; top: 2%; width: 15%; height: 55%;
   background: currentColor; border-radius: 2px; transform: translateX(-50%);
 }
-.bw-scene .bw-icon-download::after {
+.bwv2-scene .bwv2-icon-download::after {
   content: ""; position: absolute; left: 50%; top: 46%; width: 62%; height: 34%;
   background: currentColor; transform: translateX(-50%);
   clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
 }
 
 /* ---- shared cursor ---- */
-.bw-scene .bw-cursor {
+.bwv2-scene .bwv2-cursor {
   position: absolute;
-  width: clamp(9px, 2.1cqw, 15px);
-  height: clamp(9px, 2.1cqw, 15px);
+  width: clamp(9px, 2.1cqi, 15px);
+  height: clamp(9px, 2.1cqi, 15px);
   border-radius: 50%;
   background: #ffffff;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25), 0 2px 8px rgba(0, 0, 0, 0.55), 0 0 14px rgba(255, 255, 255, 0.35);
-  z-index: 30;
+  z-index: 60;
   pointer-events: none;
+  transform: translate(-50%, -50%);
 }
-.bw-scene .bw-cursor::after {
+.bwv2-scene .bwv2-cursor::after {
+  content: "";
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 260%; height: 260%;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* ---- download bubble (shared pattern: scene 1 + scene 2) ---- */
+.bwv2-scene .bwv2-dlbubble {
+  position: absolute;
+  top: 16%;
+  right: 3%;
+  display: flex;
+  align-items: center;
+  gap: clamp(5px, 1.3cqi, 10px);
+  background: var(--bwv2-panel-alt);
+  border: 1px solid var(--bwv2-border-strong);
+  border-radius: clamp(16px, 3.6cqi, 26px);
+  padding: clamp(5px, 1.3cqi, 9px) clamp(9px, 2.2cqi, 15px);
+  box-shadow: 0 4% 10% rgba(0, 0, 0, 0.4);
+  z-index: 20;
+}
+.bwv2-scene .bwv2-ring {
+  --bwv2-p: 0;
+  position: relative;
+  width: clamp(13px, 3cqi, 19px);
+  height: clamp(13px, 3cqi, 19px);
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: conic-gradient(var(--bwv2-accent) calc(var(--bwv2-p) * 3.6deg), rgba(255, 255, 255, 0.18) 0deg);
+}
+.bwv2-scene .bwv2-ring-hole { position: absolute; inset: 22%; border-radius: 50%; background: var(--bwv2-panel-alt); }
+.bwv2-scene .bwv2-dlbubble-text { position: relative; display: flex; flex-direction: column; }
+.bwv2-scene .bwv2-dlbubble-name { font-size: var(--fs-sm); font-weight: 700; color: var(--bwv2-text); white-space: nowrap; }
+.bwv2-scene .bwv2-dlbubble-statuswrap { position: relative; height: 1.2em; }
+.bwv2-scene .bwv2-dlbubble-status { position: absolute; left: 0; top: 0; white-space: nowrap; font-size: var(--fs-xs); color: var(--bwv2-text-faint); }
+
+/* ---- letter mark ---- */
+.bwv2-scene .bwv2-mark {
+  flex-shrink: 0;
+  width: clamp(16px, 3.6cqi, 28px);
+  height: clamp(16px, 3.6cqi, 28px);
+  border-radius: clamp(4px, 1cqi, 8px);
+  background: var(--bwv2-white);
+  color: #201a14;
+  font-weight: 800;
+  font-size: var(--fs-md);
+  display: flex; align-items: center; justify-content: center;
+}
+.bwv2-scene .bwv2-mark--lg {
+  width: clamp(26px, 6.4cqi, 46px); height: clamp(26px, 6.4cqi, 46px);
+  font-size: var(--fs-lg); border-radius: clamp(6px, 1.4cqi, 11px);
+}
+
+/* ---- card (settings sheet) ---- */
+.bwv2-scene .bwv2-card {
+  position: relative;
+  z-index: 31;
+  background: #201e1a;
+  border: 1px solid var(--bwv2-border-strong);
+  border-radius: clamp(9px, 1.8cqi, 18px);
+  box-shadow: 0 8% 22% rgba(0, 0, 0, 0.5);
+  padding: clamp(10px, 3cqi, 22px) clamp(12px, 3.4cqi, 26px);
+  display: flex; flex-direction: column; gap: clamp(6px, 1.5cqi, 12px);
+}
+.bwv2-scene .bwv2-card-header { display: flex; align-items: center; gap: clamp(6px, 1.6cqi, 12px); margin-bottom: clamp(2px, 0.6cqi, 4px); }
+.bwv2-scene .bwv2-card-title { margin: 0; font-size: var(--fs-lg); font-weight: 700; color: var(--bwv2-text); }
+.bwv2-scene .bwv2-field { display: flex; flex-direction: column; gap: clamp(2px, 0.6cqi, 5px); }
+.bwv2-scene .bwv2-field-label { font-size: var(--fs-sm); font-weight: 600; color: var(--bwv2-text); }
+.bwv2-scene .bwv2-field-help { margin: 0; font-size: var(--fs-xs); color: var(--bwv2-text-faint); line-height: 1.35; }
+.bwv2-scene .bwv2-field-row { display: flex; align-items: center; gap: clamp(5px, 1.4cqi, 10px); }
+.bwv2-scene .bwv2-input {
+  flex: 1; min-width: 0;
+  background: var(--bwv2-panel-alt); border: 1px solid var(--bwv2-border);
+  border-radius: clamp(5px, 1.2cqi, 9px); padding: clamp(4px, 1.3cqi, 9px) clamp(6px, 1.6cqi, 12px);
+  font-size: var(--fs-sm); color: var(--bwv2-text-dim); font-family: var(--bwv2-mono);
+  display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+}
+.bwv2-scene .bwv2-card-actions { display: flex; justify-content: flex-end; gap: clamp(6px, 1.6cqi, 12px); margin-top: clamp(4px, 1.2cqi, 8px); }
+
+/* ---- check icon ---- */
+.bwv2-scene .bwv2-check { position: relative; width: clamp(11px, 2.4cqi, 18px); height: clamp(11px, 2.4cqi, 18px); flex-shrink: 0; }
+.bwv2-scene .bwv2-check::before, .bwv2-scene .bwv2-check::after { content: ""; position: absolute; border-radius: 2px; background: currentColor; }
+.bwv2-scene .bwv2-check::before { width: 38%; height: 16%; left: 6%; top: 50%; transform: rotate(45deg); transform-origin: left center; }
+.bwv2-scene .bwv2-check::after { width: 62%; height: 16%; left: 26%; top: 66%; transform: rotate(-45deg); transform-origin: left center; }
+.bwv2-scene .bwv2-check--claude { color: var(--bwv2-accent); }
+.bwv2-scene .bwv2-check--blue { color: var(--bwv2-blue); }
+
+/* ---- scrim / modal / toast ---- */
+.bwv2-scene .bwv2-scrim { position: absolute; inset: 0; background: rgba(10, 9, 8, 0.55); z-index: 30; }
+.bwv2-scene .bwv2-modal {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  width: 62%; background: #211f1b; border: 1px solid var(--bwv2-border-strong);
+  border-radius: clamp(10px, 2cqi, 18px); box-shadow: 0 8% 22% rgba(0, 0, 0, 0.5);
+  padding: clamp(10px, 2.8cqi, 22px) clamp(12px, 3.2cqi, 24px);
+  display: flex; flex-direction: column; align-items: center; text-align: center; gap: clamp(4px, 1.1cqi, 8px);
+  z-index: 31;
+}
+.bwv2-scene .bwv2-modal-title { margin: clamp(2px, 0.8cqi, 6px) 0 0 0; font-size: var(--fs-lg); font-weight: 700; color: var(--bwv2-text); }
+.bwv2-scene .bwv2-modal-sub { margin: 0 0 clamp(4px, 1.2cqi, 8px) 0; font-size: var(--fs-xs); color: var(--bwv2-text-faint); }
+.bwv2-scene .bwv2-modal-actions { display: flex; gap: clamp(6px, 1.6cqi, 12px); }
+
+.bwv2-scene .bwv2-toast {
+  position: absolute; left: 50%; bottom: 12%; transform: translateX(-50%);
+  display: flex; align-items: center; gap: clamp(6px, 1.6cqi, 11px);
+  background: var(--bwv2-panel-alt); border: 1px solid var(--bwv2-border-strong);
+  border-radius: clamp(20px, 4cqi, 30px); padding: clamp(6px, 1.6cqi, 11px) clamp(12px, 2.8cqi, 20px);
+  box-shadow: 0 4% 10% rgba(0, 0, 0, 0.4);
+  z-index: 32;
+}
+.bwv2-scene .bwv2-toast-text { font-size: var(--fs-sm); color: var(--bwv2-text); font-weight: 600; }
+
+/* ==========================================================================
+   Scene 1 -- "Get Claude"
+   ========================================================================== */
+#bwv2-scene-1 .bwv2-act { position: absolute; inset: 0; }
+#bwv2-scene-1 .bwv2-1-act--browser { animation: bwv2-1-actA 14s ease-in-out infinite; }
+#bwv2-scene-1 .bwv2-1-act--installer {
+  animation: bwv2-1-actB 14s ease-in-out infinite;
+  display: flex; align-items: center; justify-content: center;
+  background: radial-gradient(80% 60% at 50% 30%, #2a2925 0%, #1a1a19 70%);
+}
+
+#bwv2-scene-1 .bwv2-page {
+  flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: clamp(4px, 1.3cqi, 11px); text-align: center; padding: 2% 6%;
+}
+#bwv2-scene-1 .bwv2-wordmark { font-size: var(--fs-sm); letter-spacing: 0.1em; text-transform: uppercase; color: var(--bwv2-text-faint); font-weight: 700; }
+#bwv2-scene-1 .bwv2-heading { margin: 0; font-size: var(--fs-xl); font-weight: 800; letter-spacing: -0.01em; color: var(--bwv2-text); }
+#bwv2-scene-1 .bwv2-subheading { margin: 0 0 clamp(2px, 1cqi, 6px) 0; font-size: var(--fs-md); color: var(--bwv2-text-dim); }
+
+#bwv2-scene-1 .bwv2-1-bubble { animation: bwv2-1-bubble 14s ease-in-out infinite; }
+#bwv2-scene-1 .bwv2-1-ring { animation: bwv2-1-ringfill 14s ease-in-out infinite; }
+#bwv2-scene-1 .bwv2-1-status-downloading { animation: bwv2-1-status-downloading 14s ease-in-out infinite; }
+#bwv2-scene-1 .bwv2-1-status-done { animation: bwv2-1-status-done 14s ease-in-out infinite; color: var(--bwv2-accent); }
+#bwv2-scene-1 .bwv2-1-btn { animation: bwv2-1-btn-press 14s ease-in-out infinite; }
+
+#bwv2-scene-1 .bwv2-installer {
+  position: relative; width: 72%; max-width: 90%;
+  background: #f4f3f1; border-radius: clamp(8px, 1.6cqi, 16px);
+  box-shadow: 0 10% 24% rgba(0, 0, 0, 0.5);
+  display: flex; flex-direction: column; overflow: hidden;
+}
+#bwv2-scene-1 .bwv2-installer-titlebar { display: flex; align-items: center; gap: clamp(4px, 1cqi, 8px); padding: 3% 4%; border-bottom: 1px solid rgba(0, 0, 0, 0.08); }
+#bwv2-scene-1 .bwv2-installer-body { display: flex; align-items: center; justify-content: space-between; gap: 4%; padding: 9% 8% 11%; }
+#bwv2-scene-1 .bwv2-installer-icon {
+  position: relative; width: clamp(28px, 9cqi, 60px); height: clamp(28px, 9cqi, 60px);
+  border-radius: clamp(7px, 2.2cqi, 16px); background: var(--bwv2-accent);
+  flex-shrink: 0; box-shadow: 0 6% 12% rgba(0, 0, 0, 0.3);
+}
+#bwv2-scene-1 .bwv2-1-icon { animation: bwv2-1-icon-drag 14s ease-in-out infinite; }
+#bwv2-scene-1 .bwv2-spark {
+  position: absolute; left: 50%; top: 50%; width: 46%; height: 46%;
+  background: #fff7f2; transform: translate(-50%, -50%);
+  clip-path: polygon(50% 0%, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0% 50%, 39% 39%);
+}
+#bwv2-scene-1 .bwv2-installer-arrow { font-size: clamp(15px, 5.6cqi, 38px); color: #9a978d; line-height: 1; flex-shrink: 0; }
+#bwv2-scene-1 .bwv2-installer-target { display: flex; flex-direction: column; align-items: center; gap: clamp(3px, 1cqi, 6px); flex-shrink: 0; }
+#bwv2-scene-1 .bwv2-foldericon {
+  position: relative; width: clamp(30px, 9.4cqi, 62px); height: clamp(22px, 7.2cqi, 48px);
+  background: var(--bwv2-blue); border-radius: 0 clamp(3px, 1cqi, 6px) clamp(3px, 1cqi, 6px) clamp(3px, 1cqi, 6px);
+}
+#bwv2-scene-1 .bwv2-foldericon::before {
+  content: ""; position: absolute; left: 0; top: -30%; width: 46%; height: 34%;
+  background: inherit; border-radius: clamp(3px, 1cqi, 6px) clamp(3px, 1cqi, 6px) 0 0;
+}
+#bwv2-scene-1 .bwv2-1-folder { animation: bwv2-1-folder-glow 14s ease-in-out infinite; }
+#bwv2-scene-1 .bwv2-installer-label { font-size: var(--fs-sm); color: #57544c; font-weight: 600; }
+
+#bwv2-scene-1 .bwv2-1-cursor {
+  animation: bwv2-1-cursor-pos 14s ease-in-out infinite, bwv2-1-cursor-opacity 14s ease-in-out infinite, bwv2-1-cursor-pulse 14s ease-in-out infinite;
+}
+#bwv2-scene-1 .bwv2-1-cursor::after { animation: bwv2-1-cursor-ring 14s ease-in-out infinite; }
+
+@keyframes bwv2-1-actA { 0%, 51.43% { opacity: 1; } 52.5%, 99.29% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes bwv2-1-actB { 0%, 51.43% { opacity: 0; } 52.5%, 95% { opacity: 1; } 99.29%, 100% { opacity: 0; } }
+
+@keyframes bwv2-1-bubble {
+  0%, 15% { opacity: 0; transform: translateY(-40%); }
+  18.57%, 51.43% { opacity: 1; transform: translateY(0%); }
+  52.5%, 100% { opacity: 0; transform: translateY(-40%); }
+}
+@keyframes bwv2-1-ringfill { 0%, 18.57% { --bwv2-p: 0; } 38.57%, 100% { --bwv2-p: 100; } }
+@keyframes bwv2-1-status-downloading { 0%, 36% { opacity: 1; } 38.57%, 100% { opacity: 0; } }
+@keyframes bwv2-1-status-done { 0%, 36% { opacity: 0; } 38.57%, 100% { opacity: 1; } }
+@keyframes bwv2-1-btn-press { 0%, 12.86% { transform: scale(1); } 15% { transform: scale(0.95); } 17.14%, 100% { transform: scale(1); } }
+
+@keyframes bwv2-1-icon-drag {
+  0%, 67.86% { transform: translate(0%, 0%) scale(1); opacity: 1; }
+  78% { transform: translate(210%, 0%) scale(1); opacity: 1; }
+  80.71% { transform: translate(230%, 0%) scale(0.72); opacity: 0.85; }
+  83%, 95% { transform: translate(230%, 0%) scale(0.55); opacity: 0; }
+  100% { transform: translate(0%, 0%) scale(1); opacity: 1; }
+}
+@keyframes bwv2-1-folder-glow {
+  0%, 79% { box-shadow: none; }
+  81%, 90% { box-shadow: 0 0 0 clamp(2px, 0.6cqi, 5px) var(--bwv2-blue-soft); }
+  95%, 100% { box-shadow: none; }
+}
+
+@keyframes bwv2-1-cursor-pos {
+  0%, 12.86% { left: 50%; top: 76%; }
+  17.14% { left: 50%; top: 76%; }
+  19%, 66% { left: 36%; top: 52%; }
+  67.86% { left: 36%; top: 52%; }
+  80.71% { left: 64%; top: 52%; }
+  83%, 99.29% { left: 64%; top: 52%; }
+  100% { left: 50%; top: 76%; }
+}
+@keyframes bwv2-1-cursor-opacity {
+  0%, 12.86% { opacity: 1; }
+  17.14% { opacity: 1; }
+  19% { opacity: 0; }
+  66% { opacity: 0; }
+  67.86% { opacity: 1; }
+  80.71% { opacity: 1; }
+  83% { opacity: 0; }
+  99.29% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes bwv2-1-cursor-pulse {
+  0%, 12% { transform: translate(-50%, -50%) scale(1); }
+  13.5% { transform: translate(-50%, -50%) scale(0.8); }
+  15% { transform: translate(-50%, -50%) scale(1.18); }
+  17.14%, 66% { transform: translate(-50%, -50%) scale(1); }
+  67.86% { transform: translate(-50%, -50%) scale(0.82); }
+  69% { transform: translate(-50%, -50%) scale(1.05); }
+  70%, 79% { transform: translate(-50%, -50%) scale(1); }
+  80.71% { transform: translate(-50%, -50%) scale(0.82); }
+  82% { transform: translate(-50%, -50%) scale(1.18); }
+  84%, 100% { transform: translate(-50%, -50%) scale(1); }
+}
+@keyframes bwv2-1-cursor-ring {
+  0%, 12% { opacity: 0; transform: translate(-50%, -50%) scale(0.4); }
+  14% { opacity: 0.75; transform: translate(-50%, -50%) scale(0.6); }
+  17.14%, 66% { opacity: 0; transform: translate(-50%, -50%) scale(1.6); }
+  67.86% { opacity: 0; transform: translate(-50%, -50%) scale(0.4); }
+  69% { opacity: 0.6; transform: translate(-50%, -50%) scale(0.6); }
+  70.5%, 79% { opacity: 0; transform: translate(-50%, -50%) scale(1.5); }
+  80.71% { opacity: 0; transform: translate(-50%, -50%) scale(0.4); }
+  82% { opacity: 0.75; transform: translate(-50%, -50%) scale(0.6); }
+  85%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.6); }
+}
+
+/* ==========================================================================
+   Scene 2 -- "Download Briefly"
+   ========================================================================== */
+#bwv2-scene-2 .bwv2-window { background: #0B2545; animation: bwv2-2-fadeout 12s ease-in-out infinite; }
+#bwv2-scene-2 .bwv2-titlebar { background: var(--bwv2-panel); }
+
+#bwv2-scene-2 .bwv2-2-hero {
+  flex: 1; position: relative; background: #0B2545;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: clamp(4px, 1.3cqi, 10px); text-align: center; padding: 4% 8%;
+}
+#bwv2-scene-2 .bwv2-2-eyebrow { font-size: var(--fs-xs); letter-spacing: 0.14em; text-transform: uppercase; color: #7fb2ff; font-weight: 700; }
+#bwv2-scene-2 .bwv2-2-heading { margin: 0; font-family: Georgia, "Times New Roman", serif; font-weight: 400; font-size: var(--fs-xl); color: #f7f3ea; letter-spacing: -0.01em; }
+#bwv2-scene-2 .bwv2-2-sub { margin: 0 0 clamp(2px, 1cqi, 6px); font-size: var(--fs-md); color: rgba(247, 243, 234, 0.72); }
+#bwv2-scene-2 .bwv2-2-btn { background: #f7f3ea; color: #0B2545; animation: bwv2-2-btn-press 12s ease-in-out infinite; }
+
+#bwv2-scene-2 .bwv2-2-bubble { animation: bwv2-2-bubble 12s ease-in-out infinite; }
+#bwv2-scene-2 .bwv2-2-ring { animation: bwv2-2-ringfill 12s ease-in-out infinite; }
+#bwv2-scene-2 .bwv2-2-status-downloading { animation: bwv2-2-status-downloading 12s ease-in-out infinite; }
+#bwv2-scene-2 .bwv2-2-status-done { animation: bwv2-2-status-done 12s ease-in-out infinite; color: var(--bwv2-accent); }
+
+#bwv2-scene-2 .bwv2-2-cursor {
+  animation: bwv2-2-cursor-pos 12s ease-in-out infinite, bwv2-2-cursor-opacity 12s ease-in-out infinite, bwv2-2-cursor-pulse 12s ease-in-out infinite;
+}
+#bwv2-scene-2 .bwv2-2-cursor::after { animation: bwv2-2-cursor-ring 12s ease-in-out infinite; }
+
+@keyframes bwv2-2-fadeout { 0%, 88.33% { opacity: 1; } 96.67% { opacity: 0; } 99% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes bwv2-2-btn-press { 0%, 13.33% { transform: scale(1); } 15.83% { transform: scale(0.95); } 17.5%, 100% { transform: scale(1); } }
+
+@keyframes bwv2-2-bubble {
+  0%, 15% { opacity: 0; transform: translateY(-40%); }
+  19.17%, 88.33% { opacity: 1; transform: translateY(0%); }
+  90%, 100% { opacity: 0; transform: translateY(-40%); }
+}
+@keyframes bwv2-2-ringfill { 0%, 19.17% { --bwv2-p: 0; } 50%, 100% { --bwv2-p: 100; } }
+@keyframes bwv2-2-status-downloading { 0%, 47% { opacity: 1; } 50%, 100% { opacity: 0; } }
+@keyframes bwv2-2-status-done { 0%, 47% { opacity: 0; } 50%, 100% { opacity: 1; } }
+
+@keyframes bwv2-2-cursor-pos {
+  0%, 13.33% { left: 50%; top: 74%; }
+  17.5% { left: 50%; top: 74%; }
+  19%, 53% { left: 50%; top: 60%; }
+  55% { left: 50%; top: 60%; }
+  63.33%, 88.33% { left: 86%; top: 20%; }
+  90%, 100% { left: 50%; top: 74%; }
+}
+@keyframes bwv2-2-cursor-opacity {
+  0%, 13.33% { opacity: 1; }
+  17.5% { opacity: 1; }
+  19% { opacity: 0; }
+  53% { opacity: 0; }
+  55% { opacity: 1; }
+  88.33% { opacity: 1; }
+  90%, 100% { opacity: 0; }
+}
+@keyframes bwv2-2-cursor-pulse {
+  0%, 13% { transform: translate(-50%, -50%) scale(1); }
+  14.5% { transform: translate(-50%, -50%) scale(0.8); }
+  15.83% { transform: translate(-50%, -50%) scale(1.18); }
+  17.5%, 62% { transform: translate(-50%, -50%) scale(1); }
+  63.33% { transform: translate(-50%, -50%) scale(0.8); }
+  65% { transform: translate(-50%, -50%) scale(1.18); }
+  67%, 100% { transform: translate(-50%, -50%) scale(1); }
+}
+@keyframes bwv2-2-cursor-ring {
+  0%, 13% { opacity: 0; transform: translate(-50%, -50%) scale(0.4); }
+  15% { opacity: 0.75; transform: translate(-50%, -50%) scale(0.6); }
+  19%, 62% { opacity: 0; transform: translate(-50%, -50%) scale(1.6); }
+  63.33% { opacity: 0; transform: translate(-50%, -50%) scale(0.4); }
+  65% { opacity: 0.75; transform: translate(-50%, -50%) scale(0.6); }
+  68%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.6); }
+}
+
+/* ==========================================================================
+   Scene 3 -- "Claude installs it"
+   ========================================================================== */
+#bwv2-scene-3 .bwv2-window { animation: bwv2-3-window-in 15s ease-in-out infinite; }
+#bwv2-scene-3 .bwv2-3-shell { flex: 1; display: flex; min-height: 0; filter: blur(0.6px); opacity: 0.5; }
+#bwv2-scene-3 .bwv2-3-nav { width: 22%; border-right: 1px solid var(--bwv2-border); padding: 6% 5%; display: flex; flex-direction: column; gap: clamp(6px, 1.6cqi, 11px); }
+#bwv2-scene-3 .bwv2-3-navitem { height: clamp(6px, 1.4cqi, 10px); border-radius: 4px; background: rgba(255, 255, 255, 0.08); width: 80%; }
+#bwv2-scene-3 .bwv2-3-navitem--active { background: rgba(255, 255, 255, 0.22); width: 90%; }
+#bwv2-scene-3 .bwv2-3-main { flex: 1; padding: 6%; }
+#bwv2-scene-3 .bwv2-3-extrow {
+  display: flex; align-items: center; gap: clamp(6px, 1.6cqi, 11px);
+  background: var(--bwv2-panel-alt); border: 1px solid var(--bwv2-border);
+  border-radius: clamp(6px, 1.4cqi, 10px); padding: clamp(6px, 1.6cqi, 12px); width: 60%;
+}
+#bwv2-scene-3 .bwv2-3-extname { font-size: var(--fs-sm); color: var(--bwv2-text-dim); font-weight: 600; }
+
+#bwv2-scene-3 .bwv2-3-scrim { animation: bwv2-3-scrim 15s ease-in-out infinite; }
+#bwv2-scene-3 .bwv2-3-modal { animation: bwv2-3-modal 15s ease-in-out infinite; }
+#bwv2-scene-3 .bwv2-3-sheet { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 70%; animation: bwv2-3-sheet 15s ease-in-out infinite; }
+#bwv2-scene-3 .bwv2-3-toast { animation: bwv2-3-toast 15s ease-in-out infinite; }
+#bwv2-scene-3 .bwv2-3-install-btn { animation: bwv2-3-install-press 15s ease-in-out infinite; }
+#bwv2-scene-3 .bwv2-3-save-btn { animation: bwv2-3-save-press 15s ease-in-out infinite; }
+
+#bwv2-scene-3 .bwv2-3-cursor {
+  animation: bwv2-3-cursor-pos 15s ease-in-out infinite, bwv2-3-cursor-opacity 15s ease-in-out infinite, bwv2-3-cursor-pulse 15s ease-in-out infinite;
+}
+#bwv2-scene-3 .bwv2-3-cursor::after { animation: bwv2-3-cursor-ring 15s ease-in-out infinite; }
+
+@keyframes bwv2-3-window-in {
+  0% { opacity: 0; transform: translateY(3%) scale(0.98); }
+  5.33% { opacity: 1; transform: translateY(0%) scale(1); }
+  94.67% { opacity: 1; transform: translateY(0%) scale(1); }
+  100% { opacity: 0; transform: translateY(3%) scale(0.98); }
+}
+@keyframes bwv2-3-scrim { 0%, 5.33% { opacity: 0; } 6.67%, 56.67% { opacity: 1; } 58%, 100% { opacity: 0; } }
+@keyframes bwv2-3-modal { 0%, 5.33% { opacity: 0; } 6.67%, 28% { opacity: 1; } 29%, 100% { opacity: 0; } }
+@keyframes bwv2-3-sheet { 0%, 28% { opacity: 0; } 29%, 56.67% { opacity: 1; } 57.67%, 100% { opacity: 0; } }
+@keyframes bwv2-3-toast {
+  0%, 57.67% { opacity: 0; transform: translate(-50%, 10%); }
+  59%, 94.67% { opacity: 1; transform: translate(-50%, 0%); }
+  96%, 100% { opacity: 0; transform: translate(-50%, 10%); }
+}
+@keyframes bwv2-3-install-press { 0%, 25.33% { transform: scale(1); } 27% { transform: scale(0.95); } 28%, 100% { transform: scale(1); } }
+@keyframes bwv2-3-save-press { 0%, 53.33% { transform: scale(1); } 55% { transform: scale(0.95); } 56.67%, 100% { transform: scale(1); } }
+
+@keyframes bwv2-3-cursor-pos {
+  0%, 28% { left: 63%; top: 74%; }
+  29%, 56.67% { left: 79%; top: 80%; }
+  58%, 100% { left: 79%; top: 80%; }
+}
+@keyframes bwv2-3-cursor-opacity {
+  0%, 7% { opacity: 1; }
+  25.33% { opacity: 1; }
+  28% { opacity: 0; }
+  47% { opacity: 0; }
+  49%, 56.67% { opacity: 1; }
+  58%, 100% { opacity: 0; }
+}
+@keyframes bwv2-3-cursor-pulse {
+  0%, 24% { transform: translate(-50%, -50%) scale(1); }
+  25.33% { transform: translate(-50%, -50%) scale(0.8); }
+  27% { transform: translate(-50%, -50%) scale(1.18); }
+  28%, 52% { transform: translate(-50%, -50%) scale(1); }
+  53.33% { transform: translate(-50%, -50%) scale(0.8); }
+  55% { transform: translate(-50%, -50%) scale(1.18); }
+  56.67%, 100% { transform: translate(-50%, -50%) scale(1); }
+}
+@keyframes bwv2-3-cursor-ring {
+  0%, 24% { opacity: 0; transform: translate(-50%, -50%) scale(0.4); }
+  26% { opacity: 0.75; transform: translate(-50%, -50%) scale(0.6); }
+  28%, 52% { opacity: 0; transform: translate(-50%, -50%) scale(1.6); }
+  53.33% { opacity: 0; transform: translate(-50%, -50%) scale(0.4); }
+  55% { opacity: 0.75; transform: translate(-50%, -50%) scale(0.6); }
+  58%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.6); }
+}
+
+/* ==========================================================================
+   Reduced motion -- freeze each scene at its most informative final state.
+   Every element whose base/animated state is opacity:0 gets an explicit
+   opacity:1 !important companion here (or is explicitly kept at 0 when it
+   should stay hidden in the frozen frame).
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .bwv2-scene * { animation: none !important; transition: none !important; }
+
+  /* Scene 1 -- frozen on the drag-into-Applications moment */
+  #bwv2-scene-1 .bwv2-1-act--browser { opacity: 0 !important; }
+  #bwv2-scene-1 .bwv2-1-act--installer { opacity: 1 !important; }
+  #bwv2-scene-1 .bwv2-1-bubble { opacity: 0 !important; }
+  #bwv2-scene-1 .bwv2-1-ring { --bwv2-p: 100 !important; }
+  #bwv2-scene-1 .bwv2-1-status-downloading { opacity: 0 !important; }
+  #bwv2-scene-1 .bwv2-1-status-done { opacity: 1 !important; }
+  #bwv2-scene-1 .bwv2-1-icon { transform: translate(230%, 0%) scale(0.85) !important; opacity: 1 !important; }
+  #bwv2-scene-1 .bwv2-1-folder { box-shadow: 0 0 0 clamp(2px, 0.6cqi, 5px) var(--bwv2-blue-soft) !important; }
+  #bwv2-scene-1 .bwv2-1-cursor { opacity: 0 !important; }
+  #bwv2-scene-1 .bwv2-1-cursor::after { opacity: 0 !important; }
+
+  /* Scene 2 -- frozen on the clicked, finished download */
+  #bwv2-scene-2 .bwv2-window { opacity: 1 !important; transform: none !important; }
+  #bwv2-scene-2 .bwv2-2-bubble { opacity: 1 !important; transform: translateY(0%) !important; }
+  #bwv2-scene-2 .bwv2-2-ring { --bwv2-p: 100 !important; }
+  #bwv2-scene-2 .bwv2-2-status-downloading { opacity: 0 !important; }
+  #bwv2-scene-2 .bwv2-2-status-done { opacity: 1 !important; }
+  #bwv2-scene-2 .bwv2-2-cursor { opacity: 1 !important; left: 86% !important; top: 20% !important; }
+  #bwv2-scene-2 .bwv2-2-cursor::after { opacity: 0 !important; }
+
+  /* Scene 3 -- frozen on the finished toast */
+  #bwv2-scene-3 .bwv2-window { opacity: 1 !important; transform: none !important; }
+  #bwv2-scene-3 .bwv2-3-shell { filter: none !important; opacity: 1 !important; }
+  #bwv2-scene-3 .bwv2-3-scrim { opacity: 0 !important; }
+  #bwv2-scene-3 .bwv2-3-modal { opacity: 0 !important; }
+  #bwv2-scene-3 .bwv2-3-sheet { opacity: 0 !important; }
+  #bwv2-scene-3 .bwv2-3-toast { opacity: 1 !important; transform: translate(-50%, 0%) !important; }
+  #bwv2-scene-3 .bwv2-3-cursor { opacity: 0 !important; }
+  #bwv2-scene-3 .bwv2-3-cursor::after { opacity: 0 !important; }
+}
+
+
+/* ============================================================================
+   bwv2- namespace. Two independent looping scenes for the download-page
+   walkthrough. Every selector below is scoped under .bwv2-scene / #bwv2-scene-N.
+   No global resets, no body/html rules, no position:fixed.
+   ============================================================================ */
+
+.bwv2-scene, .bwv2-scene * { box-sizing: border-box; }
+
+.bwv2-scene {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: clamp(8px, 1.4cqi, 14px);
+  container-type: inline-size;
+  isolation: isolate;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: clamp(11px, 2.05cqi, 16px);
+  color: var(--bwv2-hi);
+  background: radial-gradient(120% 140% at 50% -10%, #242320 0%, #1a1a19 55%, #131211 100%);
+
+  --bwv2-bg: #1a1a19;
+  --bwv2-panel: #201e1a;
+  --bwv2-panel-edge: rgba(255, 255, 255, 0.09);
+  --bwv2-bubble: #3c3833;
+  --bwv2-bubble-text: #f2efe9;
+  --bwv2-hi: #f1ede4;
+  --bwv2-mid: #b6b2ab;
+  --bwv2-lo: #87837c;
+  --bwv2-white: #f7f4ee;
+  --bwv2-blue: #2f8cff;
+  --bwv2-blue-soft: rgba(47, 140, 255, 0.16);
+  --bwv2-blue-soft2: rgba(47, 140, 255, 0.22);
+  --bwv2-shadow: 0 8% 22% rgba(0, 0, 0, 0.5);
+  --bwv2-mono: ui-monospace, "SF Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+
+  /* light-chrome tokens (browser popup, Finder window) */
+  --bwv2-light-bg: #f4f3f1;
+  --bwv2-light-titlebar: #eae9e6;
+  --bwv2-light-border: #dcdbd8;
+  --bwv2-light-text: #2b2a27;
+  --bwv2-light-text-dim: #59584f;
+  --bwv2-light-text-faint: #9a9992;
+
+  /* cqi-based sizing scale, used by the reused sign-in card system */
+  --bwv2-fs-xs: clamp(7px, 1.7cqi, 12px);
+  --bwv2-fs-sm: clamp(8px, 1.95cqi, 14px);
+  --bwv2-fs-md: clamp(9.5px, 2.3cqi, 16px);
+  --bwv2-fs-lg: clamp(13px, 3.2cqi, 23px);
+}
+
+/* ---- shared cursor (white dot + click-pulse ring) ---- */
+.bwv2-scene .bwv2-cursor {
+  position: absolute;
+  width: clamp(9px, 1.5cqi, 15px);
+  height: clamp(9px, 1.5cqi, 15px);
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0 clamp(3px, .55cqi, 6px) rgba(255, 255, 255, .18), 0 .15em .5em rgba(0, 0, 0, .55);
+  pointer-events: none;
+  z-index: 80;
+  transform: translate(-50%, -50%) scale(1);
+}
+.bwv2-scene .bwv2-cursor::after {
   content: "";
   position: absolute;
   left: 50%;
@@ -340,1196 +826,607 @@
   width: 260%;
   height: 260%;
   border-radius: 50%;
-  border: 1.5px solid rgba(255, 255, 255, 0.8);
-  background: rgba(255, 255, 255, 0.08);
+  border: 1.5px solid rgba(255, 255, 255, .8);
+  background: rgba(255, 255, 255, .08);
+  transform: translate(-50%, -50%) scale(.4);
+  opacity: 0;
 }
 
-/* ---- generic dark card ---- */
-.bw-scene .bw-card {
+/* ---- shared app label ---- */
+.bwv2-scene .bwv2-appmark {
+  position: absolute; top: 4%; left: 5%; z-index: 5;
+  font-size: .62em; font-weight: 600; letter-spacing: .02em;
+  color: var(--bwv2-lo);
+}
+
+/* ---- shared chat primitives ---- */
+.bwv2-scene .bwv2-chat {
+  position: absolute; inset: 0; padding: 9% 10%;
+  display: flex; flex-direction: column; gap: .6em;
+}
+.bwv2-scene .bwv2-msg-user {
+  align-self: flex-end; max-width: 82%;
+  background: var(--bwv2-bubble); color: var(--bwv2-bubble-text);
+  padding: .55em .85em; border-radius: .8em .8em .15em .8em;
+  font-size: .8em; line-height: 1.4;
+}
+.bwv2-scene .bwv2-typewriter {
+  position: relative; display: inline-block;
+  clip-path: inset(0 100% 0 0);
+}
+.bwv2-scene .bwv2-toolchip {
+  align-self: flex-start; display: inline-flex; align-items: center; gap: .35em;
+  font: 500 .62em/1.3 var(--bwv2-mono); color: var(--bwv2-mid);
+  background: rgba(255, 255, 255, .045); border: 1px solid var(--bwv2-panel-edge);
+  padding: .5em .7em; border-radius: .55em;
+  opacity: 0; transform: translateY(.4em);
+}
+.bwv2-scene .bwv2-tick { color: var(--bwv2-blue); font-weight: 700; }
+.bwv2-scene .bwv2-dotsep { color: var(--bwv2-lo); margin: 0 .15em; }
+
+.bwv2-scene .bwv2-a-line {
+  font-size: .78em; line-height: 1.5; color: var(--bwv2-mid);
+  opacity: 0; transform: translateY(.4em);
+}
+.bwv2-scene .bwv2-a-hi { color: var(--bwv2-hi); }
+.bwv2-scene .bwv2-path { font-family: var(--bwv2-mono); font-size: .94em; color: var(--bwv2-mid); }
+.bwv2-scene .bwv2-amt { font-weight: 700; color: var(--bwv2-hi); font-variant-numeric: tabular-nums; }
+.bwv2-scene .bwv2-cite {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 1.3em; height: 1.3em; margin: 0 .15em;
+  border-radius: .4em; background: var(--bwv2-blue-soft);
+  border: 1px solid rgba(47, 140, 255, .4); color: var(--bwv2-blue);
+  font: 700 .66em/1 var(--bwv2-mono);
+}
+
+/* ---- light chrome: traffic dots + address bar / window title ---- */
+.bwv2-scene .bwv2-dot { width: .55em; height: .55em; border-radius: 50%; flex-shrink: 0; }
+.bwv2-scene .bwv2-dot-r { background: #ff5f57; }
+.bwv2-scene .bwv2-dot-y { background: #febc2e; }
+.bwv2-scene .bwv2-dot-g { background: #28c840; }
+.bwv2-scene .bwv2-wintitle { margin-left: .4em; font-size: .7em; font-weight: 600; color: var(--bwv2-light-text-dim); }
+.bwv2-scene .bwv2-addressbar {
+  margin: 0 auto; flex: 1; max-width: 70%;
+  background: #fff; border: 1px solid var(--bwv2-light-border);
+  border-radius: clamp(5px, 1.2cqi, 9px);
+  padding: clamp(2px, .6cqi, 5px) clamp(6px, 1.4cqi, 12px);
+  font-size: var(--bwv2-fs-sm); color: var(--bwv2-light-text-dim);
+  font-family: var(--bwv2-mono);
+  text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+/* ---- reused dark card system (scene-3 sign-in card, verbatim) ---- */
+.bwv2-scene .bwv2-card {
   position: relative;
   background: #201e1a;
-  border: 1px solid var(--bw-border-strong);
-  border-radius: clamp(9px, 1.8cqw, 18px);
-  box-shadow: var(--bw-shadow);
-  padding: clamp(10px, 3cqw, 22px) clamp(12px, 3.4cqw, 26px);
-  display: flex;
-  flex-direction: column;
-  gap: clamp(6px, 1.5cqw, 12px);
-}
-
-.bw-scene .bw-card-header {
-  display: flex;
-  align-items: center;
-  gap: clamp(6px, 1.6cqw, 12px);
-  margin-bottom: clamp(2px, 0.6cqw, 4px);
-}
-
-.bw-scene .bw-card-title { margin: 0; font-size: var(--fs-lg); font-weight: 700; color: var(--bw-text); }
-
-.bw-scene .bw-mark {
-  flex-shrink: 0;
-  width: clamp(16px, 3.6cqw, 28px);
-  height: clamp(16px, 3.6cqw, 28px);
-  border-radius: clamp(4px, 1cqw, 8px);
-  background: var(--bw-white);
-  color: #201a14;
-  font-weight: 800;
-  font-size: var(--fs-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.bw-scene .bw-mark--lg {
-  width: clamp(26px, 6.4cqw, 46px);
-  height: clamp(26px, 6.4cqw, 46px);
-  font-size: var(--fs-lg);
-  border-radius: clamp(6px, 1.4cqw, 11px);
-}
-
-.bw-scene .bw-field { display: flex; flex-direction: column; gap: clamp(2px, 0.6cqw, 5px); }
-.bw-scene .bw-field-label { font-size: var(--fs-sm); font-weight: 600; color: var(--bw-text); }
-.bw-scene .bw-field-help { margin: 0; font-size: var(--fs-xs); color: var(--bw-text-faint); line-height: 1.35; }
-.bw-scene .bw-field-row { display: flex; align-items: center; gap: clamp(5px, 1.4cqw, 10px); }
-
-.bw-scene .bw-input {
-  flex: 1;
-  min-width: 0;
-  background: var(--bw-panel-alt);
-  border: 1px solid var(--bw-border);
-  border-radius: clamp(5px, 1.2cqw, 9px);
-  padding: clamp(4px, 1.3cqw, 9px) clamp(6px, 1.6cqw, 12px);
-  font-size: var(--fs-sm);
-  color: var(--bw-text-dim);
-  font-family: ui-monospace, "SF Mono", Menlo, monospace;
-  display: block;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-.bw-scene .bw-input--filled { color: var(--bw-text); }
-
-.bw-scene .bw-card-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: clamp(6px, 1.6cqw, 12px);
-  margin-top: clamp(4px, 1.2cqw, 8px);
-}
-
-.bw-scene .bw-check {
-  position: relative;
-  width: clamp(11px, 2.4cqw, 18px);
-  height: clamp(11px, 2.4cqw, 18px);
-  flex-shrink: 0;
-}
-.bw-scene .bw-check::before,
-.bw-scene .bw-check::after {
-  content: "";
-  position: absolute;
-  border-radius: 2px;
-  background: currentColor;
-}
-.bw-scene .bw-check::before { width: 38%; height: 16%; left: 6%; top: 50%; transform: rotate(45deg); transform-origin: left center; }
-.bw-scene .bw-check::after { width: 62%; height: 16%; left: 26%; top: 66%; transform: rotate(-45deg); transform-origin: left center; }
-.bw-scene .bw-check--claude { color: var(--bw-accent-claude); }
-.bw-scene .bw-check--blue { color: var(--bw-accent-blue); }
-
-/* ==========================================================================
-   Scene 1 — "Get Claude"
-   ========================================================================== */
-
-#bw-scene-1 .bw-page {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(4px, 1.3cqw, 11px);
-  text-align: center;
-  padding: 2% 6%;
-}
-
-#bw-scene-1 .bw-wordmark {
-  font-size: var(--fs-sm);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--bw-text-faint);
-  font-weight: 700;
-}
-
-#bw-scene-1 .bw-heading {
-  margin: 0;
-  font-size: var(--fs-xl);
-  font-weight: 800;
-  letter-spacing: -0.01em;
-  color: var(--bw-text);
-}
-
-#bw-scene-1 .bw-subheading {
-  margin: 0 0 clamp(2px, 1cqw, 6px) 0;
-  font-size: var(--fs-md);
-  color: var(--bw-text-dim);
-}
-
-#bw-scene-1 .bw-download-pill {
-  position: absolute;
-  left: 4%;
-  bottom: 6%;
-  display: flex;
-  align-items: center;
-  gap: clamp(5px, 1.3cqw, 10px);
-  background: var(--bw-panel-alt);
-  border: 1px solid var(--bw-border-strong);
-  border-radius: clamp(20px, 4cqw, 30px);
-  padding: clamp(5px, 1.4cqw, 10px) clamp(10px, 2.4cqw, 16px);
-  box-shadow: 0 4% 10% rgba(0, 0, 0, 0.4);
-  z-index: 20;
-  animation: bw1-pill 12s ease-in-out infinite;
-}
-
-#bw-scene-1 .bw-pill-icon {
-  position: relative;
-  width: clamp(9px, 2cqw, 14px);
-  height: clamp(9px, 2cqw, 14px);
-  border-radius: 50%;
-  background: var(--bw-accent-claude-soft);
-  flex-shrink: 0;
-}
-#bw-scene-1 .bw-pill-icon::before {
-  content: "";
-  position: absolute;
-  left: 50%; top: 50%;
-  width: 34%; height: 34%;
-  background: var(--bw-accent-claude);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-}
-
-#bw-scene-1 .bw-pill-text {
-  position: relative;
-  display: inline-block;
-  min-width: clamp(70px, 20cqw, 150px);
-  height: 1.2em;
-  font-size: var(--fs-sm);
-  color: var(--bw-text);
-  font-weight: 600;
-}
-#bw-scene-1 .bw-label-downloading,
-#bw-scene-1 .bw-label-done {
-  position: absolute;
-  left: 0;
-  top: 0;
-  white-space: nowrap;
-}
-#bw-scene-1 .bw-label-downloading { animation: bw1-label-downloading 12s ease-in-out infinite; }
-#bw-scene-1 .bw-label-done { animation: bw1-label-done 12s ease-in-out infinite; color: var(--bw-accent-claude); }
-
-#bw-scene-1 .bw-progress-track {
-  width: clamp(46px, 12cqw, 90px);
-  height: clamp(3px, 0.6cqw, 5px);
-  border-radius: 3px;
-  background: rgba(255, 255, 255, 0.12);
-  overflow: hidden;
-  flex-shrink: 0;
-}
-#bw-scene-1 .bw-progress-fill {
-  display: block;
-  height: 100%;
-  background: var(--bw-accent-claude);
-  border-radius: 3px;
-  animation: bw1-progress 12s ease-in-out infinite;
-}
-
-#bw-scene-1 .bw-btn--download { animation: bw1-btn-press 12s ease-in-out infinite; }
-
-#bw-scene-1 .bw-cursor {
-  animation:
-    bw1-cursor-pos 12s ease-in-out infinite,
-    bw1-cursor-pulse 12s ease-in-out infinite;
-}
-#bw-scene-1 .bw-cursor::after { animation: bw1-cursor-ring 12s ease-in-out infinite; }
-
-@keyframes bw1-cursor-pos {
-  0%   { left: 64%; top: 75%; }
-  8%   { left: 64%; top: 75%; }
-  22%  { left: 50%; top: 64%; }
-  92%  { left: 50%; top: 64%; }
-  97%  { left: 64%; top: 75%; }
-  100% { left: 64%; top: 75%; }
-}
-
-@keyframes bw1-cursor-pulse {
-  0%, 24%  { transform: translate(-50%, -50%) scale(1); }
-  25%      { transform: translate(-50%, -50%) scale(0.8); }
-  27%      { transform: translate(-50%, -50%) scale(1.18); }
-  29%, 100% { transform: translate(-50%, -50%) scale(1); }
-}
-
-@keyframes bw1-cursor-ring {
-  0%, 24%  { opacity: 0; transform: translate(-50%, -50%) scale(0.4); }
-  26%      { opacity: 0.75; transform: translate(-50%, -50%) scale(0.6); }
-  34%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.8); }
-}
-
-@keyframes bw1-btn-press {
-  0%, 24%  { transform: scale(1); }
-  25%      { transform: scale(0.95); }
-  29%, 100% { transform: scale(1); }
-}
-
-@keyframes bw1-pill {
-  0%, 30%  { opacity: 0; transform: translateY(14%); }
-  33%      { opacity: 1; transform: translateY(0%); }
-  91%      { opacity: 1; transform: translateY(0%); }
-  96%, 100% { opacity: 0; transform: translateY(14%); }
-}
-
-@keyframes bw1-progress {
-  0%, 32% { width: 0%; }
-  75%     { width: 100%; }
-  100%    { width: 100%; }
-}
-
-@keyframes bw1-label-downloading {
-  0%, 78%  { opacity: 1; }
-  81%, 100% { opacity: 0; }
-}
-
-@keyframes bw1-label-done {
-  0%, 78%  { opacity: 0; }
-  81%, 100% { opacity: 1; }
-}
-
-/* ==========================================================================
-   Scene 2 — "Install Briefly"
-   ========================================================================== */
-
-#bw-scene-2 .bw-act {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#bw-scene-2 .bw-act--downloads { animation: bw2-actA 13s ease-in-out infinite; }
-#bw-scene-2 .bw-act--app { animation: bw2-actB 13s ease-in-out infinite; }
-
-#bw-scene-2 .bw-desktop-surface {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(80% 60% at 30% 20%, #262521 0%, #1a1a19 70%);
-}
-
-#bw-scene-2 .bw-file-chip {
-  position: absolute;
-  left: 12%;
-  top: 68%;
-  display: flex;
-  align-items: center;
-  gap: clamp(5px, 1.3cqw, 10px);
-  background: var(--bw-panel-alt);
-  border: 1px solid var(--bw-border);
-  border-radius: clamp(6px, 1.4cqw, 10px);
-  padding: clamp(5px, 1.4cqw, 10px) clamp(8px, 2cqw, 14px);
-  animation: bw2-chip-select 13s ease-in-out infinite;
-}
-
-#bw-scene-2 .bw-file-icon {
-  position: relative;
-  width: clamp(12px, 2.6cqw, 18px);
-  height: clamp(14px, 3cqw, 22px);
-  background: var(--bw-accent-blue);
-  border-radius: 3px;
-  clip-path: polygon(0 0, 65% 0, 100% 35%, 100% 100%, 0 100%);
-  flex-shrink: 0;
-}
-
-#bw-scene-2 .bw-file-name {
-  font-size: var(--fs-sm);
-  color: var(--bw-text-dim);
-  font-family: ui-monospace, "SF Mono", Menlo, monospace;
-  white-space: nowrap;
-}
-
-#bw-scene-2 .bw-dock {
-  position: absolute;
-  left: 50%;
-  bottom: 5%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: clamp(4px, 1.1cqw, 8px);
-  background: var(--bw-panel-alt);
-  border: 1px solid var(--bw-border);
-  border-radius: clamp(8px, 1.8cqw, 14px);
-  padding: clamp(4px, 1.1cqw, 8px);
-}
-#bw-scene-2 .bw-dock-item {
-  width: clamp(9px, 2cqw, 15px);
-  height: clamp(9px, 2cqw, 15px);
-  border-radius: clamp(3px, 0.7cqw, 5px);
-  background: rgba(255, 255, 255, 0.14);
-}
-#bw-scene-2 .bw-dock-item--accent { background: var(--bw-accent-claude); }
-
-#bw-scene-2 .bw-settings-shell {
-  flex: 1;
-  display: flex;
-  min-height: 0;
-}
-#bw-scene-2 .bw-settings-nav {
-  width: 22%;
-  border-right: 1px solid var(--bw-border);
-  padding: 6% 5%;
-  display: flex;
-  flex-direction: column;
-  gap: clamp(6px, 1.6cqw, 11px);
-}
-#bw-scene-2 .bw-nav-item {
-  height: clamp(6px, 1.4cqw, 10px);
-  border-radius: 4px;
-  background: rgba(255, 255, 255, 0.08);
-  width: 80%;
-}
-#bw-scene-2 .bw-nav-item--active { background: rgba(255, 255, 255, 0.22); width: 90%; }
-
-#bw-scene-2 .bw-settings-main { flex: 1; padding: 6%; filter: blur(0.6px); opacity: 0.55; animation: bw2-settings-clear 13s ease-in-out infinite; }
-#bw-scene-2 .bw-ext-row {
-  display: flex;
-  align-items: center;
-  gap: clamp(6px, 1.6cqw, 11px);
-  background: var(--bw-panel-alt);
-  border: 1px solid var(--bw-border);
-  border-radius: clamp(6px, 1.4cqw, 10px);
-  padding: clamp(6px, 1.6cqw, 12px);
-  width: 60%;
-}
-#bw-scene-2 .bw-ext-name { font-size: var(--fs-sm); color: var(--bw-text-dim); font-weight: 600; }
-
-#bw-scene-2 .bw-scrim {
-  position: absolute;
-  inset: 0;
-  background: rgba(10, 9, 8, 0.55);
-}
-
-#bw-scene-2 .bw-modal-content {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 62%;
-  background: #211f1b;
-  border: 1px solid var(--bw-border-strong);
-  border-radius: clamp(10px, 2cqw, 18px);
-  box-shadow: var(--bw-shadow);
-  padding: clamp(10px, 2.8cqw, 22px) clamp(12px, 3.2cqw, 24px);
-  display: flex;
-  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, .18);
+  border-radius: clamp(9px, 1.8cqi, 18px);
+  box-shadow: var(--bwv2-shadow);
+  padding: clamp(10px, 3cqi, 22px) clamp(12px, 3.4cqi, 26px);
+  display: flex; flex-direction: column; gap: clamp(6px, 1.5cqi, 12px);
+  width: 78%;
   align-items: center;
   text-align: center;
-  gap: clamp(4px, 1.1cqw, 8px);
-  animation: bw2-modal-fade 13s ease-in-out infinite;
 }
-
-#bw-scene-2 .bw-modal-title { margin: clamp(2px, 0.8cqw, 6px) 0 0 0; font-size: var(--fs-lg); font-weight: 700; color: var(--bw-text); }
-#bw-scene-2 .bw-modal-sub { margin: 0 0 clamp(4px, 1.2cqw, 8px) 0; font-size: var(--fs-xs); color: var(--bw-text-faint); }
-
-#bw-scene-2 .bw-modal-actions { display: flex; gap: clamp(6px, 1.6cqw, 12px); }
-#bw-scene-2 .bw-btn--install { animation: bw2-install-press 13s ease-in-out infinite; }
-
-#bw-scene-2 .bw-toast {
-  position: absolute;
-  left: 50%;
-  bottom: 12%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  gap: clamp(6px, 1.6cqw, 11px);
-  background: var(--bw-panel-alt);
-  border: 1px solid var(--bw-border-strong);
-  border-radius: clamp(20px, 4cqw, 30px);
-  padding: clamp(6px, 1.6cqw, 11px) clamp(12px, 2.8cqw, 20px);
-  box-shadow: 0 4% 10% rgba(0, 0, 0, 0.4);
-  animation: bw2-toast-fade 13s ease-in-out infinite;
+.bwv2-scene .bwv2-card-header { display: flex; align-items: center; gap: clamp(6px, 1.6cqi, 12px); margin-bottom: clamp(2px, .6cqi, 4px); }
+.bwv2-scene .bwv2-card-title { margin: 0; font-size: var(--bwv2-fs-lg); font-weight: 700; color: var(--bwv2-hi); }
+.bwv2-scene .bwv2-mark {
+  flex-shrink: 0; width: clamp(16px, 3.6cqi, 28px); height: clamp(16px, 3.6cqi, 28px);
+  border-radius: clamp(4px, 1cqi, 8px); background: var(--bwv2-white); color: #201a14;
+  font-weight: 800; font-size: var(--bwv2-fs-md);
+  display: flex; align-items: center; justify-content: center;
 }
-#bw-scene-2 .bw-toast-text { font-size: var(--fs-sm); color: var(--bw-text); font-weight: 600; }
+.bwv2-scene .bwv2-field-row { display: flex; align-items: center; gap: clamp(5px, 1.4cqi, 10px); width: 100%; }
+.bwv2-scene .bwv2-input {
+  flex: 1; min-width: 0;
+  background: #201f1c; border: 1px solid var(--bwv2-panel-edge);
+  border-radius: clamp(5px, 1.2cqi, 9px);
+  padding: clamp(4px, 1.3cqi, 9px) clamp(6px, 1.6cqi, 12px);
+  font-size: var(--bwv2-fs-sm); color: var(--bwv2-mid);
+  font-family: var(--bwv2-mono);
+  display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+}
+.bwv2-scene .bwv2-input--filled { color: var(--bwv2-hi); }
+.bwv2-scene .bwv2-btn {
+  font-family: inherit; font-size: var(--bwv2-fs-md); font-weight: 600; line-height: 1;
+  border-radius: clamp(7px, 1.8cqi, 15px);
+  padding: clamp(6px, 1.7cqi, 13px) clamp(10px, 3.1cqi, 22px);
+  border: 1px solid transparent;
+  display: inline-flex; align-items: center; justify-content: center;
+  white-space: nowrap; transform-origin: center; width: 100%;
+}
+.bwv2-scene .bwv2-btn--primary { background: var(--bwv2-white); color: #171410; }
 
-#bw-scene-2 .bw-cursor {
+/* ============================================================================
+   SCENE 4 — "Sign in once"   13s loop.
+   Beats:
+     0.00s  reset: dark Claude chat, empty
+     0.40s  user bubble fades in WITH typewriter start: "What do we have on
+            file for the Johnsons?"
+     1.90s  typewriter finishes
+     2.20s  inline chip appears (with its content already in place):
+            "Briefly needs to connect · Sign in"
+     2.60s  cursor fades in near the chip
+     3.30s  cursor click-pulses the chip
+     3.55s  small light-chrome browser window opens over the chat
+            (auth.brieflywealth.com) with the reused sign-in card already
+            fully composed: B mark, "Sign in to Briefly", prefilled email,
+            masked password, Sign in button
+     3.95s-6.10s  hold, cursor re-appears inside the window near the button
+     6.10s  cursor click-pulses "Sign in"
+     6.35s  browser window closes/fades
+     6.90s  chip swaps in place to "✓ Briefly connected"
+     6.90s-11.90s  hold
+     12.10s-12.90s  fade out, scene resets
+   ============================================================================ */
+
+#bwv2-scene-4 .bwv2-s4-fade { animation: bwv2-s4-fadeall 13s ease-in-out infinite; }
+
+#bwv2-scene-4 .bwv2-s4-msgin { opacity: 0; animation: bwv2-s4-msgin 13s ease-in-out infinite; }
+#bwv2-scene-4 .bwv2-s4-type { animation: bwv2-s4-typewriter 13s ease-in-out infinite; }
+
+#bwv2-scene-4 .bwv2-s4-chipwrap {
+  position: relative; display: grid; opacity: 0;
+  animation: bwv2-s4-chipwrap 13s ease-in-out infinite;
+}
+#bwv2-scene-4 .bwv2-chip-swap {
+  grid-area: 1 / 1; display: inline-flex; align-items: center; gap: .35em; white-space: nowrap;
+}
+#bwv2-scene-4 .bwv2-chip-dot {
+  width: .55em; height: .55em; border-radius: 50%;
+  background: var(--bwv2-blue-soft2); position: relative; flex-shrink: 0;
+}
+#bwv2-scene-4 .bwv2-chip-dot::before {
+  content: ""; position: absolute; left: 50%; top: 50%; width: 42%; height: 42%;
+  background: var(--bwv2-blue); border-radius: 50%; transform: translate(-50%, -50%);
+}
+#bwv2-scene-4 .bwv2-signin-word { color: var(--bwv2-blue); font-weight: 700; }
+#bwv2-scene-4 .bwv2-s4-swap-a { animation: bwv2-s4-swap-a 13s ease-in-out infinite; }
+#bwv2-scene-4 .bwv2-s4-swap-b { opacity: 0; animation: bwv2-s4-swap-b 13s ease-in-out infinite; }
+
+#bwv2-scene-4 .bwv2-browser {
+  position: absolute; left: 50%; top: 50%; width: 58%;
+  transform: translate(-50%, -50%) scale(.94);
+  border-radius: clamp(9px, 1.6cqi, 16px);
+  overflow: hidden;
+  box-shadow: 0 1.4em 3em rgba(0, 0, 0, .5), 0 0 0 1px rgba(0, 0, 0, .08);
+  opacity: 0;
+  animation: bwv2-s4-browser 13s ease-in-out infinite;
+  z-index: 40;
+}
+#bwv2-scene-4 .bwv2-browser-chrome {
+  display: flex; align-items: center; gap: .4em;
+  padding: .55em .7em;
+  background: var(--bwv2-light-titlebar);
+  border-bottom: 1px solid var(--bwv2-light-border);
+}
+#bwv2-scene-4 .bwv2-browser-body {
+  background: var(--bwv2-light-bg);
+  padding: 8% 6%;
+  display: flex; align-items: center; justify-content: center;
+}
+#bwv2-scene-4 .bwv2-s4-signinbtn { animation: bwv2-s4-signinpress 13s ease-in-out infinite; }
+
+#bwv2-scene-4 .bwv2-s4-cursor {
   animation:
-    bw2-cursor-pos 13s ease-in-out infinite,
-    bw2-cursor-pulse 13s ease-in-out infinite,
-    bw2-cursor-opacity 13s ease-in-out infinite;
+    bwv2-s4-cursor-pos 13s ease-in-out infinite,
+    bwv2-s4-cursor-opacity 13s ease-in-out infinite,
+    bwv2-s4-cursor-pulse 13s ease-in-out infinite;
 }
-#bw-scene-2 .bw-cursor::after { animation: bw2-cursor-ring 13s ease-in-out infinite; }
+#bwv2-scene-4 .bwv2-s4-cursor::after { animation: bwv2-s4-cursor-ring 13s ease-in-out infinite; }
 
-@keyframes bw2-actA {
-  0%, 31%  { opacity: 1; }
-  32%, 89% { opacity: 0; }
-  91%, 100% { opacity: 1; }
+@keyframes bwv2-s4-fadeall {
+  0%, 91.5%  { opacity: 1; }
+  93.1%      { opacity: 0; }
+  99.2%      { opacity: 0; }
+  100%       { opacity: 1; }
 }
-@keyframes bw2-actB {
-  0%, 31%  { opacity: 0; }
-  32%, 89% { opacity: 1; }
-  91%, 100% { opacity: 0; }
+@keyframes bwv2-s4-msgin {
+  0%, 1.5%   { opacity: 0; }
+  3.1%, 100% { opacity: 1; }
 }
-
-@keyframes bw2-chip-select {
-  0%, 20%  { box-shadow: none; background: var(--bw-panel-alt); }
-  22%, 28% { box-shadow: 0 0 0 1.5px var(--bw-accent-blue); background: var(--bw-accent-blue-soft); }
-  31%, 100% { box-shadow: none; background: var(--bw-panel-alt); }
+@keyframes bwv2-s4-typewriter {
+  0%, 3.1%   { clip-path: inset(0 100% 0 0); }
+  14.6%      { clip-path: inset(0 0% 0 0); }
+  100%       { clip-path: inset(0 0% 0 0); }
 }
-
-@keyframes bw2-cursor-pos {
-  0%   { left: 34%; top: 70%; }
-  8%   { left: 34%; top: 70%; }
-  21%  { left: 20%; top: 78%; }
-  30%  { left: 20%; top: 78%; }
-  33%  { left: 58%; top: 65%; }
-  50%  { left: 58%; top: 65%; }
-  55%  { left: 34%; top: 70%; }
-  93%  { left: 34%; top: 70%; }
-  100% { left: 34%; top: 70%; }
+@keyframes bwv2-s4-chipwrap {
+  0%, 15.4%  { opacity: 0; }
+  16.9%, 100% { opacity: 1; }
 }
-
-@keyframes bw2-cursor-opacity {
-  0%, 30%  { opacity: 1; }
-  32%, 37% { opacity: 0; }
-  39%, 50% { opacity: 1; }
-  52%, 91% { opacity: 0; }
-  94%, 100% { opacity: 1; }
+@keyframes bwv2-s4-swap-a {
+  0%, 51.9%  { opacity: 1; }
+  53.1%, 100% { opacity: 0; }
 }
-
-@keyframes bw2-cursor-pulse {
-  0%, 20%   { transform: translate(-50%, -50%) scale(1); }
-  21.5%     { transform: translate(-50%, -50%) scale(0.8); }
-  23%       { transform: translate(-50%, -50%) scale(1.15); }
-  24.5%     { transform: translate(-50%, -50%) scale(0.8); }
-  26%       { transform: translate(-50%, -50%) scale(1.15); }
-  28%, 48%  { transform: translate(-50%, -50%) scale(1); }
-  49%       { transform: translate(-50%, -50%) scale(0.8); }
-  51%, 100% { transform: translate(-50%, -50%) scale(1); }
+@keyframes bwv2-s4-swap-b {
+  0%, 51.9%  { opacity: 0; }
+  53.1%, 100% { opacity: 1; }
 }
-
-@keyframes bw2-cursor-ring {
-  0%, 20%   { opacity: 0; transform: translate(-50%, -50%) scale(0.4); }
-  22%       { opacity: 0.7; transform: translate(-50%, -50%) scale(0.5); }
-  25%       { opacity: 0; transform: translate(-50%, -50%) scale(1.4); }
-  25.5%     { opacity: 0.7; transform: translate(-50%, -50%) scale(0.5); }
-  28%       { opacity: 0; transform: translate(-50%, -50%) scale(1.4); }
-  48%       { opacity: 0; transform: translate(-50%, -50%) scale(0.4); }
-  49.5%     { opacity: 0.7; transform: translate(-50%, -50%) scale(0.5); }
-  52%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.6); }
+@keyframes bwv2-s4-browser {
+  0%, 26.5%   { opacity: 0; transform: translate(-50%, -50%) scale(.94); }
+  30.4%, 48.8% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  51.9%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(.94); }
 }
-
-@keyframes bw2-install-press {
-  0%, 48%  { transform: scale(1); }
-  49%      { transform: scale(0.95); }
-  51%, 100% { transform: scale(1); }
+@keyframes bwv2-s4-signinpress {
+  0%, 46.9%  { transform: scale(1); }
+  48.1%      { transform: scale(.95); }
+  50.5%, 100% { transform: scale(1); }
 }
-
-@keyframes bw2-settings-clear {
-  0%, 54%   { filter: blur(0.6px); opacity: 0.55; }
-  57%, 100% { filter: blur(0); opacity: 1; }
+@keyframes bwv2-s4-cursor-pos {
+  0%     { left: 32%; top: 27%; }
+  15.4%  { left: 32%; top: 27%; }
+  20.0%  { left: 37%; top: 21%; }
+  25.4%  { left: 32%; top: 27%; }
+  30.4%  { left: 32%; top: 27%; }
+  43.1%  { left: 50%; top: 67.5%; }
+  48.1%  { left: 50%; top: 67.5%; }
+  100%   { left: 32%; top: 27%; }
 }
-
-@keyframes bw2-modal-fade {
-  0%, 50%   { opacity: 1; transform: translate(-50%, -50%); }
-  54%, 100% { opacity: 0; transform: translate(-50%, -54%); }
+@keyframes bwv2-s4-cursor-opacity {
+  0%, 18.5%    { opacity: 0; }
+  20.0%, 25.4% { opacity: 1; }
+  28.8%, 41.5% { opacity: 0; }
+  43.1%, 48.1% { opacity: 1; }
+  49.2%, 100%  { opacity: 0; }
+}
+@keyframes bwv2-s4-cursor-pulse {
+  0%, 24.0%   { transform: translate(-50%, -50%) scale(1); }
+  25.4%       { transform: translate(-50%, -50%) scale(.8); }
+  26.5%       { transform: translate(-50%, -50%) scale(1.18); }
+  28.0%, 46.9% { transform: translate(-50%, -50%) scale(1); }
+  48.1%       { transform: translate(-50%, -50%) scale(.8); }
+  49.2%       { transform: translate(-50%, -50%) scale(1.18); }
+  50.5%, 100% { transform: translate(-50%, -50%) scale(1); }
+}
+@keyframes bwv2-s4-cursor-ring {
+  0%, 24.0%    { opacity: 0; transform: translate(-50%, -50%) scale(.4); }
+  26.5%        { opacity: .75; transform: translate(-50%, -50%) scale(.6); }
+  29.0%, 46.9% { opacity: 0; transform: translate(-50%, -50%) scale(1.6); }
+  49.7%        { opacity: .75; transform: translate(-50%, -50%) scale(.6); }
+  53.1%, 100%  { opacity: 0; transform: translate(-50%, -50%) scale(1.6); }
 }
 
-@keyframes bw2-toast-fade {
-  0%, 53%   { opacity: 0; transform: translate(-50%, 10%); }
-  57%, 89%  { opacity: 1; transform: translate(-50%, 0%); }
-  93%, 100% { opacity: 0; transform: translate(-50%, 10%); }
+/* ============================================================================
+   SCENE 5 — "File, then brief"   18s loop, two beats.
+   BEAT 1 (0.00s-9.40s) — reuse of the split Finder + chat filing composition:
+     0.00s  reset: two PDFs resting near the Finder window, chat empty
+     0.35s  cursor click-pulses statement-2026-06.pdf, drag begins
+     0.75s  file 1 lands in intake, row glows blue, absorbed
+     1.05s  cursor moves to ira-2026-06.pdf, click
+     1.45s  file 2 lands, row glows again, "2 items" appears, absorbed
+     1.75s  cursor travels to the chat pane and fades
+     2.05s  user bubble + typewriter: "File everything in my intake folder."
+     3.35s  tool chip: "Briefly · read intake · 2 statements"
+     4.15s  "Filed both for the Johnson family."
+     4.95s  "Originals -> originals/johnson-family/"
+     5.75s  "Schwab ...4417  $1,284,306.22 [1]"
+     6.55s  "Vanguard IRA ...9052  $612,940.18 [2]"
+     6.55s-9.20s  hold, then a quick cut (9.20s-9.60s, <=1.5% of loop, no
+     overlap with beat 2) into
+   BEAT 2 (9.60s-17.60s) — reuse of the full-chat cited-brief composition:
+     9.60s  user bubble + typewriter: "Prepare a meeting brief for the
+            Johnsons."
+     10.95s tool chip: "Used Briefly · briefly_ask"
+     11.65s tool chip: "Used Briefly · briefly_prepare_meeting_brief"
+     12.90s brief title: "Johnson Family — Meeting Brief"
+     13.60s "Bottom line: net worth $1,897,246.40, tied to the cent [1][2]"
+     14.30s "Largest position: AAPL, 11.2% of brokerage [1]"
+     15.00s Sources footer: "[1] Schwab statement (original) · [2] Vanguard
+            statement (original)"
+     15.20s cursor fades in, travels toward the [1] source chip
+     15.60s cursor arrives, chip glows blue
+     15.80s-16.10s file-preview sliver peeks in from the right edge:
+            "statement-2026-06.pdf"
+     16.10s-17.60s  hold on the citation-opens-the-original moment
+     17.60s-18.00s  fade out, scene resets
+   ============================================================================ */
+
+#bwv2-scene-5 .bwv2-s5-beat { position: absolute; inset: 0; }
+#bwv2-scene-5 .bwv2-s5-beat1 { animation: bwv2-s5-beat1 18s ease-in-out infinite; }
+#bwv2-scene-5 .bwv2-s5-beat2 { animation: bwv2-s5-beat2 18s ease-in-out infinite; }
+
+/* -- beat 1: Finder + chat split -- */
+#bwv2-scene-5 .bwv2-s5-left { position: absolute; left: 0; top: 0; width: 38%; height: 100%; background: var(--bwv2-bg); }
+#bwv2-scene-5 .bwv2-s5-right { position: absolute; right: 0; top: 0; width: 62%; height: 100%; background: var(--bwv2-panel); border-left: 1px solid var(--bwv2-panel-edge); overflow: hidden; }
+
+#bwv2-scene-5 .bwv2-finder {
+  position: absolute; left: 10%; top: 16%; width: 80%;
+  background: var(--bwv2-light-bg); border-radius: .6em; overflow: hidden;
+  box-shadow: 0 1.2em 2.6em rgba(0, 0, 0, .45), 0 0 0 1px rgba(0, 0, 0, .06);
 }
+#bwv2-scene-5 .bwv2-finder-titlebar { display: flex; align-items: center; gap: .35em; padding: .55em .7em; background: var(--bwv2-light-titlebar); border-bottom: 1px solid var(--bwv2-light-border); }
+#bwv2-scene-5 .bwv2-finder-rows { display: flex; flex-direction: column; }
+#bwv2-scene-5 .bwv2-finder-row { position: relative; display: flex; align-items: center; gap: .5em; padding: .7em .8em; font-size: .74em; color: var(--bwv2-light-text); border-bottom: 1px solid #ececea; }
+#bwv2-scene-5 .bwv2-finder-row:last-child { border-bottom: none; }
+#bwv2-scene-5 .bwv2-finder-ficon { width: 1em; height: .78em; background: var(--bwv2-blue); border-radius: 0 .2em .2em .2em; position: relative; flex: none; }
+#bwv2-scene-5 .bwv2-finder-ficon::before { content: ""; position: absolute; left: 0; top: -.26em; width: .5em; height: .26em; background: inherit; border-radius: .2em .2em 0 0; }
+#bwv2-scene-5 .bwv2-finder-rowlabel { flex: 1; }
+#bwv2-scene-5 .bwv2-finder-rowcount { font-size: .82em; color: var(--bwv2-light-text-faint); opacity: 0; animation: bwv2-s5-rowcount 18s ease-in-out infinite; }
+#bwv2-scene-5 .bwv2-finder-row-glow { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, rgba(47, 140, 255, .24), rgba(47, 140, 255, .05)); opacity: 0; animation: bwv2-s5-row-glow 18s ease-in-out infinite; }
 
-/* ==========================================================================
-   Scene 3 — "Settings are optional, then sign in"
-   ========================================================================== */
-
-#bw-scene-3 .bw-act {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+#bwv2-scene-5 .bwv2-filechip {
+  position: absolute; z-index: 10; display: flex; align-items: center; gap: .35em;
+  padding: .35em .55em; white-space: nowrap;
+  background: #fff; color: var(--bwv2-light-text); font-size: .46em; font-weight: 500;
+  border-radius: .5em; box-shadow: 0 .6em 1.5em rgba(0, 0, 0, .4);
 }
+#bwv2-scene-5 .bwv2-filechip-badge { background: var(--bwv2-blue); color: #fff; font: 700 1em/1 var(--bwv2-mono); padding: .15em .35em; border-radius: .3em; }
+#bwv2-scene-5 .bwv2-s5-file1 { animation: bwv2-s5-file1 18s ease-in-out infinite; }
+#bwv2-scene-5 .bwv2-s5-file2 { animation: bwv2-s5-file2 18s ease-in-out infinite; }
 
-#bw-scene-3 .bw-act--settings { animation: bw3-actA 14s ease-in-out infinite; }
-#bw-scene-3 .bw-act--signin { animation: bw3-actB 14s ease-in-out infinite; }
+#bwv2-scene-5 .bwv2-s5-right .bwv2-msg-user { opacity: 0; animation: bwv2-s5-b1-msgin 18s ease-in-out infinite; }
+#bwv2-scene-5 .bwv2-s5-b1-type { animation: bwv2-s5-b1-typewriter 18s ease-in-out infinite; }
+#bwv2-scene-5 .bwv2-s5-b1-chip { animation: bwv2-s5-b1-chip 18s ease-in-out infinite; }
+#bwv2-scene-5 .bwv2-s5-b1-a1 { animation: bwv2-s5-b1-a1 18s ease-in-out infinite; }
+#bwv2-scene-5 .bwv2-s5-b1-a2 { animation: bwv2-s5-b1-a2 18s ease-in-out infinite; }
+#bwv2-scene-5 .bwv2-s5-b1-a3 { animation: bwv2-s5-b1-a3 18s ease-in-out infinite; }
+#bwv2-scene-5 .bwv2-s5-b1-a4 { animation: bwv2-s5-b1-a4 18s ease-in-out infinite; }
 
-#bw-scene-3 .bw-card--settings { width: 66%; }
-#bw-scene-3 .bw-card--signin { width: 46%; align-items: center; text-align: center; }
+/* -- beat 2: full-width cited brief -- */
+#bwv2-scene-5 .bwv2-s5-b2-chat .bwv2-msg-user { opacity: 0; animation: bwv2-s5-b2-msgin 18s ease-in-out infinite; }
+#bwv2-scene-5 .bwv2-s5-b2-type { animation: bwv2-s5-b2-typewriter 18s ease-in-out infinite; }
+#bwv2-scene-5 .bwv2-s5-b2-chip1 { animation: bwv2-s5-b2-chip1 18s ease-in-out infinite; }
+#bwv2-scene-5 .bwv2-s5-b2-chip2 { animation: bwv2-s5-b2-chip2 18s ease-in-out infinite; }
 
-#bw-scene-3 .bw-btn--save { animation: bw3-save-press 14s ease-in-out infinite; }
-#bw-scene-3 .bw-btn--signin { animation: bw3-signin-press 14s ease-in-out infinite; width: 100%; margin-top: clamp(4px, 1.2cqw, 8px); }
-
-#bw-scene-3 .bw-signin-fields {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: clamp(6px, 1.6cqw, 11px);
-  width: 100%;
-  animation: bw3-fields-fade 14s ease-in-out infinite;
+#bwv2-scene-5 .bwv2-brief {
+  display: flex; flex-direction: column; gap: .55em; margin-top: .2em;
+  padding: .8em .9em; background: rgba(255, 255, 255, .03);
+  border: 1px solid var(--bwv2-panel-edge); border-radius: .7em;
+  opacity: 0; animation: bwv2-s5-b2-brief 18s ease-in-out infinite;
 }
+#bwv2-scene-5 .bwv2-brief-title { font-weight: 700; color: var(--bwv2-hi); font-size: .88em; }
+#bwv2-scene-5 .bwv2-brief-sources { font-size: .68em; color: var(--bwv2-lo); margin-top: .3em; padding-top: .5em; border-top: 1px solid var(--bwv2-panel-edge); }
+#bwv2-scene-5 .bwv2-s5-b2-title { animation: bwv2-s5-b2-title 18s ease-in-out infinite; }
+#bwv2-scene-5 .bwv2-s5-b2-bottom { animation: bwv2-s5-b2-bottom 18s ease-in-out infinite; }
+#bwv2-scene-5 .bwv2-s5-b2-largest { animation: bwv2-s5-b2-largest 18s ease-in-out infinite; }
+#bwv2-scene-5 .bwv2-s5-b2-sources { animation: bwv2-s5-b2-sources 18s ease-in-out infinite; }
+#bwv2-scene-5 .bwv2-s5-chipglow { animation: bwv2-s5-chipglow 18s ease-in-out infinite; }
 
-#bw-scene-3 .bw-connected {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 46%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: clamp(5px, 1.3cqw, 9px);
-  animation: bw3-connected-fade 14s ease-in-out infinite;
+#bwv2-scene-5 .bwv2-preview {
+  position: absolute; right: 0; top: 60%; width: 26%;
+  display: flex; align-items: center; gap: .5em;
+  padding: .6em .7em; white-space: nowrap;
+  background: var(--bwv2-light-bg); color: var(--bwv2-light-text); font-size: .62em;
+  border-radius: .5em 0 0 .5em; box-shadow: -0.6em 0 1.6em rgba(0, 0, 0, .4);
+  opacity: 0; transform: translateX(100%); z-index: 20;
 }
+#bwv2-scene-5 .bwv2-preview-icon { background: var(--bwv2-blue); color: #fff; font: 700 1em/1 var(--bwv2-mono); padding: .2em .4em; border-radius: .3em; }
+#bwv2-scene-5 .bwv2-s5-preview { animation: bwv2-s5-preview 18s ease-in-out infinite; }
 
-#bw-scene-3 .bw-connected-text { font-size: var(--fs-md); font-weight: 700; color: var(--bw-text); }
-
-#bw-scene-3 .bw-underline {
-  display: block;
-  height: 2px;
-  width: 0%;
-  background: var(--bw-accent-blue);
-  border-radius: 2px;
-  animation: bw3-underline 14s ease-in-out infinite;
-}
-
-#bw-scene-3 .bw-cursor {
+#bwv2-scene-5 .bwv2-s5-cursor {
   animation:
-    bw3-cursor-pos 14s ease-in-out infinite,
-    bw3-cursor-pulse 14s ease-in-out infinite,
-    bw3-cursor-opacity 14s ease-in-out infinite;
+    bwv2-s5-cursor-pos 18s ease-in-out infinite,
+    bwv2-s5-cursor-opacity 18s ease-in-out infinite,
+    bwv2-s5-cursor-pulse 18s ease-in-out infinite;
 }
-#bw-scene-3 .bw-cursor::after { animation: bw3-cursor-ring 14s ease-in-out infinite; }
+#bwv2-scene-5 .bwv2-s5-cursor::after { animation: bwv2-s5-cursor-ring 18s ease-in-out infinite; }
 
-@keyframes bw3-actA {
-  0%, 29%  { opacity: 1; }
-  31%, 89% { opacity: 0; }
-  91%, 100% { opacity: 1; }
+@keyframes bwv2-s5-beat1 {
+  0%, 51.1%  { opacity: 1; }
+  52.2%, 100% { opacity: 0; }
 }
-@keyframes bw3-actB {
-  0%, 29%  { opacity: 0; }
-  31%, 89% { opacity: 1; }
-  91%, 100% { opacity: 0; }
-}
-
-@keyframes bw3-cursor-pos {
-  0%   { left: 30%; top: 27%; }
-  7%   { left: 30%; top: 27%; }
-  21%  { left: 60%; top: 76%; }
-  35%  { left: 60%; top: 76%; }
-  37%  { left: 50%; top: 66%; }
-  51%  { left: 50%; top: 66%; }
-  60%  { left: 30%; top: 27%; }
-  90%  { left: 30%; top: 27%; }
-  100% { left: 30%; top: 27%; }
+@keyframes bwv2-s5-beat2 {
+  0%, 52.2%   { opacity: 0; }
+  53.3%, 97.8% { opacity: 1; }
+  100%        { opacity: 0; }
 }
 
-@keyframes bw3-cursor-opacity {
-  0%, 27%  { opacity: 1; }
-  29%, 35% { opacity: 0; }
-  37%, 51% { opacity: 1; }
-  53%, 89% { opacity: 0; }
-  92%, 100% { opacity: 1; }
+@keyframes bwv2-s5-file1 {
+  0%, 1.9%  { top: 4%; left: 10%; opacity: 1; transform: scale(1); }
+  2.4%      { top: 4%; left: 10%; opacity: 1; transform: scale(1.08); }
+  4.2%      { top: 23%; left: 16%; opacity: 1; transform: scale(1); }
+  5.0%      { top: 23%; left: 16%; opacity: 0; transform: scale(.8); }
+  51.0%     { top: 23%; left: 16%; opacity: 0; }
+  100%      { top: 4%; left: 10%; opacity: 1; transform: scale(1); }
+}
+@keyframes bwv2-s5-file2 {
+  0%, 5.8%  { top: 12%; left: 10%; opacity: 1; transform: scale(1); }
+  6.3%      { top: 12%; left: 10%; opacity: 1; transform: scale(1.08); }
+  8.1%      { top: 23%; left: 16%; opacity: 1; transform: scale(1); }
+  8.9%      { top: 23%; left: 16%; opacity: 0; transform: scale(.8); }
+  51.0%     { top: 23%; left: 16%; opacity: 0; }
+  100%      { top: 12%; left: 10%; opacity: 1; transform: scale(1); }
+}
+@keyframes bwv2-s5-row-glow {
+  0%, 3.6%  { opacity: 0; }
+  4.2%      { opacity: 1; }
+  5.0%      { opacity: 0; }
+  7.5%      { opacity: 0; }
+  8.1%      { opacity: 1; }
+  8.9%      { opacity: 0; }
+  100%      { opacity: 0; }
+}
+@keyframes bwv2-s5-rowcount {
+  0%, 7.5%  { opacity: 0; }
+  8.1%, 51.0% { opacity: 1; }
+  100%      { opacity: 0; }
+}
+@keyframes bwv2-s5-b1-msgin {
+  0%, 10.8%  { opacity: 0; }
+  11.4%, 51.0% { opacity: 1; }
+  100%       { opacity: 0; }
+}
+@keyframes bwv2-s5-b1-typewriter {
+  0%, 11.4%  { clip-path: inset(0 100% 0 0); }
+  17.5%      { clip-path: inset(0 0% 0 0); }
+  100%       { clip-path: inset(0 0% 0 0); }
+}
+@keyframes bwv2-s5-b1-chip {
+  0%, 18.0%  { opacity: 0; transform: translateY(.4em); }
+  18.6%, 51.0% { opacity: 1; transform: translateY(0); }
+  100%       { opacity: 0; transform: translateY(.4em); }
+}
+@keyframes bwv2-s5-b1-a1 {
+  0%, 22.5%  { opacity: 0; transform: translateY(.4em); }
+  23.1%, 51.0% { opacity: 1; transform: translateY(0); }
+  100%       { opacity: 0; transform: translateY(.4em); }
+}
+@keyframes bwv2-s5-b1-a2 {
+  0%, 26.9%  { opacity: 0; transform: translateY(.4em); }
+  27.5%, 51.0% { opacity: 1; transform: translateY(0); }
+  100%       { opacity: 0; transform: translateY(.4em); }
+}
+@keyframes bwv2-s5-b1-a3 {
+  0%, 31.3%  { opacity: 0; transform: translateY(.4em); }
+  31.9%, 51.0% { opacity: 1; transform: translateY(0); }
+  100%       { opacity: 0; transform: translateY(.4em); }
+}
+@keyframes bwv2-s5-b1-a4 {
+  0%, 35.8%  { opacity: 0; transform: translateY(.4em); }
+  36.4%, 51.0% { opacity: 1; transform: translateY(0); }
+  100%       { opacity: 0; transform: translateY(.4em); }
 }
 
-@keyframes bw3-cursor-pulse {
-  0%, 24%   { transform: translate(-50%, -50%) scale(1); }
-  25%       { transform: translate(-50%, -50%) scale(0.8); }
-  27%       { transform: translate(-50%, -50%) scale(1.18); }
-  29%, 47%  { transform: translate(-50%, -50%) scale(1); }
-  49%       { transform: translate(-50%, -50%) scale(0.8); }
-  51%, 100% { transform: translate(-50%, -50%) scale(1); }
+@keyframes bwv2-s5-b2-msgin {
+  0%, 52.7%  { opacity: 0; }
+  53.3%, 97.8% { opacity: 1; }
+  100%       { opacity: 0; }
+}
+@keyframes bwv2-s5-b2-typewriter {
+  0%, 53.3%  { clip-path: inset(0 100% 0 0); }
+  59.4%      { clip-path: inset(0 0% 0 0); }
+  100%       { clip-path: inset(0 0% 0 0); }
+}
+@keyframes bwv2-s5-b2-chip1 {
+  0%, 63.3%  { opacity: 0; transform: translateY(.4em); }
+  63.9%, 97.8% { opacity: 1; transform: translateY(0); }
+  100%       { opacity: 0; transform: translateY(.4em); }
+}
+@keyframes bwv2-s5-b2-chip2 {
+  0%, 67.2%  { opacity: 0; transform: translateY(.4em); }
+  67.8%, 97.8% { opacity: 1; transform: translateY(0); }
+  100%       { opacity: 0; transform: translateY(.4em); }
+}
+@keyframes bwv2-s5-b2-brief {
+  0%, 71.1%  { opacity: 0; }
+  71.7%, 97.8% { opacity: 1; }
+  100%       { opacity: 0; }
+}
+@keyframes bwv2-s5-b2-title {
+  0%, 71.1%  { opacity: 0; transform: translateY(.4em); }
+  71.7%, 97.8% { opacity: 1; transform: translateY(0); }
+  100%       { opacity: 0; transform: translateY(.4em); }
+}
+@keyframes bwv2-s5-b2-bottom {
+  0%, 75.0%  { opacity: 0; transform: translateY(.4em); }
+  75.6%, 97.8% { opacity: 1; transform: translateY(0); }
+  100%       { opacity: 0; transform: translateY(.4em); }
+}
+@keyframes bwv2-s5-b2-largest {
+  0%, 78.8%  { opacity: 0; transform: translateY(.4em); }
+  79.4%, 97.8% { opacity: 1; transform: translateY(0); }
+  100%       { opacity: 0; transform: translateY(.4em); }
+}
+@keyframes bwv2-s5-b2-sources {
+  0%, 82.7%  { opacity: 0; transform: translateY(.4em); }
+  83.3%, 97.8% { opacity: 1; transform: translateY(0); }
+  100%       { opacity: 0; transform: translateY(.4em); }
+}
+@keyframes bwv2-s5-chipglow {
+  0%, 86.1%  { background: var(--bwv2-blue-soft); box-shadow: 0 0 0 0 rgba(47, 140, 255, 0); }
+  86.7%      { background: rgba(47, 140, 255, .3); box-shadow: 0 0 0 .35em rgba(47, 140, 255, .35); }
+  89.4%, 97.8% { background: rgba(47, 140, 255, .4); box-shadow: 0 0 0 .4em rgba(47, 140, 255, .4); }
+  100%       { background: var(--bwv2-blue-soft); box-shadow: 0 0 0 0 rgba(47, 140, 255, 0); }
+}
+@keyframes bwv2-s5-preview {
+  0%, 87.2%  { opacity: 0; transform: translateX(100%); }
+  87.8%      { opacity: 1; transform: translateX(90%); }
+  89.4%, 97.8% { opacity: 1; transform: translateX(58%); }
+  100%       { opacity: 0; transform: translateX(100%); }
 }
 
-@keyframes bw3-cursor-ring {
-  0%, 24%   { opacity: 0; transform: translate(-50%, -50%) scale(0.4); }
-  26%       { opacity: 0.75; transform: translate(-50%, -50%) scale(0.6); }
-  30%, 47%  { opacity: 0; transform: translate(-50%, -50%) scale(1.6); }
-  49.5%     { opacity: 0.75; transform: translate(-50%, -50%) scale(0.6); }
-  53%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.6); }
+@keyframes bwv2-s5-cursor-pos {
+  0%     { left: 10.4%; top: 5.5%; }
+  1.9%   { left: 10.4%; top: 5.5%; }
+  4.2%   { left: 15%; top: 24.5%; }
+  5.8%   { left: 8.8%; top: 13.5%; }
+  8.1%   { left: 15%; top: 24.5%; }
+  9.7%   { left: 66%; top: 14%; }
+  84.4%  { left: 50%; top: 92%; }
+  86.7%  { left: 17.4%; top: 60.7%; }
+  97.8%  { left: 17.4%; top: 60.7%; }
+  100%   { left: 10.4%; top: 5.5%; }
+}
+@keyframes bwv2-s5-cursor-opacity {
+  0%, 0.8%     { opacity: 0; }
+  1.4%, 9.2%   { opacity: 1; }
+  9.7%, 84.0%  { opacity: 0; }
+  84.4%, 97.8% { opacity: 1; }
+  98.2%, 100%  { opacity: 0; }
+}
+@keyframes bwv2-s5-cursor-pulse {
+  0%, 1.4%    { transform: translate(-50%, -50%) scale(1); }
+  1.9%        { transform: translate(-50%, -50%) scale(.82); }
+  2.4%        { transform: translate(-50%, -50%) scale(1.12); }
+  3.0%, 5.3%  { transform: translate(-50%, -50%) scale(1); }
+  5.8%        { transform: translate(-50%, -50%) scale(.82); }
+  6.3%        { transform: translate(-50%, -50%) scale(1.12); }
+  6.9%, 86.1% { transform: translate(-50%, -50%) scale(1); }
+  86.7%       { transform: translate(-50%, -50%) scale(.85); }
+  87.8%       { transform: translate(-50%, -50%) scale(1.15); }
+  89.4%, 100% { transform: translate(-50%, -50%) scale(1); }
+}
+@keyframes bwv2-s5-cursor-ring {
+  0%, 1.4%     { opacity: 0; transform: translate(-50%, -50%) scale(.4); }
+  2.4%         { opacity: .7; transform: translate(-50%, -50%) scale(.55); }
+  3.6%, 5.3%   { opacity: 0; transform: translate(-50%, -50%) scale(1.4); }
+  6.3%         { opacity: .7; transform: translate(-50%, -50%) scale(.55); }
+  7.5%, 86.1%  { opacity: 0; transform: translate(-50%, -50%) scale(1.4); }
+  87.8%        { opacity: .7; transform: translate(-50%, -50%) scale(.55); }
+  89.4%, 100%  { opacity: 0; transform: translate(-50%, -50%) scale(1.6); }
 }
 
-@keyframes bw3-save-press {
-  0%, 24%  { transform: scale(1); }
-  25%      { transform: scale(0.95); }
-  27%, 100% { transform: scale(1); }
-}
-
-@keyframes bw3-signin-press {
-  0%, 47%  { transform: scale(1); }
-  49%      { transform: scale(0.95); }
-  51%, 100% { transform: scale(1); }
-}
-
-@keyframes bw3-fields-fade {
-  0%, 52%   { opacity: 1; }
-  56%, 100% { opacity: 0; }
-}
-
-@keyframes bw3-connected-fade {
-  0%, 52%   { opacity: 0; }
-  56%, 89%  { opacity: 1; }
-  93%, 100% { opacity: 0; }
-}
-
-@keyframes bw3-underline {
-  0%, 55%   { opacity: 0; width: 0%; }
-  60%, 89%  { opacity: 1; width: 48%; }
-  93%, 100% { opacity: 0; width: 0%; }
-}
-
-/* ==========================================================================
-   Reduced motion — freeze each scene at its most informative final state.
-   ========================================================================== */
+/* ============================================================================
+   REDUCED MOTION — freeze each scene at its most informative state instead
+   of animating. Every element whose animated/base state is opacity:0 gets an
+   explicit companion rule here (either forced visible or explicitly hidden).
+   ============================================================================ */
 @media (prefers-reduced-motion: reduce) {
-  .bw-scene * { animation: none !important; }
+  .bwv2-scene * { animation: none !important; transition: none !important; }
 
-  /* Scene 1 — download complete */
-  #bw-scene-1 .bw-cursor { left: 50%; top: 64%; }
-  #bw-scene-1 .bw-cursor::after { opacity: 0; }
-  #bw-scene-1 .bw-download-pill { opacity: 1; transform: translateY(0%); }
-  #bw-scene-1 .bw-progress-fill { width: 100%; }
-  #bw-scene-1 .bw-label-downloading { opacity: 0; }
-  #bw-scene-1 .bw-label-done { opacity: 1; }
+  /* Scene 4 — frozen at "Briefly connected", browser closed */
+  #bwv2-scene-4 .bwv2-s4-fade { opacity: 1 !important; }
+  #bwv2-scene-4 .bwv2-s4-msgin { opacity: 1 !important; }
+  #bwv2-scene-4 .bwv2-s4-type { clip-path: inset(0 0% 0 0) !important; }
+  #bwv2-scene-4 .bwv2-s4-chipwrap { opacity: 1 !important; }
+  #bwv2-scene-4 .bwv2-s4-swap-a { opacity: 0 !important; }
+  #bwv2-scene-4 .bwv2-s4-swap-b { opacity: 1 !important; }
+  #bwv2-scene-4 .bwv2-s4-browser { opacity: 0 !important; }
+  #bwv2-scene-4 .bwv2-s4-cursor { opacity: 0 !important; }
+  #bwv2-scene-4 .bwv2-s4-cursor::after { opacity: 0 !important; }
 
-  /* Scene 2 — extension added */
-  #bw-scene-2 .bw-act--downloads { opacity: 0; }
-  #bw-scene-2 .bw-act--app { opacity: 1; }
-  #bw-scene-2 .bw-modal-content { opacity: 0; }
-  #bw-scene-2 .bw-toast { opacity: 1; transform: translate(-50%, 0%); }
-  #bw-scene-2 .bw-settings-main { filter: none; opacity: 1; }
-  #bw-scene-2 .bw-cursor { opacity: 0; }
-  #bw-scene-2 .bw-cursor::after { opacity: 0; }
+  /* Scene 5 — frozen mid beat 2: brief fully written, citation glowing,
+     preview sliver peeking; beat 1 (Finder/chat split) hidden */
+  #bwv2-scene-5 .bwv2-s5-beat1 { opacity: 0 !important; }
+  #bwv2-scene-5 .bwv2-s5-file1,
+  #bwv2-scene-5 .bwv2-s5-file2,
+  #bwv2-scene-5 .bwv2-finder-row-glow,
+  #bwv2-scene-5 .bwv2-finder-rowcount,
+  #bwv2-scene-5 .bwv2-s5-right .bwv2-msg-user,
+  #bwv2-scene-5 .bwv2-s5-b1-chip,
+  #bwv2-scene-5 .bwv2-s5-b1-a1,
+  #bwv2-scene-5 .bwv2-s5-b1-a2,
+  #bwv2-scene-5 .bwv2-s5-b1-a3,
+  #bwv2-scene-5 .bwv2-s5-b1-a4 { opacity: 0 !important; }
+  #bwv2-scene-5 .bwv2-s5-b1-type { clip-path: inset(0 100% 0 0) !important; }
 
-  /* Scene 3 — connected */
-  #bw-scene-3 .bw-act--settings { opacity: 0; }
-  #bw-scene-3 .bw-act--signin { opacity: 1; }
-  #bw-scene-3 .bw-signin-fields { opacity: 0; }
-  #bw-scene-3 .bw-connected { opacity: 1; }
-  #bw-scene-3 .bw-underline { opacity: 1; width: 48%; }
-  #bw-scene-3 .bw-cursor { opacity: 0; }
-  #bw-scene-3 .bw-cursor::after { opacity: 0; }
-}
-
-
-/* ============================================================
-   SHARED TOKENS + CURSOR
-   Namespaced under .bw-scene per the fragment contract.
-   ============================================================ */
-.bw-scene, .bw-scene *{ box-sizing:border-box; }
-
-.bw-scene{
-  --bw-bg:#1a1a19;
-  --bw-panel:#242320;
-  --bw-panel-edge:rgba(255,255,255,.07);
-  --bw-bubble:#3c3833;
-  --bw-bubble-text:#f2efe9;
-  --bw-hi:#eee9e2;
-  --bw-mid:#b6b2ab;
-  --bw-lo:#87837c;
-  --bw-blue:#2f8cff;
-  --bw-blue-soft:rgba(47,140,255,.16);
-  --bw-mono: ui-monospace, "SF Mono", "SFMono-Regular", Menlo, Consolas, monospace;
-  --bw-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-  position:relative;
-  width:100%;
-  aspect-ratio:16/9;
-  container-type:inline-size;
-  overflow:hidden;
-  border-radius:clamp(8px,1.4cqi,14px);
-  background:var(--bw-bg);
-  font-family:var(--bw-sans);
-  font-size:clamp(11px,2.05cqi,16px);
-  color:var(--bw-hi);
-  isolation:isolate;
-}
-
-.bw-scene .bw-cursor{
-  position:absolute;
-  width:clamp(9px,1.5cqi,15px);
-  height:clamp(9px,1.5cqi,15px);
-  border-radius:50%;
-  background:#fff;
-  box-shadow:0 0 0 clamp(3px,.55cqi,6px) rgba(255,255,255,.18), 0 .15em .5em rgba(0,0,0,.55);
-  pointer-events:none;
-  z-index:80;
-  transform:translate(-50%,-50%) scale(1);
-}
-
-/* ============================================================
-   SCENE 4 — "Save statements, tell Claude to file them"
-   16s loop. Beats (seconds -> event):
-   0.0  reset: files sit on the desktop, chat empty
-   0.6  cursor settles on statement-2026-06.pdf
-   1.0  click pulse, drag begins
-   1.8  file 1 lands in the intake row, row flashes blue
-   2.1  file 1 absorbed (filed)
-   2.4  cursor moves up to ira-2026-06.pdf, click pulse
-   3.4  file 2 lands in the intake row, row flashes blue again
-   3.7  file 2 absorbed, "2 items" appears on the intake row
-   4.3  cursor travels to the chat pane and fades
-   4.6  user bubble types "File everything in my intake folder."
-   5.9  tool chip: "Briefly · read intake · 2 statements"
-   7.7  "Filed both for the Johnson family."
-   9.1  "Originals -> originals/johnson-family/"
-   10.6 "Schwab ...4417  $1,284,306.22 [1]"
-   12.2 "Vanguard IRA ...9052  $612,940.18 [2]"
-   12.2-14.4 hold on the finished answer
-   14.4-15.4 fade out, scene resets
-   ============================================================ */
-#bw-scene-4 .bw4-left{
-  position:absolute; left:0; top:0; width:38%; height:100%;
-  background:var(--bw-bg);
-}
-#bw-scene-4 .bw4-right{
-  position:absolute; right:0; top:0; width:62%; height:100%;
-  background:var(--bw-panel);
-  border-left:1px solid var(--bw-panel-edge);
-  overflow:hidden;
-}
-#bw-scene-4 .bw4-appmark{
-  position:absolute; top:4%; left:6%;
-  font-size:.62em; font-weight:600; letter-spacing:.02em;
-  color:var(--bw-lo);
-}
-
-/* Finder-style window */
-#bw-scene-4 .bw4-finder{
-  position:absolute; left:10%; top:16%; width:80%;
-  background:#f4f3f1;
-  border-radius:.6em;
-  overflow:hidden;
-  box-shadow:0 1.2em 2.6em rgba(0,0,0,.45), 0 0 0 1px rgba(0,0,0,.06);
-}
-#bw-scene-4 .bw4-titlebar{
-  display:flex; align-items:center; gap:.35em;
-  padding:.55em .7em;
-  background:#eae9e6;
-  border-bottom:1px solid #dcdbd8;
-}
-#bw-scene-4 .bw4-dot{ width:.55em; height:.55em; border-radius:50%; }
-#bw-scene-4 .bw4-dot-r{ background:#ff5f57; }
-#bw-scene-4 .bw4-dot-y{ background:#febc2e; }
-#bw-scene-4 .bw4-dot-g{ background:#28c840; }
-#bw-scene-4 .bw4-wintitle{ margin-left:.4em; font-size:.7em; font-weight:600; color:#59584f; }
-#bw-scene-4 .bw4-rows{ display:flex; flex-direction:column; }
-#bw-scene-4 .bw4-row{
-  position:relative; display:flex; align-items:center; gap:.5em;
-  padding:.7em .8em; font-size:.74em; color:#2b2a27;
-  border-bottom:1px solid #ececea;
-}
-#bw-scene-4 .bw4-row:last-child{ border-bottom:none; }
-#bw-scene-4 .bw4-ficon{
-  width:1em; height:.78em; background:var(--bw-blue);
-  border-radius:0 .2em .2em .2em; position:relative; flex:none;
-}
-#bw-scene-4 .bw4-ficon::before{
-  content:""; position:absolute; left:0; top:-.26em;
-  width:.5em; height:.26em; background:inherit; border-radius:.2em .2em 0 0;
-}
-#bw-scene-4 .bw4-rowlabel{ flex:1; }
-#bw-scene-4 .bw4-rowcount{
-  font-size:.82em; color:#9a9992; opacity:0;
-  animation:bw4-count 16s infinite;
-}
-#bw-scene-4 .bw4-row-glow{
-  position:absolute; inset:0; pointer-events:none;
-  background:linear-gradient(90deg, rgba(47,140,255,.24), rgba(47,140,255,.05));
-  opacity:0;
-  animation:bw4-row-glow 16s infinite;
-}
-
-/* Dragged file chips */
-#bw-scene-4 .bw4-file{
-  position:absolute; z-index:10;
-  display:flex; align-items:center; gap:.35em;
-  padding:.35em .55em; white-space:nowrap;
-  background:#fff; color:#2b2a27; font-size:.46em; font-weight:500;
-  border-radius:.5em;
-  box-shadow:0 .6em 1.5em rgba(0,0,0,.4);
-}
-#bw-scene-4 .bw4-file-badge{
-  background:var(--bw-blue); color:#fff; font:700 1em/1 var(--bw-mono);
-  padding:.15em .35em; border-radius:.3em;
-}
-#bw-scene-4 .bw4-file-1{ animation:bw4-file1 16s infinite; }
-#bw-scene-4 .bw4-file-2{ animation:bw4-file2 16s infinite; }
-
-/* Chat pane */
-#bw-scene-4 .bw4-chat{
-  position:absolute; inset:0; padding:9% 6% 6%;
-  display:flex; flex-direction:column; gap:.55em;
-  animation:bw4-fadeout-all 16s infinite;
-}
-#bw-scene-4 .bw4-msg-user{
-  align-self:flex-end; max-width:84%;
-  background:var(--bw-bubble); color:var(--bw-bubble-text);
-  padding:.55em .85em; border-radius:.8em .8em .15em .8em;
-  font-size:.76em; line-height:1.4;
-  opacity:0;
-  animation: bw4-msg-in 16s infinite;
-}
-#bw-scene-4 .bw4-typewriter{
-  position:relative; display:inline-block;
-  clip-path:inset(0 100% 0 0);
-  animation:bw4-typewriter 16s infinite;
-}
-#bw-scene-4 .bw4-toolchip{
-  align-self:flex-start; display:inline-flex; align-items:center; gap:.35em;
-  font:500 .62em/1.3 var(--bw-mono); color:var(--bw-mid);
-  background:rgba(255,255,255,.045); border:1px solid var(--bw-panel-edge);
-  padding:.5em .7em; border-radius:.55em;
-  opacity:0; transform:translateY(.4em);
-  animation:bw4-toolchip 16s infinite;
-}
-#bw-scene-4 .bw4-tick{ color:var(--bw-blue); font-weight:700; }
-#bw-scene-4 .bw4-dotsep{ color:var(--bw-lo); margin:0 .1em; }
-#bw-scene-4 .bw4-a-line{
-  font-size:.74em; line-height:1.5; color:var(--bw-mid);
-  opacity:0; transform:translateY(.4em);
-}
-#bw-scene-4 .bw4-a-1{ color:var(--bw-hi); animation:bw4-a1 16s infinite; }
-#bw-scene-4 .bw4-a-2{ animation:bw4-a2 16s infinite; }
-#bw-scene-4 .bw4-a-3{ animation:bw4-a3 16s infinite; }
-#bw-scene-4 .bw4-a-4{ animation:bw4-a4 16s infinite; }
-#bw-scene-4 .bw4-path{ font-family:var(--bw-mono); font-size:.94em; color:var(--bw-mid); }
-#bw-scene-4 .bw4-amt{ color:var(--bw-hi); font-weight:600; font-variant-numeric:tabular-nums; }
-#bw-scene-4 .bw4-chip{
-  display:inline-flex; align-items:center; justify-content:center;
-  min-width:1.3em; height:1.3em; margin-left:.3em;
-  border-radius:.4em; background:var(--bw-blue-soft);
-  border:1px solid rgba(47,140,255,.4); color:var(--bw-blue);
-  font:700 .68em/1 var(--bw-mono);
-}
-
-#bw-scene-4 .bw-cursor{ animation:bw4-cursor 16s infinite; }
-
-@keyframes bw4-file1{
-  0%,6%{ top:4%; left:10%; opacity:1; transform:scale(1); }
-  6.5%{ top:4%; left:10%; opacity:1; transform:scale(1.08); }
-  11%{ top:23%; left:16%; opacity:1; transform:scale(1); }
-  13%{ top:23%; left:16%; opacity:0; transform:scale(.8); }
-  99%{ top:23%; left:16%; opacity:0; }
-  100%{ top:4%; left:10%; opacity:1; transform:scale(1); }
-}
-@keyframes bw4-file2{
-  0%,16%{ top:12%; left:10%; opacity:1; transform:scale(1); }
-  16.5%{ top:12%; left:10%; opacity:1; transform:scale(1.08); }
-  21%{ top:23%; left:16%; opacity:1; transform:scale(1); }
-  23%{ top:23%; left:16%; opacity:0; transform:scale(.8); }
-  99%{ top:23%; left:16%; opacity:0; }
-  100%{ top:12%; left:10%; opacity:1; transform:scale(1); }
-}
-@keyframes bw4-row-glow{
-  0%,11%{ opacity:0; }
-  12%{ opacity:1; }
-  14%{ opacity:0; }
-  21%{ opacity:0; }
-  22%{ opacity:1; }
-  24%{ opacity:0; }
-  100%{ opacity:0; }
-}
-@keyframes bw4-count{
-  0%,22%{ opacity:0; }
-  23%{ opacity:1; }
-  89%{ opacity:1; }
-  96%{ opacity:0; }
-  100%{ opacity:0; }
-}
-@keyframes bw4-fadeout-all{
-  0%,89%{ opacity:1; }
-  96%{ opacity:0; }
-  99%{ opacity:0; }
-  100%{ opacity:1; }
-}
-@keyframes bw4-msg-in{
-  0%,26%{ opacity:0; }
-  28%,89%{ opacity:1; }
-  96%,100%{ opacity:0; }
-}
-@keyframes bw4-typewriter{
-  0%,29%{ clip-path:inset(0 100% 0 0); }
-  37%{ clip-path:inset(0 0% 0 0); }
-  99%{ clip-path:inset(0 0% 0 0); }
-  100%{ clip-path:inset(0 100% 0 0); }
-}
-@keyframes bw4-toolchip{
-  0%,40%{ opacity:0; transform:translateY(.4em); }
-  41%{ opacity:1; transform:translateY(0); }
-  99%{ opacity:1; transform:translateY(0); }
-  100%{ opacity:0; transform:translateY(.4em); }
-}
-@keyframes bw4-a1{
-  0%,48%{ opacity:0; transform:translateY(.4em); }
-  49%{ opacity:1; transform:translateY(0); }
-  99%{ opacity:1; transform:translateY(0); }
-  100%{ opacity:0; transform:translateY(.4em); }
-}
-@keyframes bw4-a2{
-  0%,57%{ opacity:0; transform:translateY(.4em); }
-  58%{ opacity:1; transform:translateY(0); }
-  99%{ opacity:1; transform:translateY(0); }
-  100%{ opacity:0; transform:translateY(.4em); }
-}
-@keyframes bw4-a3{
-  0%,66%{ opacity:0; transform:translateY(.4em); }
-  67%{ opacity:1; transform:translateY(0); }
-  99%{ opacity:1; transform:translateY(0); }
-  100%{ opacity:0; transform:translateY(.4em); }
-}
-@keyframes bw4-a4{
-  0%,76%{ opacity:0; transform:translateY(.4em); }
-  77%{ opacity:1; transform:translateY(0); }
-  99%{ opacity:1; transform:translateY(0); }
-  100%{ opacity:0; transform:translateY(.4em); }
-}
-@keyframes bw4-cursor{
-  0%,4%{ left:4%; top:4%; opacity:1; transform:translate(-50%,-50%) scale(1); }
-  6%{ left:4%; top:4%; opacity:1; transform:translate(-50%,-50%) scale(1.3); }
-  7%{ left:4%; top:4%; opacity:1; transform:translate(-50%,-50%) scale(1); }
-  11%{ left:6%; top:23%; opacity:1; transform:translate(-50%,-50%) scale(1); }
-  13%{ left:6%; top:23%; opacity:1; transform:translate(-50%,-50%) scale(1); }
-  15%{ left:4%; top:12%; opacity:1; transform:translate(-50%,-50%) scale(1); }
-  16%{ left:4%; top:12%; opacity:1; transform:translate(-50%,-50%) scale(1.3); }
-  17%{ left:4%; top:12%; opacity:1; transform:translate(-50%,-50%) scale(1); }
-  21%{ left:6%; top:23%; opacity:1; transform:translate(-50%,-50%) scale(1); }
-  23%{ left:6%; top:23%; opacity:1; transform:translate(-50%,-50%) scale(1); }
-  27%{ left:66%; top:13%; opacity:1; transform:translate(-50%,-50%) scale(1); }
-  29%{ left:66%; top:13%; opacity:0; transform:translate(-50%,-50%) scale(1); }
-  99%{ left:66%; top:13%; opacity:0; }
-  100%{ left:4%; top:4%; opacity:1; transform:translate(-50%,-50%) scale(1); }
-}
-
-/* ============================================================
-   SCENE 5 — "Ask for the brief"
-   16s loop. Beats (seconds -> event):
-   0.0  reset: empty chat
-   0.6  cursor at the reply box, click pulse
-   1.4  user bubble finishes typing the request
-   1.9  tool chip: "Used Briefly · briefly_ask"
-   2.7  tool chip: "Used Briefly · briefly_prepare_meeting_brief"
-   3.8  brief title: "Johnson Family — Meeting Brief"
-   5.1  "Bottom line: net worth $1,897,246.40, tied to the cent [1][2]"
-   6.6  "Largest position: AAPL, 11.2% of brokerage [1]"
-   8.0  "IRA contribution room this year [2]"
-   9.6  Sources footer: "[1] Schwab statement ... [2] Vanguard statement ..."
-   9.6-11.5 hold on the finished brief
-   11.5 cursor travels to the [1] source chip
-   12.3 cursor arrives, chip glows
-   12.6 file-preview sliver peeks in from the right: "statement-2026-06.pdf"
-   13.3-14.9 hold on the citation-opens-the-original moment
-   14.9-15.5 fade out, scene resets
-   ============================================================ */
-#bw-scene-5 .bw5-appmark{
-  position:absolute; top:4%; left:5%; z-index:5;
-  font-size:.62em; font-weight:600; letter-spacing:.02em;
-  color:var(--bw-lo);
-}
-#bw-scene-5 .bw5-chat{
-  position:absolute; inset:0; padding:9% 10%;
-  display:flex; flex-direction:column; gap:.6em;
-  animation:bw5-fadeout-all 16s infinite;
-}
-#bw-scene-5 .bw5-msg-user{
-  align-self:flex-end; max-width:80%;
-  background:var(--bw-bubble); color:var(--bw-bubble-text);
-  padding:.55em .85em; border-radius:.8em .8em .15em .8em;
-  font-size:.8em; line-height:1.4;
-}
-#bw-scene-5 .bw5-typewriter{
-  position:relative; display:inline-block;
-  clip-path:inset(0 100% 0 0);
-  animation:bw5-typewriter 16s infinite;
-}
-#bw-scene-5 .bw5-toolchip{
-  align-self:flex-start; display:inline-flex; align-items:center; gap:.35em;
-  font:500 .62em/1.3 var(--bw-mono); color:var(--bw-mid);
-  background:rgba(255,255,255,.045); border:1px solid var(--bw-panel-edge);
-  padding:.5em .7em; border-radius:.55em;
-  opacity:0; transform:translateY(.4em);
-}
-#bw-scene-5 .bw5-tool-1{ animation:bw5-tool1 16s infinite; }
-#bw-scene-5 .bw5-tool-2{ animation:bw5-tool2 16s infinite; }
-#bw-scene-5 .bw5-tick{ color:var(--bw-blue); font-weight:700; }
-#bw-scene-5 .bw5-dotsep{ color:var(--bw-lo); margin:0 .15em; }
-
-#bw-scene-5 .bw5-brief{
-  display:flex; flex-direction:column; gap:.55em;
-  margin-top:.2em; padding:.8em .9em;
-  background:rgba(255,255,255,.03);
-  border:1px solid var(--bw-panel-edge);
-  border-radius:.7em;
-  opacity:0;
-  animation: bw5-brief-in 16s infinite;
-}
-#bw-scene-5 .bw5-line{
-  font-size:.78em; line-height:1.5; color:var(--bw-mid);
-  opacity:0; transform:translateY(.4em);
-}
-#bw-scene-5 .bw5-line-title{
-  font-weight:700; color:var(--bw-hi); font-size:.88em;
-  animation:bw5-title 16s infinite;
-}
-#bw-scene-5 .bw5-line-bottom{ color:var(--bw-hi); animation:bw5-bottom 16s infinite; }
-#bw-scene-5 .bw5-line-c1{ animation:bw5-c1 16s infinite; }
-#bw-scene-5 .bw5-line-c2{ animation:bw5-c2 16s infinite; }
-#bw-scene-5 .bw5-line-sources{
-  font-size:.68em; color:var(--bw-lo);
-  margin-top:.3em; padding-top:.5em; border-top:1px solid var(--bw-panel-edge);
-  animation:bw5-sources 16s infinite;
-}
-#bw-scene-5 .bw5-amt{ font-weight:700; color:var(--bw-hi); font-variant-numeric:tabular-nums; }
-#bw-scene-5 .bw5-chip{
-  display:inline-flex; align-items:center; justify-content:center;
-  min-width:1.3em; height:1.3em; margin:0 .15em;
-  border-radius:.4em; background:var(--bw-blue-soft);
-  border:1px solid rgba(47,140,255,.4); color:var(--bw-blue);
-  font:700 .66em/1 var(--bw-mono);
-}
-#bw-scene-5 .bw5-chip--src1{ animation:bw5-chip-glow 16s infinite; }
-
-/* Citation-opens-the-original preview sliver */
-#bw-scene-5 .bw5-preview{
-  position:absolute; right:0; top:60%; width:26%;
-  display:flex; align-items:center; gap:.5em;
-  padding:.6em .7em; white-space:nowrap;
-  background:#f4f3f1; color:#2b2a27; font-size:.62em;
-  border-radius:.5em 0 0 .5em;
-  box-shadow:-0.6em 0 1.6em rgba(0,0,0,.4);
-  opacity:0; transform:translateX(100%);
-  animation:bw5-preview-peek 16s infinite;
-  z-index:20;
-}
-#bw-scene-5 .bw5-preview-icon{
-  background:var(--bw-blue); color:#fff; font:700 1em/1 var(--bw-mono);
-  padding:.2em .4em; border-radius:.3em;
-}
-#bw-scene-5 .bw5-preview-label{ overflow:hidden; text-overflow:ellipsis; }
-
-#bw-scene-5 .bw-cursor{ animation:bw5-cursor 16s infinite; }
-
-@keyframes bw5-brief-in{
-  0%,22%{ opacity:0; }
-  24%,92%{ opacity:1; }
-  97%,100%{ opacity:0; }
-}
-@keyframes bw5-typewriter{
-  0%,3%{ clip-path:inset(0 100% 0 0); }
-  9%{ clip-path:inset(0 0% 0 0); }
-  99%{ clip-path:inset(0 0% 0 0); }
-  100%{ clip-path:inset(0 100% 0 0); }
-}
-@keyframes bw5-tool1{
-  0%,11%{ opacity:0; transform:translateY(.4em); }
-  12%{ opacity:1; transform:translateY(0); }
-  99%{ opacity:1; transform:translateY(0); }
-  100%{ opacity:0; transform:translateY(.4em); }
-}
-@keyframes bw5-tool2{
-  0%,16%{ opacity:0; transform:translateY(.4em); }
-  17%{ opacity:1; transform:translateY(0); }
-  99%{ opacity:1; transform:translateY(0); }
-  100%{ opacity:0; transform:translateY(.4em); }
-}
-@keyframes bw5-title{
-  0%,23%{ opacity:0; transform:translateY(.4em); }
-  24%{ opacity:1; transform:translateY(0); }
-  99%{ opacity:1; transform:translateY(0); }
-  100%{ opacity:0; transform:translateY(.4em); }
-}
-@keyframes bw5-bottom{
-  0%,32%{ opacity:0; transform:translateY(.4em); }
-  33%{ opacity:1; transform:translateY(0); }
-  99%{ opacity:1; transform:translateY(0); }
-  100%{ opacity:0; transform:translateY(.4em); }
-}
-@keyframes bw5-c1{
-  0%,41%{ opacity:0; transform:translateY(.4em); }
-  42%{ opacity:1; transform:translateY(0); }
-  99%{ opacity:1; transform:translateY(0); }
-  100%{ opacity:0; transform:translateY(.4em); }
-}
-@keyframes bw5-c2{
-  0%,50%{ opacity:0; transform:translateY(.4em); }
-  51%{ opacity:1; transform:translateY(0); }
-  99%{ opacity:1; transform:translateY(0); }
-  100%{ opacity:0; transform:translateY(.4em); }
-}
-@keyframes bw5-sources{
-  0%,60%{ opacity:0; transform:translateY(.4em); }
-  61%{ opacity:1; transform:translateY(0); }
-  99%{ opacity:1; transform:translateY(0); }
-  100%{ opacity:0; transform:translateY(.4em); }
-}
-@keyframes bw5-fadeout-all{
-  0%,92%{ opacity:1; }
-  97%{ opacity:0; }
-  99%{ opacity:0; }
-  100%{ opacity:1; }
-}
-@keyframes bw5-chip-glow{
-  0%,76%{ background:var(--bw-blue-soft); box-shadow:0 0 0 0 rgba(47,140,255,0); }
-  77%{ background:rgba(47,140,255,.3); box-shadow:0 0 0 .35em rgba(47,140,255,.35); }
-  79%{ background:rgba(47,140,255,.4); box-shadow:0 0 0 .4em rgba(47,140,255,.4); }
-  93%{ background:rgba(47,140,255,.4); box-shadow:0 0 0 .4em rgba(47,140,255,.4); }
-  97%{ background:var(--bw-blue-soft); box-shadow:0 0 0 0 rgba(47,140,255,0); }
-  100%{ background:var(--bw-blue-soft); box-shadow:0 0 0 0 rgba(47,140,255,0); }
-}
-@keyframes bw5-preview-peek{
-  0%,78%{ opacity:0; transform:translateX(100%); }
-  79%{ opacity:1; transform:translateX(90%); }
-  83%{ opacity:1; transform:translateX(58%); }
-  93%{ opacity:1; transform:translateX(58%); }
-  97%{ opacity:0; transform:translateX(100%); }
-  100%{ opacity:0; transform:translateX(100%); }
-}
-@keyframes bw5-cursor{
-  0%,2%{ left:50%; top:90%; opacity:1; transform:translate(-50%,-50%) scale(1); }
-  2.5%{ left:50%; top:90%; opacity:1; transform:translate(-50%,-50%) scale(1.3); }
-  4%{ left:50%; top:90%; opacity:1; transform:translate(-50%,-50%) scale(1); }
-  9%{ left:50%; top:90%; opacity:1; transform:translate(-50%,-50%) scale(1); }
-  10%{ left:50%; top:90%; opacity:0; transform:translate(-50%,-50%) scale(1); }
-  71%{ left:50%; top:90%; opacity:0; transform:translate(-50%,-50%) scale(1); }
-  72%{ left:50%; top:90%; opacity:1; transform:translate(-50%,-50%) scale(1); }
-  77%{ left:17%; top:64%; opacity:1; transform:translate(-50%,-50%) scale(1); }
-  78%{ left:17%; top:64%; opacity:1; transform:translate(-50%,-50%) scale(1.3); }
-  80%{ left:17%; top:64%; opacity:1; transform:translate(-50%,-50%) scale(1); }
-  93%{ left:17%; top:64%; opacity:1; transform:translate(-50%,-50%) scale(1); }
-  97%{ left:17%; top:64%; opacity:0; transform:translate(-50%,-50%) scale(1); }
-  99%{ left:17%; top:64%; opacity:0; }
-  100%{ left:50%; top:90%; opacity:1; transform:translate(-50%,-50%) scale(1); }
-}
-
-/* ============================================================
-   REDUCED MOTION — freeze each scene at its most informative
-   final frame instead of animating.
-   ============================================================ */
-@media (prefers-reduced-motion: reduce){
-  .bw-scene *{ animation:none !important; transition:none !important; }
-  #bw-scene-4 .bw-cursor, #bw-scene-5 .bw-cursor{ opacity:0 !important; }
-
-  #bw-scene-4 .bw4-file{ opacity:0 !important; }
-  #bw-scene-4 .bw4-row-glow{ opacity:0 !important; }
-  #bw-scene-4 .bw4-rowcount{ opacity:1 !important; }
-  #bw-scene-4 .bw4-chat{ opacity:1 !important; }
-  #bw-scene-4 .bw4-msg-user{ opacity:1 !important; }
-  #bw-scene-4 .bw4-typewriter{ clip-path:inset(0 0% 0 0) !important; }
-  #bw-scene-4 .bw4-toolchip,
-  #bw-scene-4 .bw4-a-line{ opacity:1 !important; transform:none !important; }
-
-  #bw-scene-5 .bw5-chat{ opacity:1 !important; }
-  #bw-scene-5 .bw5-typewriter{ clip-path:inset(0 0% 0 0) !important; }
-  #bw-scene-5 .bw5-toolchip,
-  #bw-scene-5 .bw5-line{ opacity:1 !important; transform:none !important; }
-  #bw-scene-5 .bw5-brief{ opacity:1 !important; }
-  #bw-scene-5 .bw5-chip--src1{
-    background:rgba(47,140,255,.4) !important;
-    box-shadow:0 0 0 .4em rgba(47,140,255,.4) !important;
+  #bwv2-scene-5 .bwv2-s5-beat2 { opacity: 1 !important; }
+  #bwv2-scene-5 .bwv2-s5-b2-chat .bwv2-msg-user { opacity: 1 !important; }
+  #bwv2-scene-5 .bwv2-s5-b2-type { clip-path: inset(0 0% 0 0) !important; }
+  #bwv2-scene-5 .bwv2-s5-b2-chip1,
+  #bwv2-scene-5 .bwv2-s5-b2-chip2 { opacity: 1 !important; transform: none !important; }
+  #bwv2-scene-5 .bwv2-s5-b2-brief { opacity: 1 !important; }
+  #bwv2-scene-5 .bwv2-s5-b2-title,
+  #bwv2-scene-5 .bwv2-s5-b2-bottom,
+  #bwv2-scene-5 .bwv2-s5-b2-largest,
+  #bwv2-scene-5 .bwv2-s5-b2-sources { opacity: 1 !important; transform: none !important; }
+  #bwv2-scene-5 .bwv2-s5-chipglow {
+    background: rgba(47, 140, 255, .4) !important;
+    box-shadow: 0 0 0 .4em rgba(47, 140, 255, .4) !important;
   }
-  #bw-scene-5 .bw5-preview{ opacity:1 !important; transform:translateX(58%) !important; }
+  #bwv2-scene-5 .bwv2-s5-preview { opacity: 1 !important; transform: translateX(58%) !important; }
+  #bwv2-scene-5 .bwv2-s5-cursor { opacity: 0 !important; }
+  #bwv2-scene-5 .bwv2-s5-cursor::after { opacity: 0 !important; }
 }
 
 </style>
@@ -1553,14 +1450,12 @@
 
 <section class="dl-hero">
   <div class="dl-hero-inner">
-    <span class="dl-eyebrow">Download &middot; Claude Desktop</span>
     <h1>Add Briefly to Claude.</h1>
-    <p>Briefly runs inside the Claude desktop app, on your firm's own files. Quick to set up, then about five minutes to your first brief. The full walkthrough is just below.</p>
+    <p>Your firm&rsquo;s memory, from your own files.</p>
     <div class="dl-cta-row">
       <a class="dl-btn" id="dl" href="briefly-mcp.mcpb" download="briefly_wealth.mcpb">Download Briefly <span class="arr" aria-hidden="true">&darr;</span></a>
-      <span class="dl-meta">For Mac and Windows.<br>Requires the free <a href="https://claude.ai/download" target="_blank" rel="noopener">Claude desktop app</a>.</span>
+      <span class="dl-meta">Free &middot; Mac &amp; Windows &middot; Requires <a href="https://claude.ai/download" target="_blank" rel="noopener">Claude</a></span>
     </div>
-    <p class="dl-trust">Your original client files stay on your machine, and Briefly never uploads them. The brief itself is written by your own Claude, so its content follows your Claude plan and privacy settings. <a href="security.html">How we handle data</a></p>
   </div>
 </section>
 
@@ -1568,7 +1463,7 @@
   <div class="dl-wrap">
     <div class="dl-note"><strong>Using Briefly starts with a login we set up for you.</strong> Request access and we will provision your firm's account, so your whole team shares how your firm likes its briefs written. Briefly is currently free to use. <a class="dl-note-btn" href="index.html#contact">Request access</a></div>
 
-    <h2 class="steps-head">Five minutes to your first brief.</h2>
+    <h2 class="steps-head">Five minutes, start to finish.</h2>
     <div class="setup-pin" id="setupPin">
       <div class="setup-pin-inner">
         <div class="setup-dots">
@@ -1582,239 +1477,332 @@
           <article class="setup-panel active">
             <div class="p-head">
               <span class="s-num">STEP 01</span>
-              <h3>Get the free Claude app</h3>
-              <p class="cap">Briefly runs inside <b>Claude</b>, Anthropic's free desktop app. <a href="https://claude.ai/download" target="_blank" rel="noopener">Get Claude</a>, then come back.</p>
+              <h3>Get Claude</h3>
+              <p class="cap">Free from <a href="https://claude.ai/download" target="_blank" rel="noopener">claude.ai</a>. Skip this step if you already have it.</p>
             </div>
-            <div class="setup-frame"><div class="bw-scene" id="bw-scene-1">
-  <div class="bw-window">
-    <div class="bw-titlebar">
-      <span class="bw-dot bw-dot--red"></span>
-      <span class="bw-dot bw-dot--yellow"></span>
-      <span class="bw-dot bw-dot--green"></span>
-      <div class="bw-addressbar">claude.ai/download</div>
-    </div>
-    <div class="bw-page">
-      <div class="bw-wordmark">Claude</div>
-      <h2 class="bw-heading">Download Claude</h2>
-      <p class="bw-subheading">One app for chat, code, and tools.</p>
-      <button class="bw-btn bw-btn--primary bw-btn--download" type="button">
-        <span class="bw-icon-download" aria-hidden="true"></span>
-        <span>Download for macOS</span>
-      </button>
-    </div>
-    <div class="bw-download-pill">
-      <span class="bw-pill-icon" aria-hidden="true"></span>
-      <span class="bw-pill-text">
-        <span class="bw-label-downloading">Downloading macOS&hellip;</span>
-        <span class="bw-label-done">Downloaded</span>
-      </span>
-      <span class="bw-progress-track"><span class="bw-progress-fill"></span></span>
+            <div class="setup-frame"><div class="bwv2-scene" id="bwv2-scene-1">
+  <!-- SCENE 1 -- "Get Claude" -- 14s loop
+    0.00s (0%)      browser page holds, cursor resting near the download button
+    1.80s (12.86%)  idle hold ends
+    2.10s (15%)     click pulse peak on "Download for macOS"
+    2.40s (17.14%)  button released, cursor begins fading
+    2.60s (18.57%)  download bubble slides in top-right of the toolbar: "Claude.dmg", ring at 0%
+    5.40s (38.57%)  ring completes, label swaps to "Downloaded" + check
+    7.20s (51.43%)  hold ends, browser act begins fading
+    7.35s (52.50%)  crossfade complete -- classic macOS install window visible (icon / arrow / Applications)
+    9.50s (67.86%)  cursor fades in on the Claude icon, grabs
+    9.50-11.30s     drag: icon slides along the arrow into Applications
+    11.30s (80.71%) icon settles into the folder, folder glows, release pulse
+    13.30s (95%)    hold ends, fade to blank
+    13.90s (99.29%) blank gap
+    14.00s (100%)   reset
+  -->
+  <div class="bwv2-act bwv2-1-act--browser">
+    <div class="bwv2-window">
+      <div class="bwv2-titlebar">
+        <span class="bwv2-dot bwv2-dot--red"></span>
+        <span class="bwv2-dot bwv2-dot--yellow"></span>
+        <span class="bwv2-dot bwv2-dot--green"></span>
+        <div class="bwv2-addressbar">claude.ai/download</div>
+      </div>
+      <div class="bwv2-page">
+        <div class="bwv2-wordmark">Claude</div>
+        <h2 class="bwv2-heading">Download Claude</h2>
+        <p class="bwv2-subheading">One app for chat, code, and tools.</p>
+        <button class="bwv2-btn bwv2-btn--primary bwv2-1-btn" type="button">
+          <span class="bwv2-icon-download" aria-hidden="true"></span>
+          <span>Download for macOS</span>
+        </button>
+      </div>
+      <div class="bwv2-dlbubble bwv2-1-bubble">
+        <span class="bwv2-ring bwv2-1-ring"><i class="bwv2-ring-hole"></i></span>
+        <span class="bwv2-dlbubble-text">
+          <span class="bwv2-dlbubble-name">Claude.dmg</span>
+          <span class="bwv2-dlbubble-statuswrap">
+            <span class="bwv2-dlbubble-status bwv2-1-status-downloading">Downloading&hellip;</span>
+            <span class="bwv2-dlbubble-status bwv2-1-status-done">Downloaded</span>
+          </span>
+        </span>
+      </div>
     </div>
   </div>
-  <span class="bw-cursor"></span>
+
+  <div class="bwv2-act bwv2-1-act--installer">
+    <div class="bwv2-installer">
+      <div class="bwv2-installer-titlebar">
+        <span class="bwv2-dot bwv2-dot--red"></span>
+        <span class="bwv2-dot bwv2-dot--yellow"></span>
+        <span class="bwv2-dot bwv2-dot--green"></span>
+      </div>
+      <div class="bwv2-installer-body">
+        <div class="bwv2-installer-icon bwv2-1-icon"><span class="bwv2-spark"></span></div>
+        <span class="bwv2-installer-arrow" aria-hidden="true">&rarr;</span>
+        <div class="bwv2-installer-target">
+          <span class="bwv2-foldericon bwv2-1-folder"></span>
+          <span class="bwv2-installer-label">Applications</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <span class="bwv2-cursor bwv2-1-cursor"></span>
 </div></div>
           </article>
           <article class="setup-panel">
             <div class="p-head">
               <span class="s-num">STEP 02</span>
-              <h3>Install Briefly</h3>
-              <p class="cap">Double-click <b>briefly_wealth.mcpb</b>, then click <b>Install</b> in Claude. That's the whole install: nothing to type, no account form. You only do this once.</p>
+              <h3>Download Briefly</h3>
+              <p class="cap">One click here, then open it from your browser&rsquo;s downloads.<span class="side">Using Safari? It&rsquo;s the arrow next to the address bar.</span></p>
             </div>
-            <div class="setup-frame"><div class="bw-scene" id="bw-scene-2">
-  <div class="bw-act bw-act--downloads">
-    <div class="bw-desktop-surface"></div>
-    <div class="bw-file-chip">
-      <span class="bw-file-icon" aria-hidden="true"></span>
-      <span class="bw-file-name">briefly_wealth.mcpb</span>
+            <div class="setup-frame"><div class="bwv2-scene" id="bwv2-scene-2">
+  <!-- SCENE 2 -- "Download Briefly" -- 12s loop
+    0.00s (0%)      Briefly's own download hero holds, cursor resting near "Download Briefly"
+    1.60s (13.33%)  idle hold ends
+    1.90s (15.83%)  click pulse peak
+    2.10s (17.5%)   button released, cursor begins fading
+    2.30s (19.17%)  same download-bubble pattern as scene 1 appears top-right: "briefly_wealth.mcpb"
+    6.00s (50%)     ring completes, "Downloaded" + check
+    6.00-7.60s      cursor fades back in and travels up toward the bubble
+    7.60s (63.33%)  cursor arrives, click pulse on the finished file
+    7.60-10.60s     hold on the click -- hand-off to scene 3
+    10.60s (88.33%) fade to blank
+    12.00s (100%)   reset
+  -->
+  <div class="bwv2-window bwv2-2-window">
+    <div class="bwv2-titlebar">
+      <span class="bwv2-dot bwv2-dot--red"></span>
+      <span class="bwv2-dot bwv2-dot--yellow"></span>
+      <span class="bwv2-dot bwv2-dot--green"></span>
+      <div class="bwv2-addressbar">brieflywealth.com/download</div>
     </div>
-    <div class="bw-dock">
-      <span class="bw-dock-item"></span>
-      <span class="bw-dock-item"></span>
-      <span class="bw-dock-item"></span>
-      <span class="bw-dock-item bw-dock-item--accent"></span>
+    <div class="bwv2-2-hero">
+      <span class="bwv2-2-eyebrow">Download &middot; Claude Desktop</span>
+      <h2 class="bwv2-2-heading">Add Briefly to Claude.</h2>
+      <p class="bwv2-2-sub">Runs on your firm&rsquo;s own files, inside Claude.</p>
+      <button class="bwv2-btn bwv2-2-btn" type="button">Download Briefly <span aria-hidden="true">&darr;</span></button>
     </div>
-  </div>
-  <div class="bw-act bw-act--app">
-    <div class="bw-window">
-      <div class="bw-titlebar bw-titlebar--plain">
-        <span class="bw-dot bw-dot--red"></span>
-        <span class="bw-dot bw-dot--yellow"></span>
-        <span class="bw-dot bw-dot--green"></span>
-        <span class="bw-titlebar-title">Settings</span>
-      </div>
-      <div class="bw-settings-shell">
-        <div class="bw-settings-nav">
-          <span class="bw-nav-item"></span>
-          <span class="bw-nav-item bw-nav-item--active"></span>
-          <span class="bw-nav-item"></span>
-        </div>
-        <div class="bw-settings-main">
-          <div class="bw-ext-row">
-            <span class="bw-mark">B</span>
-            <span class="bw-ext-name">Briefly</span>
-          </div>
-        </div>
-      </div>
-      <div class="bw-scrim"></div>
-      <div class="bw-modal-content">
-        <span class="bw-mark bw-mark--lg">B</span>
-        <h3 class="bw-modal-title">Install Briefly?</h3>
-        <p class="bw-modal-sub">Extension from Briefly Wealth</p>
-        <div class="bw-modal-actions">
-          <button class="bw-btn bw-btn--ghost" type="button">Cancel</button>
-          <button class="bw-btn bw-btn--accent bw-btn--install" type="button">Install</button>
-        </div>
-      </div>
-      <div class="bw-toast">
-        <span class="bw-check bw-check--claude" aria-hidden="true"></span>
-        <span class="bw-toast-text">Briefly added to Claude</span>
-      </div>
+    <div class="bwv2-dlbubble bwv2-2-bubble">
+      <span class="bwv2-ring bwv2-2-ring"><i class="bwv2-ring-hole"></i></span>
+      <span class="bwv2-dlbubble-text">
+        <span class="bwv2-dlbubble-name">briefly_wealth.mcpb</span>
+        <span class="bwv2-dlbubble-statuswrap">
+          <span class="bwv2-dlbubble-status bwv2-2-status-downloading">Downloading&hellip;</span>
+          <span class="bwv2-dlbubble-status bwv2-2-status-done">Downloaded</span>
+        </span>
+      </span>
     </div>
   </div>
-  <span class="bw-cursor"></span>
+  <span class="bwv2-cursor bwv2-2-cursor"></span>
 </div></div>
           </article>
           <article class="setup-panel">
             <div class="p-head">
               <span class="s-num">STEP 03</span>
-              <h3>Sign in with your firm login</h3>
-              <p class="cap">The settings screen you'll see is <b>optional</b>: leave it blank and Briefly creates its folder for you. When Claude asks, <b>sign in</b> with the login we set up for your firm. That login is the whole setup, it tells Briefly who you are and which firm you belong to.</p>
+              <h3>Claude installs it</h3>
+              <p class="cap">Click <b>Install</b>. Nothing to type.<span class="side">The settings screen is optional: Save and move on.</span></p>
             </div>
-            <div class="setup-frame"><div class="bw-scene" id="bw-scene-3">
-  <div class="bw-act bw-act--settings">
-    <div class="bw-card bw-card--settings">
-      <div class="bw-card-header">
-        <span class="bw-mark">B</span>
-        <h3 class="bw-card-title">Configure Briefly</h3>
+            <div class="setup-frame"><div class="bwv2-scene" id="bwv2-scene-3">
+  <!-- SCENE 3 -- "Claude installs it" -- 15s loop
+    0.00-0.80s (0-5.33%)   Claude Desktop window materializes (app-switch)
+    0.80-4.20s (5.33-28%)  "Install Briefly?" modal holds
+    4.20s (28%)            click pulse on Install
+    4.35s (29%)            modal replaced by the settings sheet
+    4.35-8.50s (29-56.67%) "Configure Briefly" sheet holds, cursor goes straight to Save
+    8.50s (56.67%)         click pulse on Save
+    8.65s (57.67%)         sheet replaced by the toast
+    8.65-14.20s (57.67-94.67%) toast holds: "Briefly added to Claude"
+    14.20-15.00s           fade to blank, reset
+  -->
+  <div class="bwv2-window bwv2-3-window">
+    <div class="bwv2-titlebar bwv2-titlebar--plain">
+      <span class="bwv2-dot bwv2-dot--red"></span>
+      <span class="bwv2-dot bwv2-dot--yellow"></span>
+      <span class="bwv2-dot bwv2-dot--green"></span>
+      <span class="bwv2-titlebar-title">Settings</span>
+    </div>
+    <div class="bwv2-3-shell">
+      <div class="bwv2-3-nav">
+        <span class="bwv2-3-navitem"></span>
+        <span class="bwv2-3-navitem bwv2-3-navitem--active"></span>
+        <span class="bwv2-3-navitem"></span>
       </div>
-      <div class="bw-field">
-        <label class="bw-field-label">Your firm&rsquo;s folder</label>
-        <p class="bw-field-help">Optional. Leave blank and Briefly creates a starter folder.</p>
-        <div class="bw-field-row">
-          <span class="bw-input"></span>
-          <button class="bw-btn bw-btn--ghost bw-btn--browse" type="button">Browse</button>
+      <div class="bwv2-3-main">
+        <div class="bwv2-3-extrow">
+          <span class="bwv2-mark">B</span>
+          <span class="bwv2-3-extname">Briefly</span>
         </div>
       </div>
-      <div class="bw-field">
-        <label class="bw-field-label">Inbox folder</label>
-        <p class="bw-field-help">Optional.</p>
-        <div class="bw-field-row">
-          <span class="bw-input"></span>
+    </div>
+
+    <div class="bwv2-scrim bwv2-3-scrim"></div>
+
+    <div class="bwv2-modal bwv2-3-modal">
+      <span class="bwv2-mark bwv2-mark--lg">B</span>
+      <h3 class="bwv2-modal-title">Install Briefly?</h3>
+      <p class="bwv2-modal-sub">Extension from Briefly Wealth</p>
+      <div class="bwv2-modal-actions">
+        <button class="bwv2-btn bwv2-btn--ghost" type="button">Cancel</button>
+        <button class="bwv2-btn bwv2-btn--accent bwv2-3-install-btn" type="button">Install</button>
+      </div>
+    </div>
+
+    <div class="bwv2-card bwv2-3-sheet">
+      <div class="bwv2-card-header">
+        <span class="bwv2-mark">B</span>
+        <h3 class="bwv2-card-title">Configure Briefly</h3>
+      </div>
+      <div class="bwv2-field">
+        <label class="bwv2-field-label">Your firm&rsquo;s folder</label>
+        <p class="bwv2-field-help">Optional. Leave blank and Briefly creates a starter folder.</p>
+        <div class="bwv2-field-row">
+          <span class="bwv2-input"></span>
+          <button class="bwv2-btn bwv2-btn--ghost bwv2-btn--browse" type="button">Browse</button>
         </div>
       </div>
-      <div class="bw-card-actions">
-        <button class="bw-btn bw-btn--ghost" type="button">Cancel</button>
-        <button class="bw-btn bw-btn--primary bw-btn--save" type="button">Save</button>
+      <div class="bwv2-field">
+        <label class="bwv2-field-label">Inbox folder</label>
+        <p class="bwv2-field-help">Optional.</p>
+        <div class="bwv2-field-row">
+          <span class="bwv2-input"></span>
+        </div>
+      </div>
+      <div class="bwv2-card-actions">
+        <button class="bwv2-btn bwv2-btn--ghost" type="button">Cancel</button>
+        <button class="bwv2-btn bwv2-btn--primary bwv2-3-save-btn" type="button">Save</button>
       </div>
     </div>
-  </div>
-  <div class="bw-act bw-act--signin">
-    <div class="bw-card bw-card--signin">
-      <div class="bw-card-header">
-        <span class="bw-mark">B</span>
-        <h3 class="bw-card-title">Sign in to Briefly</h3>
-      </div>
-      <div class="bw-signin-fields">
-        <span class="bw-input bw-input--filled">advisor@firm.com</span>
-        <span class="bw-input bw-input--filled">&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;</span>
-        <button class="bw-btn bw-btn--primary bw-btn--signin" type="button">Sign in</button>
-      </div>
-      <div class="bw-connected">
-        <span class="bw-check bw-check--blue" aria-hidden="true"></span>
-        <span class="bw-connected-text">Connected</span>
-        <span class="bw-underline"></span>
-      </div>
+
+    <div class="bwv2-toast bwv2-3-toast">
+      <span class="bwv2-check bwv2-check--claude" aria-hidden="true"></span>
+      <span class="bwv2-toast-text">Briefly added to Claude</span>
     </div>
   </div>
-  <span class="bw-cursor"></span>
+
+  <span class="bwv2-cursor bwv2-3-cursor"></span>
 </div></div>
           </article>
           <article class="setup-panel">
             <div class="p-head">
               <span class="s-num">STEP 04</span>
-              <h3>Add client documents</h3>
-              <p class="cap">Save statements into your Briefly folder's <b>intake</b> and say <code>File everything in my intake folder</code>. Briefly reads each document, asks who it belongs to, and files the original. Attaching a file in chat works too.</p>
+              <h3>Sign in once</h3>
+              <p class="cap">Your login is the whole setup.<span class="side">Use the login we set up for your firm, and Briefly knows you and your firm.</span></p>
             </div>
-            <div class="setup-frame"><div class="bw-scene" id="bw-scene-4">
-  <div class="bw4-left">
-    <div class="bw4-finder">
-      <div class="bw4-titlebar">
-        <span class="bw4-dot bw4-dot-r"></span>
-        <span class="bw4-dot bw4-dot-y"></span>
-        <span class="bw4-dot bw4-dot-g"></span>
-        <span class="bw4-wintitle">Briefly</span>
-      </div>
-      <div class="bw4-rows">
-        <div class="bw4-row bw4-row-intake">
-          <span class="bw4-ficon"></span>
-          <span class="bw4-rowlabel">intake</span>
-          <span class="bw4-rowcount">2 items</span>
-          <span class="bw4-row-glow"></span>
-        </div>
-        <div class="bw4-row">
-          <span class="bw4-ficon"></span>
-          <span class="bw4-rowlabel">originals</span>
-        </div>
-        <div class="bw4-row">
-          <span class="bw4-ficon"></span>
-          <span class="bw4-rowlabel">wiki</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="bw4-file bw4-file-1"><span class="bw4-file-badge">PDF</span>statement-2026-06.pdf</div>
-    <div class="bw4-file bw4-file-2"><span class="bw4-file-badge">PDF</span>ira-2026-06.pdf</div>
-  </div>
-
-  <div class="bw4-right">
-    <span class="bw4-appmark">Claude</span>
-    <div class="bw4-chat">
-      <div class="bw4-msg-user"><span class="bw4-typewriter">File everything in my intake folder.</span></div>
-
-      <div class="bw4-toolchip">
-        <span class="bw4-tick">&check;</span> Briefly <span class="bw4-dotsep">&middot;</span> read intake <span class="bw4-dotsep">&middot;</span> 2 statements
-      </div>
-
-      <div class="bw4-a-line bw4-a-1">Filed both for the Johnson family.</div>
-      <div class="bw4-a-line bw4-a-2">Originals &rarr; <span class="bw4-path">originals/johnson-family/</span></div>
-      <div class="bw4-a-line bw4-a-3">Schwab &middot;&middot;&middot;4417&nbsp; <span class="bw4-amt">$1,284,306.22</span><span class="bw4-chip">1</span></div>
-      <div class="bw4-a-line bw4-a-4">Vanguard IRA &middot;&middot;&middot;9052&nbsp; <span class="bw4-amt">$612,940.18</span><span class="bw4-chip">2</span></div>
+            <div class="setup-frame"><div class="bwv2-scene" id="bwv2-scene-4">
+  <span class="bwv2-appmark">Claude</span>
+  <div class="bwv2-chat bwv2-s4-fade">
+    <div class="bwv2-msg-user bwv2-s4-msgin"><span class="bwv2-typewriter bwv2-s4-type">What do we have on file for the Johnsons?</span></div>
+    <div class="bwv2-toolchip bwv2-s4-chipwrap">
+      <span class="bwv2-chip-swap bwv2-s4-swap-a">
+        <span class="bwv2-chip-dot" aria-hidden="true"></span>
+        Briefly needs to connect<span class="bwv2-dotsep">&middot;</span><span class="bwv2-signin-word">Sign in</span>
+      </span>
+      <span class="bwv2-chip-swap bwv2-s4-swap-b">
+        <span class="bwv2-tick">&check;</span> Briefly connected
+      </span>
     </div>
   </div>
 
-  <div class="bw-cursor"></div>
+  <div class="bwv2-browser bwv2-s4-browser">
+    <div class="bwv2-browser-chrome">
+      <span class="bwv2-dot bwv2-dot-r"></span>
+      <span class="bwv2-dot bwv2-dot-y"></span>
+      <span class="bwv2-dot bwv2-dot-g"></span>
+      <span class="bwv2-addressbar">auth.brieflywealth.com</span>
+    </div>
+    <div class="bwv2-browser-body">
+      <div class="bwv2-card">
+        <div class="bwv2-card-header">
+          <span class="bwv2-mark">B</span>
+          <h3 class="bwv2-card-title">Sign in to Briefly</h3>
+        </div>
+        <div class="bwv2-field-row"><span class="bwv2-input bwv2-input--filled">advisor@firm.com</span></div>
+        <div class="bwv2-field-row"><span class="bwv2-input bwv2-input--filled">&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;</span></div>
+        <button class="bwv2-btn bwv2-btn--primary bwv2-s4-signinbtn" type="button">Sign in</button>
+      </div>
+    </div>
+  </div>
+
+  <span class="bwv2-cursor bwv2-s4-cursor"></span>
 </div></div>
           </article>
           <article class="setup-panel">
             <div class="p-head">
               <span class="s-num">STEP 05</span>
-              <h3>Ask for a brief</h3>
-              <p class="cap">Ask <code>Prepare a meeting brief for the Johnson family</code>. Every fact gets a clickable source.</p>
+              <h3>File, then brief</h3>
+              <p class="cap">Save statements into <b>intake</b>, then ask.<span class="side">&ldquo;File everything in my intake folder.&rdquo; Then: &ldquo;Prepare a meeting brief.&rdquo;</span></p>
             </div>
-            <div class="setup-frame"><div class="bw-scene" id="bw-scene-5">
-  <span class="bw5-appmark">Claude</span>
-  <div class="bw5-chat">
-    <div class="bw5-msg-user"><span class="bw5-typewriter">Prepare a meeting brief for the Johnson family.</span></div>
-
-    <div class="bw5-toolchip bw5-tool-1">
-      <span class="bw5-tick">&check;</span> Used Briefly <span class="bw5-dotsep">&middot;</span> briefly_ask
+            <div class="setup-frame"><div class="bwv2-scene" id="bwv2-scene-5">
+  <div class="bwv2-s5-beat bwv2-s5-beat1">
+    <div class="bwv2-s5-left">
+      <div class="bwv2-finder">
+        <div class="bwv2-finder-titlebar">
+          <span class="bwv2-dot bwv2-dot-r"></span>
+          <span class="bwv2-dot bwv2-dot-y"></span>
+          <span class="bwv2-dot bwv2-dot-g"></span>
+          <span class="bwv2-wintitle">Briefly</span>
+        </div>
+        <div class="bwv2-finder-rows">
+          <div class="bwv2-finder-row">
+            <span class="bwv2-finder-ficon"></span>
+            <span class="bwv2-finder-rowlabel">intake</span>
+            <span class="bwv2-finder-rowcount">2 items</span>
+            <span class="bwv2-finder-row-glow"></span>
+          </div>
+          <div class="bwv2-finder-row">
+            <span class="bwv2-finder-ficon"></span>
+            <span class="bwv2-finder-rowlabel">originals</span>
+          </div>
+          <div class="bwv2-finder-row">
+            <span class="bwv2-finder-ficon"></span>
+            <span class="bwv2-finder-rowlabel">wiki</span>
+          </div>
+        </div>
+      </div>
+      <div class="bwv2-filechip bwv2-s5-file1"><span class="bwv2-filechip-badge">PDF</span>statement-2026-06.pdf</div>
+      <div class="bwv2-filechip bwv2-s5-file2"><span class="bwv2-filechip-badge">PDF</span>ira-2026-06.pdf</div>
     </div>
-    <div class="bw5-toolchip bw5-tool-2">
-      <span class="bw5-tick">&check;</span> Used Briefly <span class="bw5-dotsep">&middot;</span> briefly_prepare_meeting_brief
-    </div>
 
-    <div class="bw5-brief">
-      <div class="bw5-line bw5-line-title">Johnson Family &mdash; Meeting Brief</div>
-      <div class="bw5-line bw5-line-bottom">Bottom line: net worth <span class="bw5-amt">$1,897,246.40</span>, tied to the cent<span class="bw5-chip">1</span><span class="bw5-chip">2</span></div>
-      <div class="bw5-line bw5-line-c1">Largest position: AAPL, 11.2% of brokerage<span class="bw5-chip">1</span></div>
-      <div class="bw5-line bw5-line-c2">IRA contribution room this year<span class="bw5-chip">2</span></div>
-      <div class="bw5-line bw5-line-sources">Sources:<span class="bw5-chip bw5-chip--src1">1</span> Schwab statement (original) <span class="bw5-dotsep">&middot;</span><span class="bw5-chip">2</span> Vanguard statement (original)</div>
+    <div class="bwv2-s5-right">
+      <span class="bwv2-appmark">Claude</span>
+      <div class="bwv2-chat">
+        <div class="bwv2-msg-user bwv2-s5-b1-msgin"><span class="bwv2-typewriter bwv2-s5-b1-type">File everything in my intake folder.</span></div>
+
+        <div class="bwv2-toolchip bwv2-s5-b1-chip">
+          <span class="bwv2-tick">&check;</span> Briefly <span class="bwv2-dotsep">&middot;</span> read intake <span class="bwv2-dotsep">&middot;</span> 2 statements
+        </div>
+
+        <div class="bwv2-a-line bwv2-a-hi bwv2-s5-b1-a1">Filed both for the Johnson family.</div>
+        <div class="bwv2-a-line bwv2-s5-b1-a2">Originals &rarr; <span class="bwv2-path">originals/johnson-family/</span></div>
+        <div class="bwv2-a-line bwv2-s5-b1-a3">Schwab &middot;&middot;&middot;4417&nbsp; <span class="bwv2-amt">$1,284,306.22</span><span class="bwv2-cite">1</span></div>
+        <div class="bwv2-a-line bwv2-s5-b1-a4">Vanguard IRA &middot;&middot;&middot;9052&nbsp; <span class="bwv2-amt">$612,940.18</span><span class="bwv2-cite">2</span></div>
+      </div>
     </div>
   </div>
 
-  <div class="bw5-preview"><span class="bw5-preview-icon">PDF</span><span class="bw5-preview-label">statement-2026-06.pdf</span></div>
+  <div class="bwv2-s5-beat bwv2-s5-beat2">
+    <span class="bwv2-appmark">Claude</span>
+    <div class="bwv2-chat bwv2-s5-b2-chat">
+      <div class="bwv2-msg-user bwv2-s5-b2-msgin"><span class="bwv2-typewriter bwv2-s5-b2-type">Prepare a meeting brief for the Johnsons.</span></div>
 
-  <div class="bw-cursor"></div>
+      <div class="bwv2-toolchip bwv2-s5-b2-chip1">
+        <span class="bwv2-tick">&check;</span> Used Briefly <span class="bwv2-dotsep">&middot;</span> briefly_ask
+      </div>
+      <div class="bwv2-toolchip bwv2-s5-b2-chip2">
+        <span class="bwv2-tick">&check;</span> Used Briefly <span class="bwv2-dotsep">&middot;</span> briefly_prepare_meeting_brief
+      </div>
+
+      <div class="bwv2-brief bwv2-s5-b2-brief">
+        <div class="bwv2-brief-line bwv2-brief-title bwv2-s5-b2-title">Johnson Family &mdash; Meeting Brief</div>
+        <div class="bwv2-brief-line bwv2-a-hi bwv2-s5-b2-bottom">Bottom line: net worth <span class="bwv2-amt">$1,897,246.40</span>, tied to the cent<span class="bwv2-cite">1</span><span class="bwv2-cite">2</span></div>
+        <div class="bwv2-brief-line bwv2-s5-b2-largest">Largest position: AAPL, 11.2% of brokerage<span class="bwv2-cite">1</span></div>
+        <div class="bwv2-brief-line bwv2-brief-sources bwv2-s5-b2-sources">Sources:<span class="bwv2-cite bwv2-cite--src1 bwv2-s5-chipglow">1</span> Schwab statement (original) <span class="bwv2-dotsep">&middot;</span><span class="bwv2-cite">2</span> Vanguard statement (original)</div>
+      </div>
+    </div>
+
+    <div class="bwv2-preview bwv2-s5-preview"><span class="bwv2-preview-icon">PDF</span><span class="bwv2-preview-label">statement-2026-06.pdf</span></div>
+  </div>
+
+  <span class="bwv2-cursor bwv2-s5-cursor"></span>
 </div></div>
           </article>
         </div>
@@ -1924,7 +1912,7 @@
       if (i === current) return;
       current = i;
       panels.forEach((p, idx) => p.classList.toggle("active", idx === i));
-      const sc = panels[i] && panels[i].querySelector(".bw-scene");
+      const sc = panels[i] && panels[i].querySelector(".bwv2-scene");
       if (sc) sc.replaceWith(sc.cloneNode(true));
       dots.forEach((d, idx) => d.classList.toggle("on", idx === i));
       playOnly(i);
