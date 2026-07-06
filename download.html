@@ -70,11 +70,12 @@
   }
 
   /* ---------- Hero ---------- */
-  .dl-hero { background: var(--navy); color: var(--cream); padding: 104px 28px 88px; position:relative; overflow:hidden; }
+  .dl-hero { background: var(--navy); color: var(--cream); padding: clamp(112px, 13vw, 150px) 28px clamp(92px, 11vw, 120px); position:relative; overflow:hidden; }
   .dl-hero::before { content:""; position:absolute; inset:0; background: linear-gradient(90deg, rgba(247,243,234,.05) 1px, transparent 1px) 0 0 / 56px 56px, linear-gradient(180deg, rgba(247,243,234,.04) 1px, transparent 1px) 0 0 / 56px 56px; pointer-events:none; }
+  .dl-hero::after { content:""; position:absolute; inset:0; background: radial-gradient(ellipse 900px 500px at 12% 0%, rgba(47,140,255,.10), transparent 60%); pointer-events:none; }
   .dl-hero-inner { position:relative; max-width: 960px; margin: 0 auto; }
   .dl-eyebrow { display:block; font-family: var(--mono); font-size: 12px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color: var(--blue); margin-bottom:16px; }
-  .dl-hero h1 { font-family: var(--serif); font-weight:400; font-size: clamp(40px, 6vw, 66px); line-height:1.04; letter-spacing:-.01em; }
+  .dl-hero h1 { font-family: var(--serif); font-weight:400; font-size: clamp(44px, 6.4vw, 74px); line-height:1.0; letter-spacing:-.015em; }
   .dl-hero p { margin-top:18px; max-width:640px; font-size:19px; line-height:1.6; color: rgba(247,243,234,.78); }
   .dl-2step { list-style:none; margin:26px 0 0; display:flex; flex-direction:column; gap:11px; max-width:560px; }
   .dl-2step li { display:flex; align-items:flex-start; gap:13px; font-size:16px; line-height:1.5; color:rgba(247,243,234,.84); }
@@ -95,7 +96,7 @@
   .dl-note strong { color: var(--ink); }
   .dl-note a { color: var(--blue); font-weight:700; text-decoration:none; }
   .dl-note a:hover { text-decoration:underline; }
-  .steps-head { margin-top:56px; font-family: var(--serif); font-weight:400; font-size: clamp(26px,3.4vw,40px); line-height:1.08; letter-spacing:-.01em; color: var(--ink); }
+  .steps-head { margin-top:88px; font-family: var(--serif); font-weight:400; font-size: clamp(26px,3.4vw,40px); line-height:1.08; letter-spacing:-.01em; color: var(--ink); }
   .steps { margin-top:28px; display:grid; grid-template-columns: repeat(2,1fr); gap:18px; }
   .step { border:1px solid var(--rule); background: var(--paper-3); padding: 24px 24px 26px; }
   .step .sn { font-family: var(--mono); font-size:12px; font-weight:800; letter-spacing:.1em; color: var(--blue); }
@@ -131,7 +132,7 @@
   .p-head .cap code { font-family:var(--mono); font-size:13px; background:rgba(28,29,31,.06); border:1px solid var(--rule); border-radius:4px; padding:2px 6px; color:var(--ink); }
   .setup-frame { height:54vh; aspect-ratio:16/9; max-width:92vw; border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,.07); background:#1a1a19; box-shadow:0 26px 72px -34px rgba(11,37,69,.6); flex-shrink:0; }
   .setup-vid { width:100%; height:100%; object-fit:cover; display:block; }
-  .setup-trust { margin-top:10px; background:var(--navy); color:rgba(247,243,234,.84); border-radius:10px; padding:18px 22px; font-size:14.5px; line-height:1.55; }
+  .setup-trust { margin-top:22px; background:var(--navy); color:rgba(247,243,234,.84); border-radius:0; padding:22px 26px; font-size:14.5px; line-height:1.6; }
   .setup-trust b { color:var(--cream); }
   .setup-trust a { color:var(--cream); font-weight:700; text-decoration:underline; }
   /* static fallback (reduced motion / mobile): stack the panels, no lock */
