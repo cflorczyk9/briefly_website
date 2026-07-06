@@ -175,6 +175,1338 @@
   .dl-card .dl-fallback a { color: var(--blue); text-decoration: none; font-weight: 700; }
   .dl-ovbtn { margin-top: 22px; background: var(--ink); color: var(--cream); border: 1px solid var(--ink); font-family: var(--mono); font-size: 12.5px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; padding: 12px 22px; cursor: pointer; }
   .dl-ovbtn:hover { background: var(--blue); border-color: var(--blue); }
+
+  /* ---------- Walkthrough scenes (drawn recreations of the real screens) ---------- */
+
+/* ==========================================================================
+   Shared foundation — every rule below is namespaced under .bw-scene /
+   #bw-scene-N. No global resets, no body/html rules, no position:fixed.
+   ========================================================================== */
+
+.bw-scene {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: clamp(8px, 1.6cqw, 18px);
+  background: radial-gradient(120% 140% at 50% -10%, #242320 0%, #1a1a19 55%, #131211 100%);
+  container-type: inline-size;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #f1ede4;
+  isolation: isolate;
+
+  --bw-canvas: #1a1a19;
+  --bw-panel: #171613;
+  --bw-panel-alt: #201f1c;
+  --bw-border: rgba(255, 255, 255, 0.09);
+  --bw-border-strong: rgba(255, 255, 255, 0.18);
+  --bw-text: #f1ede4;
+  --bw-text-dim: #a5a197;
+  --bw-text-faint: #756f66;
+  --bw-white: #f7f4ee;
+  --bw-accent-claude: #d97757;
+  --bw-accent-claude-soft: rgba(217, 119, 87, 0.28);
+  --bw-accent-blue: #2f8cff;
+  --bw-accent-blue-soft: rgba(47, 140, 255, 0.22);
+  --bw-shadow: 0 8% 22% rgba(0, 0, 0, 0.5);
+
+  --fs-xs: clamp(7px, 1.7cqw, 12px);
+  --fs-sm: clamp(8px, 1.95cqw, 14px);
+  --fs-md: clamp(9.5px, 2.3cqw, 16px);
+  --fs-lg: clamp(13px, 3.2cqw, 23px);
+  --fs-xl: clamp(19px, 6.2cqw, 42px);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .bw-scene { }
+}
+
+/* ---- window chrome ---- */
+.bw-scene .bw-window {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--bw-panel);
+  border: 1px solid var(--bw-border);
+  border-radius: clamp(8px, 1.6cqw, 18px);
+  box-shadow: 0 2% 6% rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+}
+
+.bw-scene .bw-titlebar {
+  flex-shrink: 0;
+  height: 13%;
+  display: flex;
+  align-items: center;
+  gap: clamp(4px, 1cqw, 9px);
+  padding: 0 4%;
+  border-bottom: 1px solid var(--bw-border);
+}
+
+.bw-scene .bw-titlebar--plain {
+  justify-content: flex-start;
+}
+
+.bw-scene .bw-titlebar-title {
+  margin: 0 auto;
+  transform: translateX(-50%);
+  position: relative;
+  left: 50%;
+  font-size: var(--fs-sm);
+  color: var(--bw-text-dim);
+  font-weight: 600;
+}
+
+.bw-scene .bw-dot {
+  width: clamp(6px, 1.5cqw, 12px);
+  height: clamp(6px, 1.5cqw, 12px);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.bw-scene .bw-dot--red { background: #e2685c; }
+.bw-scene .bw-dot--yellow { background: #e8b94d; }
+.bw-scene .bw-dot--green { background: #57bd58; }
+
+.bw-scene .bw-addressbar {
+  margin: 0 auto;
+  width: 44%;
+  background: var(--bw-panel-alt);
+  border: 1px solid var(--bw-border);
+  border-radius: clamp(6px, 1.4cqw, 10px);
+  padding: clamp(2px, 0.7cqw, 6px) clamp(6px, 1.6cqw, 14px);
+  font-size: var(--fs-sm);
+  color: var(--bw-text-dim);
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---- generic buttons ---- */
+.bw-scene .bw-btn {
+  font-family: inherit;
+  font-size: var(--fs-md);
+  font-weight: 600;
+  line-height: 1;
+  border-radius: clamp(7px, 1.8cqw, 15px);
+  padding: clamp(6px, 1.7cqw, 13px) clamp(10px, 3.1cqw, 22px);
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(4px, 1cqw, 8px);
+  white-space: nowrap;
+  transform-origin: center;
+}
+.bw-scene .bw-btn--primary { background: var(--bw-white); color: #171410; }
+.bw-scene .bw-btn--ghost { background: transparent; color: var(--bw-text-dim); border-color: var(--bw-border-strong); }
+.bw-scene .bw-btn--accent { background: var(--bw-accent-claude); color: #fff7f2; }
+.bw-scene .bw-btn--browse { font-size: var(--fs-sm); padding: clamp(4px, 1.3cqw, 9px) clamp(8px, 2.2cqw, 14px); }
+
+.bw-scene .bw-icon-download { position: relative; width: clamp(9px, 2.1cqw, 15px); height: clamp(9px, 2.1cqw, 15px); flex-shrink: 0; }
+.bw-scene .bw-icon-download::before {
+  content: ""; position: absolute; left: 50%; top: 2%; width: 15%; height: 55%;
+  background: currentColor; border-radius: 2px; transform: translateX(-50%);
+}
+.bw-scene .bw-icon-download::after {
+  content: ""; position: absolute; left: 50%; top: 46%; width: 62%; height: 34%;
+  background: currentColor; transform: translateX(-50%);
+  clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+}
+
+/* ---- shared cursor ---- */
+.bw-scene .bw-cursor {
+  position: absolute;
+  width: clamp(9px, 2.1cqw, 15px);
+  height: clamp(9px, 2.1cqw, 15px);
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25), 0 2px 8px rgba(0, 0, 0, 0.55), 0 0 14px rgba(255, 255, 255, 0.35);
+  z-index: 30;
+  pointer-events: none;
+}
+.bw-scene .bw-cursor::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 260%;
+  height: 260%;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* ---- generic dark card ---- */
+.bw-scene .bw-card {
+  position: relative;
+  background: #201e1a;
+  border: 1px solid var(--bw-border-strong);
+  border-radius: clamp(9px, 1.8cqw, 18px);
+  box-shadow: var(--bw-shadow);
+  padding: clamp(10px, 3cqw, 22px) clamp(12px, 3.4cqw, 26px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(6px, 1.5cqw, 12px);
+}
+
+.bw-scene .bw-card-header {
+  display: flex;
+  align-items: center;
+  gap: clamp(6px, 1.6cqw, 12px);
+  margin-bottom: clamp(2px, 0.6cqw, 4px);
+}
+
+.bw-scene .bw-card-title { margin: 0; font-size: var(--fs-lg); font-weight: 700; color: var(--bw-text); }
+
+.bw-scene .bw-mark {
+  flex-shrink: 0;
+  width: clamp(16px, 3.6cqw, 28px);
+  height: clamp(16px, 3.6cqw, 28px);
+  border-radius: clamp(4px, 1cqw, 8px);
+  background: var(--bw-white);
+  color: #201a14;
+  font-weight: 800;
+  font-size: var(--fs-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bw-scene .bw-mark--lg {
+  width: clamp(26px, 6.4cqw, 46px);
+  height: clamp(26px, 6.4cqw, 46px);
+  font-size: var(--fs-lg);
+  border-radius: clamp(6px, 1.4cqw, 11px);
+}
+
+.bw-scene .bw-field { display: flex; flex-direction: column; gap: clamp(2px, 0.6cqw, 5px); }
+.bw-scene .bw-field-label { font-size: var(--fs-sm); font-weight: 600; color: var(--bw-text); }
+.bw-scene .bw-field-help { margin: 0; font-size: var(--fs-xs); color: var(--bw-text-faint); line-height: 1.35; }
+.bw-scene .bw-field-row { display: flex; align-items: center; gap: clamp(5px, 1.4cqw, 10px); }
+
+.bw-scene .bw-input {
+  flex: 1;
+  min-width: 0;
+  background: var(--bw-panel-alt);
+  border: 1px solid var(--bw-border);
+  border-radius: clamp(5px, 1.2cqw, 9px);
+  padding: clamp(4px, 1.3cqw, 9px) clamp(6px, 1.6cqw, 12px);
+  font-size: var(--fs-sm);
+  color: var(--bw-text-dim);
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.bw-scene .bw-input--filled { color: var(--bw-text); }
+
+.bw-scene .bw-card-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: clamp(6px, 1.6cqw, 12px);
+  margin-top: clamp(4px, 1.2cqw, 8px);
+}
+
+.bw-scene .bw-check {
+  position: relative;
+  width: clamp(11px, 2.4cqw, 18px);
+  height: clamp(11px, 2.4cqw, 18px);
+  flex-shrink: 0;
+}
+.bw-scene .bw-check::before,
+.bw-scene .bw-check::after {
+  content: "";
+  position: absolute;
+  border-radius: 2px;
+  background: currentColor;
+}
+.bw-scene .bw-check::before { width: 38%; height: 16%; left: 6%; top: 50%; transform: rotate(45deg); transform-origin: left center; }
+.bw-scene .bw-check::after { width: 62%; height: 16%; left: 26%; top: 66%; transform: rotate(-45deg); transform-origin: left center; }
+.bw-scene .bw-check--claude { color: var(--bw-accent-claude); }
+.bw-scene .bw-check--blue { color: var(--bw-accent-blue); }
+
+/* ==========================================================================
+   Scene 1 — "Get Claude"
+   ========================================================================== */
+
+#bw-scene-1 .bw-page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(4px, 1.3cqw, 11px);
+  text-align: center;
+  padding: 2% 6%;
+}
+
+#bw-scene-1 .bw-wordmark {
+  font-size: var(--fs-sm);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--bw-text-faint);
+  font-weight: 700;
+}
+
+#bw-scene-1 .bw-heading {
+  margin: 0;
+  font-size: var(--fs-xl);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--bw-text);
+}
+
+#bw-scene-1 .bw-subheading {
+  margin: 0 0 clamp(2px, 1cqw, 6px) 0;
+  font-size: var(--fs-md);
+  color: var(--bw-text-dim);
+}
+
+#bw-scene-1 .bw-download-pill {
+  position: absolute;
+  left: 4%;
+  bottom: 6%;
+  display: flex;
+  align-items: center;
+  gap: clamp(5px, 1.3cqw, 10px);
+  background: var(--bw-panel-alt);
+  border: 1px solid var(--bw-border-strong);
+  border-radius: clamp(20px, 4cqw, 30px);
+  padding: clamp(5px, 1.4cqw, 10px) clamp(10px, 2.4cqw, 16px);
+  box-shadow: 0 4% 10% rgba(0, 0, 0, 0.4);
+  z-index: 20;
+  animation: bw1-pill 12s ease-in-out infinite;
+}
+
+#bw-scene-1 .bw-pill-icon {
+  position: relative;
+  width: clamp(9px, 2cqw, 14px);
+  height: clamp(9px, 2cqw, 14px);
+  border-radius: 50%;
+  background: var(--bw-accent-claude-soft);
+  flex-shrink: 0;
+}
+#bw-scene-1 .bw-pill-icon::before {
+  content: "";
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 34%; height: 34%;
+  background: var(--bw-accent-claude);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#bw-scene-1 .bw-pill-text {
+  position: relative;
+  display: inline-block;
+  min-width: clamp(70px, 20cqw, 150px);
+  height: 1.2em;
+  font-size: var(--fs-sm);
+  color: var(--bw-text);
+  font-weight: 600;
+}
+#bw-scene-1 .bw-label-downloading,
+#bw-scene-1 .bw-label-done {
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+}
+#bw-scene-1 .bw-label-downloading { animation: bw1-label-downloading 12s ease-in-out infinite; }
+#bw-scene-1 .bw-label-done { animation: bw1-label-done 12s ease-in-out infinite; color: var(--bw-accent-claude); }
+
+#bw-scene-1 .bw-progress-track {
+  width: clamp(46px, 12cqw, 90px);
+  height: clamp(3px, 0.6cqw, 5px);
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+#bw-scene-1 .bw-progress-fill {
+  display: block;
+  height: 100%;
+  background: var(--bw-accent-claude);
+  border-radius: 3px;
+  animation: bw1-progress 12s ease-in-out infinite;
+}
+
+#bw-scene-1 .bw-btn--download { animation: bw1-btn-press 12s ease-in-out infinite; }
+
+#bw-scene-1 .bw-cursor {
+  animation:
+    bw1-cursor-pos 12s ease-in-out infinite,
+    bw1-cursor-pulse 12s ease-in-out infinite;
+}
+#bw-scene-1 .bw-cursor::after { animation: bw1-cursor-ring 12s ease-in-out infinite; }
+
+@keyframes bw1-cursor-pos {
+  0%   { left: 64%; top: 75%; }
+  8%   { left: 64%; top: 75%; }
+  22%  { left: 50%; top: 64%; }
+  92%  { left: 50%; top: 64%; }
+  97%  { left: 64%; top: 75%; }
+  100% { left: 64%; top: 75%; }
+}
+
+@keyframes bw1-cursor-pulse {
+  0%, 24%  { transform: translate(-50%, -50%) scale(1); }
+  25%      { transform: translate(-50%, -50%) scale(0.8); }
+  27%      { transform: translate(-50%, -50%) scale(1.18); }
+  29%, 100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes bw1-cursor-ring {
+  0%, 24%  { opacity: 0; transform: translate(-50%, -50%) scale(0.4); }
+  26%      { opacity: 0.75; transform: translate(-50%, -50%) scale(0.6); }
+  34%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.8); }
+}
+
+@keyframes bw1-btn-press {
+  0%, 24%  { transform: scale(1); }
+  25%      { transform: scale(0.95); }
+  29%, 100% { transform: scale(1); }
+}
+
+@keyframes bw1-pill {
+  0%, 30%  { opacity: 0; transform: translateY(14%); }
+  33%      { opacity: 1; transform: translateY(0%); }
+  91%      { opacity: 1; transform: translateY(0%); }
+  96%, 100% { opacity: 0; transform: translateY(14%); }
+}
+
+@keyframes bw1-progress {
+  0%, 32% { width: 0%; }
+  75%     { width: 100%; }
+  100%    { width: 100%; }
+}
+
+@keyframes bw1-label-downloading {
+  0%, 78%  { opacity: 1; }
+  81%, 100% { opacity: 0; }
+}
+
+@keyframes bw1-label-done {
+  0%, 78%  { opacity: 0; }
+  81%, 100% { opacity: 1; }
+}
+
+/* ==========================================================================
+   Scene 2 — "Install Briefly"
+   ========================================================================== */
+
+#bw-scene-2 .bw-act {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#bw-scene-2 .bw-act--downloads { animation: bw2-actA 13s ease-in-out infinite; }
+#bw-scene-2 .bw-act--app { animation: bw2-actB 13s ease-in-out infinite; }
+
+#bw-scene-2 .bw-desktop-surface {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(80% 60% at 30% 20%, #262521 0%, #1a1a19 70%);
+}
+
+#bw-scene-2 .bw-file-chip {
+  position: absolute;
+  left: 12%;
+  top: 68%;
+  display: flex;
+  align-items: center;
+  gap: clamp(5px, 1.3cqw, 10px);
+  background: var(--bw-panel-alt);
+  border: 1px solid var(--bw-border);
+  border-radius: clamp(6px, 1.4cqw, 10px);
+  padding: clamp(5px, 1.4cqw, 10px) clamp(8px, 2cqw, 14px);
+  animation: bw2-chip-select 13s ease-in-out infinite;
+}
+
+#bw-scene-2 .bw-file-icon {
+  position: relative;
+  width: clamp(12px, 2.6cqw, 18px);
+  height: clamp(14px, 3cqw, 22px);
+  background: var(--bw-accent-blue);
+  border-radius: 3px;
+  clip-path: polygon(0 0, 65% 0, 100% 35%, 100% 100%, 0 100%);
+  flex-shrink: 0;
+}
+
+#bw-scene-2 .bw-file-name {
+  font-size: var(--fs-sm);
+  color: var(--bw-text-dim);
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  white-space: nowrap;
+}
+
+#bw-scene-2 .bw-dock {
+  position: absolute;
+  left: 50%;
+  bottom: 5%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: clamp(4px, 1.1cqw, 8px);
+  background: var(--bw-panel-alt);
+  border: 1px solid var(--bw-border);
+  border-radius: clamp(8px, 1.8cqw, 14px);
+  padding: clamp(4px, 1.1cqw, 8px);
+}
+#bw-scene-2 .bw-dock-item {
+  width: clamp(9px, 2cqw, 15px);
+  height: clamp(9px, 2cqw, 15px);
+  border-radius: clamp(3px, 0.7cqw, 5px);
+  background: rgba(255, 255, 255, 0.14);
+}
+#bw-scene-2 .bw-dock-item--accent { background: var(--bw-accent-claude); }
+
+#bw-scene-2 .bw-settings-shell {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+}
+#bw-scene-2 .bw-settings-nav {
+  width: 22%;
+  border-right: 1px solid var(--bw-border);
+  padding: 6% 5%;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(6px, 1.6cqw, 11px);
+}
+#bw-scene-2 .bw-nav-item {
+  height: clamp(6px, 1.4cqw, 10px);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  width: 80%;
+}
+#bw-scene-2 .bw-nav-item--active { background: rgba(255, 255, 255, 0.22); width: 90%; }
+
+#bw-scene-2 .bw-settings-main { flex: 1; padding: 6%; filter: blur(0.6px); opacity: 0.55; }
+#bw-scene-2 .bw-ext-row {
+  display: flex;
+  align-items: center;
+  gap: clamp(6px, 1.6cqw, 11px);
+  background: var(--bw-panel-alt);
+  border: 1px solid var(--bw-border);
+  border-radius: clamp(6px, 1.4cqw, 10px);
+  padding: clamp(6px, 1.6cqw, 12px);
+  width: 60%;
+}
+#bw-scene-2 .bw-ext-name { font-size: var(--fs-sm); color: var(--bw-text-dim); font-weight: 600; }
+
+#bw-scene-2 .bw-scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 9, 8, 0.55);
+}
+
+#bw-scene-2 .bw-modal-content {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 62%;
+  background: #211f1b;
+  border: 1px solid var(--bw-border-strong);
+  border-radius: clamp(10px, 2cqw, 18px);
+  box-shadow: var(--bw-shadow);
+  padding: clamp(10px, 2.8cqw, 22px) clamp(12px, 3.2cqw, 24px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: clamp(4px, 1.1cqw, 8px);
+  animation: bw2-modal-fade 13s ease-in-out infinite;
+}
+
+#bw-scene-2 .bw-modal-title { margin: clamp(2px, 0.8cqw, 6px) 0 0 0; font-size: var(--fs-lg); font-weight: 700; color: var(--bw-text); }
+#bw-scene-2 .bw-modal-sub { margin: 0 0 clamp(4px, 1.2cqw, 8px) 0; font-size: var(--fs-xs); color: var(--bw-text-faint); }
+
+#bw-scene-2 .bw-modal-actions { display: flex; gap: clamp(6px, 1.6cqw, 12px); }
+#bw-scene-2 .bw-btn--install { animation: bw2-install-press 13s ease-in-out infinite; }
+
+#bw-scene-2 .bw-toast {
+  position: absolute;
+  left: 50%;
+  bottom: 12%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: clamp(6px, 1.6cqw, 11px);
+  background: var(--bw-panel-alt);
+  border: 1px solid var(--bw-border-strong);
+  border-radius: clamp(20px, 4cqw, 30px);
+  padding: clamp(6px, 1.6cqw, 11px) clamp(12px, 2.8cqw, 20px);
+  box-shadow: 0 4% 10% rgba(0, 0, 0, 0.4);
+  animation: bw2-toast-fade 13s ease-in-out infinite;
+}
+#bw-scene-2 .bw-toast-text { font-size: var(--fs-sm); color: var(--bw-text); font-weight: 600; }
+
+#bw-scene-2 .bw-cursor {
+  animation:
+    bw2-cursor-pos 13s ease-in-out infinite,
+    bw2-cursor-pulse 13s ease-in-out infinite,
+    bw2-cursor-opacity 13s ease-in-out infinite;
+}
+#bw-scene-2 .bw-cursor::after { animation: bw2-cursor-ring 13s ease-in-out infinite; }
+
+@keyframes bw2-actA {
+  0%, 31%  { opacity: 1; }
+  36%, 89% { opacity: 0; }
+  95%, 100% { opacity: 1; }
+}
+@keyframes bw2-actB {
+  0%, 31%  { opacity: 0; }
+  36%, 89% { opacity: 1; }
+  95%, 100% { opacity: 0; }
+}
+
+@keyframes bw2-chip-select {
+  0%, 20%  { box-shadow: none; background: var(--bw-panel-alt); }
+  22%, 28% { box-shadow: 0 0 0 1.5px var(--bw-accent-blue); background: var(--bw-accent-blue-soft); }
+  31%, 100% { box-shadow: none; background: var(--bw-panel-alt); }
+}
+
+@keyframes bw2-cursor-pos {
+  0%   { left: 34%; top: 70%; }
+  8%   { left: 34%; top: 70%; }
+  21%  { left: 20%; top: 78%; }
+  30%  { left: 20%; top: 78%; }
+  33%  { left: 58%; top: 65%; }
+  50%  { left: 58%; top: 65%; }
+  55%  { left: 34%; top: 70%; }
+  93%  { left: 34%; top: 70%; }
+  100% { left: 34%; top: 70%; }
+}
+
+@keyframes bw2-cursor-opacity {
+  0%, 30%  { opacity: 1; }
+  32%, 37% { opacity: 0; }
+  39%, 50% { opacity: 1; }
+  52%, 91% { opacity: 0; }
+  94%, 100% { opacity: 1; }
+}
+
+@keyframes bw2-cursor-pulse {
+  0%, 20%   { transform: translate(-50%, -50%) scale(1); }
+  21.5%     { transform: translate(-50%, -50%) scale(0.8); }
+  23%       { transform: translate(-50%, -50%) scale(1.15); }
+  24.5%     { transform: translate(-50%, -50%) scale(0.8); }
+  26%       { transform: translate(-50%, -50%) scale(1.15); }
+  28%, 48%  { transform: translate(-50%, -50%) scale(1); }
+  49%       { transform: translate(-50%, -50%) scale(0.8); }
+  51%, 100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes bw2-cursor-ring {
+  0%, 20%   { opacity: 0; transform: translate(-50%, -50%) scale(0.4); }
+  22%       { opacity: 0.7; transform: translate(-50%, -50%) scale(0.5); }
+  25%       { opacity: 0; transform: translate(-50%, -50%) scale(1.4); }
+  25.5%     { opacity: 0.7; transform: translate(-50%, -50%) scale(0.5); }
+  28%       { opacity: 0; transform: translate(-50%, -50%) scale(1.4); }
+  48%       { opacity: 0; transform: translate(-50%, -50%) scale(0.4); }
+  49.5%     { opacity: 0.7; transform: translate(-50%, -50%) scale(0.5); }
+  52%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.6); }
+}
+
+@keyframes bw2-install-press {
+  0%, 48%  { transform: scale(1); }
+  49%      { transform: scale(0.95); }
+  51%, 100% { transform: scale(1); }
+}
+
+@keyframes bw2-modal-fade {
+  0%, 50%   { opacity: 1; transform: translate(-50%, -50%); }
+  54%, 100% { opacity: 0; transform: translate(-50%, -54%); }
+}
+
+@keyframes bw2-toast-fade {
+  0%, 53%   { opacity: 0; transform: translate(-50%, 10%); }
+  57%, 89%  { opacity: 1; transform: translate(-50%, 0%); }
+  93%, 100% { opacity: 0; transform: translate(-50%, 10%); }
+}
+
+/* ==========================================================================
+   Scene 3 — "Settings are optional, then sign in"
+   ========================================================================== */
+
+#bw-scene-3 .bw-act {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#bw-scene-3 .bw-act--settings { animation: bw3-actA 14s ease-in-out infinite; }
+#bw-scene-3 .bw-act--signin { animation: bw3-actB 14s ease-in-out infinite; }
+
+#bw-scene-3 .bw-card--settings { width: 66%; }
+#bw-scene-3 .bw-card--signin { width: 46%; align-items: center; text-align: center; }
+
+#bw-scene-3 .bw-btn--save { animation: bw3-save-press 14s ease-in-out infinite; }
+#bw-scene-3 .bw-btn--signin { animation: bw3-signin-press 14s ease-in-out infinite; width: 100%; margin-top: clamp(4px, 1.2cqw, 8px); }
+
+#bw-scene-3 .bw-signin-fields {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(6px, 1.6cqw, 11px);
+  width: 100%;
+  animation: bw3-fields-fade 14s ease-in-out infinite;
+}
+
+#bw-scene-3 .bw-connected {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 46%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(5px, 1.3cqw, 9px);
+  animation: bw3-connected-fade 14s ease-in-out infinite;
+}
+
+#bw-scene-3 .bw-connected-text { font-size: var(--fs-md); font-weight: 700; color: var(--bw-text); }
+
+#bw-scene-3 .bw-underline {
+  display: block;
+  height: 2px;
+  width: 0%;
+  background: var(--bw-accent-blue);
+  border-radius: 2px;
+  animation: bw3-underline 14s ease-in-out infinite;
+}
+
+#bw-scene-3 .bw-cursor {
+  animation:
+    bw3-cursor-pos 14s ease-in-out infinite,
+    bw3-cursor-pulse 14s ease-in-out infinite,
+    bw3-cursor-opacity 14s ease-in-out infinite;
+}
+#bw-scene-3 .bw-cursor::after { animation: bw3-cursor-ring 14s ease-in-out infinite; }
+
+@keyframes bw3-actA {
+  0%, 29%  { opacity: 1; }
+  35%, 89% { opacity: 0; }
+  95%, 100% { opacity: 1; }
+}
+@keyframes bw3-actB {
+  0%, 29%  { opacity: 0; }
+  35%, 89% { opacity: 1; }
+  95%, 100% { opacity: 0; }
+}
+
+@keyframes bw3-cursor-pos {
+  0%   { left: 30%; top: 27%; }
+  7%   { left: 30%; top: 27%; }
+  21%  { left: 60%; top: 76%; }
+  35%  { left: 60%; top: 76%; }
+  37%  { left: 50%; top: 66%; }
+  51%  { left: 50%; top: 66%; }
+  60%  { left: 30%; top: 27%; }
+  90%  { left: 30%; top: 27%; }
+  100% { left: 30%; top: 27%; }
+}
+
+@keyframes bw3-cursor-opacity {
+  0%, 27%  { opacity: 1; }
+  29%, 35% { opacity: 0; }
+  37%, 51% { opacity: 1; }
+  53%, 89% { opacity: 0; }
+  92%, 100% { opacity: 1; }
+}
+
+@keyframes bw3-cursor-pulse {
+  0%, 24%   { transform: translate(-50%, -50%) scale(1); }
+  25%       { transform: translate(-50%, -50%) scale(0.8); }
+  27%       { transform: translate(-50%, -50%) scale(1.18); }
+  29%, 47%  { transform: translate(-50%, -50%) scale(1); }
+  49%       { transform: translate(-50%, -50%) scale(0.8); }
+  51%, 100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes bw3-cursor-ring {
+  0%, 24%   { opacity: 0; transform: translate(-50%, -50%) scale(0.4); }
+  26%       { opacity: 0.75; transform: translate(-50%, -50%) scale(0.6); }
+  30%, 47%  { opacity: 0; transform: translate(-50%, -50%) scale(1.6); }
+  49.5%     { opacity: 0.75; transform: translate(-50%, -50%) scale(0.6); }
+  53%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.6); }
+}
+
+@keyframes bw3-save-press {
+  0%, 24%  { transform: scale(1); }
+  25%      { transform: scale(0.95); }
+  27%, 100% { transform: scale(1); }
+}
+
+@keyframes bw3-signin-press {
+  0%, 47%  { transform: scale(1); }
+  49%      { transform: scale(0.95); }
+  51%, 100% { transform: scale(1); }
+}
+
+@keyframes bw3-fields-fade {
+  0%, 52%   { opacity: 1; }
+  56%, 100% { opacity: 0; }
+}
+
+@keyframes bw3-connected-fade {
+  0%, 52%   { opacity: 0; }
+  56%, 89%  { opacity: 1; }
+  93%, 100% { opacity: 0; }
+}
+
+@keyframes bw3-underline {
+  0%, 55%   { opacity: 0; width: 0%; }
+  60%, 89%  { opacity: 1; width: 48%; }
+  93%, 100% { opacity: 0; width: 0%; }
+}
+
+/* ==========================================================================
+   Reduced motion — freeze each scene at its most informative final state.
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .bw-scene * { animation: none !important; }
+
+  /* Scene 1 — download complete */
+  #bw-scene-1 .bw-cursor { left: 50%; top: 64%; }
+  #bw-scene-1 .bw-cursor::after { opacity: 0; }
+  #bw-scene-1 .bw-download-pill { opacity: 1; transform: translateY(0%); }
+  #bw-scene-1 .bw-progress-fill { width: 100%; }
+  #bw-scene-1 .bw-label-downloading { opacity: 0; }
+  #bw-scene-1 .bw-label-done { opacity: 1; }
+
+  /* Scene 2 — extension added */
+  #bw-scene-2 .bw-act--downloads { opacity: 0; }
+  #bw-scene-2 .bw-act--app { opacity: 1; }
+  #bw-scene-2 .bw-modal-content { opacity: 0; }
+  #bw-scene-2 .bw-toast { opacity: 1; transform: translate(-50%, 0%); }
+  #bw-scene-2 .bw-cursor { opacity: 0; }
+  #bw-scene-2 .bw-cursor::after { opacity: 0; }
+
+  /* Scene 3 — connected */
+  #bw-scene-3 .bw-act--settings { opacity: 0; }
+  #bw-scene-3 .bw-act--signin { opacity: 1; }
+  #bw-scene-3 .bw-signin-fields { opacity: 0; }
+  #bw-scene-3 .bw-connected { opacity: 1; }
+  #bw-scene-3 .bw-underline { opacity: 1; width: 48%; }
+  #bw-scene-3 .bw-cursor { opacity: 0; }
+  #bw-scene-3 .bw-cursor::after { opacity: 0; }
+}
+
+
+/* ============================================================
+   SHARED TOKENS + CURSOR
+   Namespaced under .bw-scene per the fragment contract.
+   ============================================================ */
+.bw-scene, .bw-scene *{ box-sizing:border-box; }
+
+.bw-scene{
+  --bw-bg:#1a1a19;
+  --bw-panel:#242320;
+  --bw-panel-edge:rgba(255,255,255,.07);
+  --bw-bubble:#3c3833;
+  --bw-bubble-text:#f2efe9;
+  --bw-hi:#eee9e2;
+  --bw-mid:#b6b2ab;
+  --bw-lo:#87837c;
+  --bw-blue:#2f8cff;
+  --bw-blue-soft:rgba(47,140,255,.16);
+  --bw-mono: ui-monospace, "SF Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+  --bw-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  position:relative;
+  width:100%;
+  aspect-ratio:16/9;
+  container-type:inline-size;
+  overflow:hidden;
+  border-radius:clamp(8px,1.4cqi,14px);
+  background:var(--bw-bg);
+  font-family:var(--bw-sans);
+  font-size:clamp(11px,2.05cqi,16px);
+  color:var(--bw-hi);
+  isolation:isolate;
+}
+
+.bw-scene .bw-cursor{
+  position:absolute;
+  width:clamp(9px,1.5cqi,15px);
+  height:clamp(9px,1.5cqi,15px);
+  border-radius:50%;
+  background:#fff;
+  box-shadow:0 0 0 clamp(3px,.55cqi,6px) rgba(255,255,255,.18), 0 .15em .5em rgba(0,0,0,.55);
+  pointer-events:none;
+  z-index:80;
+  transform:translate(-50%,-50%) scale(1);
+}
+
+/* ============================================================
+   SCENE 4 — "Save statements, tell Claude to file them"
+   16s loop. Beats (seconds -> event):
+   0.0  reset: files sit on the desktop, chat empty
+   0.6  cursor settles on statement-2026-06.pdf
+   1.0  click pulse, drag begins
+   1.8  file 1 lands in the intake row, row flashes blue
+   2.1  file 1 absorbed (filed)
+   2.4  cursor moves up to ira-2026-06.pdf, click pulse
+   3.4  file 2 lands in the intake row, row flashes blue again
+   3.7  file 2 absorbed, "2 items" appears on the intake row
+   4.3  cursor travels to the chat pane and fades
+   4.6  user bubble types "File everything in my intake folder."
+   5.9  tool chip: "Briefly · read intake · 2 statements"
+   7.7  "Filed both for the Johnson family."
+   9.1  "Originals -> originals/johnson-family/"
+   10.6 "Schwab ...4417  $1,284,306.22 [1]"
+   12.2 "Vanguard IRA ...9052  $612,940.18 [2]"
+   12.2-14.4 hold on the finished answer
+   14.4-15.4 fade out, scene resets
+   ============================================================ */
+#bw-scene-4 .bw4-left{
+  position:absolute; left:0; top:0; width:38%; height:100%;
+  background:var(--bw-bg);
+}
+#bw-scene-4 .bw4-right{
+  position:absolute; right:0; top:0; width:62%; height:100%;
+  background:var(--bw-panel);
+  border-left:1px solid var(--bw-panel-edge);
+  overflow:hidden;
+}
+#bw-scene-4 .bw4-appmark{
+  position:absolute; top:4%; left:6%;
+  font-size:.62em; font-weight:600; letter-spacing:.02em;
+  color:var(--bw-lo);
+}
+
+/* Finder-style window */
+#bw-scene-4 .bw4-finder{
+  position:absolute; left:10%; top:16%; width:80%;
+  background:#f4f3f1;
+  border-radius:.6em;
+  overflow:hidden;
+  box-shadow:0 1.2em 2.6em rgba(0,0,0,.45), 0 0 0 1px rgba(0,0,0,.06);
+}
+#bw-scene-4 .bw4-titlebar{
+  display:flex; align-items:center; gap:.35em;
+  padding:.55em .7em;
+  background:#eae9e6;
+  border-bottom:1px solid #dcdbd8;
+}
+#bw-scene-4 .bw4-dot{ width:.55em; height:.55em; border-radius:50%; }
+#bw-scene-4 .bw4-dot-r{ background:#ff5f57; }
+#bw-scene-4 .bw4-dot-y{ background:#febc2e; }
+#bw-scene-4 .bw4-dot-g{ background:#28c840; }
+#bw-scene-4 .bw4-wintitle{ margin-left:.4em; font-size:.7em; font-weight:600; color:#59584f; }
+#bw-scene-4 .bw4-rows{ display:flex; flex-direction:column; }
+#bw-scene-4 .bw4-row{
+  position:relative; display:flex; align-items:center; gap:.5em;
+  padding:.7em .8em; font-size:.74em; color:#2b2a27;
+  border-bottom:1px solid #ececea;
+}
+#bw-scene-4 .bw4-row:last-child{ border-bottom:none; }
+#bw-scene-4 .bw4-ficon{
+  width:1em; height:.78em; background:var(--bw-blue);
+  border-radius:0 .2em .2em .2em; position:relative; flex:none;
+}
+#bw-scene-4 .bw4-ficon::before{
+  content:""; position:absolute; left:0; top:-.26em;
+  width:.5em; height:.26em; background:inherit; border-radius:.2em .2em 0 0;
+}
+#bw-scene-4 .bw4-rowlabel{ flex:1; }
+#bw-scene-4 .bw4-rowcount{
+  font-size:.82em; color:#9a9992; opacity:0;
+  animation:bw4-count 16s infinite;
+}
+#bw-scene-4 .bw4-row-glow{
+  position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(90deg, rgba(47,140,255,.24), rgba(47,140,255,.05));
+  opacity:0;
+  animation:bw4-row-glow 16s infinite;
+}
+
+/* Dragged file chips */
+#bw-scene-4 .bw4-file{
+  position:absolute; z-index:10;
+  display:flex; align-items:center; gap:.35em;
+  padding:.35em .55em; white-space:nowrap;
+  background:#fff; color:#2b2a27; font-size:.46em; font-weight:500;
+  border-radius:.5em;
+  box-shadow:0 .6em 1.5em rgba(0,0,0,.4);
+}
+#bw-scene-4 .bw4-file-badge{
+  background:var(--bw-blue); color:#fff; font:700 1em/1 var(--bw-mono);
+  padding:.15em .35em; border-radius:.3em;
+}
+#bw-scene-4 .bw4-file-1{ animation:bw4-file1 16s infinite; }
+#bw-scene-4 .bw4-file-2{ animation:bw4-file2 16s infinite; }
+
+/* Chat pane */
+#bw-scene-4 .bw4-chat{
+  position:absolute; inset:0; padding:9% 6% 6%;
+  display:flex; flex-direction:column; gap:.55em;
+  animation:bw4-fadeout-all 16s infinite;
+}
+#bw-scene-4 .bw4-msg-user{
+  align-self:flex-end; max-width:84%;
+  background:var(--bw-bubble); color:var(--bw-bubble-text);
+  padding:.55em .85em; border-radius:.8em .8em .15em .8em;
+  font-size:.76em; line-height:1.4;
+}
+#bw-scene-4 .bw4-typewriter{
+  position:relative; display:inline-block;
+  clip-path:inset(0 100% 0 0);
+  animation:bw4-typewriter 16s infinite;
+}
+#bw-scene-4 .bw4-toolchip{
+  align-self:flex-start; display:inline-flex; align-items:center; gap:.35em;
+  font:500 .62em/1.3 var(--bw-mono); color:var(--bw-mid);
+  background:rgba(255,255,255,.045); border:1px solid var(--bw-panel-edge);
+  padding:.5em .7em; border-radius:.55em;
+  opacity:0; transform:translateY(.4em);
+  animation:bw4-toolchip 16s infinite;
+}
+#bw-scene-4 .bw4-tick{ color:var(--bw-blue); font-weight:700; }
+#bw-scene-4 .bw4-dotsep{ color:var(--bw-lo); margin:0 .1em; }
+#bw-scene-4 .bw4-a-line{
+  font-size:.74em; line-height:1.5; color:var(--bw-mid);
+  opacity:0; transform:translateY(.4em);
+}
+#bw-scene-4 .bw4-a-1{ color:var(--bw-hi); animation:bw4-a1 16s infinite; }
+#bw-scene-4 .bw4-a-2{ animation:bw4-a2 16s infinite; }
+#bw-scene-4 .bw4-a-3{ animation:bw4-a3 16s infinite; }
+#bw-scene-4 .bw4-a-4{ animation:bw4-a4 16s infinite; }
+#bw-scene-4 .bw4-path{ font-family:var(--bw-mono); font-size:.94em; color:var(--bw-mid); }
+#bw-scene-4 .bw4-amt{ color:var(--bw-hi); font-weight:600; font-variant-numeric:tabular-nums; }
+#bw-scene-4 .bw4-chip{
+  display:inline-flex; align-items:center; justify-content:center;
+  min-width:1.3em; height:1.3em; margin-left:.3em;
+  border-radius:.4em; background:var(--bw-blue-soft);
+  border:1px solid rgba(47,140,255,.4); color:var(--bw-blue);
+  font:700 .68em/1 var(--bw-mono);
+}
+
+#bw-scene-4 .bw-cursor{ animation:bw4-cursor 16s infinite; }
+
+@keyframes bw4-file1{
+  0%,6%{ top:4%; left:10%; opacity:1; transform:scale(1); }
+  6.5%{ top:4%; left:10%; opacity:1; transform:scale(1.08); }
+  11%{ top:23%; left:16%; opacity:1; transform:scale(1); }
+  13%{ top:23%; left:16%; opacity:0; transform:scale(.8); }
+  99%{ top:23%; left:16%; opacity:0; }
+  100%{ top:4%; left:10%; opacity:1; transform:scale(1); }
+}
+@keyframes bw4-file2{
+  0%,16%{ top:12%; left:10%; opacity:1; transform:scale(1); }
+  16.5%{ top:12%; left:10%; opacity:1; transform:scale(1.08); }
+  21%{ top:23%; left:16%; opacity:1; transform:scale(1); }
+  23%{ top:23%; left:16%; opacity:0; transform:scale(.8); }
+  99%{ top:23%; left:16%; opacity:0; }
+  100%{ top:12%; left:10%; opacity:1; transform:scale(1); }
+}
+@keyframes bw4-row-glow{
+  0%,11%{ opacity:0; }
+  12%{ opacity:1; }
+  14%{ opacity:0; }
+  21%{ opacity:0; }
+  22%{ opacity:1; }
+  24%{ opacity:0; }
+  100%{ opacity:0; }
+}
+@keyframes bw4-count{
+  0%,22%{ opacity:0; }
+  23%{ opacity:1; }
+  89%{ opacity:1; }
+  96%{ opacity:0; }
+  100%{ opacity:0; }
+}
+@keyframes bw4-fadeout-all{
+  0%,89%{ opacity:1; }
+  96%{ opacity:0; }
+  99%{ opacity:0; }
+  100%{ opacity:1; }
+}
+@keyframes bw4-typewriter{
+  0%,29%{ clip-path:inset(0 100% 0 0); }
+  37%{ clip-path:inset(0 0% 0 0); }
+  99%{ clip-path:inset(0 0% 0 0); }
+  100%{ clip-path:inset(0 100% 0 0); }
+}
+@keyframes bw4-toolchip{
+  0%,40%{ opacity:0; transform:translateY(.4em); }
+  41%{ opacity:1; transform:translateY(0); }
+  99%{ opacity:1; transform:translateY(0); }
+  100%{ opacity:0; transform:translateY(.4em); }
+}
+@keyframes bw4-a1{
+  0%,48%{ opacity:0; transform:translateY(.4em); }
+  49%{ opacity:1; transform:translateY(0); }
+  99%{ opacity:1; transform:translateY(0); }
+  100%{ opacity:0; transform:translateY(.4em); }
+}
+@keyframes bw4-a2{
+  0%,57%{ opacity:0; transform:translateY(.4em); }
+  58%{ opacity:1; transform:translateY(0); }
+  99%{ opacity:1; transform:translateY(0); }
+  100%{ opacity:0; transform:translateY(.4em); }
+}
+@keyframes bw4-a3{
+  0%,66%{ opacity:0; transform:translateY(.4em); }
+  67%{ opacity:1; transform:translateY(0); }
+  99%{ opacity:1; transform:translateY(0); }
+  100%{ opacity:0; transform:translateY(.4em); }
+}
+@keyframes bw4-a4{
+  0%,76%{ opacity:0; transform:translateY(.4em); }
+  77%{ opacity:1; transform:translateY(0); }
+  99%{ opacity:1; transform:translateY(0); }
+  100%{ opacity:0; transform:translateY(.4em); }
+}
+@keyframes bw4-cursor{
+  0%,4%{ left:4%; top:4%; opacity:1; transform:translate(-50%,-50%) scale(1); }
+  6%{ left:4%; top:4%; opacity:1; transform:translate(-50%,-50%) scale(1.3); }
+  7%{ left:4%; top:4%; opacity:1; transform:translate(-50%,-50%) scale(1); }
+  11%{ left:6%; top:23%; opacity:1; transform:translate(-50%,-50%) scale(1); }
+  13%{ left:6%; top:23%; opacity:1; transform:translate(-50%,-50%) scale(1); }
+  15%{ left:4%; top:12%; opacity:1; transform:translate(-50%,-50%) scale(1); }
+  16%{ left:4%; top:12%; opacity:1; transform:translate(-50%,-50%) scale(1.3); }
+  17%{ left:4%; top:12%; opacity:1; transform:translate(-50%,-50%) scale(1); }
+  21%{ left:6%; top:23%; opacity:1; transform:translate(-50%,-50%) scale(1); }
+  23%{ left:6%; top:23%; opacity:1; transform:translate(-50%,-50%) scale(1); }
+  27%{ left:66%; top:13%; opacity:1; transform:translate(-50%,-50%) scale(1); }
+  29%{ left:66%; top:13%; opacity:0; transform:translate(-50%,-50%) scale(1); }
+  99%{ left:66%; top:13%; opacity:0; }
+  100%{ left:4%; top:4%; opacity:1; transform:translate(-50%,-50%) scale(1); }
+}
+
+/* ============================================================
+   SCENE 5 — "Ask for the brief"
+   16s loop. Beats (seconds -> event):
+   0.0  reset: empty chat
+   0.6  cursor at the reply box, click pulse
+   1.4  user bubble finishes typing the request
+   1.9  tool chip: "Used Briefly · briefly_ask"
+   2.7  tool chip: "Used Briefly · briefly_prepare_meeting_brief"
+   3.8  brief title: "Johnson Family — Meeting Brief"
+   5.1  "Bottom line: net worth $1,897,246.40, tied to the cent [1][2]"
+   6.6  "Largest position: AAPL, 11.2% of brokerage [1]"
+   8.0  "IRA contribution room this year [2]"
+   9.6  Sources footer: "[1] Schwab statement ... [2] Vanguard statement ..."
+   9.6-11.5 hold on the finished brief
+   11.5 cursor travels to the [1] source chip
+   12.3 cursor arrives, chip glows
+   12.6 file-preview sliver peeks in from the right: "statement-2026-06.pdf"
+   13.3-14.9 hold on the citation-opens-the-original moment
+   14.9-15.5 fade out, scene resets
+   ============================================================ */
+#bw-scene-5 .bw5-appmark{
+  position:absolute; top:4%; left:5%; z-index:5;
+  font-size:.62em; font-weight:600; letter-spacing:.02em;
+  color:var(--bw-lo);
+}
+#bw-scene-5 .bw5-chat{
+  position:absolute; inset:0; padding:9% 10%;
+  display:flex; flex-direction:column; gap:.6em;
+  animation:bw5-fadeout-all 16s infinite;
+}
+#bw-scene-5 .bw5-msg-user{
+  align-self:flex-end; max-width:80%;
+  background:var(--bw-bubble); color:var(--bw-bubble-text);
+  padding:.55em .85em; border-radius:.8em .8em .15em .8em;
+  font-size:.8em; line-height:1.4;
+}
+#bw-scene-5 .bw5-typewriter{
+  position:relative; display:inline-block;
+  clip-path:inset(0 100% 0 0);
+  animation:bw5-typewriter 16s infinite;
+}
+#bw-scene-5 .bw5-toolchip{
+  align-self:flex-start; display:inline-flex; align-items:center; gap:.35em;
+  font:500 .62em/1.3 var(--bw-mono); color:var(--bw-mid);
+  background:rgba(255,255,255,.045); border:1px solid var(--bw-panel-edge);
+  padding:.5em .7em; border-radius:.55em;
+  opacity:0; transform:translateY(.4em);
+}
+#bw-scene-5 .bw5-tool-1{ animation:bw5-tool1 16s infinite; }
+#bw-scene-5 .bw5-tool-2{ animation:bw5-tool2 16s infinite; }
+#bw-scene-5 .bw5-tick{ color:var(--bw-blue); font-weight:700; }
+#bw-scene-5 .bw5-dotsep{ color:var(--bw-lo); margin:0 .15em; }
+
+#bw-scene-5 .bw5-brief{
+  display:flex; flex-direction:column; gap:.55em;
+  margin-top:.2em; padding:.8em .9em;
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--bw-panel-edge);
+  border-radius:.7em;
+}
+#bw-scene-5 .bw5-line{
+  font-size:.78em; line-height:1.5; color:var(--bw-mid);
+  opacity:0; transform:translateY(.4em);
+}
+#bw-scene-5 .bw5-line-title{
+  font-weight:700; color:var(--bw-hi); font-size:.88em;
+  animation:bw5-title 16s infinite;
+}
+#bw-scene-5 .bw5-line-bottom{ color:var(--bw-hi); animation:bw5-bottom 16s infinite; }
+#bw-scene-5 .bw5-line-c1{ animation:bw5-c1 16s infinite; }
+#bw-scene-5 .bw5-line-c2{ animation:bw5-c2 16s infinite; }
+#bw-scene-5 .bw5-line-sources{
+  font-size:.68em; color:var(--bw-lo);
+  margin-top:.3em; padding-top:.5em; border-top:1px solid var(--bw-panel-edge);
+  animation:bw5-sources 16s infinite;
+}
+#bw-scene-5 .bw5-amt{ font-weight:700; color:var(--bw-hi); font-variant-numeric:tabular-nums; }
+#bw-scene-5 .bw5-chip{
+  display:inline-flex; align-items:center; justify-content:center;
+  min-width:1.3em; height:1.3em; margin:0 .15em;
+  border-radius:.4em; background:var(--bw-blue-soft);
+  border:1px solid rgba(47,140,255,.4); color:var(--bw-blue);
+  font:700 .66em/1 var(--bw-mono);
+}
+#bw-scene-5 .bw5-chip--src1{ animation:bw5-chip-glow 16s infinite; }
+
+/* Citation-opens-the-original preview sliver */
+#bw-scene-5 .bw5-preview{
+  position:absolute; right:0; top:60%; width:26%;
+  display:flex; align-items:center; gap:.5em;
+  padding:.6em .7em; white-space:nowrap;
+  background:#f4f3f1; color:#2b2a27; font-size:.62em;
+  border-radius:.5em 0 0 .5em;
+  box-shadow:-0.6em 0 1.6em rgba(0,0,0,.4);
+  opacity:0; transform:translateX(100%);
+  animation:bw5-preview-peek 16s infinite;
+  z-index:20;
+}
+#bw-scene-5 .bw5-preview-icon{
+  background:var(--bw-blue); color:#fff; font:700 1em/1 var(--bw-mono);
+  padding:.2em .4em; border-radius:.3em;
+}
+#bw-scene-5 .bw5-preview-label{ overflow:hidden; text-overflow:ellipsis; }
+
+#bw-scene-5 .bw-cursor{ animation:bw5-cursor 16s infinite; }
+
+@keyframes bw5-typewriter{
+  0%,3%{ clip-path:inset(0 100% 0 0); }
+  9%{ clip-path:inset(0 0% 0 0); }
+  99%{ clip-path:inset(0 0% 0 0); }
+  100%{ clip-path:inset(0 100% 0 0); }
+}
+@keyframes bw5-tool1{
+  0%,11%{ opacity:0; transform:translateY(.4em); }
+  12%{ opacity:1; transform:translateY(0); }
+  99%{ opacity:1; transform:translateY(0); }
+  100%{ opacity:0; transform:translateY(.4em); }
+}
+@keyframes bw5-tool2{
+  0%,16%{ opacity:0; transform:translateY(.4em); }
+  17%{ opacity:1; transform:translateY(0); }
+  99%{ opacity:1; transform:translateY(0); }
+  100%{ opacity:0; transform:translateY(.4em); }
+}
+@keyframes bw5-title{
+  0%,23%{ opacity:0; transform:translateY(.4em); }
+  24%{ opacity:1; transform:translateY(0); }
+  99%{ opacity:1; transform:translateY(0); }
+  100%{ opacity:0; transform:translateY(.4em); }
+}
+@keyframes bw5-bottom{
+  0%,32%{ opacity:0; transform:translateY(.4em); }
+  33%{ opacity:1; transform:translateY(0); }
+  99%{ opacity:1; transform:translateY(0); }
+  100%{ opacity:0; transform:translateY(.4em); }
+}
+@keyframes bw5-c1{
+  0%,41%{ opacity:0; transform:translateY(.4em); }
+  42%{ opacity:1; transform:translateY(0); }
+  99%{ opacity:1; transform:translateY(0); }
+  100%{ opacity:0; transform:translateY(.4em); }
+}
+@keyframes bw5-c2{
+  0%,50%{ opacity:0; transform:translateY(.4em); }
+  51%{ opacity:1; transform:translateY(0); }
+  99%{ opacity:1; transform:translateY(0); }
+  100%{ opacity:0; transform:translateY(.4em); }
+}
+@keyframes bw5-sources{
+  0%,60%{ opacity:0; transform:translateY(.4em); }
+  61%{ opacity:1; transform:translateY(0); }
+  99%{ opacity:1; transform:translateY(0); }
+  100%{ opacity:0; transform:translateY(.4em); }
+}
+@keyframes bw5-fadeout-all{
+  0%,92%{ opacity:1; }
+  97%{ opacity:0; }
+  99%{ opacity:0; }
+  100%{ opacity:1; }
+}
+@keyframes bw5-chip-glow{
+  0%,76%{ background:var(--bw-blue-soft); box-shadow:0 0 0 0 rgba(47,140,255,0); }
+  77%{ background:rgba(47,140,255,.3); box-shadow:0 0 0 .35em rgba(47,140,255,.35); }
+  79%{ background:rgba(47,140,255,.4); box-shadow:0 0 0 .4em rgba(47,140,255,.4); }
+  93%{ background:rgba(47,140,255,.4); box-shadow:0 0 0 .4em rgba(47,140,255,.4); }
+  97%{ background:var(--bw-blue-soft); box-shadow:0 0 0 0 rgba(47,140,255,0); }
+  100%{ background:var(--bw-blue-soft); box-shadow:0 0 0 0 rgba(47,140,255,0); }
+}
+@keyframes bw5-preview-peek{
+  0%,78%{ opacity:0; transform:translateX(100%); }
+  79%{ opacity:1; transform:translateX(90%); }
+  83%{ opacity:1; transform:translateX(58%); }
+  93%{ opacity:1; transform:translateX(58%); }
+  97%{ opacity:0; transform:translateX(100%); }
+  100%{ opacity:0; transform:translateX(100%); }
+}
+@keyframes bw5-cursor{
+  0%,2%{ left:50%; top:90%; opacity:1; transform:translate(-50%,-50%) scale(1); }
+  2.5%{ left:50%; top:90%; opacity:1; transform:translate(-50%,-50%) scale(1.3); }
+  4%{ left:50%; top:90%; opacity:1; transform:translate(-50%,-50%) scale(1); }
+  9%{ left:50%; top:90%; opacity:1; transform:translate(-50%,-50%) scale(1); }
+  10%{ left:50%; top:90%; opacity:0; transform:translate(-50%,-50%) scale(1); }
+  71%{ left:50%; top:90%; opacity:0; transform:translate(-50%,-50%) scale(1); }
+  72%{ left:50%; top:90%; opacity:1; transform:translate(-50%,-50%) scale(1); }
+  77%{ left:17%; top:64%; opacity:1; transform:translate(-50%,-50%) scale(1); }
+  78%{ left:17%; top:64%; opacity:1; transform:translate(-50%,-50%) scale(1.3); }
+  80%{ left:17%; top:64%; opacity:1; transform:translate(-50%,-50%) scale(1); }
+  93%{ left:17%; top:64%; opacity:1; transform:translate(-50%,-50%) scale(1); }
+  97%{ left:17%; top:64%; opacity:0; transform:translate(-50%,-50%) scale(1); }
+  99%{ left:17%; top:64%; opacity:0; }
+  100%{ left:50%; top:90%; opacity:1; transform:translate(-50%,-50%) scale(1); }
+}
+
+/* ============================================================
+   REDUCED MOTION — freeze each scene at its most informative
+   final frame instead of animating.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce){
+  .bw-scene *{ animation:none !important; transition:none !important; }
+  .bw-scene .bw-cursor{ opacity:0 !important; }
+
+  #bw-scene-4 .bw4-file{ opacity:0 !important; }
+  #bw-scene-4 .bw4-row-glow{ opacity:0 !important; }
+  #bw-scene-4 .bw4-rowcount{ opacity:1 !important; }
+  #bw-scene-4 .bw4-chat{ opacity:1 !important; }
+  #bw-scene-4 .bw4-typewriter{ clip-path:inset(0 0% 0 0) !important; }
+  #bw-scene-4 .bw4-toolchip,
+  #bw-scene-4 .bw4-a-line{ opacity:1 !important; transform:none !important; }
+
+  #bw-scene-5 .bw5-chat{ opacity:1 !important; }
+  #bw-scene-5 .bw5-typewriter{ clip-path:inset(0 0% 0 0) !important; }
+  #bw-scene-5 .bw5-toolchip,
+  #bw-scene-5 .bw5-line{ opacity:1 !important; transform:none !important; }
+  #bw-scene-5 .bw5-chip--src1{
+    background:rgba(47,140,255,.4) !important;
+    box-shadow:0 0 0 .4em rgba(47,140,255,.4) !important;
+  }
+  #bw-scene-5 .bw5-preview{ opacity:1 !important; transform:translateX(58%) !important; }
+}
+
 </style>
 </head>
 <body>
@@ -228,7 +1560,34 @@
               <h3>Get the free Claude app</h3>
               <p class="cap">Briefly runs inside <b>Claude</b>, Anthropic's free desktop app. <a href="https://claude.ai/download" target="_blank" rel="noopener">Get Claude</a>, then come back.</p>
             </div>
-            <div class="setup-frame"><video class="setup-vid" muted loop playsinline preload="metadata" poster="media/setup/GetClaude.jpg"><source src="media/setup/GetClaude.mp4" type="video/mp4"></video></div>
+            <div class="setup-frame"><div class="bw-scene" id="bw-scene-1">
+  <div class="bw-window">
+    <div class="bw-titlebar">
+      <span class="bw-dot bw-dot--red"></span>
+      <span class="bw-dot bw-dot--yellow"></span>
+      <span class="bw-dot bw-dot--green"></span>
+      <div class="bw-addressbar">claude.ai/download</div>
+    </div>
+    <div class="bw-page">
+      <div class="bw-wordmark">Claude</div>
+      <h2 class="bw-heading">Download Claude</h2>
+      <p class="bw-subheading">One app for chat, code, and tools.</p>
+      <button class="bw-btn bw-btn--primary bw-btn--download" type="button">
+        <span class="bw-icon-download" aria-hidden="true"></span>
+        <span>Download for macOS</span>
+      </button>
+    </div>
+    <div class="bw-download-pill">
+      <span class="bw-pill-icon" aria-hidden="true"></span>
+      <span class="bw-pill-text">
+        <span class="bw-label-downloading">Downloading macOS&hellip;</span>
+        <span class="bw-label-done">Downloaded</span>
+      </span>
+      <span class="bw-progress-track"><span class="bw-progress-fill"></span></span>
+    </div>
+  </div>
+  <span class="bw-cursor"></span>
+</div></div>
           </article>
           <article class="setup-panel">
             <div class="p-head">
@@ -236,7 +1595,59 @@
               <h3>Install Briefly</h3>
               <p class="cap">Double-click <b>briefly_wealth.mcpb</b>, then click <b>Install</b> in Claude. That's the whole install: nothing to type, no account form. You only do this once.</p>
             </div>
-            <div class="setup-frame"><video class="setup-vid" muted loop playsinline preload="metadata" poster="media/setup/InstallBriefly.jpg"><source src="media/setup/InstallBriefly.mp4" type="video/mp4"></video></div>
+            <div class="setup-frame"><div class="bw-scene" id="bw-scene-2">
+  <div class="bw-act bw-act--downloads">
+    <div class="bw-desktop-surface"></div>
+    <div class="bw-file-chip">
+      <span class="bw-file-icon" aria-hidden="true"></span>
+      <span class="bw-file-name">briefly_wealth.mcpb</span>
+    </div>
+    <div class="bw-dock">
+      <span class="bw-dock-item"></span>
+      <span class="bw-dock-item"></span>
+      <span class="bw-dock-item"></span>
+      <span class="bw-dock-item bw-dock-item--accent"></span>
+    </div>
+  </div>
+  <div class="bw-act bw-act--app">
+    <div class="bw-window">
+      <div class="bw-titlebar bw-titlebar--plain">
+        <span class="bw-dot bw-dot--red"></span>
+        <span class="bw-dot bw-dot--yellow"></span>
+        <span class="bw-dot bw-dot--green"></span>
+        <span class="bw-titlebar-title">Settings</span>
+      </div>
+      <div class="bw-settings-shell">
+        <div class="bw-settings-nav">
+          <span class="bw-nav-item"></span>
+          <span class="bw-nav-item bw-nav-item--active"></span>
+          <span class="bw-nav-item"></span>
+        </div>
+        <div class="bw-settings-main">
+          <div class="bw-ext-row">
+            <span class="bw-mark">B</span>
+            <span class="bw-ext-name">Briefly</span>
+          </div>
+        </div>
+      </div>
+      <div class="bw-scrim"></div>
+      <div class="bw-modal-content">
+        <span class="bw-mark bw-mark--lg">B</span>
+        <h3 class="bw-modal-title">Install Briefly?</h3>
+        <p class="bw-modal-sub">Extension from Briefly Wealth</p>
+        <div class="bw-modal-actions">
+          <button class="bw-btn bw-btn--ghost" type="button">Cancel</button>
+          <button class="bw-btn bw-btn--accent bw-btn--install" type="button">Install</button>
+        </div>
+      </div>
+      <div class="bw-toast">
+        <span class="bw-check bw-check--claude" aria-hidden="true"></span>
+        <span class="bw-toast-text">Briefly added to Claude</span>
+      </div>
+    </div>
+  </div>
+  <span class="bw-cursor"></span>
+</div></div>
           </article>
           <article class="setup-panel">
             <div class="p-head">
@@ -244,7 +1655,54 @@
               <h3>Sign in with your firm login</h3>
               <p class="cap">The settings screen you'll see is <b>optional</b>: leave it blank and Briefly creates its folder for you. When Claude asks, <b>sign in</b> with the login we set up for your firm. That login is the whole setup, it tells Briefly who you are and which firm you belong to.</p>
             </div>
-            <div class="setup-frame"><video class="setup-vid" muted loop playsinline preload="metadata" poster="media/setup/ConfigureFolder.jpg"><source src="media/setup/ConfigureFolder.mp4" type="video/mp4"></video></div>
+            <div class="setup-frame"><div class="bw-scene" id="bw-scene-3">
+  <div class="bw-act bw-act--settings">
+    <div class="bw-card bw-card--settings">
+      <div class="bw-card-header">
+        <span class="bw-mark">B</span>
+        <h3 class="bw-card-title">Configure Briefly</h3>
+      </div>
+      <div class="bw-field">
+        <label class="bw-field-label">Your firm&rsquo;s folder</label>
+        <p class="bw-field-help">Optional. Leave blank and Briefly creates a starter folder.</p>
+        <div class="bw-field-row">
+          <span class="bw-input"></span>
+          <button class="bw-btn bw-btn--ghost bw-btn--browse" type="button">Browse</button>
+        </div>
+      </div>
+      <div class="bw-field">
+        <label class="bw-field-label">Inbox folder</label>
+        <p class="bw-field-help">Optional.</p>
+        <div class="bw-field-row">
+          <span class="bw-input"></span>
+        </div>
+      </div>
+      <div class="bw-card-actions">
+        <button class="bw-btn bw-btn--ghost" type="button">Cancel</button>
+        <button class="bw-btn bw-btn--primary bw-btn--save" type="button">Save</button>
+      </div>
+    </div>
+  </div>
+  <div class="bw-act bw-act--signin">
+    <div class="bw-card bw-card--signin">
+      <div class="bw-card-header">
+        <span class="bw-mark">B</span>
+        <h3 class="bw-card-title">Sign in to Briefly</h3>
+      </div>
+      <div class="bw-signin-fields">
+        <span class="bw-input bw-input--filled">advisor@firm.com</span>
+        <span class="bw-input bw-input--filled">&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;</span>
+        <button class="bw-btn bw-btn--primary bw-btn--signin" type="button">Sign in</button>
+      </div>
+      <div class="bw-connected">
+        <span class="bw-check bw-check--blue" aria-hidden="true"></span>
+        <span class="bw-connected-text">Connected</span>
+        <span class="bw-underline"></span>
+      </div>
+    </div>
+  </div>
+  <span class="bw-cursor"></span>
+</div></div>
           </article>
           <article class="setup-panel">
             <div class="p-head">
@@ -252,7 +1710,55 @@
               <h3>Add client documents</h3>
               <p class="cap">Save statements into your Briefly folder's <b>intake</b> and say <code>File everything in my intake folder</code>. Briefly reads each document, asks who it belongs to, and files the original. Attaching a file in chat works too.</p>
             </div>
-            <div class="setup-frame"><video class="setup-vid" muted loop playsinline preload="metadata" poster="media/setup/AddDocument.jpg"><source src="media/setup/AddDocument.mp4" type="video/mp4"></video></div>
+            <div class="setup-frame"><div class="bw-scene" id="bw-scene-4">
+  <div class="bw4-left">
+    <div class="bw4-finder">
+      <div class="bw4-titlebar">
+        <span class="bw4-dot bw4-dot-r"></span>
+        <span class="bw4-dot bw4-dot-y"></span>
+        <span class="bw4-dot bw4-dot-g"></span>
+        <span class="bw4-wintitle">Briefly</span>
+      </div>
+      <div class="bw4-rows">
+        <div class="bw4-row bw4-row-intake">
+          <span class="bw4-ficon"></span>
+          <span class="bw4-rowlabel">intake</span>
+          <span class="bw4-rowcount">2 items</span>
+          <span class="bw4-row-glow"></span>
+        </div>
+        <div class="bw4-row">
+          <span class="bw4-ficon"></span>
+          <span class="bw4-rowlabel">originals</span>
+        </div>
+        <div class="bw4-row">
+          <span class="bw4-ficon"></span>
+          <span class="bw4-rowlabel">wiki</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bw4-file bw4-file-1"><span class="bw4-file-badge">PDF</span>statement-2026-06.pdf</div>
+    <div class="bw4-file bw4-file-2"><span class="bw4-file-badge">PDF</span>ira-2026-06.pdf</div>
+  </div>
+
+  <div class="bw4-right">
+    <span class="bw4-appmark">Claude</span>
+    <div class="bw4-chat">
+      <div class="bw4-msg-user"><span class="bw4-typewriter">File everything in my intake folder.</span></div>
+
+      <div class="bw4-toolchip">
+        <span class="bw4-tick">&check;</span> Briefly <span class="bw4-dotsep">&middot;</span> read intake <span class="bw4-dotsep">&middot;</span> 2 statements
+      </div>
+
+      <div class="bw4-a-line bw4-a-1">Filed both for the Johnson family.</div>
+      <div class="bw4-a-line bw4-a-2">Originals &rarr; <span class="bw4-path">originals/johnson-family/</span></div>
+      <div class="bw4-a-line bw4-a-3">Schwab &middot;&middot;&middot;4417&nbsp; <span class="bw4-amt">$1,284,306.22</span><span class="bw4-chip">1</span></div>
+      <div class="bw4-a-line bw4-a-4">Vanguard IRA &middot;&middot;&middot;9052&nbsp; <span class="bw4-amt">$612,940.18</span><span class="bw4-chip">2</span></div>
+    </div>
+  </div>
+
+  <div class="bw-cursor"></div>
+</div></div>
           </article>
           <article class="setup-panel">
             <div class="p-head">
@@ -260,7 +1766,31 @@
               <h3>Ask for a brief</h3>
               <p class="cap">Ask <code>Prepare a meeting brief for the Johnson family</code>. Every fact gets a clickable source.</p>
             </div>
-            <div class="setup-frame"><video class="setup-vid" muted loop playsinline preload="metadata" poster="media/setup/AskBrief.jpg"><source src="media/setup/AskBrief.mp4" type="video/mp4"></video></div>
+            <div class="setup-frame"><div class="bw-scene" id="bw-scene-5">
+  <span class="bw5-appmark">Claude</span>
+  <div class="bw5-chat">
+    <div class="bw5-msg-user"><span class="bw5-typewriter">Prepare a meeting brief for the Johnson family.</span></div>
+
+    <div class="bw5-toolchip bw5-tool-1">
+      <span class="bw5-tick">&check;</span> Used Briefly <span class="bw5-dotsep">&middot;</span> briefly_ask
+    </div>
+    <div class="bw5-toolchip bw5-tool-2">
+      <span class="bw5-tick">&check;</span> Used Briefly <span class="bw5-dotsep">&middot;</span> briefly_prepare_meeting_brief
+    </div>
+
+    <div class="bw5-brief">
+      <div class="bw5-line bw5-line-title">Johnson Family &mdash; Meeting Brief</div>
+      <div class="bw5-line bw5-line-bottom">Bottom line: net worth <span class="bw5-amt">$1,897,246.40</span>, tied to the cent<span class="bw5-chip">1</span><span class="bw5-chip">2</span></div>
+      <div class="bw5-line bw5-line-c1">Largest position: AAPL, 11.2% of brokerage<span class="bw5-chip">1</span></div>
+      <div class="bw5-line bw5-line-c2">IRA contribution room this year<span class="bw5-chip">2</span></div>
+      <div class="bw5-line bw5-line-sources">Sources:<span class="bw5-chip bw5-chip--src1">1</span> Schwab statement (original) <span class="bw5-dotsep">&middot;</span><span class="bw5-chip">2</span> Vanguard statement (original)</div>
+    </div>
+  </div>
+
+  <div class="bw5-preview"><span class="bw5-preview-icon">PDF</span><span class="bw5-preview-label">statement-2026-06.pdf</span></div>
+
+  <div class="bw-cursor"></div>
+</div></div>
           </article>
         </div>
       </div>
@@ -369,6 +1899,8 @@
       if (i === current) return;
       current = i;
       panels.forEach((p, idx) => p.classList.toggle("active", idx === i));
+      const sc = panels[i] && panels[i].querySelector(".bw-scene");
+      if (sc) sc.replaceWith(sc.cloneNode(true));
       dots.forEach((d, idx) => d.classList.toggle("on", idx === i));
       playOnly(i);
     };
