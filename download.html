@@ -110,7 +110,7 @@
   .dl-meta a { color: var(--cream); font-weight:800; text-decoration:underline; }
   .dl-trust { margin-top:18px; max-width:560px; font-size:14px; line-height:1.55; color: rgba(247,243,234,.74); }
   .dl-trust a { color: var(--cream); font-weight:700; text-decoration:underline; }
-  .dl-note a.dl-note-btn { display:inline-block; margin-top:14px; background: var(--ink); color: var(--paper); font-family: var(--mono); font-size:12px; font-weight:800; letter-spacing:.05em; text-transform:uppercase; padding:10px 16px; text-decoration:none; }
+  .dl-note a.dl-note-btn { display:block; width:fit-content; margin-top:14px; background: var(--ink); color: var(--paper); font-family: var(--mono); font-size:12px; font-weight:800; letter-spacing:.05em; text-transform:uppercase; padding:10px 16px; text-decoration:none; }
   .dl-note a.dl-note-btn:hover { background: var(--blue); color:#fff; }
   /* ---------- Pinned step player (lock to screen + advance) ---------- */
   .setup-pin { position:relative; height:520vh; margin-top:6px; }
@@ -129,7 +129,7 @@
   .p-head .cap b { color:var(--ink); font-weight:700; }
   .p-head .cap a { color:var(--blue); font-weight:700; text-decoration:none; }
   .p-head .cap a:hover { text-decoration:underline; }
-  .p-head .cap code { font-family:var(--mono); font-size:13px; background:rgba(28,29,31,.06); border:1px solid var(--rule); border-radius:4px; padding:2px 6px; color:var(--ink); }
+  .p-head .cap code { font-family:var(--mono); font-size:13px; background:rgba(28,29,31,.06); border:1px solid var(--rule); border-radius:4px; padding:2px 6px; color:var(--ink); white-space:nowrap; }
   .setup-frame { height:54vh; aspect-ratio:16/9; max-width:92vw; border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,.07); background:#1a1a19; box-shadow:0 26px 72px -34px rgba(11,37,69,.6); flex-shrink:0; }
   .setup-vid { width:100%; height:100%; object-fit:cover; display:block; }
   .setup-trust { margin-top:22px; background:var(--navy); color:rgba(247,243,234,.84); border-radius:0; padding:22px 26px; font-size:14.5px; line-height:1.6; }
@@ -238,6 +238,7 @@
 }
 
 .bw-scene .bw-titlebar {
+  position: relative;
   flex-shrink: 0;
   height: 13%;
   display: flex;
@@ -252,10 +253,11 @@
 }
 
 .bw-scene .bw-titlebar-title {
-  margin: 0 auto;
-  transform: translateX(-50%);
-  position: relative;
+  position: absolute;
   left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
   font-size: var(--fs-sm);
   color: var(--bw-text-dim);
   font-weight: 600;
@@ -690,7 +692,7 @@
 }
 #bw-scene-2 .bw-nav-item--active { background: rgba(255, 255, 255, 0.22); width: 90%; }
 
-#bw-scene-2 .bw-settings-main { flex: 1; padding: 6%; filter: blur(0.6px); opacity: 0.55; }
+#bw-scene-2 .bw-settings-main { flex: 1; padding: 6%; filter: blur(0.6px); opacity: 0.55; animation: bw2-settings-clear 13s ease-in-out infinite; }
 #bw-scene-2 .bw-ext-row {
   display: flex;
   align-items: center;
@@ -761,13 +763,13 @@
 
 @keyframes bw2-actA {
   0%, 31%  { opacity: 1; }
-  36%, 89% { opacity: 0; }
-  95%, 100% { opacity: 1; }
+  32%, 89% { opacity: 0; }
+  91%, 100% { opacity: 1; }
 }
 @keyframes bw2-actB {
   0%, 31%  { opacity: 0; }
-  36%, 89% { opacity: 1; }
-  95%, 100% { opacity: 0; }
+  32%, 89% { opacity: 1; }
+  91%, 100% { opacity: 0; }
 }
 
 @keyframes bw2-chip-select {
@@ -822,6 +824,11 @@
   0%, 48%  { transform: scale(1); }
   49%      { transform: scale(0.95); }
   51%, 100% { transform: scale(1); }
+}
+
+@keyframes bw2-settings-clear {
+  0%, 54%   { filter: blur(0.6px); opacity: 0.55; }
+  57%, 100% { filter: blur(0); opacity: 1; }
 }
 
 @keyframes bw2-modal-fade {
@@ -899,13 +906,13 @@
 
 @keyframes bw3-actA {
   0%, 29%  { opacity: 1; }
-  35%, 89% { opacity: 0; }
-  95%, 100% { opacity: 1; }
+  31%, 89% { opacity: 0; }
+  91%, 100% { opacity: 1; }
 }
 @keyframes bw3-actB {
   0%, 29%  { opacity: 0; }
-  35%, 89% { opacity: 1; }
-  95%, 100% { opacity: 0; }
+  31%, 89% { opacity: 1; }
+  91%, 100% { opacity: 0; }
 }
 
 @keyframes bw3-cursor-pos {
@@ -993,6 +1000,7 @@
   #bw-scene-2 .bw-act--app { opacity: 1; }
   #bw-scene-2 .bw-modal-content { opacity: 0; }
   #bw-scene-2 .bw-toast { opacity: 1; transform: translate(-50%, 0%); }
+  #bw-scene-2 .bw-settings-main { filter: none; opacity: 1; }
   #bw-scene-2 .bw-cursor { opacity: 0; }
   #bw-scene-2 .bw-cursor::after { opacity: 0; }
 
@@ -1161,6 +1169,8 @@
   background:var(--bw-bubble); color:var(--bw-bubble-text);
   padding:.55em .85em; border-radius:.8em .8em .15em .8em;
   font-size:.76em; line-height:1.4;
+  opacity:0;
+  animation: bw4-msg-in 16s infinite;
 }
 #bw-scene-4 .bw4-typewriter{
   position:relative; display:inline-block;
@@ -1234,6 +1244,11 @@
   96%{ opacity:0; }
   99%{ opacity:0; }
   100%{ opacity:1; }
+}
+@keyframes bw4-msg-in{
+  0%,26%{ opacity:0; }
+  28%,89%{ opacity:1; }
+  96%,100%{ opacity:0; }
 }
 @keyframes bw4-typewriter{
   0%,29%{ clip-path:inset(0 100% 0 0); }
@@ -1347,6 +1362,8 @@
   background:rgba(255,255,255,.03);
   border:1px solid var(--bw-panel-edge);
   border-radius:.7em;
+  opacity:0;
+  animation: bw5-brief-in 16s infinite;
 }
 #bw-scene-5 .bw5-line{
   font-size:.78em; line-height:1.5; color:var(--bw-mid);
@@ -1394,6 +1411,11 @@
 
 #bw-scene-5 .bw-cursor{ animation:bw5-cursor 16s infinite; }
 
+@keyframes bw5-brief-in{
+  0%,22%{ opacity:0; }
+  24%,92%{ opacity:1; }
+  97%,100%{ opacity:0; }
+}
 @keyframes bw5-typewriter{
   0%,3%{ clip-path:inset(0 100% 0 0); }
   9%{ clip-path:inset(0 0% 0 0); }
@@ -1487,12 +1509,13 @@
    ============================================================ */
 @media (prefers-reduced-motion: reduce){
   .bw-scene *{ animation:none !important; transition:none !important; }
-  .bw-scene .bw-cursor{ opacity:0 !important; }
+  #bw-scene-4 .bw-cursor, #bw-scene-5 .bw-cursor{ opacity:0 !important; }
 
   #bw-scene-4 .bw4-file{ opacity:0 !important; }
   #bw-scene-4 .bw4-row-glow{ opacity:0 !important; }
   #bw-scene-4 .bw4-rowcount{ opacity:1 !important; }
   #bw-scene-4 .bw4-chat{ opacity:1 !important; }
+  #bw-scene-4 .bw4-msg-user{ opacity:1 !important; }
   #bw-scene-4 .bw4-typewriter{ clip-path:inset(0 0% 0 0) !important; }
   #bw-scene-4 .bw4-toolchip,
   #bw-scene-4 .bw4-a-line{ opacity:1 !important; transform:none !important; }
@@ -1501,6 +1524,7 @@
   #bw-scene-5 .bw5-typewriter{ clip-path:inset(0 0% 0 0) !important; }
   #bw-scene-5 .bw5-toolchip,
   #bw-scene-5 .bw5-line{ opacity:1 !important; transform:none !important; }
+  #bw-scene-5 .bw5-brief{ opacity:1 !important; }
   #bw-scene-5 .bw5-chip--src1{
     background:rgba(47,140,255,.4) !important;
     box-shadow:0 0 0 .4em rgba(47,140,255,.4) !important;
@@ -1797,7 +1821,7 @@
       </div>
     </div>
     <div class="setup-trust"><b>Your original files stay on your machine.</b> Briefly saves them in your folder, builds every brief locally, and never uploads your files. The finished brief is written by your own Claude, so its content follows your Claude plan and privacy settings. <a href="security.html">How we handle data</a></div>
-    <p class="req">Works in Claude Desktop on macOS and Windows &middot; Your original client files stay on your machine</p>
+    <p class="req">Works in Claude Desktop on macOS and Windows</p>
   </div>
 </main>
 
