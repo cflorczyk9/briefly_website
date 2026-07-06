@@ -36,17 +36,11 @@
     --mono: "JetBrains Mono", SFMono-Regular, Consolas, monospace;
     --navy:#0B2545; --blue:#2f8cff; --ink:#1c1d1f;
     --paper:#d9d7cb; --paper-2:#e6e3d6; --paper-3:#f1eee2;
-    --cream:#f7f3ea; --rule:rgba(28,29,31,.18);
-    /* grey ramp: ink -> g1 -> g2 -> g3 -> paper. hierarchy drops in lightness, not just size. */
-    --g1:#3a4048; --g2:#5b6470; --g3:#8d94a0;
+    --cream:#f7f3ea; --rule:rgba(28,29,31,.18); --muted:#5b6470;
   }
-  html { scroll-behavior: smooth; }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-  body { font-family: var(--sans); color: var(--ink); background:#fff; line-height: 1.6; -webkit-font-smoothing:antialiased; overflow-x: hidden; }
-  a { color: inherit; }
-  ::selection { background: var(--blue); color: #fff; }
+  body { font-family: var(--sans); color: var(--ink); background:#fff; line-height: 1.6; -webkit-font-smoothing:antialiased; }
 
-  /* ---------- Canonical nav (unchanged from download.html) ---------- */
+  /* ---------- Canonical nav ---------- */
   nav.nav { position:sticky; top:0; z-index:50; height:72px; display:flex; align-items:center; justify-content:space-between; gap:18px; padding:0 28px; background:var(--paper); border-bottom:1px solid var(--rule); }
   nav.nav .brand { position: relative; display: inline-flex; align-items: center; padding-right: 14px; text-decoration: none; }
   nav.nav .brand-word { font-family: var(--sans); font-weight: 900; font-size: 26px; line-height: .78; letter-spacing: -.085em; text-transform: uppercase; color: var(--ink); transform: scaleY(.88); transform-origin: left center; }
@@ -75,100 +69,98 @@
     nav.nav .nav-actions { display:none; }
   }
 
-  /* ---------- Focus states, generic ---------- */
-  a:focus-visible, button:focus-visible { outline:2px solid var(--blue); outline-offset:3px; }
+  /* ---------- Hero ---------- */
+  .dl-hero { background: var(--navy); color: var(--cream); padding: 104px 28px 88px; position:relative; overflow:hidden; }
+  .dl-hero::before { content:""; position:absolute; inset:0; background: linear-gradient(90deg, rgba(247,243,234,.05) 1px, transparent 1px) 0 0 / 56px 56px, linear-gradient(180deg, rgba(247,243,234,.04) 1px, transparent 1px) 0 0 / 56px 56px; pointer-events:none; }
+  .dl-hero-inner { position:relative; max-width: 960px; margin: 0 auto; }
+  .dl-eyebrow { display:block; font-family: var(--mono); font-size: 12px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color: var(--blue); margin-bottom:16px; }
+  .dl-hero h1 { font-family: var(--serif); font-weight:400; font-size: clamp(40px, 6vw, 66px); line-height:1.04; letter-spacing:-.01em; }
+  .dl-hero p { margin-top:18px; max-width:640px; font-size:19px; line-height:1.6; color: rgba(247,243,234,.78); }
+  .dl-2step { list-style:none; margin:26px 0 0; display:flex; flex-direction:column; gap:11px; max-width:560px; }
+  .dl-2step li { display:flex; align-items:flex-start; gap:13px; font-size:16px; line-height:1.5; color:rgba(247,243,234,.84); }
+  .dl-2step li .t { flex:1; min-width:0; }
+  .dl-2step li b { color:var(--cream); font-weight:700; }
+  .dl-2step .n { flex-shrink:0; width:26px; height:26px; border-radius:50%; border:1px solid var(--blue); color:var(--blue); display:inline-flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:13px; font-weight:800; }
+  .dl-cta-row { margin-top:24px; display:flex; align-items:center; gap:22px; flex-wrap:wrap; }
+  .dl-btn { display:inline-flex; align-items:center; gap:11px; background: var(--cream); color: var(--navy); font-family: var(--mono); font-size:15px; font-weight:800; letter-spacing:.01em; text-decoration:none; padding:18px 30px; border:1px solid var(--cream); transition: background .15s, color .15s; }
+  .dl-btn:hover { background:transparent; color: var(--cream); }
+  .dl-btn .arr { font-size:18px; line-height:1; }
+  .dl-meta { font-family: var(--mono); font-size:12px; line-height:1.55; color: rgba(247,243,234,.6); }
 
+  /* ---------- Main ---------- */
+  main { padding: 76px 28px 96px; background:#fff; }
+  .dl-wrap { max-width: 960px; margin: 0 auto; }
+  .dl-note { background: var(--cream); border:1px solid var(--ink); padding: 24px 26px; font-size:15px; line-height:1.6; color:#33404f; }
+  .dl-note::before { content:"Access"; display:block; font-family:var(--mono); font-size:11px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:var(--blue); margin-bottom:10px; }
+  .dl-note strong { color: var(--ink); }
+  .dl-note a { color: var(--blue); font-weight:700; text-decoration:none; }
+  .dl-note a:hover { text-decoration:underline; }
+  .steps-head { margin-top:56px; font-family: var(--serif); font-weight:400; font-size: clamp(26px,3.4vw,40px); line-height:1.08; letter-spacing:-.01em; color: var(--ink); }
+  .steps { margin-top:28px; display:grid; grid-template-columns: repeat(2,1fr); gap:18px; }
+  .step { border:1px solid var(--rule); background: var(--paper-3); padding: 24px 24px 26px; }
+  .step .sn { font-family: var(--mono); font-size:12px; font-weight:800; letter-spacing:.1em; color: var(--blue); }
+  .step h3 { margin-top:10px; font-size:19px; font-weight:800; letter-spacing:-.01em; color: var(--ink); }
+  .step p { margin-top:9px; font-size:14.5px; line-height:1.62; color:#46505d; }
+  .step p b { color: var(--ink); font-weight: 700; }
+  .step code { font-family: var(--mono); font-size:12.5px; background: rgba(28,29,31,.06); border:1px solid var(--rule); border-radius:4px; padding:1px 5px; color: var(--ink); }
+  .req { margin-top:30px; font-family: var(--mono); font-size:12px; color: var(--muted); letter-spacing:.02em; }
 
-  /* ================= HERO - navy, cinematic (variant-B treatment) ================= */
-  .hero { position:relative; overflow:hidden; display:flex; align-items:center; background: var(--navy); color: var(--cream); padding: clamp(96px, 12vw, 150px) 28px clamp(96px, 12vw, 140px); min-height: min(86vh, 780px); border-bottom: 1px solid var(--rule); }
-  .hero::before { content:""; position:absolute; inset:0; pointer-events:none; background:
-      linear-gradient(90deg, rgba(247,243,234,.05) 1px, transparent 1px) 0 0/56px 56px,
-      linear-gradient(180deg, rgba(247,243,234,.04) 1px, transparent 1px) 0 0/56px 56px; }
-  .hero::after { content:""; position:absolute; inset:0; pointer-events:none; background: radial-gradient(ellipse 900px 500px at 12% 0%, rgba(47,140,255,.10), transparent 60%); }
-  .hero-inner { position:relative; max-width: 900px; margin: 0 auto; width:100%; }
-  .eyebrow { display:block; font-family: var(--mono); font-size: 12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color: rgba(247,243,234,.62); margin-bottom: 30px; }
-  .headline { font-family: var(--serif); font-weight:400; font-size: clamp(42px, 6.2vw, 84px); line-height: .98; letter-spacing: -.02em; color: var(--cream); }
-  .headline .accent { color: var(--blue); }
-  .sub { margin-top: 30px; max-width: 600px; font-size: 19px; line-height: 1.6; color: rgba(247,243,234,.8); }
-  .req-strip { margin-top: 44px; max-width: 640px; padding: 15px 0; border-top: 1px solid rgba(247,243,234,.18); border-bottom: 1px solid rgba(247,243,234,.18); font-family: var(--mono); font-size: 12px; font-weight:700; letter-spacing:.07em; text-transform: uppercase; color: rgba(247,243,234,.62); }
-  .cta-row { margin-top: 40px; display:flex; align-items:center; gap: 16px; flex-wrap: wrap; }
-  .btn-primary, .btn-ghost { display:inline-flex; align-items:center; gap: 10px; font-family: var(--mono); font-size: 12.5px; font-weight:700; letter-spacing:.06em; text-transform: uppercase; padding: 14px 22px; text-decoration:none; border: 1px solid var(--ink); transition: background .15s ease, color .15s ease, border-color .15s ease; }
-  .btn-primary { background: var(--ink); color: var(--paper); }
-  .btn-primary:hover { background: var(--blue); border-color: var(--blue); color: #fff; }
-  .btn-ghost { background: transparent; color: var(--ink); }
-  .btn-ghost:hover { background: var(--ink); color: var(--paper); }
-  .btn-primary .arr { font-size: 15px; line-height:1; }
-  .hero .btn-primary { background: var(--cream); color: var(--navy); border-color: var(--cream); }
-  .hero .btn-primary:hover { background: transparent; color: var(--cream); }
-  .hero .btn-ghost { color: var(--cream); border-color: rgba(247,243,234,.45); }
-  .hero .btn-ghost:hover { background: var(--cream); color: var(--navy); border-color: var(--cream); }
-  .hero a:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+  /* ---------- Intuitiveness fixes ---------- */
+  .dl-meta a { color: var(--cream); font-weight:800; text-decoration:underline; }
+  .dl-trust { margin-top:18px; max-width:560px; font-size:14px; line-height:1.55; color: rgba(247,243,234,.74); }
+  .dl-trust a { color: var(--cream); font-weight:700; text-decoration:underline; }
+  .dl-note a.dl-note-btn { display:inline-block; margin-top:14px; background: var(--ink); color: var(--paper); font-family: var(--mono); font-size:12px; font-weight:800; letter-spacing:.05em; text-transform:uppercase; padding:10px 16px; text-decoration:none; }
+  .dl-note a.dl-note-btn:hover { background: var(--blue); color:#fff; }
+  /* ---------- Pinned step player (lock to screen + advance) ---------- */
+  .setup-pin { position:relative; height:520vh; margin-top:6px; }
+  .setup-pin-inner { position:sticky; top:0; height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; overflow:hidden; }
+  .setup-dots { position:absolute; top:90px; left:50%; transform:translateX(-50%); display:flex; gap:9px; z-index:4; }
+  .setup-dots button { width:30px; height:6px; border-radius:3px; border:0; padding:0; background:rgba(28,29,31,.16); cursor:pointer; transition:background .3s, width .3s; }
+  .setup-dots button:hover { background:rgba(28,29,31,.34); }
+  .setup-dots button.on { background:var(--blue); width:50px; }
+  .setup-stack { position:relative; width:100%; max-width:1100px; height:100%; }
+  .setup-panel { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:22px; padding:92px 24px 36px; opacity:0; transform:translateY(18px); pointer-events:none; transition:opacity .5s ease, transform .5s cubic-bezier(.2,.8,.3,1); }
+  .setup-panel.active { opacity:1; transform:none; pointer-events:auto; }
+  .p-head { text-align:center; max-width:680px; }
+  .p-head .s-num { display:block; font-family:var(--mono); font-size:13px; font-weight:800; letter-spacing:.16em; color:var(--blue); }
+  .p-head h3 { margin-top:9px; font-family:var(--serif); font-weight:400; font-size:clamp(27px,3.6vw,42px); line-height:1.04; letter-spacing:-.01em; color:var(--ink); }
+  .p-head .cap { margin-top:11px; font-size:16px; line-height:1.5; color:#46505d; }
+  .p-head .cap b { color:var(--ink); font-weight:700; }
+  .p-head .cap a { color:var(--blue); font-weight:700; text-decoration:none; }
+  .p-head .cap a:hover { text-decoration:underline; }
+  .p-head .cap code { font-family:var(--mono); font-size:13px; background:rgba(28,29,31,.06); border:1px solid var(--rule); border-radius:4px; padding:2px 6px; color:var(--ink); }
+  .setup-frame { height:54vh; aspect-ratio:16/9; max-width:92vw; border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,.07); background:#1a1a19; box-shadow:0 26px 72px -34px rgba(11,37,69,.6); flex-shrink:0; }
+  .setup-vid { width:100%; height:100%; object-fit:cover; display:block; }
+  .setup-trust { margin-top:10px; background:var(--navy); color:rgba(247,243,234,.84); border-radius:10px; padding:18px 22px; font-size:14.5px; line-height:1.55; }
+  .setup-trust b { color:var(--cream); }
+  .setup-trust a { color:var(--cream); font-weight:700; text-decoration:underline; }
+  /* static fallback (reduced motion / mobile): stack the panels, no lock */
+  .setup-pin.no-pin { height:auto; }
+  .setup-pin.no-pin .setup-pin-inner { position:static; height:auto; display:block; overflow:visible; }
+  .setup-pin.no-pin .setup-stack { height:auto; max-width:none; }
+  .setup-pin.no-pin .setup-panel { position:static; opacity:1; pointer-events:auto; animation:none; padding:0 0 52px; }
+  .setup-pin.no-pin .setup-frame { height:auto; width:100%; max-width:none; }
+  .setup-pin.no-pin .setup-dots { display:none; }
+  @media (max-width:860px) {
+    .p-head h3 { font-size:25px; }
+    .p-head .cap { font-size:15px; }
+    .setup-pin.no-pin .setup-panel { gap:16px; padding:0 0 40px; }
+  }
 
-  /* ================= Shared section scaffolding ================= */
-  section.band { padding: clamp(72px, 13vw, 150px) 28px; }
-  .wrap { max-width: 900px; margin: 0 auto; }
-  .kicker { display:block; font-family: var(--mono); font-size: 12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color: var(--blue); margin-bottom: 18px; }
-  .section-head { font-family: var(--serif); font-weight:400; font-size: clamp(28px, 3.6vw, 44px); line-height: 1.08; letter-spacing: -.01em; color: var(--ink); max-width: 640px; }
-
-  /* ================= Walkthrough - white, quiet vertical rail ================= */
-  .walkthrough { background: #fff; border-bottom: 1px solid var(--rule); }
-  .rail { margin-top: 64px; display:flex; flex-direction: column; }
-  .rail .row { display:grid; grid-template-columns: 60px 1fr; gap: 28px; padding: 34px 0; border-top: 1px solid var(--rule); }
-  .rail .row:last-child { border-bottom: 1px solid var(--rule); }
-  .rail .num { font-family: var(--mono); font-size: 14px; font-weight:700; letter-spacing:.04em; color: var(--blue); padding-top: 3px; }
-  .rail .content h3 { font-size: 20px; font-weight:600; letter-spacing:-.01em; color: var(--ink); }
-  .rail .content p { margin-top: 10px; max-width: 620px; font-size: 15.5px; line-height: 1.62; color: var(--g1); }
-  .rail .content p.secondary { margin-top: 8px; font-size: 14.5px; color: var(--g2); }
-  .rail .content code { font-family: var(--mono); font-size: 13px; background: rgba(28,29,31,.06); border: 1px solid var(--rule); border-radius: 4px; padding: 1px 6px; color: var(--ink); }
-  .rail .content a { color: var(--blue); font-weight:600; text-decoration: none; }
-  .rail .content a:hover { text-decoration: underline; }
-
-  /* ================= Demo - paper band, a real Claude exchange ================= */
-  .demo { background: var(--paper-3); border-bottom: 1px solid var(--rule); }
-  .claude-window { margin-top: 56px; background: #fff; border: 1px solid var(--ink); box-shadow: 12px 12px 0 rgba(11,37,69,.08); }
-  .cw-bar { display:flex; align-items:center; gap:8px; padding: 12px 16px; background: var(--paper-2); border-bottom: 1px solid var(--rule); }
-  .cw-dot { width:10px; height:10px; border-radius:50%; background: rgba(28,29,31,.18); }
-  .cw-title { margin-left: 10px; font-family: var(--mono); font-size: 11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color: var(--g2); }
-  .cw-chat { padding: clamp(22px, 4vw, 40px); display:flex; flex-direction:column; gap: 18px; font-size: 15px; line-height: 1.55; }
-  .msg-user { align-self: flex-end; max-width: 78%; background: var(--paper-2); border: 1px solid var(--rule); padding: 12px 16px; }
-  .msg-tool { align-self: flex-start; font-family: var(--mono); font-size: 11.5px; font-weight:700; letter-spacing:.05em; color: var(--g2); border: 1px solid var(--rule); padding: 7px 12px; background: #fff; }
-  .msg-tool .tick { color: var(--blue); }
-  .msg-ai { align-self: flex-start; max-width: 86%; }
-  .msg-ai p { margin: 0 0 10px; }
-  .msg-ai p:last-child { margin-bottom: 0; }
-  .msg-ai .cite { font-family: var(--mono); font-size: 10.5px; font-weight:800; color: var(--blue); }
-  .msg-ai .acct-line { padding-left: 14px; border-left: 2px solid var(--rule); }
-  .msg-ai .fine { font-size: 13px; color: var(--g2); }
-  .demo-caption { margin-top: 22px; font-size: 13.5px; color: var(--g2); max-width: 640px; }
-  @media (max-width: 600px) { .msg-user, .msg-ai { max-width: 100%; } }
-
-  /* ================= Trust band - the ONE navy section ================= */
-  .trust-band { background: var(--navy); color: var(--cream); }
-  .trust-band .kicker { color: var(--blue); }
-  .trust-band .section-head { color: var(--cream); }
-  .grid-2x2 { margin-top: 56px; display:grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(247,243,234,.18); border: 1px solid rgba(247,243,234,.18); }
-  .grid-2x2 .cell { background: var(--navy); padding: 32px 30px; }
-  .grid-2x2 .cell .label { display:block; font-family: var(--mono); font-size: 12px; font-weight:700; letter-spacing:.07em; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; }
-  .grid-2x2 .cell p { font-size: 15px; line-height: 1.6; color: rgba(247,243,234,.82); }
-  .band-link { margin-top: 44px; }
-  .band-link a { font-family: var(--mono); font-size: 12.5px; font-weight:700; letter-spacing:.05em; text-transform: uppercase; color: var(--cream); text-decoration: underline; text-underline-offset: 3px; }
-  .band-link a:hover { color: var(--blue); }
-
-  /* ================= Access band - cream, closing CTA ================= */
-  .access-band { background: var(--cream); }
-  .access-card { max-width: 620px; margin: 0 auto; border: 1px solid var(--ink); background: var(--paper-3); padding: 48px 44px; }
-  .access-card .kicker { margin-bottom: 16px; }
-  .access-card h2 { font-family: var(--serif); font-weight:400; font-size: clamp(24px, 3vw, 32px); line-height: 1.12; letter-spacing:-.01em; color: var(--ink); }
-  .access-card p { margin-top: 16px; font-size: 16px; line-height: 1.6; color: var(--g1); }
-  .access-card .btn-primary { margin-top: 26px; }
-
-  /* ---------- Footer (unchanged from download.html) ---------- */
+  /* ---------- Footer ---------- */
   footer { background: var(--paper); border-top:1px solid var(--rule); padding: 40px 28px; text-align:center; font-size:14px; }
   footer a { color: var(--ink); text-decoration:none; margin:0 12px; font-weight:600; }
   footer a:hover { color: var(--blue); }
-  footer .cr { margin-top:16px; color: var(--g3); font-size:12px; }
+  footer .cr { margin-top:16px; color: var(--muted); font-size:12px; }
 
-  /* ---------- Download handoff overlay (unchanged behavior from download.html) ---------- */
+  @media (max-width:760px) {
+    .steps { grid-template-columns: 1fr; }
+    .dl-hero { padding: 86px 18px 64px; }
+    main { padding: 56px 18px 72px; }
+    .dl-cta-row { gap:16px; }
+  }
+
+  /* ---------- Download handoff overlay ---------- */
   .dl-overlay { position: fixed; inset: 0; z-index: 200; display: flex; align-items: center; justify-content: center; padding: 24px; background: rgba(11,37,69,.74); backdrop-filter: blur(5px); animation: dlFade .18s ease; }
   .dl-overlay[hidden] { display: none; }
   @keyframes dlFade { from { opacity: 0; } to { opacity: 1; } }
@@ -176,29 +168,13 @@
   .dl-card .dl-arrow { font-size: 30px; line-height: 1; color: var(--blue); }
   .dl-card .dl-badge { margin-top: 10px; font-family: var(--mono); font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--blue); }
   .dl-card h2 { margin: 8px 0 0; font-family: var(--serif); font-weight: 400; font-size: 30px; line-height: 1.08; color: var(--ink); }
-  .dl-card p { margin: 14px 0 0; font-size: 15.5px; line-height: 1.6; color: var(--g1); }
+  .dl-card p { margin: 14px 0 0; font-size: 15.5px; line-height: 1.6; color: #33404f; }
   .dl-card p b { color: var(--ink); }
-  .dl-card .dl-fallback { font-size: 13px; color: var(--g2); margin-top: 14px; }
+  .dl-card .dl-fallback { font-size: 13px; color: var(--muted); margin-top: 14px; }
   .dl-card code { font-family: var(--mono); font-size: 12px; background: rgba(28,29,31,.06); border: 1px solid var(--rule); border-radius: 4px; padding: 1px 5px; }
   .dl-card .dl-fallback a { color: var(--blue); text-decoration: none; font-weight: 700; }
   .dl-ovbtn { margin-top: 22px; background: var(--ink); color: var(--cream); border: 1px solid var(--ink); font-family: var(--mono); font-size: 12.5px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; padding: 12px 22px; cursor: pointer; }
   .dl-ovbtn:hover { background: var(--blue); border-color: var(--blue); }
-
-  /* ================= Responsive ================= */
-  @media (max-width: 860px) {
-    .rail .row { grid-template-columns: 44px 1fr; gap: 18px; }
-  }
-  @media (max-width: 760px) {
-    .hero { padding: 88px 20px 76px; min-height: auto; }
-    section.band { padding: clamp(64px, 14vw, 96px) 20px; }
-    .grid-2x2 { grid-template-columns: 1fr; }
-    .access-card { padding: 36px 26px; }
-    .cta-row { gap: 14px; }
-  }
-  @media (max-width: 420px) {
-    .rail .row { grid-template-columns: 1fr; gap: 8px; }
-    .rail .num { padding-top: 0; }
-  }
 </style>
 </head>
 <body>
@@ -218,121 +194,80 @@
   </div>
 </nav>
 
-<section class="hero">
-  <div class="hero-inner">
-    <span class="eyebrow">Download &middot; Claude Desktop</span>
-    <h1 class="headline">Your client files, <span class="accent">briefed</span> inside Claude.</h1>
-    <p class="sub">Briefly runs inside the Claude desktop app, on your firm's own files. Install once, sign in, and you're ready to file documents and ask for a brief.</p>
-    <p class="req-strip">Runs inside the free Claude desktop app &middot; macOS and Windows</p>
-    <div class="cta-row">
-      <a class="btn-primary" id="dl" href="briefly-mcp.mcpb" download="briefly_wealth.mcpb">Download Briefly <span class="arr" aria-hidden="true">&darr;</span></a>
-      <a class="btn-ghost" href="#walkthrough">See the install walkthrough</a>
+<section class="dl-hero">
+  <div class="dl-hero-inner">
+    <span class="dl-eyebrow">Download &middot; Claude Desktop</span>
+    <h1>Add Briefly to Claude.</h1>
+    <p>Briefly runs inside the Claude desktop app, on your firm's own files. Quick to set up, then about five minutes to your first brief. The full walkthrough is just below.</p>
+    <div class="dl-cta-row">
+      <a class="dl-btn" id="dl" href="briefly-mcp.mcpb" download="briefly_wealth.mcpb">Download Briefly <span class="arr" aria-hidden="true">&darr;</span></a>
+      <span class="dl-meta">For Mac and Windows.<br>Requires the free <a href="https://claude.ai/download" target="_blank" rel="noopener">Claude desktop app</a>.</span>
     </div>
+    <p class="dl-trust">Your original client files stay on your machine, and Briefly never uploads them. The brief itself is written by your own Claude, so its content follows your Claude plan and privacy settings. <a href="security.html">How we handle data</a></p>
   </div>
 </section>
 
 <main>
-  <section class="band walkthrough" id="walkthrough">
-    <div class="wrap">
-      <span class="kicker">Install walkthrough</span>
-      <h2 class="section-head">Four steps to your first brief.</h2>
-      <div class="rail">
-        <div class="row">
-          <span class="num">01</span>
-          <div class="content">
-            <h3>Get Claude</h3>
-            <p>Anthropic's free desktop app. <a href="https://claude.ai/download" target="_blank" rel="noopener">Get Claude</a>, then come back.</p>
-          </div>
-        </div>
-        <div class="row">
-          <span class="num">02</span>
-          <div class="content">
-            <h3>Install Briefly</h3>
-            <p>Download, then double-click <code>briefly_wealth.mcpb</code> and click Install in Claude. Nothing to type, no account form.</p>
-            <p class="secondary">The settings screen is optional: leave it blank and Briefly creates its folder. Advanced: point it at your firm's OneDrive or SharePoint folder.</p>
-          </div>
-        </div>
-        <div class="row">
-          <span class="num">03</span>
-          <div class="content">
-            <h3>Sign in once</h3>
-            <p>The first time you use Briefly, Claude opens a sign-in window. Use the login Briefly set up for your firm.</p>
-            <p class="secondary">That login is the whole setup: it tells Briefly who you are and which firm you belong to.</p>
-          </div>
-        </div>
-        <div class="row">
-          <span class="num">04</span>
-          <div class="content">
-            <h3>File, then brief</h3>
-            <p>Save statements into your Briefly folder's intake and say &ldquo;File everything in my intake folder.&rdquo; Briefly reads each document, asks who it belongs to, and files the original where every citation can open it.</p>
-            <p class="secondary">Then ask: &ldquo;Prepare a meeting brief for the Johnson family.&rdquo;</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <div class="dl-wrap">
+    <div class="dl-note"><strong>Using Briefly starts with a login we set up for you.</strong> Request access and we will provision your firm's account, so your whole team shares how your firm likes its briefs written. Briefly is currently free to use. <a class="dl-note-btn" href="index.html#contact">Request access</a></div>
 
-  <section class="band demo" id="demo">
-    <div class="wrap">
-      <span class="kicker">What it looks like</span>
-      <h2 class="section-head">Filing and briefing, inside Claude.</h2>
-      <div class="claude-window" role="img" aria-label="A Claude Desktop conversation where Briefly files two statements and prepares a cited brief">
-        <div class="cw-bar"><span class="cw-dot"></span><span class="cw-dot"></span><span class="cw-dot"></span><span class="cw-title">Claude &middot; Briefly connected</span></div>
-        <div class="cw-chat">
-          <div class="msg-user">File everything in my intake folder.</div>
-          <div class="msg-tool"><span class="tick">&#10003;</span>&nbsp; Briefly &middot; read intake/ &middot; 2 statements</div>
-          <div class="msg-ai">
-            <p>Filed both statements for the <b>Johnson family</b>. The originals are saved in your Briefly folder under <b>originals/johnson-family/</b>, byte for byte.</p>
-            <p class="acct-line">Schwab brokerage &middot;&middot;&middot;4417 &nbsp;&nbsp;$1,284,306.22 <span class="cite">[1]</span><br>
-            Vanguard IRA &middot;&middot;&middot;9052 &nbsp;&nbsp;$612,940.18 <span class="cite">[2]</span></p>
-          </div>
-          <div class="msg-user">Prepare a meeting brief for the Johnsons.</div>
-          <div class="msg-ai">
-            <p><b>Bottom line:</b> net worth <b>$1,897,246.40</b> across two accounts, tied to the cent <span class="cite">[1]</span> <span class="cite">[2]</span>. Largest position: AAPL at 11.2% of the brokerage account <span class="cite">[1]</span>.</p>
-            <p class="fine">Sources: [1] 2026-06 Schwab statement (original) &middot; [2] 2026-06 Vanguard statement (original). Click a citation and the statement itself opens.</p>
-          </div>
+    <h2 class="steps-head">Five minutes to your first brief.</h2>
+    <div class="setup-pin" id="setupPin">
+      <div class="setup-pin-inner">
+        <div class="setup-dots">
+          <button type="button" data-go="0" class="on" aria-label="Step 1"></button>
+          <button type="button" data-go="1" aria-label="Step 2"></button>
+          <button type="button" data-go="2" aria-label="Step 3"></button>
+          <button type="button" data-go="3" aria-label="Step 4"></button>
+          <button type="button" data-go="4" aria-label="Step 5"></button>
+        </div>
+        <div class="setup-stack">
+          <article class="setup-panel active">
+            <div class="p-head">
+              <span class="s-num">STEP 01</span>
+              <h3>Get the free Claude app</h3>
+              <p class="cap">Briefly runs inside <b>Claude</b>, Anthropic's free desktop app. <a href="https://claude.ai/download" target="_blank" rel="noopener">Get Claude</a>, then come back.</p>
+            </div>
+            <div class="setup-frame"><video class="setup-vid" muted loop playsinline preload="metadata" poster="media/setup/GetClaude.jpg"><source src="media/setup/GetClaude.mp4" type="video/mp4"></video></div>
+          </article>
+          <article class="setup-panel">
+            <div class="p-head">
+              <span class="s-num">STEP 02</span>
+              <h3>Install Briefly</h3>
+              <p class="cap">Double-click <b>briefly_wealth.mcpb</b>, then click <b>Install</b> in Claude. That's the whole install: nothing to type, no account form. You only do this once.</p>
+            </div>
+            <div class="setup-frame"><video class="setup-vid" muted loop playsinline preload="metadata" poster="media/setup/InstallBriefly.jpg"><source src="media/setup/InstallBriefly.mp4" type="video/mp4"></video></div>
+          </article>
+          <article class="setup-panel">
+            <div class="p-head">
+              <span class="s-num">STEP 03</span>
+              <h3>Sign in with your firm login</h3>
+              <p class="cap">The settings screen you'll see is <b>optional</b>: leave it blank and Briefly creates its folder for you. When Claude asks, <b>sign in</b> with the login we set up for your firm. That login is the whole setup, it tells Briefly who you are and which firm you belong to.</p>
+            </div>
+            <div class="setup-frame"><video class="setup-vid" muted loop playsinline preload="metadata" poster="media/setup/ConfigureFolder.jpg"><source src="media/setup/ConfigureFolder.mp4" type="video/mp4"></video></div>
+          </article>
+          <article class="setup-panel">
+            <div class="p-head">
+              <span class="s-num">STEP 04</span>
+              <h3>Add client documents</h3>
+              <p class="cap">Save statements into your Briefly folder's <b>intake</b> and say <code>File everything in my intake folder</code>. Briefly reads each document, asks who it belongs to, and files the original. Attaching a file in chat works too.</p>
+            </div>
+            <div class="setup-frame"><video class="setup-vid" muted loop playsinline preload="metadata" poster="media/setup/AddDocument.jpg"><source src="media/setup/AddDocument.mp4" type="video/mp4"></video></div>
+          </article>
+          <article class="setup-panel">
+            <div class="p-head">
+              <span class="s-num">STEP 05</span>
+              <h3>Ask for a brief</h3>
+              <p class="cap">Ask <code>Prepare a meeting brief for the Johnson family</code>. Every fact gets a clickable source.</p>
+            </div>
+            <div class="setup-frame"><video class="setup-vid" muted loop playsinline preload="metadata" poster="media/setup/AskBrief.jpg"><source src="media/setup/AskBrief.mp4" type="video/mp4"></video></div>
+          </article>
         </div>
       </div>
-      <p class="demo-caption">Every number is read from the firm's own documents, and every citation opens the original file from the Briefly folder.</p>
     </div>
-  </section>
-
-  <section class="band trust-band">
-    <div class="wrap">
-      <span class="kicker">Security</span>
-      <h2 class="section-head">What the install guarantees.</h2>
-      <div class="grid-2x2">
-        <div class="cell">
-          <span class="label">Files stay on your machine</span>
-          <p>Nothing is uploaded, Briefly never sends your client files anywhere.</p>
-        </div>
-        <div class="cell">
-          <span class="label">Originals, filed</span>
-          <p>Every document's original lands in your Briefly folder, organized per family.</p>
-        </div>
-        <div class="cell">
-          <span class="label">Every fact cited</span>
-          <p>Briefs cite sources, citations open the original document.</p>
-        </div>
-        <div class="cell">
-          <span class="label">Your Claude writes it</span>
-          <p>Brief content follows your Claude plan and privacy settings.</p>
-        </div>
-      </div>
-      <p class="band-link"><a href="security.html">How we handle data &rarr;</a></p>
-    </div>
-  </section>
-
-  <section class="band access-band">
-    <div class="wrap">
-      <div class="access-card">
-        <span class="kicker">Access</span>
-        <h2>One login, provisioned for your firm.</h2>
-        <p>Briefly starts with a login we provision for your firm. Currently free.</p>
-        <a class="btn-primary" href="index.html#contact">Request access</a>
-      </div>
-    </div>
-  </section>
+    <div class="setup-trust"><b>Your original files stay on your machine.</b> Briefly saves them in your folder, builds every brief locally, and never uploads your files. The finished brief is written by your own Claude, so its content follows your Claude plan and privacy settings. <a href="security.html">How we handle data</a></div>
+    <p class="req">Works in Claude Desktop on macOS and Windows &middot; Your original client files stay on your machine</p>
+  </div>
 </main>
 
 <div class="dl-overlay" id="dlOverlay" role="dialog" aria-modal="true" aria-labelledby="dlOvTitle" hidden>
@@ -385,6 +320,79 @@
     document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !ov.hidden) hide(); });
   })();
 
+  // Pinned step player: the section locks to the screen and scrolling advances
+  // through the steps, swapping the big video and popping the next step in.
+  (() => {
+    const section = document.getElementById("setupPin");
+    if (!section) return;
+    const panels = [...section.querySelectorAll(".setup-panel")];
+    const dots = [...section.querySelectorAll(".setup-dots button")];
+    const vids = panels.map((p) => p.querySelector("video"));
+    const total = panels.length;
+    if (!total) return;
+    const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const mobile = matchMedia("(max-width: 860px)").matches;
+
+    const playOnly = (i) => {
+      vids.forEach((v, idx) => {
+        if (!v) return;
+        if (idx === i) { try { v.currentTime = 0; } catch (e) {} const p = v.play(); if (p && p.catch) p.catch(() => {}); }
+        else { try { v.pause(); } catch (e) {} }
+      });
+    };
+
+    // Reduced motion or mobile: don't lock. Stack the panels and play whichever
+    // one is on screen.
+    if (reduced || mobile) {
+      section.classList.add("no-pin");
+      panels.forEach((p) => p.classList.add("active"));
+      if ("IntersectionObserver" in window) {
+        const io = new IntersectionObserver((ents) => {
+          ents.forEach((e) => {
+            const v = e.target.querySelector("video");
+            if (!v) return;
+            if (e.isIntersecting) { const p = v.play(); if (p && p.catch) p.catch(() => {}); }
+            else { try { v.pause(); } catch (err) {} }
+          });
+        }, { threshold: 0.4 });
+        panels.forEach((p) => io.observe(p));
+      } else {
+        vids.forEach((v) => { if (v) { const p = v.play(); if (p && p.catch) p.catch(() => {}); } });
+      }
+      return;
+    }
+
+    // Desktop: locked scroll-player. Scroll progress through the tall section
+    // maps to a step index; each step gets an equal slice.
+    let current = -1;
+    const setActive = (i) => {
+      if (i === current) return;
+      current = i;
+      panels.forEach((p, idx) => p.classList.toggle("active", idx === i));
+      dots.forEach((d, idx) => d.classList.toggle("on", idx === i));
+      playOnly(i);
+    };
+    const update = () => {
+      const rect = section.getBoundingClientRect();
+      const scrollable = section.offsetHeight - window.innerHeight;
+      const passed = Math.min(Math.max(-rect.top, 0), scrollable);
+      const prog = scrollable > 0 ? passed / scrollable : 0;
+      let idx = Math.floor(prog * total);
+      if (idx >= total) idx = total - 1;
+      if (idx < 0) idx = 0;
+      setActive(idx);
+    };
+    dots.forEach((d, idx) => d.addEventListener("click", () => {
+      const scrollable = section.offsetHeight - window.innerHeight;
+      const y = section.offsetTop + ((idx + 0.5) / total) * scrollable;
+      scrollTo({ top: y, behavior: "smooth" });
+    }));
+    let raf = 0;
+    addEventListener("scroll", () => { if (raf) return; raf = requestAnimationFrame(() => { raf = 0; update(); }); }, { passive: true });
+    addEventListener("resize", update);
+    setActive(0);
+    update();
+  })();
 </script>
 </body>
 </html>
