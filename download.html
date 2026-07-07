@@ -552,7 +552,7 @@
 @keyframes bwv4a-1-status-done { 0%, 36% { opacity: 0; } 39%, 100% { opacity: 1; } }
 @keyframes bwv4a-1-btn-press { 0%, 12.86% { transform: scale(1); } 15% { transform: scale(0.95); } 17.14%, 100% { transform: scale(1); } }
 
-@keyframes bwv4a-1-cursorA-pos { 0%, 100% { left: 50%; top: 78%; } }
+@keyframes bwv4a-1-cursorA-pos { 0%, 100% { left: 50%; top: 71%; } }
 @keyframes bwv4a-1-cursorA-opacity { 0%, 17.14% { opacity: 1; } 19%, 100% { opacity: 0; } }
 @keyframes bwv4a-1-cursorA-pulse {
   0%, 12% { scale: 1; }
@@ -577,8 +577,8 @@
 
 /* cursor B -- identical keyframe percentages to the drag group above, offset
    by a constant -6% left / -8% top, so the two paths are always parallel */
-@keyframes bwv4a-1-cursorB-left { 0%, 67.86% { left: 14%; } 72% { left: 32%; } 80.71%, 100% { left: 74%; } }
-@keyframes bwv4a-1-cursorB-top  { 0%, 67.86% { top: 38%; } 72% { top: 35%; } 80.71%, 100% { top: 33%; } }
+@keyframes bwv4a-1-cursorB-left { 0%, 67.86% { left: 14%; } 72% { left: 32%; } 80.71%, 100% { left: 78%; } }
+@keyframes bwv4a-1-cursorB-top  { 0%, 67.86% { top: 38%; } 72% { top: 35%; } 80.71%, 100% { top: 39%; } }
 @keyframes bwv4a-1-cursorB-opacity { 0%, 66% { opacity: 0; } 67.86%, 95% { opacity: 1; } 99.29%, 100% { opacity: 0; } }
 @keyframes bwv4a-1-cursorB-pulse {
   0%, 66% { scale: 1; }
@@ -807,7 +807,7 @@
   #bwv4a-scene-1 .bwv4a-1-drag .bwv4a-installer-icon-label { opacity: 0 !important; }
   #bwv4a-scene-1 .bwv4a-1-folder { box-shadow: 0 0 0 clamp(2px, 0.6cqi, 5px) var(--bwv4a-blue-soft) !important; }
   #bwv4a-scene-1 .bwv4a-1-donebadge { opacity: 1 !important; scale: 1 !important; }
-  #bwv4a-scene-1 .bwv4a-1-cursor-b { opacity: 1 !important; left: 74% !important; top: 33% !important; }
+  #bwv4a-scene-1 .bwv4a-1-cursor-b { opacity: 1 !important; left: 78% !important; top: 39% !important; }
   #bwv4a-scene-1 .bwv4a-1-cursor-b .bwv4a-cursor-ring { opacity: 0 !important; }
 
   /* Scene 2 -- frozen on the settled hand-off beat: dimmed page, card fully
@@ -1233,12 +1233,12 @@
                                                              click pulse peaks at 76%
    ========================================================================== */
 @keyframes bwv4b-3-cursor-pos {
-  0%, 20% { left: 88%; top: 30%; }
-  21%, 40% { left: 73%; top: 56%; }
-  41%, 58% { left: 88%; top: 52%; }
+  0%, 20% { left: 87%; top: 18%; }
+  21%, 40% { left: 73%; top: 58%; }
+  41%, 58% { left: 86%; top: 53%; }
   59%, 61% { left: 60%; top: 44%; }
-  74%, 76% { left: 76%; top: 67%; }
-  77%, 100% { left: 76%; top: 67%; }
+  74%, 76% { left: 78%; top: 72%; }
+  77%, 100% { left: 78%; top: 72%; }
 }
 @keyframes bwv4b-3-cursor-opacity {
   0%, 3% { opacity: 0; }
@@ -1614,8 +1614,8 @@
 }
 
 /* ============================================================================
-   SHARED FINDER CHROME — used by scene 5's full-size Finder and its docked
-   mini window. Structure faithfully mirrors screenshot (g): traffic lights,
+   SHARED FINDER CHROME — used by scene 5's full-size Finder.
+   Structure faithfully mirrors screenshot (g): traffic lights,
    toolbar, Favorites sidebar, Name / Date Modified / Size / Kind columns,
    disclosure triangles, nested children. All identity is genericized
    (advisor / Macintosh HD path, no real usernames or personal folders).
@@ -1657,13 +1657,6 @@
 .bwv4c-finder-row-glow { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, rgba(47, 140, 255, .3), rgba(47, 140, 255, .06)); opacity: 0; }
 .bwv4c-finder-pathbar { flex-shrink: 0; display: flex; align-items: center; gap: .3em; padding: .4em .7em; font-size: .5em; color: var(--bwv4c-finder-text-faint); border-top: 1px solid var(--bwv4c-finder-border); white-space: nowrap; overflow: hidden; }
 
-/* -- mini docked Finder (scene 5 shell header) -- */
-.bwv4c-finder-mini { transform-origin: top right; }
-.bwv4c-finder-mini .bwv4c-finder-titlebar { padding: .45em .6em; }
-.bwv4c-finder-mini .bwv4c-finder-title { font-size: .64em; }
-.bwv4c-finder-mini .bwv4c-finder-row { padding: .4em .6em; font-size: .56em; }
-.bwv4c-finder-mini .bwv4c-finder-rowdate,
-.bwv4c-finder-mini .bwv4c-finder-rowsize { display: none; }
 
 /* ---- shared: incoming PDF file chip ---- */
 .bwv4c-filechip {
@@ -1855,12 +1848,12 @@
 @keyframes bwv4c-s4-cursor-pos {
   0%     { left: 23%; top: 24%; }
   37%    { left: 23%; top: 24%; }
-  41%    { left: 42%; top: 30%; }
-  44.5%  { left: 42%; top: 30%; }
+  41%    { left: 53%; top: 32.5%; }
+  44.5%  { left: 53%; top: 32.5%; }
   46%    { left: 23%; top: 24%; }
   63%    { left: 23%; top: 24%; }
-  67%    { left: 50%; top: 68%; }
-  70.5%  { left: 50%; top: 68%; }
+  67%    { left: 50%; top: 72%; }
+  70.5%  { left: 50%; top: 72%; }
   100%   { left: 23%; top: 24%; }
 }
 @keyframes bwv4c-s4-cursor-opacity {
@@ -1932,10 +1925,6 @@
 
 /* -- shell (fades in once the Finder walkthrough is done) -- */
 #bwv4c-scene-5 .bwv4c-s5-shell { animation: bwv4c-s5-shell-op 18s ease-in-out infinite; }
-#bwv4c-scene-5 .bwv4c-s5-finder-mini {
-  position: absolute; top: 22%; right: 4%; width: 30%;
-  animation: bwv4c-s5-finder-mini-op 18s ease-in-out infinite;
-}
 
 /* -- Beat B / Beat C content swap, inside the shell's stage -- */
 #bwv4c-scene-5 .bwv4c-s5-chatB { position: absolute; inset: 0; animation: bwv4c-s5-chatB-vis 18s steps(1, end) infinite; }
@@ -2000,24 +1989,20 @@
   0%, 27%   { opacity: 0; }
   30%, 100% { opacity: 1; }
 }
-@keyframes bwv4c-s5-finder-mini-op {
-  0%, 30%   { opacity: 0; transform: scale(.9); }
-  32%, 100% { opacity: 1; transform: scale(1); }
-}
 
 @keyframes bwv4c-s5-file1 {
   0%, 3%    { left: 16%; top: 5%; opacity: 1; scale: 1; }
   4%        { left: 16%; top: 5%; opacity: 1; scale: 1.1; }
-  8%        { left: 32%; top: 73%; opacity: 1; scale: 1; }
-  9%        { left: 32%; top: 73%; opacity: 0; scale: .75; }
+  8%        { left: 38%; top: 56%; opacity: 1; scale: 1; }
+  9%        { left: 38%; top: 56%; opacity: 0; scale: .75; }
   26.9%     { opacity: 0; }
   100%      { left: 16%; top: 5%; opacity: 1; scale: 1; }
 }
 @keyframes bwv4c-s5-file2 {
   0%, 11%   { left: 36%; top: 5%; opacity: 1; scale: 1; }
   12%       { left: 36%; top: 5%; opacity: 1; scale: 1.1; }
-  16.5%     { left: 32%; top: 73%; opacity: 1; scale: 1; }
-  17.5%     { left: 32%; top: 73%; opacity: 0; scale: .75; }
+  16.5%     { left: 38%; top: 56%; opacity: 1; scale: 1; }
+  17.5%     { left: 38%; top: 56%; opacity: 0; scale: .75; }
   26.9%     { opacity: 0; }
   100%      { left: 36%; top: 5%; opacity: 1; scale: 1; }
 }
@@ -2148,19 +2133,21 @@
   100%         { opacity: 0; transform: translateY(.6em) scale(.96); }
 }
 
+/* drag beats share the exact keyframe times of bwv4c-s5-file1/file2 with a
+   constant (+6%, +2%) center offset, so the cursor rides the chips instead of
+   merely heading the same way */
 @keyframes bwv4c-s5-cursor-pos {
-  0%      { left: 16%; top: 5%; }
-  3%      { left: 16%; top: 5%; }
-  7%      { left: 30%; top: 60%; }
-  8.5%    { left: 32%; top: 73%; }
-  11%     { left: 36%; top: 5%; }
-  16%     { left: 30%; top: 60%; }
-  17.5%   { left: 32%; top: 73%; }
-  20%     { left: 32%; top: 73%; }
-  84.5%   { left: 32%; top: 73%; }
-  86%     { left: 37%; top: 61%; }
-  95%     { left: 37%; top: 61%; }
-  100%    { left: 16%; top: 5%; }
+  0%      { left: 22%; top: 7%; }
+  4%      { left: 22%; top: 7%; }
+  8%      { left: 44%; top: 58%; }
+  9%      { left: 44%; top: 58%; }
+  12%     { left: 41%; top: 7%; }
+  16.5%   { left: 44%; top: 58%; }
+  20%     { left: 44%; top: 58%; }
+  84.5%   { left: 44%; top: 58%; }
+  86%     { left: 38%; top: 71.5%; }
+  95%     { left: 38%; top: 71.5%; }
+  100%    { left: 22%; top: 7%; }
 }
 @keyframes bwv4c-s5-cursor-opacity {
   0%, 2%       { opacity: 0; }
@@ -2217,13 +2204,12 @@
   #bwv4c-scene-4 .bwv4c-s4-cursor { opacity: 0 !important; }
   #bwv4c-scene-4 .bwv4c-s4-cursor .bwv4c-cursor-ring { opacity: 0 !important; }
 
-  /* Scene 5 — frozen on the brief card, fully written, inside the shell;
-     the docked mini Finder stays visible alongside it. Finder beat A and
-     the citation preview panel are hidden (fully, not mid-fade). */
+  /* Scene 5 — frozen on the brief card, fully written, inside the shell.
+     Finder beat A and the citation preview panel are hidden (fully, not
+     mid-fade). */
   #bwv4c-scene-5 .bwv4c-s5-fade { opacity: 1 !important; }
   #bwv4c-scene-5 .bwv4c-s5-finderstage { opacity: 0 !important; }
   #bwv4c-scene-5 .bwv4c-s5-shell { opacity: 1 !important; }
-  #bwv4c-scene-5 .bwv4c-s5-finder-mini { opacity: 1 !important; transform: scale(1) !important; }
   #bwv4c-scene-5 .bwv4c-s5-chatB { opacity: 0 !important; }
   #bwv4c-scene-5 .bwv4c-s5-chatC { opacity: 1 !important; }
   #bwv4c-scene-5 .bwv4c-s5-chatC .bwv4c-msg-user { opacity: 1 !important; }
@@ -2841,9 +2827,9 @@
       <div class="bwv4c-filechip bwv4c-s5-file2"><span class="bwv4c-filechip-badge">PDF</span>ira-2026-06.pdf</div>
     </div>
 
-    <!-- PERSISTENT SHELL: sidebar + main (stage + composer). Docks a mini
-         Finder in the header once it fades in, and never leaves the screen
-         again for the rest of the loop. -->
+    <!-- PERSISTENT SHELL: sidebar + main (stage + composer). Fades in after
+         the Finder beat and never leaves the screen again for the rest of
+         the loop. -->
     <div class="bwv4c-s5-shell bwv4c-shell">
       <div class="bwv4c-sidebar">
         <div class="bwv4c-sb-tabs">
@@ -2874,21 +2860,6 @@
       <div class="bwv4c-main">
         <div class="bwv4c-main-header">
           <span class="bwv4c-topicon" aria-hidden="true"></span>
-          <div class="bwv4c-finder bwv4c-finder-mini bwv4c-s5-finder-mini">
-            <div class="bwv4c-finder-titlebar">
-              <span class="bwv4c-dot bwv4c-dot-r"></span>
-              <span class="bwv4c-dot bwv4c-dot-y"></span>
-              <span class="bwv4c-dot bwv4c-dot-g"></span>
-              <span class="bwv4c-finder-title">Briefly</span>
-            </div>
-            <div class="bwv4c-finder-rows">
-              <div class="bwv4c-finder-row">
-                <span class="bwv4c-finder-ficon"></span>
-                <span class="bwv4c-finder-rowlabel">intake</span>
-                <span class="bwv4c-finder-rowkind">2 items</span>
-              </div>
-            </div>
-          </div>
         </div>
 
         <div class="bwv4c-stage">
