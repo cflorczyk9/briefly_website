@@ -512,7 +512,7 @@
   position: absolute; left: 20%; top: 46%; translate: -50% -50%; scale: 1;
   display: flex; flex-direction: column; align-items: center; gap: clamp(3px, 1cqi, 6px);
   z-index: 2;
-  animation: bwv4a-1-drag-left 14s ease-in-out infinite, bwv4a-1-drag-top 14s ease-in-out infinite, bwv4a-1-drag-scale 14s ease-in-out infinite;
+  animation: bwv4a-1-drag-left 14s ease-in-out infinite, bwv4a-1-drag-top 14s ease-in-out infinite, bwv4a-1-drag-scale 14s ease-in-out infinite, bwv4a-1-drag-fade 14s ease-in-out infinite;
 }
 #bwv4a-scene-1 .bwv4a-installer-icon {
   position: relative; width: clamp(28px, 9cqi, 60px); height: clamp(28px, 9cqi, 60px);
@@ -552,18 +552,27 @@
 @keyframes bwv4a-1-status-done { 0%, 36% { opacity: 0; } 39%, 100% { opacity: 1; } }
 @keyframes bwv4a-1-btn-press { 0%, 12.86% { transform: scale(1); } 15% { transform: scale(0.95); } 17.14%, 100% { transform: scale(1); } }
 
-@keyframes bwv4a-1-cursorA-pos { 0%, 100% { left: 50%; top: 71%; } }
-@keyframes bwv4a-1-cursorA-opacity { 0%, 17.14% { opacity: 1; } 19%, 100% { opacity: 0; } }
+@keyframes bwv4a-1-cursorA-pos {
+  0%, 17% { left: 50%; top: 71%; }
+  26%, 52% { left: 86%; top: 21%; }
+  62%, 100% { left: 50%; top: 71%; }
+}
+@keyframes bwv4a-1-cursorA-opacity { 0%, 100% { opacity: 1; } }
 @keyframes bwv4a-1-cursorA-pulse {
   0%, 12% { scale: 1; }
   13.5% { scale: 0.82; }
   15% { scale: 1.05; }
-  17.14%, 100% { scale: 1; }
+  17%, 44% { scale: 1; }
+  45.5% { scale: 0.85; }
+  47% { scale: 1.05; }
+  48.5%, 100% { scale: 1; }
 }
 @keyframes bwv4a-1-cursorA-ring {
   0%, 12% { opacity: 0; scale: 0.4; }
   14% { opacity: 0.75; scale: 0.6; }
-  17.14%, 100% { opacity: 0; scale: 1.6; }
+  16%, 44% { opacity: 0; scale: 1.6; }
+  46.5% { opacity: 0.7; scale: 0.55; }
+  48.5%, 100% { opacity: 0; scale: 1.6; }
 }
 
 /* drag group -- installer-body % */
@@ -574,12 +583,14 @@
 @keyframes bwv4a-1-draglabel { 0%, 72% { opacity: 1; } 79%, 100% { opacity: 0; } }
 @keyframes bwv4a-1-drag-top  { 0%, 67.86% { top: 46%; } 72% { top: 43%; } 80.71%, 100% { top: 41%; } }
 @keyframes bwv4a-1-drag-scale { 0%, 67.86% { scale: 1; } 72% { scale: 1.05; } 80.71%, 100% { scale: 0.82; } }
+/* on release the icon vanishes into the folder, macOS-style */
+@keyframes bwv4a-1-drag-fade { 0%, 80.71% { opacity: 1; } 81.3%, 100% { opacity: 0; } }
 
 /* cursor B -- identical keyframe percentages to the drag group above, offset
    by a constant -6% left / -8% top, so the two paths are always parallel */
-@keyframes bwv4a-1-cursorB-left { 0%, 67.86% { left: 14%; } 72% { left: 32%; } 80.71%, 100% { left: 78%; } }
-@keyframes bwv4a-1-cursorB-top  { 0%, 67.86% { top: 38%; } 72% { top: 35%; } 80.71%, 100% { top: 39%; } }
-@keyframes bwv4a-1-cursorB-opacity { 0%, 66% { opacity: 0; } 67.86%, 95% { opacity: 1; } 99.29%, 100% { opacity: 0; } }
+@keyframes bwv4a-1-cursorB-left { 0%, 54% { left: 58%; } 64%, 67.86% { left: 14%; } 72% { left: 32%; } 80.71%, 100% { left: 78%; } }
+@keyframes bwv4a-1-cursorB-top  { 0%, 54% { top: 20%; } 64%, 67.86% { top: 38%; } 72% { top: 35%; } 80.71%, 100% { top: 39%; } }
+@keyframes bwv4a-1-cursorB-opacity { 0%, 51% { opacity: 0; } 53%, 100% { opacity: 1; } }
 @keyframes bwv4a-1-cursorB-pulse {
   0%, 66% { scale: 1; }
   67.86% { scale: 0.85; }
@@ -605,7 +616,7 @@
 }
 @keyframes bwv4a-1-donebadge {
   0%, 81% { opacity: 0; scale: 0.5; }
-  84%, 95% { opacity: 1; scale: 1; }
+  82.5%, 95% { opacity: 1; scale: 1; }
   99%, 100% { opacity: 0; scale: 0.5; }
 }
 
@@ -751,21 +762,18 @@
    derived. */
 @keyframes bwv4a-2-cursor-left {
   0%, 16.2% { left: 41.6%; }
-  57% { left: 41.6%; }
-  63%, 91% { left: 82%; }
-  95%, 100% { left: 41.6%; }
+  26%, 57% { left: 75%; }
+  62%, 91% { left: 82%; }
+  100% { left: 41.6%; }
 }
 @keyframes bwv4a-2-cursor-top {
   0%, 16.2% { top: 72.3%; }
-  57% { top: 72.3%; }
-  63%, 91% { top: 23%; }
-  95%, 100% { top: 72.3%; }
+  26%, 57% { top: 33%; }
+  62%, 91% { top: 23%; }
+  100% { top: 72.3%; }
 }
 @keyframes bwv4a-2-cursor-opacity {
-  0%, 16.2% { opacity: 1; }
-  18%, 55% { opacity: 0; }
-  57.5%, 91% { opacity: 1; }
-  93%, 100% { opacity: 0; }
+  0%, 100% { opacity: 1; }
 }
 @keyframes bwv4a-2-cursor-pulse {
   0%, 12% { scale: 1; }
@@ -803,11 +811,11 @@
   #bwv4a-scene-1 .bwv4a-1-cursor-a { opacity: 0 !important; }
   #bwv4a-scene-1 .bwv4a-1-cursor-a .bwv4a-cursor-ring { opacity: 0 !important; }
 
-  #bwv4a-scene-1 .bwv4a-1-drag { left: 80% !important; top: 41% !important; scale: 0.82 !important; }
-  #bwv4a-scene-1 .bwv4a-1-drag .bwv4a-installer-icon-label { opacity: 0 !important; }
+  #bwv4a-scene-1 .bwv4a-1-drag { left: 38% !important; top: 43% !important; scale: 1.05 !important; opacity: 1 !important; }
+  #bwv4a-scene-1 .bwv4a-1-drag .bwv4a-installer-icon-label { opacity: 1 !important; }
   #bwv4a-scene-1 .bwv4a-1-folder { box-shadow: 0 0 0 clamp(2px, 0.6cqi, 5px) var(--bwv4a-blue-soft) !important; }
-  #bwv4a-scene-1 .bwv4a-1-donebadge { opacity: 1 !important; scale: 1 !important; }
-  #bwv4a-scene-1 .bwv4a-1-cursor-b { opacity: 1 !important; left: 78% !important; top: 39% !important; }
+  #bwv4a-scene-1 .bwv4a-1-donebadge { opacity: 0 !important; }
+  #bwv4a-scene-1 .bwv4a-1-cursor-b { opacity: 1 !important; left: 32% !important; top: 35% !important; }
   #bwv4a-scene-1 .bwv4a-1-cursor-b .bwv4a-cursor-ring { opacity: 0 !important; }
 
   /* Scene 2 -- frozen on the settled hand-off beat: dimmed page, card fully
@@ -1148,7 +1156,7 @@
 #bwv4b-scene-3 .bwv4b-3-scrim { animation: bwv4b-3-scrim 17s ease-in-out infinite; }
 
 /* ---- native install confirm dialog: dark macOS style (FIX 4) ---- */
-#bwv4b-scene-3 .bwv4b-3-dialog { width: 62%; animation: bwv4b-3-dialog 17s ease-in-out infinite; }
+#bwv4b-scene-3 .bwv4b-3-dialog { width: 36%; animation: bwv4b-3-dialog 17s ease-in-out infinite; }
 #bwv4b-scene-3 .bwv4b-3-dialog-row { display: flex; align-items: flex-start; gap: clamp(6px, 1.8cqi, 12px); }
 #bwv4b-scene-3 .bwv4b-3-dialog-mark { width: clamp(14px, 3cqi, 22px); height: clamp(14px, 3cqi, 22px); font-size: var(--fs-sm); border-radius: clamp(3px, 0.9cqi, 7px); }
 #bwv4b-scene-3 .bwv4b-3-dialog-textwrap { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: clamp(2px, 0.6cqi, 5px); }
@@ -1237,15 +1245,14 @@
    pulse (20 / 40 / 58 / 76) */
 @keyframes bwv4b-3-cursor-pos {
   0%, 21% { left: 87%; top: 18%; }
-  26%, 41% { left: 73%; top: 58%; }
+  26%, 41% { left: 60%; top: 60%; }
   47%, 59% { left: 86%; top: 53%; }
   64% { left: 68%; top: 58%; }
-  70%, 100% { left: 78%; top: 72%; }
+  70%, 93% { left: 78%; top: 72%; }
+  100% { left: 87%; top: 18%; }
 }
 @keyframes bwv4b-3-cursor-opacity {
-  0%, 3% { opacity: 0; }
-  4%, 90% { opacity: 1; }
-  93%, 100% { opacity: 0; }
+  0%, 100% { opacity: 1; }
 }
 @keyframes bwv4b-3-cursor-pulse {
   0%, 18% { transform: scale(1); }
@@ -1834,16 +1841,12 @@
   68.5%, 100% { transform: scale(1); }
 }
 @keyframes bwv4c-s4-cursor-pos {
-  0%     { left: 23%; top: 24%; }
-  61%    { left: 23%; top: 24%; }
-  66%    { left: 50%; top: 72%; }
-  70.5%  { left: 50%; top: 72%; }
-  100%   { left: 23%; top: 24%; }
+  0%, 61%    { left: 23%; top: 24%; }
+  66%, 80%   { left: 50%; top: 72%; }
+  90%, 100%  { left: 23%; top: 24%; }
 }
 @keyframes bwv4c-s4-cursor-opacity {
-  0%, 60%      { opacity: 0; }
-  62%, 70%     { opacity: 1; }
-  71%, 100%    { opacity: 0; }
+  0%, 100%   { opacity: 1; }
 }
 @keyframes bwv4c-s4-cursor-pulse {
   0%, 66%     { scale: 1; }
@@ -2121,17 +2124,13 @@
   12%     { left: 41%; top: 7%; }
   16.5%   { left: 44%; top: 58%; }
   20%     { left: 44%; top: 58%; }
-  84%     { left: 44%; top: 58%; }
+  30%, 83% { left: 74%; top: 86%; }
   88%     { left: 38%; top: 71.5%; }
-  95%     { left: 38%; top: 71.5%; }
+  96.5%   { left: 38%; top: 71.5%; }
   100%    { left: 22%; top: 7%; }
 }
 @keyframes bwv4c-s5-cursor-opacity {
-  0%, 2%       { opacity: 0; }
-  3%, 19%      { opacity: 1; }
-  20%, 83%     { opacity: 0; }
-  84.5%, 96%   { opacity: 1; }
-  97%, 100%    { opacity: 0; }
+  0%, 100%     { opacity: 1; }
 }
 @keyframes bwv4c-s5-cursor-pulse {
   0%, 3%      { scale: 1; }
@@ -2179,6 +2178,7 @@
   #bwv4c-scene-4 .bwv4c-quickrow { opacity: 0 !important; }
   #bwv4c-scene-4 .bwv4c-browser { opacity: 1 !important; transform: translate(-50%, -50%) scale(1) !important; }
   #bwv4c-scene-4 .bwv4c-s4-cursor { opacity: 0 !important; }
+  #bwv4c-scene-4 .bwv4c-s4-cursor { opacity: 1 !important; left: 50% !important; top: 72% !important; }
   #bwv4c-scene-4 .bwv4c-s4-cursor .bwv4c-cursor-ring { opacity: 0 !important; }
 
   /* Scene 5 — frozen on the brief card, fully written, inside the shell.
@@ -2200,6 +2200,8 @@
   #bwv4c-scene-5 .bwv4c-s5-b2-sources { opacity: 1 !important; transform: none !important; }
   #bwv4c-scene-5 .bwv4c-s5-chipglow { background: var(--bwv4c-blue-soft) !important; box-shadow: 0 0 0 0 rgba(47, 140, 255, 0) !important; }
   #bwv4c-scene-5 .bwv4c-s5-preview { opacity: 0 !important; }
+  #bwv4c-scene-5 .bwv4c-s5-cursor { opacity: 1 !important; left: 38% !important; top: 71.5% !important; }
+  #bwv4c-scene-5 .bwv4c-s5-cursor .bwv4c-cursor-ring { opacity: 0 !important; }
   #bwv4c-scene-5 .bwv4c-s5-cursor { opacity: 0 !important; }
   #bwv4c-scene-5 .bwv4c-s5-cursor .bwv4c-cursor-ring { opacity: 0 !important; }
 }
