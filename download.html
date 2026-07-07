@@ -170,24 +170,26 @@
   .dl-ovbtn { margin-top: 22px; background: var(--ink); color: var(--cream); border: 1px solid var(--ink); font-family: var(--mono); font-size: 12.5px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; padding: 12px 22px; cursor: pointer; }
   .dl-ovbtn:hover { background: var(--blue); border-color: var(--blue); }
 
-  /* ---------- Walkthrough scenes (v2: the exact advisor path) ---------- */
+  /* ---------- Walkthrough scenes (v3: grounded in real screenshots, mouse cursor) ---------- */
 
 /* ==========================================================================
-   Briefly download-page walkthrough v2 -- three looping scenes.
-   Namespace: every class/keyframe/selector is prefixed bwv2- and scoped
-   under :is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) / #bwv2-scene-N so this coexists with the shipped
-   .bw-scene / #bw-scene-N system in download.html during assembly.
+   Briefly download-page walkthrough v3a -- three looping scenes rebuilt to
+   match real product screenshots (Chrome download tray, brieflywealth.com
+   /download hero + handoff card, Claude Desktop extension detail/install/
+   configure flow). Namespace: root class "bwv3a-scene", ids bwv3a-scene-1|2|3.
+   Every class and keyframe is prefixed bwv3a- so this coexists safely with
+   any other scene system on the page.
    ========================================================================== */
 
-@property --bwv2-p {
+@property --bwv3a-p {
   syntax: '<number>';
   inherits: false;
   initial-value: 0;
 }
 
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3), :is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) * { box-sizing: border-box; }
+.bwv3a-scene, .bwv3a-scene * { box-sizing: border-box; }
 
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) {
+.bwv3a-scene {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
@@ -199,20 +201,25 @@
   color: #f1ede4;
   isolation: isolate;
 
-  --bwv2-panel: #201f1c;
-  --bwv2-panel-alt: #171613;
-  --bwv2-border: rgba(255, 255, 255, 0.09);
-  --bwv2-border-strong: rgba(255, 255, 255, 0.18);
-  --bwv2-text: #f1ede4;
-  --bwv2-text-dim: #a5a197;
-  --bwv2-text-faint: #756f66;
-  --bwv2-white: #f7f4ee;
-  --bwv2-accent: #d97757;
-  --bwv2-accent-soft: rgba(217, 119, 87, 0.28);
-  --bwv2-blue: #2f8cff;
-  --bwv2-blue-soft: rgba(47, 140, 255, 0.22);
-  --bwv2-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --bwv3a-panel: #201f1c;
+  --bwv3a-panel-alt: #17161a;
+  --bwv3a-border: rgba(255, 255, 255, 0.09);
+  --bwv3a-border-strong: rgba(255, 255, 255, 0.18);
+  --bwv3a-text: #f1ede4;
+  --bwv3a-text-dim: #a5a197;
+  --bwv3a-text-faint: #756f66;
+  --bwv3a-white: #f7f4ee;
+  --bwv3a-accent: #d97757;
+  --bwv3a-accent-soft: rgba(217, 119, 87, 0.28);
+  --bwv3a-blue: #2f8cff;
+  --bwv3a-blue-soft: rgba(47, 140, 255, 0.22);
+  --bwv3a-navy: #0b2545;
+  --bwv3a-cream: #efe9db;
+  --bwv3a-cream-line: #d9d1bd;
+  --bwv3a-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --bwv3a-serif: Georgia, "Times New Roman", serif;
 
+  --fs-2xs: clamp(6px, 1.4cqi, 10px);
   --fs-xs: clamp(7px, 1.7cqi, 12px);
   --fs-sm: clamp(8px, 1.95cqi, 14px);
   --fs-md: clamp(9.5px, 2.3cqi, 16px);
@@ -221,60 +228,74 @@
 }
 
 /* ---- window chrome (shared: browser + app windows) ---- */
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-window {
+.bwv3a-scene .bwv3a-window {
   position: relative;
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  background: var(--bwv2-panel);
-  border: 1px solid var(--bwv2-border);
+  background: var(--bwv3a-panel);
+  border: 1px solid var(--bwv3a-border);
   border-radius: clamp(8px, 1.6cqi, 18px);
   box-shadow: 0 2% 6% rgba(0, 0, 0, 0.45);
   overflow: hidden;
 }
 
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-titlebar {
+.bwv3a-scene .bwv3a-titlebar {
   position: relative;
   flex-shrink: 0;
-  height: 13%;
+  height: 12%;
   display: flex;
   align-items: center;
   gap: clamp(4px, 1cqi, 9px);
-  padding: 0 4%;
-  background: var(--bwv2-panel);
-  border-bottom: 1px solid var(--bwv2-border);
+  padding: 0 3.5%;
+  background: #201f1e;
+  border-bottom: 1px solid var(--bwv3a-border);
   z-index: 2;
 }
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-titlebar--plain { justify-content: flex-start; }
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-titlebar-title {
+.bwv3a-scene .bwv3a-titlebar--plain { justify-content: flex-start; }
+.bwv3a-scene .bwv3a-titlebar-title {
   position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
-  margin: 0; font-size: var(--fs-sm); color: var(--bwv2-text-dim); font-weight: 600;
+  margin: 0; font-size: var(--fs-sm); color: var(--bwv3a-text-dim); font-weight: 600;
 }
 
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-dot { width: clamp(6px, 1.5cqi, 12px); height: clamp(6px, 1.5cqi, 12px); border-radius: 50%; flex-shrink: 0; }
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-dot--red { background: #e2685c; }
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-dot--yellow { background: #e8b94d; }
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-dot--green { background: #57bd58; }
+.bwv3a-scene .bwv3a-dot { width: clamp(6px, 1.5cqi, 12px); height: clamp(6px, 1.5cqi, 12px); border-radius: 50%; flex-shrink: 0; }
+.bwv3a-scene .bwv3a-dot--red { background: #e2685c; }
+.bwv3a-scene .bwv3a-dot--yellow { background: #e8b94d; }
+.bwv3a-scene .bwv3a-dot--green { background: #57bd58; }
 
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-addressbar {
+.bwv3a-scene .bwv3a-addressbar {
   margin: 0 auto;
-  width: 50%;
-  background: var(--bwv2-panel-alt);
-  border: 1px solid var(--bwv2-border);
+  flex: 1;
+  max-width: 56%;
+  background: #17161a;
+  border: 1px solid var(--bwv3a-border);
   border-radius: clamp(6px, 1.4cqi, 10px);
   padding: clamp(2px, 0.7cqi, 6px) clamp(6px, 1.6cqi, 14px);
   font-size: var(--fs-sm);
-  color: var(--bwv2-text-dim);
-  font-family: var(--bwv2-mono);
+  color: var(--bwv3a-text-dim);
+  font-family: var(--bwv3a-mono);
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
+/* Chrome's own toolbar download-tray glyph, sits at the end of the titlebar */
+.bwv3a-scene .bwv3a-toolbar-dl {
+  flex-shrink: 0;
+  width: clamp(14px, 3cqi, 22px);
+  height: clamp(14px, 3cqi, 22px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bwv3a-text-faint);
+}
+.bwv3a-scene .bwv3a-toolbar-dl .bwv3a-icon-download { width: 46%; height: 46%; }
+
 /* ---- buttons ---- */
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-btn {
+.bwv3a-scene .bwv3a-btn {
   font-family: inherit;
   font-size: var(--fs-md);
   font-weight: 600;
@@ -289,247 +310,267 @@
   white-space: nowrap;
   transform-origin: center;
 }
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-btn--primary { background: var(--bwv2-white); color: #171410; }
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-btn--ghost { background: transparent; color: var(--bwv2-text-dim); border-color: var(--bwv2-border-strong); }
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-btn--accent { background: var(--bwv2-accent); color: #fff7f2; }
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-btn--browse { font-size: var(--fs-sm); padding: clamp(4px, 1.3cqi, 9px) clamp(8px, 2.2cqi, 14px); }
+.bwv3a-scene .bwv3a-btn--primary { background: var(--bwv3a-white); color: #171410; }
+.bwv3a-scene .bwv3a-btn--ghost { background: transparent; color: var(--bwv3a-text-dim); border-color: var(--bwv3a-border-strong); }
+.bwv3a-scene .bwv3a-btn--accent { background: var(--bwv3a-accent); color: #fff7f2; }
+.bwv3a-scene .bwv3a-btn--browse { font-size: var(--fs-sm); padding: clamp(4px, 1.3cqi, 9px) clamp(8px, 2.2cqi, 14px); }
 
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-icon-download { position: relative; width: clamp(9px, 2.1cqi, 15px); height: clamp(9px, 2.1cqi, 15px); flex-shrink: 0; }
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-icon-download::before {
+.bwv3a-scene .bwv3a-icon-download { position: relative; width: clamp(9px, 2.1cqi, 15px); height: clamp(9px, 2.1cqi, 15px); flex-shrink: 0; }
+.bwv3a-scene .bwv3a-icon-download::before {
   content: ""; position: absolute; left: 50%; top: 2%; width: 15%; height: 55%;
   background: currentColor; border-radius: 2px; transform: translateX(-50%);
 }
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-icon-download::after {
+.bwv3a-scene .bwv3a-icon-download::after {
   content: ""; position: absolute; left: 50%; top: 46%; width: 62%; height: 34%;
   background: currentColor; transform: translateX(-50%);
   clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
 }
 
-/* ---- shared cursor ---- */
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-cursor {
-  position: absolute;
-  width: clamp(9px, 2.1cqi, 15px);
-  height: clamp(9px, 2.1cqi, 15px);
-  border-radius: 50%;
-  background: #ffffff;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25), 0 2px 8px rgba(0, 0, 0, 0.55), 0 0 14px rgba(255, 255, 255, 0.35);
-  z-index: 60;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-}
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-cursor::after {
-  content: "";
+/* ---- shared cursor: real macOS-style arrow pointer, tip = hotspot ---- */
+.bwv3a-scene .bwv3a-cursor {
   position: absolute;
   left: 50%; top: 50%;
-  width: 260%; height: 260%;
+  width: clamp(8px, 1.7cqi, 13px);
+  height: clamp(12.6px, 2.7cqi, 20.6px);
+  z-index: 60;
+  pointer-events: none;
+  transform-origin: 0 0;
+  transform: scale(1);
+}
+.bwv3a-scene .bwv3a-cursor-svg {
+  position: absolute; left: 0; top: 0; width: 100%; height: 100%;
+  transform: rotate(-8deg);
+  transform-origin: 0 0;
+  filter: drop-shadow(0 0.12em 0.22em rgba(0, 0, 0, 0.55));
+  overflow: visible;
+}
+.bwv3a-scene .bwv3a-cursor-svg polygon { fill: #ffffff; stroke: #14120f; stroke-width: 0.9; stroke-linejoin: round; }
+.bwv3a-scene .bwv3a-cursor-ring {
+  content: "";
+  position: absolute;
+  left: 0; top: 0;
+  width: clamp(15px, 3.4cqi, 24px);
+  height: clamp(15px, 3.4cqi, 24px);
   border-radius: 50%;
-  border: 1.5px solid rgba(255, 255, 255, 0.8);
+  border: 1.4px solid rgba(255, 255, 255, 0.8);
   background: rgba(255, 255, 255, 0.08);
+  transform: translate(-50%, -50%) scale(0.4);
+  opacity: 0;
 }
 
-/* ---- download bubble (shared pattern: scene 1 + scene 2) ---- */
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-dlbubble {
+/* ---- download tray (Chrome bubble): dark rounded rect, file icon + name + size/status ---- */
+.bwv3a-scene .bwv3a-dlbubble {
   position: absolute;
-  top: 16%;
+  top: 15%;
   right: 3%;
   display: flex;
   align-items: center;
-  gap: clamp(5px, 1.3cqi, 10px);
-  background: var(--bwv2-panel-alt);
-  border: 1px solid var(--bwv2-border-strong);
-  border-radius: clamp(16px, 3.6cqi, 26px);
-  padding: clamp(5px, 1.3cqi, 9px) clamp(9px, 2.2cqi, 15px);
-  box-shadow: 0 4% 10% rgba(0, 0, 0, 0.4);
+  gap: clamp(6px, 1.5cqi, 11px);
+  background: #26251f;
+  border: 1px solid var(--bwv3a-border-strong);
+  border-radius: clamp(8px, 1.8cqi, 14px);
+  padding: clamp(6px, 1.5cqi, 11px) clamp(10px, 2.4cqi, 17px);
+  box-shadow: 0 4% 12% rgba(0, 0, 0, 0.45);
   z-index: 20;
+  max-width: 62%;
 }
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-ring {
-  --bwv2-p: 0;
-  position: relative;
-  width: clamp(13px, 3cqi, 19px);
-  height: clamp(13px, 3cqi, 19px);
+.bwv3a-scene .bwv3a-dlicon { position: relative; width: clamp(14px, 3.2cqi, 21px); height: clamp(14px, 3.2cqi, 21px); flex-shrink: 0; }
+.bwv3a-scene .bwv3a-ring {
+  --bwv3a-p: 0;
+  position: absolute; inset: 0;
   border-radius: 50%;
-  flex-shrink: 0;
-  background: conic-gradient(var(--bwv2-accent) calc(var(--bwv2-p) * 3.6deg), rgba(255, 255, 255, 0.18) 0deg);
+  background: conic-gradient(#8aa6c9 calc(var(--bwv3a-p) * 3.6deg), rgba(255, 255, 255, 0.16) 0deg);
 }
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-ring-hole { position: absolute; inset: 22%; border-radius: 50%; background: var(--bwv2-panel-alt); }
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-dlbubble-text { position: relative; display: flex; flex-direction: column; }
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-dlbubble-name { font-size: var(--fs-sm); font-weight: 700; color: var(--bwv2-text); white-space: nowrap; }
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-dlbubble-statuswrap { position: relative; height: 1.2em; }
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-dlbubble-status { position: absolute; left: 0; top: 0; white-space: nowrap; font-size: var(--fs-xs); color: var(--bwv2-text-faint); }
+.bwv3a-scene .bwv3a-ring-hole { position: absolute; inset: 20%; border-radius: 50%; background: #26251f; }
+.bwv3a-scene .bwv3a-fileicon {
+  position: absolute; inset: 8% 20%;
+  background: #eceae4;
+  border-radius: 2px 6px 2px 2px;
+}
+.bwv3a-scene .bwv3a-fileicon::before {
+  content: ""; position: absolute; right: 0; top: 0; width: 34%; height: 34%;
+  background: #b9b6ac; clip-path: polygon(0 0, 100% 100%, 0 100%);
+}
+.bwv3a-scene .bwv3a-dlbubble-text { position: relative; display: flex; flex-direction: column; min-width: 0; }
+.bwv3a-scene .bwv3a-dlbubble-name {
+  font-size: var(--fs-sm); font-weight: 700; color: var(--bwv3a-text);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 22cqi;
+}
+.bwv3a-scene .bwv3a-dlbubble-statuswrap { position: relative; height: 1.25em; }
+.bwv3a-scene .bwv3a-dlbubble-status { position: absolute; left: 0; top: 0; white-space: nowrap; font-size: var(--fs-xs); color: var(--bwv3a-text-faint); }
 
 /* ---- letter mark ---- */
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-mark {
+.bwv3a-scene .bwv3a-mark {
   flex-shrink: 0;
   width: clamp(16px, 3.6cqi, 28px);
   height: clamp(16px, 3.6cqi, 28px);
   border-radius: clamp(4px, 1cqi, 8px);
-  background: var(--bwv2-white);
+  background: var(--bwv3a-white);
   color: #201a14;
   font-weight: 800;
   font-size: var(--fs-md);
   display: flex; align-items: center; justify-content: center;
 }
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-mark--lg {
-  width: clamp(26px, 6.4cqi, 46px); height: clamp(26px, 6.4cqi, 46px);
-  font-size: var(--fs-lg); border-radius: clamp(6px, 1.4cqi, 11px);
-}
 
-/* ---- card (settings sheet) ---- */
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-card {
+/* ---- card (settings sheet, dark) ---- */
+.bwv3a-scene .bwv3a-card {
   position: relative;
   z-index: 31;
   background: #201e1a;
-  border: 1px solid var(--bwv2-border-strong);
+  border: 1px solid var(--bwv3a-border-strong);
   border-radius: clamp(9px, 1.8cqi, 18px);
   box-shadow: 0 8% 22% rgba(0, 0, 0, 0.5);
-  padding: clamp(10px, 3cqi, 22px) clamp(12px, 3.4cqi, 26px);
-  display: flex; flex-direction: column; gap: clamp(6px, 1.5cqi, 12px);
+  padding: clamp(9px, 2.4cqi, 18px) clamp(11px, 2.8cqi, 22px);
+  display: flex; flex-direction: column; gap: clamp(5px, 1.2cqi, 10px);
 }
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-card-header { display: flex; align-items: center; gap: clamp(6px, 1.6cqi, 12px); margin-bottom: clamp(2px, 0.6cqi, 4px); }
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-card-title { margin: 0; font-size: var(--fs-lg); font-weight: 700; color: var(--bwv2-text); }
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-field { display: flex; flex-direction: column; gap: clamp(2px, 0.6cqi, 5px); }
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-field-label { font-size: var(--fs-sm); font-weight: 600; color: var(--bwv2-text); }
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-field-help { margin: 0; font-size: var(--fs-xs); color: var(--bwv2-text-faint); line-height: 1.35; }
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-field-row { display: flex; align-items: center; gap: clamp(5px, 1.4cqi, 10px); }
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-input {
+.bwv3a-scene .bwv3a-card-header { display: flex; align-items: center; gap: clamp(6px, 1.6cqi, 12px); margin-bottom: clamp(1px, 0.4cqi, 3px); }
+.bwv3a-scene .bwv3a-card-title { margin: 0; font-size: var(--fs-lg); font-weight: 700; color: var(--bwv3a-text); }
+.bwv3a-scene .bwv3a-field { display: flex; flex-direction: column; gap: clamp(1px, 0.4cqi, 3px); }
+.bwv3a-scene .bwv3a-field-label { font-size: var(--fs-sm); font-weight: 600; color: var(--bwv3a-text); }
+.bwv3a-scene .bwv3a-field-help { margin: 0; font-size: var(--fs-xs); color: var(--bwv3a-text-faint); line-height: 1.3; }
+.bwv3a-scene .bwv3a-field-row { display: flex; align-items: center; gap: clamp(5px, 1.4cqi, 10px); }
+.bwv3a-scene .bwv3a-input {
   flex: 1; min-width: 0;
-  background: var(--bwv2-panel-alt); border: 1px solid var(--bwv2-border);
-  border-radius: clamp(5px, 1.2cqi, 9px); padding: clamp(4px, 1.3cqi, 9px) clamp(6px, 1.6cqi, 12px);
-  font-size: var(--fs-sm); color: var(--bwv2-text-dim); font-family: var(--bwv2-mono);
+  background: var(--bwv3a-panel-alt); border: 1px solid var(--bwv3a-border);
+  border-radius: clamp(5px, 1.2cqi, 9px); padding: clamp(4px, 1.1cqi, 8px) clamp(6px, 1.6cqi, 12px);
+  font-size: var(--fs-sm); color: var(--bwv3a-text-dim); font-family: var(--bwv3a-mono);
   display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+  min-height: 1.6em;
 }
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-card-actions { display: flex; justify-content: flex-end; gap: clamp(6px, 1.6cqi, 12px); margin-top: clamp(4px, 1.2cqi, 8px); }
+.bwv3a-scene .bwv3a-card-actions { display: flex; justify-content: flex-end; gap: clamp(6px, 1.6cqi, 12px); margin-top: clamp(3px, 1cqi, 7px); }
 
 /* ---- check icon ---- */
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-check { position: relative; width: clamp(11px, 2.4cqi, 18px); height: clamp(11px, 2.4cqi, 18px); flex-shrink: 0; }
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-check::before, :is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-check::after { content: ""; position: absolute; border-radius: 2px; background: currentColor; }
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-check::before { width: 38%; height: 16%; left: 6%; top: 50%; transform: rotate(45deg); transform-origin: left center; }
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-check::after { width: 62%; height: 16%; left: 26%; top: 66%; transform: rotate(-45deg); transform-origin: left center; }
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-check--claude { color: var(--bwv2-accent); }
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-check--blue { color: var(--bwv2-blue); }
+.bwv3a-scene .bwv3a-check { position: relative; width: clamp(11px, 2.4cqi, 18px); height: clamp(11px, 2.4cqi, 18px); flex-shrink: 0; color: var(--bwv3a-accent); }
+.bwv3a-scene .bwv3a-check::before, .bwv3a-scene .bwv3a-check::after { content: ""; position: absolute; border-radius: 2px; background: currentColor; }
+.bwv3a-scene .bwv3a-check::before { width: 38%; height: 16%; left: 6%; top: 50%; transform: rotate(45deg); transform-origin: left center; }
+.bwv3a-scene .bwv3a-check::after { width: 62%; height: 16%; left: 26%; top: 66%; transform: rotate(-45deg); transform-origin: left center; }
 
 /* ---- scrim / modal / toast ---- */
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-scrim { position: absolute; inset: 0; background: rgba(10, 9, 8, 0.55); z-index: 30; }
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-modal {
+.bwv3a-scene .bwv3a-scrim { position: absolute; inset: 0; background: rgba(8, 8, 7, 0.55); z-index: 30; }
+.bwv3a-scene .bwv3a-modal {
   position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
-  width: 62%; background: #211f1b; border: 1px solid var(--bwv2-border-strong);
-  border-radius: clamp(10px, 2cqi, 18px); box-shadow: 0 8% 22% rgba(0, 0, 0, 0.5);
-  padding: clamp(10px, 2.8cqi, 22px) clamp(12px, 3.2cqi, 24px);
-  display: flex; flex-direction: column; align-items: center; text-align: center; gap: clamp(4px, 1.1cqi, 8px);
+  width: 60%; border-radius: clamp(9px, 1.8cqi, 16px); box-shadow: 0 10% 26% rgba(0, 0, 0, 0.55);
+  padding: clamp(10px, 2.6cqi, 20px) clamp(12px, 2.8cqi, 22px);
+  display: flex; flex-direction: column; gap: clamp(4px, 1cqi, 8px);
   z-index: 31;
 }
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-modal-title { margin: clamp(2px, 0.8cqi, 6px) 0 0 0; font-size: var(--fs-lg); font-weight: 700; color: var(--bwv2-text); }
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-modal-sub { margin: 0 0 clamp(4px, 1.2cqi, 8px) 0; font-size: var(--fs-xs); color: var(--bwv2-text-faint); }
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-modal-actions { display: flex; gap: clamp(6px, 1.6cqi, 12px); }
+.bwv3a-scene .bwv3a-modal--light {
+  background: #ececea; border: 1px solid #d7d5d0;
+  color: #232220;
+}
+.bwv3a-scene .bwv3a-modal-actions { display: flex; justify-content: flex-end; gap: clamp(6px, 1.5cqi, 11px); margin-top: clamp(2px, 0.8cqi, 6px); }
 
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-toast {
-  position: absolute; left: 50%; bottom: 12%; transform: translateX(-50%);
+.bwv3a-scene .bwv3a-toast {
+  position: absolute; left: 50%; bottom: 10%; transform: translateX(-50%);
   display: flex; align-items: center; gap: clamp(6px, 1.6cqi, 11px);
-  background: var(--bwv2-panel-alt); border: 1px solid var(--bwv2-border-strong);
+  background: var(--bwv3a-panel-alt); border: 1px solid var(--bwv3a-border-strong);
   border-radius: clamp(20px, 4cqi, 30px); padding: clamp(6px, 1.6cqi, 11px) clamp(12px, 2.8cqi, 20px);
   box-shadow: 0 4% 10% rgba(0, 0, 0, 0.4);
   z-index: 32;
 }
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) .bwv2-toast-text { font-size: var(--fs-sm); color: var(--bwv2-text); font-weight: 600; }
+.bwv3a-scene .bwv3a-toast-text { font-size: var(--fs-sm); color: var(--bwv3a-text); font-weight: 600; }
 
 /* ==========================================================================
    Scene 1 -- "Get Claude"
    ========================================================================== */
-#bwv2-scene-1 .bwv2-act { position: absolute; inset: 0; }
-#bwv2-scene-1 .bwv2-1-act--browser { animation: bwv2-1-actA 14s ease-in-out infinite; }
-#bwv2-scene-1 .bwv2-1-act--installer {
-  animation: bwv2-1-actB 14s ease-in-out infinite;
+#bwv3a-scene-1 .bwv3a-act { position: absolute; inset: 0; }
+#bwv3a-scene-1 .bwv3a-1-act--browser { animation: bwv3a-1-actA 14s ease-in-out infinite; }
+#bwv3a-scene-1 .bwv3a-1-act--installer {
+  animation: bwv3a-1-actB 14s ease-in-out infinite;
   display: flex; align-items: center; justify-content: center;
   background: radial-gradient(80% 60% at 50% 30%, #2a2925 0%, #1a1a19 70%);
 }
 
-#bwv2-scene-1 .bwv2-page {
+#bwv3a-scene-1 .bwv3a-page {
   flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
   gap: clamp(4px, 1.3cqi, 11px); text-align: center; padding: 2% 6%;
 }
-#bwv2-scene-1 .bwv2-wordmark { font-size: var(--fs-sm); letter-spacing: 0.1em; text-transform: uppercase; color: var(--bwv2-text-faint); font-weight: 700; }
-#bwv2-scene-1 .bwv2-heading { margin: 0; font-size: var(--fs-xl); font-weight: 800; letter-spacing: -0.01em; color: var(--bwv2-text); }
-#bwv2-scene-1 .bwv2-subheading { margin: 0 0 clamp(2px, 1cqi, 6px) 0; font-size: var(--fs-md); color: var(--bwv2-text-dim); }
+#bwv3a-scene-1 .bwv3a-wordmark { font-size: var(--fs-sm); letter-spacing: 0.1em; text-transform: uppercase; color: var(--bwv3a-text-faint); font-weight: 700; }
+#bwv3a-scene-1 .bwv3a-heading { margin: 0; font-size: var(--fs-xl); font-weight: 800; letter-spacing: -0.01em; color: var(--bwv3a-text); }
+#bwv3a-scene-1 .bwv3a-subheading { margin: 0 0 clamp(2px, 1cqi, 6px) 0; font-size: var(--fs-md); color: var(--bwv3a-text-dim); }
 
-#bwv2-scene-1 .bwv2-1-bubble { animation: bwv2-1-bubble 14s ease-in-out infinite; }
-#bwv2-scene-1 .bwv2-1-ring { animation: bwv2-1-ringfill 14s ease-in-out infinite; }
-#bwv2-scene-1 .bwv2-1-status-downloading { animation: bwv2-1-status-downloading 14s ease-in-out infinite; }
-#bwv2-scene-1 .bwv2-1-status-done { animation: bwv2-1-status-done 14s ease-in-out infinite; color: var(--bwv2-accent); }
-#bwv2-scene-1 .bwv2-1-btn { animation: bwv2-1-btn-press 14s ease-in-out infinite; }
+#bwv3a-scene-1 .bwv3a-1-bubble { animation: bwv3a-1-bubble 14s ease-in-out infinite; }
+#bwv3a-scene-1 .bwv3a-1-ring { animation: bwv3a-1-ringfill 14s ease-in-out infinite, bwv3a-1-ringfade 14s ease-in-out infinite; }
+#bwv3a-scene-1 .bwv3a-1-fileicon { animation: bwv3a-1-fileiconfade 14s ease-in-out infinite; }
+#bwv3a-scene-1 .bwv3a-1-status-downloading { animation: bwv3a-1-status-downloading 14s ease-in-out infinite; }
+#bwv3a-scene-1 .bwv3a-1-status-done { animation: bwv3a-1-status-done 14s ease-in-out infinite; color: var(--bwv3a-text-dim); }
+#bwv3a-scene-1 .bwv3a-1-btn { animation: bwv3a-1-btn-press 14s ease-in-out infinite; }
 
-#bwv2-scene-1 .bwv2-installer {
+#bwv3a-scene-1 .bwv3a-installer {
   position: relative; width: 72%; max-width: 90%;
   background: #f4f3f1; border-radius: clamp(8px, 1.6cqi, 16px);
   box-shadow: 0 10% 24% rgba(0, 0, 0, 0.5);
   display: flex; flex-direction: column; overflow: hidden;
 }
-#bwv2-scene-1 .bwv2-installer-titlebar { display: flex; align-items: center; gap: clamp(4px, 1cqi, 8px); padding: 3% 4%; border-bottom: 1px solid rgba(0, 0, 0, 0.08); }
-#bwv2-scene-1 .bwv2-installer-body { display: flex; align-items: center; justify-content: space-between; gap: 4%; padding: 9% 8% 11%; }
-#bwv2-scene-1 .bwv2-installer-icon {
+#bwv3a-scene-1 .bwv3a-installer-titlebar { display: flex; align-items: center; gap: clamp(4px, 1cqi, 8px); padding: 3% 4%; border-bottom: 1px solid rgba(0, 0, 0, 0.08); }
+#bwv3a-scene-1 .bwv3a-installer-body { display: flex; align-items: center; justify-content: space-between; gap: 4%; padding: 9% 8% 11%; }
+#bwv3a-scene-1 .bwv3a-installer-icon {
   position: relative; width: clamp(28px, 9cqi, 60px); height: clamp(28px, 9cqi, 60px);
-  border-radius: clamp(7px, 2.2cqi, 16px); background: var(--bwv2-accent);
+  border-radius: clamp(7px, 2.2cqi, 16px); background: var(--bwv3a-accent);
   flex-shrink: 0; box-shadow: 0 6% 12% rgba(0, 0, 0, 0.3);
 }
-#bwv2-scene-1 .bwv2-1-icon { animation: bwv2-1-icon-drag 14s ease-in-out infinite; }
-#bwv2-scene-1 .bwv2-spark {
+#bwv3a-scene-1 .bwv3a-1-icon { animation: bwv3a-1-icon-drag 14s ease-in-out infinite; }
+#bwv3a-scene-1 .bwv3a-spark {
   position: absolute; left: 50%; top: 50%; width: 46%; height: 46%;
   background: #fff7f2; transform: translate(-50%, -50%);
   clip-path: polygon(50% 0%, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0% 50%, 39% 39%);
 }
-#bwv2-scene-1 .bwv2-installer-arrow { font-size: clamp(15px, 5.6cqi, 38px); color: #9a978d; line-height: 1; flex-shrink: 0; }
-#bwv2-scene-1 .bwv2-installer-target { display: flex; flex-direction: column; align-items: center; gap: clamp(3px, 1cqi, 6px); flex-shrink: 0; }
-#bwv2-scene-1 .bwv2-foldericon {
+#bwv3a-scene-1 .bwv3a-installer-arrow { font-size: clamp(15px, 5.6cqi, 38px); color: #9a978d; line-height: 1; flex-shrink: 0; }
+#bwv3a-scene-1 .bwv3a-installer-target { display: flex; flex-direction: column; align-items: center; gap: clamp(3px, 1cqi, 6px); flex-shrink: 0; }
+#bwv3a-scene-1 .bwv3a-foldericon {
   position: relative; width: clamp(30px, 9.4cqi, 62px); height: clamp(22px, 7.2cqi, 48px);
-  background: var(--bwv2-blue); border-radius: 0 clamp(3px, 1cqi, 6px) clamp(3px, 1cqi, 6px) clamp(3px, 1cqi, 6px);
+  background: var(--bwv3a-blue); border-radius: 0 clamp(3px, 1cqi, 6px) clamp(3px, 1cqi, 6px) clamp(3px, 1cqi, 6px);
 }
-#bwv2-scene-1 .bwv2-foldericon::before {
+#bwv3a-scene-1 .bwv3a-foldericon::before {
   content: ""; position: absolute; left: 0; top: -30%; width: 46%; height: 34%;
   background: inherit; border-radius: clamp(3px, 1cqi, 6px) clamp(3px, 1cqi, 6px) 0 0;
 }
-#bwv2-scene-1 .bwv2-1-folder { animation: bwv2-1-folder-glow 14s ease-in-out infinite; }
-#bwv2-scene-1 .bwv2-installer-label { font-size: var(--fs-sm); color: #57544c; font-weight: 600; }
+#bwv3a-scene-1 .bwv3a-1-folder { animation: bwv3a-1-folder-glow 14s ease-in-out infinite; }
+#bwv3a-scene-1 .bwv3a-installer-label { font-size: var(--fs-sm); color: #57544c; font-weight: 600; }
 
-#bwv2-scene-1 .bwv2-1-cursor {
-  animation: bwv2-1-cursor-pos 14s ease-in-out infinite, bwv2-1-cursor-opacity 14s ease-in-out infinite, bwv2-1-cursor-pulse 14s ease-in-out infinite;
+#bwv3a-scene-1 .bwv3a-1-cursor {
+  animation: bwv3a-1-cursor-pos 14s ease-in-out infinite, bwv3a-1-cursor-opacity 14s ease-in-out infinite, bwv3a-1-cursor-pulse 14s ease-in-out infinite;
 }
-#bwv2-scene-1 .bwv2-1-cursor::after { animation: bwv2-1-cursor-ring 14s ease-in-out infinite; }
+#bwv3a-scene-1 .bwv3a-1-cursor .bwv3a-cursor-ring { animation: bwv3a-1-cursor-ring 14s ease-in-out infinite; }
 
-@keyframes bwv2-1-actA { 0%, 51.43% { opacity: 1; } 52.5%, 99.29% { opacity: 0; } 100% { opacity: 1; } }
-@keyframes bwv2-1-actB { 0%, 51.43% { opacity: 0; } 52.5%, 95% { opacity: 1; } 99.29%, 100% { opacity: 0; } }
+@keyframes bwv3a-1-actA { 0%, 51.43% { opacity: 1; } 52.5%, 99.29% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes bwv3a-1-actB { 0%, 51.43% { opacity: 0; } 52.5%, 95% { opacity: 1; } 99.29%, 100% { opacity: 0; } }
 
-@keyframes bwv2-1-bubble {
+@keyframes bwv3a-1-bubble {
   0%, 15% { opacity: 0; transform: translateY(-40%); }
   18.57%, 51.43% { opacity: 1; transform: translateY(0%); }
   52.5%, 100% { opacity: 0; transform: translateY(-40%); }
 }
-@keyframes bwv2-1-ringfill { 0%, 18.57% { --bwv2-p: 0; } 38.57%, 100% { --bwv2-p: 100; } }
-@keyframes bwv2-1-status-downloading { 0%, 36% { opacity: 1; } 38.57%, 100% { opacity: 0; } }
-@keyframes bwv2-1-status-done { 0%, 36% { opacity: 0; } 38.57%, 100% { opacity: 1; } }
-@keyframes bwv2-1-btn-press { 0%, 12.86% { transform: scale(1); } 15% { transform: scale(0.95); } 17.14%, 100% { transform: scale(1); } }
+@keyframes bwv3a-1-ringfill { 0%, 18.57% { --bwv3a-p: 0; } 38.57%, 100% { --bwv3a-p: 100; } }
+@keyframes bwv3a-1-ringfade { 0%, 36% { opacity: 1; } 39%, 100% { opacity: 0; } }
+@keyframes bwv3a-1-fileiconfade { 0%, 36% { opacity: 0; } 39%, 100% { opacity: 1; } }
+@keyframes bwv3a-1-status-downloading { 0%, 36% { opacity: 1; } 39%, 100% { opacity: 0; } }
+@keyframes bwv3a-1-status-done { 0%, 36% { opacity: 0; } 39%, 100% { opacity: 1; } }
+@keyframes bwv3a-1-btn-press { 0%, 12.86% { transform: scale(1); } 15% { transform: scale(0.95); } 17.14%, 100% { transform: scale(1); } }
 
-@keyframes bwv2-1-icon-drag {
+@keyframes bwv3a-1-icon-drag {
   0%, 67.86% { transform: translate(0%, 0%) scale(1); opacity: 1; }
   78% { transform: translate(210%, 0%) scale(1); opacity: 1; }
   80.71% { transform: translate(230%, 0%) scale(0.72); opacity: 0.85; }
   83%, 95% { transform: translate(230%, 0%) scale(0.55); opacity: 0; }
   100% { transform: translate(0%, 0%) scale(1); opacity: 1; }
 }
-@keyframes bwv2-1-folder-glow {
+@keyframes bwv3a-1-folder-glow {
   0%, 79% { box-shadow: none; }
-  81%, 90% { box-shadow: 0 0 0 clamp(2px, 0.6cqi, 5px) var(--bwv2-blue-soft); }
+  81%, 90% { box-shadow: 0 0 0 clamp(2px, 0.6cqi, 5px) var(--bwv3a-blue-soft); }
   95%, 100% { box-shadow: none; }
 }
 
-@keyframes bwv2-1-cursor-pos {
-  0%, 12.86% { left: 50%; top: 76%; }
-  17.14% { left: 50%; top: 76%; }
+@keyframes bwv3a-1-cursor-pos {
+  0%, 12.86% { left: 50%; top: 78%; }
+  17.14% { left: 50%; top: 78%; }
   19%, 66% { left: 36%; top: 52%; }
   67.86% { left: 36%; top: 52%; }
   80.71% { left: 64%; top: 52%; }
   83%, 99.29% { left: 64%; top: 52%; }
-  100% { left: 50%; top: 76%; }
+  100% { left: 50%; top: 78%; }
 }
-@keyframes bwv2-1-cursor-opacity {
+@keyframes bwv3a-1-cursor-opacity {
   0%, 12.86% { opacity: 1; }
   17.14% { opacity: 1; }
   19% { opacity: 0; }
@@ -540,19 +581,19 @@
   99.29% { opacity: 0; }
   100% { opacity: 1; }
 }
-@keyframes bwv2-1-cursor-pulse {
-  0%, 12% { transform: translate(-50%, -50%) scale(1); }
-  13.5% { transform: translate(-50%, -50%) scale(0.8); }
-  15% { transform: translate(-50%, -50%) scale(1.18); }
-  17.14%, 66% { transform: translate(-50%, -50%) scale(1); }
-  67.86% { transform: translate(-50%, -50%) scale(0.82); }
-  69% { transform: translate(-50%, -50%) scale(1.05); }
-  70%, 79% { transform: translate(-50%, -50%) scale(1); }
-  80.71% { transform: translate(-50%, -50%) scale(0.82); }
-  82% { transform: translate(-50%, -50%) scale(1.18); }
-  84%, 100% { transform: translate(-50%, -50%) scale(1); }
+@keyframes bwv3a-1-cursor-pulse {
+  0%, 12% { transform: scale(1); }
+  13.5% { transform: scale(0.82); }
+  15% { transform: scale(1.05); }
+  17.14%, 66% { transform: scale(1); }
+  67.86% { transform: scale(0.85); }
+  69% { transform: scale(1.02); }
+  70%, 79% { transform: scale(1); }
+  80.71% { transform: scale(0.85); }
+  82% { transform: scale(1.05); }
+  84%, 100% { transform: scale(1); }
 }
-@keyframes bwv2-1-cursor-ring {
+@keyframes bwv3a-1-cursor-ring {
   0%, 12% { opacity: 0; transform: translate(-50%, -50%) scale(0.4); }
   14% { opacity: 0.75; transform: translate(-50%, -50%) scale(0.6); }
   17.14%, 66% { opacity: 0; transform: translate(-50%, -50%) scale(1.6); }
@@ -567,150 +608,317 @@
 /* ==========================================================================
    Scene 2 -- "Download Briefly"
    ========================================================================== */
-#bwv2-scene-2 .bwv2-window { background: #0B2545; animation: bwv2-2-fadeout 12s ease-in-out infinite; }
-#bwv2-scene-2 .bwv2-titlebar { background: var(--bwv2-panel); }
+#bwv3a-scene-2 .bwv3a-window { background: var(--bwv3a-navy); animation: bwv3a-2-fadeout 13s ease-in-out infinite; }
 
-#bwv2-scene-2 .bwv2-2-hero {
-  flex: 1; position: relative; background: #0B2545;
+#bwv3a-scene-2 .bwv3a-2-page { position: relative; flex: 1; display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+
+#bwv3a-scene-2 .bwv3a-2-nav {
+  flex-shrink: 0; display: flex; align-items: center; justify-content: space-between;
+  background: var(--bwv3a-cream); padding: clamp(5px, 1.6cqi, 11px) 5%;
+  border-bottom: 1px solid var(--bwv3a-cream-line);
+}
+#bwv3a-scene-2 .bwv3a-2-navword { font-size: var(--fs-md); font-weight: 800; letter-spacing: 0.02em; color: #17171a; }
+#bwv3a-scene-2 .bwv3a-2-navbtn {
+  font-size: var(--fs-2xs); font-weight: 700; letter-spacing: 0.04em;
+  background: #17171a; color: #f2ede0;
+  padding: clamp(3px, 1cqi, 7px) clamp(6px, 1.8cqi, 12px);
+  border-radius: clamp(4px, 1cqi, 7px);
+}
+
+#bwv3a-scene-2 .bwv3a-2-hero {
+  flex: 1; position: relative; background: var(--bwv3a-navy);
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   gap: clamp(4px, 1.3cqi, 10px); text-align: center; padding: 4% 8%;
 }
-#bwv2-scene-2 .bwv2-2-eyebrow { font-size: var(--fs-xs); letter-spacing: 0.14em; text-transform: uppercase; color: #7fb2ff; font-weight: 700; }
-#bwv2-scene-2 .bwv2-2-heading { margin: 0; font-family: Georgia, "Times New Roman", serif; font-weight: 400; font-size: var(--fs-xl); color: #f7f3ea; letter-spacing: -0.01em; }
-#bwv2-scene-2 .bwv2-2-sub { margin: 0 0 clamp(2px, 1cqi, 6px); font-size: var(--fs-md); color: rgba(247, 243, 234, 0.72); }
-#bwv2-scene-2 .bwv2-2-btn { background: #f7f3ea; color: #0B2545; animation: bwv2-2-btn-press 12s ease-in-out infinite; }
+#bwv3a-scene-2 .bwv3a-2-heading { margin: 0; font-family: var(--bwv3a-serif); font-weight: 400; font-size: var(--fs-xl); color: #f7f3ea; letter-spacing: -0.01em; }
+#bwv3a-scene-2 .bwv3a-2-sub { margin: 0 0 clamp(2px, 1cqi, 6px); font-size: var(--fs-md); color: rgba(247, 243, 234, 0.72); }
+#bwv3a-scene-2 .bwv3a-2-btnrow { display: flex; align-items: center; gap: clamp(6px, 1.8cqi, 14px); }
+#bwv3a-scene-2 .bwv3a-2-btn { background: #f7f3ea; color: var(--bwv3a-navy); animation: bwv3a-2-btn-press 13s ease-in-out infinite; }
+#bwv3a-scene-2 .bwv3a-2-caption { font-size: var(--fs-2xs); color: rgba(247, 243, 234, 0.55); text-align: left; max-width: 15cqi; }
 
-#bwv2-scene-2 .bwv2-2-bubble { animation: bwv2-2-bubble 12s ease-in-out infinite; }
-#bwv2-scene-2 .bwv2-2-ring { animation: bwv2-2-ringfill 12s ease-in-out infinite; }
-#bwv2-scene-2 .bwv2-2-status-downloading { animation: bwv2-2-status-downloading 12s ease-in-out infinite; }
-#bwv2-scene-2 .bwv2-2-status-done { animation: bwv2-2-status-done 12s ease-in-out infinite; color: var(--bwv2-accent); }
-
-#bwv2-scene-2 .bwv2-2-cursor {
-  animation: bwv2-2-cursor-pos 12s ease-in-out infinite, bwv2-2-cursor-opacity 12s ease-in-out infinite, bwv2-2-cursor-pulse 12s ease-in-out infinite;
+#bwv3a-scene-2 .bwv3a-2-scrim {
+  position: absolute; inset: 0; z-index: 15;
+  background: rgba(4, 10, 22, 0.6);
+  backdrop-filter: blur(2px);
+  animation: bwv3a-2-scrim 13s ease-in-out infinite;
 }
-#bwv2-scene-2 .bwv2-2-cursor::after { animation: bwv2-2-cursor-ring 12s ease-in-out infinite; }
+#bwv3a-scene-2 .bwv3a-2-card {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  z-index: 16; width: 66%;
+  background: var(--bwv3a-cream); border: 1px solid var(--bwv3a-cream-line);
+  border-radius: clamp(8px, 1.6cqi, 16px);
+  box-shadow: 0 10% 26% rgba(0, 0, 0, 0.5);
+  padding: clamp(9px, 2.6cqi, 20px) clamp(11px, 2.8cqi, 22px);
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  gap: clamp(2px, 0.8cqi, 5px);
+  animation: bwv3a-2-card 13s ease-in-out infinite;
+}
+#bwv3a-scene-2 .bwv3a-2-card-arrow { color: #2f6fed; font-size: var(--fs-md); line-height: 1; }
+#bwv3a-scene-2 .bwv3a-2-card-eyebrow { font-size: var(--fs-2xs); font-weight: 800; letter-spacing: 0.1em; color: #2f6fed; }
+#bwv3a-scene-2 .bwv3a-2-card-title { margin: clamp(1px, 0.5cqi, 3px) 0 0; font-family: var(--bwv3a-serif); font-weight: 700; font-size: var(--fs-lg); color: #17171a; }
+#bwv3a-scene-2 .bwv3a-2-card-body { margin: 0; font-size: var(--fs-xs); color: #4b4a45; line-height: 1.4; }
+#bwv3a-scene-2 .bwv3a-2-card-body b { color: #17171a; font-family: var(--bwv3a-mono); font-weight: 700; }
+#bwv3a-scene-2 .bwv3a-2-card-gotit {
+  margin-top: clamp(3px, 1cqi, 7px);
+  font-family: inherit; font-size: var(--fs-sm); font-weight: 700; letter-spacing: 0.02em;
+  background: #17171a; color: #f2ede0; border: 1px solid #17171a;
+  border-radius: clamp(6px, 1.4cqi, 10px);
+  padding: clamp(5px, 1.4cqi, 10px) clamp(12px, 3cqi, 20px);
+  box-shadow: 0 0 0 clamp(1.5px, .4cqi, 3px) rgba(47, 111, 237, 0.45);
+}
 
-@keyframes bwv2-2-fadeout { 0%, 88.33% { opacity: 1; } 96.67% { opacity: 0; } 99% { opacity: 0; } 100% { opacity: 1; } }
-@keyframes bwv2-2-btn-press { 0%, 13.33% { transform: scale(1); } 15.83% { transform: scale(0.95); } 17.5%, 100% { transform: scale(1); } }
+#bwv3a-scene-2 .bwv3a-2-bubble { animation: bwv3a-2-bubble 13s ease-in-out infinite; }
+#bwv3a-scene-2 .bwv3a-2-ring { animation: bwv3a-2-ringfill 13s ease-in-out infinite, bwv3a-2-ringfade 13s ease-in-out infinite; }
+#bwv3a-scene-2 .bwv3a-2-fileicon { animation: bwv3a-2-fileiconfade 13s ease-in-out infinite; }
+#bwv3a-scene-2 .bwv3a-2-status-downloading { animation: bwv3a-2-status-downloading 13s ease-in-out infinite; }
+#bwv3a-scene-2 .bwv3a-2-status-done { animation: bwv3a-2-status-done 13s ease-in-out infinite; color: var(--bwv3a-text-dim); }
 
-@keyframes bwv2-2-bubble {
+#bwv3a-scene-2 .bwv3a-2-cursor {
+  animation: bwv3a-2-cursor-pos 13s ease-in-out infinite, bwv3a-2-cursor-opacity 13s ease-in-out infinite, bwv3a-2-cursor-pulse 13s ease-in-out infinite;
+}
+#bwv3a-scene-2 .bwv3a-2-cursor .bwv3a-cursor-ring { animation: bwv3a-2-cursor-ring 13s ease-in-out infinite; }
+
+@keyframes bwv3a-2-fadeout { 0%, 88% { opacity: 1; } 96%, 99% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes bwv3a-2-btn-press { 0%, 12.3% { transform: scale(1); } 14.6% { transform: scale(0.95); } 16.2%, 100% { transform: scale(1); } }
+
+@keyframes bwv3a-2-scrim { 0%, 15% { opacity: 0; } 18%, 88% { opacity: 1; } 92%, 100% { opacity: 0; } }
+@keyframes bwv3a-2-card {
+  0%, 15% { opacity: 0; transform: translate(-50%, -50%) scale(0.94); }
+  18%, 88% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  92%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(0.94); }
+}
+
+@keyframes bwv3a-2-bubble {
   0%, 15% { opacity: 0; transform: translateY(-40%); }
-  19.17%, 88.33% { opacity: 1; transform: translateY(0%); }
-  90%, 100% { opacity: 0; transform: translateY(-40%); }
+  16.2%, 88% { opacity: 1; transform: translateY(0%); }
+  92%, 100% { opacity: 0; transform: translateY(-40%); }
 }
-@keyframes bwv2-2-ringfill { 0%, 19.17% { --bwv2-p: 0; } 50%, 100% { --bwv2-p: 100; } }
-@keyframes bwv2-2-status-downloading { 0%, 47% { opacity: 1; } 50%, 100% { opacity: 0; } }
-@keyframes bwv2-2-status-done { 0%, 47% { opacity: 0; } 50%, 100% { opacity: 1; } }
+@keyframes bwv3a-2-ringfill { 0%, 16.2% { --bwv3a-p: 0; } 38%, 100% { --bwv3a-p: 100; } }
+@keyframes bwv3a-2-ringfade { 0%, 35% { opacity: 1; } 38%, 100% { opacity: 0; } }
+@keyframes bwv3a-2-fileiconfade { 0%, 35% { opacity: 0; } 38%, 100% { opacity: 1; } }
+@keyframes bwv3a-2-status-downloading { 0%, 35% { opacity: 1; } 38%, 100% { opacity: 0; } }
+@keyframes bwv3a-2-status-done { 0%, 35% { opacity: 0; } 38%, 100% { opacity: 1; } }
 
-@keyframes bwv2-2-cursor-pos {
-  0%, 13.33% { left: 50%; top: 74%; }
-  17.5% { left: 50%; top: 74%; }
-  19%, 53% { left: 50%; top: 60%; }
-  55% { left: 50%; top: 60%; }
-  63.33%, 88.33% { left: 86%; top: 20%; }
-  90%, 100% { left: 50%; top: 74%; }
+@keyframes bwv3a-2-cursor-pos {
+  0%, 12.3% { left: 42%; top: 75%; }
+  16.2% { left: 42%; top: 75%; }
+  17%, 49% { left: 70%; top: 45%; }
+  50% { left: 70%; top: 45%; }
+  63%, 88% { left: 89%; top: 19%; }
+  92%, 100% { left: 42%; top: 75%; }
 }
-@keyframes bwv2-2-cursor-opacity {
-  0%, 13.33% { opacity: 1; }
-  17.5% { opacity: 1; }
-  19% { opacity: 0; }
-  53% { opacity: 0; }
-  55% { opacity: 1; }
-  88.33% { opacity: 1; }
-  90%, 100% { opacity: 0; }
+@keyframes bwv3a-2-cursor-opacity {
+  0%, 12.3% { opacity: 1; }
+  16.2% { opacity: 1; }
+  17% { opacity: 0; }
+  49% { opacity: 0; }
+  50% { opacity: 1; }
+  88% { opacity: 1; }
+  92%, 100% { opacity: 0; }
 }
-@keyframes bwv2-2-cursor-pulse {
-  0%, 13% { transform: translate(-50%, -50%) scale(1); }
-  14.5% { transform: translate(-50%, -50%) scale(0.8); }
-  15.83% { transform: translate(-50%, -50%) scale(1.18); }
-  17.5%, 62% { transform: translate(-50%, -50%) scale(1); }
-  63.33% { transform: translate(-50%, -50%) scale(0.8); }
-  65% { transform: translate(-50%, -50%) scale(1.18); }
-  67%, 100% { transform: translate(-50%, -50%) scale(1); }
+@keyframes bwv3a-2-cursor-pulse {
+  0%, 12% { transform: scale(1); }
+  13.4% { transform: scale(0.82); }
+  14.6% { transform: scale(1.05); }
+  16.2%, 61% { transform: scale(1); }
+  63% { transform: scale(0.8); }
+  64.5% { transform: scale(1.05); }
+  66%, 100% { transform: scale(1); }
 }
-@keyframes bwv2-2-cursor-ring {
-  0%, 13% { opacity: 0; transform: translate(-50%, -50%) scale(0.4); }
-  15% { opacity: 0.75; transform: translate(-50%, -50%) scale(0.6); }
-  19%, 62% { opacity: 0; transform: translate(-50%, -50%) scale(1.6); }
-  63.33% { opacity: 0; transform: translate(-50%, -50%) scale(0.4); }
-  65% { opacity: 0.75; transform: translate(-50%, -50%) scale(0.6); }
+@keyframes bwv3a-2-cursor-ring {
+  0%, 12% { opacity: 0; transform: translate(-50%, -50%) scale(0.4); }
+  14.6% { opacity: 0.75; transform: translate(-50%, -50%) scale(0.6); }
+  16.2%, 61% { opacity: 0; transform: translate(-50%, -50%) scale(1.6); }
+  63% { opacity: 0; transform: translate(-50%, -50%) scale(0.4); }
+  64.5% { opacity: 0.75; transform: translate(-50%, -50%) scale(0.6); }
   68%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.6); }
 }
 
 /* ==========================================================================
    Scene 3 -- "Claude installs it"
    ========================================================================== */
-#bwv2-scene-3 .bwv2-window { animation: bwv2-3-window-in 15s ease-in-out infinite; }
-#bwv2-scene-3 .bwv2-3-shell { flex: 1; display: flex; min-height: 0; filter: blur(0.6px); opacity: 0.5; }
-#bwv2-scene-3 .bwv2-3-nav { width: 22%; border-right: 1px solid var(--bwv2-border); padding: 6% 5%; display: flex; flex-direction: column; gap: clamp(6px, 1.6cqi, 11px); }
-#bwv2-scene-3 .bwv2-3-navitem { height: clamp(6px, 1.4cqi, 10px); border-radius: 4px; background: rgba(255, 255, 255, 0.08); width: 80%; }
-#bwv2-scene-3 .bwv2-3-navitem--active { background: rgba(255, 255, 255, 0.22); width: 90%; }
-#bwv2-scene-3 .bwv2-3-main { flex: 1; padding: 6%; }
-#bwv2-scene-3 .bwv2-3-extrow {
+#bwv3a-scene-3 .bwv3a-window {
+  align-items: center; justify-content: center; padding: 3.5%;
+  background: radial-gradient(90% 70% at 50% 20%, #232220 0%, #17161a 70%);
+  animation: bwv3a-3-window-in 17s ease-in-out infinite;
+}
+
+#bwv3a-scene-3 .bwv3a-3-panel {
+  position: relative; z-index: 1; width: 100%;
+  background: #201f1c; border: 1px solid var(--bwv3a-border);
+  border-radius: clamp(8px, 1.6cqi, 15px);
+  box-shadow: 0 6% 16% rgba(0, 0, 0, 0.4);
+  padding: clamp(8px, 2.4cqi, 18px) clamp(10px, 2.8cqi, 20px);
+  display: flex; flex-direction: column; gap: clamp(4px, 1.1cqi, 8px);
+}
+#bwv3a-scene-3 .bwv3a-3-headrow { display: flex; align-items: center; justify-content: space-between; }
+#bwv3a-scene-3 .bwv3a-3-back { font-size: var(--fs-sm); color: var(--bwv3a-text-dim); }
+#bwv3a-scene-3 .bwv3a-3-closebtn {
+  width: clamp(12px, 2.6cqi, 19px); height: clamp(12px, 2.6cqi, 19px);
+  border: 1px solid var(--bwv3a-blue); border-radius: clamp(3px, 0.8cqi, 6px);
+  color: var(--bwv3a-text-dim); font-size: var(--fs-sm); line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+}
+
+#bwv3a-scene-3 .bwv3a-3-mainrow { display: flex; align-items: flex-start; gap: clamp(6px, 1.6cqi, 12px); }
+#bwv3a-scene-3 .bwv3a-3-titlewrap { flex: 1; min-width: 0; }
+#bwv3a-scene-3 .bwv3a-3-name { margin: 0; font-size: var(--fs-lg); font-weight: 700; color: var(--bwv3a-text); }
+#bwv3a-scene-3 .bwv3a-3-desc { margin: clamp(1px, 0.4cqi, 3px) 0 0; font-size: var(--fs-xs); color: var(--bwv3a-text-dim); line-height: 1.35; }
+#bwv3a-scene-3 .bwv3a-3-btnstack { position: relative; display: grid; flex-shrink: 0; }
+#bwv3a-scene-3 .bwv3a-3-btnstack .bwv3a-btn { grid-area: 1 / 1; }
+#bwv3a-scene-3 .bwv3a-3-btn-install { animation: bwv3a-3-installbtn-fade 17s ease-in-out infinite, bwv3a-3-install-press 17s ease-in-out infinite; }
+#bwv3a-scene-3 .bwv3a-3-btn-uninstall { opacity: 0; animation: bwv3a-3-uninstallbtn-fade 17s ease-in-out infinite; }
+
+#bwv3a-scene-3 .bwv3a-3-banner {
+  display: flex; align-items: flex-start; gap: clamp(6px, 1.6cqi, 11px);
+  background: #401d1d; border: 1px solid rgba(226, 104, 92, 0.35);
+  border-radius: clamp(6px, 1.4cqi, 11px);
+  padding: clamp(6px, 1.6cqi, 12px);
+}
+#bwv3a-scene-3 .bwv3a-3-banner-icon { color: #e8b23d; font-size: var(--fs-md); line-height: 1; flex-shrink: 0; }
+#bwv3a-scene-3 .bwv3a-3-banner-text { margin: 0; font-size: var(--fs-xs); color: #f0d6d0; line-height: 1.4; }
+
+#bwv3a-scene-3 .bwv3a-3-togglerow {
   display: flex; align-items: center; gap: clamp(6px, 1.6cqi, 11px);
-  background: var(--bwv2-panel-alt); border: 1px solid var(--bwv2-border);
-  border-radius: clamp(6px, 1.4cqi, 10px); padding: clamp(6px, 1.6cqi, 12px); width: 60%;
+  background: #201f1c; border: 1px solid var(--bwv3a-border);
+  border-radius: clamp(6px, 1.4cqi, 11px);
+  padding: clamp(5px, 1.4cqi, 10px) clamp(7px, 1.8cqi, 13px);
+  opacity: 0;
+  animation: bwv3a-3-togglerow-fade 17s ease-in-out infinite;
 }
-#bwv2-scene-3 .bwv2-3-extname { font-size: var(--fs-sm); color: var(--bwv2-text-dim); font-weight: 600; }
-
-#bwv2-scene-3 .bwv2-3-scrim { animation: bwv2-3-scrim 15s ease-in-out infinite; }
-#bwv2-scene-3 .bwv2-3-modal { animation: bwv2-3-modal 15s ease-in-out infinite; }
-#bwv2-scene-3 .bwv2-3-sheet { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 70%; animation: bwv2-3-sheet 15s ease-in-out infinite; }
-#bwv2-scene-3 .bwv2-3-toast { animation: bwv2-3-toast 15s ease-in-out infinite; }
-#bwv2-scene-3 .bwv2-3-install-btn { animation: bwv2-3-install-press 15s ease-in-out infinite; }
-#bwv2-scene-3 .bwv2-3-save-btn { animation: bwv2-3-save-press 15s ease-in-out infinite; }
-
-#bwv2-scene-3 .bwv2-3-cursor {
-  animation: bwv2-3-cursor-pos 15s ease-in-out infinite, bwv2-3-cursor-opacity 15s ease-in-out infinite, bwv2-3-cursor-pulse 15s ease-in-out infinite;
+#bwv3a-scene-3 .bwv3a-3-toggle {
+  position: relative; width: clamp(19px, 4.2cqi, 30px); height: clamp(11px, 2.5cqi, 17px);
+  border-radius: 999px; background: var(--bwv3a-blue); flex-shrink: 0;
 }
-#bwv2-scene-3 .bwv2-3-cursor::after { animation: bwv2-3-cursor-ring 15s ease-in-out infinite; }
-
-@keyframes bwv2-3-window-in {
-  0% { opacity: 0; transform: translateY(3%) scale(0.98); }
-  5.33% { opacity: 1; transform: translateY(0%) scale(1); }
-  94.67% { opacity: 1; transform: translateY(0%) scale(1); }
-  100% { opacity: 0; transform: translateY(3%) scale(0.98); }
+#bwv3a-scene-3 .bwv3a-3-toggle-knob {
+  position: absolute; top: 12%; right: 8%; width: 42%; height: 76%; aspect-ratio: 1;
+  border-radius: 50%; background: #fff;
 }
-@keyframes bwv2-3-scrim { 0%, 5.33% { opacity: 0; } 6.67%, 56.67% { opacity: 1; } 58%, 100% { opacity: 0; } }
-@keyframes bwv2-3-modal { 0%, 5.33% { opacity: 0; } 6.67%, 28% { opacity: 1; } 29%, 100% { opacity: 0; } }
-@keyframes bwv2-3-sheet { 0%, 28% { opacity: 0; } 29%, 56.67% { opacity: 1; } 57.67%, 100% { opacity: 0; } }
-@keyframes bwv2-3-toast {
-  0%, 57.67% { opacity: 0; transform: translate(-50%, 10%); }
-  59%, 94.67% { opacity: 1; transform: translate(-50%, 0%); }
+#bwv3a-scene-3 .bwv3a-3-togglelabel { font-size: var(--fs-sm); font-weight: 600; color: var(--bwv3a-text); flex: 1; }
+#bwv3a-scene-3 .bwv3a-3-configurebtn { font-size: var(--fs-sm); padding: clamp(4px, 1.2cqi, 8px) clamp(9px, 2.2cqi, 15px); }
+
+#bwv3a-scene-3 .bwv3a-3-toolshead { display: flex; align-items: baseline; gap: clamp(5px, 1.2cqi, 9px); font-size: var(--fs-sm); font-weight: 700; color: var(--bwv3a-text); }
+#bwv3a-scene-3 .bwv3a-3-toolscount {
+  font-size: var(--fs-2xs); font-weight: 700; color: var(--bwv3a-text-faint);
+  background: rgba(255, 255, 255, 0.08); border-radius: 999px;
+  padding: 0.1em 0.6em;
+}
+#bwv3a-scene-3 .bwv3a-3-chiprow { display: flex; flex-wrap: wrap; gap: clamp(4px, 1cqi, 7px); align-items: center; }
+#bwv3a-scene-3 .bwv3a-3-chip {
+  font-family: var(--bwv3a-mono); font-size: var(--fs-2xs); color: var(--bwv3a-text-dim);
+  background: rgba(255, 255, 255, 0.055); border: 1px solid var(--bwv3a-border);
+  border-radius: 999px; padding: 0.35em 0.8em; white-space: nowrap;
+}
+#bwv3a-scene-3 .bwv3a-3-chipmore { font-size: var(--fs-2xs); color: var(--bwv3a-text-faint); }
+
+#bwv3a-scene-3 .bwv3a-3-divider { height: 1px; background: var(--bwv3a-border); }
+#bwv3a-scene-3 .bwv3a-3-reqrow { display: flex; align-items: center; gap: clamp(5px, 1.2cqi, 9px); }
+#bwv3a-scene-3 .bwv3a-3-reqcheck { color: #57bd58; font-weight: 800; font-size: var(--fs-md); line-height: 1; }
+#bwv3a-scene-3 .bwv3a-3-reqtext { font-size: var(--fs-sm); font-weight: 600; color: #8fd18f; }
+
+#bwv3a-scene-3 .bwv3a-3-scrim { animation: bwv3a-3-scrim 17s ease-in-out infinite; }
+#bwv3a-scene-3 .bwv3a-3-dialog { width: 58%; animation: bwv3a-3-dialog 17s ease-in-out infinite; }
+#bwv3a-scene-3 .bwv3a-3-dialog-title { margin: 0; font-size: var(--fs-md); font-weight: 700; }
+#bwv3a-scene-3 .bwv3a-3-dialog-body { margin: 0; font-size: var(--fs-xs); line-height: 1.4; color: #4a4844; }
+#bwv3a-scene-3 .bwv3a-3-dlg-cancel { background: #dedcd7; color: #262521; font-size: var(--fs-sm); }
+#bwv3a-scene-3 .bwv3a-3-dlg-install { background: #3a3936; color: #f5f3ee; font-size: var(--fs-sm); animation: bwv3a-3-dlginstall-press 17s ease-in-out infinite; }
+
+#bwv3a-scene-3 .bwv3a-3-sheet { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 72%; opacity: 0; animation: bwv3a-3-sheet 17s ease-in-out infinite; }
+#bwv3a-scene-3 .bwv3a-3-savebtn { animation: bwv3a-3-save-press 17s ease-in-out infinite; }
+#bwv3a-scene-3 .bwv3a-3-toast { opacity: 0; animation: bwv3a-3-toast 17s ease-in-out infinite; }
+
+#bwv3a-scene-3 .bwv3a-3-cursor {
+  animation: bwv3a-3-cursor-pos 17s ease-in-out infinite, bwv3a-3-cursor-opacity 17s ease-in-out infinite, bwv3a-3-cursor-pulse 17s ease-in-out infinite;
+}
+#bwv3a-scene-3 .bwv3a-3-cursor .bwv3a-cursor-ring { animation: bwv3a-3-cursor-ring 17s ease-in-out infinite; }
+
+@keyframes bwv3a-3-window-in {
+  0% { opacity: 0; }
+  3% { opacity: 1; }
+  94% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes bwv3a-3-installbtn-fade { 0%, 41% { opacity: 1; } 42%, 100% { opacity: 0; } }
+@keyframes bwv3a-3-uninstallbtn-fade { 0%, 41% { opacity: 0; } 42%, 100% { opacity: 1; } }
+@keyframes bwv3a-3-install-press { 0%, 18% { transform: scale(1); } 20% { transform: scale(0.94); } 21%, 100% { transform: scale(1); } }
+@keyframes bwv3a-3-togglerow-fade { 0%, 40% { opacity: 0; } 42%, 100% { opacity: 1; } }
+
+@keyframes bwv3a-3-scrim {
+  0%, 20% { opacity: 0; }
+  21%, 40% { opacity: 1; }
+  41%, 58% { opacity: 0; }
+  59%, 76% { opacity: 1; }
+  77%, 100% { opacity: 0; }
+}
+@keyframes bwv3a-3-dialog {
+  0%, 20% { opacity: 0; transform: translate(-50%, -46%) scale(0.96); }
+  21%, 40% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  41%, 100% { opacity: 0; transform: translate(-50%, -46%) scale(0.96); }
+}
+@keyframes bwv3a-3-dlginstall-press { 0%, 38% { transform: scale(1); } 40% { transform: scale(0.93); } 41%, 100% { transform: scale(1); } }
+
+@keyframes bwv3a-3-sheet {
+  0%, 58% { opacity: 0; transform: translate(-50%, -46%) scale(0.96); }
+  59%, 76% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  77%, 100% { opacity: 0; transform: translate(-50%, -46%) scale(0.96); }
+}
+@keyframes bwv3a-3-save-press { 0%, 74% { transform: scale(1); } 76% { transform: scale(0.93); } 77%, 100% { transform: scale(1); } }
+
+@keyframes bwv3a-3-toast {
+  0%, 76% { opacity: 0; transform: translate(-50%, 10%); }
+  78%, 94% { opacity: 1; transform: translate(-50%, 0%); }
   96%, 100% { opacity: 0; transform: translate(-50%, 10%); }
 }
-@keyframes bwv2-3-install-press { 0%, 25.33% { transform: scale(1); } 27% { transform: scale(0.95); } 28%, 100% { transform: scale(1); } }
-@keyframes bwv2-3-save-press { 0%, 53.33% { transform: scale(1); } 55% { transform: scale(0.95); } 56.67%, 100% { transform: scale(1); } }
 
-@keyframes bwv2-3-cursor-pos {
-  0%, 28% { left: 63%; top: 74%; }
-  29%, 56.67% { left: 79%; top: 80%; }
-  58%, 100% { left: 79%; top: 80%; }
+@keyframes bwv3a-3-cursor-pos {
+  0%, 20% { left: 86%; top: 30%; }
+  21%, 40% { left: 69%; top: 55%; }
+  41%, 58% { left: 85%; top: 52%; }
+  59%, 61% { left: 60%; top: 44%; }
+  74%, 76% { left: 76%; top: 67%; }
+  77%, 100% { left: 76%; top: 67%; }
 }
-@keyframes bwv2-3-cursor-opacity {
-  0%, 7% { opacity: 1; }
-  25.33% { opacity: 1; }
-  28% { opacity: 0; }
-  47% { opacity: 0; }
-  49%, 56.67% { opacity: 1; }
-  58%, 100% { opacity: 0; }
+@keyframes bwv3a-3-cursor-opacity {
+  0%, 3% { opacity: 0; }
+  4%, 18% { opacity: 1; }
+  20% { opacity: 1; }
+  21% { opacity: 0; }
+  23%, 38% { opacity: 1; }
+  40% { opacity: 1; }
+  41% { opacity: 0; }
+  44%, 56% { opacity: 1; }
+  58% { opacity: 1; }
+  59% { opacity: 0; }
+  61%, 74% { opacity: 1; }
+  76% { opacity: 1; }
+  77%, 100% { opacity: 0; }
 }
-@keyframes bwv2-3-cursor-pulse {
-  0%, 24% { transform: translate(-50%, -50%) scale(1); }
-  25.33% { transform: translate(-50%, -50%) scale(0.8); }
-  27% { transform: translate(-50%, -50%) scale(1.18); }
-  28%, 52% { transform: translate(-50%, -50%) scale(1); }
-  53.33% { transform: translate(-50%, -50%) scale(0.8); }
-  55% { transform: translate(-50%, -50%) scale(1.18); }
-  56.67%, 100% { transform: translate(-50%, -50%) scale(1); }
+@keyframes bwv3a-3-cursor-pulse {
+  0%, 18% { transform: scale(1); }
+  19.4% { transform: scale(0.82); }
+  20% { transform: scale(1.05); }
+  21%, 38% { transform: scale(1); }
+  39.4% { transform: scale(0.82); }
+  40% { transform: scale(1.05); }
+  41%, 56% { transform: scale(1); }
+  57.2% { transform: scale(0.82); }
+  58% { transform: scale(1.05); }
+  59%, 74% { transform: scale(1); }
+  75.2% { transform: scale(0.82); }
+  76% { transform: scale(1.05); }
+  77%, 100% { transform: scale(1); }
 }
-@keyframes bwv2-3-cursor-ring {
-  0%, 24% { opacity: 0; transform: translate(-50%, -50%) scale(0.4); }
-  26% { opacity: 0.75; transform: translate(-50%, -50%) scale(0.6); }
-  28%, 52% { opacity: 0; transform: translate(-50%, -50%) scale(1.6); }
-  53.33% { opacity: 0; transform: translate(-50%, -50%) scale(0.4); }
-  55% { opacity: 0.75; transform: translate(-50%, -50%) scale(0.6); }
-  58%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.6); }
+@keyframes bwv3a-3-cursor-ring {
+  0%, 18% { opacity: 0; transform: translate(-50%, -50%) scale(0.4); }
+  19.4% { opacity: 0.75; transform: translate(-50%, -50%) scale(0.6); }
+  21%, 38% { opacity: 0; transform: translate(-50%, -50%) scale(1.6); }
+  39.4% { opacity: 0.75; transform: translate(-50%, -50%) scale(0.6); }
+  41%, 56% { opacity: 0; transform: translate(-50%, -50%) scale(1.6); }
+  57.2% { opacity: 0.75; transform: translate(-50%, -50%) scale(0.6); }
+  59%, 74% { opacity: 0; transform: translate(-50%, -50%) scale(1.6); }
+  75.2% { opacity: 0.75; transform: translate(-50%, -50%) scale(0.6); }
+  77%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.6); }
 }
 
 /* ==========================================================================
@@ -720,50 +928,57 @@
    should stay hidden in the frozen frame).
    ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
-  :is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) * { animation: none !important; transition: none !important; }
+  .bwv3a-scene * { animation: none !important; transition: none !important; }
 
   /* Scene 1 -- frozen on the drag-into-Applications moment */
-  #bwv2-scene-1 .bwv2-1-act--browser { opacity: 0 !important; }
-  #bwv2-scene-1 .bwv2-1-act--installer { opacity: 1 !important; }
-  #bwv2-scene-1 .bwv2-1-bubble { opacity: 0 !important; }
-  #bwv2-scene-1 .bwv2-1-ring { --bwv2-p: 100 !important; }
-  #bwv2-scene-1 .bwv2-1-status-downloading { opacity: 0 !important; }
-  #bwv2-scene-1 .bwv2-1-status-done { opacity: 1 !important; }
-  #bwv2-scene-1 .bwv2-1-icon { transform: translate(230%, 0%) scale(0.85) !important; opacity: 1 !important; }
-  #bwv2-scene-1 .bwv2-1-folder { box-shadow: 0 0 0 clamp(2px, 0.6cqi, 5px) var(--bwv2-blue-soft) !important; }
-  #bwv2-scene-1 .bwv2-1-cursor { opacity: 0 !important; }
-  #bwv2-scene-1 .bwv2-1-cursor::after { opacity: 0 !important; }
+  #bwv3a-scene-1 .bwv3a-1-act--browser { opacity: 0 !important; }
+  #bwv3a-scene-1 .bwv3a-1-act--installer { opacity: 1 !important; }
+  #bwv3a-scene-1 .bwv3a-1-bubble { opacity: 0 !important; }
+  #bwv3a-scene-1 .bwv3a-1-ring { opacity: 0 !important; --bwv3a-p: 100 !important; }
+  #bwv3a-scene-1 .bwv3a-1-fileicon { opacity: 1 !important; }
+  #bwv3a-scene-1 .bwv3a-1-status-downloading { opacity: 0 !important; }
+  #bwv3a-scene-1 .bwv3a-1-status-done { opacity: 1 !important; }
+  #bwv3a-scene-1 .bwv3a-1-icon { transform: translate(230%, 0%) scale(0.85) !important; opacity: 1 !important; }
+  #bwv3a-scene-1 .bwv3a-1-folder { box-shadow: 0 0 0 clamp(2px, 0.6cqi, 5px) var(--bwv3a-blue-soft) !important; }
+  #bwv3a-scene-1 .bwv3a-1-cursor { opacity: 0 !important; }
+  #bwv3a-scene-1 .bwv3a-1-cursor .bwv3a-cursor-ring { opacity: 0 !important; }
 
-  /* Scene 2 -- frozen on the clicked, finished download */
-  #bwv2-scene-2 .bwv2-window { opacity: 1 !important; transform: none !important; }
-  #bwv2-scene-2 .bwv2-2-bubble { opacity: 1 !important; transform: translateY(0%) !important; }
-  #bwv2-scene-2 .bwv2-2-ring { --bwv2-p: 100 !important; }
-  #bwv2-scene-2 .bwv2-2-status-downloading { opacity: 0 !important; }
-  #bwv2-scene-2 .bwv2-2-status-done { opacity: 1 !important; }
-  #bwv2-scene-2 .bwv2-2-cursor { opacity: 1 !important; left: 86% !important; top: 20% !important; }
-  #bwv2-scene-2 .bwv2-2-cursor::after { opacity: 0 !important; }
+  /* Scene 2 -- frozen on the clicked, finished download (card + tray both settled) */
+  #bwv3a-scene-2 .bwv3a-window { opacity: 1 !important; }
+  #bwv3a-scene-2 .bwv3a-2-scrim { opacity: 1 !important; }
+  #bwv3a-scene-2 .bwv3a-2-card { opacity: 1 !important; transform: translate(-50%, -50%) scale(1) !important; }
+  #bwv3a-scene-2 .bwv3a-2-bubble { opacity: 1 !important; transform: translateY(0%) !important; }
+  #bwv3a-scene-2 .bwv3a-2-ring { opacity: 0 !important; --bwv3a-p: 100 !important; }
+  #bwv3a-scene-2 .bwv3a-2-fileicon { opacity: 1 !important; }
+  #bwv3a-scene-2 .bwv3a-2-status-downloading { opacity: 0 !important; }
+  #bwv3a-scene-2 .bwv3a-2-status-done { opacity: 1 !important; }
+  #bwv3a-scene-2 .bwv3a-2-cursor { opacity: 1 !important; left: 89% !important; top: 19% !important; }
+  #bwv3a-scene-2 .bwv3a-2-cursor .bwv3a-cursor-ring { opacity: 0 !important; }
 
-  /* Scene 3 -- frozen on the finished toast */
-  #bwv2-scene-3 .bwv2-window { opacity: 1 !important; transform: none !important; }
-  #bwv2-scene-3 .bwv2-3-shell { filter: none !important; opacity: 1 !important; }
-  #bwv2-scene-3 .bwv2-3-scrim { opacity: 0 !important; }
-  #bwv2-scene-3 .bwv2-3-modal { opacity: 0 !important; }
-  #bwv2-scene-3 .bwv2-3-sheet { opacity: 0 !important; }
-  #bwv2-scene-3 .bwv2-3-toast { opacity: 1 !important; transform: translate(-50%, 0%) !important; }
-  #bwv2-scene-3 .bwv2-3-cursor { opacity: 0 !important; }
-  #bwv2-scene-3 .bwv2-3-cursor::after { opacity: 0 !important; }
+  /* Scene 3 -- frozen on the finished toast, installed state underneath */
+  #bwv3a-scene-3 .bwv3a-window { opacity: 1 !important; }
+  #bwv3a-scene-3 .bwv3a-3-btn-install { opacity: 0 !important; }
+  #bwv3a-scene-3 .bwv3a-3-btn-uninstall { opacity: 1 !important; }
+  #bwv3a-scene-3 .bwv3a-3-togglerow { opacity: 1 !important; }
+  #bwv3a-scene-3 .bwv3a-3-scrim { opacity: 0 !important; }
+  #bwv3a-scene-3 .bwv3a-3-dialog { opacity: 0 !important; }
+  #bwv3a-scene-3 .bwv3a-3-sheet { opacity: 0 !important; }
+  #bwv3a-scene-3 .bwv3a-3-toast { opacity: 1 !important; transform: translate(-50%, 0%) !important; }
+  #bwv3a-scene-3 .bwv3a-3-cursor { opacity: 0 !important; }
+  #bwv3a-scene-3 .bwv3a-3-cursor .bwv3a-cursor-ring { opacity: 0 !important; }
 }
 
 
 /* ============================================================================
-   bwv2- namespace. Two independent looping scenes for the download-page
-   walkthrough. Every selector below is scoped under :is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) / #bwv2-scene-N.
-   No global resets, no body/html rules, no position:fixed.
+   bwv3b — walkthrough scenes 4 & 5, rebuilt against real screenshots.
+   Namespace: root class .bwv3b-scene, ids #bwv3b-scene-4 / #bwv3b-scene-5.
+   Every class + keyframe below is prefixed bwv3b-. Self-contained fragment,
+   no doctype/head/body, no global resets outside this namespace.
    ============================================================================ */
 
-:is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3), :is(#bwv2-scene-1,#bwv2-scene-2,#bwv2-scene-3) * { box-sizing: border-box; }
+.bwv3b-scene, .bwv3b-scene * { box-sizing: border-box; }
 
-:is(#bwv2-scene-4,#bwv2-scene-5) {
+.bwv3b-scene {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
@@ -771,662 +986,738 @@
   border-radius: clamp(8px, 1.4cqi, 14px);
   container-type: inline-size;
   isolation: isolate;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: -apple-system, "SF Pro Text", "Segoe UI", Helvetica, Arial, sans-serif;
   font-size: clamp(11px, 2.05cqi, 16px);
-  color: var(--bwv2-hi);
-  background: radial-gradient(120% 140% at 50% -10%, #242320 0%, #1a1a19 55%, #131211 100%);
+  color: var(--bwv3b-hi);
+  background: radial-gradient(120% 140% at 50% -10%, #201f1c 0%, #171512 55%, #121110 100%);
 
-  --bwv2-bg: #1a1a19;
-  --bwv2-panel: #201e1a;
-  --bwv2-panel-edge: rgba(255, 255, 255, 0.09);
-  --bwv2-bubble: #3c3833;
-  --bwv2-bubble-text: #f2efe9;
-  --bwv2-hi: #f1ede4;
-  --bwv2-mid: #b6b2ab;
-  --bwv2-lo: #87837c;
-  --bwv2-white: #f7f4ee;
-  --bwv2-blue: #2f8cff;
-  --bwv2-blue-soft: rgba(47, 140, 255, 0.16);
-  --bwv2-blue-soft2: rgba(47, 140, 255, 0.22);
-  --bwv2-shadow: 0 8% 22% rgba(0, 0, 0, 0.5);
-  --bwv2-mono: ui-monospace, "SF Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+  --bwv3b-bg: #171513;
+  --bwv3b-bg2: #1d1b18;
+  --bwv3b-panel: #201e1a;
+  --bwv3b-panel-edge: rgba(255, 255, 255, 0.08);
+  --bwv3b-border: rgba(255, 255, 255, 0.09);
+  --bwv3b-border-strong: rgba(255, 255, 255, 0.18);
+  --bwv3b-bubble: #3a3631;
+  --bwv3b-bubble-text: #f2efe9;
+  --bwv3b-hi: #f1ede4;
+  --bwv3b-mid: #b3afa7;
+  --bwv3b-lo: #85817a;
+  --bwv3b-faint: #5c5952;
+  --bwv3b-white: #f7f4ee;
+  --bwv3b-accent: #d97757;
+  --bwv3b-accent-soft: rgba(217, 119, 87, 0.24);
+  --bwv3b-blue: #2f8cff;
+  --bwv3b-blue-soft: rgba(47, 140, 255, 0.16);
+  --bwv3b-blue-soft2: rgba(47, 140, 255, 0.24);
+  --bwv3b-mono: ui-monospace, "SF Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+  --bwv3b-serif: "New York", Georgia, "Iowan Old Style", "Palatino Linotype", serif;
 
-  /* light-chrome tokens (browser popup, Finder window) */
-  --bwv2-light-bg: #f4f3f1;
-  --bwv2-light-titlebar: #eae9e6;
-  --bwv2-light-border: #dcdbd8;
-  --bwv2-light-text: #2b2a27;
-  --bwv2-light-text-dim: #59584f;
-  --bwv2-light-text-faint: #9a9992;
+  /* light-chrome tokens (the sign-in browser popup only) */
+  --bwv3b-light-bg: #f4f3f1;
+  --bwv3b-light-titlebar: #eae9e6;
+  --bwv3b-light-border: #dcdbd8;
+  --bwv3b-light-text: #2b2a27;
+  --bwv3b-light-text-dim: #59584f;
 
-  /* cqi-based sizing scale, used by the reused sign-in card system */
-  --bwv2-fs-xs: clamp(7px, 1.7cqi, 12px);
-  --bwv2-fs-sm: clamp(8px, 1.95cqi, 14px);
-  --bwv2-fs-md: clamp(9.5px, 2.3cqi, 16px);
-  --bwv2-fs-lg: clamp(13px, 3.2cqi, 23px);
+  /* dark Finder tokens (screenshot: dark Finder, list view) */
+  --bwv3b-finder-bg: #201f1d;
+  --bwv3b-finder-titlebar: #292724;
+  --bwv3b-finder-border: rgba(255, 255, 255, 0.08);
+  --bwv3b-finder-text: #e6e3dc;
+  --bwv3b-finder-text-dim: #98958e;
+  --bwv3b-finder-text-faint: #6d6a64;
+  --bwv3b-finder-folder: #6badf5;
+
+  --bwv3b-fs-xs: clamp(7px, 1.55cqi, 11px);
+  --bwv3b-fs-sm: clamp(8px, 1.85cqi, 13px);
+  --bwv3b-fs-md: clamp(9.5px, 2.15cqi, 15px);
+  --bwv3b-fs-lg: clamp(13px, 3cqi, 21px);
+  --bwv3b-fs-xl: clamp(17px, 4.4cqi, 32px);
 }
 
-/* ---- shared cursor (white dot + click-pulse ring) ---- */
-:is(#bwv2-scene-4,#bwv2-scene-5) .bwv2-cursor {
+/* ---- shared: real macOS arrow-pointer cursor ------------------------------
+   Wrapper is a zero-size anchor; left/top position it, and the anchor point
+   IS the tip (hotspot), guaranteed by the svg's own translate() offset (a
+   percentage of the svg's own box, not the wrapper's) rather than a guessed
+   pixel value. Ripple ring is a sibling centered on that same anchor. */
+.bwv3b-cursor {
   position: absolute;
-  width: clamp(9px, 1.5cqi, 15px);
-  height: clamp(9px, 1.5cqi, 15px);
-  border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 0 0 clamp(3px, .55cqi, 6px) rgba(255, 255, 255, .18), 0 .15em .5em rgba(0, 0, 0, .55);
+  width: 0;
+  height: 0;
+  z-index: 90;
   pointer-events: none;
-  z-index: 80;
-  transform: translate(-50%, -50%) scale(1);
 }
-:is(#bwv2-scene-4,#bwv2-scene-5) .bwv2-cursor::after {
-  content: "";
+.bwv3b-cursor-svg {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 260%;
-  height: 260%;
+  left: 0;
+  top: 0;
+  width: clamp(13px, 3cqi, 24px);
+  aspect-ratio: 20 / 28;
+  translate: -10% -3.571%;   /* shifts svg so the polygon's tip (2,1 of 20,28) sits exactly at the anchor */
+  transform-origin: 10% 3.571%;
+  filter: drop-shadow(0 .16em .26em rgba(0, 0, 0, .5)) drop-shadow(0 .02em .05em rgba(0, 0, 0, .6));
+}
+.bwv3b-cursor-svg polygon {
+  fill: #fff;
+  stroke: #000;
+  stroke-width: 1.15;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.bwv3b-cursor-ring {
+  position: absolute;
+  left: 0;
+  top: 0;
+  translate: -50% -50%;
+  width: clamp(15px, 3.4cqi, 28px);
+  height: clamp(15px, 3.4cqi, 28px);
   border-radius: 50%;
-  border: 1.5px solid rgba(255, 255, 255, .8);
-  background: rgba(255, 255, 255, .08);
-  transform: translate(-50%, -50%) scale(.4);
+  border: 1.5px solid rgba(255, 255, 255, .85);
+  background: rgba(255, 255, 255, .1);
   opacity: 0;
+  scale: .4;
 }
 
-/* ---- shared app label ---- */
-:is(#bwv2-scene-4,#bwv2-scene-5) .bwv2-appmark {
+/* ---- shared: app label ---- */
+.bwv3b-appmark {
   position: absolute; top: 4%; left: 5%; z-index: 5;
   font-size: .62em; font-weight: 600; letter-spacing: .02em;
-  color: var(--bwv2-lo);
+  color: var(--bwv3b-lo);
 }
 
-/* ---- shared chat primitives ---- */
-:is(#bwv2-scene-4,#bwv2-scene-5) .bwv2-chat {
-  position: absolute; inset: 0; padding: 9% 10%;
-  display: flex; flex-direction: column; gap: .6em;
+/* ---- shared: chat primitives ---- */
+.bwv3b-chat {
+  position: absolute; inset: 0; padding: 9% 8%;
+  display: flex; flex-direction: column; gap: .58em;
+  overflow: hidden;
 }
-:is(#bwv2-scene-4,#bwv2-scene-5) .bwv2-msg-user {
-  align-self: flex-end; max-width: 82%;
-  background: var(--bwv2-bubble); color: var(--bwv2-bubble-text);
+.bwv3b-msg-user {
+  align-self: flex-end; max-width: 84%;
+  background: var(--bwv3b-bubble); color: var(--bwv3b-bubble-text);
   padding: .55em .85em; border-radius: .8em .8em .15em .8em;
   font-size: .8em; line-height: 1.4;
 }
-:is(#bwv2-scene-4,#bwv2-scene-5) .bwv2-typewriter {
-  position: relative; display: inline-block;
-  clip-path: inset(0 100% 0 0);
-}
-:is(#bwv2-scene-4,#bwv2-scene-5) .bwv2-toolchip {
+.bwv3b-typewriter { position: relative; display: inline-block; clip-path: inset(0 100% 0 0); }
+.bwv3b-toolchip {
   align-self: flex-start; display: inline-flex; align-items: center; gap: .35em;
-  font: 500 .62em/1.3 var(--bwv2-mono); color: var(--bwv2-mid);
-  background: rgba(255, 255, 255, .045); border: 1px solid var(--bwv2-panel-edge);
+  font: 500 .62em/1.3 var(--bwv3b-mono); color: var(--bwv3b-mid);
+  background: rgba(255, 255, 255, .045); border: 1px solid var(--bwv3b-panel-edge);
   padding: .5em .7em; border-radius: .55em;
   opacity: 0; transform: translateY(.4em);
 }
-:is(#bwv2-scene-4,#bwv2-scene-5) .bwv2-tick { color: var(--bwv2-blue); font-weight: 700; }
-:is(#bwv2-scene-4,#bwv2-scene-5) .bwv2-dotsep { color: var(--bwv2-lo); margin: 0 .15em; }
-
-:is(#bwv2-scene-4,#bwv2-scene-5) .bwv2-a-line {
-  font-size: .78em; line-height: 1.5; color: var(--bwv2-mid);
-  opacity: 0; transform: translateY(.4em);
-}
-:is(#bwv2-scene-4,#bwv2-scene-5) .bwv2-a-hi { color: var(--bwv2-hi); }
-:is(#bwv2-scene-4,#bwv2-scene-5) .bwv2-path { font-family: var(--bwv2-mono); font-size: .94em; color: var(--bwv2-mid); }
-:is(#bwv2-scene-4,#bwv2-scene-5) .bwv2-amt { font-weight: 700; color: var(--bwv2-hi); font-variant-numeric: tabular-nums; }
-:is(#bwv2-scene-4,#bwv2-scene-5) .bwv2-cite {
+.bwv3b-tick { color: var(--bwv3b-blue); font-weight: 700; }
+.bwv3b-dotsep { color: var(--bwv3b-lo); margin: 0 .15em; }
+.bwv3b-a-line { font-size: .78em; line-height: 1.5; color: var(--bwv3b-mid); opacity: 0; transform: translateY(.4em); }
+.bwv3b-a-hi { color: var(--bwv3b-hi); }
+.bwv3b-path { font-family: var(--bwv3b-mono); font-size: .94em; color: var(--bwv3b-mid); }
+.bwv3b-amt { font-weight: 700; color: var(--bwv3b-hi); font-variant-numeric: tabular-nums; }
+.bwv3b-cite {
   display: inline-flex; align-items: center; justify-content: center;
   min-width: 1.3em; height: 1.3em; margin: 0 .15em;
-  border-radius: .4em; background: var(--bwv2-blue-soft);
-  border: 1px solid rgba(47, 140, 255, .4); color: var(--bwv2-blue);
-  font: 700 .66em/1 var(--bwv2-mono);
+  border-radius: .4em; background: var(--bwv3b-blue-soft);
+  border: 1px solid rgba(47, 140, 255, .4); color: var(--bwv3b-blue);
+  font: 700 .66em/1 var(--bwv3b-mono);
 }
 
-/* ---- light chrome: traffic dots + address bar / window title ---- */
-:is(#bwv2-scene-4,#bwv2-scene-5) .bwv2-dot { width: .55em; height: .55em; border-radius: 50%; flex-shrink: 0; }
-:is(#bwv2-scene-4,#bwv2-scene-5) .bwv2-dot-r { background: #ff5f57; }
-:is(#bwv2-scene-4,#bwv2-scene-5) .bwv2-dot-y { background: #febc2e; }
-:is(#bwv2-scene-4,#bwv2-scene-5) .bwv2-dot-g { background: #28c840; }
-:is(#bwv2-scene-4,#bwv2-scene-5) .bwv2-wintitle { margin-left: .4em; font-size: .7em; font-weight: 600; color: var(--bwv2-light-text-dim); }
-:is(#bwv2-scene-4,#bwv2-scene-5) .bwv2-addressbar {
-  margin: 0 auto; flex: 1; max-width: 70%;
-  background: #fff; border: 1px solid var(--bwv2-light-border);
+/* ---- shared: window chrome dots ---- */
+.bwv3b-dot { width: .55em; height: .55em; border-radius: 50%; flex-shrink: 0; }
+.bwv3b-dot-r { background: #ff5f57; }
+.bwv3b-dot-y { background: #febc2e; }
+.bwv3b-dot-g { background: #28c840; }
+.bwv3b-wintitle { margin-left: .4em; font-size: .7em; font-weight: 600; color: var(--bwv3b-light-text-dim); }
+.bwv3b-addressbar {
+  margin: 0 auto; flex: 1; max-width: 72%;
+  background: #fff; border: 1px solid var(--bwv3b-light-border);
   border-radius: clamp(5px, 1.2cqi, 9px);
   padding: clamp(2px, .6cqi, 5px) clamp(6px, 1.4cqi, 12px);
-  font-size: var(--bwv2-fs-sm); color: var(--bwv2-light-text-dim);
-  font-family: var(--bwv2-mono);
+  font-size: var(--bwv3b-fs-sm); color: var(--bwv3b-light-text-dim);
+  font-family: var(--bwv3b-mono);
   text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 
-/* ---- reused dark card system (scene-3 sign-in card, verbatim) ---- */
-:is(#bwv2-scene-4,#bwv2-scene-5) .bwv2-card {
+/* ---- shared: dark sign-in card ---- */
+.bwv3b-card {
   position: relative;
   background: #201e1a;
   border: 1px solid rgba(255, 255, 255, .18);
   border-radius: clamp(9px, 1.8cqi, 18px);
-  box-shadow: var(--bwv2-shadow);
+  box-shadow: 0 8% 22% rgba(0, 0, 0, 0.5);
   padding: clamp(10px, 3cqi, 22px) clamp(12px, 3.4cqi, 26px);
   display: flex; flex-direction: column; gap: clamp(6px, 1.5cqi, 12px);
-  width: 78%;
+  width: 80%;
   align-items: center;
   text-align: center;
 }
-:is(#bwv2-scene-4,#bwv2-scene-5) .bwv2-card-header { display: flex; align-items: center; gap: clamp(6px, 1.6cqi, 12px); margin-bottom: clamp(2px, .6cqi, 4px); }
-:is(#bwv2-scene-4,#bwv2-scene-5) .bwv2-card-title { margin: 0; font-size: var(--bwv2-fs-lg); font-weight: 700; color: var(--bwv2-hi); }
-:is(#bwv2-scene-4,#bwv2-scene-5) .bwv2-mark {
+.bwv3b-card-header { display: flex; align-items: center; gap: clamp(6px, 1.6cqi, 12px); margin-bottom: clamp(2px, .6cqi, 4px); }
+.bwv3b-card-title { margin: 0; font-size: var(--bwv3b-fs-lg); font-weight: 700; color: var(--bwv3b-hi); }
+.bwv3b-mark {
   flex-shrink: 0; width: clamp(16px, 3.6cqi, 28px); height: clamp(16px, 3.6cqi, 28px);
-  border-radius: clamp(4px, 1cqi, 8px); background: var(--bwv2-white); color: #201a14;
-  font-weight: 800; font-size: var(--bwv2-fs-md);
+  border-radius: clamp(4px, 1cqi, 8px); background: var(--bwv3b-white); color: #201a14;
+  font-weight: 800; font-size: var(--bwv3b-fs-md);
   display: flex; align-items: center; justify-content: center;
 }
-:is(#bwv2-scene-4,#bwv2-scene-5) .bwv2-field-row { display: flex; align-items: center; gap: clamp(5px, 1.4cqi, 10px); width: 100%; }
-:is(#bwv2-scene-4,#bwv2-scene-5) .bwv2-input {
+.bwv3b-field-row { display: flex; align-items: center; gap: clamp(5px, 1.4cqi, 10px); width: 100%; }
+.bwv3b-input {
   flex: 1; min-width: 0;
-  background: #201f1c; border: 1px solid var(--bwv2-panel-edge);
+  background: #201f1c; border: 1px solid var(--bwv3b-panel-edge);
   border-radius: clamp(5px, 1.2cqi, 9px);
   padding: clamp(4px, 1.3cqi, 9px) clamp(6px, 1.6cqi, 12px);
-  font-size: var(--bwv2-fs-sm); color: var(--bwv2-mid);
-  font-family: var(--bwv2-mono);
+  font-size: var(--bwv3b-fs-sm); color: var(--bwv3b-mid);
+  font-family: var(--bwv3b-mono);
   display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+  text-align: left;
 }
-:is(#bwv2-scene-4,#bwv2-scene-5) .bwv2-input--filled { color: var(--bwv2-hi); }
-:is(#bwv2-scene-4,#bwv2-scene-5) .bwv2-btn {
-  font-family: inherit; font-size: var(--bwv2-fs-md); font-weight: 600; line-height: 1;
+.bwv3b-input--filled { color: var(--bwv3b-hi); }
+.bwv3b-btn {
+  font-family: inherit; font-size: var(--bwv3b-fs-md); font-weight: 600; line-height: 1;
   border-radius: clamp(7px, 1.8cqi, 15px);
   padding: clamp(6px, 1.7cqi, 13px) clamp(10px, 3.1cqi, 22px);
   border: 1px solid transparent;
   display: inline-flex; align-items: center; justify-content: center;
   white-space: nowrap; transform-origin: center; width: 100%;
 }
-:is(#bwv2-scene-4,#bwv2-scene-5) .bwv2-btn--primary { background: var(--bwv2-white); color: #171410; }
+.bwv3b-btn--primary { background: var(--bwv3b-white); color: #171410; }
 
 /* ============================================================================
-   SCENE 4 — "Sign in once"   13s loop.
-   Beats:
-     0.00s  reset: dark Claude chat, empty
-     0.40s  user bubble fades in WITH typewriter start: "What do we have on
-            file for the Johnsons?"
-     1.90s  typewriter finishes
-     2.20s  inline chip appears (with its content already in place):
-            "Briefly needs to connect · Sign in"
-     2.60s  cursor fades in near the chip
-     3.30s  cursor click-pulses the chip
-     3.55s  small light-chrome browser window opens over the chat
-            (auth.brieflywealth.com) with the reused sign-in card already
-            fully composed: B mark, "Sign in to Briefly", prefilled email,
-            masked password, Sign in button
-     3.95s-6.10s  hold, cursor re-appears inside the window near the button
-     6.10s  cursor click-pulses "Sign in"
-     6.35s  browser window closes/fades
-     6.90s  chip swaps in place to "✓ Briefly connected"
-     6.90s-11.90s  hold
-     12.10s-12.90s  fade out, scene resets
+   SCENE 4 — "Sign in once"   14s loop.
+   Grounded in screenshot (f): Claude Desktop home, dark canvas, centered
+   serif "Evening, Connor" under a warm asterisk, rounded input bar with
+   "How can I help you today?", Chat/Cowork pill + model label, left
+   sidebar hinted (abstracted, blurred rows).
+
+   Beat timeline (of the 14s loop; wrapper masks 96%-100%+0%-4% for the seam):
+     0.00s-2.10s   HOME idle (idle already the moment the mask lifts at .56s)
+     2.10s-3.78s   typewriter types "What do we have on file for the Johnsons?"
+     3.78s-4.20s   home holds the typed question
+     4.20s-4.41s   crossfade home -> chat (1.5% of loop, at the cap)
+     4.41s-4.76s   bubble-only hold
+     4.76s         tool chip fades in: "Briefly needs to connect · Sign in"
+     5.32s-6.02s   cursor arrives + click-pulses the chip
+     6.44s-6.86s   light browser window scales in over the chat
+                   (auth.brieflywealth.com, dark sign-in card already composed)
+     6.86s-8.12s   hold, reading the card
+     8.12s-9.10s   cursor re-appears, travels to "Sign in", click-pulses it
+     9.31s-9.52s   browser fades/scales closed
+     9.66s         chip swaps to "✓ Briefly connected"
+     9.66s-13.44s  hold on the connected state (3.78s payoff hold)
+     13.44s-14.0s  masked reset
    ============================================================================ */
 
-#bwv2-scene-4 .bwv2-s4-fade { animation: bwv2-s4-fadeall 13s ease-in-out infinite; }
+#bwv3b-scene-4 { --bwv3b-loop: 14s; }
 
-#bwv2-scene-4 .bwv2-s4-msgin { opacity: 0; animation: bwv2-s4-msgin 13s ease-in-out infinite; }
-#bwv2-scene-4 .bwv2-s4-type { animation: bwv2-s4-typewriter 13s ease-in-out infinite; }
+#bwv3b-scene-4 .bwv3b-s4-fade { animation: bwv3b-s4-fadeall 14s ease-in-out infinite; }
 
-#bwv2-scene-4 .bwv2-s4-chipwrap {
-  position: relative; display: grid; opacity: 0;
-  animation: bwv2-s4-chipwrap 13s ease-in-out infinite;
+/* -- HOME layer -- */
+#bwv3b-scene-4 .bwv3b-s4-home {
+  position: absolute; inset: 0; display: flex;
+  background: var(--bwv3b-bg);
+  animation: bwv3b-s4-home-op 14s ease-in-out infinite;
 }
-#bwv2-scene-4 .bwv2-chip-swap {
-  grid-area: 1 / 1; display: inline-flex; align-items: center; gap: .35em; white-space: nowrap;
+#bwv3b-scene-4 .bwv3b-s4-sidebar {
+  width: 24.5%; height: 100%; flex-shrink: 0;
+  background: #1c1a17; border-right: 1px solid var(--bwv3b-panel-edge);
+  padding: 6% 7%; display: flex; flex-direction: column; gap: .5em;
 }
-#bwv2-scene-4 .bwv2-chip-dot {
-  width: .55em; height: .55em; border-radius: 50%;
-  background: var(--bwv2-blue-soft2); position: relative; flex-shrink: 0;
+#bwv3b-scene-4 .bwv3b-s4-sb-tabs { display: flex; gap: .4em; margin-bottom: .5em; }
+#bwv3b-scene-4 .bwv3b-s4-sb-tab {
+  font-size: .58em; font-weight: 600; color: var(--bwv3b-lo);
+  padding: .45em .8em; border-radius: .6em;
 }
-#bwv2-scene-4 .bwv2-chip-dot::before {
-  content: ""; position: absolute; left: 50%; top: 50%; width: 42%; height: 42%;
-  background: var(--bwv2-blue); border-radius: 50%; transform: translate(-50%, -50%);
+#bwv3b-scene-4 .bwv3b-s4-sb-tab--active { background: #2a2724; color: var(--bwv3b-hi); }
+#bwv3b-scene-4 .bwv3b-s4-sb-label { font-size: .52em; font-weight: 600; color: var(--bwv3b-faint); letter-spacing: .04em; margin-top: .5em; }
+#bwv3b-scene-4 .bwv3b-s4-sb-fake {
+  display: block; font-size: .56em; color: var(--bwv3b-mid);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  filter: blur(1.6px); opacity: .55;
 }
-#bwv2-scene-4 .bwv2-signin-word { color: var(--bwv2-blue); font-weight: 700; }
-#bwv2-scene-4 .bwv2-s4-swap-a { animation: bwv2-s4-swap-a 13s ease-in-out infinite; }
-#bwv2-scene-4 .bwv2-s4-swap-b { opacity: 0; animation: bwv2-s4-swap-b 13s ease-in-out infinite; }
+#bwv3b-scene-4 .bwv3b-s4-content {
+  flex: 1; position: relative; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 4%;
+  padding: 0 6%;
+}
+#bwv3b-scene-4 .bwv3b-s4-greet {
+  display: flex; align-items: baseline; gap: .34em;
+  font-family: var(--bwv3b-serif); font-size: var(--bwv3b-fs-xl);
+  color: var(--bwv3b-hi); font-weight: 500; white-space: nowrap;
+}
+#bwv3b-scene-4 .bwv3b-s4-spark { color: var(--bwv3b-accent); font-size: .72em; }
+#bwv3b-scene-4 .bwv3b-s4-inputbar {
+  width: 100%; background: #232019; border: 1px solid var(--bwv3b-border);
+  border-radius: clamp(10px, 2.6cqi, 20px); padding: clamp(8px, 2.2cqi, 16px) clamp(10px, 2.6cqi, 18px);
+  display: flex; flex-direction: column; gap: clamp(10px, 2.4cqi, 18px);
+}
+#bwv3b-scene-4 .bwv3b-s4-inputrow1 { position: relative; display: grid; min-height: 1.3em; }
+#bwv3b-scene-4 .bwv3b-s4-ph, #bwv3b-scene-4 .bwv3b-s4-typed {
+  grid-area: 1 / 1; font-size: .84em; text-align: left; white-space: nowrap; overflow: hidden;
+}
+#bwv3b-scene-4 .bwv3b-s4-ph { color: var(--bwv3b-lo); }
+#bwv3b-scene-4 .bwv3b-s4-typed { color: var(--bwv3b-hi); }
+#bwv3b-scene-4 .bwv3b-s4-inputrow2 { display: flex; align-items: center; gap: .5em; }
+#bwv3b-scene-4 .bwv3b-s4-plus {
+  width: 1.5em; height: 1.5em; border-radius: 50%; border: 1px solid var(--bwv3b-border-strong);
+  display: flex; align-items: center; justify-content: center; font-size: .7em; color: var(--bwv3b-mid); flex-shrink: 0;
+}
+#bwv3b-scene-4 .bwv3b-s4-pill {
+  font-size: .58em; font-weight: 600; color: var(--bwv3b-lo);
+  padding: .5em .9em; border-radius: 1em;
+}
+#bwv3b-scene-4 .bwv3b-s4-pill--active { background: #322e27; color: var(--bwv3b-hi); }
+#bwv3b-scene-4 .bwv3b-s4-spacer { flex: 1; }
+#bwv3b-scene-4 .bwv3b-s4-model { font-size: .56em; color: var(--bwv3b-lo); white-space: nowrap; }
+#bwv3b-scene-4 .bwv3b-s4-modelcaret { color: var(--bwv3b-faint); }
+#bwv3b-scene-4 .bwv3b-s4-quickrow { display: flex; gap: .5em; flex-wrap: nowrap; }
+#bwv3b-scene-4 .bwv3b-s4-quickpill {
+  font-size: .5em; font-weight: 500; color: var(--bwv3b-mid);
+  border: 1px solid var(--bwv3b-border); padding: .6em 1em; border-radius: 1em; white-space: nowrap;
+}
 
-#bwv2-scene-4 .bwv2-browser {
-  position: absolute; left: 50%; top: 50%; width: 58%;
+/* -- CHAT layer -- */
+#bwv3b-scene-4 .bwv3b-s4-chatlayer {
+  position: absolute; inset: 0; background: var(--bwv3b-bg2);
+  animation: bwv3b-s4-chat-op 14s ease-in-out infinite;
+}
+#bwv3b-scene-4 .bwv3b-s4-chipwrap { position: relative; display: grid; opacity: 0; animation: bwv3b-s4-chipwrap 14s ease-in-out infinite; }
+#bwv3b-scene-4 .bwv3b-chip-swap { grid-area: 1 / 1; display: inline-flex; align-items: center; gap: .35em; white-space: nowrap; }
+#bwv3b-scene-4 .bwv3b-chip-dot { width: .55em; height: .55em; border-radius: 50%; background: var(--bwv3b-blue-soft2); position: relative; flex-shrink: 0; }
+#bwv3b-scene-4 .bwv3b-chip-dot::before { content: ""; position: absolute; left: 50%; top: 50%; width: 42%; height: 42%; background: var(--bwv3b-blue); border-radius: 50%; transform: translate(-50%, -50%); }
+#bwv3b-scene-4 .bwv3b-signin-word { color: var(--bwv3b-blue); font-weight: 700; }
+#bwv3b-scene-4 .bwv3b-s4-swap-a { animation: bwv3b-s4-swap-a 14s ease-in-out infinite; }
+#bwv3b-scene-4 .bwv3b-s4-swap-b { opacity: 0; animation: bwv3b-s4-swap-b 14s ease-in-out infinite; }
+
+#bwv3b-scene-4 .bwv3b-browser {
+  position: absolute; left: 50%; top: 52%; width: 56%;
   transform: translate(-50%, -50%) scale(.94);
   border-radius: clamp(9px, 1.6cqi, 16px);
   overflow: hidden;
   box-shadow: 0 1.4em 3em rgba(0, 0, 0, .5), 0 0 0 1px rgba(0, 0, 0, .08);
   opacity: 0;
-  animation: bwv2-s4-browser 13s ease-in-out infinite;
+  animation: bwv3b-s4-browser 14s ease-in-out infinite;
   z-index: 40;
 }
-#bwv2-scene-4 .bwv2-browser-chrome {
-  display: flex; align-items: center; gap: .4em;
-  padding: .55em .7em;
-  background: var(--bwv2-light-titlebar);
-  border-bottom: 1px solid var(--bwv2-light-border);
-}
-#bwv2-scene-4 .bwv2-browser-body {
-  background: var(--bwv2-light-bg);
-  padding: 8% 6%;
-  display: flex; align-items: center; justify-content: center;
-}
-#bwv2-scene-4 .bwv2-s4-signinbtn { animation: bwv2-s4-signinpress 13s ease-in-out infinite; }
+#bwv3b-scene-4 .bwv3b-browser-chrome { display: flex; align-items: center; gap: .4em; padding: .55em .7em; background: var(--bwv3b-light-titlebar); border-bottom: 1px solid var(--bwv3b-light-border); }
+#bwv3b-scene-4 .bwv3b-browser-body { background: var(--bwv3b-light-bg); padding: 8% 6%; display: flex; align-items: center; justify-content: center; }
+#bwv3b-scene-4 .bwv3b-s4-signinbtn { animation: bwv3b-s4-signinpress 14s ease-in-out infinite; }
 
-#bwv2-scene-4 .bwv2-s4-cursor {
-  animation:
-    bwv2-s4-cursor-pos 13s ease-in-out infinite,
-    bwv2-s4-cursor-opacity 13s ease-in-out infinite,
-    bwv2-s4-cursor-pulse 13s ease-in-out infinite;
-}
-#bwv2-scene-4 .bwv2-s4-cursor::after { animation: bwv2-s4-cursor-ring 13s ease-in-out infinite; }
+#bwv3b-scene-4 .bwv3b-s4-cursor { animation: bwv3b-s4-cursor-pos 14s ease-in-out infinite, bwv3b-s4-cursor-opacity 14s ease-in-out infinite; }
+#bwv3b-scene-4 .bwv3b-s4-cursor .bwv3b-cursor-svg { animation: bwv3b-s4-cursor-pulse 14s ease-in-out infinite; }
+#bwv3b-scene-4 .bwv3b-s4-cursor .bwv3b-cursor-ring { animation: bwv3b-s4-cursor-ring 14s ease-in-out infinite; }
 
-@keyframes bwv2-s4-fadeall {
-  0%, 91.5%  { opacity: 1; }
-  93.1%      { opacity: 0; }
-  99.2%      { opacity: 0; }
-  100%       { opacity: 1; }
+@keyframes bwv3b-s4-fadeall {
+  0%    { opacity: 0; }
+  2%    { opacity: 0; }
+  4%    { opacity: 1; }
+  96%   { opacity: 1; }
+  98%   { opacity: 0; }
+  100%  { opacity: 0; }
 }
-@keyframes bwv2-s4-msgin {
-  0%, 1.5%   { opacity: 0; }
-  3.1%, 100% { opacity: 1; }
+@keyframes bwv3b-s4-home-op {
+  0%, 24%     { opacity: 1; }
+  25.5%, 100% { opacity: 0; }
 }
-@keyframes bwv2-s4-typewriter {
-  0%, 3.1%   { clip-path: inset(0 100% 0 0); }
-  14.6%      { clip-path: inset(0 0% 0 0); }
-  100%       { clip-path: inset(0 0% 0 0); }
+@keyframes bwv3b-s4-chat-op {
+  0%, 24%     { opacity: 0; }
+  25.5%, 100% { opacity: 1; }
 }
-@keyframes bwv2-s4-chipwrap {
-  0%, 15.4%  { opacity: 0; }
-  16.9%, 100% { opacity: 1; }
+#bwv3b-scene-4 .bwv3b-s4-ph { animation: bwv3b-s4-ph-hide 14s ease-in-out infinite; }
+#bwv3b-scene-4 .bwv3b-s4-typed .bwv3b-typewriter { animation: bwv3b-s4-hometype 14s ease-in-out infinite; }
+@keyframes bwv3b-s4-ph-hide {
+  0%, 15%     { opacity: 1; }
+  16%, 100%   { opacity: 0; }
 }
-@keyframes bwv2-s4-swap-a {
-  0%, 51.9%  { opacity: 1; }
-  53.1%, 100% { opacity: 0; }
+@keyframes bwv3b-s4-hometype {
+  0%, 15%   { clip-path: inset(0 100% 0 0); }
+  27%       { clip-path: inset(0 0% 0 0); }
+  100%      { clip-path: inset(0 0% 0 0); }
 }
-@keyframes bwv2-s4-swap-b {
-  0%, 51.9%  { opacity: 0; }
-  53.1%, 100% { opacity: 1; }
+@keyframes bwv3b-s4-chipwrap {
+  0%, 34%   { opacity: 0; }
+  35%, 100% { opacity: 1; }
 }
-@keyframes bwv2-s4-browser {
-  0%, 26.5%   { opacity: 0; transform: translate(-50%, -50%) scale(.94); }
-  30.4%, 48.8% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-  51.9%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(.94); }
+@keyframes bwv3b-s4-swap-a {
+  0%, 68%   { opacity: 1; }
+  69%, 100% { opacity: 0; }
 }
-@keyframes bwv2-s4-signinpress {
-  0%, 46.9%  { transform: scale(1); }
-  48.1%      { transform: scale(.95); }
-  50.5%, 100% { transform: scale(1); }
+@keyframes bwv3b-s4-swap-b {
+  0%, 68%   { opacity: 0; }
+  69%, 100% { opacity: 1; }
 }
-@keyframes bwv2-s4-cursor-pos {
-  0%     { left: 32%; top: 27%; }
-  15.4%  { left: 32%; top: 27%; }
-  20.0%  { left: 37%; top: 21%; }
-  25.4%  { left: 32%; top: 27%; }
-  30.4%  { left: 32%; top: 27%; }
-  43.1%  { left: 50%; top: 67.5%; }
-  48.1%  { left: 50%; top: 67.5%; }
-  100%   { left: 32%; top: 27%; }
+@keyframes bwv3b-s4-browser {
+  0%, 45%     { opacity: 0; transform: translate(-50%, -50%) scale(.94); }
+  46.5%, 66%  { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  68%, 100%   { opacity: 0; transform: translate(-50%, -50%) scale(.94); }
 }
-@keyframes bwv2-s4-cursor-opacity {
-  0%, 18.5%    { opacity: 0; }
-  20.0%, 25.4% { opacity: 1; }
-  28.8%, 41.5% { opacity: 0; }
-  43.1%, 48.1% { opacity: 1; }
-  49.2%, 100%  { opacity: 0; }
+@keyframes bwv3b-s4-signinpress {
+  0%, 64%    { transform: scale(1); }
+  65%        { transform: scale(.94); }
+  66.5%, 100% { transform: scale(1); }
 }
-@keyframes bwv2-s4-cursor-pulse {
-  0%, 24.0%   { transform: translate(-50%, -50%) scale(1); }
-  25.4%       { transform: translate(-50%, -50%) scale(.8); }
-  26.5%       { transform: translate(-50%, -50%) scale(1.18); }
-  28.0%, 46.9% { transform: translate(-50%, -50%) scale(1); }
-  48.1%       { transform: translate(-50%, -50%) scale(.8); }
-  49.2%       { transform: translate(-50%, -50%) scale(1.18); }
-  50.5%, 100% { transform: translate(-50%, -50%) scale(1); }
+@keyframes bwv3b-s4-cursor-pos {
+  0%     { left: 23%; top: 24%; }
+  38%    { left: 23%; top: 24%; }
+  42%    { left: 25.5%; top: 21%; }
+  44.5%  { left: 23%; top: 24%; }
+  46%    { left: 23%; top: 24%; }
+  58%    { left: 50%; top: 65%; }
+  65%    { left: 50%; top: 65%; }
+  100%   { left: 23%; top: 24%; }
 }
-@keyframes bwv2-s4-cursor-ring {
-  0%, 24.0%    { opacity: 0; transform: translate(-50%, -50%) scale(.4); }
-  26.5%        { opacity: .75; transform: translate(-50%, -50%) scale(.6); }
-  29.0%, 46.9% { opacity: 0; transform: translate(-50%, -50%) scale(1.6); }
-  49.7%        { opacity: .75; transform: translate(-50%, -50%) scale(.6); }
-  53.1%, 100%  { opacity: 0; transform: translate(-50%, -50%) scale(1.6); }
+@keyframes bwv3b-s4-cursor-opacity {
+  0%, 37%      { opacity: 0; }
+  38%, 44.5%   { opacity: 1; }
+  45.5%, 57%   { opacity: 0; }
+  58%, 66%     { opacity: 1; }
+  67%, 100%    { opacity: 0; }
+}
+@keyframes bwv3b-s4-cursor-pulse {
+  0%, 41%     { scale: 1; }
+  42%         { scale: .82; }
+  43%         { scale: 1.15; }
+  44%, 64%    { scale: 1; }
+  65%         { scale: .82; }
+  66%         { scale: 1.15; }
+  67%, 100%   { scale: 1; }
+}
+@keyframes bwv3b-s4-cursor-ring {
+  0%, 41%    { opacity: 0; scale: .4; }
+  43%        { opacity: .75; scale: .6; }
+  45.5%, 64% { opacity: 0; scale: 1.6; }
+  66%        { opacity: .75; scale: .6; }
+  68.5%, 100% { opacity: 0; scale: 1.6; }
 }
 
 /* ============================================================================
-   SCENE 5 — "File, then brief"   18s loop, two beats.
-   BEAT 1 (0.00s-9.40s) — reuse of the split Finder + chat filing composition:
-     0.00s  reset: two PDFs resting near the Finder window, chat empty
-     0.35s  cursor click-pulses statement-2026-06.pdf, drag begins
-     0.75s  file 1 lands in intake, row glows blue, absorbed
-     1.05s  cursor moves to ira-2026-06.pdf, click
-     1.45s  file 2 lands, row glows again, "2 items" appears, absorbed
-     1.75s  cursor travels to the chat pane and fades
-     2.05s  user bubble + typewriter: "File everything in my intake folder."
-     3.35s  tool chip: "Briefly · read intake · 2 statements"
-     4.15s  "Filed both for the Johnson family."
-     4.95s  "Originals -> originals/johnson-family/"
-     5.75s  "Schwab ...4417  $1,284,306.22 [1]"
-     6.55s  "Vanguard IRA ...9052  $612,940.18 [2]"
-     6.55s-9.20s  hold, then a quick cut (9.20s-9.60s, <=1.5% of loop, no
-     overlap with beat 2) into
-   BEAT 2 (9.60s-17.60s) — reuse of the full-chat cited-brief composition:
-     9.60s  user bubble + typewriter: "Prepare a meeting brief for the
-            Johnsons."
-     10.95s tool chip: "Used Briefly · briefly_ask"
-     11.65s tool chip: "Used Briefly · briefly_prepare_meeting_brief"
-     12.90s brief title: "Johnson Family — Meeting Brief"
-     13.60s "Bottom line: net worth $1,897,246.40, tied to the cent [1][2]"
-     14.30s "Largest position: AAPL, 11.2% of brokerage [1]"
-     15.00s Sources footer: "[1] Schwab statement (original) · [2] Vanguard
-            statement (original)"
-     15.20s cursor fades in, travels toward the [1] source chip
-     15.60s cursor arrives, chip glows blue
-     15.80s-16.10s file-preview sliver peeks in from the right edge:
-            "statement-2026-06.pdf"
-     16.10s-17.60s  hold on the citation-opens-the-original moment
-     17.60s-18.00s  fade out, scene resets
+   SCENE 5 — "File, then brief"   18s loop, two beats, hard cut between them.
+   BEAT 1 grounded in screenshot (g): dark Finder, list view, rows for
+   wiki (containing MAP.md), operating, originals, intake, sources.
+
+   Beat timeline (of the 18s loop; wrapper masks 97%-100%+0%-3% for the seam):
+     0.54s   cursor click-pulses statement-2026-06.pdf, picks it up
+     1.62s   file 1 lands in intake, row glows, "absorbed"
+     2.34s   cursor click-pulses ira-2026-06.pdf, picks it up
+     3.15s   file 2 lands, row glows again, "2 items" appears
+     3.78s   cursor travels off toward the chat pane and fades
+     4.14s-5.40s  typewriter: "File everything in my intake folder."
+     5.76s   tool chip: "Briefly · read intake · 2 statements"
+     6.3s-7.92s  four assistant lines reveal, ending in the two filed accounts
+     7.92s-9.9s  hold
+     9.9s    HARD CUT (zero overlap) into beat 2
+     9.9s-11.34s  typewriter: "Prepare a meeting brief for the Johnsons."
+     11.7s / 12.24s  two tool-use chips
+     12.78s  brief card + title reveal
+     13.32s / 13.86s / 14.4s  bottom line, largest position, sources line
+     15.48s  cursor fades in, travels to the [1] source chip
+     16.02s  chip glows (hover), file-preview sliver peeks in from the right
+     16.02s-17.46s  hold on the citation-opens-the-original moment
    ============================================================================ */
 
-#bwv2-scene-5 .bwv2-s5-beat { position: absolute; inset: 0; }
-#bwv2-scene-5 .bwv2-s5-beat1 { animation: bwv2-s5-beat1 18s ease-in-out infinite; }
-#bwv2-scene-5 .bwv2-s5-beat2 { animation: bwv2-s5-beat2 18s ease-in-out infinite; }
+#bwv3b-scene-5 .bwv3b-s5-fade { animation: bwv3b-s5-fadeall 18s ease-in-out infinite; }
+#bwv3b-scene-5 .bwv3b-s5-beat { position: absolute; inset: 0; }
+#bwv3b-scene-5 .bwv3b-s5-beat1 { animation: bwv3b-s5-beat1 18s steps(1, end) infinite; }
+#bwv3b-scene-5 .bwv3b-s5-beat2 { animation: bwv3b-s5-beat2 18s steps(1, end) infinite; }
 
 /* -- beat 1: Finder + chat split -- */
-#bwv2-scene-5 .bwv2-s5-left { position: absolute; left: 0; top: 0; width: 38%; height: 100%; background: var(--bwv2-bg); }
-#bwv2-scene-5 .bwv2-s5-right { position: absolute; right: 0; top: 0; width: 62%; height: 100%; background: var(--bwv2-panel); border-left: 1px solid var(--bwv2-panel-edge); overflow: hidden; }
+#bwv3b-scene-5 .bwv3b-s5-left { position: absolute; left: 0; top: 0; width: 40%; height: 100%; background: var(--bwv3b-bg); }
+#bwv3b-scene-5 .bwv3b-s5-right { position: absolute; right: 0; top: 0; width: 60%; height: 100%; background: var(--bwv3b-bg2); border-left: 1px solid var(--bwv3b-panel-edge); overflow: hidden; }
 
-#bwv2-scene-5 .bwv2-finder {
-  position: absolute; left: 10%; top: 16%; width: 80%;
-  background: var(--bwv2-light-bg); border-radius: .6em; overflow: hidden;
-  box-shadow: 0 1.2em 2.6em rgba(0, 0, 0, .45), 0 0 0 1px rgba(0, 0, 0, .06);
+#bwv3b-scene-5 .bwv3b-finder {
+  position: absolute; left: 8%; top: 15%; width: 84%;
+  background: var(--bwv3b-finder-bg); border-radius: .6em; overflow: hidden;
+  box-shadow: 0 1.2em 2.6em rgba(0, 0, 0, .5), 0 0 0 1px rgba(0, 0, 0, .3);
 }
-#bwv2-scene-5 .bwv2-finder-titlebar { display: flex; align-items: center; gap: .35em; padding: .55em .7em; background: var(--bwv2-light-titlebar); border-bottom: 1px solid var(--bwv2-light-border); }
-#bwv2-scene-5 .bwv2-finder-rows { display: flex; flex-direction: column; }
-#bwv2-scene-5 .bwv2-finder-row { position: relative; display: flex; align-items: center; gap: .5em; padding: .7em .8em; font-size: .74em; color: var(--bwv2-light-text); border-bottom: 1px solid #ececea; }
-#bwv2-scene-5 .bwv2-finder-row:last-child { border-bottom: none; }
-#bwv2-scene-5 .bwv2-finder-ficon { width: 1em; height: .78em; background: var(--bwv2-blue); border-radius: 0 .2em .2em .2em; position: relative; flex: none; }
-#bwv2-scene-5 .bwv2-finder-ficon::before { content: ""; position: absolute; left: 0; top: -.26em; width: .5em; height: .26em; background: inherit; border-radius: .2em .2em 0 0; }
-#bwv2-scene-5 .bwv2-finder-rowlabel { flex: 1; }
-#bwv2-scene-5 .bwv2-finder-rowcount { font-size: .82em; color: var(--bwv2-light-text-faint); opacity: 0; animation: bwv2-s5-rowcount 18s ease-in-out infinite; }
-#bwv2-scene-5 .bwv2-finder-row-glow { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, rgba(47, 140, 255, .24), rgba(47, 140, 255, .05)); opacity: 0; animation: bwv2-s5-row-glow 18s ease-in-out infinite; }
+#bwv3b-scene-5 .bwv3b-finder-titlebar { display: flex; align-items: center; gap: .35em; padding: .55em .7em; background: var(--bwv3b-finder-titlebar); border-bottom: 1px solid var(--bwv3b-finder-border); }
+#bwv3b-scene-5 .bwv3b-finder-title { margin-left: .4em; font-size: .7em; font-weight: 600; color: var(--bwv3b-finder-text-dim); }
+#bwv3b-scene-5 .bwv3b-finder-cols { display: flex; padding: .5em .8em; font-size: .58em; font-weight: 600; color: var(--bwv3b-finder-text-faint); border-bottom: 1px solid var(--bwv3b-finder-border); }
+#bwv3b-scene-5 .bwv3b-finder-rows { display: flex; flex-direction: column; }
+#bwv3b-scene-5 .bwv3b-finder-row { position: relative; display: flex; align-items: center; gap: .5em; padding: .62em .8em; font-size: .72em; color: var(--bwv3b-finder-text); border-bottom: 1px solid rgba(255, 255, 255, .05); }
+#bwv3b-scene-5 .bwv3b-finder-row:last-child { border-bottom: none; }
+#bwv3b-scene-5 .bwv3b-finder-row--nested { padding-left: 2.2em; font-size: .64em; color: var(--bwv3b-finder-text-dim); }
+#bwv3b-scene-5 .bwv3b-finder-ficon { width: 1em; height: .78em; background: var(--bwv3b-finder-folder); border-radius: 0 .2em .2em .2em; position: relative; flex: none; }
+#bwv3b-scene-5 .bwv3b-finder-ficon::before { content: ""; position: absolute; left: 0; top: -.26em; width: .5em; height: .26em; background: inherit; border-radius: .2em .2em 0 0; }
+#bwv3b-scene-5 .bwv3b-finder-ficon--file { background: var(--bwv3b-finder-text-faint); border-radius: .12em; }
+#bwv3b-scene-5 .bwv3b-finder-ficon--file::before { content: none; }
+#bwv3b-scene-5 .bwv3b-finder-rowlabel { flex: 1; }
+#bwv3b-scene-5 .bwv3b-finder-rowcount { font-size: .8em; color: var(--bwv3b-finder-text-faint); opacity: 0; animation: bwv3b-s5-rowcount 18s ease-in-out infinite; }
+#bwv3b-scene-5 .bwv3b-finder-row-glow { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, rgba(47, 140, 255, .3), rgba(47, 140, 255, .06)); opacity: 0; animation: bwv3b-s5-row-glow 18s ease-in-out infinite; }
 
-#bwv2-scene-5 .bwv2-filechip {
+#bwv3b-scene-5 .bwv3b-filechip {
   position: absolute; z-index: 10; display: flex; align-items: center; gap: .35em;
-  padding: .35em .55em; white-space: nowrap;
-  background: #fff; color: var(--bwv2-light-text); font-size: .46em; font-weight: 500;
-  border-radius: .5em; box-shadow: 0 .6em 1.5em rgba(0, 0, 0, .4);
+  padding: .4em .6em; white-space: nowrap;
+  background: #fff; color: var(--bwv3b-light-text); font-size: .5em; font-weight: 500;
+  border-radius: .5em; box-shadow: 0 .6em 1.5em rgba(0, 0, 0, .45);
 }
-#bwv2-scene-5 .bwv2-filechip-badge { background: var(--bwv2-blue); color: #fff; font: 700 1em/1 var(--bwv2-mono); padding: .15em .35em; border-radius: .3em; }
-#bwv2-scene-5 .bwv2-s5-file1 { animation: bwv2-s5-file1 18s ease-in-out infinite; }
-#bwv2-scene-5 .bwv2-s5-file2 { animation: bwv2-s5-file2 18s ease-in-out infinite; }
+#bwv3b-scene-5 .bwv3b-filechip-badge { background: var(--bwv3b-blue); color: #fff; font: 700 1em/1 var(--bwv3b-mono); padding: .15em .35em; border-radius: .3em; }
+#bwv3b-scene-5 .bwv3b-s5-file1 { animation: bwv3b-s5-file1 18s ease-in-out infinite; }
+#bwv3b-scene-5 .bwv3b-s5-file2 { animation: bwv3b-s5-file2 18s ease-in-out infinite; }
 
-#bwv2-scene-5 .bwv2-s5-right .bwv2-msg-user { opacity: 0; animation: bwv2-s5-b1-msgin 18s ease-in-out infinite; }
-#bwv2-scene-5 .bwv2-s5-b1-type { animation: bwv2-s5-b1-typewriter 18s ease-in-out infinite; }
-#bwv2-scene-5 .bwv2-s5-b1-chip { animation: bwv2-s5-b1-chip 18s ease-in-out infinite; }
-#bwv2-scene-5 .bwv2-s5-b1-a1 { animation: bwv2-s5-b1-a1 18s ease-in-out infinite; }
-#bwv2-scene-5 .bwv2-s5-b1-a2 { animation: bwv2-s5-b1-a2 18s ease-in-out infinite; }
-#bwv2-scene-5 .bwv2-s5-b1-a3 { animation: bwv2-s5-b1-a3 18s ease-in-out infinite; }
-#bwv2-scene-5 .bwv2-s5-b1-a4 { animation: bwv2-s5-b1-a4 18s ease-in-out infinite; }
+#bwv3b-scene-5 .bwv3b-s5-right .bwv3b-msg-user { opacity: 0; animation: bwv3b-s5-b1-msgin 18s ease-in-out infinite; }
+#bwv3b-scene-5 .bwv3b-s5-b1-type { animation: bwv3b-s5-b1-typewriter 18s ease-in-out infinite; }
+#bwv3b-scene-5 .bwv3b-s5-b1-chip { animation: bwv3b-s5-b1-chip 18s ease-in-out infinite; }
+#bwv3b-scene-5 .bwv3b-s5-b1-a1 { animation: bwv3b-s5-b1-a1 18s ease-in-out infinite; }
+#bwv3b-scene-5 .bwv3b-s5-b1-a2 { animation: bwv3b-s5-b1-a2 18s ease-in-out infinite; }
+#bwv3b-scene-5 .bwv3b-s5-b1-a3 { animation: bwv3b-s5-b1-a3 18s ease-in-out infinite; }
+#bwv3b-scene-5 .bwv3b-s5-b1-a4 { animation: bwv3b-s5-b1-a4 18s ease-in-out infinite; }
 
 /* -- beat 2: full-width cited brief -- */
-#bwv2-scene-5 .bwv2-s5-b2-chat .bwv2-msg-user { opacity: 0; animation: bwv2-s5-b2-msgin 18s ease-in-out infinite; }
-#bwv2-scene-5 .bwv2-s5-b2-type { animation: bwv2-s5-b2-typewriter 18s ease-in-out infinite; }
-#bwv2-scene-5 .bwv2-s5-b2-chip1 { animation: bwv2-s5-b2-chip1 18s ease-in-out infinite; }
-#bwv2-scene-5 .bwv2-s5-b2-chip2 { animation: bwv2-s5-b2-chip2 18s ease-in-out infinite; }
+#bwv3b-scene-5 .bwv3b-s5-b2-chat .bwv3b-msg-user { opacity: 0; animation: bwv3b-s5-b2-msgin 18s ease-in-out infinite; }
+#bwv3b-scene-5 .bwv3b-s5-b2-type { animation: bwv3b-s5-b2-typewriter 18s ease-in-out infinite; }
+#bwv3b-scene-5 .bwv3b-s5-b2-chip1 { animation: bwv3b-s5-b2-chip1 18s ease-in-out infinite; }
+#bwv3b-scene-5 .bwv3b-s5-b2-chip2 { animation: bwv3b-s5-b2-chip2 18s ease-in-out infinite; }
 
-#bwv2-scene-5 .bwv2-brief {
+#bwv3b-scene-5 .bwv3b-brief {
   display: flex; flex-direction: column; gap: .55em; margin-top: .2em;
   padding: .8em .9em; background: rgba(255, 255, 255, .03);
-  border: 1px solid var(--bwv2-panel-edge); border-radius: .7em;
-  opacity: 0; animation: bwv2-s5-b2-brief 18s ease-in-out infinite;
+  border: 1px solid var(--bwv3b-panel-edge); border-radius: .7em;
+  opacity: 0; animation: bwv3b-s5-b2-brief 18s ease-in-out infinite;
 }
-#bwv2-scene-5 .bwv2-brief-title { font-weight: 700; color: var(--bwv2-hi); font-size: .88em; }
-#bwv2-scene-5 .bwv2-brief-sources { font-size: .68em; color: var(--bwv2-lo); margin-top: .3em; padding-top: .5em; border-top: 1px solid var(--bwv2-panel-edge); }
-#bwv2-scene-5 .bwv2-s5-b2-title { animation: bwv2-s5-b2-title 18s ease-in-out infinite; }
-#bwv2-scene-5 .bwv2-s5-b2-bottom { animation: bwv2-s5-b2-bottom 18s ease-in-out infinite; }
-#bwv2-scene-5 .bwv2-s5-b2-largest { animation: bwv2-s5-b2-largest 18s ease-in-out infinite; }
-#bwv2-scene-5 .bwv2-s5-b2-sources { animation: bwv2-s5-b2-sources 18s ease-in-out infinite; }
-#bwv2-scene-5 .bwv2-s5-chipglow { animation: bwv2-s5-chipglow 18s ease-in-out infinite; }
+#bwv3b-scene-5 .bwv3b-brief-line { opacity: 0; transform: translateY(.4em); }
+#bwv3b-scene-5 .bwv3b-brief-title { font-weight: 700; color: var(--bwv3b-hi); font-size: .88em; }
+#bwv3b-scene-5 .bwv3b-brief-sources { font-size: .68em; color: var(--bwv3b-lo); margin-top: .3em; padding-top: .5em; border-top: 1px solid var(--bwv3b-panel-edge); }
+#bwv3b-scene-5 .bwv3b-s5-b2-title { animation: bwv3b-s5-b2-title 18s ease-in-out infinite; }
+#bwv3b-scene-5 .bwv3b-s5-b2-bottom { animation: bwv3b-s5-b2-bottom 18s ease-in-out infinite; }
+#bwv3b-scene-5 .bwv3b-s5-b2-largest { animation: bwv3b-s5-b2-largest 18s ease-in-out infinite; }
+#bwv3b-scene-5 .bwv3b-s5-b2-sources { animation: bwv3b-s5-b2-sources 18s ease-in-out infinite; }
+#bwv3b-scene-5 .bwv3b-s5-chipglow { animation: bwv3b-s5-chipglow 18s ease-in-out infinite; }
 
-#bwv2-scene-5 .bwv2-preview {
-  position: absolute; right: 0; top: 60%; width: 26%;
+#bwv3b-scene-5 .bwv3b-preview {
+  position: absolute; right: 0; top: 58%; width: 27%;
   display: flex; align-items: center; gap: .5em;
   padding: .6em .7em; white-space: nowrap;
-  background: var(--bwv2-light-bg); color: var(--bwv2-light-text); font-size: .62em;
-  border-radius: .5em 0 0 .5em; box-shadow: -0.6em 0 1.6em rgba(0, 0, 0, .4);
+  background: var(--bwv3b-light-bg); color: var(--bwv3b-light-text); font-size: .6em;
+  border-radius: .5em 0 0 .5em; box-shadow: -0.6em 0 1.6em rgba(0, 0, 0, .45);
   opacity: 0; transform: translateX(100%); z-index: 20;
 }
-#bwv2-scene-5 .bwv2-preview-icon { background: var(--bwv2-blue); color: #fff; font: 700 1em/1 var(--bwv2-mono); padding: .2em .4em; border-radius: .3em; }
-#bwv2-scene-5 .bwv2-s5-preview { animation: bwv2-s5-preview 18s ease-in-out infinite; }
+#bwv3b-scene-5 .bwv3b-preview-icon { background: var(--bwv3b-blue); color: #fff; font: 700 1em/1 var(--bwv3b-mono); padding: .2em .4em; border-radius: .3em; }
+#bwv3b-scene-5 .bwv3b-s5-preview { animation: bwv3b-s5-preview 18s ease-in-out infinite; }
 
-#bwv2-scene-5 .bwv2-s5-cursor {
-  animation:
-    bwv2-s5-cursor-pos 18s ease-in-out infinite,
-    bwv2-s5-cursor-opacity 18s ease-in-out infinite,
-    bwv2-s5-cursor-pulse 18s ease-in-out infinite;
-}
-#bwv2-scene-5 .bwv2-s5-cursor::after { animation: bwv2-s5-cursor-ring 18s ease-in-out infinite; }
+#bwv3b-scene-5 .bwv3b-s5-cursor { animation: bwv3b-s5-cursor-pos 18s ease-in-out infinite, bwv3b-s5-cursor-opacity 18s ease-in-out infinite; }
+#bwv3b-scene-5 .bwv3b-s5-cursor .bwv3b-cursor-svg { animation: bwv3b-s5-cursor-pulse 18s ease-in-out infinite; }
+#bwv3b-scene-5 .bwv3b-s5-cursor .bwv3b-cursor-ring { animation: bwv3b-s5-cursor-ring 18s ease-in-out infinite; }
 
-@keyframes bwv2-s5-beat1 {
-  0%, 51.1%  { opacity: 1; }
-  52.2%, 100% { opacity: 0; }
+@keyframes bwv3b-s5-fadeall {
+  0%    { opacity: 0; }
+  1.5%  { opacity: 0; }
+  3%    { opacity: 1; }
+  97%   { opacity: 1; }
+  98.5% { opacity: 0; }
+  100%  { opacity: 0; }
 }
-@keyframes bwv2-s5-beat2 {
-  0%, 52.2%   { opacity: 0; }
-  53.3%, 97.8% { opacity: 1; }
-  100%        { opacity: 0; }
-}
+@keyframes bwv3b-s5-beat1 { 0% { opacity: 1; } 55% { opacity: 1; } 55.05% { opacity: 0; } 100% { opacity: 0; } }
+@keyframes bwv3b-s5-beat2 { 0% { opacity: 0; } 55% { opacity: 0; } 55.05% { opacity: 1; } 100% { opacity: 1; } }
 
-@keyframes bwv2-s5-file1 {
-  0%, 1.9%  { top: 4%; left: 10%; opacity: 1; transform: scale(1); }
-  2.4%      { top: 4%; left: 10%; opacity: 1; transform: scale(1.08); }
-  4.2%      { top: 23%; left: 16%; opacity: 1; transform: scale(1); }
-  5.0%      { top: 23%; left: 16%; opacity: 0; transform: scale(.8); }
-  51.0%     { top: 23%; left: 16%; opacity: 0; }
-  100%      { top: 4%; left: 10%; opacity: 1; transform: scale(1); }
+@keyframes bwv3b-s5-file1 {
+  0%, 3%    { top: 4%; left: 9%; opacity: 1; scale: 1; }
+  4%        { top: 4%; left: 9%; opacity: 1; scale: 1.1; }
+  9%        { top: 40%; left: 15%; opacity: 1; scale: 1; }
+  10%       { top: 40%; left: 15%; opacity: 0; scale: .75; }
+  54.9%     { top: 40%; left: 15%; opacity: 0; }
+  100%      { top: 4%; left: 9%; opacity: 1; scale: 1; }
 }
-@keyframes bwv2-s5-file2 {
-  0%, 5.8%  { top: 12%; left: 10%; opacity: 1; transform: scale(1); }
-  6.3%      { top: 12%; left: 10%; opacity: 1; transform: scale(1.08); }
-  8.1%      { top: 23%; left: 16%; opacity: 1; transform: scale(1); }
-  8.9%      { top: 23%; left: 16%; opacity: 0; transform: scale(.8); }
-  51.0%     { top: 23%; left: 16%; opacity: 0; }
-  100%      { top: 12%; left: 10%; opacity: 1; transform: scale(1); }
+@keyframes bwv3b-s5-file2 {
+  0%, 11.5%  { top: 13%; left: 9%; opacity: 1; scale: 1; }
+  12.5%      { top: 13%; left: 9%; opacity: 1; scale: 1.1; }
+  17.5%      { top: 40%; left: 12%; opacity: 1; scale: 1; }
+  18.5%      { top: 40%; left: 12%; opacity: 0; scale: .75; }
+  54.9%      { top: 40%; left: 12%; opacity: 0; }
+  100%       { top: 13%; left: 9%; opacity: 1; scale: 1; }
 }
-@keyframes bwv2-s5-row-glow {
-  0%, 3.6%  { opacity: 0; }
-  4.2%      { opacity: 1; }
-  5.0%      { opacity: 0; }
-  7.5%      { opacity: 0; }
-  8.1%      { opacity: 1; }
-  8.9%      { opacity: 0; }
-  100%      { opacity: 0; }
-}
-@keyframes bwv2-s5-rowcount {
-  0%, 7.5%  { opacity: 0; }
-  8.1%, 51.0% { opacity: 1; }
-  100%      { opacity: 0; }
-}
-@keyframes bwv2-s5-b1-msgin {
-  0%, 10.8%  { opacity: 0; }
-  11.4%, 51.0% { opacity: 1; }
+@keyframes bwv3b-s5-row-glow {
+  0%, 8.2%   { opacity: 0; }
+  9%         { opacity: 1; }
+  10%        { opacity: 0; }
+  16.7%      { opacity: 0; }
+  17.5%      { opacity: 1; }
+  18.5%      { opacity: 0; }
   100%       { opacity: 0; }
 }
-@keyframes bwv2-s5-b1-typewriter {
-  0%, 11.4%  { clip-path: inset(0 100% 0 0); }
-  17.5%      { clip-path: inset(0 0% 0 0); }
+@keyframes bwv3b-s5-rowcount {
+  0%, 17.5%  { opacity: 0; }
+  18.5%, 54.9% { opacity: 1; }
+  55%, 100%  { opacity: 0; }
+}
+@keyframes bwv3b-s5-b1-msgin {
+  0%, 22.5%  { opacity: 0; }
+  23%, 54.9% { opacity: 1; }
+  55%, 100%  { opacity: 0; }
+}
+@keyframes bwv3b-s5-b1-typewriter {
+  0%, 23%   { clip-path: inset(0 100% 0 0); }
+  30%       { clip-path: inset(0 0% 0 0); }
+  100%      { clip-path: inset(0 0% 0 0); }
+}
+@keyframes bwv3b-s5-b1-chip {
+  0%, 31%    { opacity: 0; transform: translateY(.4em); }
+  32%, 54.9% { opacity: 1; transform: translateY(0); }
+  55%, 100%  { opacity: 0; transform: translateY(.4em); }
+}
+@keyframes bwv3b-s5-b1-a1 {
+  0%, 34.5%  { opacity: 0; transform: translateY(.4em); }
+  35.5%, 54.9% { opacity: 1; transform: translateY(0); }
+  55%, 100%  { opacity: 0; transform: translateY(.4em); }
+}
+@keyframes bwv3b-s5-b1-a2 {
+  0%, 37%    { opacity: 0; transform: translateY(.4em); }
+  38%, 54.9% { opacity: 1; transform: translateY(0); }
+  55%, 100%  { opacity: 0; transform: translateY(.4em); }
+}
+@keyframes bwv3b-s5-b1-a3 {
+  0%, 40%    { opacity: 0; transform: translateY(.4em); }
+  41%, 54.9% { opacity: 1; transform: translateY(0); }
+  55%, 100%  { opacity: 0; transform: translateY(.4em); }
+}
+@keyframes bwv3b-s5-b1-a4 {
+  0%, 43%    { opacity: 0; transform: translateY(.4em); }
+  44%, 54.9% { opacity: 1; transform: translateY(0); }
+  55%, 100%  { opacity: 0; transform: translateY(.4em); }
+}
+
+@keyframes bwv3b-s5-b2-msgin {
+  0%, 55%      { opacity: 0; }
+  55.05%, 96.9% { opacity: 1; }
+  100%         { opacity: 0; }
+}
+@keyframes bwv3b-s5-b2-typewriter {
+  0%, 55.05% { clip-path: inset(0 100% 0 0); }
+  63%        { clip-path: inset(0 0% 0 0); }
   100%       { clip-path: inset(0 0% 0 0); }
 }
-@keyframes bwv2-s5-b1-chip {
-  0%, 18.0%  { opacity: 0; transform: translateY(.4em); }
-  18.6%, 51.0% { opacity: 1; transform: translateY(0); }
-  100%       { opacity: 0; transform: translateY(.4em); }
+@keyframes bwv3b-s5-b2-chip1 {
+  0%, 64%      { opacity: 0; transform: translateY(.4em); }
+  65%, 96.9%   { opacity: 1; transform: translateY(0); }
+  100%         { opacity: 0; transform: translateY(.4em); }
 }
-@keyframes bwv2-s5-b1-a1 {
-  0%, 22.5%  { opacity: 0; transform: translateY(.4em); }
-  23.1%, 51.0% { opacity: 1; transform: translateY(0); }
-  100%       { opacity: 0; transform: translateY(.4em); }
+@keyframes bwv3b-s5-b2-chip2 {
+  0%, 67%      { opacity: 0; transform: translateY(.4em); }
+  68%, 96.9%   { opacity: 1; transform: translateY(0); }
+  100%         { opacity: 0; transform: translateY(.4em); }
 }
-@keyframes bwv2-s5-b1-a2 {
-  0%, 26.9%  { opacity: 0; transform: translateY(.4em); }
-  27.5%, 51.0% { opacity: 1; transform: translateY(0); }
-  100%       { opacity: 0; transform: translateY(.4em); }
+@keyframes bwv3b-s5-b2-brief {
+  0%, 70%      { opacity: 0; }
+  71%, 96.9%   { opacity: 1; }
+  100%         { opacity: 0; }
 }
-@keyframes bwv2-s5-b1-a3 {
-  0%, 31.3%  { opacity: 0; transform: translateY(.4em); }
-  31.9%, 51.0% { opacity: 1; transform: translateY(0); }
-  100%       { opacity: 0; transform: translateY(.4em); }
+@keyframes bwv3b-s5-b2-title {
+  0%, 70%      { opacity: 0; transform: translateY(.4em); }
+  71%, 96.9%   { opacity: 1; transform: translateY(0); }
+  100%         { opacity: 0; transform: translateY(.4em); }
 }
-@keyframes bwv2-s5-b1-a4 {
-  0%, 35.8%  { opacity: 0; transform: translateY(.4em); }
-  36.4%, 51.0% { opacity: 1; transform: translateY(0); }
-  100%       { opacity: 0; transform: translateY(.4em); }
+@keyframes bwv3b-s5-b2-bottom {
+  0%, 73%      { opacity: 0; transform: translateY(.4em); }
+  74%, 96.9%   { opacity: 1; transform: translateY(0); }
+  100%         { opacity: 0; transform: translateY(.4em); }
 }
-
-@keyframes bwv2-s5-b2-msgin {
-  0%, 52.7%  { opacity: 0; }
-  53.3%, 97.8% { opacity: 1; }
-  100%       { opacity: 0; }
+@keyframes bwv3b-s5-b2-largest {
+  0%, 76%      { opacity: 0; transform: translateY(.4em); }
+  77%, 96.9%   { opacity: 1; transform: translateY(0); }
+  100%         { opacity: 0; transform: translateY(.4em); }
 }
-@keyframes bwv2-s5-b2-typewriter {
-  0%, 53.3%  { clip-path: inset(0 100% 0 0); }
-  59.4%      { clip-path: inset(0 0% 0 0); }
-  100%       { clip-path: inset(0 0% 0 0); }
+@keyframes bwv3b-s5-b2-sources {
+  0%, 79%      { opacity: 0; transform: translateY(.4em); }
+  80%, 96.9%   { opacity: 1; transform: translateY(0); }
+  100%         { opacity: 0; transform: translateY(.4em); }
 }
-@keyframes bwv2-s5-b2-chip1 {
-  0%, 63.3%  { opacity: 0; transform: translateY(.4em); }
-  63.9%, 97.8% { opacity: 1; transform: translateY(0); }
-  100%       { opacity: 0; transform: translateY(.4em); }
+@keyframes bwv3b-s5-chipglow {
+  0%, 88.5%    { background: var(--bwv3b-blue-soft); box-shadow: 0 0 0 0 rgba(47, 140, 255, 0); }
+  89.5%        { background: rgba(47, 140, 255, .32); box-shadow: 0 0 0 .35em rgba(47, 140, 255, .35); }
+  91%, 96.9%   { background: rgba(47, 140, 255, .4); box-shadow: 0 0 0 .4em rgba(47, 140, 255, .4); }
+  100%         { background: var(--bwv3b-blue-soft); box-shadow: 0 0 0 0 rgba(47, 140, 255, 0); }
 }
-@keyframes bwv2-s5-b2-chip2 {
-  0%, 67.2%  { opacity: 0; transform: translateY(.4em); }
-  67.8%, 97.8% { opacity: 1; transform: translateY(0); }
-  100%       { opacity: 0; transform: translateY(.4em); }
-}
-@keyframes bwv2-s5-b2-brief {
-  0%, 71.1%  { opacity: 0; }
-  71.7%, 97.8% { opacity: 1; }
-  100%       { opacity: 0; }
-}
-@keyframes bwv2-s5-b2-title {
-  0%, 71.1%  { opacity: 0; transform: translateY(.4em); }
-  71.7%, 97.8% { opacity: 1; transform: translateY(0); }
-  100%       { opacity: 0; transform: translateY(.4em); }
-}
-@keyframes bwv2-s5-b2-bottom {
-  0%, 75.0%  { opacity: 0; transform: translateY(.4em); }
-  75.6%, 97.8% { opacity: 1; transform: translateY(0); }
-  100%       { opacity: 0; transform: translateY(.4em); }
-}
-@keyframes bwv2-s5-b2-largest {
-  0%, 78.8%  { opacity: 0; transform: translateY(.4em); }
-  79.4%, 97.8% { opacity: 1; transform: translateY(0); }
-  100%       { opacity: 0; transform: translateY(.4em); }
-}
-@keyframes bwv2-s5-b2-sources {
-  0%, 82.7%  { opacity: 0; transform: translateY(.4em); }
-  83.3%, 97.8% { opacity: 1; transform: translateY(0); }
-  100%       { opacity: 0; transform: translateY(.4em); }
-}
-@keyframes bwv2-s5-chipglow {
-  0%, 86.1%  { background: var(--bwv2-blue-soft); box-shadow: 0 0 0 0 rgba(47, 140, 255, 0); }
-  86.7%      { background: rgba(47, 140, 255, .3); box-shadow: 0 0 0 .35em rgba(47, 140, 255, .35); }
-  89.4%, 97.8% { background: rgba(47, 140, 255, .4); box-shadow: 0 0 0 .4em rgba(47, 140, 255, .4); }
-  100%       { background: var(--bwv2-blue-soft); box-shadow: 0 0 0 0 rgba(47, 140, 255, 0); }
-}
-@keyframes bwv2-s5-preview {
-  0%, 87.2%  { opacity: 0; transform: translateX(100%); }
-  87.8%      { opacity: 1; transform: translateX(90%); }
-  89.4%, 97.8% { opacity: 1; transform: translateX(58%); }
-  100%       { opacity: 0; transform: translateX(100%); }
+@keyframes bwv3b-s5-preview {
+  0%, 89%      { opacity: 0; transform: translateX(100%); }
+  90%          { opacity: 1; transform: translateX(88%); }
+  91.5%, 96.9% { opacity: 1; transform: translateX(56%); }
+  100%         { opacity: 0; transform: translateX(100%); }
 }
 
-@keyframes bwv2-s5-cursor-pos {
-  0%     { left: 10.4%; top: 5.5%; }
-  1.9%   { left: 10.4%; top: 5.5%; }
-  4.2%   { left: 15%; top: 24.5%; }
-  5.8%   { left: 8.8%; top: 13.5%; }
-  8.1%   { left: 15%; top: 24.5%; }
-  9.7%   { left: 66%; top: 14%; }
-  84.4%  { left: 50%; top: 92%; }
-  86.7%  { left: 17.4%; top: 60.7%; }
-  97.8%  { left: 17.4%; top: 60.7%; }
-  100%   { left: 10.4%; top: 5.5%; }
+@keyframes bwv3b-s5-cursor-pos {
+  0%      { left: 9%; top: 5%; }
+  3%      { left: 9%; top: 5%; }
+  8%      { left: 12%; top: 40.5%; }
+  11.5%   { left: 6%; top: 13.7%; }
+  16.5%   { left: 9%; top: 40.5%; }
+  20%     { left: 62%; top: 15%; }
+  85%     { left: 52%; top: 92%; }
+  88.5%   { left: 13%; top: 47.2%; }
+  96.9%   { left: 13%; top: 47.2%; }
+  100%    { left: 9%; top: 5%; }
 }
-@keyframes bwv2-s5-cursor-opacity {
-  0%, 0.8%     { opacity: 0; }
-  1.4%, 9.2%   { opacity: 1; }
-  9.7%, 84.0%  { opacity: 0; }
-  84.4%, 97.8% { opacity: 1; }
-  98.2%, 100%  { opacity: 0; }
+@keyframes bwv3b-s5-cursor-opacity {
+  0%, 2%       { opacity: 0; }
+  3%, 19%      { opacity: 1; }
+  20%, 84.5%   { opacity: 0; }
+  85%, 96.9%   { opacity: 1; }
+  98%, 100%    { opacity: 0; }
 }
-@keyframes bwv2-s5-cursor-pulse {
-  0%, 1.4%    { transform: translate(-50%, -50%) scale(1); }
-  1.9%        { transform: translate(-50%, -50%) scale(.82); }
-  2.4%        { transform: translate(-50%, -50%) scale(1.12); }
-  3.0%, 5.3%  { transform: translate(-50%, -50%) scale(1); }
-  5.8%        { transform: translate(-50%, -50%) scale(.82); }
-  6.3%        { transform: translate(-50%, -50%) scale(1.12); }
-  6.9%, 86.1% { transform: translate(-50%, -50%) scale(1); }
-  86.7%       { transform: translate(-50%, -50%) scale(.85); }
-  87.8%       { transform: translate(-50%, -50%) scale(1.15); }
-  89.4%, 100% { transform: translate(-50%, -50%) scale(1); }
+@keyframes bwv3b-s5-cursor-pulse {
+  0%, 3%      { scale: 1; }
+  4%          { scale: .82; }
+  5%          { scale: 1.15; }
+  6%, 11%     { scale: 1; }
+  11.5%       { scale: .82; }
+  12.5%       { scale: 1.15; }
+  13.5%, 88%  { scale: 1; }
+  89%         { scale: .88; }
+  90%         { scale: 1.12; }
+  91.5%, 100% { scale: 1; }
 }
-@keyframes bwv2-s5-cursor-ring {
-  0%, 1.4%     { opacity: 0; transform: translate(-50%, -50%) scale(.4); }
-  2.4%         { opacity: .7; transform: translate(-50%, -50%) scale(.55); }
-  3.6%, 5.3%   { opacity: 0; transform: translate(-50%, -50%) scale(1.4); }
-  6.3%         { opacity: .7; transform: translate(-50%, -50%) scale(.55); }
-  7.5%, 86.1%  { opacity: 0; transform: translate(-50%, -50%) scale(1.4); }
-  87.8%        { opacity: .7; transform: translate(-50%, -50%) scale(.55); }
-  89.4%, 100%  { opacity: 0; transform: translate(-50%, -50%) scale(1.6); }
+@keyframes bwv3b-s5-cursor-ring {
+  0%, 3%      { opacity: 0; scale: .4; }
+  5%          { opacity: .7; scale: .55; }
+  6.5%, 11%   { opacity: 0; scale: 1.4; }
+  12.5%       { opacity: .7; scale: .55; }
+  14%, 88%    { opacity: 0; scale: 1.4; }
+  90%         { opacity: .65; scale: .55; }
+  91.5%, 100% { opacity: 0; scale: 1.6; }
 }
 
 /* ============================================================================
-   REDUCED MOTION — freeze each scene at its most informative state instead
-   of animating. Every element whose animated/base state is opacity:0 gets an
-   explicit companion rule here (either forced visible or explicitly hidden).
+   REDUCED MOTION — freeze at the most informative state. Every element whose
+   base state is opacity:0 gets an explicit companion rule here.
    ============================================================================ */
 @media (prefers-reduced-motion: reduce) {
-  :is(#bwv2-scene-4,#bwv2-scene-5) * { animation: none !important; transition: none !important; }
+  .bwv3b-scene * { animation: none !important; transition: none !important; }
 
-  /* Scene 4 — frozen at "Briefly connected", browser closed */
-  #bwv2-scene-4 .bwv2-s4-fade { opacity: 1 !important; }
-  #bwv2-scene-4 .bwv2-s4-msgin { opacity: 1 !important; }
-  #bwv2-scene-4 .bwv2-s4-type { clip-path: inset(0 0% 0 0) !important; }
-  #bwv2-scene-4 .bwv2-s4-chipwrap { opacity: 1 !important; }
-  #bwv2-scene-4 .bwv2-s4-swap-a { opacity: 0 !important; }
-  #bwv2-scene-4 .bwv2-s4-swap-b { opacity: 1 !important; }
-  #bwv2-scene-4 .bwv2-s4-browser { opacity: 0 !important; }
-  #bwv2-scene-4 .bwv2-s4-cursor { opacity: 0 !important; }
-  #bwv2-scene-4 .bwv2-s4-cursor::after { opacity: 0 !important; }
+  /* Scene 4 — frozen at "Briefly connected", browser closed, home hidden */
+  #bwv3b-scene-4 .bwv3b-s4-fade { opacity: 1 !important; }
+  #bwv3b-scene-4 .bwv3b-s4-home { opacity: 0 !important; }
+  #bwv3b-scene-4 .bwv3b-s4-chatlayer { opacity: 1 !important; }
+  #bwv3b-scene-4 .bwv3b-s4-chipwrap { opacity: 1 !important; }
+  #bwv3b-scene-4 .bwv3b-s4-swap-a { opacity: 0 !important; }
+  #bwv3b-scene-4 .bwv3b-s4-swap-b { opacity: 1 !important; }
+  #bwv3b-scene-4 .bwv3b-browser { opacity: 0 !important; }
+  #bwv3b-scene-4 .bwv3b-s4-cursor { opacity: 0 !important; }
+  #bwv3b-scene-4 .bwv3b-s4-cursor .bwv3b-cursor-ring { opacity: 0 !important; }
 
   /* Scene 5 — frozen mid beat 2: brief fully written, citation glowing,
      preview sliver peeking; beat 1 (Finder/chat split) hidden */
-  #bwv2-scene-5 .bwv2-s5-beat1 { opacity: 0 !important; }
-  #bwv2-scene-5 .bwv2-s5-file1,
-  #bwv2-scene-5 .bwv2-s5-file2,
-  #bwv2-scene-5 .bwv2-finder-row-glow,
-  #bwv2-scene-5 .bwv2-finder-rowcount,
-  #bwv2-scene-5 .bwv2-s5-right .bwv2-msg-user,
-  #bwv2-scene-5 .bwv2-s5-b1-chip,
-  #bwv2-scene-5 .bwv2-s5-b1-a1,
-  #bwv2-scene-5 .bwv2-s5-b1-a2,
-  #bwv2-scene-5 .bwv2-s5-b1-a3,
-  #bwv2-scene-5 .bwv2-s5-b1-a4 { opacity: 0 !important; }
-  #bwv2-scene-5 .bwv2-s5-b1-type { clip-path: inset(0 100% 0 0) !important; }
+  #bwv3b-scene-5 .bwv3b-s5-fade { opacity: 1 !important; }
+  #bwv3b-scene-5 .bwv3b-s5-beat1 { opacity: 0 !important; }
+  #bwv3b-scene-5 .bwv3b-s5-file1,
+  #bwv3b-scene-5 .bwv3b-s5-file2,
+  #bwv3b-scene-5 .bwv3b-finder-row-glow,
+  #bwv3b-scene-5 .bwv3b-finder-rowcount,
+  #bwv3b-scene-5 .bwv3b-s5-right .bwv3b-msg-user,
+  #bwv3b-scene-5 .bwv3b-s5-b1-chip,
+  #bwv3b-scene-5 .bwv3b-s5-b1-a1,
+  #bwv3b-scene-5 .bwv3b-s5-b1-a2,
+  #bwv3b-scene-5 .bwv3b-s5-b1-a3,
+  #bwv3b-scene-5 .bwv3b-s5-b1-a4 { opacity: 0 !important; }
+  #bwv3b-scene-5 .bwv3b-s5-b1-type { clip-path: inset(0 100% 0 0) !important; }
 
-  #bwv2-scene-5 .bwv2-s5-beat2 { opacity: 1 !important; }
-  #bwv2-scene-5 .bwv2-s5-b2-chat .bwv2-msg-user { opacity: 1 !important; }
-  #bwv2-scene-5 .bwv2-s5-b2-type { clip-path: inset(0 0% 0 0) !important; }
-  #bwv2-scene-5 .bwv2-s5-b2-chip1,
-  #bwv2-scene-5 .bwv2-s5-b2-chip2 { opacity: 1 !important; transform: none !important; }
-  #bwv2-scene-5 .bwv2-s5-b2-brief { opacity: 1 !important; }
-  #bwv2-scene-5 .bwv2-s5-b2-title,
-  #bwv2-scene-5 .bwv2-s5-b2-bottom,
-  #bwv2-scene-5 .bwv2-s5-b2-largest,
-  #bwv2-scene-5 .bwv2-s5-b2-sources { opacity: 1 !important; transform: none !important; }
-  #bwv2-scene-5 .bwv2-s5-chipglow {
-    background: rgba(47, 140, 255, .4) !important;
-    box-shadow: 0 0 0 .4em rgba(47, 140, 255, .4) !important;
-  }
-  #bwv2-scene-5 .bwv2-s5-preview { opacity: 1 !important; transform: translateX(58%) !important; }
-  #bwv2-scene-5 .bwv2-s5-cursor { opacity: 0 !important; }
-  #bwv2-scene-5 .bwv2-s5-cursor::after { opacity: 0 !important; }
+  #bwv3b-scene-5 .bwv3b-s5-beat2 { opacity: 1 !important; }
+  #bwv3b-scene-5 .bwv3b-s5-b2-chat .bwv3b-msg-user { opacity: 1 !important; }
+  #bwv3b-scene-5 .bwv3b-s5-b2-type { clip-path: inset(0 0% 0 0) !important; }
+  #bwv3b-scene-5 .bwv3b-s5-b2-chip1,
+  #bwv3b-scene-5 .bwv3b-s5-b2-chip2 { opacity: 1 !important; transform: none !important; }
+  #bwv3b-scene-5 .bwv3b-brief { opacity: 1 !important; }
+  #bwv3b-scene-5 .bwv3b-brief-line,
+  #bwv3b-scene-5 .bwv3b-s5-b2-title,
+  #bwv3b-scene-5 .bwv3b-s5-b2-bottom,
+  #bwv3b-scene-5 .bwv3b-s5-b2-largest,
+  #bwv3b-scene-5 .bwv3b-s5-b2-sources { opacity: 1 !important; transform: none !important; }
+  #bwv3b-scene-5 .bwv3b-s5-chipglow { background: rgba(47, 140, 255, .4) !important; box-shadow: 0 0 0 .4em rgba(47, 140, 255, .4) !important; }
+  #bwv3b-scene-5 .bwv3b-s5-preview { opacity: 1 !important; transform: translateX(56%) !important; }
+  #bwv3b-scene-5 .bwv3b-s5-cursor { opacity: 0 !important; }
+  #bwv3b-scene-5 .bwv3b-s5-cursor .bwv3b-cursor-ring { opacity: 0 !important; }
 }
 
 </style>
@@ -1480,72 +1771,79 @@
               <h3>Get Claude</h3>
               <p class="cap">Free from <a href="https://claude.ai/download" target="_blank" rel="noopener">claude.ai</a>. Skip this step if you already have it.</p>
             </div>
-            <div class="setup-frame"><div class="bwv2-scene" id="bwv2-scene-1">
-  <!-- SCENE 1 -- "Get Claude" -- 14s loop
-    0.00s (0%)      browser page holds, cursor resting near the download button
-    1.80s (12.86%)  idle hold ends
-    2.10s (15%)     click pulse peak on "Download for macOS"
-    2.40s (17.14%)  button released, cursor begins fading
-    2.60s (18.57%)  download bubble slides in top-right of the toolbar: "Claude.dmg", ring at 0%
-    5.40s (38.57%)  ring completes, label swaps to "Downloaded" + check
-    7.20s (51.43%)  hold ends, browser act begins fading
-    7.35s (52.50%)  crossfade complete -- classic macOS install window visible (icon / arrow / Applications)
-    9.50s (67.86%)  cursor fades in on the Claude icon, grabs
-    9.50-11.30s     drag: icon slides along the arrow into Applications
-    11.30s (80.71%) icon settles into the folder, folder glows, release pulse
-    13.30s (95%)    hold ends, fade to blank
-    13.90s (99.29%) blank gap
-    14.00s (100%)   reset
-  -->
-  <div class="bwv2-act bwv2-1-act--browser">
-    <div class="bwv2-window">
-      <div class="bwv2-titlebar">
-        <span class="bwv2-dot bwv2-dot--red"></span>
-        <span class="bwv2-dot bwv2-dot--yellow"></span>
-        <span class="bwv2-dot bwv2-dot--green"></span>
-        <div class="bwv2-addressbar">claude.ai/download</div>
+            <div class="setup-frame"><div class="bwv3a-scene" id="bwv3a-scene-1">
+<!-- SCENE 1 -- "Get Claude" -- 14s loop (matches shipped bwv2-scene-1 storyboard)
+  0.00s (0%)      browser page holds, cursor resting near "Download for macOS"
+  1.80s (12.86%)  idle hold ends
+  2.10s (15%)     click pulse peak on the button
+  2.40s (17.14%)  button released, cursor begins fading
+  2.60s (18.57%)  Chrome download tray slides in under the toolbar: "Claude.dmg", ring at 0%
+  5.40s (38.57%)  ring completes -> crossfades to the file icon + "186 MB · Done"
+  7.20s (51.43%)  hold ends, browser act begins fading
+  7.35s (52.50%)  crossfade complete -- drag-to-Applications installer window visible
+  9.50s (67.86%)  cursor fades in on the Claude icon, grabs
+  9.50-11.30s     drag: icon slides along the arrow into Applications
+  11.30s (80.71%) icon settles into the folder, folder glows, release pulse
+  13.30s (95%)    hold ends, fade to blank
+  13.90s (99.29%) blank gap
+  14.00s (100%)   reset
+-->
+  <div class="bwv3a-act bwv3a-1-act--browser">
+    <div class="bwv3a-window">
+      <div class="bwv3a-titlebar">
+        <span class="bwv3a-dot bwv3a-dot--red"></span>
+        <span class="bwv3a-dot bwv3a-dot--yellow"></span>
+        <span class="bwv3a-dot bwv3a-dot--green"></span>
+        <div class="bwv3a-addressbar">claude.ai/download</div>
+        <span class="bwv3a-toolbar-dl" aria-hidden="true"><span class="bwv3a-icon-download"></span></span>
       </div>
-      <div class="bwv2-page">
-        <div class="bwv2-wordmark">Claude</div>
-        <h2 class="bwv2-heading">Download Claude</h2>
-        <p class="bwv2-subheading">One app for chat, code, and tools.</p>
-        <button class="bwv2-btn bwv2-btn--primary bwv2-1-btn" type="button">
-          <span class="bwv2-icon-download" aria-hidden="true"></span>
+      <div class="bwv3a-page">
+        <div class="bwv3a-wordmark">Claude</div>
+        <h2 class="bwv3a-heading">Download Claude</h2>
+        <p class="bwv3a-subheading">One app for chat, code, and tools.</p>
+        <button class="bwv3a-btn bwv3a-btn--primary bwv3a-1-btn" type="button">
+          <span class="bwv3a-icon-download" aria-hidden="true"></span>
           <span>Download for macOS</span>
         </button>
       </div>
-      <div class="bwv2-dlbubble bwv2-1-bubble">
-        <span class="bwv2-ring bwv2-1-ring"><i class="bwv2-ring-hole"></i></span>
-        <span class="bwv2-dlbubble-text">
-          <span class="bwv2-dlbubble-name">Claude.dmg</span>
-          <span class="bwv2-dlbubble-statuswrap">
-            <span class="bwv2-dlbubble-status bwv2-1-status-downloading">Downloading&hellip;</span>
-            <span class="bwv2-dlbubble-status bwv2-1-status-done">Downloaded</span>
+      <div class="bwv3a-dlbubble bwv3a-1-bubble">
+        <span class="bwv3a-dlicon">
+          <span class="bwv3a-ring bwv3a-1-ring"><i class="bwv3a-ring-hole"></i></span>
+          <span class="bwv3a-fileicon bwv3a-1-fileicon"></span>
+        </span>
+        <span class="bwv3a-dlbubble-text">
+          <span class="bwv3a-dlbubble-name">Claude.dmg</span>
+          <span class="bwv3a-dlbubble-statuswrap">
+            <span class="bwv3a-dlbubble-status bwv3a-1-status-downloading">Downloading&hellip;</span>
+            <span class="bwv3a-dlbubble-status bwv3a-1-status-done">186 MB &middot; Done</span>
           </span>
         </span>
       </div>
     </div>
   </div>
 
-  <div class="bwv2-act bwv2-1-act--installer">
-    <div class="bwv2-installer">
-      <div class="bwv2-installer-titlebar">
-        <span class="bwv2-dot bwv2-dot--red"></span>
-        <span class="bwv2-dot bwv2-dot--yellow"></span>
-        <span class="bwv2-dot bwv2-dot--green"></span>
+  <div class="bwv3a-act bwv3a-1-act--installer">
+    <div class="bwv3a-installer">
+      <div class="bwv3a-installer-titlebar">
+        <span class="bwv3a-dot bwv3a-dot--red"></span>
+        <span class="bwv3a-dot bwv3a-dot--yellow"></span>
+        <span class="bwv3a-dot bwv3a-dot--green"></span>
       </div>
-      <div class="bwv2-installer-body">
-        <div class="bwv2-installer-icon bwv2-1-icon"><span class="bwv2-spark"></span></div>
-        <span class="bwv2-installer-arrow" aria-hidden="true">&rarr;</span>
-        <div class="bwv2-installer-target">
-          <span class="bwv2-foldericon bwv2-1-folder"></span>
-          <span class="bwv2-installer-label">Applications</span>
+      <div class="bwv3a-installer-body">
+        <div class="bwv3a-installer-icon bwv3a-1-icon"><span class="bwv3a-spark"></span></div>
+        <span class="bwv3a-installer-arrow" aria-hidden="true">&rarr;</span>
+        <div class="bwv3a-installer-target">
+          <span class="bwv3a-foldericon bwv3a-1-folder"></span>
+          <span class="bwv3a-installer-label">Applications</span>
         </div>
       </div>
     </div>
   </div>
 
-  <span class="bwv2-cursor bwv2-1-cursor"></span>
+  <span class="bwv3a-cursor bwv3a-1-cursor">
+    <svg class="bwv3a-cursor-svg" viewBox="0 0 12 19" aria-hidden="true"><polygon points="0,0 0,16 4,12.5 6.8,19 9.2,18 6.5,11.7 11.5,11.7"></polygon></svg>
+    <span class="bwv3a-cursor-ring"></span>
+  </span>
 </div></div>
           </article>
           <article class="setup-panel">
@@ -1554,131 +1852,188 @@
               <h3>Download Briefly</h3>
               <p class="cap">One click here, then open it from your browser&rsquo;s downloads.<span class="side">Using Safari? It&rsquo;s the arrow next to the address bar.</span></p>
             </div>
-            <div class="setup-frame"><div class="bwv2-scene" id="bwv2-scene-2">
-  <!-- SCENE 2 -- "Download Briefly" -- 12s loop
-    0.00s (0%)      Briefly's own download hero holds, cursor resting near "Download Briefly"
-    1.60s (13.33%)  idle hold ends
-    1.90s (15.83%)  click pulse peak
-    2.10s (17.5%)   button released, cursor begins fading
-    2.30s (19.17%)  same download-bubble pattern as scene 1 appears top-right: "briefly_wealth.mcpb"
-    6.00s (50%)     ring completes, "Downloaded" + check
-    6.00-7.60s      cursor fades back in and travels up toward the bubble
-    7.60s (63.33%)  cursor arrives, click pulse on the finished file
-    7.60-10.60s     hold on the click -- hand-off to scene 3
-    10.60s (88.33%) fade to blank
-    12.00s (100%)   reset
-  -->
-  <div class="bwv2-window bwv2-2-window">
-    <div class="bwv2-titlebar">
-      <span class="bwv2-dot bwv2-dot--red"></span>
-      <span class="bwv2-dot bwv2-dot--yellow"></span>
-      <span class="bwv2-dot bwv2-dot--green"></span>
-      <div class="bwv2-addressbar">brieflywealth.com/download</div>
+            <div class="setup-frame"><div class="bwv3a-scene" id="bwv3a-scene-2">
+<!-- SCENE 2 -- "Download Briefly" -- 13s loop (matches screenshot 1: brieflywealth.com/download)
+  0.00s (0%)      Briefly's own download hero holds, cursor resting near "Download Briefly"
+  1.60s (12.3%)   idle hold ends
+  1.90s (14.6%)   click pulse peak
+  2.10s (16.2%)   button released -- two things appear at once, like the real page:
+                    (a) Chrome download tray top-right: "briefly_wealth.mcpb", ring at 0%
+                    (b) page dims + the cream "ALMOST THERE" handoff card scales/fades in, centered
+  4.94s (38%)     tray ring completes -> crossfades to file icon + "844 KB · Done"
+  4.94-6.50s      hold, both settled: dimmed page + card + finished tray, no cursor
+  6.50s (50%)     cursor fades back in, begins traveling up toward the tray
+  8.19s (63%)     cursor arrives at the finished file row, click pulse peak
+  8.19-11.44s     hold on the click -- hand-off to scene 3
+  11.44-12.48s    fade to blank
+  13.00s (100%)   reset
+-->
+  <div class="bwv3a-window bwv3a-2-window">
+    <div class="bwv3a-titlebar">
+      <span class="bwv3a-dot bwv3a-dot--red"></span>
+      <span class="bwv3a-dot bwv3a-dot--yellow"></span>
+      <span class="bwv3a-dot bwv3a-dot--green"></span>
+      <div class="bwv3a-addressbar">brieflywealth.com/download</div>
+      <span class="bwv3a-toolbar-dl" aria-hidden="true"><span class="bwv3a-icon-download"></span></span>
     </div>
-    <div class="bwv2-2-hero">
-      <span class="bwv2-2-eyebrow">Download &middot; Claude Desktop</span>
-      <h2 class="bwv2-2-heading">Add Briefly to Claude.</h2>
-      <p class="bwv2-2-sub">Runs on your firm&rsquo;s own files, inside Claude.</p>
-      <button class="bwv2-btn bwv2-2-btn" type="button">Download Briefly <span aria-hidden="true">&darr;</span></button>
+    <div class="bwv3a-2-page">
+      <div class="bwv3a-2-nav">
+        <span class="bwv3a-2-navword">BRIEFLY</span>
+        <span class="bwv3a-2-navbtn">REQUEST A DEMO</span>
+      </div>
+      <div class="bwv3a-2-hero">
+        <h2 class="bwv3a-2-heading">Add Briefly to Claude.</h2>
+        <p class="bwv3a-2-sub">Your firm&rsquo;s memory, from your own files.</p>
+        <div class="bwv3a-2-btnrow">
+          <button class="bwv3a-btn bwv3a-2-btn" type="button">Download Briefly <span aria-hidden="true">&darr;</span></button>
+          <span class="bwv3a-2-caption">Free &middot; Mac &amp; Windows &middot; Requires Claude</span>
+        </div>
+      </div>
+      <div class="bwv3a-2-scrim"></div>
+      <div class="bwv3a-2-card">
+        <span class="bwv3a-2-card-arrow" aria-hidden="true">&darr;</span>
+        <span class="bwv3a-2-card-eyebrow">ALMOST THERE</span>
+        <h3 class="bwv3a-2-card-title">Open the download to install</h3>
+        <p class="bwv3a-2-card-body">Open <b>briefly_wealth.mcpb</b> to launch Claude, then click Install.</p>
+        <button class="bwv3a-2-card-gotit" type="button">GOT IT</button>
+      </div>
     </div>
-    <div class="bwv2-dlbubble bwv2-2-bubble">
-      <span class="bwv2-ring bwv2-2-ring"><i class="bwv2-ring-hole"></i></span>
-      <span class="bwv2-dlbubble-text">
-        <span class="bwv2-dlbubble-name">briefly_wealth.mcpb</span>
-        <span class="bwv2-dlbubble-statuswrap">
-          <span class="bwv2-dlbubble-status bwv2-2-status-downloading">Downloading&hellip;</span>
-          <span class="bwv2-dlbubble-status bwv2-2-status-done">Downloaded</span>
+    <div class="bwv3a-dlbubble bwv3a-2-bubble">
+      <span class="bwv3a-dlicon">
+        <span class="bwv3a-ring bwv3a-2-ring"><i class="bwv3a-ring-hole"></i></span>
+        <span class="bwv3a-fileicon bwv3a-2-fileicon"></span>
+      </span>
+      <span class="bwv3a-dlbubble-text">
+        <span class="bwv3a-dlbubble-name">briefly_wealth.mcpb</span>
+        <span class="bwv3a-dlbubble-statuswrap">
+          <span class="bwv3a-dlbubble-status bwv3a-2-status-downloading">Downloading&hellip;</span>
+          <span class="bwv3a-dlbubble-status bwv3a-2-status-done">844 KB &middot; Done</span>
         </span>
       </span>
     </div>
   </div>
-  <span class="bwv2-cursor bwv2-2-cursor"></span>
+  <span class="bwv3a-cursor bwv3a-2-cursor">
+    <svg class="bwv3a-cursor-svg" viewBox="0 0 12 19" aria-hidden="true"><polygon points="0,0 0,16 4,12.5 6.8,19 9.2,18 6.5,11.7 11.5,11.7"></polygon></svg>
+    <span class="bwv3a-cursor-ring"></span>
+  </span>
 </div></div>
           </article>
           <article class="setup-panel">
             <div class="p-head">
               <span class="s-num">STEP 03</span>
               <h3>Claude installs it</h3>
-              <p class="cap">Click <b>Install</b>. Nothing to type.<span class="side">The settings screen is optional: Save and move on.</span></p>
+              <p class="cap">Click <b>Install</b>. Nothing to type.<span class="side">The settings screen is optional: Save and move on. The red Anthropic notice is standard for extensions installed outside its directory.</span></p>
             </div>
-            <div class="setup-frame"><div class="bwv2-scene" id="bwv2-scene-3">
-  <!-- SCENE 3 -- "Claude installs it" -- 15s loop
-    0.00-0.80s (0-5.33%)   Claude Desktop window materializes (app-switch)
-    0.80-4.20s (5.33-28%)  "Install Briefly?" modal holds
-    4.20s (28%)            click pulse on Install
-    4.35s (29%)            modal replaced by the settings sheet
-    4.35-8.50s (29-56.67%) "Configure Briefly" sheet holds, cursor goes straight to Save
-    8.50s (56.67%)         click pulse on Save
-    8.65s (57.67%)         sheet replaced by the toast
-    8.65-14.20s (57.67-94.67%) toast holds: "Briefly added to Claude"
-    14.20-15.00s           fade to blank, reset
-  -->
-  <div class="bwv2-window bwv2-3-window">
-    <div class="bwv2-titlebar bwv2-titlebar--plain">
-      <span class="bwv2-dot bwv2-dot--red"></span>
-      <span class="bwv2-dot bwv2-dot--yellow"></span>
-      <span class="bwv2-dot bwv2-dot--green"></span>
-      <span class="bwv2-titlebar-title">Settings</span>
-    </div>
-    <div class="bwv2-3-shell">
-      <div class="bwv2-3-nav">
-        <span class="bwv2-3-navitem"></span>
-        <span class="bwv2-3-navitem bwv2-3-navitem--active"></span>
-        <span class="bwv2-3-navitem"></span>
+            <div class="setup-frame"><div class="bwv3a-scene" id="bwv3a-scene-3">
+<!-- SCENE 3 -- "Claude installs it" -- 17s loop (matches screenshots c -> d -> e + Configure)
+  0.00-0.51s (0-3%)      extension detail page materializes
+  0.51-3.40s (3-20%)     HOLD -- detail page: B mark, "Briefly", 1-line description, red access
+                          warning, Install button top-right, 4 tool chips + "+13 more",
+                          green "All requirements met"
+  3.40s (20%)            click pulse peak on Install
+  3.57s (21%)            scrim + native "Do you want to install Briefly?" confirm dialog rise, centered
+  3.57-6.80s (21-40%)    HOLD -- confirm dialog (Cancel / Install)
+  6.80s (40%)            click pulse peak on the dialog's Install button
+  6.97s (41%)            dialog dismisses -- detail page morphs to installed state:
+                          Install -> Uninstall, "Enabled" blue toggle + Configure button fade in
+  6.97-9.86s (41-58%)    HOLD -- installed state
+  9.86s (58%)            click pulse peak on Configure
+  10.03s (59%)           scrim returns + 2-field settings sheet fades in (firm folder + Browse,
+                          inbox folder, both "Optional.", Cancel/Save)
+  10.03-12.92s (59-76%)  HOLD -- settings sheet, cursor travels straight to Save
+  12.92s (76%)           click pulse peak on Save
+  13.09s (77%)           sheet dismisses -- toast "Briefly added to Claude" rises
+  13.09-15.98s (77-94%)  HOLD -- toast
+  15.98-17.00s (94-100%) fade to blank, reset
+-->
+  <div class="bwv3a-window bwv3a-3-window">
+    <div class="bwv3a-3-panel">
+      <div class="bwv3a-3-headrow">
+        <span class="bwv3a-3-back">&lsaquo; Back</span>
+        <span class="bwv3a-3-closebtn" aria-hidden="true">&times;</span>
       </div>
-      <div class="bwv2-3-main">
-        <div class="bwv2-3-extrow">
-          <span class="bwv2-mark">B</span>
-          <span class="bwv2-3-extname">Briefly</span>
+      <div class="bwv3a-3-mainrow">
+        <span class="bwv3a-mark">B</span>
+        <div class="bwv3a-3-titlewrap">
+          <h3 class="bwv3a-3-name">Briefly</h3>
+          <p class="bwv3a-3-desc">Source-grounded client context for financial advisors.</p>
+        </div>
+        <span class="bwv3a-3-btnstack">
+          <button class="bwv3a-btn bwv3a-btn--primary bwv3a-3-btn-install" type="button">Install</button>
+          <button class="bwv3a-btn bwv3a-btn--primary bwv3a-3-btn-uninstall" type="button">Uninstall</button>
+        </span>
+      </div>
+      <div class="bwv3a-3-banner">
+        <span class="bwv3a-3-banner-icon" aria-hidden="true">&#9888;</span>
+        <p class="bwv3a-3-banner-text">Installing will grant this extension access to everything on your computer.</p>
+      </div>
+      <div class="bwv3a-3-togglerow">
+        <span class="bwv3a-3-toggle" aria-hidden="true"><span class="bwv3a-3-toggle-knob"></span></span>
+        <span class="bwv3a-3-togglelabel">Enabled</span>
+        <button class="bwv3a-btn bwv3a-btn--ghost bwv3a-3-configurebtn" type="button">Configure</button>
+      </div>
+      <div class="bwv3a-3-toolshead"><span>Tools</span><span class="bwv3a-3-toolscount">17</span></div>
+      <div class="bwv3a-3-chiprow">
+        <span class="bwv3a-3-chip">briefly_ask</span>
+        <span class="bwv3a-3-chip">briefly_get_recent_activity</span>
+        <span class="bwv3a-3-chip">briefly_prepare_meeting_brief</span>
+        <span class="bwv3a-3-chip">briefly_resolve_citation</span>
+        <span class="bwv3a-3-chipmore">+13 more</span>
+      </div>
+      <div class="bwv3a-3-divider"></div>
+      <div class="bwv3a-3-reqrow">
+        <span class="bwv3a-3-reqcheck" aria-hidden="true">&check;</span>
+        <span class="bwv3a-3-reqtext">All requirements met</span>
+      </div>
+    </div>
+
+    <div class="bwv3a-scrim bwv3a-3-scrim"></div>
+
+    <div class="bwv3a-modal bwv3a-modal--light bwv3a-3-dialog">
+      <h4 class="bwv3a-3-dialog-title">Do you want to install Briefly?</h4>
+      <p class="bwv3a-3-dialog-body">This desktop extension will be installed on your computer and made available to Claude.</p>
+      <div class="bwv3a-modal-actions">
+        <button class="bwv3a-btn bwv3a-3-dlg-cancel" type="button">Cancel</button>
+        <button class="bwv3a-btn bwv3a-3-dlg-install" type="button">Install</button>
+      </div>
+    </div>
+
+    <div class="bwv3a-card bwv3a-3-sheet">
+      <div class="bwv3a-card-header">
+        <span class="bwv3a-mark">B</span>
+        <h3 class="bwv3a-card-title">Configure Briefly</h3>
+      </div>
+      <div class="bwv3a-field">
+        <label class="bwv3a-field-label">Your firm&rsquo;s folder</label>
+        <p class="bwv3a-field-help">Optional.</p>
+        <div class="bwv3a-field-row">
+          <span class="bwv3a-input"></span>
+          <button class="bwv3a-btn bwv3a-btn--ghost bwv3a-btn--browse" type="button">Browse</button>
         </div>
       </div>
-    </div>
-
-    <div class="bwv2-scrim bwv2-3-scrim"></div>
-
-    <div class="bwv2-modal bwv2-3-modal">
-      <span class="bwv2-mark bwv2-mark--lg">B</span>
-      <h3 class="bwv2-modal-title">Install Briefly?</h3>
-      <p class="bwv2-modal-sub">Extension from Briefly Wealth</p>
-      <div class="bwv2-modal-actions">
-        <button class="bwv2-btn bwv2-btn--ghost" type="button">Cancel</button>
-        <button class="bwv2-btn bwv2-btn--accent bwv2-3-install-btn" type="button">Install</button>
-      </div>
-    </div>
-
-    <div class="bwv2-card bwv2-3-sheet">
-      <div class="bwv2-card-header">
-        <span class="bwv2-mark">B</span>
-        <h3 class="bwv2-card-title">Configure Briefly</h3>
-      </div>
-      <div class="bwv2-field">
-        <label class="bwv2-field-label">Your firm&rsquo;s folder</label>
-        <p class="bwv2-field-help">Optional. Leave blank and Briefly creates a starter folder.</p>
-        <div class="bwv2-field-row">
-          <span class="bwv2-input"></span>
-          <button class="bwv2-btn bwv2-btn--ghost bwv2-btn--browse" type="button">Browse</button>
+      <div class="bwv3a-field">
+        <label class="bwv3a-field-label">Inbox folder</label>
+        <p class="bwv3a-field-help">Optional.</p>
+        <div class="bwv3a-field-row">
+          <span class="bwv3a-input"></span>
         </div>
       </div>
-      <div class="bwv2-field">
-        <label class="bwv2-field-label">Inbox folder</label>
-        <p class="bwv2-field-help">Optional.</p>
-        <div class="bwv2-field-row">
-          <span class="bwv2-input"></span>
-        </div>
-      </div>
-      <div class="bwv2-card-actions">
-        <button class="bwv2-btn bwv2-btn--ghost" type="button">Cancel</button>
-        <button class="bwv2-btn bwv2-btn--primary bwv2-3-save-btn" type="button">Save</button>
+      <div class="bwv3a-card-actions">
+        <button class="bwv3a-btn bwv3a-btn--ghost" type="button">Cancel</button>
+        <button class="bwv3a-btn bwv3a-btn--primary bwv3a-3-savebtn" type="button">Save</button>
       </div>
     </div>
 
-    <div class="bwv2-toast bwv2-3-toast">
-      <span class="bwv2-check bwv2-check--claude" aria-hidden="true"></span>
-      <span class="bwv2-toast-text">Briefly added to Claude</span>
+    <div class="bwv3a-toast bwv3a-3-toast">
+      <span class="bwv3a-check" aria-hidden="true"></span>
+      <span class="bwv3a-toast-text">Briefly added to Claude</span>
     </div>
   </div>
 
-  <span class="bwv2-cursor bwv2-3-cursor"></span>
+  <span class="bwv3a-cursor bwv3a-3-cursor">
+    <svg class="bwv3a-cursor-svg" viewBox="0 0 12 19" aria-hidden="true"><polygon points="0,0 0,16 4,12.5 6.8,19 9.2,18 6.5,11.7 11.5,11.7"></polygon></svg>
+    <span class="bwv3a-cursor-ring"></span>
+  </span>
 </div></div>
           </article>
           <article class="setup-panel">
@@ -1687,42 +2042,91 @@
               <h3>Sign in once</h3>
               <p class="cap">Your login is the whole setup.<span class="side">Use the login we set up for your firm, and Briefly knows you and your firm.</span></p>
             </div>
-            <div class="setup-frame"><div class="bwv2-scene" id="bwv2-scene-4">
-  <span class="bwv2-appmark">Claude</span>
-  <div class="bwv2-chat bwv2-s4-fade">
-    <div class="bwv2-msg-user bwv2-s4-msgin"><span class="bwv2-typewriter bwv2-s4-type">What do we have on file for the Johnsons?</span></div>
-    <div class="bwv2-toolchip bwv2-s4-chipwrap">
-      <span class="bwv2-chip-swap bwv2-s4-swap-a">
-        <span class="bwv2-chip-dot" aria-hidden="true"></span>
-        Briefly needs to connect<span class="bwv2-dotsep">&middot;</span><span class="bwv2-signin-word">Sign in</span>
-      </span>
-      <span class="bwv2-chip-swap bwv2-s4-swap-b">
-        <span class="bwv2-tick">&check;</span> Briefly connected
-      </span>
-    </div>
-  </div>
-
-  <div class="bwv2-browser bwv2-s4-browser">
-    <div class="bwv2-browser-chrome">
-      <span class="bwv2-dot bwv2-dot-r"></span>
-      <span class="bwv2-dot bwv2-dot-y"></span>
-      <span class="bwv2-dot bwv2-dot-g"></span>
-      <span class="bwv2-addressbar">auth.brieflywealth.com</span>
-    </div>
-    <div class="bwv2-browser-body">
-      <div class="bwv2-card">
-        <div class="bwv2-card-header">
-          <span class="bwv2-mark">B</span>
-          <h3 class="bwv2-card-title">Sign in to Briefly</h3>
+            <div class="setup-frame"><div class="bwv3b-scene" id="bwv3b-scene-4">
+  <div class="bwv3b-s4-fade">
+    <div class="bwv3b-s4-home">
+      <div class="bwv3b-s4-sidebar">
+        <div class="bwv3b-s4-sb-tabs">
+          <span class="bwv3b-s4-sb-tab bwv3b-s4-sb-tab--active">Home</span>
+          <span class="bwv3b-s4-sb-tab">Code</span>
         </div>
-        <div class="bwv2-field-row"><span class="bwv2-input bwv2-input--filled">advisor@firm.com</span></div>
-        <div class="bwv2-field-row"><span class="bwv2-input bwv2-input--filled">&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;</span></div>
-        <button class="bwv2-btn bwv2-btn--primary bwv2-s4-signinbtn" type="button">Sign in</button>
+        <div class="bwv3b-s4-sb-label">Pinned</div>
+        <span class="bwv3b-s4-sb-fake">Portfolio rebalance notes</span>
+        <span class="bwv3b-s4-sb-fake">Quarterly review outline</span>
+        <span class="bwv3b-s4-sb-fake">Estate planning follow-up</span>
+        <div class="bwv3b-s4-sb-label">Recents</div>
+        <span class="bwv3b-s4-sb-fake">Client meeting prep</span>
+        <span class="bwv3b-s4-sb-fake">Fee schedule update</span>
+        <span class="bwv3b-s4-sb-fake">Household net worth check</span>
+        <span class="bwv3b-s4-sb-fake">Cash flow summary draft</span>
+        <span class="bwv3b-s4-sb-fake">RMD reminder list</span>
+      </div>
+      <div class="bwv3b-s4-content">
+        <div class="bwv3b-s4-greet"><span class="bwv3b-s4-spark">&#10035;</span> Evening, Connor</div>
+        <div class="bwv3b-s4-inputbar">
+          <div class="bwv3b-s4-inputrow1">
+            <span class="bwv3b-s4-ph">How can I help you today?</span>
+            <span class="bwv3b-s4-typed"><span class="bwv3b-typewriter">What do we have on file for the Johnsons?</span></span>
+          </div>
+          <div class="bwv3b-s4-inputrow2">
+            <span class="bwv3b-s4-plus">+</span>
+            <span class="bwv3b-s4-pill bwv3b-s4-pill--active">Chat</span>
+            <span class="bwv3b-s4-pill">Cowork</span>
+            <span class="bwv3b-s4-spacer"></span>
+            <span class="bwv3b-s4-model">Opus 4.8 <span class="bwv3b-s4-modelcaret">High &#8964;</span></span>
+          </div>
+        </div>
+        <div class="bwv3b-s4-quickrow">
+          <span class="bwv3b-s4-quickpill">Write</span>
+          <span class="bwv3b-s4-quickpill">Learn</span>
+          <span class="bwv3b-s4-quickpill">From Drive</span>
+          <span class="bwv3b-s4-quickpill">From Calendar</span>
+          <span class="bwv3b-s4-quickpill">From Gmail</span>
+        </div>
       </div>
     </div>
-  </div>
 
-  <span class="bwv2-cursor bwv2-s4-cursor"></span>
+    <div class="bwv3b-s4-chatlayer">
+      <span class="bwv3b-appmark">Claude</span>
+      <div class="bwv3b-chat">
+        <div class="bwv3b-msg-user">What do we have on file for the Johnsons?</div>
+        <div class="bwv3b-toolchip bwv3b-s4-chipwrap">
+          <span class="bwv3b-chip-swap bwv3b-s4-swap-a">
+            <span class="bwv3b-chip-dot" aria-hidden="true"></span>
+            Briefly needs to connect<span class="bwv3b-dotsep">&middot;</span><span class="bwv3b-signin-word">Sign in</span>
+          </span>
+          <span class="bwv3b-chip-swap bwv3b-s4-swap-b">
+            <span class="bwv3b-tick">&check;</span> Briefly connected
+          </span>
+        </div>
+      </div>
+
+      <div class="bwv3b-browser">
+        <div class="bwv3b-browser-chrome">
+          <span class="bwv3b-dot bwv3b-dot-r"></span>
+          <span class="bwv3b-dot bwv3b-dot-y"></span>
+          <span class="bwv3b-dot bwv3b-dot-g"></span>
+          <span class="bwv3b-addressbar">auth.brieflywealth.com</span>
+        </div>
+        <div class="bwv3b-browser-body">
+          <div class="bwv3b-card">
+            <div class="bwv3b-card-header">
+              <span class="bwv3b-mark">B</span>
+              <h3 class="bwv3b-card-title">Sign in to Briefly</h3>
+            </div>
+            <div class="bwv3b-field-row"><span class="bwv3b-input bwv3b-input--filled">advisor@firm.com</span></div>
+            <div class="bwv3b-field-row"><span class="bwv3b-input bwv3b-input--filled">&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;</span></div>
+            <button class="bwv3b-btn bwv3b-btn--primary bwv3b-s4-signinbtn" type="button">Sign in</button>
+          </div>
+        </div>
+      </div>
+
+      <span class="bwv3b-cursor bwv3b-s4-cursor">
+        <svg class="bwv3b-cursor-svg" viewBox="0 0 20 28"><polygon points="2,1 2,21 7,16.5 10.5,24.5 13,23.3 9.3,15.3 16,15.3"></polygon></svg>
+        <span class="bwv3b-cursor-ring"></span>
+      </span>
+    </div>
+  </div>
 </div></div>
           </article>
           <article class="setup-panel">
@@ -1731,78 +2135,96 @@
               <h3>File, then brief</h3>
               <p class="cap">Save statements into <b>intake</b>, then ask.<span class="side">&ldquo;File everything in my intake folder.&rdquo; Then: &ldquo;Prepare a meeting brief.&rdquo;</span></p>
             </div>
-            <div class="setup-frame"><div class="bwv2-scene" id="bwv2-scene-5">
-  <div class="bwv2-s5-beat bwv2-s5-beat1">
-    <div class="bwv2-s5-left">
-      <div class="bwv2-finder">
-        <div class="bwv2-finder-titlebar">
-          <span class="bwv2-dot bwv2-dot-r"></span>
-          <span class="bwv2-dot bwv2-dot-y"></span>
-          <span class="bwv2-dot bwv2-dot-g"></span>
-          <span class="bwv2-wintitle">Briefly</span>
+            <div class="setup-frame"><div class="bwv3b-scene" id="bwv3b-scene-5">
+  <div class="bwv3b-s5-fade">
+    <div class="bwv3b-s5-beat bwv3b-s5-beat1">
+      <div class="bwv3b-s5-left">
+        <div class="bwv3b-finder">
+          <div class="bwv3b-finder-titlebar">
+            <span class="bwv3b-dot bwv3b-dot-r"></span>
+            <span class="bwv3b-dot bwv3b-dot-y"></span>
+            <span class="bwv3b-dot bwv3b-dot-g"></span>
+            <span class="bwv3b-finder-title">Briefly</span>
+          </div>
+          <div class="bwv3b-finder-cols"><span>Name</span></div>
+          <div class="bwv3b-finder-rows">
+            <div class="bwv3b-finder-row">
+              <span class="bwv3b-finder-ficon"></span>
+              <span class="bwv3b-finder-rowlabel">wiki</span>
+            </div>
+            <div class="bwv3b-finder-row bwv3b-finder-row--nested">
+              <span class="bwv3b-finder-ficon bwv3b-finder-ficon--file"></span>
+              <span class="bwv3b-finder-rowlabel">MAP.md</span>
+            </div>
+            <div class="bwv3b-finder-row">
+              <span class="bwv3b-finder-ficon"></span>
+              <span class="bwv3b-finder-rowlabel">operating</span>
+            </div>
+            <div class="bwv3b-finder-row">
+              <span class="bwv3b-finder-ficon"></span>
+              <span class="bwv3b-finder-rowlabel">originals</span>
+            </div>
+            <div class="bwv3b-finder-row">
+              <span class="bwv3b-finder-ficon"></span>
+              <span class="bwv3b-finder-rowlabel">intake</span>
+              <span class="bwv3b-finder-rowcount">2 items</span>
+              <span class="bwv3b-finder-row-glow"></span>
+            </div>
+            <div class="bwv3b-finder-row">
+              <span class="bwv3b-finder-ficon"></span>
+              <span class="bwv3b-finder-rowlabel">sources</span>
+            </div>
+          </div>
         </div>
-        <div class="bwv2-finder-rows">
-          <div class="bwv2-finder-row">
-            <span class="bwv2-finder-ficon"></span>
-            <span class="bwv2-finder-rowlabel">intake</span>
-            <span class="bwv2-finder-rowcount">2 items</span>
-            <span class="bwv2-finder-row-glow"></span>
+        <div class="bwv3b-filechip bwv3b-s5-file1"><span class="bwv3b-filechip-badge">PDF</span>statement-2026-06.pdf</div>
+        <div class="bwv3b-filechip bwv3b-s5-file2"><span class="bwv3b-filechip-badge">PDF</span>ira-2026-06.pdf</div>
+      </div>
+
+      <div class="bwv3b-s5-right">
+        <span class="bwv3b-appmark">Claude</span>
+        <div class="bwv3b-chat">
+          <div class="bwv3b-msg-user"><span class="bwv3b-typewriter bwv3b-s5-b1-type">File everything in my intake folder.</span></div>
+
+          <div class="bwv3b-toolchip bwv3b-s5-b1-chip">
+            <span class="bwv3b-tick">&check;</span> Briefly <span class="bwv3b-dotsep">&middot;</span> read intake <span class="bwv3b-dotsep">&middot;</span> 2 statements
           </div>
-          <div class="bwv2-finder-row">
-            <span class="bwv2-finder-ficon"></span>
-            <span class="bwv2-finder-rowlabel">originals</span>
-          </div>
-          <div class="bwv2-finder-row">
-            <span class="bwv2-finder-ficon"></span>
-            <span class="bwv2-finder-rowlabel">wiki</span>
-          </div>
+
+          <div class="bwv3b-a-line bwv3b-a-hi bwv3b-s5-b1-a1">Filed both for the Johnson family.</div>
+          <div class="bwv3b-a-line bwv3b-s5-b1-a2">Originals &rarr; <span class="bwv3b-path">originals/johnson-family/</span></div>
+          <div class="bwv3b-a-line bwv3b-s5-b1-a3">Schwab &middot;&middot;&middot;4417&nbsp; <span class="bwv3b-amt">$1,284,306.22</span><span class="bwv3b-cite">1</span></div>
+          <div class="bwv3b-a-line bwv3b-s5-b1-a4">Vanguard IRA &middot;&middot;&middot;9052&nbsp; <span class="bwv3b-amt">$612,940.18</span><span class="bwv3b-cite">2</span></div>
         </div>
       </div>
-      <div class="bwv2-filechip bwv2-s5-file1"><span class="bwv2-filechip-badge">PDF</span>statement-2026-06.pdf</div>
-      <div class="bwv2-filechip bwv2-s5-file2"><span class="bwv2-filechip-badge">PDF</span>ira-2026-06.pdf</div>
     </div>
 
-    <div class="bwv2-s5-right">
-      <span class="bwv2-appmark">Claude</span>
-      <div class="bwv2-chat">
-        <div class="bwv2-msg-user bwv2-s5-b1-msgin"><span class="bwv2-typewriter bwv2-s5-b1-type">File everything in my intake folder.</span></div>
+    <div class="bwv3b-s5-beat bwv3b-s5-beat2">
+      <span class="bwv3b-appmark">Claude</span>
+      <div class="bwv3b-chat bwv3b-s5-b2-chat">
+        <div class="bwv3b-msg-user"><span class="bwv3b-typewriter bwv3b-s5-b2-type">Prepare a meeting brief for the Johnsons.</span></div>
 
-        <div class="bwv2-toolchip bwv2-s5-b1-chip">
-          <span class="bwv2-tick">&check;</span> Briefly <span class="bwv2-dotsep">&middot;</span> read intake <span class="bwv2-dotsep">&middot;</span> 2 statements
+        <div class="bwv3b-toolchip bwv3b-s5-b2-chip1">
+          <span class="bwv3b-tick">&check;</span> Used Briefly <span class="bwv3b-dotsep">&middot;</span> briefly_ask
+        </div>
+        <div class="bwv3b-toolchip bwv3b-s5-b2-chip2">
+          <span class="bwv3b-tick">&check;</span> Used Briefly <span class="bwv3b-dotsep">&middot;</span> briefly_prepare_meeting_brief
         </div>
 
-        <div class="bwv2-a-line bwv2-a-hi bwv2-s5-b1-a1">Filed both for the Johnson family.</div>
-        <div class="bwv2-a-line bwv2-s5-b1-a2">Originals &rarr; <span class="bwv2-path">originals/johnson-family/</span></div>
-        <div class="bwv2-a-line bwv2-s5-b1-a3">Schwab &middot;&middot;&middot;4417&nbsp; <span class="bwv2-amt">$1,284,306.22</span><span class="bwv2-cite">1</span></div>
-        <div class="bwv2-a-line bwv2-s5-b1-a4">Vanguard IRA &middot;&middot;&middot;9052&nbsp; <span class="bwv2-amt">$612,940.18</span><span class="bwv2-cite">2</span></div>
+        <div class="bwv3b-brief">
+          <div class="bwv3b-brief-line bwv3b-brief-title bwv3b-s5-b2-title">Johnson Family &mdash; Meeting Brief</div>
+          <div class="bwv3b-brief-line bwv3b-a-hi bwv3b-s5-b2-bottom">Bottom line: net worth <span class="bwv3b-amt">$1,897,246.40</span>, tied to the cent<span class="bwv3b-cite">1</span><span class="bwv3b-cite">2</span></div>
+          <div class="bwv3b-brief-line bwv3b-s5-b2-largest">Largest position: AAPL, 11.2% of brokerage<span class="bwv3b-cite">1</span></div>
+          <div class="bwv3b-brief-line bwv3b-brief-sources bwv3b-s5-b2-sources">Sources:<span class="bwv3b-cite bwv3b-s5-chipglow">1</span> Schwab statement (original) <span class="bwv3b-dotsep">&middot;</span><span class="bwv3b-cite">2</span> Vanguard statement (original)</div>
+        </div>
       </div>
+
+      <div class="bwv3b-preview bwv3b-s5-preview"><span class="bwv3b-preview-icon">PDF</span><span>statement-2026-06.pdf</span></div>
     </div>
+
+    <span class="bwv3b-cursor bwv3b-s5-cursor">
+      <svg class="bwv3b-cursor-svg" viewBox="0 0 20 28"><polygon points="2,1 2,21 7,16.5 10.5,24.5 13,23.3 9.3,15.3 16,15.3"></polygon></svg>
+      <span class="bwv3b-cursor-ring"></span>
+    </span>
   </div>
-
-  <div class="bwv2-s5-beat bwv2-s5-beat2">
-    <span class="bwv2-appmark">Claude</span>
-    <div class="bwv2-chat bwv2-s5-b2-chat">
-      <div class="bwv2-msg-user bwv2-s5-b2-msgin"><span class="bwv2-typewriter bwv2-s5-b2-type">Prepare a meeting brief for the Johnsons.</span></div>
-
-      <div class="bwv2-toolchip bwv2-s5-b2-chip1">
-        <span class="bwv2-tick">&check;</span> Used Briefly <span class="bwv2-dotsep">&middot;</span> briefly_ask
-      </div>
-      <div class="bwv2-toolchip bwv2-s5-b2-chip2">
-        <span class="bwv2-tick">&check;</span> Used Briefly <span class="bwv2-dotsep">&middot;</span> briefly_prepare_meeting_brief
-      </div>
-
-      <div class="bwv2-brief bwv2-s5-b2-brief">
-        <div class="bwv2-brief-line bwv2-brief-title bwv2-s5-b2-title">Johnson Family &mdash; Meeting Brief</div>
-        <div class="bwv2-brief-line bwv2-a-hi bwv2-s5-b2-bottom">Bottom line: net worth <span class="bwv2-amt">$1,897,246.40</span>, tied to the cent<span class="bwv2-cite">1</span><span class="bwv2-cite">2</span></div>
-        <div class="bwv2-brief-line bwv2-s5-b2-largest">Largest position: AAPL, 11.2% of brokerage<span class="bwv2-cite">1</span></div>
-        <div class="bwv2-brief-line bwv2-brief-sources bwv2-s5-b2-sources">Sources:<span class="bwv2-cite bwv2-cite--src1 bwv2-s5-chipglow">1</span> Schwab statement (original) <span class="bwv2-dotsep">&middot;</span><span class="bwv2-cite">2</span> Vanguard statement (original)</div>
-      </div>
-    </div>
-
-    <div class="bwv2-preview bwv2-s5-preview"><span class="bwv2-preview-icon">PDF</span><span class="bwv2-preview-label">statement-2026-06.pdf</span></div>
-  </div>
-
-  <span class="bwv2-cursor bwv2-s5-cursor"></span>
 </div></div>
           </article>
         </div>
@@ -1912,7 +2334,7 @@
       if (i === current) return;
       current = i;
       panels.forEach((p, idx) => p.classList.toggle("active", idx === i));
-      const sc = panels[i] && panels[i].querySelector(".bwv2-scene");
+      const sc = panels[i] && panels[i].querySelector(".bwv3a-scene, .bwv3b-scene");
       if (sc) sc.replaceWith(sc.cloneNode(true));
       dots.forEach((d, idx) => d.classList.toggle("on", idx === i));
       playOnly(i);
