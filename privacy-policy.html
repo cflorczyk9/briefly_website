@@ -130,18 +130,16 @@
   .nav-links {
     display: flex;
     align-items: stretch;
-    border: 1px solid var(--rule);
+    gap: 4px;
   }
   .nav-links a {
     color: var(--ink-soft);
     text-decoration: none;
     padding: 10px 14px;
-    border-right: 1px solid var(--rule);
     display: inline-flex;
     align-items: center;
     transition: color .15s ease, background .15s ease;
   }
-  .nav-links a:last-child { border-right: 0; }
   .nav-links a:hover { background: transparent; color: var(--blue); }
   .nav-actions { display: inline-flex; align-items: center; gap: 10px; }
   .nav-signin {
@@ -510,7 +508,6 @@
     text-decoration: none;
     padding: 14px 14px;
     min-height: 44px;
-    border-right: 1px solid var(--rule);
     display: inline-flex;
     align-items: center;
     transition: color .15s ease, background .15s ease;
