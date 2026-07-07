@@ -1030,8 +1030,7 @@
     color: var(--ink-muted);
   }
   .aw-draft-actions { display: flex; gap: 4px; }
-  .aw-draft-actions button {
-    appearance: none;
+  .aw-draft-actions span {
     border: 1px solid var(--ink-faint);
     background: transparent;
     color: var(--ink-soft);
@@ -1041,9 +1040,8 @@
     letter-spacing: .06em;
     padding: 4px 9px;
     border-radius: 999px;
-    cursor: pointer;
   }
-  .aw-draft-actions button.primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .aw-draft-actions span.primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
   .aw-draft h3 {
     margin: 8px 0 12px;
     font-size: 22px;
@@ -1948,10 +1946,10 @@
         <div class="aw-draft">
           <div class="aw-draft-head">
             <span class="aw-draft-status" id="awStatus">Draft agenda ready for advisor review</span>
-            <div class="aw-draft-actions">
-              <button type="button">Review</button>
-              <button type="button">Edit</button>
-              <button type="button" class="primary">Approve</button>
+            <div class="aw-draft-actions" aria-hidden="true">
+              <span>Review</span>
+              <span>Edit</span>
+              <span class="primary">Approve</span>
             </div>
           </div>
           <h3 id="awTitle">Miller Annual Review Agenda</h3>
