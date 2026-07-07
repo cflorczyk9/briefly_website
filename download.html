@@ -763,9 +763,9 @@
 }
 @keyframes bwv4a-2-cursor-opacity {
   0%, 16.2% { opacity: 1; }
-  18%, 57% { opacity: 0; }
-  58%, 91% { opacity: 1; }
-  95%, 100% { opacity: 0; }
+  18%, 55% { opacity: 0; }
+  57.5%, 91% { opacity: 1; }
+  93%, 100% { opacity: 0; }
 }
 @keyframes bwv4a-2-cursor-pulse {
   0%, 12% { scale: 1; }
@@ -1232,28 +1232,20 @@
    Save button (settings sheet)              76%     67%   bottom-right of sheet,
                                                              click pulse peaks at 76%
    ========================================================================== */
+/* the cursor stays visible and GLIDES between targets (travel legs of 5-11%
+   of the 17s loop, not 1% teleports); every hold window brackets its click
+   pulse (20 / 40 / 58 / 76) */
 @keyframes bwv4b-3-cursor-pos {
-  0%, 20% { left: 87%; top: 18%; }
-  21%, 40% { left: 73%; top: 58%; }
-  41%, 58% { left: 86%; top: 53%; }
-  59%, 61% { left: 60%; top: 44%; }
-  74%, 76% { left: 78%; top: 72%; }
-  77%, 100% { left: 78%; top: 72%; }
+  0%, 21% { left: 87%; top: 18%; }
+  26%, 41% { left: 73%; top: 58%; }
+  47%, 59% { left: 86%; top: 53%; }
+  64% { left: 68%; top: 58%; }
+  70%, 100% { left: 78%; top: 72%; }
 }
 @keyframes bwv4b-3-cursor-opacity {
   0%, 3% { opacity: 0; }
-  4%, 18% { opacity: 1; }
-  20% { opacity: 1; }
-  21% { opacity: 0; }
-  23%, 38% { opacity: 1; }
-  40% { opacity: 1; }
-  41% { opacity: 0; }
-  44%, 56% { opacity: 1; }
-  58% { opacity: 1; }
-  59% { opacity: 0; }
-  61%, 74% { opacity: 1; }
-  76% { opacity: 1; }
-  77%, 100% { opacity: 0; }
+  4%, 90% { opacity: 1; }
+  93%, 100% { opacity: 0; }
 }
 @keyframes bwv4b-3-cursor-pulse {
   0%, 18% { transform: scale(1); }
@@ -1462,7 +1454,6 @@
 .bwv4c-chip-swap { grid-area: 1 / 1; display: inline-flex; align-items: center; gap: .35em; white-space: nowrap; }
 .bwv4c-chip-dot { width: .55em; height: .55em; border-radius: 50%; background: var(--bwv4c-blue-soft2); position: relative; flex-shrink: 0; }
 .bwv4c-chip-dot::before { content: ""; position: absolute; left: 50%; top: 50%; width: 42%; height: 42%; background: var(--bwv4c-blue); border-radius: 50%; transform: translate(-50%, -50%); }
-.bwv4c-signin-word { color: var(--bwv4c-blue); font-weight: 700; }
 
 /* ---- shared: window chrome dots + address bar ---- */
 .bwv4c-dot { width: .55em; height: .55em; border-radius: 50%; flex-shrink: 0; }
@@ -1769,13 +1760,10 @@
 
      target element                          left%   top%
      ------------------------------------------------------
-     "Briefly needs to connect · Sign in"     42%     30%
-       tool chip (inside chat stage, main
-       column starts at 24.5%, chat padding
-       9%/8% places the chip just under the
-       user bubble) — measured against a
-       rendered screenshot, not estimated
-     "Sign in" button, inside the auth card    50%     68%
+     (the connect chip is informational only:
+      the browser sign-in page launches on its
+      own, no click — matching the real flow)
+     "Sign in" button, inside the auth card    50%     72%
        (card is centered left:50% top:52%,
        button sits near the card's bottom) —
        measured against a rendered screenshot
@@ -1847,35 +1835,24 @@
 }
 @keyframes bwv4c-s4-cursor-pos {
   0%     { left: 23%; top: 24%; }
-  37%    { left: 23%; top: 24%; }
-  41%    { left: 53%; top: 32.5%; }
-  44.5%  { left: 53%; top: 32.5%; }
-  46%    { left: 23%; top: 24%; }
-  63%    { left: 23%; top: 24%; }
-  67%    { left: 50%; top: 72%; }
+  61%    { left: 23%; top: 24%; }
+  66%    { left: 50%; top: 72%; }
   70.5%  { left: 50%; top: 72%; }
   100%   { left: 23%; top: 24%; }
 }
 @keyframes bwv4c-s4-cursor-opacity {
-  0%, 36%      { opacity: 0; }
-  38%, 44.5%   { opacity: 1; }
-  45.5%, 62%   { opacity: 0; }
-  64%, 70%     { opacity: 1; }
+  0%, 60%      { opacity: 0; }
+  62%, 70%     { opacity: 1; }
   71%, 100%    { opacity: 0; }
 }
 @keyframes bwv4c-s4-cursor-pulse {
-  0%, 40%     { scale: 1; }
-  41%         { scale: .82; }
-  42%         { scale: 1.15; }
-  43%, 66%    { scale: 1; }
+  0%, 66%     { scale: 1; }
   67%         { scale: .82; }
   68%         { scale: 1.15; }
   69%, 100%   { scale: 1; }
 }
 @keyframes bwv4c-s4-cursor-ring {
-  0%, 40%    { opacity: 0; scale: .4; }
-  42%        { opacity: .75; scale: .6; }
-  44%, 66%   { opacity: 0; scale: 1.6; }
+  0%, 66%    { opacity: 0; scale: .4; }
   68%        { opacity: .75; scale: .6; }
   70%, 100%  { opacity: 0; scale: 1.6; }
 }
@@ -1994,7 +1971,7 @@
   0%, 3%    { left: 16%; top: 5%; opacity: 1; scale: 1; }
   4%        { left: 16%; top: 5%; opacity: 1; scale: 1.1; }
   8%        { left: 38%; top: 56%; opacity: 1; scale: 1; }
-  9%        { left: 38%; top: 56%; opacity: 0; scale: .75; }
+  8.35%     { left: 38%; top: 56%; opacity: 0; scale: 1; }
   26.9%     { opacity: 0; }
   100%      { left: 16%; top: 5%; opacity: 1; scale: 1; }
 }
@@ -2002,7 +1979,7 @@
   0%, 11%   { left: 36%; top: 5%; opacity: 1; scale: 1; }
   12%       { left: 36%; top: 5%; opacity: 1; scale: 1.1; }
   16.5%     { left: 38%; top: 56%; opacity: 1; scale: 1; }
-  17.5%     { left: 38%; top: 56%; opacity: 0; scale: .75; }
+  16.85%    { left: 38%; top: 56%; opacity: 0; scale: 1; }
   26.9%     { opacity: 0; }
   100%      { left: 36%; top: 5%; opacity: 1; scale: 1; }
 }
@@ -2126,10 +2103,10 @@
   97.1%, 100%  { background: var(--bwv4c-blue-soft); box-shadow: 0 0 0 0 rgba(47, 140, 255, 0); }
 }
 @keyframes bwv4c-s5-preview {
-  0%, 87.5%    { opacity: 0; transform: translateY(.6em) scale(.96); }
-  89%          { opacity: 1; transform: translateY(0) scale(1); }
-  94.5%        { opacity: 1; transform: translateY(0) scale(1); }
-  96.5%        { opacity: 0; transform: translateY(.6em) scale(.96); }
+  0%, 90%      { opacity: 0; transform: translateY(.6em) scale(.96); }
+  91.5%        { opacity: 1; transform: translateY(0) scale(1); }
+  95%          { opacity: 1; transform: translateY(0) scale(1); }
+  97%          { opacity: 0; transform: translateY(.6em) scale(.96); }
   100%         { opacity: 0; transform: translateY(.6em) scale(.96); }
 }
 
@@ -2144,16 +2121,16 @@
   12%     { left: 41%; top: 7%; }
   16.5%   { left: 44%; top: 58%; }
   20%     { left: 44%; top: 58%; }
-  84.5%   { left: 44%; top: 58%; }
-  86%     { left: 38%; top: 71.5%; }
+  84%     { left: 44%; top: 58%; }
+  88%     { left: 38%; top: 71.5%; }
   95%     { left: 38%; top: 71.5%; }
   100%    { left: 22%; top: 7%; }
 }
 @keyframes bwv4c-s5-cursor-opacity {
   0%, 2%       { opacity: 0; }
   3%, 19%      { opacity: 1; }
-  20%, 84%     { opacity: 0; }
-  85%, 96%     { opacity: 1; }
+  20%, 83%     { opacity: 0; }
+  84.5%, 96%   { opacity: 1; }
   97%, 100%    { opacity: 0; }
 }
 @keyframes bwv4c-s5-cursor-pulse {
@@ -2163,19 +2140,19 @@
   6%, 11%     { scale: 1; }
   12%         { scale: .82; }
   13%         { scale: 1.15; }
-  14%, 85%    { scale: 1; }
-  86%         { scale: .88; }
-  87%         { scale: 1.12; }
-  88%, 100%   { scale: 1; }
+  14%, 88%    { scale: 1; }
+  89%         { scale: .88; }
+  90%         { scale: 1.12; }
+  91%, 100%   { scale: 1; }
 }
 @keyframes bwv4c-s5-cursor-ring {
   0%, 3%      { opacity: 0; scale: .4; }
   5%          { opacity: .7; scale: .55; }
   6.5%, 11%   { opacity: 0; scale: 1.4; }
   13%         { opacity: .7; scale: .55; }
-  14.5%, 85%  { opacity: 0; scale: 1.4; }
-  87%         { opacity: .65; scale: .55; }
-  88.5%, 100% { opacity: 0; scale: 1.6; }
+  14.5%, 88%  { opacity: 0; scale: 1.4; }
+  90%         { opacity: .65; scale: .55; }
+  91.5%, 100% { opacity: 0; scale: 1.6; }
 }
 
 /* ============================================================================
@@ -2647,7 +2624,7 @@
               <div class="bwv4c-toolchip bwv4c-s4-chipwrap">
                 <span class="bwv4c-chip-swap bwv4c-s4-swap-a">
                   <span class="bwv4c-chip-dot" aria-hidden="true"></span>
-                  Briefly needs to connect<span class="bwv4c-dotsep">&middot;</span><span class="bwv4c-signin-word">Sign in</span>
+                  Briefly<span class="bwv4c-dotsep">&middot;</span>opening your sign-in page&hellip;
                 </span>
                 <span class="bwv4c-chip-swap bwv4c-s4-swap-b">
                   <span class="bwv4c-tick">&check;</span> Briefly connected
