@@ -1775,6 +1775,12 @@
     box-shadow: 0 0 0 3px rgba(47,140,255,.18);
     flex-shrink: 0;
   }
+  @media (max-width: 480px) {
+    /* Phones: inline-flex splits the sentence into flex items that wrap
+       independently. Flow it as one inline run with the dot inline. */
+    .hero-mcp-note { display: block; line-height: 1.7; }
+    .hero-mcp-note .hmn-dot { display: inline-block; margin-right: 8px; }
+  }
 
   .mcp {
     position: relative;
