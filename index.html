@@ -314,7 +314,7 @@
 
   .hero-copy {
     position: absolute;
-    z-index: 8; /* above .center-word (7): copy must win the overlap zone */
+    z-index: 6;
     left: 48px;
     bottom: 48px;
     width: min(520px, calc(100% - 96px));
@@ -326,17 +326,17 @@
     position: absolute;
     inset: -32px -28px -44px -36px;
     z-index: -1;
-    /* Near-opaque paper card, no blur: the wordmark stays crisp and tucks
-       cleanly behind the card (layered print), instead of smearing through
-       frosted glass. Soft-mask edges keep it from reading as a hard box. */
-    background: rgba(247,243,234,.94);
+    background: rgba(217,215,203,.30);
+    backdrop-filter: blur(22px) saturate(1.06);
+    -webkit-backdrop-filter: blur(22px) saturate(1.06);
+    /* Soft-rectangle mask: two linear gradients composited to fade only the outer edges. */
     -webkit-mask-image:
-      linear-gradient(to right, transparent 0%, #000 7%, #000 93%, transparent 100%),
-      linear-gradient(to bottom, transparent 0%, #000 7%, #000 93%, transparent 100%);
+      linear-gradient(to right, transparent 0%, #000 9%, #000 91%, transparent 100%),
+      linear-gradient(to bottom, transparent 0%, #000 9%, #000 91%, transparent 100%);
     -webkit-mask-composite: source-in;
     mask-image:
-      linear-gradient(to right, transparent 0%, #000 7%, #000 93%, transparent 100%),
-      linear-gradient(to bottom, transparent 0%, #000 7%, #000 93%, transparent 100%);
+      linear-gradient(to right, transparent 0%, #000 9%, #000 91%, transparent 100%),
+      linear-gradient(to bottom, transparent 0%, #000 9%, #000 91%, transparent 100%);
     mask-composite: intersect;
     pointer-events: none;
   }
