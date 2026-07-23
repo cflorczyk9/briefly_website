@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ashford Household — Financial Goal Analysis | Meridian Wealth Partners</title>
+<style>
+  :root{
+    --navy:#1e2a4a;
+    --navy-2:#26365f;
+    --ink:#22262f;
+    --muted:#767c8a;
+    --muted-2:#9298a4;
+    --rule:#e2e4ea;
+    --rule-2:#ebedf1;
+    --card-bg:#f7f8fa;
+    --pink-bg:#fbeeec;
+    --pink-border:#b0402c;
+    --blue-bg:#eef1f8;
+    --blue-border:#26365f;
+    --rust:#b0402c;
+    --green:#3f7a5c;
+    --thead-bg:#1e2a4a;
+    --c-stock:#1e2a4a;
+    --c-bond:#c9a227;
+    --c-alt:#4f9a8a;
+    --c-cash:#b6bac2;
+    --serif:Georgia,'Iowan Old Style','Palatino Linotype','Book Antiqua',serif;
+    --mono:ui-monospace,'SF Mono','JetBrains Mono',Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:#e9eaee;overflow-x:hidden;}
+  body{font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased;}
+  svg{max-width:100%;height:auto;}
+  .byline .value,.masthead-meta,.footer-bar span,.disclosure{overflow-wrap:break-word;word-break:break-word;}
+  .banner{
+    background:#eceef2;border-bottom:1px solid var(--rule);
+    text-align:center;padding:9px 16px;
+    font-family:var(--sans);font-size:12px;color:#8a8f9a;
+    letter-spacing:.01em;
+  }
+  .doc{max-width:850px;margin:28px auto 60px;background:#fff;box-shadow:0 1px 3px rgba(20,24,34,.08),0 12px 32px rgba(20,24,34,.08);}
+  .page{padding:56px 60px 44px;border-bottom:1px solid var(--rule-2);position:relative;}
+  .page:last-child{border-bottom:none;}
+  .page.tight{padding-bottom:56px;}
+
+  /* ---- masthead (page 1 only) ---- */
+  .masthead{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:18px;border-bottom:3px solid var(--navy);margin-bottom:26px;}
+  .brand{display:flex;align-items:center;gap:10px;}
+  .brand .wordmark{font-family:var(--sans);font-weight:700;font-size:17px;letter-spacing:.14em;color:var(--navy);line-height:1.1;}
+  .brand .subline{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;color:var(--muted);margin-top:3px;}
+  .masthead-meta{text-align:right;font-family:var(--mono);font-size:10px;letter-spacing:.03em;color:var(--muted);line-height:1.7;}
+  .masthead-meta strong{color:var(--muted);font-weight:600;}
+
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;margin:0 0 10px;}
+  h1{font-family:var(--serif);font-weight:600;font-size:33px;color:var(--navy);margin:0 0 16px;letter-spacing:-.01em;}
+  h2{font-family:var(--serif);font-weight:600;font-size:23px;color:var(--navy);margin:0 0 6px;letter-spacing:-.005em;}
+  h3.subhead{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--navy);text-transform:uppercase;margin:34px 0 12px;padding-top:2px;}
+  .dek{font-family:var(--sans);font-size:14px;color:var(--muted);margin:0 0 18px;max-width:640px;line-height:1.55;}
+  .lede{font-family:var(--sans);font-size:15.5px;line-height:1.68;color:var(--ink);max-width:660px;margin:0 0 26px;}
+  hr.rule{border:none;border-top:1px solid var(--rule);margin:18px 0 26px;}
+
+  .byline{display:flex;gap:44px;flex-wrap:wrap;margin-bottom:26px;}
+  .byline .field{font-family:var(--sans);min-width:0;max-width:100%;}
+  .byline .label{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--muted-2);text-transform:uppercase;margin-bottom:4px;}
+  .byline .value{font-size:14px;color:var(--ink);}
+  .byline .value.link{color:var(--navy);font-weight:600;}
+
+  /* ---- stat cards ---- */
+  .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--rule);border-radius:3px;overflow:hidden;margin-bottom:22px;}
+  .stat{padding:18px 18px 20px;border-right:1px solid var(--rule);background:#fff;}
+  .stat:last-child{border-right:none;}
+  .stat .stat-label{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;color:var(--muted-2);text-transform:uppercase;line-height:1.4;margin-bottom:10px;min-height:26px;}
+  .stat .stat-num{font-family:var(--serif);font-size:26px;color:var(--navy);font-weight:600;line-height:1;margin-bottom:8px;}
+  .stat .stat-num.rust{color:var(--rust);}
+  .stat .stat-sub{font-family:var(--sans);font-size:11.5px;color:var(--muted);line-height:1.4;}
+
+  .callout{border-left:3px solid var(--pink-border);background:var(--pink-bg);padding:18px 22px;font-family:var(--sans);font-size:14px;line-height:1.65;color:var(--ink);border-radius:0 2px 2px 0;}
+  .callout.blue{border-left-color:var(--blue-border);background:var(--blue-bg);}
+  .callout b{color:var(--ink);}
+
+  /* ---- two column layout ---- */
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:44px;margin-bottom:8px;}
+  .cols.wide-right{grid-template-columns:1fr 1.15fr;}
+  .cols.chart-left{grid-template-columns:1fr 1.05fr;}
+
+  dl.kv{margin:0;}
+  dl.kv .row{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px dashed var(--rule);gap:16px;}
+  dl.kv .row:last-of-type{border-bottom:none;}
+  dl.kv .k{font-family:var(--sans);font-size:13.5px;color:var(--ink);}
+  dl.kv .v{font-family:var(--mono);font-size:13.5px;color:var(--ink);text-align:right;font-weight:600;font-variant-numeric:tabular-nums;}
+  dl.kv .v.muted{color:var(--muted);font-weight:400;font-family:var(--sans);}
+  .note{font-family:var(--sans);font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px;}
+
+  /* ---- tables ---- */
+  table{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:13px;}
+  thead th{background:var(--thead-bg);color:#fff;text-align:left;font-family:var(--mono);font-size:10px;letter-spacing:.09em;text-transform:uppercase;font-weight:600;padding:9px 12px;white-space:nowrap;}
+  thead th.num{text-align:right;}
+  tbody td{padding:9px 12px;border-bottom:1px solid var(--rule-2);color:var(--ink);vertical-align:top;}
+  tbody tr:nth-child(even) td{background:#fafbfc;}
+  td.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap;}
+  td.muted{color:var(--muted);}
+  tr.total td{border-top:1.5px solid var(--navy);border-bottom:none;font-weight:700;background:#f2f3f6 !important;}
+  tr.section-hdr td{font-weight:700;color:var(--navy);background:#eef0f4 !important;font-size:11.5px;letter-spacing:.03em;padding-top:11px;padding-bottom:6px;}
+  .tag{display:inline-block;font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;background:#e6e8ee;color:var(--muted);padding:2px 7px;border-radius:2px;}
+  .status-over{color:var(--rust);font-weight:700;font-family:var(--mono);font-size:12px;}
+  .status-met{color:var(--green);font-weight:700;font-family:var(--mono);font-size:12px;}
+  .status-na{color:var(--muted-2);font-family:var(--mono);font-size:12px;}
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:6px;}
+  .table-wrap.wide table{min-width:640px;}
+  .change-up{color:var(--navy);}
+  .change-down{color:var(--rust);}
+  tbody td.chg{font-family:var(--mono);font-size:12px;color:var(--muted);text-align:right;}
+
+  /* ---- charts ---- */
+  .chart-box{border:1px solid var(--rule);border-radius:3px;padding:20px 20px 14px;background:#fff;}
+  .chart-legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px;font-family:var(--sans);font-size:11.5px;color:var(--muted);}
+  .chart-legend .sw{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:6px;vertical-align:middle;}
+  .donut-center-label{font-family:var(--serif);font-weight:700;}
+  .gauge-wrap{text-align:center;}
+  .gauge-title{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--muted-2);text-transform:uppercase;margin-bottom:6px;}
+  .gauge-caption{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--ink);margin-top:6px;}
+  .gauge-caption.sub{font-family:var(--sans);font-size:11.5px;font-weight:400;color:var(--muted);margin-top:2px;}
+
+  /* ---- risk grid page 15 ---- */
+  .risk-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px 44px;}
+  .risk-item h4{font-family:var(--serif);font-size:15px;color:var(--navy);margin:0 0 6px;}
+  .risk-item p{font-family:var(--sans);font-size:13px;line-height:1.6;color:var(--ink);margin:0;}
+
+  /* ---- glossary ---- */
+  .gloss-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 44px;}
+  .gloss-item{margin-bottom:20px;}
+  .gloss-item dt{font-family:var(--serif);font-weight:700;font-size:14px;color:var(--navy);margin-bottom:4px;}
+  .gloss-item dd{font-family:var(--sans);font-size:12.5px;line-height:1.6;color:var(--ink);margin:0;}
+
+  .disclosure{font-family:var(--sans);font-size:11px;line-height:1.65;color:var(--muted);margin-bottom:12px;}
+  .disclosure b{color:var(--ink);}
+  .footer-bar{margin-top:28px;padding-top:14px;border-top:1px solid var(--rule);font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--muted-2);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+
+  .page-num{position:absolute;bottom:18px;right:60px;font-family:var(--mono);font-size:9px;color:var(--muted-2);letter-spacing:.04em;}
+
+  @media print{
+    html,body{background:#fff;}
+    .banner{display:none;}
+    .doc{box-shadow:none;margin:0;max-width:none;}
+    .page{page-break-after:always;border-bottom:none;padding:36px 46px;}
+    thead{display:table-header-group;}
+    tr{page-break-inside:avoid;}
+  }
+  @media (max-width:760px){
+    .page{padding:32px 20px;}
+    .stat-grid{grid-template-columns:1fr 1fr;}
+    .stat{border-bottom:1px solid var(--rule);}
+    .cols,.cols.wide-right,.cols.chart-left,.risk-grid,.gloss-grid{grid-template-columns:1fr;gap:22px;}
+    .masthead{flex-direction:column;gap:14px;}
+    .masthead-meta{text-align:left;}
+  }
+</style>
+</head>
+<body>
+
+<div class="banner">Sample deliverable. Names, firms, and identifying details are fictionalized.</div>
+
+<div class="doc">
+
+  <!-- ============ PAGE 1 — COVER / EXECUTIVE SUMMARY ============ -->
+  <section class="page">
+    <div class="masthead">
+      <div class="brand">
+        <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+          <circle cx="17" cy="10" r="7.5" stroke="#1e2a4a" stroke-width="1.6"/>
+          <circle cx="10" cy="22" r="7.5" stroke="#1e2a4a" stroke-width="1.6"/>
+          <circle cx="24" cy="22" r="7.5" stroke="#1e2a4a" stroke-width="1.6"/>
+        </svg>
+        <div>
+          <div class="wordmark">MERIDIAN</div>
+          <div class="subline">WEALTH&nbsp;PARTNERS</div>
+        </div>
+      </div>
+      <div class="masthead-meta">
+        CONFIDENTIAL &middot; PREPARED FOR THE ASHFORD FAMILY<br>
+        13 JULY 2026 &middot; PORTFOLIO DATA AS OF 30 JUNE 2026
+      </div>
+    </div>
+
+    <p class="eyebrow">Financial Goal Analysis</p>
+    <h1>Your plan, from 35 to 95.</h1>
+    <p class="lede">This analysis takes what you own today, adds what you save each year, and tests it against sixty years of markets. It answers one question: how likely is it that your money outlasts you? The short answer is that the portfolio as it stands today gets you there about two thirds of the time. Three changes move that to roughly nine times in ten.</p>
+
+    <div class="byline">
+      <div class="field"><div class="label">Prepared by</div><div class="value link">Daniel Brooks</div></div>
+      <div class="field"><div class="label">Firm</div><div class="value">Meridian Wealth Partners, LLC</div></div>
+      <div class="field"><div class="label">Contact</div><div class="value">312.555.0148 &middot; info@meridianwealthpartners.example.com</div></div>
+      <div class="field"><div class="label">Status</div><div class="value">Draft for discussion</div></div>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat">
+        <div class="stat-label">Investment assets</div>
+        <div class="stat-num">$197,420</div>
+        <div class="stat-sub">7 accounts</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Probability of success &mdash; today</div>
+        <div class="stat-num rust">65%</div>
+        <div class="stat-sub">Below the 70&ndash;90% confidence zone</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Probability of success &mdash; recommended</div>
+        <div class="stat-num">89%</div>
+        <div class="stat-sub">Inside the confidence zone</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Largest single holding</div>
+        <div class="stat-num">17.4%</div>
+        <div class="stat-sub">QQQM, above the 15% guideline</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <b>The finding.</b> Run as-is, the plan succeeds in about two thirds of simulated markets. That sits below the 70&ndash;90% confidence zone we target. The gap does not close by picking a different fund lineup. It closes by claiming Social Security at 70 instead of 67, stepping retirement spending down from $150,000 to $130,000 once the savings stop, and letting the portfolio de-risk on a schedule rather than staying 88% in stocks into your sixties.
+    </div>
+    <div class="page-num">1</div>
+  </section>
+
+  <!-- ============ PAGE 2 — PERSONAL INFO / GOALS / NET WORTH ============ -->
+  <section class="page">
+    <h2>Personal information and goals</h2>
+    <p class="dek">Everything downstream depends on this being right. Read it first.</p>
+    <hr class="rule">
+
+    <div class="cols">
+      <div>
+        <h3 class="subhead" style="margin-top:0;">Household</h3>
+        <dl class="kv">
+          <div class="row"><span class="k">Client 1</span><span class="v">Age 35</span></div>
+          <div class="row"><span class="k">Client 2</span><span class="v">Physical therapy practice</span></div>
+          <div class="row"><span class="k">Household income</span><span class="v">$250,000</span></div>
+          <div class="row"><span class="k">Children</span><span class="v">Two</span></div>
+          <div class="row"><span class="k">Residence</span><span class="v">Illinois</span></div>
+          <div class="row"><span class="k">Retirement age</span><span class="v">65 (2056)</span></div>
+          <div class="row"><span class="k">Analysis age</span><span class="v">95 (2086)</span></div>
+        </dl>
+        <p class="note">Client 2&rsquo;s practice is open Tuesdays and Thursdays. Joint meeting requested for early August, evening slots.</p>
+      </div>
+      <div>
+        <h3 class="subhead" style="margin-top:0;">Goals</h3>
+        <dl class="kv">
+          <div class="row"><span class="k">Living expense, working years</span><span class="v">$150,000</span></div>
+          <div class="row"><span class="k">Living expense, retired</span><span class="v">$130,000</span></div>
+          <div class="row"><span class="k">Inflation on spending</span><span class="v">2.50%</span></div>
+          <div class="row"><span class="k">Social Security, combined</span><span class="v">$80,600 at 70</span></div>
+          <div class="row"><span class="k">College, two children</span><span class="v">Not yet sized</span></div>
+          <div class="row"><span class="k">Health care before Medicare</span><span class="v">Not yet sized</span></div>
+        </dl>
+        <p class="note">The 529 comparison is on hold at your request and comes back in the spring. Until the college goal is priced, the probability of success below is optimistic. Health care between retirement at 65 and Medicare is a real cost and is likewise not in these numbers yet.</p>
+      </div>
+    </div>
+
+    <h2 style="margin-top:38px;">Net worth summary</h2>
+    <p class="dek">What you own, as reconciled from custodial statements dated 30 June 2026.</p>
+    <hr class="rule">
+
+    <div class="cols chart-left">
+      <div class="chart-box">
+        <svg viewBox="0 0 380 300" width="100%">
+          <line x1="0" y1="260" x2="380" y2="260" stroke="#e2e4ea"/>
+          <line x1="0" y1="202.5" x2="380" y2="202.5" stroke="#eef0f4"/>
+          <line x1="0" y1="145" x2="380" y2="145" stroke="#eef0f4"/>
+          <line x1="0" y1="87.5" x2="380" y2="87.5" stroke="#eef0f4"/>
+          <line x1="0" y1="30" x2="380" y2="30" stroke="#eef0f4"/>
+          <text x="2" y="264" font-family="ui-monospace,monospace" font-size="9" fill="#9298a4">$0k</text>
+          <text x="2" y="206.5" font-family="ui-monospace,monospace" font-size="9" fill="#9298a4">$40k</text>
+          <text x="2" y="149" font-family="ui-monospace,monospace" font-size="9" fill="#9298a4">$80k</text>
+          <text x="2" y="91.5" font-family="ui-monospace,monospace" font-size="9" fill="#9298a4">$120k</text>
+          <text x="0" y="34" font-family="ui-monospace,monospace" font-size="9" fill="#9298a4">$160k</text>
+
+          <rect x="40" y="189.4" width="70" height="70.6" fill="#1e2a4a"/>
+          <text x="75" y="182" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#1e2a4a" font-weight="600">$49,083</text>
+          <text x="75" y="278" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="10.5" fill="#767c8a">Taxable</text>
+
+          <rect x="155" y="55.1" width="70" height="204.9" fill="#1e2a4a"/>
+          <text x="190" y="48" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#1e2a4a" font-weight="600">$142,550</text>
+          <text x="190" y="278" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="10.5" fill="#767c8a">Retirement</text>
+
+          <rect x="270" y="251.7" width="70" height="8.3" fill="#1e2a4a"/>
+          <text x="305" y="244.5" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" fill="#1e2a4a" font-weight="600">$5,787</text>
+          <text x="305" y="278" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="10.5" fill="#767c8a">HSA</text>
+        </svg>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Description</th><th class="num">Total</th></tr></thead>
+          <tbody>
+            <tr class="section-hdr"><td colspan="2">Investment assets</td></tr>
+            <tr><td>Taxable and TOD accounts</td><td class="num">$49,083</td></tr>
+            <tr><td>Retirement accounts</td><td class="num">$142,550</td></tr>
+            <tr><td>Health savings account</td><td class="num">$5,787</td></tr>
+            <tr class="total"><td>Total investment assets</td><td class="num">$197,420</td></tr>
+            <tr class="section-hdr"><td colspan="2">Other assets</td></tr>
+            <tr><td>Home, property, personal</td><td class="num"><span class="tag">NOT ON FILE</span></td></tr>
+            <tr class="section-hdr"><td colspan="2">Liabilities</td></tr>
+            <tr><td>Mortgage and other debt</td><td class="num"><span class="tag">NOT ON FILE</span></td></tr>
+            <tr class="total"><td>Net worth (investment assets only)</td><td class="num">$197,420</td></tr>
+          </tbody>
+        </table>
+        <p class="note">Home equity, other real property, and household liabilities are not on file. Add them and net worth changes, though the retirement projection below is driven by investment assets and does not depend on them.</p>
+      </div>
+    </div>
+    <div class="page-num">2</div>
+  </section>
+
+  <!-- ============ PAGE 3 — RESOURCE SUMMARY / RETIREMENT INCOME ============ -->
+  <section class="page">
+    <h2>Resource summary</h2>
+    <p class="dek">Account by account, with the largest position in each.</p>
+    <hr class="rule">
+    <div class="table-wrap wide">
+      <table>
+        <thead><tr><th>Account</th><th>Custodian</th><th>Tax type</th><th>Largest position</th><th class="num">Value</th></tr></thead>
+        <tbody>
+          <tr><td>Morgan Stanley 401(k)</td><td>Morgan Stanley</td><td>Retirement &mdash; Roth</td><td>BlackRock S&amp;P 500 Index</td><td class="num">$96,303</td></tr>
+          <tr><td>Roth IRA</td><td>E*TRADE</td><td>Retirement &mdash; Roth</td><td>QQQM</td><td class="num">$31,080</td></tr>
+          <tr><td>Self-Directed Brokerage (TOD)</td><td>E*TRADE</td><td>Taxable</td><td>VT</td><td class="num">$28,046</td></tr>
+          <tr><td>Rollover IRA</td><td>E*TRADE</td><td>Retirement &mdash; Traditional</td><td>SPYM</td><td class="num">$15,167</td></tr>
+          <tr><td>MS at Work Self-Directed</td><td>Morgan Stanley</td><td>Taxable</td><td>MS common stock</td><td class="num">$12,024</td></tr>
+          <tr><td>Fidelity Digital Assets</td><td>Fidelity</td><td>Taxable</td><td>IBIT</td><td class="num">$9,013</td></tr>
+          <tr><td>Health Savings Account</td><td>Fidelity</td><td>HSA</td><td>QQQM</td><td class="num">$5,787</td></tr>
+          <tr class="total"><td>Total investment assets</td><td></td><td></td><td></td><td class="num">$197,420</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="subhead">Retirement income</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Source</th><th class="num">Filing age</th><th class="num">First-year benefit</th><th>Assign to</th></tr></thead>
+        <tbody>
+          <tr><td>Social Security, Client 1 + Client 2 (current plan)</td><td class="num">67</td><td class="num">$65,000</td><td>Fund all goals</td></tr>
+          <tr><td>Social Security, Client 1 + Client 2 (recommended)</td><td class="num">70</td><td class="num">$80,600</td><td>Fund all goals</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Combined benefit is a planning estimate, not a Social Security Administration statement. Pull both earnings records before the August meeting and we will replace it. Delaying from 67 to 70 raises the benefit roughly 24% and it is inflation-adjusted for life, which is the cheapest longevity insurance available to you.</p>
+    <div class="page-num">3</div>
+  </section>
+
+  <!-- ============ PAGE 4 — CURRENT PORTFOLIO ALLOCATION ============ -->
+  <section class="page">
+    <h2>Current portfolio allocation</h2>
+    <p class="dek">Every asset class you hold, with the expected return we assign to it.</p>
+    <hr class="rule">
+
+    <div class="cols chart-left" style="margin-bottom:26px;">
+      <div class="chart-box" style="text-align:center;">
+        <svg viewBox="0 0 200 200" width="220" height="220">
+          <g transform="rotate(-90 100 100)">
+            <circle cx="100" cy="100" r="80" fill="none" stroke="#c9a227" stroke-width="34" stroke-dasharray="14.07 488.59" stroke-dashoffset="-438.82"/>
+            <circle cx="100" cy="100" r="80" fill="none" stroke="#4f9a8a" stroke-width="34" stroke-dasharray="36.69 465.97" stroke-dashoffset="-452.89"/>
+            <circle cx="100" cy="100" r="80" fill="none" stroke="#b6bac2" stroke-width="34" stroke-dasharray="13.07 489.59" stroke-dashoffset="-489.58"/>
+            <circle cx="100" cy="100" r="80" fill="none" stroke="#1e2a4a" stroke-width="34" stroke-dasharray="438.82 63.84" stroke-dashoffset="0"/>
+          </g>
+          <text x="100" y="98" text-anchor="middle" class="donut-center-label" font-size="28" fill="#1e2a4a">87%</text>
+          <text x="100" y="116" text-anchor="middle" font-family="ui-monospace,monospace" font-size="10" letter-spacing="1" fill="#767c8a">STOCK</text>
+        </svg>
+        <div class="chart-legend" style="justify-content:center;">
+          <span><span class="sw" style="background:#1e2a4a;"></span>Stock</span>
+          <span><span class="sw" style="background:#c9a227;"></span>Bond</span>
+          <span><span class="sw" style="background:#4f9a8a;"></span>Alternative</span>
+          <span><span class="sw" style="background:#b6bac2;"></span>Cash</span>
+        </div>
+      </div>
+      <div>
+        <dl class="kv">
+          <div class="row"><span class="k">Weighted expected return</span><span class="v">7.2%</span></div>
+          <div class="row"><span class="k">Standard deviation</span><span class="v">15.8%</span></div>
+          <div class="row"><span class="k">Percent stock</span><span class="v">87.3%</span></div>
+          <div class="row"><span class="k">Great Recession loss estimate</span><span class="v" style="color:var(--rust);">-45.4%</span></div>
+        </dl>
+        <p class="note" style="font-size:13px;color:var(--ink);margin-top:16px;">The portfolio earns a high expected return because it takes a high amount of risk. A repeat of 2007&ndash;09 takes roughly 45% off it. That is survivable at 35 with thirty years of paychecks behind you. It is not survivable at 64.</p>
+      </div>
+    </div>
+
+    <div class="table-wrap wide">
+      <table>
+        <thead><tr><th>Asset class</th><th>Bucket</th><th class="num">Expected return</th><th class="num">Std deviation</th><th class="num">Value</th><th class="num">% of total</th></tr></thead>
+        <tbody>
+          <tr><td>US Large Cap Core</td><td class="muted">Stock</td><td class="num">7.5%</td><td class="num">15.5%</td><td class="num">$74,854</td><td class="num">37.9%</td></tr>
+          <tr><td>US Equity Other / Broad</td><td class="muted">Stock</td><td class="num">7.3%</td><td class="num">16.0%</td><td class="num">$36,599</td><td class="num">18.5%</td></tr>
+          <tr><td>US Large Cap Growth</td><td class="muted">Stock</td><td class="num">8.0%</td><td class="num">18.0%</td><td class="num">$34,374</td><td class="num">17.4%</td></tr>
+          <tr><td>Global &amp; International Equity</td><td class="muted">Stock</td><td class="num">7.4%</td><td class="num">16.5%</td><td class="num">$14,480</td><td class="num">7.3%</td></tr>
+          <tr><td>Individual Stocks (single name)</td><td class="muted">Stock</td><td class="num">7.5%</td><td class="num">28.0%</td><td class="num">$12,023</td><td class="num">6.1%</td></tr>
+          <tr><td>Digital Assets</td><td class="muted">Alternative</td><td class="num">6.0%</td><td class="num">60.0%</td><td class="num">$11,443</td><td class="num">5.8%</td></tr>
+          <tr><td>Taxable Bond / Core Fixed Income</td><td class="muted">Bond</td><td class="num">4.6%</td><td class="num">5.2%</td><td class="num">$5,552</td><td class="num">2.8%</td></tr>
+          <tr><td>Cash &amp; Money Market</td><td class="muted">Cash</td><td class="num">3.2%</td><td class="num">0.8%</td><td class="num">$5,148</td><td class="num">2.6%</td></tr>
+          <tr><td>Commodities</td><td class="muted">Alternative</td><td class="num">4.5%</td><td class="num">15.0%</td><td class="num">$2,947</td><td class="num">1.5%</td></tr>
+          <tr class="total"><td>Total</td><td></td><td class="num">7.2%</td><td class="num">15.8%</td><td class="num">$197,420</td><td class="num">100.0%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="page-num">4</div>
+  </section>
+
+  <!-- ============ PAGE 5 — TAX CATEGORY ============ -->
+  <section class="page">
+    <h2>Investment assets by tax category</h2>
+    <p class="dek">What is spendable now and what carries a tax consequence.</p>
+    <hr class="rule">
+    <div class="table-wrap wide">
+      <table>
+        <thead><tr><th>Category</th><th class="num">Accounts</th><th class="num">Value</th><th class="num">% of total</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Taxable / TOD</td><td class="num">3</td><td class="num">$49,083</td><td class="num">24.9%</td><td class="muted">Spendable now. Capital gains on sale.</td></tr>
+          <tr><td>Roth (401k + Roth IRA)</td><td class="num">2</td><td class="num">$127,383</td><td class="num">64.5%</td><td class="muted">Tax-free growth. Penalty before 59&frac12;.</td></tr>
+          <tr><td>Traditional (Rollover IRA)</td><td class="num">1</td><td class="num">$15,167</td><td class="num">7.7%</td><td class="muted">Taxed on withdrawal. RMDs at 73.</td></tr>
+          <tr><td>Health savings account</td><td class="num">1</td><td class="num">$5,787</td><td class="num">2.9%</td><td class="muted">Triple tax-free for qualified medical.</td></tr>
+          <tr class="total"><td>Total</td><td class="num">7</td><td class="num">$197,420</td><td class="num">100.0%</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Roth is the largest bucket here, which is unusual and good. It also means the Roth conversion lever most households have is largely spent. The Rollover IRA is the only pre-tax money of size, and the beneficiary form on it is still outstanding.</p>
+    <div class="page-num">5</div>
+  </section>
+
+  <!-- ============ PAGE 6 — MODEL PORTFOLIO TABLE ============ -->
+  <section class="page">
+    <h2>Model portfolio table</h2>
+    <p class="dek">Meridian&rsquo;s model set, plus your current portfolio and the recommended glide path, run through the same 1,000 simulations.</p>
+    <hr class="rule">
+    <div class="table-wrap wide">
+      <table>
+        <thead><tr><th>Portfolio</th><th class="num">Cash</th><th class="num">Bond</th><th class="num">Stock</th><th class="num">Alt</th><th class="num">Expected return</th><th class="num">Std dev</th><th class="num">Bear market loss</th></tr></thead>
+        <tbody>
+          <tr><td>Meridian 1 &mdash; Capital Preservation</td><td class="num">6%</td><td class="num">70%</td><td class="num">20%</td><td class="num">4%</td><td class="num">4.9%</td><td class="num">5.0%</td><td class="num" style="color:var(--rust);">0.1%</td></tr>
+          <tr><td>Meridian 2 &mdash; Income</td><td class="num">5%</td><td class="num">55%</td><td class="num">35%</td><td class="num">5%</td><td class="num">5.4%</td><td class="num">6.6%</td><td class="num" style="color:var(--rust);">-10.1%</td></tr>
+          <tr><td>Meridian 3 &mdash; Balanced</td><td class="num">4%</td><td class="num">41%</td><td class="num">50%</td><td class="num">5%</td><td class="num">5.9%</td><td class="num">8.5%</td><td class="num" style="color:var(--rust);">-20.0%</td></tr>
+          <tr><td>Meridian 4 &mdash; Growth</td><td class="num">3%</td><td class="num">27%</td><td class="num">65%</td><td class="num">5%</td><td class="num">6.4%</td><td class="num">10.6%</td><td class="num" style="color:var(--rust);">-29.8%</td></tr>
+          <tr><td>Meridian 5 &mdash; Aggressive Growth</td><td class="num">2%</td><td class="num">13%</td><td class="num">80%</td><td class="num">5%</td><td class="num">6.9%</td><td class="num">12.7%</td><td class="num" style="color:var(--rust);">-39.6%</td></tr>
+          <tr style="font-weight:700;"><td>Meridian Glide Path</td><td class="num">2%</td><td class="num">4%</td><td class="num">88%</td><td class="num">6%</td><td class="num">7.1%</td><td class="num">14.0%</td><td class="num" style="color:var(--rust);">-45.3%</td></tr>
+          <tr style="font-weight:700;"><td>Current portfolio</td><td class="num">3%</td><td class="num">3%</td><td class="num">87%</td><td class="num">7%</td><td class="num">7.2%</td><td class="num">15.8%</td><td class="num" style="color:var(--rust);">-45.4%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="chart-box" style="margin-top:20px;">
+      <svg viewBox="0 0 780 320" width="100%">
+        <line x1="60" y1="300" x2="740" y2="300" stroke="#e2e4ea"/>
+        <line x1="60" y1="30" x2="60" y2="300" stroke="#e2e4ea"/>
+        <g font-family="ui-monospace,monospace" font-size="10" fill="#9298a4">
+          <text x="60" y="315" text-anchor="middle">4%</text>
+          <text x="170" y="315" text-anchor="middle">6%</text>
+          <text x="280" y="315" text-anchor="middle">8%</text>
+          <text x="390" y="315" text-anchor="middle">10%</text>
+          <text x="500" y="315" text-anchor="middle">12%</text>
+          <text x="610" y="315" text-anchor="middle">14%</text>
+          <text x="720" y="315" text-anchor="middle">16%</text>
+          <text x="42" y="260" text-anchor="end">5.0%</text>
+          <text x="42" y="216.7" text-anchor="end">5.5%</text>
+          <text x="42" y="173.3" text-anchor="end">6.0%</text>
+          <text x="42" y="130" text-anchor="end">6.5%</text>
+          <text x="42" y="86.7" text-anchor="end">7.0%</text>
+        </g>
+        <text x="400" y="332" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="11" fill="#767c8a">Risk (standard deviation)</text>
+        <text x="-160" y="16" transform="rotate(-90)" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="11" fill="#767c8a">Expected return</text>
+
+        <polyline points="115,256.7 203,213.3 307.5,170 423,126.7 538.5,83.3" fill="none" stroke="#9aa3bd" stroke-width="1.5"/>
+        <g fill="#1e2a4a">
+          <circle cx="115" cy="256.7" r="5"/>
+          <circle cx="203" cy="213.3" r="5"/>
+          <circle cx="307.5" cy="170" r="5"/>
+          <circle cx="423" cy="126.7" r="5"/>
+          <circle cx="538.5" cy="83.3" r="5"/>
+        </g>
+        <g font-family="-apple-system,sans-serif" font-size="10.5" fill="#4a4f5c">
+          <text x="115" y="272">Capital Preservation</text>
+          <text x="203" y="203" text-anchor="middle">Income</text>
+          <text x="307.5" y="160" text-anchor="middle">Balanced</text>
+          <text x="423" y="116" text-anchor="middle">Growth</text>
+          <text x="538.5" y="73" text-anchor="middle">Aggressive Growth</text>
+        </g>
+        <circle cx="709" cy="66" r="6" fill="#b0402c"/>
+        <text x="709" y="52" text-anchor="end" font-family="-apple-system,sans-serif" font-size="11" fill="#b0402c" font-weight="700">Current portfolio</text>
+      </svg>
+    </div>
+
+    <div class="callout blue" style="margin-top:20px;">
+      <b>Read this table sideways, not down.</b> Every Meridian model lands within a couple of points of the same probability of success, from Capital Preservation to Aggressive Growth. The portfolio is not what is deciding this plan. The savings rate, the Social Security claiming age, and the retirement spending number are. What the portfolio choice actually decides is how much wealth is left over and how hard the ride is: Aggressive Growth leaves roughly three times the safety margin of Capital Preservation, and loses 40% in a bad year instead of nothing.
+    </div>
+    <div class="page-num">6</div>
+  </section>
+
+  <!-- ============ PAGE 7 — RESULTS ============ -->
+  <section class="page">
+    <h2>Results &mdash; current and recommended</h2>
+    <p class="dek">Two scenarios, 1,000 simulated market histories each, run from age 35 to 95.</p>
+    <hr class="rule">
+
+    <div class="cols" style="margin-bottom:28px;">
+      <div class="gauge-wrap">
+        <div class="gauge-title">Probability of success</div>
+        <svg viewBox="0 0 220 220" width="180" height="180">
+          <path d="M 49.19 170.81 A 86 86 0 1 1 170.81 170.81" fill="none" stroke="#e2e4ea" stroke-width="16" stroke-linecap="round"/>
+          <path d="M 179.58 59.45 A 86 86 0 0 1 191.79 136.58" fill="none" stroke="#bfe3cf" stroke-width="16" stroke-linecap="butt"/>
+          <path d="M 49.19 170.81 A 86 86 0 0 1 165.85 44.61" fill="none" stroke="#b0402c" stroke-width="16" stroke-linecap="round"/>
+          <circle cx="165.85" cy="44.61" r="5.5" fill="#b0402c"/>
+          <text x="110" y="118" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="34" fill="#b0402c">65%</text>
+        </svg>
+        <div class="gauge-caption">Current scenario</div>
+        <div class="gauge-caption sub">Below the confidence zone</div>
+      </div>
+      <div class="gauge-wrap">
+        <div class="gauge-title">Probability of success</div>
+        <svg viewBox="0 0 220 220" width="180" height="180">
+          <path d="M 49.19 170.81 A 86 86 0 1 1 170.81 170.81" fill="none" stroke="#e2e4ea" stroke-width="16" stroke-linecap="round"/>
+          <path d="M 179.58 59.45 A 86 86 0 0 1 191.79 136.58" fill="none" stroke="#bfe3cf" stroke-width="16" stroke-linecap="butt"/>
+          <path d="M 49.19 170.81 A 86 86 0 1 1 192.95 132.69" fill="none" stroke="#1e2a4a" stroke-width="16" stroke-linecap="round"/>
+          <circle cx="192.95" cy="132.69" r="5.5" fill="#1e2a4a"/>
+          <text x="110" y="118" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="34" fill="#1e2a4a">89%</text>
+        </svg>
+        <div class="gauge-caption">Recommended scenario</div>
+        <div class="gauge-caption sub">Inside the confidence zone</div>
+      </div>
+    </div>
+    <div class="chart-legend" style="justify-content:center;margin-bottom:22px;">
+      <span><span class="sw" style="background:#bfe3cf;"></span>Confidence zone, 70&ndash;90%</span>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th></th><th class="num">Current scenario</th><th class="num">Recommended scenario</th><th class="num">Change</th></tr></thead>
+        <tbody>
+          <tr><td>Retirement age</td><td class="num">65 in 2056</td><td class="num">65 in 2056</td><td class="chg"></td></tr>
+          <tr><td>Analysis age</td><td class="num">95 in 2086</td><td class="num">95 in 2086</td><td class="chg"></td></tr>
+          <tr><td>Social Security filing age</td><td class="num">67</td><td class="num">70</td><td class="chg">+3 years</td></tr>
+          <tr><td>Combined first-year benefit</td><td class="num">$65,000</td><td class="num">$80,600</td><td class="chg">+$15,600</td></tr>
+          <tr><td>Living expense, working</td><td class="num">$150,000</td><td class="num">$150,000</td><td class="chg"></td></tr>
+          <tr><td>Living expense, retired</td><td class="num">$150,000</td><td class="num">$130,000</td><td class="chg">-$20,000</td></tr>
+          <tr><td>Percent stock, today</td><td class="num">87%</td><td class="num">88%</td><td class="chg"></td></tr>
+          <tr><td>Percent stock, at 65</td><td class="num">87%</td><td class="num">50%</td><td class="chg">-37 pts</td></tr>
+          <tr><td>QQQM single position</td><td class="num">17.4%</td><td class="num">15.0%</td><td class="chg">trimmed to policy</td></tr>
+          <tr><td>Digital assets</td><td class="num">5.8%</td><td class="num">3.0%</td><td class="chg">trimmed to policy</td></tr>
+          <tr><td>Annual savings, year one</td><td class="num">$35,000</td><td class="num">$35,000</td><td class="chg"></td></tr>
+          <tr class="total"><td>Probability of success</td><td class="num">65%</td><td class="num">89%</td><td class="chg" style="font-weight:700;color:var(--navy);">+24 pts</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="page-num">7</div>
+  </section>
+
+  <!-- ============ PAGE 8 — INSIDE THE NUMBERS ============ -->
+  <section class="page">
+    <h2>Inside the numbers</h2>
+    <p class="dek">The full distribution of the recommended scenario. Each band holds a slice of the 1,000 trials.</p>
+    <hr class="rule">
+
+    <div class="chart-box">
+      <svg viewBox="0 0 800 380" width="100%">
+        <g stroke="#eef0f4">
+          <line x1="70" y1="304.1" x2="780" y2="304.1"/>
+          <line x1="70" y1="268.2" x2="780" y2="268.2"/>
+          <line x1="70" y1="232.3" x2="780" y2="232.3"/>
+          <line x1="70" y1="196.4" x2="780" y2="196.4"/>
+        </g>
+        <line x1="70" y1="340" x2="780" y2="340" stroke="#e2e4ea"/>
+        <g font-family="ui-monospace,monospace" font-size="10" fill="#9298a4">
+          <text x="62" y="343" text-anchor="end">$0M</text>
+          <text x="62" y="307.6" text-anchor="end">$11M</text>
+          <text x="62" y="271.7" text-anchor="end">$22M</text>
+          <text x="62" y="235.8" text-anchor="end">$33M</text>
+          <text x="62" y="199.9" text-anchor="end">$44M</text>
+        </g>
+        <g font-family="-apple-system,sans-serif" font-size="10.5" fill="#767c8a">
+          <text x="70" y="358">age 35</text>
+          <text x="188.3" y="358" text-anchor="middle">age 45</text>
+          <text x="306.7" y="358" text-anchor="middle">age 55</text>
+          <text x="425" y="358" text-anchor="middle">age 65</text>
+          <text x="543.3" y="358" text-anchor="middle">age 75</text>
+          <text x="661.7" y="358" text-anchor="middle">age 85</text>
+          <text x="780" y="358" text-anchor="end">age 95</text>
+        </g>
+
+        <line x1="425" y1="30" x2="425" y2="340" stroke="#1e2a4a" stroke-width="1" stroke-dasharray="2 3"/>
+        <text x="429" y="40" font-family="ui-monospace,monospace" font-size="9.5" fill="#1e2a4a">retire, 65</text>
+        <line x1="484.1" y1="30" x2="484.1" y2="340" stroke="#c9a227" stroke-width="1" stroke-dasharray="2 3"/>
+        <text x="488.1" y="26" font-family="ui-monospace,monospace" font-size="9.5" fill="#a6841c">Social Security, 70</text>
+
+        <polygon points="70.0,339.4 188.3,335.4 306.7,328.0 425.0,304.3 543.3,259.2 661.7,184.9 780.0,53.0 780.0,340.0 661.7,336.8 543.3,331.7 425.0,327.2 306.7,335.1 188.3,337.6 70.0,339.4" fill="#dfe2ea"/>
+        <polygon points="70.0,339.4 188.3,336.1 306.7,334.2 425.0,317.0 543.3,314.5 661.7,299.6 780.0,263.6 780.0,326.8 661.7,326.8 543.3,327.6 425.0,326.1 306.7,334.8 188.3,336.9 70.0,339.4" fill="#c3c9d8"/>
+        <polyline points="70.0,339.4 188.3,336.6 306.7,335.0 425.0,322.8 543.3,324.0 661.7,312.7 780.0,303.0" fill="none" stroke="#1e2a4a" stroke-width="2.5"/>
+      </svg>
+      <div class="chart-legend" style="justify-content:center;">
+        <span><span class="sw" style="background:#dfe2ea;"></span>5th&ndash;95th percentile</span>
+        <span><span class="sw" style="background:#c3c9d8;"></span>25th&ndash;75th percentile</span>
+        <span><span class="sw" style="background:#1e2a4a;"></span>Median</span>
+      </div>
+    </div>
+
+    <h3 class="subhead">Checkpoint trials</h3>
+    <div class="table-wrap wide">
+      <table>
+        <thead><tr><th>Percentile</th><th class="num">Year 10</th><th class="num">Year 20</th><th class="num">Year 30</th><th class="num">Year 40</th><th class="num">Year 50</th><th class="num">End of plan</th><th class="num">End, today&rsquo;s $</th><th class="num">Money runs out</th></tr></thead>
+        <tbody>
+          <tr><td>99th percentile</td><td class="num">$1,410,223</td><td class="num">$3,670,667</td><td class="num">$10,929,931</td><td class="num">$24,757,572</td><td class="num">$47,517,047</td><td class="num">$87,963,009</td><td class="num">$19,992,548</td><td class="num muted">&mdash;</td></tr>
+          <tr><td>75th percentile</td><td class="num">$635,296</td><td class="num">$1,778,923</td><td class="num">$7,041,749</td><td class="num">$7,816,484</td><td class="num">$12,380,498</td><td class="num">$23,405,143</td><td class="num">$5,319,605</td><td class="num muted">&mdash;</td></tr>
+          <tr><td>50th percentile</td><td class="num">$1,038,575</td><td class="num">$1,535,467</td><td class="num">$5,283,301</td><td class="num">$4,894,409</td><td class="num">$8,353,919</td><td class="num">$11,351,082</td><td class="num">$2,579,915</td><td class="num muted">&mdash;</td></tr>
+          <tr><td>25th percentile</td><td class="num">$959,571</td><td class="num">$2,452,165</td><td class="num">$4,269,553</td><td class="num">$3,813,118</td><td class="num">$4,032,261</td><td class="num">$4,051,558</td><td class="num">$920,853</td><td class="num muted">&mdash;</td></tr>
+          <tr><td>1st percentile</td><td class="num">$745,556</td><td class="num">$1,503,761</td><td class="num">$3,911,896</td><td class="num">$2,549,257</td><td class="num">$994,858</td><td class="num">$0</td><td class="num">$0</td><td class="num" style="color:var(--rust);">2080</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">The 1st percentile trial runs out of money in 2080, at age 89. That is what the 11% failure rate looks like from the inside. It is not a market that never recovers, it is a market that falls hard in the first few years of retirement, when the portfolio is largest and the withdrawals have already started.</p>
+    <div class="page-num">8</div>
+  </section>
+
+  <!-- ============ PAGE 9 — GLIDE PATH ============ -->
+  <section class="page">
+    <h2>The glide path</h2>
+    <p class="dek">Stock falls from 88% today to 50% at retirement and 40% by 75. Bonds absorb everything it gives up.</p>
+    <hr class="rule">
+    <div class="chart-box">
+      <svg viewBox="0 0 800 340" width="100%">
+        <g stroke="#eef0f4">
+          <line x1="70" y1="97.5" x2="780" y2="97.5"/>
+          <line x1="70" y1="165" x2="780" y2="165"/>
+          <line x1="70" y1="232.5" x2="780" y2="232.5"/>
+        </g>
+        <line x1="70" y1="300" x2="780" y2="300" stroke="#e2e4ea"/>
+        <line x1="70" y1="30" x2="70" y2="300" stroke="#e2e4ea"/>
+        <g font-family="ui-monospace,monospace" font-size="10" fill="#9298a4">
+          <text x="62" y="303" text-anchor="end">0%</text>
+          <text x="62" y="235.5" text-anchor="end">25%</text>
+          <text x="62" y="168" text-anchor="end">50%</text>
+          <text x="62" y="100.5" text-anchor="end">75%</text>
+          <text x="62" y="33" text-anchor="end">100%</text>
+        </g>
+
+        <polygon points="70,300 70,30 780,30 780,300" fill="#b6bac2"/>
+        <polygon points="70,300 70,35.4 780,35.4 780,300" fill="#4f9a8a"/>
+        <polygon points="70.0,51.6 88.21,51.6 106.41,51.6 124.62,51.6 142.82,51.6 161.03,48.9 179.23,51.6 197.44,48.9 215.64,48.9 233.85,48.9 252.05,48.9 270.26,48.9 288.46,48.9 306.67,46.2 324.87,48.9 343.08,46.2 361.28,46.2 379.49,48.9 397.69,46.2 415.9,46.2 434.1,46.2 452.31,46.2 470.51,46.2 488.72,46.2 506.92,43.5 525.13,46.2 543.33,43.5 561.54,43.5 579.74,43.5 597.95,43.5 616.15,43.5 634.36,48.9 652.56,48.9 670.77,48.9 688.97,48.9 707.18,48.9 725.38,48.9 743.59,48.9 761.79,48.9 780.0,48.9 780,300 70,300" fill="#c9a227"/>
+        <polygon points="70.0,62.4 88.21,65.1 106.41,70.5 124.62,73.2 142.82,75.9 161.03,78.6 179.23,84.0 197.44,86.7 215.64,89.4 233.85,92.1 252.05,97.5 270.26,100.2 288.46,102.9 306.67,105.6 324.87,111.0 343.08,113.7 361.28,116.4 379.49,121.8 397.69,124.5 415.9,127.2 434.1,129.9 452.31,135.3 470.51,138.0 488.72,140.7 506.92,143.4 525.13,148.8 543.33,151.5 561.54,154.2 579.74,156.9 597.95,162.3 616.15,165.0 634.36,167.7 652.56,170.4 670.77,173.1 688.97,175.8 707.18,178.5 725.38,181.2 743.59,183.9 761.79,186.6 780.0,189.3 780,300 70,300" fill="#1e2a4a"/>
+
+        <line x1="616.15" y1="30" x2="616.15" y2="300" stroke="#fff" stroke-width="1.5" stroke-dasharray="3 3"/>
+        <text x="620" y="42" font-family="ui-monospace,monospace" font-size="9.5" fill="#4a4f5c">retirement</text>
+
+        <g font-family="-apple-system,sans-serif" font-size="10.5" fill="#767c8a">
+          <text x="70" y="318">age 35</text>
+          <text x="252" y="318" text-anchor="middle">age 45</text>
+          <text x="434" y="318" text-anchor="middle">age 55</text>
+          <text x="616" y="318" text-anchor="middle">age 65</text>
+          <text x="780" y="318" text-anchor="end">age 74</text>
+        </g>
+      </svg>
+      <div class="chart-legend" style="justify-content:center;">
+        <span><span class="sw" style="background:#1e2a4a;"></span>Stock</span>
+        <span><span class="sw" style="background:#c9a227;"></span>Bond</span>
+        <span><span class="sw" style="background:#4f9a8a;"></span>Alternative</span>
+        <span><span class="sw" style="background:#b6bac2;"></span>Cash</span>
+      </div>
+    </div>
+    <div class="page-num">9</div>
+  </section>
+
+  <!-- ============ PAGE 10 — CASH FLOW DETAIL ============ -->
+  <section class="page">
+    <h2>Forty-year cash flow detail</h2>
+    <p class="dek">The recommended scenario at average returns, age 35 through 74. All dollars nominal.</p>
+    <hr class="rule">
+    <div class="table-wrap wide">
+      <table>
+        <thead><tr><th>Year</th><th class="num">Age</th><th class="num">Earned income</th><th class="num">Social Security</th><th class="num">Taxes</th><th class="num">Spending</th><th class="num">Net to portfolio</th><th class="num">Stock / Bond</th><th class="num">Blended return</th></tr></thead>
+        <tbody>
+          <tr><td>2026</td><td class="num">35</td><td class="num">$250,000</td><td class="num muted">&mdash;</td><td class="num">$65,000</td><td class="num">$150,000</td><td class="num">$35,000</td><td class="num">88 / 4</td><td class="num">7.15%</td></tr>
+          <tr><td>2027</td><td class="num">36</td><td class="num">$257,500</td><td class="num muted">&mdash;</td><td class="num">$66,950</td><td class="num">$153,750</td><td class="num">$36,800</td><td class="num">87 / 5</td><td class="num">7.11%</td></tr>
+          <tr><td>2028</td><td class="num">37</td><td class="num">$265,225</td><td class="num muted">&mdash;</td><td class="num">$68,959</td><td class="num">$157,594</td><td class="num">$38,673</td><td class="num">85 / 7</td><td class="num">7.07%</td></tr>
+          <tr><td>2029</td><td class="num">38</td><td class="num">$273,182</td><td class="num muted">&mdash;</td><td class="num">$71,027</td><td class="num">$161,534</td><td class="num">$40,621</td><td class="num">84 / 8</td><td class="num">7.02%</td></tr>
+          <tr><td>2030</td><td class="num">39</td><td class="num">$281,377</td><td class="num muted">&mdash;</td><td class="num">$73,158</td><td class="num">$165,572</td><td class="num">$42,647</td><td class="num">83 / 9</td><td class="num">6.98%</td></tr>
+          <tr><td>2031</td><td class="num">40</td><td class="num">$289,819</td><td class="num muted">&mdash;</td><td class="num">$75,353</td><td class="num">$169,711</td><td class="num">$44,754</td><td class="num">82 / 11</td><td class="num">6.94%</td></tr>
+          <tr><td>2032</td><td class="num">41</td><td class="num">$298,513</td><td class="num muted">&mdash;</td><td class="num">$77,613</td><td class="num">$173,954</td><td class="num">$46,946</td><td class="num">80 / 12</td><td class="num">6.90%</td></tr>
+          <tr><td>2033</td><td class="num">42</td><td class="num">$307,468</td><td class="num muted">&mdash;</td><td class="num">$79,942</td><td class="num">$178,303</td><td class="num">$49,224</td><td class="num">79 / 14</td><td class="num">6.86%</td></tr>
+          <tr><td>2034</td><td class="num">43</td><td class="num">$316,693</td><td class="num muted">&mdash;</td><td class="num">$82,340</td><td class="num">$182,760</td><td class="num">$51,592</td><td class="num">78 / 15</td><td class="num">6.82%</td></tr>
+          <tr><td>2035</td><td class="num">44</td><td class="num">$326,193</td><td class="num muted">&mdash;</td><td class="num">$84,810</td><td class="num">$187,329</td><td class="num">$54,054</td><td class="num">77 / 16</td><td class="num">6.78%</td></tr>
+          <tr><td>2036</td><td class="num">45</td><td class="num">$335,979</td><td class="num muted">&mdash;</td><td class="num">$87,355</td><td class="num">$192,013</td><td class="num">$56,612</td><td class="num">75 / 18</td><td class="num">6.74%</td></tr>
+          <tr><td>2037</td><td class="num">46</td><td class="num">$346,058</td><td class="num muted">&mdash;</td><td class="num">$89,975</td><td class="num">$196,813</td><td class="num">$59,270</td><td class="num">74 / 19</td><td class="num">6.70%</td></tr>
+          <tr><td>2038</td><td class="num">47</td><td class="num">$356,440</td><td class="num muted">&mdash;</td><td class="num">$92,674</td><td class="num">$201,733</td><td class="num">$62,032</td><td class="num">73 / 20</td><td class="num">6.66%</td></tr>
+          <tr><td>2039</td><td class="num">48</td><td class="num">$367,133</td><td class="num muted">&mdash;</td><td class="num">$95,455</td><td class="num">$206,777</td><td class="num">$64,902</td><td class="num">72 / 22</td><td class="num">6.62%</td></tr>
+          <tr><td>2040</td><td class="num">49</td><td class="num">$378,147</td><td class="num muted">&mdash;</td><td class="num">$98,318</td><td class="num">$211,946</td><td class="num">$67,883</td><td class="num">70 / 23</td><td class="num">6.57%</td></tr>
+          <tr><td>2041</td><td class="num">50</td><td class="num">$389,492</td><td class="num muted">&mdash;</td><td class="num">$101,268</td><td class="num">$217,245</td><td class="num">$70,979</td><td class="num">69 / 25</td><td class="num">6.53%</td></tr>
+          <tr><td>2042</td><td class="num">51</td><td class="num">$401,177</td><td class="num muted">&mdash;</td><td class="num">$104,306</td><td class="num">$222,676</td><td class="num">$74,195</td><td class="num">68 / 26</td><td class="num">6.49%</td></tr>
+          <tr><td>2043</td><td class="num">52</td><td class="num">$413,212</td><td class="num muted">&mdash;</td><td class="num">$107,435</td><td class="num">$228,243</td><td class="num">$77,534</td><td class="num">66 / 27</td><td class="num">6.45%</td></tr>
+          <tr><td>2044</td><td class="num">53</td><td class="num">$425,608</td><td class="num muted">&mdash;</td><td class="num">$110,658</td><td class="num">$233,949</td><td class="num">$81,001</td><td class="num">65 / 29</td><td class="num">6.41%</td></tr>
+          <tr><td>2045</td><td class="num">54</td><td class="num">$438,377</td><td class="num muted">&mdash;</td><td class="num">$113,978</td><td class="num">$239,798</td><td class="num">$84,601</td><td class="num">64 / 30</td><td class="num">6.37%</td></tr>
+          <tr><td>2046</td><td class="num">55</td><td class="num">$451,528</td><td class="num muted">&mdash;</td><td class="num">$117,397</td><td class="num">$245,792</td><td class="num">$88,338</td><td class="num">63 / 31</td><td class="num">6.33%</td></tr>
+          <tr><td>2047</td><td class="num">56</td><td class="num">$465,074</td><td class="num muted">&mdash;</td><td class="num">$120,919</td><td class="num">$251,937</td><td class="num">$92,217</td><td class="num">61 / 33</td><td class="num">6.29%</td></tr>
+          <tr><td>2048</td><td class="num">57</td><td class="num">$479,026</td><td class="num muted">&mdash;</td><td class="num">$124,547</td><td class="num">$258,236</td><td class="num">$96,243</td><td class="num">60 / 34</td><td class="num">6.25%</td></tr>
+          <tr><td>2049</td><td class="num">58</td><td class="num">$493,397</td><td class="num muted">&mdash;</td><td class="num">$128,283</td><td class="num">$264,692</td><td class="num">$100,422</td><td class="num">59 / 35</td><td class="num">6.21%</td></tr>
+          <tr><td>2050</td><td class="num">59</td><td class="num">$508,199</td><td class="num muted">&mdash;</td><td class="num">$132,132</td><td class="num">$271,309</td><td class="num">$104,758</td><td class="num">58 / 37</td><td class="num">6.17%</td></tr>
+          <tr><td>2051</td><td class="num">60</td><td class="num">$523,444</td><td class="num muted">&mdash;</td><td class="num">$136,096</td><td class="num">$278,092</td><td class="num">$109,257</td><td class="num">56 / 38</td><td class="num">6.12%</td></tr>
+          <tr><td>2052</td><td class="num">61</td><td class="num">$539,148</td><td class="num muted">&mdash;</td><td class="num">$140,178</td><td class="num">$285,044</td><td class="num">$113,925</td><td class="num">55 / 40</td><td class="num">6.08%</td></tr>
+          <tr><td>2053</td><td class="num">62</td><td class="num">$555,322</td><td class="num muted">&mdash;</td><td class="num">$144,384</td><td class="num">$292,170</td><td class="num">$118,768</td><td class="num">54 / 41</td><td class="num">6.04%</td></tr>
+          <tr><td>2054</td><td class="num">63</td><td class="num">$571,982</td><td class="num muted">&mdash;</td><td class="num">$148,715</td><td class="num">$299,474</td><td class="num">$123,792</td><td class="num">53 / 42</td><td class="num">6.00%</td></tr>
+          <tr><td>2055</td><td class="num">64</td><td class="num">$589,141</td><td class="num muted">&mdash;</td><td class="num">$153,177</td><td class="num">$306,961</td><td class="num">$129,004</td><td class="num">51 / 44</td><td class="num">5.96%</td></tr>
+          <tr style="font-weight:600;"><td>2056</td><td class="num">65</td><td class="num muted">&mdash;</td><td class="num muted">&mdash;</td><td class="num">$59,857</td><td class="num">$272,684</td><td class="num" style="color:var(--rust);">-$332,541</td><td class="num">50 / 45</td><td class="num">5.92%</td></tr>
+          <tr><td>2057</td><td class="num">66</td><td class="num muted">&mdash;</td><td class="num muted">&mdash;</td><td class="num">$61,354</td><td class="num">$279,501</td><td class="num" style="color:var(--rust);">-$340,855</td><td class="num">49 / 44</td><td class="num">5.87%</td></tr>
+          <tr><td>2058</td><td class="num">67</td><td class="num muted">&mdash;</td><td class="num muted">&mdash;</td><td class="num">$62,888</td><td class="num">$286,488</td><td class="num" style="color:var(--rust);">-$349,376</td><td class="num">48 / 45</td><td class="num">5.83%</td></tr>
+          <tr><td>2059</td><td class="num">68</td><td class="num muted">&mdash;</td><td class="num muted">&mdash;</td><td class="num">$64,460</td><td class="num">$293,651</td><td class="num" style="color:var(--rust);">-$358,111</td><td class="num">47 / 46</td><td class="num">5.80%</td></tr>
+          <tr><td>2060</td><td class="num">69</td><td class="num muted">&mdash;</td><td class="num muted">&mdash;</td><td class="num">$66,071</td><td class="num">$300,992</td><td class="num" style="color:var(--rust);">-$367,063</td><td class="num">46 / 47</td><td class="num">5.77%</td></tr>
+          <tr><td>2061</td><td class="num">70</td><td class="num muted">&mdash;</td><td class="num">$191,280</td><td class="num">$25,735</td><td class="num">$308,517</td><td class="num" style="color:var(--rust);">-$142,971</td><td class="num">45 / 48</td><td class="num">5.74%</td></tr>
+          <tr><td>2062</td><td class="num">71</td><td class="num muted">&mdash;</td><td class="num">$196,062</td><td class="num">$26,378</td><td class="num">$316,230</td><td class="num" style="color:var(--rust);">-$146,545</td><td class="num">44 / 49</td><td class="num">5.70%</td></tr>
+          <tr><td>2063</td><td class="num">72</td><td class="num muted">&mdash;</td><td class="num">$200,964</td><td class="num">$27,038</td><td class="num">$324,135</td><td class="num" style="color:var(--rust);">-$150,209</td><td class="num">43 / 50</td><td class="num">5.67%</td></tr>
+          <tr><td>2064</td><td class="num">73</td><td class="num muted">&mdash;</td><td class="num">$205,988</td><td class="num">$27,714</td><td class="num">$332,239</td><td class="num" style="color:var(--rust);">-$153,964</td><td class="num">42 / 51</td><td class="num">5.64%</td></tr>
+          <tr><td>2065</td><td class="num">74</td><td class="num muted">&mdash;</td><td class="num">$211,138</td><td class="num">$28,406</td><td class="num">$340,545</td><td class="num" style="color:var(--rust);">-$157,813</td><td class="num">41 / 52</td><td class="num">5.61%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="page-num">10</div>
+  </section>
+
+  <!-- ============ PAGE 11 — CAPITAL MARKET ASSUMPTIONS ============ -->
+  <section class="page">
+    <h2>Capital market assumptions</h2>
+    <p class="dek">Meridian&rsquo;s long-horizon estimates. Every return in this report is built from these.</p>
+    <hr class="rule">
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Asset class</th><th>Bucket</th><th class="num">Expected return</th><th class="num">Standard deviation</th></tr></thead>
+        <tbody>
+          <tr><td>Cash &amp; Money Market</td><td class="muted">Cash</td><td class="num">3.2%</td><td class="num">0.8%</td></tr>
+          <tr><td>US Large Cap Core</td><td class="muted">Stock</td><td class="num">7.5%</td><td class="num">15.5%</td></tr>
+          <tr><td>US Large Cap Growth</td><td class="muted">Stock</td><td class="num">8.0%</td><td class="num">18.0%</td></tr>
+          <tr><td>US Equity Other / Broad</td><td class="muted">Stock</td><td class="num">7.3%</td><td class="num">16.0%</td></tr>
+          <tr><td>Global &amp; International Equity</td><td class="muted">Stock</td><td class="num">7.4%</td><td class="num">16.5%</td></tr>
+          <tr><td>Individual Stocks (single name)</td><td class="muted">Stock</td><td class="num">7.5%</td><td class="num">28.0%</td></tr>
+          <tr><td>Taxable Bond / Core Fixed Income</td><td class="muted">Bond</td><td class="num">4.6%</td><td class="num">5.2%</td></tr>
+          <tr><td>Municipal Ladder</td><td class="muted">Bond</td><td class="num">4.0%</td><td class="num">4.0%</td></tr>
+          <tr><td>Commodities</td><td class="muted">Alternative</td><td class="num">4.5%</td><td class="num">15.0%</td></tr>
+          <tr><td>Digital Assets</td><td class="muted">Alternative</td><td class="num">6.0%</td><td class="num">60.0%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Nominal, before fees and taxes. These are estimates of long-run averages, not forecasts of any particular year. Actual returns will vary widely around them, which is the entire reason this report runs a simulation instead of a single line.</p>
+
+    <h3 class="subhead">Bear market stress</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Bucket</th><th class="num">Return, Nov 2007 &ndash; Feb 2009</th></tr></thead>
+        <tbody>
+          <tr><td>Stock</td><td class="num" style="color:var(--rust);">-50.9%</td></tr>
+          <tr><td>Bond</td><td class="num" style="color:var(--green);">15.6%</td></tr>
+          <tr><td>Alternative</td><td class="num" style="color:var(--rust);">-19.9%</td></tr>
+          <tr><td>Cash</td><td class="num" style="color:var(--green);">2.3%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">The bear market loss shown in the model table applies these bucket returns to each portfolio&rsquo;s mix. It is a stress test against a historical episode, not a prediction and not a floor.</p>
+    <div class="page-num">11</div>
+  </section>
+
+  <!-- ============ PAGE 12 — TAX AND INFLATION ============ -->
+  <section class="page">
+    <h2>Tax and inflation assumptions</h2>
+    <hr class="rule">
+    <div class="cols">
+      <div>
+        <h3 class="subhead" style="margin-top:0;">Tax</h3>
+        <dl class="kv">
+          <div class="row"><span class="k">Effective rate, working</span><span class="v">26.0%</span></div>
+          <div class="row"><span class="k">Effective rate, retired</span><span class="v">18.0%</span></div>
+          <div class="row"><span class="k">Portion of Social Security taxed</span><span class="v">85%</span></div>
+          <div class="row"><span class="k">Early-withdrawal penalties</span><span class="v">Included</span></div>
+        </dl>
+        <p class="note">Simplified blended effective rates covering federal, Illinois, and payroll. Not a substitute for your CPA&rsquo;s projection.</p>
+      </div>
+      <div>
+        <h3 class="subhead" style="margin-top:0;">Inflation</h3>
+        <dl class="kv">
+          <div class="row"><span class="k">General inflation</span><span class="v">2.50%</span></div>
+          <div class="row"><span class="k">Wage growth</span><span class="v">3.00%</span></div>
+          <div class="row"><span class="k">Social Security COLA</span><span class="v">2.50%</span></div>
+          <div class="row"><span class="k">Health care inflation</span><span class="v">Not yet modeled</span></div>
+        </dl>
+        <p class="note">Health care typically runs several points above general inflation. Once the pre-Medicare gap is priced, expect the probability of success to fall.</p>
+      </div>
+    </div>
+    <div class="page-num">12</div>
+  </section>
+
+  <!-- ============ PAGE 13 — FIRM POLICY / NEXT STEPS ============ -->
+  <section class="page">
+    <h2>Where the portfolio sits against firm policy</h2>
+    <hr class="rule">
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Meridian guideline</th><th class="num">Limit</th><th class="num">Current</th><th class="num">Status</th></tr></thead>
+        <tbody>
+          <tr><td>Any single position, as % of the relationship</td><td class="num">15%</td><td class="num">17.4% (QQQM)</td><td class="num"><span class="status-over">Over</span></td></tr>
+          <tr><td>Digital assets, treated as speculative</td><td class="num">3%</td><td class="num">5.8% (IBIT)</td><td class="num"><span class="status-over">Over</span></td></tr>
+          <tr><td>Core equity in quality large-cap</td><td class="num">Preferred</td><td class="num">Broadly met</td><td class="num"><span class="status-met">Met</span></td></tr>
+          <tr><td>Municipal ladder for taxable fixed income</td><td class="num">Preferred</td><td class="num">No taxable FI yet</td><td class="num"><span class="status-na">n/a</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Both breaches are trimmed to policy in year one of the recommended scenario. The QQQM trim happens inside the Roth IRA, where it costs nothing in tax. The IBIT position spans a taxable account and a retirement account, so sequence the taxable side against your capital gains position for the year.</p>
+
+    <h2 style="margin-top:36px;">What we do next</h2>
+    <hr class="rule">
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Action</th><th class="num">Owner</th><th class="num">When</th></tr></thead>
+        <tbody>
+          <tr><td>Trim QQQM to 15% and IBIT to 3%, Roth first</td><td class="num">Advisor</td><td class="num">This quarter</td></tr>
+          <tr><td>Pull both Social Security earnings records and replace the estimated benefit</td><td class="num">Client</td><td class="num">Before August</td></tr>
+          <tr><td>Confirm the $130,000 retirement spending figure is livable</td><td class="num">Client</td><td class="num">August meeting</td></tr>
+          <tr><td>Start transfer paperwork on the ~$40,000 Principal 401(k)</td><td class="num">Operations</td><td class="num">This month</td></tr>
+          <tr><td>Return the Rollover IRA beneficiary form</td><td class="num">Client</td><td class="num">Outstanding</td></tr>
+          <tr><td>Size the college goal and revisit the 529 comparison</td><td class="num">Advisor</td><td class="num">Spring 2027</td></tr>
+          <tr><td>Price health care between retirement and Medicare</td><td class="num">Advisor</td><td class="num">Next review</td></tr>
+          <tr><td>Schedule the joint meeting, evening slot</td><td class="num">Assistant</td><td class="num">Early August</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="page-num">13</div>
+  </section>
+
+  <!-- ============ PAGE 14 — KEY ASSET CLASS RISKS ============ -->
+  <section class="page">
+    <h2>Key asset class risks</h2>
+    <hr class="rule">
+    <div class="risk-grid">
+      <div class="risk-item">
+        <h4>Stocks</h4>
+        <p>Prices move, sometimes a great deal, and a company can fail outright. Concentration in one name compounds this: a diversified index falling 50% is a market event, a single stock falling 90% is a Tuesday.</p>
+      </div>
+      <div class="risk-item">
+        <h4>Commodities</h4>
+        <p>Prices swing on supply, weather, politics, and currency. They produce no income and can spend long stretches going nowhere.</p>
+      </div>
+      <div class="risk-item">
+        <h4>Bonds</h4>
+        <p>When interest rates rise, bond prices fall. Issuers can default. And a bond yielding less than inflation loses purchasing power even when it pays exactly as promised.</p>
+      </div>
+      <div class="risk-item">
+        <h4>Concentrated employer stock</h4>
+        <p>Your paycheck and a slice of your portfolio depend on the same company. When that company has a bad year, both arrive at once.</p>
+      </div>
+      <div class="risk-item">
+        <h4>Digital assets</h4>
+        <p>Speculative. No cash flows, no earnings, no intrinsic value to anchor a price. Drawdowns of 70% or more have happened repeatedly and quickly. Meridian caps these at 3% of a relationship precisely because we cannot rule out a total loss.</p>
+      </div>
+      <div class="risk-item">
+        <h4>Cash</h4>
+        <p>Safe in nominal terms, and a slow loss in real ones. Cash is a place to hold money you will spend soon, not a place to grow it.</p>
+      </div>
+    </div>
+    <div class="page-num">14</div>
+  </section>
+
+  <!-- ============ PAGE 15 — GLOSSARY ============ -->
+  <section class="page">
+    <h2>Glossary</h2>
+    <hr class="rule">
+    <div class="gloss-grid">
+      <div>
+        <div class="gloss-item">
+          <dt>Probability of success</dt>
+          <dd>The share of 1,000 simulated market histories in which the portfolio funds every goal through age 95 without hitting zero. 89% means it worked in 890 of them and failed in 110. It is not a grade and it is not a guarantee.</dd>
+        </div>
+        <div class="gloss-item">
+          <dt>Confidence zone</dt>
+          <dd>The 70&ndash;90% band we target. Below it, the plan is fragile. Above it, you are very likely underspending in the years you are healthy enough to enjoy the money.</dd>
+        </div>
+        <div class="gloss-item">
+          <dt>Monte Carlo simulation</dt>
+          <dd>Running the same plan a thousand times, each with a different random sequence of returns drawn from the assumptions. It exists because a single average-return line hides the thing that actually breaks retirements: bad returns arriving in the wrong order.</dd>
+        </div>
+        <div class="gloss-item">
+          <dt>Sequence-of-returns risk</dt>
+          <dd>Two portfolios can earn the same average return over thirty years and end in completely different places, purely based on whether the bad years came first. It matters most in the five years either side of retirement.</dd>
+        </div>
+        <div class="gloss-item">
+          <dt>Safety margin</dt>
+          <dd>The median amount left over at the end of the plan, expressed in today&rsquo;s dollars. What the heirs, or the charities, or the late-life care would have to work with.</dd>
+        </div>
+      </div>
+      <div>
+        <div class="gloss-item">
+          <dt>Standard deviation</dt>
+          <dd>How far returns typically stray from their average. A portfolio with an 8% expected return and a 16% standard deviation will spend plenty of years well outside that 8%.</dd>
+        </div>
+        <div class="gloss-item">
+          <dt>Glide path</dt>
+          <dd>A schedule that reduces stock exposure as retirement approaches, so the portfolio&rsquo;s risk falls as the ability to recover from a loss falls with it.</dd>
+        </div>
+        <div class="gloss-item">
+          <dt>Nominal vs. today&rsquo;s dollars</dt>
+          <dd>Nominal figures are the actual dollar amounts in that future year. Today&rsquo;s dollars strip out inflation so the number means something to you now. $7.4 million in 2065 is roughly $2.8 million in today&rsquo;s money.</dd>
+        </div>
+        <div class="gloss-item">
+          <dt>Expected return</dt>
+          <dd>Our long-run estimate for an asset class. It is the center of a wide distribution, not a rate you will be credited with.</dd>
+        </div>
+        <div class="gloss-item">
+          <dt>Bear market loss</dt>
+          <dd>What a portfolio with this mix would have lost across the worst stretch of the 2007&ndash;09 decline. A stress test against history, not a floor.</dd>
+        </div>
+      </div>
+    </div>
+
+    <hr class="rule" style="margin-top:8px;">
+    <div class="disclosure"><b>About this report.</b> Prepared by Daniel Brooks, Meridian Wealth Partners, LLC. Account values are reconciled from custodial statements dated 30 June 2026 and have not been independently audited. This is not an account statement.</div>
+    <div class="disclosure"><b>Projections are estimates.</b> Every forward-looking figure in this report, including probabilities of success, expected returns, and projected balances, is hypothetical. It is generated by a model, not by actual trading, and it is not a guarantee. Real results will differ, potentially by a wide margin. Small changes in the assumptions produce large changes in the results, which is why the assumptions are printed in full and why we ask you to read them.</div>
+    <div class="disclosure"><b>What the probability of success does and does not mean.</b> It reflects the percentage of simulated trials in which all goals were funded. It does not account for actual market conditions, and it cannot predict them. A high number is not a promise and a low number is not a verdict. Both are inputs to a conversation.</div>
+    <div class="disclosure"><b>Asset classification and returns.</b> Assets are grouped by their broad characteristics. Some holdings carry features of more than one class, so groupings may be imperfect. Return assumptions are long-horizon estimates for broad asset classes, proxied by market indices. You cannot invest directly in an index, and index returns exclude the fees, commissions, and taxes you would actually pay. Past performance does not predict future results.</div>
+    <div class="disclosure" style="margin-bottom:0;"><b>Not tax, legal, or accounting advice.</b> Meridian Wealth Partners is not a tax or legal advisor. The tax rates used here are simplified planning estimates. Discuss any tax, legal, or estate item in this report with the appropriate professional before acting on it. Withdrawals from qualified or tax-deferred accounts can create income tax liability, and before age 59&frac12;, penalties that this simplified model does not fully capture.</div>
+    <div class="page-num">15</div>
+  </section>
+
+  <!-- ============ PAGE 16 — FINAL DISCLOSURES ============ -->
+  <section class="page tight">
+    <div class="disclosure"><b>This is a draft.</b> It is a working document prepared for discussion, not a recommendation to buy or sell any security and not an offer or solicitation. Nothing here should be treated as personalized investment advice. Personalized advice can only be rendered after engagement of the firm, execution of the required documentation, and receipt of required disclosures. Meridian has no obligation to monitor or update this report unless you engage us to do so.</div>
+    <div class="disclosure"><b>Registration.</b> Advisory services offered through Meridian Wealth Partners, LLC, an SEC-registered investment adviser. Registration with the SEC does not imply a certain level of skill or expertise. Additional information is available in the firm&rsquo;s Form ADV, Form ADV Part 2A Brochure, and Client Relationship Summary, accessible via the SEC&rsquo;s Investment Adviser Public Disclosure database at adviserinfo.sec.gov, SEC #801-94215.</div>
+    <div class="disclosure" style="margin-bottom:0;"><b>Confidentiality.</b> This communication may contain privileged and confidential information intended solely for the addressee. If you received it in error, please contact the sender and destroy it.</div>
+
+    <div class="footer-bar">
+      <span>MERIDIAN WEALTH PARTNERS, LLC</span>
+      <span>220 N. LASALLE STREET, SUITE 1400, CHICAGO, IL 60601</span>
+      <span>312.555.0148</span>
+    </div>
+    <div class="page-num">16</div>
+  </section>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sample Deliverable | Family Office Quarterly Review | Briefly</title>
+<style>
+  :root{
+    --navy:#1b2a56;
+    --navy-deep:#141d3e;
+    --gold:#c69a2e;
+    --green:#2e7d4f;
+    --red:#a83c3c;
+    --gray-text:#5a6070;
+    --light-bg:#f3f4f7;
+    --border:#e1e3ea;
+    --purple:#7b83b8;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    background:#c9cbd3;
+    color:#20263b;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---- top banner ---- */
+  .sample-banner{
+    text-align:center;
+    padding:9px 16px;
+    font-size:12px;
+    color:#6b7280;
+    background:#eef0f4;
+    border-bottom:1px solid #d7dae2;
+    letter-spacing:.01em;
+  }
+
+  /* ---- document wrapper ---- */
+  .doc-wrap{
+    max-width:850px;
+    margin:28px auto 60px;
+    padding:0 12px;
+    overflow-x:auto;
+  }
+  .doc-page{
+    position:relative;
+    width:850px;
+    max-width:850px;
+    min-height:1100px;
+    margin:0 auto 26px;
+    background:#ffffff;
+    box-shadow:0 2px 18px rgba(20,25,50,.18);
+    display:flex;
+    flex-direction:column;
+  }
+
+  /* ---- shared header / footer for interior pages ---- */
+  .page-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:30px 56px 14px;
+    border-bottom:2px solid var(--navy);
+  }
+  .brand-lockup{display:flex;align-items:center;gap:9px;}
+  .brand-lockup .brand-text-nav{line-height:1.05;}
+  .brand-lockup .brand-name{
+    font-size:16px;font-weight:700;color:var(--navy);letter-spacing:.06em;
+  }
+  .brand-lockup .brand-sub{
+    font-size:8.5px;font-weight:600;color:#8890a0;letter-spacing:.18em;
+  }
+  .section-label{
+    font-size:11px;font-weight:700;color:var(--navy);letter-spacing:.09em;
+  }
+  .page-body{
+    padding:26px 56px 30px;
+    flex:1;
+  }
+  .page-footer{
+    background:var(--navy-deep);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:13px 56px;
+    font-size:10.5px;
+    letter-spacing:.01em;
+  }
+  .page-footer span{opacity:.92;}
+
+  /* ---- cover page ---- */
+  .cover-page{padding:0;}
+  .cover-white{
+    background:#fff;
+    padding:34px 56px;
+  }
+  .cover-navy{
+    background:var(--navy);
+    color:#fff;
+    flex:1;
+    padding:60px 56px 44px;
+    display:flex;
+    flex-direction:column;
+  }
+  .cover-dash{
+    width:44px;height:4px;background:var(--gold);margin-bottom:26px;
+  }
+  .cover-title{
+    font-size:40px;
+    font-weight:600;
+    line-height:1.18;
+    margin:0 0 26px;
+  }
+  .cover-client{font-size:19px;font-weight:400;margin:0 0 8px;}
+  .cover-period{font-size:13.5px;color:#b7bdd6;margin:0;}
+  .cover-bottom{margin-top:auto;}
+  .cover-prepared{font-size:13px;font-weight:600;margin:0 0 6px;}
+  .cover-firm-line{font-size:11px;color:#b7bdd6;margin:0 0 3px;}
+  .cover-confidential{
+    font-size:10px;color:#8890b5;margin-top:16px;
+  }
+
+  /* ---- logo marks ---- */
+  .mark{display:block;flex-shrink:0;}
+
+  /* ---- table of contents ---- */
+  .toc-list{list-style:none;margin:22px 0 0;padding:0;}
+  .toc-list li{
+    display:flex;align-items:baseline;gap:14px;
+    padding:13px 0;border-bottom:1px solid var(--border);
+    font-size:14.5px;color:#242c46;
+  }
+  .toc-num{color:var(--gold);font-weight:700;width:14px;}
+  .toc-title{flex:1;}
+  .toc-page{color:#242c46;}
+  .toc-note{
+    margin-top:24px;font-size:11.5px;color:var(--gray-text);line-height:1.6;
+  }
+
+  /* ---- generic page furniture ---- */
+  .eyebrow{
+    font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.12em;margin:0 0 6px;
+  }
+  h1.page-title{
+    font-size:26px;font-weight:600;color:var(--navy);margin:0 0 18px;
+  }
+  h2.sub-title{
+    font-size:16px;font-weight:600;color:var(--navy);margin:26px 0 12px;
+  }
+  p.body-text{
+    font-size:12.5px;line-height:1.65;color:#333a4f;margin:0 0 12px;
+  }
+  .footnote{
+    font-size:10.5px;line-height:1.55;color:var(--gray-text);margin:8px 0 0;
+  }
+
+  /* ---- stat tiles ---- */
+  .stat-row{
+    display:flex;background:var(--light-bg);border-radius:2px;overflow:hidden;
+    margin-bottom:6px;
+  }
+  .stat-tile{
+    flex:1;padding:16px 18px;border-right:1px solid #e3e5ea;
+  }
+  .stat-tile:last-child{border-right:none;}
+  .stat-value{font-size:23px;font-weight:700;color:var(--navy);}
+  .stat-value.pos{color:var(--green);}
+  .stat-label{font-size:10.5px;color:var(--gray-text);margin-top:3px;}
+
+  /* ---- tables ---- */
+  table.doc-table{
+    width:100%;border-collapse:collapse;font-size:12px;margin:14px 0 4px;
+  }
+  table.doc-table thead th{
+    background:var(--navy);color:#fff;text-align:left;
+    font-size:10.5px;font-weight:600;letter-spacing:.03em;
+    padding:9px 12px;
+  }
+  table.doc-table thead th.num{text-align:right;}
+  table.doc-table tbody td{
+    padding:9px 12px;border-bottom:1px solid var(--border);color:#2c3350;
+  }
+  table.doc-table tbody td.num{text-align:right;font-variant-numeric:tabular-nums;}
+  table.doc-table tbody tr.total-row td{
+    background:var(--light-bg);font-weight:700;
+  }
+  table.doc-table tbody tr:last-child td{border-bottom:none;}
+  .pos-val{color:var(--green);font-weight:600;}
+
+  /* ---- donut chart ---- */
+  .allocation-wrap{display:flex;align-items:center;gap:40px;margin-top:14px;}
+  .donut{
+    position:relative;width:190px;height:190px;border-radius:50%;flex-shrink:0;
+    background:conic-gradient(
+      var(--navy) 0deg 234.7deg,
+      var(--purple) 234.7deg 291.6deg,
+      var(--gold) 291.6deg 338.8deg,
+      #b7bac4 338.8deg 360deg
+    );
+  }
+  .donut::after{
+    content:"";position:absolute;top:26px;left:26px;right:26px;bottom:26px;
+    border-radius:50%;background:#fff;
+  }
+  .donut-center{
+    position:absolute;inset:0;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;z-index:1;text-align:center;
+  }
+  .donut-center .dv{font-size:19px;font-weight:700;color:var(--navy);}
+  .donut-center .dl{font-size:9.5px;color:var(--gray-text);margin-top:2px;}
+  .legend{list-style:none;margin:0;padding:0;font-size:12px;}
+  .legend li{display:flex;align-items:center;gap:9px;margin-bottom:11px;color:#2c3350;}
+  .legend .swatch{width:11px;height:11px;border-radius:2px;flex-shrink:0;}
+
+  /* ---- horizontal bar charts ---- */
+  .barchart{margin-top:16px;}
+  .bar-row{display:flex;align-items:center;gap:10px;margin-bottom:9px;}
+  .bar-label{width:210px;flex-shrink:0;font-size:10.5px;color:#333a4f;text-align:right;}
+  .bar-track{flex:1;white-space:nowrap;}
+  .bar-fill{display:inline-block;vertical-align:middle;height:15px;min-width:2px;border-radius:1px;background:var(--navy);}
+  .bar-fill.alt{background:var(--gold);}
+  .bar-fill.fixed{background:var(--purple);}
+  .bar-fill.flag{background:var(--red);}
+  .bar-fill.pos{background:#3f8f63;}
+  .bar-value{
+    display:inline-block;vertical-align:middle;margin-left:8px;font-size:10.5px;
+    color:#333a4f;white-space:nowrap;line-height:15px;
+  }
+
+  .section-note{
+    margin-top:16px;padding-top:10px;border-top:1px solid var(--border);
+    font-size:10.5px;color:var(--gray-text);line-height:1.55;
+  }
+
+  @media print{
+    body{background:#fff;}
+    .sample-banner{position:static;}
+    .doc-wrap{margin:0;padding:0;max-width:none;}
+    .doc-page{
+      box-shadow:none;margin:0;width:8.5in;min-height:11in;
+      page-break-after:always;
+    }
+    @page{size:letter;margin:0;}
+  }
+
+  @media (max-width:900px){
+    .doc-wrap{padding:0 8px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="sample-banner">Sample deliverable. Names, firms, and identifying details are fictionalized.</div>
+
+<div class="doc-wrap">
+
+  <!-- ============ PAGE 1 — COVER ============ -->
+  <section class="doc-page cover-page">
+    <div class="cover-white">
+      <div class="brand-lockup">
+        <svg class="mark" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="17" cy="17" r="15" stroke="#1b2a56" stroke-width="1.3"/>
+          <circle cx="12.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
+          <circle cx="21.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
+        </svg>
+        <div class="brand-text-nav">
+          <div class="brand-name">MERIDIAN</div>
+          <div class="brand-sub">WEALTH&nbsp;PARTNERS</div>
+        </div>
+      </div>
+    </div>
+    <div class="cover-navy">
+      <div class="cover-dash"></div>
+      <h1 class="cover-title">Family Office<br>Quarterly Review</h1>
+      <p class="cover-client">The Calloway Family</p>
+      <p class="cover-period">For the period ending June 30, 2026</p>
+      <div class="cover-bottom">
+        <p class="cover-prepared">Prepared by Daniel Brooks</p>
+        <p class="cover-firm-line">Meridian Wealth Partners, LLC&nbsp;&nbsp;|&nbsp;&nbsp;SEC-Registered Investment Advisor</p>
+        <p class="cover-firm-line">1200 Lakeshore Boulevard, Suite 3400, Chicago, IL 60611&nbsp;&nbsp;|&nbsp;&nbsp;312.555.0148</p>
+        <p class="cover-confidential">Confidential — prepared exclusively for the Calloway family.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PAGE 2 — TABLE OF CONTENTS ============ -->
+  <section class="doc-page">
+    <div class="page-header">
+      <div class="brand-lockup">
+        <svg class="mark" width="26" height="26" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="17" cy="17" r="15" stroke="#1b2a56" stroke-width="1.3"/>
+          <circle cx="12.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
+          <circle cx="21.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
+        </svg>
+        <div class="brand-text-nav">
+          <div class="brand-name" style="font-size:13px;">MERIDIAN</div>
+          <div class="brand-sub" style="font-size:7px;">WEALTH&nbsp;PARTNERS</div>
+        </div>
+      </div>
+      <div class="section-label">CONTENTS</div>
+    </div>
+    <div class="page-body">
+      <h1 class="page-title">Table of Contents</h1>
+      <ul class="toc-list">
+        <li><span class="toc-num">1</span><span class="toc-title">Portfolio Overview</span><span class="toc-page">3</span></li>
+        <li><span class="toc-num">2</span><span class="toc-title">Performance by Entity</span><span class="toc-page">5</span></li>
+        <li><span class="toc-num">3</span><span class="toc-title">Equity Holdings</span><span class="toc-page">6</span></li>
+        <li><span class="toc-num">4</span><span class="toc-title">Fixed Income &amp; Cash</span><span class="toc-page">7</span></li>
+        <li><span class="toc-num">5</span><span class="toc-title">Alternative Investments</span><span class="toc-page">8</span></li>
+        <li><span class="toc-num">6</span><span class="toc-title">Balance Sheet</span><span class="toc-page">9</span></li>
+        <li><span class="toc-num">7</span><span class="toc-title">Planning Items &amp; Calendar</span><span class="toc-page">10</span></li>
+        <li><span class="toc-num">8</span><span class="toc-title">Important Disclosures</span><span class="toc-page">11</span></li>
+      </ul>
+      <p class="toc-note">This review consolidates the nine Calloway entities held at Fabrikam Brokerage and Northwind Trust Company, based on custodian statements for the period ended June 30, 2026. All values are drawn directly from those statements. Figures the statements do not provide (such as time-weighted returns) are noted rather than estimated.</p>
+    </div>
+    <div class="page-footer">
+      <span>Calloway Family&nbsp;&nbsp;|&nbsp;&nbsp;Quarterly Review&nbsp;&nbsp;|&nbsp;&nbsp;June 30, 2026</span>
+      <span>Prepared by Daniel Brooks, Meridian Wealth Partners&nbsp;&nbsp;&nbsp;Page 2</span>
+    </div>
+  </section>
+
+  <!-- ============ PAGE 3 — PORTFOLIO OVERVIEW (1) ============ -->
+  <section class="doc-page">
+    <div class="page-header">
+      <div class="brand-lockup">
+        <svg class="mark" width="26" height="26" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="17" cy="17" r="15" stroke="#1b2a56" stroke-width="1.3"/>
+          <circle cx="12.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
+          <circle cx="21.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
+        </svg>
+        <div class="brand-text-nav">
+          <div class="brand-name" style="font-size:13px;">MERIDIAN</div>
+          <div class="brand-sub" style="font-size:7px;">WEALTH&nbsp;PARTNERS</div>
+        </div>
+      </div>
+      <div class="section-label">PORTFOLIO OVERVIEW</div>
+    </div>
+    <div class="page-body">
+      <div class="eyebrow">SECTION 1</div>
+      <h1 class="page-title">Portfolio Overview</h1>
+
+      <div class="stat-row">
+        <div class="stat-tile">
+          <div class="stat-value">$267.6M</div>
+          <div class="stat-label">Investment Portfolio as of 6/30/2026</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-value">$290.1M</div>
+          <div class="stat-label">Total Net Worth incl. stated assets*</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-value pos">+$3.46M</div>
+          <div class="stat-label">June Change in Value (+1.31%)</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-value">9</div>
+          <div class="stat-label">Entities / Accounts</div>
+        </div>
+      </div>
+      <p class="footnote">*Includes $22.5M of advisor-stated assets net of debt; see Balance Sheet note on the family residence.</p>
+
+      <h2 class="sub-title">Activity Summary — June 2026 Statement Period</h2>
+      <table class="doc-table">
+        <thead><tr><th>&nbsp;</th><th class="num">Amount</th></tr></thead>
+        <tbody>
+          <tr><td>Beginning value (6/1/2026)</td><td class="num">$264,140,000</td></tr>
+          <tr><td>Net contributions / withdrawals</td><td class="num">Not separately stated on custodian statements</td></tr>
+          <tr><td>Change in market value</td><td class="num pos-val">+$3,460,000</td></tr>
+          <tr><td>Ending value (6/30/2026)</td><td class="num">$267,600,000</td></tr>
+        </tbody>
+      </table>
+      <p class="footnote">June 2026 is the earliest statement period on file with our office, so quarter-long and year-to-date portfolio returns cannot yet be calculated. Beginning with the Q3 review, this table will show full quarterly activity and time-weighted returns.</p>
+
+      <h2 class="sub-title">Asset Allocation</h2>
+      <div class="allocation-wrap">
+        <div class="donut">
+          <div class="donut-center">
+            <div class="dv">$267.6M</div>
+            <div class="dl">Total Portfolio</div>
+          </div>
+        </div>
+        <ul class="legend">
+          <li><span class="swatch" style="background:var(--navy);"></span>Public Equity&nbsp;&bull;&nbsp;$174.5M&nbsp;(65.2%)</li>
+          <li><span class="swatch" style="background:var(--purple);"></span>Fixed Income&nbsp;&bull;&nbsp;$42.3M&nbsp;(15.8%)</li>
+          <li><span class="swatch" style="background:var(--gold);"></span>Alternatives&nbsp;&bull;&nbsp;$35.1M&nbsp;(13.1%)</li>
+          <li><span class="swatch" style="background:#b7bac4;"></span>Cash &amp; Equivalents&nbsp;&bull;&nbsp;$15.7M&nbsp;(5.9%)</li>
+        </ul>
+      </div>
+      <p class="footnote">Classification is Meridian's: Bristlecone Capital Partners VII LP and Ridgeline Absolute Return Fund LP are grouped as alternatives; the Treasury bill ladder is grouped with fixed income.</p>
+    </div>
+    <div class="page-footer">
+      <span>Calloway Family&nbsp;&nbsp;|&nbsp;&nbsp;Quarterly Review&nbsp;&nbsp;|&nbsp;&nbsp;June 30, 2026</span>
+      <span>Prepared by Daniel Brooks, Meridian Wealth Partners&nbsp;&nbsp;&nbsp;Page 3</span>
+    </div>
+  </section>
+
+  <!-- ============ PAGE 4 — PORTFOLIO OVERVIEW (2) ============ -->
+  <section class="doc-page">
+    <div class="page-header">
+      <div class="brand-lockup">
+        <svg class="mark" width="26" height="26" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="17" cy="17" r="15" stroke="#1b2a56" stroke-width="1.3"/>
+          <circle cx="12.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
+          <circle cx="21.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
+        </svg>
+        <div class="brand-text-nav">
+          <div class="brand-name" style="font-size:13px;">MERIDIAN</div>
+          <div class="brand-sub" style="font-size:7px;">WEALTH&nbsp;PARTNERS</div>
+        </div>
+      </div>
+      <div class="section-label">PORTFOLIO OVERVIEW</div>
+    </div>
+    <div class="page-body">
+      <h2 class="sub-title" style="margin-top:0;">Portfolio Update</h2>
+      <p class="body-text">U.S. equities rebounded sharply in the second quarter after a weak start to the year, with the S&amp;P 500 gaining roughly 15% for the quarter, its strongest showing since 2020, while broad investment-grade bonds were modestly positive. June itself was choppier: leadership rotated away from the largest technology names, which pulled back meaningfully during the month even as the broader market held its gains.</p>
+      <p class="body-text">Against that backdrop, the Calloway portfolio finished June at $267.6 million, up $3.46 million (+1.31%) for the statement period. Every entity ended the month higher. The portfolio's largest exposures, the Omnifund Total Market ETF and NVIDIA, sit at the center of the rotation described above; NVIDIA alone represents 18.6% of investment assets, above the 10% single-position threshold Meridian monitors at the relationship level. As discussed at the July 9 review, NVIDIA sales are off the table until the 2024 GRAT term ends in February, so this concentration is a known, dated constraint rather than an open decision.</p>
+
+      <h2 class="sub-title">Portfolio Value by Entity</h2>
+      <div class="barchart">
+        <div class="bar-row"><div class="bar-label">Calloway Holdings LLC</div><div class="bar-track"><div class="bar-fill" style="width:86%;"></div><div class="bar-value">$79.2M</div></div></div>
+        <div class="bar-row"><div class="bar-label">Calloway Family Revocable Trust</div><div class="bar-track"><div class="bar-fill" style="width:63.4%;"></div><div class="bar-value">$58.4M</div></div></div>
+        <div class="bar-row"><div class="bar-label">Calloway 2024 GRAT</div><div class="bar-track"><div class="bar-fill" style="width:45.2%;"></div><div class="bar-value">$41.6M</div></div></div>
+        <div class="bar-row"><div class="bar-label">Calloway Descendants Trust</div><div class="bar-track"><div class="bar-fill" style="width:30.7%;"></div><div class="bar-value">$28.3M</div></div></div>
+        <div class="bar-row"><div class="bar-label">Calloway Charitable Remainder Trust</div><div class="bar-track"><div class="bar-fill" style="width:21.1%;"></div><div class="bar-value">$19.4M</div></div></div>
+        <div class="bar-row"><div class="bar-label">Calloway Family Foundation DAF</div><div class="bar-track"><div class="bar-fill" style="width:18.2%;"></div><div class="bar-value">$16.8M</div></div></div>
+        <div class="bar-row"><div class="bar-label">Calloway Operating LLC</div><div class="bar-track"><div class="bar-fill" style="width:15.9%;"></div><div class="bar-value">$14.6M</div></div></div>
+        <div class="bar-row"><div class="bar-label">Calloway ILIT</div><div class="bar-track"><div class="bar-fill" style="width:6.7%;"></div><div class="bar-value">$6.2M</div></div></div>
+        <div class="bar-row"><div class="bar-label">Eleanor Calloway Roth IRA</div><div class="bar-track"><div class="bar-fill" style="width:3.4%;"></div><div class="bar-value">$3.1M</div></div></div>
+      </div>
+    </div>
+    <div class="page-footer">
+      <span>Calloway Family&nbsp;&nbsp;|&nbsp;&nbsp;Quarterly Review&nbsp;&nbsp;|&nbsp;&nbsp;June 30, 2026</span>
+      <span>Prepared by Daniel Brooks, Meridian Wealth Partners&nbsp;&nbsp;&nbsp;Page 4</span>
+    </div>
+  </section>
+
+  <!-- ============ PAGE 5 — PERFORMANCE BY ENTITY ============ -->
+  <section class="doc-page">
+    <div class="page-header">
+      <div class="brand-lockup">
+        <svg class="mark" width="26" height="26" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="17" cy="17" r="15" stroke="#1b2a56" stroke-width="1.3"/>
+          <circle cx="12.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
+          <circle cx="21.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
+        </svg>
+        <div class="brand-text-nav">
+          <div class="brand-name" style="font-size:13px;">MERIDIAN</div>
+          <div class="brand-sub" style="font-size:7px;">WEALTH&nbsp;PARTNERS</div>
+        </div>
+      </div>
+      <div class="section-label">PERFORMANCE BY ENTITY</div>
+    </div>
+    <div class="page-body">
+      <div class="eyebrow">SECTION 2</div>
+      <h1 class="page-title">Performance by Entity</h1>
+      <p class="body-text" style="margin-top:-10px;">June 2026 statement period, per custodian statements.</p>
+
+      <table class="doc-table">
+        <thead>
+          <tr><th>Entity</th><th>Custodian</th><th class="num">Beginning</th><th class="num">Ending</th><th class="num">Change</th><th class="num">%</th><th class="num">% of Port.</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Calloway Holdings LLC</td><td>Fabrikam</td><td class="num">$78.1M</td><td class="num">$79.2M</td><td class="num pos-val">+$1.10M</td><td class="num pos-val">+1.4%</td><td class="num">29.6%</td></tr>
+          <tr><td>Calloway Family Revocable Trust</td><td>Fabrikam</td><td class="num">$57.9M</td><td class="num">$58.4M</td><td class="num pos-val">+$0.50M</td><td class="num pos-val">+0.9%</td><td class="num">21.8%</td></tr>
+          <tr><td>Calloway 2024 GRAT</td><td>Northwind</td><td class="num">$40.8M</td><td class="num">$41.6M</td><td class="num pos-val">+$0.80M</td><td class="num pos-val">+2.0%</td><td class="num">15.5%</td></tr>
+          <tr><td>Calloway Descendants Trust</td><td>Northwind</td><td class="num">$27.9M</td><td class="num">$28.3M</td><td class="num pos-val">+$0.40M</td><td class="num pos-val">+1.4%</td><td class="num">10.6%</td></tr>
+          <tr><td>Calloway Charitable Remainder Trust</td><td>Northwind</td><td class="num">$19.15M</td><td class="num">$19.4M</td><td class="num pos-val">+$0.25M</td><td class="num pos-val">+1.3%</td><td class="num">7.2%</td></tr>
+          <tr><td>Calloway Family Foundation DAF</td><td>Northwind</td><td class="num">$16.5M</td><td class="num">$16.8M</td><td class="num pos-val">+$0.30M</td><td class="num pos-val">+1.8%</td><td class="num">6.3%</td></tr>
+          <tr><td>Calloway Operating LLC (escrow)</td><td>Fabrikam</td><td class="num">$14.58M</td><td class="num">$14.6M</td><td class="num pos-val">+$0.02M</td><td class="num pos-val">+0.1%</td><td class="num">5.5%</td></tr>
+          <tr><td>Calloway ILIT</td><td>Northwind</td><td class="num">$6.15M</td><td class="num">$6.2M</td><td class="num pos-val">+$0.05M</td><td class="num pos-val">+0.8%</td><td class="num">2.3%</td></tr>
+          <tr><td>Eleanor Calloway Roth IRA</td><td>Fabrikam</td><td class="num">$3.06M</td><td class="num">$3.1M</td><td class="num pos-val">+$0.04M</td><td class="num pos-val">+1.3%</td><td class="num">1.2%</td></tr>
+          <tr class="total-row"><td>Total</td><td></td><td class="num">$264.14M</td><td class="num">$267.6M</td><td class="num pos-val">+$3.46M</td><td class="num pos-val">+1.31%</td><td class="num">100%</td></tr>
+        </tbody>
+      </table>
+      <p class="footnote">"Change" is the change in account value over the June statement period. The custodian statements on file do not break out contributions, withdrawals, or income from market movement, so these figures should be read as change in value, not as time-weighted returns. The Operating LLC account is a sale-proceeds escrow held in Treasury bills and money market, so its low variability is by design.</p>
+
+      <h2 class="sub-title">Change in Value by Entity — June 2026</h2>
+      <div class="barchart">
+        <div class="bar-row"><div class="bar-label">Holdings LLC</div><div class="bar-track"><div class="bar-fill pos" style="width:86%;"></div><div class="bar-value">+$1,100K</div></div></div>
+        <div class="bar-row"><div class="bar-label">2024 GRAT</div><div class="bar-track"><div class="bar-fill pos" style="width:62.6%;"></div><div class="bar-value">+$800K</div></div></div>
+        <div class="bar-row"><div class="bar-label">Revocable Trust</div><div class="bar-track"><div class="bar-fill pos" style="width:39.1%;"></div><div class="bar-value">+$500K</div></div></div>
+        <div class="bar-row"><div class="bar-label">Descendants Trust</div><div class="bar-track"><div class="bar-fill pos" style="width:31.3%;"></div><div class="bar-value">+$400K</div></div></div>
+        <div class="bar-row"><div class="bar-label">Foundation DAF</div><div class="bar-track"><div class="bar-fill pos" style="width:23.5%;"></div><div class="bar-value">+$300K</div></div></div>
+        <div class="bar-row"><div class="bar-label">Charitable Remainder</div><div class="bar-track"><div class="bar-fill pos" style="width:19.6%;"></div><div class="bar-value">+$250K</div></div></div>
+        <div class="bar-row"><div class="bar-label">ILIT</div><div class="bar-track"><div class="bar-fill pos" style="width:3.9%;"></div><div class="bar-value">+$50K</div></div></div>
+        <div class="bar-row"><div class="bar-label">Roth IRA</div><div class="bar-track"><div class="bar-fill pos" style="width:3.1%;"></div><div class="bar-value">+$40K</div></div></div>
+        <div class="bar-row"><div class="bar-label">Operating LLC</div><div class="bar-track"><div class="bar-fill pos" style="width:1.6%;"></div><div class="bar-value">+$20K</div></div></div>
+      </div>
+
+      <h2 class="sub-title">Structure Notes</h2>
+      <p class="body-text">The relationship spans three taxable entities plus the Roth IRA, three irrevocable wealth-transfer vehicles (2024 GRAT, Descendants Trust, ILIT), and two charitable vehicles (CRT and the Family Foundation DAF). Roughly $152.2 million sits in taxable, accessible accounts.</p>
+    </div>
+    <div class="page-footer">
+      <span>Calloway Family&nbsp;&nbsp;|&nbsp;&nbsp;Quarterly Review&nbsp;&nbsp;|&nbsp;&nbsp;June 30, 2026</span>
+      <span>Prepared by Daniel Brooks, Meridian Wealth Partners&nbsp;&nbsp;&nbsp;Page 5</span>
+    </div>
+  </section>
+
+  <!-- ============ PAGE 6 — EQUITY HOLDINGS ============ -->
+  <section class="doc-page">
+    <div class="page-header">
+      <div class="brand-lockup">
+        <svg class="mark" width="26" height="26" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="17" cy="17" r="15" stroke="#1b2a56" stroke-width="1.3"/>
+          <circle cx="12.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
+          <circle cx="21.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
+        </svg>
+        <div class="brand-text-nav">
+          <div class="brand-name" style="font-size:13px;">MERIDIAN</div>
+          <div class="brand-sub" style="font-size:7px;">WEALTH&nbsp;PARTNERS</div>
+        </div>
+      </div>
+      <div class="section-label">EQUITY HOLDINGS</div>
+    </div>
+    <div class="page-body">
+      <div class="eyebrow">SECTION 3</div>
+      <h1 class="page-title">Equity Holdings</h1>
+
+      <h2 class="sub-title" style="margin-top:0;">Consolidated Holdings Across All Entities</h2>
+      <div class="barchart">
+        <div class="bar-row"><div class="bar-label">Omnifund Total Market ETF (OMNI)</div><div class="bar-track"><div class="bar-fill" style="width:78%;"></div><div class="bar-value">$93.9M&nbsp;(35.1%)</div></div></div>
+        <div class="bar-row"><div class="bar-label">NVIDIA Corp (NVDA)</div><div class="bar-track"><div class="bar-fill flag" style="width:41.3%;"></div><div class="bar-value">$49.7M&nbsp;(18.6%)</div></div></div>
+        <div class="bar-row"><div class="bar-label">Omnifund Core Bond ETF (AGGX)</div><div class="bar-track"><div class="bar-fill fixed" style="width:24.8%;"></div><div class="bar-value">$29.9M&nbsp;(11.2%)</div></div></div>
+        <div class="bar-row"><div class="bar-label">Bristlecone Capital Partners VII LP</div><div class="bar-track"><div class="bar-fill alt" style="width:19.7%;"></div><div class="bar-value">$23.7M&nbsp;(8.9%)</div></div></div>
+        <div class="bar-row"><div class="bar-label">Microsoft Corp (MSFT)</div><div class="bar-track"><div class="bar-fill" style="width:14.6%;"></div><div class="bar-value">$17.6M&nbsp;(6.6%)</div></div></div>
+        <div class="bar-row"><div class="bar-label">US Treasury Bill Ladder 3-6 mo</div><div class="bar-track"><div class="bar-fill fixed" style="width:10.3%;"></div><div class="bar-value">$12.4M&nbsp;(4.6%)</div></div></div>
+        <div class="bar-row"><div class="bar-label">Ridgeline Absolute Return Fund LP</div><div class="bar-track"><div class="bar-fill alt" style="width:9.5%;"></div><div class="bar-value">$11.4M&nbsp;(4.3%)</div></div></div>
+        <div class="bar-row"><div class="bar-label">Broadcom Inc (AVGO)</div><div class="bar-track"><div class="bar-fill" style="width:6.2%;"></div><div class="bar-value">$7.5M&nbsp;(2.8%)</div></div></div>
+        <div class="bar-row"><div class="bar-label">Apple Inc (AAPL)</div><div class="bar-track"><div class="bar-fill" style="width:4.9%;"></div><div class="bar-value">$5.9M&nbsp;(2.2%)</div></div></div>
+      </div>
+
+      <h2 class="sub-title">Position Detail</h2>
+      <table class="doc-table">
+        <thead><tr><th>Holding</th><th class="num">Value</th><th class="num">% of Portfolio</th><th class="num">Entities Holding</th></tr></thead>
+        <tbody>
+          <tr><td>Omnifund Total Market ETF (OMNI)</td><td class="num">$93.9M</td><td class="num">35.1%</td><td class="num">7</td></tr>
+          <tr><td>NVIDIA Corp (NVDA)</td><td class="num">$49.7M</td><td class="num">18.6%</td><td class="num">7</td></tr>
+          <tr><td>Microsoft Corp (MSFT)</td><td class="num">$17.55M</td><td class="num">6.6%</td><td class="num">2</td></tr>
+          <tr><td>Broadcom Inc (AVGO)</td><td class="num">$7.45M</td><td class="num">2.8%</td><td class="num">1</td></tr>
+          <tr><td>Apple Inc (AAPL)</td><td class="num">$5.94M</td><td class="num">2.2%</td><td class="num">1</td></tr>
+        </tbody>
+      </table>
+
+      <h2 class="sub-title">Concentration</h2>
+      <p class="body-text">NVIDIA is held in seven of the nine entities and totals $49.7 million, 18.6% of investment assets, above Meridian's 10% single-position monitoring threshold. Where cost basis is stated, the position is deeply appreciated: $18.4M in Holdings LLC (basis $6.31M), $14.2M in the 2024 GRAT (basis $8.67M), $6.1M in the Revocable Trust (basis $2.07M), and $4.8M in the Descendants Trust (basis $0.83M), together roughly $25.6 million of unrealized gain on those four positions alone. Per the family's direction at the July 9 review, no NVIDIA sales will be considered before the GRAT term ends in February; diversification paths for the taxable positions (including charitable funding via the CRT and DAF) will be revisited at that point.</p>
+    </div>
+    <div class="page-footer">
+      <span>Calloway Family&nbsp;&nbsp;|&nbsp;&nbsp;Quarterly Review&nbsp;&nbsp;|&nbsp;&nbsp;June 30, 2026</span>
+      <span>Prepared by Daniel Brooks, Meridian Wealth Partners&nbsp;&nbsp;&nbsp;Page 6</span>
+    </div>
+  </section>
+
+  <!-- ============ PAGE 7 — FIXED INCOME & CASH ============ -->
+  <section class="doc-page">
+    <div class="page-header">
+      <div class="brand-lockup">
+        <svg class="mark" width="26" height="26" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="17" cy="17" r="15" stroke="#1b2a56" stroke-width="1.3"/>
+          <circle cx="12.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
+          <circle cx="21.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
+        </svg>
+        <div class="brand-text-nav">
+          <div class="brand-name" style="font-size:13px;">MERIDIAN</div>
+          <div class="brand-sub" style="font-size:7px;">WEALTH&nbsp;PARTNERS</div>
+        </div>
+      </div>
+      <div class="section-label">FIXED INCOME &amp; CASH</div>
+    </div>
+    <div class="page-body">
+      <div class="eyebrow">SECTION 4</div>
+      <h1 class="page-title">Fixed Income &amp; Cash</h1>
+
+      <h2 class="sub-title" style="margin-top:0;">Fixed Income — $42.3M (15.8% of portfolio)</h2>
+      <table class="doc-table">
+        <thead><tr><th>Holding</th><th class="num">Value</th><th>Held In</th></tr></thead>
+        <tbody>
+          <tr><td>Omnifund Core Bond ETF (AGGX)</td><td class="num">$29.9M</td><td>Holdings LLC ($5.0M), Revocable Trust ($8.1M), Descendants Trust ($8.4M), CRT ($3.6M), ILIT ($4.8M)</td></tr>
+          <tr><td>US Treasury Bill ladder, 3-6 month</td><td class="num">$12.4M</td><td>Operating LLC (sale-proceeds escrow)</td></tr>
+        </tbody>
+      </table>
+      <p class="footnote">Bond detail (coupons, maturities, yield, duration) is not itemized on the statements on file; AGGX is a broad core bond fund and the Treasury ladder rolls within a 3-6 month window.</p>
+
+      <h2 class="sub-title">Cash &amp; Equivalents — $15.66M (5.9% of portfolio)</h2>
+      <table class="doc-table">
+        <thead><tr><th>Entity</th><th>Cash Position</th><th class="num">Value</th></tr></thead>
+        <tbody>
+          <tr><td>Calloway Family Revocable Trust</td><td>Fabrikam Money Market</td><td class="num">$3.71M</td></tr>
+          <tr><td>Calloway Family Foundation DAF</td><td>Northwind Cash Reserve</td><td class="num">$2.90M</td></tr>
+          <tr><td>Calloway 2024 GRAT</td><td>Northwind Cash Reserve</td><td class="num">$2.45M</td></tr>
+          <tr><td>Calloway Operating LLC</td><td>Fabrikam Money Market</td><td class="num">$2.20M</td></tr>
+          <tr><td>Calloway Holdings LLC</td><td>Fabrikam Money Market</td><td class="num">$1.40M</td></tr>
+          <tr><td>Calloway ILIT</td><td>Northwind Cash Reserve</td><td class="num">$1.40M</td></tr>
+          <tr><td>Calloway Descendants Trust</td><td>Northwind Cash Reserve</td><td class="num">$0.90M</td></tr>
+          <tr><td>Calloway Charitable Remainder Trust</td><td>Northwind Cash Reserve</td><td class="num">$0.70M</td></tr>
+        </tbody>
+      </table>
+      <p class="body-text" style="margin-top:14px;">Cash sits slightly above Meridian's 5% monitoring level, but with intent: the July 24 Bristlecone capital call ($2.5M) will be funded from the Operating LLC escrow, and the GRAT and DAF reserves support annuity payments and grant activity respectively. We will revisit cash levels after the capital call settles.</p>
+    </div>
+    <div class="page-footer">
+      <span>Calloway Family&nbsp;&nbsp;|&nbsp;&nbsp;Quarterly Review&nbsp;&nbsp;|&nbsp;&nbsp;June 30, 2026</span>
+      <span>Prepared by Daniel Brooks, Meridian Wealth Partners&nbsp;&nbsp;&nbsp;Page 7</span>
+    </div>
+  </section>
+
+  <!-- ============ PAGE 8 — ALTERNATIVE INVESTMENTS ============ -->
+  <section class="doc-page">
+    <div class="page-header">
+      <div class="brand-lockup">
+        <svg class="mark" width="26" height="26" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="17" cy="17" r="15" stroke="#1b2a56" stroke-width="1.3"/>
+          <circle cx="12.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
+          <circle cx="21.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
+        </svg>
+        <div class="brand-text-nav">
+          <div class="brand-name" style="font-size:13px;">MERIDIAN</div>
+          <div class="brand-sub" style="font-size:7px;">WEALTH&nbsp;PARTNERS</div>
+        </div>
+      </div>
+      <div class="section-label">ALTERNATIVE INVESTMENTS</div>
+    </div>
+    <div class="page-body">
+      <div class="eyebrow">SECTION 5</div>
+      <h1 class="page-title">Alternative Investments</h1>
+
+      <table class="doc-table">
+        <thead><tr><th>Fund</th><th>Strategy</th><th class="num">Value (6/30)</th><th class="num">% of Portfolio</th><th>Held In</th></tr></thead>
+        <tbody>
+          <tr><td>Bristlecone Capital Partners VII LP</td><td>Private equity</td><td class="num">$23.7M</td><td class="num">8.9%</td><td>Holdings LLC</td></tr>
+          <tr><td>Ridgeline Absolute Return Fund LP</td><td>Hedge / absolute return</td><td class="num">$11.4M</td><td class="num">4.3%</td><td>Holdings LLC</td></tr>
+        </tbody>
+      </table>
+
+      <h2 class="sub-title">Bristlecone Capital Partners VII — Capital Call No. 11</h2>
+      <p class="body-text">On July 6, Bristlecone issued capital call no. 11 to Calloway Holdings LLC for $2,500,000, due July 24, 2026. As agreed at the July 9 review, the call will be funded from the Operating LLC escrow. This is a subsequent event to the June 30 values shown above and will appear in the Q3 activity summary.</p>
+      <p class="footnote">Paid-in capital, IRR, and multiple-of-capital figures for the two funds are not stated on the custodian statements on file. We are requesting the funds' quarterly investor reports so future reviews can present since-inception performance for this sleeve.</p>
+    </div>
+    <div class="page-footer">
+      <span>Calloway Family&nbsp;&nbsp;|&nbsp;&nbsp;Quarterly Review&nbsp;&nbsp;|&nbsp;&nbsp;June 30, 2026</span>
+      <span>Prepared by Daniel Brooks, Meridian Wealth Partners&nbsp;&nbsp;&nbsp;Page 8</span>
+    </div>
+  </section>
+
+  <!-- ============ PAGE 9 — BALANCE SHEET ============ -->
+  <section class="doc-page">
+    <div class="page-header">
+      <div class="brand-lockup">
+        <svg class="mark" width="26" height="26" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="17" cy="17" r="15" stroke="#1b2a56" stroke-width="1.3"/>
+          <circle cx="12.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
+          <circle cx="21.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
+        </svg>
+        <div class="brand-text-nav">
+          <div class="brand-name" style="font-size:13px;">MERIDIAN</div>
+          <div class="brand-sub" style="font-size:7px;">WEALTH&nbsp;PARTNERS</div>
+        </div>
+      </div>
+      <div class="section-label">BALANCE SHEET</div>
+    </div>
+    <div class="page-body">
+      <div class="eyebrow">SECTION 6</div>
+      <h1 class="page-title">Balance Sheet</h1>
+
+      <table class="doc-table">
+        <thead><tr><th>Category</th><th class="num">Value (6/30/2026)</th></tr></thead>
+        <tbody>
+          <tr><td>Taxable investment accounts (Holdings LLC, Revocable Trust, Operating LLC)</td><td class="num">$152.2M</td></tr>
+          <tr><td>Retirement (Eleanor Calloway Roth IRA)</td><td class="num">$3.1M</td></tr>
+          <tr><td>Wealth-transfer trusts (2024 GRAT, Descendants Trust, ILIT)</td><td class="num">$76.1M</td></tr>
+          <tr><td>Charitable vehicles (CRT, Family Foundation DAF)</td><td class="num">$36.2M</td></tr>
+          <tr class="total-row"><td>Total investment assets</td><td class="num">$267.6M</td></tr>
+        </tbody>
+      </table>
+
+      <h2 class="sub-title">Real Estate</h2>
+      <p class="body-text">At the family's request, the primary residence and its associated mortgage are excluded from this statement pending a second, independent appraisal opinion. Once the valuation is confirmed, the residence will be added to the balance sheet and reflected in reported net worth.</p>
+
+      <h2 class="sub-title">Liabilities</h2>
+      <p class="body-text">No liabilities are held within the investment accounts. The only stated liability in the relationship is the mortgage associated with the residence noted above, excluded alongside the asset pending the appraisal.</p>
+    </div>
+    <div class="page-footer">
+      <span>Calloway Family&nbsp;&nbsp;|&nbsp;&nbsp;Quarterly Review&nbsp;&nbsp;|&nbsp;&nbsp;June 30, 2026</span>
+      <span>Prepared by Daniel Brooks, Meridian Wealth Partners&nbsp;&nbsp;&nbsp;Page 9</span>
+    </div>
+  </section>
+
+  <!-- ============ PAGE 10 — PLANNING ITEMS & CALENDAR ============ -->
+  <section class="doc-page">
+    <div class="page-header">
+      <div class="brand-lockup">
+        <svg class="mark" width="26" height="26" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="17" cy="17" r="15" stroke="#1b2a56" stroke-width="1.3"/>
+          <circle cx="12.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
+          <circle cx="21.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
+        </svg>
+        <div class="brand-text-nav">
+          <div class="brand-name" style="font-size:13px;">MERIDIAN</div>
+          <div class="brand-sub" style="font-size:7px;">WEALTH&nbsp;PARTNERS</div>
+        </div>
+      </div>
+      <div class="section-label">PLANNING ITEMS &amp; CALENDAR</div>
+    </div>
+    <div class="page-body">
+      <div class="eyebrow">SECTION 7</div>
+      <h1 class="page-title">Planning Items &amp; Calendar</h1>
+
+      <table class="doc-table">
+        <thead><tr><th>Item</th><th>Status</th><th class="num">Timing</th></tr></thead>
+        <tbody>
+          <tr><td>Bristlecone VII capital call no. 11 ($2.5M) — fund from Operating LLC escrow</td><td>Scheduled</td><td class="num">Due Jul 24, 2026</td></tr>
+          <tr><td>Second opinion on residence valuation before it appears on a family statement</td><td>In progress</td><td class="num">Before next statement</td></tr>
+          <tr><td>Gifting options for the Evanston house purchase (daughter); amount to be determined</td><td>Analysis underway</td><td class="num">Summer 2026</td></tr>
+          <tr><td>Successor GRAT discussion ahead of the 2024 GRAT term end</td><td>To be scheduled</td><td class="num">Autumn 2026</td></tr>
+          <tr><td>2024 GRAT term ends; NVIDIA diversification paths revisited</td><td>Constraint until then</td><td class="num">February 2027</td></tr>
+        </tbody>
+      </table>
+      <p class="body-text" style="margin-top:16px;">These items reflect the July 9, 2026 semi-annual review call and the Bristlecone capital call notice received July 6, 2026. Your Meridian team will bring the successor GRAT question back to the family in the autumn, closer to the February term date.</p>
+    </div>
+    <div class="page-footer">
+      <span>Calloway Family&nbsp;&nbsp;|&nbsp;&nbsp;Quarterly Review&nbsp;&nbsp;|&nbsp;&nbsp;June 30, 2026</span>
+      <span>Prepared by Daniel Brooks, Meridian Wealth Partners&nbsp;&nbsp;&nbsp;Page 10</span>
+    </div>
+  </section>
+
+  <!-- ============ PAGE 11 — IMPORTANT DISCLOSURES ============ -->
+  <section class="doc-page">
+    <div class="page-header">
+      <div class="brand-lockup">
+        <svg class="mark" width="26" height="26" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="17" cy="17" r="15" stroke="#1b2a56" stroke-width="1.3"/>
+          <circle cx="12.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
+          <circle cx="21.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
+        </svg>
+        <div class="brand-text-nav">
+          <div class="brand-name" style="font-size:13px;">MERIDIAN</div>
+          <div class="brand-sub" style="font-size:7px;">WEALTH&nbsp;PARTNERS</div>
+        </div>
+      </div>
+      <div class="section-label">IMPORTANT DISCLOSURES</div>
+    </div>
+    <div class="page-body">
+      <div class="eyebrow">SECTION 8</div>
+      <h1 class="page-title">Important Disclosures</h1>
+
+      <p class="body-text">This report was prepared by Daniel Brooks of Meridian Wealth Partners, LLC ("Meridian"), an SEC-registered investment advisor, exclusively for the Calloway family. Registration with the SEC does not imply a certain level of skill or expertise.</p>
+      <p class="body-text">Account values are drawn from custodian statements issued by Fabrikam Brokerage and Northwind Trust Company for the period ended June 30, 2026, and from information provided by the family. Meridian has not independently verified custodian data. In the event of any discrepancy, the custodian's official statement governs.</p>
+      <p class="body-text">Change-in-value figures represent the change in account value over the June 2026 statement period and are not time-weighted or money-weighted rates of return. They do not distinguish market movement from contributions, withdrawals, income, or fees. Index information (including references to the S&amp;P 500 performance for Q2 2026) is drawn from publicly available market commentary, is provided for general context only, and is not a benchmark assigned to this portfolio. Indices are unmanaged and cannot be invested in directly.</p>
+      <p class="body-text">Interests in Bristlecone Capital Partners VII LP and Ridgeline Absolute Return Fund LP are illiquid, valued as reported by the custodian as of the statement date, and may reflect valuations older than the statement date.</p>
+      <p class="body-text">Nothing in this report constitutes tax or legal advice. Estate, gift, and charitable planning items referenced herein should be reviewed with the family's tax and legal advisors before implementation.</p>
+      <p class="body-text">Past performance is not indicative of future results. This report is confidential and intended solely for the use of the addressee. Additional information about Meridian Wealth Partners, LLC is available via the SEC's Investment Adviser Public Disclosure database at www.adviserinfo.sec.gov (SEC #801-00000).</p>
+    </div>
+    <div class="page-footer">
+      <span>Calloway Family&nbsp;&nbsp;|&nbsp;&nbsp;Quarterly Review&nbsp;&nbsp;|&nbsp;&nbsp;June 30, 2026</span>
+      <span>Prepared by Daniel Brooks, Meridian Wealth Partners&nbsp;&nbsp;&nbsp;Page 11</span>
+    </div>
+  </section>
+
+</div>
+
+</body>
+</html>

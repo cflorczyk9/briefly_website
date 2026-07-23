@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Security | Briefly Wealth</title>
-    <meta name="description" content="Briefly protects advisor and client data with source-backed outputs, advisor review, least-privilege access, encryption, vendor review, and a security program aligned to SOC 2 principles.">
+    <title>Security | Briefly</title>
+    <meta name="description" content="With the Briefly connector, client files stay on the advisor's computer. See exactly what reaches Briefly's servers, how Reg S-P applies, and answers for compliance officers.">
     <link rel="canonical" href="https://www.brieflywealth.com/security">
     <link rel="icon" type="image/png" sizes="32x32" href="images/briefly_logo_favicon.png?v=2">
     <link rel="icon" type="image/png" sizes="16x16" href="images/briefly_logo_favicon.png?v=2">
     <link rel="apple-touch-icon" sizes="180x180" href="images/briefly_logo_favicon.png?v=2">
-    <meta property="og:title" content="Briefly Security">
-    <meta property="og:description" content="How Briefly protects advisor and client data while generating source-backed V2 workflow surfaces for wealth firms.">
+    <meta property="og:title" content="Security | Briefly">
+    <meta property="og:description" content="With the Briefly connector, client files stay on the advisor's computer. See exactly what reaches Briefly's servers and how Reg S-P applies.">
     <meta property="og:image" content="https://www.brieflywealth.com/images/briefly-og-main-2x.png?v=2">
     <meta property="og:url" content="https://www.brieflywealth.com/security">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Briefly Security">
-    <meta name="twitter:description" content="How Briefly protects advisor and client data while generating source-backed V2 workflow surfaces for wealth firms.">
+    <meta name="twitter:title" content="Security | Briefly">
+    <meta name="twitter:description" content="With the Briefly connector, client files stay on the advisor's computer. See exactly what reaches Briefly's servers and how Reg S-P applies.">
     <meta name="twitter:image" content="https://www.brieflywealth.com/images/briefly-og-main-2x.png?v=2">
     <meta name="author" content="Briefly Wealth LLC">
     <!-- Google Analytics -->
@@ -31,9 +31,9 @@
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
-      "name": "Briefly Security",
+      "name": "Security | Briefly",
       "url": "https://www.brieflywealth.com/security",
-      "description": "Briefly protects advisor and client data with source-backed outputs, advisor review, least-privilege access, encryption, vendor review, and a security program aligned to SOC 2 principles.",
+      "description": "With the Briefly connector, client files stay on the advisor's computer. See exactly what reaches Briefly's servers, how Reg S-P applies, and answers for compliance officers.",
       "isPartOf": { "@id": "https://www.brieflywealth.com/#website" },
       "publisher": { "@id": "https://www.brieflywealth.com/#org" },
       "breadcrumb": {
@@ -43,6 +43,49 @@
           { "@type": "ListItem", "position": 2, "name": "Security", "item": "https://www.brieflywealth.com/security" }
         ]
       }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What happens if Briefly's servers are breached?",
+          "acceptedAnswer": { "@type": "Answer", "text": "For connector firms, a breach exposes sign-in records and de-identified preference rules, not client files, since those never reach our servers. For web-app firms, Briefly's hosted environment does hold firm data, protected by encryption and per-firm access controls, so the exposure model is different for that surface." }
+        },
+        {
+          "@type": "Question",
+          "name": "Where exactly do client files live?",
+          "acceptedAnswer": { "@type": "Answer", "text": "It depends on which surface your firm runs. On the connector, files stay in a folder on the advisor's own computer that Briefly reads from and writes back to. On the web app, files live in Briefly's hosted environment on AWS, with access scoped to your firm's account." }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Briefly train AI models on client data?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No, on either surface. Client data is used to run the product for your firm, not to train general-purpose AI models, and any pattern-level learning we do runs through a de-identified, tokenized layer with no client name or account number attached." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Briefly a web app my staff logs into?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Both exist. The connector runs inside Claude Desktop and works with files already on the advisor's computer, without an upload step or a login page. The web app is a separate, browser-based product your staff can sign into instead, priced separately, with files hosted in Briefly's own environment rather than on your machine." }
+        },
+        {
+          "@type": "Question",
+          "name": "How does this change our Reg S-P vendor due diligence?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Reg S-P treats Briefly as a service provider your firm oversees, the same as any vendor. For connector firms, client files never leave the advisor's computer, so the review covers sign-in, seat entitlement, and the preference layer, not a client-data store. For web-app firms, review Briefly's AWS hosting and per-firm access controls the way you'd review any hosted vendor." }
+        },
+        {
+          "@type": "Question",
+          "name": "What does Briefly's server actually receive?",
+          "acceptedAnswer": { "@type": "Answer", "text": "It depends on the surface. From the connector, Briefly's server receives sign-in through Amazon Cognito, a seat-active check, and de-identified preference rules, nothing else. From the web app, your firm's files also reach our hosted environment, because that's how the product runs on that surface." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Briefly SEC-approved or certified compliant?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No certification like that exists, and no agency approves an AI tool as compliant. What we can show you is exactly how Briefly's architecture, on either the connector or the web app, handles client data, which is the purpose of this page." }
+        }
+      ]
     }
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -68,13 +111,35 @@
         .intro { max-width: 760px; color: #334155; font-size: 17px; margin-bottom: 44px; }
         .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
         .card { border: 1px solid var(--border); border-radius: 12px; padding: 24px; background: #fff; }
-        .card h2 { color: var(--navy); font-size: 20px; margin-bottom: 10px; }
+        .card h2, .card h3 { color: var(--navy); font-size: 20px; margin-bottom: 10px; }
         .card p { color: var(--muted); font-size: 15px; }
         .note { margin-top: 44px; padding: 28px; border-radius: 12px; background: var(--off); border: 1px solid var(--border); color: #334155; }
         .note strong { color: var(--navy); }
         footer { padding: 44px 32px; background: var(--navy); color: rgba(255,255,255,0.68); text-align: center; }
         footer a { color:#fff; text-decoration:none; margin:0 10px; font-size:14px; }
-        @media (max-width: 760px) { .nav-links a:not(.nav-btn) { display:none; } .grid { grid-template-columns: 1fr; } .hero { padding-top: 88px; } }
+        @media (max-width: 760px) { .nav-links a:not(.nav-btn) { display:none; } .grid, .grid-3 { grid-template-columns: 1fr; } .hero { padding-top: 88px; } }
+
+        /* --- security page rebuild, 2026-07-23 --- */
+        .section { margin-top: 68px; }
+        .section:first-of-type { margin-top: 0; }
+        .section-title { font-family: 'DM Serif Display', serif; color: var(--navy); font-size: 28px; line-height: 1.2; margin-bottom: 12px; }
+        .section-lead { color: #334155; font-size: 16px; max-width: 720px; margin-bottom: 24px; }
+        .prose p { color: #334155; font-size: 16px; max-width: 760px; margin-bottom: 16px; }
+        .prose p:last-child { margin-bottom: 0; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .compare-label { display: block; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--blue); margin-bottom: 10px; }
+        .compare-card p { color: var(--muted); font-size: 15px; }
+        .compare-card.is-briefly { border-color: var(--blue); border-width: 2px; }
+        .compare-card.is-briefly .compare-label { color: var(--navy); }
+        .closing-line { margin-top: 24px; }
+        .faq-list { margin-top: 8px; }
+        .faq-item { border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; background: #fff; overflow: hidden; }
+        .faq-item summary { cursor: pointer; list-style: none; padding: 18px 24px; font-weight: 600; color: var(--navy); font-size: 16px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: "+"; font-size: 20px; line-height: 1; color: var(--muted); flex-shrink: 0; }
+        .faq-item[open] summary::after { content: "-"; }
+        .faq-item[open] summary { border-bottom: 1px solid var(--border); }
+        .faq-item p { padding: 16px 24px 20px; color: var(--muted); font-size: 15px; max-width: 720px; }
     </style>
 <!-- canonical-nav -->
 <style id="canonical-nav">
@@ -202,10 +267,17 @@
     .intro { font-size: 16px; margin-bottom: 28px; line-height: 1.6; }
 
     /* cards */
-    .grid { gap: 14px; }
+    .grid, .grid-3 { gap: 14px; grid-template-columns: 1fr; }
     .card { padding: 20px; border-radius: 10px; }
-    .card h2 { font-size: 18px; margin-bottom: 8px; }
+    .card h2, .card h3 { font-size: 18px; margin-bottom: 8px; }
     .card p { font-size: 15px; line-height: 1.55; }
+
+    /* new sections */
+    .section { margin-top: 48px; }
+    .section-title { font-size: 24px; }
+    .section-lead, .prose p { font-size: 15px; }
+    .faq-item summary { padding: 16px 18px; font-size: 15px; }
+    .faq-item p { padding: 0 18px 18px; }
 
     /* contact note */
     .note { margin-top: 32px; padding: 20px; border-radius: 10px; font-size: 15px; line-height: 1.55; }
@@ -238,46 +310,152 @@
     <a href="about.html">About</a>
   </div>
   <div class="nav-actions">
-    <a class="nav-signin" href="https://demo.app.brieflywealth.com/">Sign in</a>
+    <a class="nav-signin" href="https://demo.app.brieflywealth.com/">Web app sign in</a>
     <a class="nav-cta" href="index.html#contact">Request a demo</a>
   </div>
 </nav>
 <section class="hero">
     <div class="hero-inner">
         <span class="eyebrow">Security</span>
-        <h1>Built for sensitive advisor and client context.</h1>
-        <p>Briefly is designed around source-backed outputs, advisor review, controlled access, and a security program aligned to the expectations of wealth management firms.</p>
+        <h1>With the Briefly connector, client files stay on the advisor's computer.</h1>
+        <p>Briefly is an AI knowledge base for financial advisors. It runs two ways, a connector inside Claude Desktop and a hosted web app you sign into through your browser. This page lays out where your client files live on each surface, what reaches our servers, and what changes under the new SEC rules for AI vendors.</p>
     </div>
 </section>
 <main>
     <div class="content">
-        <p class="intro">The information Briefly processes is relationship-critical and often client-sensitive. Our product and operating model are built to keep that context controlled, reviewable, and traceable.</p>
-        <div class="grid">
-            <div class="card">
-                <h2>Source-backed outputs</h2>
-                <p>Briefs and workflow outputs are designed to remain traceable to the documents, notes, emails, and records that support them.</p>
+
+        <section class="section">
+            <p class="intro">Briefly's flagship product is a connector you add to Claude Desktop. One download, pick a folder on your computer, sign in, and you're set up. From there, your client files stay in that folder, not on a server somewhere. When you ask Briefly a question, it reads those files on your machine, writes the answer, and saves the draft back to the same folder. The only things that reach our servers are sign-in, a check that your seat is active, and a de-identified layer of firm preferences that never carries a client's name.</p>
+            <p class="intro">Some firms run Briefly a second way, through the web app, a browser workspace you sign into instead of installing the connector. It's priced and sold separately from the connector. For firms on the web app, client files live in Briefly's hosted environment on AWS, protected by per-firm access controls, and sign-in runs through the same account layer either way.</p>
+        </section>
+
+        <section class="section" id="where-files-live">
+            <h2 class="section-title">Where your client files live on the connector</h2>
+            <p class="section-lead">For firms running the connector, there's no upload step in Briefly. You point it at a folder once, during setup, and everything after that happens on your own machine.</p>
+            <div class="grid-3">
+                <div class="card">
+                    <h3>You choose the folder</h3>
+                    <p>During setup, you pick where on your computer Briefly reads and writes. It's a folder your firm already uses, not a location we assign.</p>
+                </div>
+                <div class="card">
+                    <h3>Nothing to upload</h3>
+                    <p>Briefly runs inside Claude Desktop and works with files already on your machine. There's no button or portal that sends a client file anywhere.</p>
+                </div>
+                <div class="card">
+                    <h3>No client-file database for connector firms</h3>
+                    <p>We don't operate a database of client files for firms on the connector. If someone got into Briefly's servers, there's no trove of those firms' client documents there for them to find.</p>
+                </div>
             </div>
-            <div class="card">
-                <h2>Advisor review</h2>
-                <p>Briefly supports advisor-in-the-loop workflows. AI-generated outputs are intended to assist professionals, not replace professional judgment.</p>
+        </section>
+
+        <section class="section" id="server-reach">
+            <h2 class="section-title">What reaches Briefly's server, when you run the connector</h2>
+            <p class="section-lead">Three things reach our servers when you run the connector, and none of them is a client file. The web app works differently, covered below.</p>
+            <div class="grid-3">
+                <div class="card">
+                    <h3>Sign-in</h3>
+                    <p>Briefly checks who you are through Amazon Cognito, the identity system a large share of the software industry runs on. This confirms it's you, not anything about a client.</p>
+                </div>
+                <div class="card">
+                    <h3>Seat and entitlement checks</h3>
+                    <p>Briefly checks that your firm's account is active and your seat is licensed before it does any work. It's a subscription check, the kind any paid software runs.</p>
+                </div>
+                <div class="card">
+                    <h3>De-identified preference rules</h3>
+                    <p>Briefly learns patterns in how your firm likes its work done. Those patterns are tokenized before they leave your computer, so no client name or account number is attached to them.</p>
+                </div>
             </div>
-            <div class="card">
-                <h2>Least-privilege access</h2>
-                <p>Application-level access controls scope users to the data and workflows their role and firm require. Database-level firm isolation is on our enterprise hardening roadmap.</p>
+            <div class="note closing-line">
+                <strong>On the connector, client files never leave your computer.</strong> Only your sign-in, seat check, and de-identified preference rules reach Briefly's server, because nothing about a specific client is ever part of that trip. Firms on the web app work under a different model, laid out in the section below.
             </div>
-            <div class="card">
-                <h2>Encryption and vendor review</h2>
-                <p>We use modern cloud infrastructure patterns, encrypted transport, and vendor review for critical service providers.</p>
+        </section>
+
+        <section class="section" id="data-custody-models">
+            <h2 class="section-title">Three ways advisor AI tools handle your data</h2>
+            <p class="section-lead">Every AI tool that touches client files falls into one of three custody models, and Briefly's two surfaces land in two different ones.</p>
+            <div class="grid-3">
+                <div class="card compare-card">
+                    <span class="compare-label">Cloud AI tools</span>
+                    <p>Files get uploaded to the vendor's servers. From there, the vendor's privacy policy decides what happens next, including how long files sit there and who can review them. You're trusting a policy, not an architecture.</p>
+                </div>
+                <div class="card compare-card">
+                    <span class="compare-label">Briefly web app</span>
+                    <p>Your firm signs in through a browser, and files live in Briefly's hosted environment on AWS, with access controls scoped to your firm. It's server-side custody, the same category as a hosted private AI tool, except we're the ones running it.</p>
+                </div>
+                <div class="card compare-card is-briefly">
+                    <span class="compare-label">Briefly connector</span>
+                    <p>Client files stay in a folder on the advisor's own computer. There's no upload and no server-side client-file store, so there's nothing of yours on our servers for a breach to reach.</p>
+                </div>
             </div>
-            <div class="card">
-                <h2>No general model training on client data</h2>
-                <p>Client data is processed to provide the service. It is not used to train general-purpose models for other customers.</p>
+        </section>
+
+        <section class="section" id="reg-sp">
+            <h2 class="section-title">What this means under Reg S-P</h2>
+            <div class="prose">
+                <p>The amended Reg S-P rule covers every registered investment adviser as of June 3, 2026. It extends your firm's existing data-security duties to the vendors you rely on, which now explicitly includes AI tools that touch client information. That oversight duty sits with your firm, not just with us.</p>
+                <p>The SEC's FY2026 exam priorities name AI directly, covering how firms supervise it, what claims they make about it, and how they oversee the vendors behind it. FINRA's 2026 report added a section on generative AI for the same reason. Regulators are looking at the vendor relationship now, not only the advisor's own desk.</p>
+                <p>No agency certifies an AI tool as SEC-approved. That label doesn't exist. What a firm can document is how a specific tool actually handles client data, which is what the rest of this page lays out.</p>
             </div>
-            <div class="card">
-                <h2>SOC 2 aligned controls</h2>
-                <p>Our security program is built around the SOC 2 Trust Services Criteria. Formal certification is on our enterprise roadmap, not yet in audit.</p>
+        </section>
+
+        <section class="section" id="account-layer">
+            <h2 class="section-title">How we secure the account layer</h2>
+            <p class="section-lead">For connector firms, client files aren't on our servers, so what we secure there is narrower, the sign-in and entitlement system that confirms who you are and what your firm has access to. Web-app firms have files in our hosted environment too, secured the way the custody section above describes.</p>
+            <div class="grid">
+                <div class="card">
+                    <h3>Sign-in</h3>
+                    <p>Access runs through Amazon Cognito, the identity system described above, on both surfaces. Every session ties back to your individual login and your firm's account, not a shared password.</p>
+                </div>
+                <div class="card">
+                    <h3>No client-file database to isolate on the connector</h3>
+                    <p>For connector firms, there's no per-firm client-file database on our servers to isolate, because those files never reach our servers in the first place. For web-app firms, per-firm access controls scope each firm to its own data. Sign-in and preference records are isolated at the application level for every firm.</p>
+                </div>
+                <div class="card">
+                    <h3>Encrypted transport and vendor review</h3>
+                    <p>Sign-in and entitlement traffic between your computer and our servers runs over encrypted connections. We review the vendors behind that layer, including AWS and Cognito, the way we'd want a vendor we depend on reviewed.</p>
+                </div>
+                <div class="card">
+                    <h3>SOC 2 aligned controls</h3>
+                    <p>Our security program is built around the SOC 2 Trust Services Criteria, applied to the systems we actually run, sign-in and entitlement. Formal certification is on our roadmap, not yet in audit.</p>
+                </div>
             </div>
-        </div>
+        </section>
+
+        <section class="section" id="faq">
+            <h2 class="section-title">Compliance officer FAQ</h2>
+            <p class="section-lead">The questions we hear most from the people responsible for signing off on a vendor like Briefly.</p>
+            <div class="faq-list">
+                <details class="faq-item">
+                    <summary>What happens if Briefly's servers are breached?</summary>
+                    <p>For connector firms, a breach exposes sign-in records and de-identified preference rules, not client files, since those never reach our servers. For web-app firms, Briefly's hosted environment does hold firm data, protected by encryption and per-firm access controls, so the exposure model is different for that surface.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Where exactly do client files live?</summary>
+                    <p>It depends on which surface your firm runs. On the connector, files stay in a folder on the advisor's own computer that Briefly reads from and writes back to. On the web app, files live in Briefly's hosted environment on AWS, with access scoped to your firm's account.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Does Briefly train AI models on client data?</summary>
+                    <p>No, on either surface. Client data is used to run the product for your firm, not to train general-purpose AI models, and any pattern-level learning we do runs through a de-identified, tokenized layer with no client name or account number attached.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Is Briefly a web app my staff logs into?</summary>
+                    <p>Both exist. The connector runs inside Claude Desktop and works with files already on the advisor's computer, without an upload step or a login page. The web app is a separate, browser-based product your staff can sign into instead, priced separately, with files hosted in Briefly's own environment rather than on your machine.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>How does this change our Reg S-P vendor due diligence?</summary>
+                    <p>Reg S-P treats Briefly as a service provider your firm oversees, the same as any vendor. For connector firms, client files never leave the advisor's computer, so the review covers sign-in, seat entitlement, and the preference layer, not a client-data store. For web-app firms, review Briefly's AWS hosting and per-firm access controls the way you'd review any hosted vendor.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>What does Briefly's server actually receive?</summary>
+                    <p>It depends on the surface. From the connector, Briefly's server receives sign-in through Amazon Cognito, a seat-active check, and de-identified preference rules, nothing else. From the web app, your firm's files also reach our hosted environment, because that's how the product runs on that surface.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Is Briefly SEC-approved or certified compliant?</summary>
+                    <p>No certification like that exists, and no agency approves an AI tool as compliant. What we can show you is exactly how Briefly's architecture, on either the connector or the web app, handles client data, which is the purpose of this page.</p>
+                </details>
+            </div>
+        </section>
+
         <div class="note">
             <strong>Need a security review?</strong> Contact <a href="mailto:contact@brieflywealth.com">contact@brieflywealth.com</a> for architecture, vendor, and data-processing questions.
         </div>
@@ -286,6 +464,9 @@
 <footer>
     <a href="index.html">Home</a>
     <a href="blog.html">Blog</a>
+    <a href="ai-compliance-for-financial-advisors.html">AI Compliance</a>
+    <a href="claude-for-financial-advisors.html">Claude for Advisors</a>
+    <a href="sample-deliverables.html">Sample deliverables</a>
     <a href="privacy-policy.html">Privacy</a>
     <a href="terms-of-service.html">Terms</a>
     <div style="margin-top:18px;">&copy; 2026 Briefly Wealth, LLC. All rights reserved.</div>

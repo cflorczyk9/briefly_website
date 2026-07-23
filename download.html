@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Download Briefly | Add Briefly to Claude</title>
-<meta name="description" content="Download the Briefly connector and add it to the Claude desktop app. Source-backed client intelligence for wealth advisor teams, running on your firm's own files.">
+<title>Download Briefly | AI Knowledge Base for Financial Advisors</title>
+<meta name="description" content="Download the Briefly connector for Claude Desktop. With the connector, client files stay on your computer, only sign-in and de-identified rules reach our server. Free first month, then $150 per seat.">
 <link rel="canonical" href="https://www.brieflywealth.com/download">
 <link rel="icon" type="image/png" sizes="32x32" href="images/briefly_logo_favicon.png?v=2">
 <link rel="icon" type="image/png" sizes="16x16" href="images/briefly_logo_favicon.png?v=2">
 <link rel="apple-touch-icon" sizes="180x180" href="images/briefly_logo_favicon.png?v=2">
-<meta property="og:title" content="Download Briefly">
-<meta property="og:description" content="Add Briefly to the Claude desktop app and brief any client from your firm's own files, with citations.">
+<meta property="og:title" content="Download Briefly | AI Knowledge Base for Financial Advisors">
+<meta property="og:description" content="Add the Briefly connector to Claude Desktop and turn your firm's own files into an AI knowledge base, with citations. With the connector, client files stay on your computer. Free first month, then $150 per seat.">
 <meta property="og:image" content="https://www.brieflywealth.com/images/briefly-og-main-2x.png?v=2">
 <meta property="og:url" content="https://www.brieflywealth.com/download">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Download Briefly">
-<meta name="twitter:description" content="Add Briefly to the Claude desktop app and brief any client from your firm's own files, with citations.">
+<meta name="twitter:title" content="Download Briefly | AI Knowledge Base for Financial Advisors">
+<meta name="twitter:description" content="Add the Briefly connector to Claude Desktop and turn your firm's own files into an AI knowledge base, with citations. With the connector, client files stay on your computer. Free first month, then $150 per seat.">
 <meta name="author" content="Briefly Wealth LLC">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-92NXKY9W1S"></script>
 <script>
@@ -102,6 +102,23 @@
   .dl-meta a { color: var(--cream); font-weight:800; text-decoration:underline; }
   .dl-note a.dl-note-btn { display:block; width:fit-content; margin-top:14px; background: var(--ink); color: var(--paper); font-family: var(--mono); font-size:12px; font-weight:800; letter-spacing:.05em; text-transform:uppercase; padding:10px 16px; text-decoration:none; }
   .dl-note a.dl-note-btn:hover { background: var(--blue); color:#fff; }
+
+  /* ---------- Web app vs. connector explainer ---------- */
+  .dl-explainer { margin-top:20px; background: var(--paper-3); border:1px solid var(--rule); padding: 22px 26px; font-size:15px; line-height:1.6; color:#33404f; }
+  .dl-explainer::before { content:"Before you install"; display:block; font-family:var(--mono); font-size:11px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:var(--blue); margin-bottom:10px; }
+  .dl-explainer strong { color: var(--ink); }
+
+  /* ---------- FAQ accordion ---------- */
+  .dl-faq { margin-top:88px; }
+  .faq-list { margin-top:28px; display:flex; flex-direction:column; gap:1px; background:var(--rule); border:1px solid var(--rule); }
+  .faq-item { background:#fff; }
+  .faq-item summary { cursor:pointer; list-style:none; padding:20px 24px; font-family:var(--sans); font-weight:800; font-size:16px; letter-spacing:-.005em; color:var(--ink); display:flex; align-items:center; justify-content:space-between; gap:16px; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::after { content:"+"; font-family:var(--mono); font-size:20px; font-weight:800; color:var(--blue); flex-shrink:0; transition:transform .15s; }
+  .faq-item[open] summary::after { transform:rotate(45deg); }
+  .faq-item summary:hover { color:var(--blue); }
+  .faq-item summary:focus-visible { outline:2px solid var(--blue); outline-offset:-2px; }
+  .faq-item .faq-a { padding:0 24px 22px; max-width:720px; font-size:14.5px; line-height:1.62; color:#46505d; }
   /* ---------- Pinned step player (lock to screen + advance) ---------- */
   .setup-pin { position:relative; height:520vh; margin-top:6px; }
   .setup-pin-inner { position:sticky; top:0; height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; overflow:hidden; }
@@ -2206,6 +2223,87 @@
 }
 
 </style>
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "@id": "https://www.brieflywealth.com/download#app",
+    "name": "Briefly",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "macOS, Windows",
+    "softwareRequirements": "Claude Desktop",
+    "description": "Briefly's Claude connector is an AI knowledge base for financial advisors inside Claude Desktop, reading a firm's own files and answering with citations. With the connector, client files stay on the advisor's computer.",
+    "url": "https://www.brieflywealth.com/download",
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "USD",
+      "price": "150",
+      "unitText": "per advisor seat per month",
+      "eligibleDuration": {
+        "@type": "QuantitativeValue",
+        "value": "1",
+        "unitCode": "MON"
+      },
+      "description": "$150 per advisor seat per month for the Claude connector. The first month is free."
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Do I need Claude to use Briefly?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Briefly is a connector you add to Claude Desktop. You need the free Claude Desktop app installed first, then Briefly plugs into it. If you already use Claude for chat or writing, it's the same app, and Briefly reads your client files from inside it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where do my client files live?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "With the Briefly connector, client files live on your computer, in a folder you pick during setup. Briefly reads and writes files there directly, and nothing gets uploaded to a Briefly database or cloud storage account. The browser web app works differently. Its files live in Briefly's hosted environment instead."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this a web app?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Briefly comes in two forms. This page installs the Claude connector, which adds Briefly to Claude Desktop and keeps client files on your computer. The web app is the browser option, with its own sign-in, for firms that prefer no local install. Files live differently in each. Connector files stay local, and web app files live in Briefly's hosted environment."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does Briefly's server see?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "With the Claude connector, our server sees your sign-in, so we know which seat is active, and a de-identified layer of preference rules your firm builds over time, never tied to a client name. Client files never leave your computer. The web app differs, since its files live on our side instead."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Briefly work on Windows and Mac?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, both. Briefly runs anywhere Claude Desktop runs, which today means macOS and Windows. The same download and the same install steps work on either one, so there's nothing OS-specific to pick before you start. Linux support isn't available yet, since Claude Desktop itself doesn't run there."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does setup take?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "About five minutes if you already have Claude Desktop installed. Download Briefly, open the file, click Install in Claude, sign in, and point it at a folder on your computer. That's the whole process, a handful of clicks with no IT ticket and no server setup required."
+        }
+      }
+    ]
+  }
+]
+</script>
 </head>
 <body>
 <nav class="nav" aria-label="Primary">
@@ -2222,7 +2320,7 @@
     <a href="about.html">About</a>
   </div>
   <div class="nav-actions">
-    <a class="nav-signin" href="https://demo.app.brieflywealth.com/">Sign in</a>
+    <a class="nav-signin" href="https://demo.app.brieflywealth.com/">Web app sign in</a>
     <a class="nav-cta" href="index.html#contact">Request a demo</a>
   </div>
 </nav>
@@ -2233,14 +2331,16 @@
     <p>Your firm&rsquo;s memory, from your own files.</p>
     <div class="dl-cta-row">
       <a class="dl-btn" id="dl" href="briefly-mcp.mcpb" download="briefly_wealth.mcpb">Download Briefly <span class="arr" aria-hidden="true">&darr;</span></a>
-      <span class="dl-meta">Free &middot; Mac &amp; Windows &middot; Requires <a href="https://claude.ai/download" target="_blank" rel="noopener">Claude</a></span>
+      <span class="dl-meta">Free first month, then $150/seat &middot; Mac &amp; Windows &middot; Requires <a href="https://claude.ai/download" target="_blank" rel="noopener">Claude</a></span>
     </div>
   </div>
 </section>
 
 <main>
   <div class="dl-wrap">
-    <div class="dl-note"><strong>Using Briefly starts with a login we set up for you.</strong> Request access and we will provision your firm's account, so your whole team shares how your firm likes its briefs written. Briefly is currently free to use. <a class="dl-note-btn" href="index.html#contact">Request access</a></div>
+    <div class="dl-note"><strong>Using Briefly starts with a login we set up for you.</strong> Request access and we will provision your firm's account, so your whole team shares how your firm likes its briefs written. The Claude connector is free for your first month, then $150 per advisor seat per month. <a class="dl-note-btn" href="index.html#contact">Request access</a></div>
+
+    <div class="dl-explainer"><strong>Not sure what you&rsquo;re about to open?</strong> This page installs the Briefly connector, which adds Briefly to Claude Desktop. One download, pick a folder on your computer, sign in, and you&rsquo;re set up. With the connector, your client files stay in that folder, and our servers only see your sign-in and a de-identified personalization layer. They never see a client file. If your firm would rather work from a browser with no install, Briefly also has a web app with its own sign-in.</div>
 
     <h2 class="steps-head">Five minutes, start to finish.</h2>
     <div class="setup-pin" id="setupPin">
@@ -2484,7 +2584,7 @@
             <span class="bwv4b-mark">B</span>
             <div class="bwv4b-3-titlewrap">
               <h3 class="bwv4b-3-name">Briefly</h3>
-              <p class="bwv4b-3-desc">Source-grounded client context for financial advisors. Reads the firm&rsquo;s wiki and files documents; the LLM work runs on the firm&rsquo;s own Claude.</p>
+              <p class="bwv4b-3-desc">A source-backed knowledge base for financial advisors. Reads the firm&rsquo;s files and answers with citations. The Claude work runs on the firm&rsquo;s own plan.</p>
             </div>
             <span class="bwv4b-3-btnstack">
               <button class="bwv4b-btn bwv4b-btn--primary bwv4b-3-btn-install" type="button">Install</button>
@@ -2606,7 +2706,7 @@
         <div class="bwv4c-sb-label">Recents</div>
         <span class="bwv4c-sb-item">Filing documents for Miller household</span>
         <span class="bwv4c-sb-item">Household net worth breakdown</span>
-        <span class="bwv4c-sb-item">Meeting prep for the Garcias</span>
+        <span class="bwv4c-sb-item">Household review for the Garcias</span>
         <div class="bwv4c-sb-foot">
           <span class="bwv4c-sb-avatar">A</span>
           <span class="bwv4c-sb-footname">Advisor</span>
@@ -2830,7 +2930,7 @@
         <div class="bwv4c-sb-label">Recents</div>
         <span class="bwv4c-sb-item">Filing documents for Miller household</span>
         <span class="bwv4c-sb-item">Household net worth breakdown</span>
-        <span class="bwv4c-sb-item">Meeting prep for the Garcias</span>
+        <span class="bwv4c-sb-item">Household review for the Garcias</span>
         <div class="bwv4c-sb-foot">
           <span class="bwv4c-sb-avatar">A</span>
           <span class="bwv4c-sb-footname">Advisor</span>
@@ -2920,8 +3020,38 @@
         </div>
       </div>
     </div>
-    <div class="setup-trust"><b>Your original files stay on your machine.</b> Briefly saves them in your folder, builds every brief locally, and never uploads your files. The finished brief is written by your own Claude, so its content follows your Claude plan and privacy settings. <a href="security.html">How we handle data</a></div>
+    <div class="setup-trust"><b>With the Briefly connector, your original files stay on your machine.</b> Briefly saves them in your folder, builds every brief locally, and never uploads your files. The finished brief is written by your own Claude, so its content follows your Claude plan and privacy settings. The web app works differently, since its files live in Briefly&rsquo;s hosted environment. <a href="security.html">How we handle data</a></div>
     <p class="req">Works in Claude Desktop on macOS and Windows</p>
+
+    <section class="dl-faq" aria-labelledby="dl-faq-head">
+      <h2 class="steps-head" id="dl-faq-head">Questions before you install.</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>Do I need Claude to use Briefly?</summary>
+          <p class="faq-a">Yes. Briefly is a connector you add to Claude Desktop. You need the free Claude Desktop app installed first, then Briefly plugs into it. If you already use Claude for chat or writing, it&rsquo;s the same app, and Briefly reads your client files from inside it.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Where do my client files live?</summary>
+          <p class="faq-a">With the Briefly connector, client files live on your computer, in a folder you pick during setup. Briefly reads and writes files there directly, and nothing gets uploaded to a Briefly database or cloud storage account. The browser web app works differently. Its files live in Briefly&rsquo;s hosted environment instead.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Is this a web app?</summary>
+          <p class="faq-a">Briefly comes in two forms. This page installs the Claude connector, which adds Briefly to Claude Desktop and keeps client files on your computer. The web app is the browser option, with its own sign-in, for firms that prefer no local install. Files live differently in each. Connector files stay local, and web app files live in Briefly&rsquo;s hosted environment.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What does Briefly&rsquo;s server see?</summary>
+          <p class="faq-a">With the Claude connector, our server sees your sign-in, so we know which seat is active, and a de-identified layer of preference rules your firm builds over time, never tied to a client name. Client files never leave your computer. The web app differs, since its files live on our side instead.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Does Briefly work on Windows and Mac?</summary>
+          <p class="faq-a">Yes, both. Briefly runs anywhere Claude Desktop runs, which today means macOS and Windows. The same download and the same install steps work on either one, so there&rsquo;s nothing OS-specific to pick before you start. Linux support isn&rsquo;t available yet, since Claude Desktop itself doesn&rsquo;t run there.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How long does setup take?</summary>
+          <p class="faq-a">About five minutes if you already have Claude Desktop installed. Download Briefly, open the file, click Install in Claude, sign in, and point it at a folder on your computer. That&rsquo;s the whole process, a handful of clicks with no IT ticket and no server setup required.</p>
+        </details>
+      </div>
+    </section>
   </div>
 </main>
 
@@ -2941,6 +3071,9 @@
   <a href="index.html">Home</a>
   <a href="index.html#mcp">Inside Claude</a>
   <a href="security.html">Security</a>
+  <a href="/claude-for-financial-advisors">Claude for Advisors</a>
+    <a href="/sample-deliverables">Sample deliverables</a>
+  <a href="/ai-compliance-for-financial-advisors">AI Compliance</a>
   <a href="privacy-policy.html">Privacy</a>
   <a href="terms-of-service.html">Terms</a>
   <div class="cr">&copy; 2026 Briefly Wealth, LLC. All rights reserved.</div>
