@@ -1,35 +1,54 @@
 # Briefly
 
-> Source-backed client files for wealth advisor teams. Briefly connects every note, email, statement, meeting, and CRM record into one source-backed client file: what changed, what matters now, and what needs advisor approval.
+> Briefly is an AI knowledge base for financial advisors and wealth firms, built to run inside Claude. It connects a firm's own documents, email, meeting notes, and portfolio data into one place, and every answer cites back to the source it came from.
 
-Briefly is built by Briefly Wealth LLC, founded by Connor Florczyk. The product is a context layer for advisor teams: a living relationship graph built from the work your team already creates, with provenance preserved, advisor approval before anything writes back, and outputs (meeting briefs, agendas, follow-ups) that remain traceable to the original source. Briefly is not a CRM and not a brief tool; the brief is one output of the underlying graph.
+Briefly runs two ways. The Claude connector is the flagship path. It's a download that adds Briefly to Claude Desktop and reads from a folder on your own computer. With the Briefly connector, client files never leave your computer. Only sign-in and de-identified preference rules ever reach Briefly's servers. The web app is the second surface, a browser workspace for firms that would rather sign in than install anything, and its files live in Briefly's hosted environment instead.
+
+Briefly is built by Briefly Wealth LLC, founded by Connor Florczyk.
 
 These files are intended to help LLMs and AI agents accurately ground answers about Briefly in primary source pages rather than third-party summaries. For a flat plain-text concatenation of the main marketing pages, see `/llms-full.txt`.
 
 ## Product
 
-- [Home](https://www.brieflywealth.com/): Source-backed client files for advisor teams; how Briefly turns scattered records into one reviewable client file.
-- [Client context graph](https://www.brieflywealth.com/context-graph): Why advisors need a client context graph and how Briefly connects sources, people, households, accounts, goals, and tasks into one firm memory layer.
-- [Relationship intelligence](https://www.brieflywealth.com/relationship-intelligence): The advisor context layer covering family dynamics, professional network, planning themes, open loops, and source citations surfaced before the next decision.
-- [Meeting briefs](https://www.brieflywealth.com/meeting-briefs): AI meeting briefs as the first output of the context graph, covering relationship history, open loops, portfolio context, and planning themes for every client meeting.
+- [Home](https://www.brieflywealth.com/): Briefly is an AI knowledge base for financial advisors that runs inside Claude. Ask in plain English and get cited answers. With the Briefly connector, client files never leave your computer.
+- [Knowledge base](https://www.brieflywealth.com/knowledge-base): How Briefly builds an AI knowledge base for financial advisors from a firm's own documents, email, meeting notes, and portfolio data, with every fact traceable to its source.
+- [Download](https://www.brieflywealth.com/download): Download the Briefly connector for Claude Desktop. Client files stay on your computer, and only sign-in and de-identified rules reach Briefly's server. Free first month, then $150 per seat.
 
-## Examples
+## Guides
 
-- [Sample brief](https://www.brieflywealth.com/sample-brief): An illustrative meeting brief showing the structure, source citations, and review affordances of a Briefly output. Not real client data.
-- [Sample brief, email preview](https://www.brieflywealth.com/sample-brief-email-preview): An illustrative email-format rendering of a Briefly brief. Not real client data.
+- [Claude for financial advisors](https://www.brieflywealth.com/claude-for-financial-advisors): What Claude can do for financial advisors out of the box, why it can't see your client files by default, and four ways to change that, with a plain data-access comparison against ChatGPT.
+- [ChatGPT and Claude compliance for financial advisors](https://www.brieflywealth.com/ai-compliance-for-financial-advisors): What Reg S-P, the SEC, and FINRA require before an advisor puts client data into ChatGPT or Claude, and what advisors use instead.
 
 ## Company
 
-- [About](https://www.brieflywealth.com/about): Briefly Wealth LLC, founded by Connor Florczyk. Mission, founder background, and product principles (nothing unverified, advisor approves, one client file).
-- [Security](https://www.brieflywealth.com/security): Source-backed outputs, advisor-in-the-loop workflows, least-privilege access, encryption and vendor review, no general model training on client data, SOC 2 aligned controls.
-- [Morning Brief subscribe](https://www.brieflywealth.com/subscribe): Subscription page for Briefly's morning email.
-- [Blog](https://www.brieflywealth.com/blog): Writing on advisor workflows, context graphs, and wealth-management AI.
+- [Security](https://www.brieflywealth.com/security): With the Briefly connector, client files stay on the advisor's computer. Covers exactly what reaches Briefly's servers, how Reg S-P applies, and answers for compliance officers.
+- [About](https://www.brieflywealth.com/about): Briefly Wealth LLC, founded by Connor Florczyk. Client files never leave your computer. Why he built Briefly and what the product principles are.
+
+## Examples
+
+- [Sample deliverables](https://www.brieflywealth.com/sample-deliverables): Four real Briefly deliverables, a quarterly review, a goal analysis, a month-end letter, and a deal summary, with names and firms fictionalized.
+- [Sample quarterly review](https://www.brieflywealth.com/samples/sample-quarterly-review): Performance for the quarter, allocation drift against policy, and the conversations worth having next, cited back to the source files.
+- [Sample goal analysis](https://www.brieflywealth.com/samples/sample-goal-analysis): Each goal priced against a household's actual accounts, with funding gaps named and every figure traceable to a statement.
+- [Sample month-end commentary](https://www.brieflywealth.com/samples/sample-month-end-commentary): A month-end letter showing household totals, what moved since last month, and the market backdrop, written for the client and cited for the advisor.
+- [Sample deal summary](https://www.brieflywealth.com/samples/sample-deal-summary): Terms, traction, and the three biggest risks of a private deal, condensed into a one-page brief a committee can act on.
+- [Sample Morning Brief](https://www.brieflywealth.com/sample-brief): A sample edition of Briefly's Morning Brief email, with a pre-market table, an advisor talking point, and what to watch that week. Illustrative, not real client data.
+
+## Blog
+
+- [Blog](https://www.brieflywealth.com/blog): Writing on advisor workflows, portfolio prep, and client communication from the Briefly team.
+- [The Jobs AI Won't Replace](https://www.brieflywealth.com/blog/jobs-ai-wont-replace): Advisors, lawyers, and doctors stay hard to replace because the value in the work is trust, judgment, and accountability, not information processing. Published December 17, 2025.
+- [Your Brain Doesn't Have Enough RAM](https://www.brieflywealth.com/blog/your-brain-doesnt-have-enough-ram): Advisors hit a real memory limit managing 100-plus households, and the fix is surfacing the right context at the right time instead of trying to remember everything. Published January 3, 2026.
+- [The Great Wealth Transfer Trap](https://www.brieflywealth.com/blog/great-wealth-transfer-trap): As wealth splits across heirs, an advisor's assets under management can stay flat while the number of relationships to manage multiplies, straining the economics of the book. Published November 5, 2025.
+
+## Newsletter
+
+- [Morning Brief subscribe](https://www.brieflywealth.com/subscribe): A daily weekday email covering what moved overnight, what's on the calendar, and a talking point advisors can use with clients that day. Free for financial advisors.
 
 ## Legal
 
-- [Privacy policy](https://www.brieflywealth.com/privacy-policy): How Briefly handles personal information and customer data.
-- [Terms of service](https://www.brieflywealth.com/terms-of-service): Terms for use of the Briefly platform and website.
-- [Subprocessors](https://www.brieflywealth.com/subprocessors): Third-party service providers used to deliver the Briefly service.
+- [Privacy policy](https://www.brieflywealth.com/privacy-policy): How Briefly Wealth LLC collects, uses, protects, and discloses information when financial advisors use the Briefly platform.
+- [Terms of service](https://www.brieflywealth.com/terms-of-service): Terms governing access to and use of the Briefly Wealth platform by financial advisors, firms, and their authorized users.
+- [Subprocessors](https://www.brieflywealth.com/subprocessors): Current list of third-party subprocessors that may process customer data on behalf of Briefly Wealth LLC in delivering the Briefly platform.
 
 ## Optional
 

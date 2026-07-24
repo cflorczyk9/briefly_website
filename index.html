@@ -1725,26 +1725,10 @@
       },
       {
         "@type": "Question",
-        "name": "Where does my data live?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "It depends on which surface you use. With the connector, files live in a folder you pick on your own computer, and only your sign-in and de-identified preference rules reach our server. With the web app, files live in Briefly's hosted environment instead."
-        }
-      },
-      {
-        "@type": "Question",
         "name": "Can I safely put client data into ChatGPT or Claude directly?",
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Pasting a client's name, account number, or holdings into a general AI chat window sends that data to the vendor's servers, raising real questions under Reg S-P and FINRA recordkeeping rules. With the Briefly connector, client files stay on your computer instead, and only sign-in and de-identified preference rules ever reach our server."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What is MCP?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "MCP, short for Model Context Protocol, is the standard Claude uses to connect to outside tools. Briefly is one of those connectors. It lets Claude read your firm's own files on your computer and answer from them, instead of only from what Claude already knows."
         }
       },
       {
@@ -1779,10 +1763,10 @@
     <a href="#os" data-spy="os">Demo</a>
     <a href="#different" data-spy="different">Why Briefly</a>
     <a href="#engineered" data-spy="engineered">How it works</a>
-    <a href="download.html">Download</a>
-    <a href="blog.html">Blog</a>
-    <a href="subscribe.html">Morning Brief</a>
-    <a href="about.html">About</a>
+    <a href="/download">Download</a>
+    <a href="/blog">Blog</a>
+    <a href="/subscribe">Morning Brief</a>
+    <a href="/about">About</a>
   </div>
   <div class="nav-actions">
     <a class="nav-signin" href="https://demo.app.brieflywealth.com/">Web app sign in</a>
@@ -1801,20 +1785,20 @@
     <button class="source-node" data-key="transcript" data-title="Meeting transcript" data-copy="Names, dates, concerns, and preferences are extracted with review state." style="--x:38%;--y:7%"><b>transcript</b></button>
     <button class="source-node" data-key="insurance" data-title="Insurance policy" data-copy="Coverage amounts, beneficiaries, and renewal dates surface against the household." style="--x:50%;--y:13%"><b>insurance</b></button>
     <button class="source-node" data-key="estate" data-title="Estate attorney email" data-copy="Sensitive estate context is scoped to the right roles and held for advisor review." style="--x:62%;--y:7%"><b>estate email</b></button>
-    <button class="source-node" data-key="custodian" data-title="Custodian alert — Schwab" data-copy="Custodian-side messages route directly to the client file with status preserved." style="--x:75%;--y:10%"><b>custodian alert</b></button>
-    <button class="source-node" data-key="email" data-title="CPA email — Marcus Hill" data-copy="The open tax question becomes a suggested next move, not an uncited summary." style="--x:88%;--y:18%"><b>cpa email</b></button>
+    <button class="source-node" data-key="custodian" data-title="Custodian alert from Schwab" data-copy="Custodian-side messages route directly to the client file with status preserved." style="--x:75%;--y:10%"><b>custodian alert</b></button>
+    <button class="source-node" data-key="email" data-title="CPA email from Marcus Hill" data-copy="The open tax question becomes a suggested next move, not an uncited summary." style="--x:88%;--y:18%"><b>cpa email</b></button>
     <button class="source-node" data-key="slack" data-title="Internal Slack thread" data-copy="Team conversations about a client compound into the file with the right scope." style="--x:95%;--y:30%"><b>slack thread</b></button>
-    <button class="source-node" data-key="planning" data-title="Financial plan — eMoney" data-copy="Plan assumptions, target allocation, and restrictions become part of the client file." style="--x:96%;--y:42%"><b>plan doc</b></button>
+    <button class="source-node" data-key="planning" data-title="Financial plan from eMoney" data-copy="Plan assumptions, target allocation, and restrictions become part of the client file." style="--x:96%;--y:42%"><b>plan doc</b></button>
     <button class="source-node" data-key="calendar" data-title="Calendar event" data-copy="Upcoming meetings line up against open actions, sentiment shifts, and unresolved questions." style="--x:96%;--y:54%"><b>calendar</b></button>
-    <button class="source-node" data-key="crm" data-title="CRM activity — Salesforce" data-copy="Approved work routes back into the team's workflow with evidence still attached." style="--x:58%;--y:78%"><b>crm activity</b></button>
-    <button class="source-node" data-key="risk" data-title="Risk profile / IPS" data-copy="Investment policy and risk tolerance live next to actual holdings — drift becomes obvious." style="--x:60%;--y:90%"><b>risk profile</b></button>
-    <button class="source-node" data-key="text" data-title="Client text — Sarah Coleman" data-copy="Short client messages become typed, dated context — never lost in someone's phone." style="--x:50%;--y:70%"><b>text</b></button>
+    <button class="source-node" data-key="crm" data-title="CRM activity from Salesforce" data-copy="Approved work routes back into the team's workflow with evidence still attached." style="--x:58%;--y:78%"><b>crm activity</b></button>
+    <button class="source-node" data-key="risk" data-title="Risk profile / IPS" data-copy="Investment policy and risk tolerance live next to actual holdings, so drift becomes obvious." style="--x:60%;--y:90%"><b>risk profile</b></button>
+    <button class="source-node" data-key="text" data-title="Client text from Sarah Coleman" data-copy="Short client messages become typed, dated context that never gets lost in someone's phone." style="--x:50%;--y:70%"><b>text</b></button>
     <button class="source-node" data-key="signature" data-title="Signed engagement letter" data-copy="Signed agreements and disclosures are attached to the household with version history." style="--x:48%;--y:82%"><b>signed letter</b></button>
-    <button class="source-node" data-key="voicemail" data-title="Voicemail — recorded call" data-copy="Recorded calls are transcribed, sourced, and attached to the right household." style="--x:68%;--y:68%"><b>voicemail</b></button>
-    <button class="source-node" data-key="tax" data-title="1099 / K-1 — tax document" data-copy="Tax forms parse into reviewable line items with their source page still attached." style="--x:7%;--y:34%"><b>tax doc</b></button>
+    <button class="source-node" data-key="voicemail" data-title="Voicemail from a recorded call" data-copy="Recorded calls are transcribed, sourced, and attached to the right household." style="--x:68%;--y:68%"><b>voicemail</b></button>
+    <button class="source-node" data-key="tax" data-title="1099 / K-1 tax document" data-copy="Tax forms parse into reviewable line items with their source page still attached." style="--x:7%;--y:34%"><b>tax doc</b></button>
     <button class="source-node" data-key="trust" data-title="Trust document" data-copy="Trustees, distributions, and successor language are scoped to advisor + planning." style="--x:6%;--y:56%"><b>trust doc</b></button>
-    <button class="source-node" data-key="note" data-title="Advisor note — 5/14 call" data-copy="Relationship context stays attached to the client file, with the source visible." style="--x:16%;--y:28%"><b>advisor note</b></button>
-    <button class="source-node" data-key="held-away" data-title="Held-away account read" data-copy="Outside accounts come in with balances and positions — kept distinct from custodied." style="--x:12%;--y:46%"><b>held-away</b></button>
+    <button class="source-node" data-key="note" data-title="Advisor note from the 5/14 call" data-copy="Relationship context stays attached to the client file, with the source visible." style="--x:16%;--y:28%"><b>advisor note</b></button>
+    <button class="source-node" data-key="held-away" data-title="Held-away account read" data-copy="Outside accounts come in with balances and positions, kept distinct from custodied." style="--x:12%;--y:46%"><b>held-away</b></button>
 
     <div class="hero-copy">
       <div class="eyebrow">AI knowledge base for financial advisor teams</div>
@@ -2187,7 +2171,7 @@
         <div class="pc-meta">
           <div class="pc-num">01</div>
           <h3>Source intake</h3>
-          <p>Notes, emails, statements, transcripts, planning docs, and CRM activity enter the file as evidence — not generic data.</p>
+          <p>Notes, emails, statements, transcripts, planning docs, and CRM activity enter the file as evidence, each one tied to its source.</p>
         </div>
       </article>
 
@@ -2274,7 +2258,7 @@
         <div class="pc-meta">
           <div class="pc-num">04</div>
           <h3>Workflow output</h3>
-          <p>Approved next moves land in Salesforce, prep docs, and inboxes — with the source still attached.</p>
+          <p>Approved next moves land in Salesforce, prep docs, and inboxes, with the source still attached.</p>
         </div>
       </article>
     </div>
@@ -2597,16 +2581,8 @@
         <p>With the Briefly connector, client files never leave your computer. Briefly reads them locally, and only your sign-in and de-identified preference rules ever reach our server. If your firm uses the Briefly web app instead, files live in Briefly's hosted environment, which we secure and control.</p>
       </details>
       <details class="site-faq-item">
-        <summary>Where does my data live?</summary>
-        <p>It depends on which surface you use. With the connector, files live in a folder you pick on your own computer, and only your sign-in and de-identified preference rules reach our server. With the web app, files live in Briefly's hosted environment instead.</p>
-      </details>
-      <details class="site-faq-item">
         <summary>Can I safely put client data into ChatGPT or Claude directly?</summary>
         <p>Pasting a client's name, account number, or holdings into a general AI chat window sends that data to the vendor's servers, raising real questions under Reg S-P and FINRA recordkeeping rules. With the Briefly connector, client files stay on your computer instead, and only sign-in and de-identified preference rules ever reach our server.</p>
-      </details>
-      <details class="site-faq-item">
-        <summary>What is MCP?</summary>
-        <p>MCP, short for Model Context Protocol, is the standard Claude uses to connect to outside tools. Briefly is one of those connectors. It lets Claude read your firm's own files on your computer and answer from them, instead of only from what Claude already knows.</p>
       </details>
       <details class="site-faq-item">
         <summary>Is Briefly just a meeting prep tool?</summary>
@@ -2643,22 +2619,22 @@
       <a href="#different">Why Briefly</a>
       <a href="#platform">Platform</a>
       <a href="#engineered">How it works</a>
-      <a href="download.html">Download</a>
+      <a href="/download">Download</a>
       <a href="/ai-compliance-for-financial-advisors">AI compliance for advisors</a>
       <a href="/claude-for-financial-advisors">Claude for financial advisors</a>
     <a href="/sample-deliverables">Sample deliverables</a>
     </div>
     <div>
       <h4>Company</h4>
-      <a href="about.html">About</a>
-      <a href="blog.html">Blog</a>
-      <a href="subscribe.html">Morning Brief</a>
+      <a href="/about">About</a>
+      <a href="/blog">Blog</a>
+      <a href="/subscribe">Morning Brief</a>
       <a href="mailto:contact@brieflywealth.com">Contact</a>
     </div>
     <div>
       <h4>Legal</h4>
-      <a href="privacy-policy.html">Privacy</a>
-      <a href="terms-of-service.html">Terms</a>
+      <a href="/privacy-policy">Privacy</a>
+      <a href="/terms-of-service">Terms</a>
     </div>
   </div>
   <div class="foot-bottom">

@@ -1,137 +1,147 @@
 ---
-# Briefly — Source-backed client files for wealth advisor teams
+# Briefly | AI knowledge base for financial advisors, inside Claude
 Source: https://www.brieflywealth.com/
 ---
 
 statement rollover form transcript insurance estate email custodian alert cpa email slack thread plan doc calendar crm activity risk profile text signed letter voicemail tax doc trust doc advisor note held-away
 
-Source-backed client files for advisor teams
-
 # Know every client like they're your only client.
 
-Briefly connects every note, email, statement, meeting, and CRM record into one source-backed client file: what changed, what matters now, and what needs advisor approval.
+Briefly connects every note, email, statement, meeting, and CRM record into one source-backed client file, so you always know what changed, what matters now, and what needs advisor approval.
 
-See how it works Book a live demo
-
-01 / source reviewable
-
-Fidelity Q1 statement
+Book a live demo
 
 Portfolio drift becomes a source-backed fact before the advisor enters the review.
 
-move through evidence lines
+## Briefly runs inside Claude.
 
-Agent workflow
+Add Briefly as a connector once. From then on, every advisor on your team just asks, in plain English, and Briefly answers from your firm's own source-backed files. No new app to learn, no tab to keep open.
 
 ## Ask for the next meeting. Briefly builds the agenda.
 
 Briefly reads every source on the client, runs the agent steps in order, and drafts a review-ready document with sources attached.
 
-Build agenda Find changes Collect open loops Prepare follow-up Create handoff brief
-
-Advisor request › Build an agenda for the Miller review meeting next Tuesday.
-
-Inputs
-
-Agent steps
-
-Reviewable draft
-
-Draft agenda ready for advisor review
-
-Review Edit Approve
+Build agenda Find changes Collect open loops Prepare follow-up Create handoff brief **Advisor request**
 
 ### Miller Annual Review Agenda
 
-Source-backed draft
+## Pick where your client files live.
 
-Review Edit Approve
+Briefly comes two ways. With the connector, you add Briefly to Claude Desktop and it works from a folder on your own computer. Client files stay in that folder and never leave it, and only your sign-in and de-identified preference rules ever reach Briefly's servers. The Briefly web app is the other path. You sign in from a browser, there's nothing to install, and your firm's files live in Briefly's hosted environment instead of on your machine. Most firms start with the connector because it keeps files local, but the web app is a real option if your firm wants a browser workspace instead.
 
-The platform
+### The Briefly web app
+
+You sign in from a browser. No install. Your files live in Briefly's cloud.
+
+### The Briefly connector in Claude
+
+You add it to Claude Desktop. Your files live in your folder, on your computer. Most firms start here.
 
 ## Source matters. Approval wins.
 
 Briefly turns one client file into structured, reviewable, reusable work. Every claim sourced, every change held for advisor approval, every output ready for the team workflow.
 
-See it work See it work →
-
-01
-
 ### Source intake
 
-Notes, emails, statements, transcripts, planning docs, and CRM activity enter the file as evidence — not generic data.
-
-02
+Notes, emails, statements, transcripts, planning docs, and CRM activity enter the file as evidence, each one tied to its source.
 
 ### Client memory
 
 Sources resolve into the household, accounts, outside professionals, and the planning issues that actually matter.
 
-03
-
 ### Advisor review
 
 Drafts, conflicts, and sensitive context come up for advisor approval before they leave Briefly.
 
-04
-
 ### Workflow output
 
-Approved next moves land in Salesforce, prep docs, and inboxes — with the source still attached.
-
-The system
+Approved next moves land in Salesforce, prep docs, and inboxes, with the source still attached.
 
 ## The Client File Operating System
 
 Every client file is assembled from the work your team already creates. Briefly keeps the source attached, shows uncertainty, and waits for advisor approval before anything moves.
 
-01
-
 ### Sources arrive untouched
 
 Notes, emails, statements, transcripts, planning documents, and CRM activity enter without migration.
 
-Advisor note CPA email Fidelity Q1 Salesforce activity
-
-02
-
-### Briefly resolves the client context
+### Briefly maps it to the right file
 
 Households, accounts, outside professionals, relationships, and planning issues connect to the right file.
-
-Household Outside pro Account Planning issue
-
-03
 
 ### Claims are extracted with sources
 
 Actions, preferences, portfolio changes, deadlines, and risks become reviewable facts.
 
-AMZN 31% [Fidelity Q1] Roth conv. [CPA email] Action Preference
-
-04
-
 ### Trust is checked before workflow
 
 Conflicts, sensitive facts, stale records, and low-confidence claims are held for advisor review.
-
-Conflict Sensitive Low confidence Needs review
-
-05
 
 ### The client file compounds
 
 Every new source and every advisor correction improves the durable memory layer.
 
-Sentiment history Firm voice Audit trail Durable memory
-
-06
-
 ### Advisor approval controls writeback
 
 Briefly suggests. The advisor approves before anything reaches Salesforce, a client, or the team workflow.
 
-Approve Edit Reject Salesforce task
+## What you can't get from another brief tool.
+
+Anyone can summarize a meeting. Briefly is built so the value stays inside your firm and gets sharper every time your team uses it.
+
+### Your whole team's intelligence compounds
+
+Every correction your team makes, a renamed household, a fixed number, the way a senior advisor likes a recap written, is remembered and shared across everyone. The more your firm uses Briefly, the sharper it gets for the whole team, not just the person who taught it.
+
+**Firm-owned memory**
+
+### Every answer is source-backed
+
+Briefly cites the original note, email, or statement behind every claim. Open the source in one click and check it yourself. Nothing important reaches a client or a meeting without evidence you can trace.
+
+**Citations on every claim**
+
+### One graph across your whole book
+
+Households, accounts, outside professionals, and relationships connect into a single graph. You can ask questions that span the entire book, not just one client file, and get a grounded answer instead of a guess.
+
+**Cross-client graph**
+
+### With the connector, your files never leave your computer
+
+Most tools keep your history locked inside their app. With the Briefly connector, your firm's files stay right where they already live, on your own computer, and only your sign-in and de-identified preference rules ever reach our server. There's nothing to export and nothing holding you in, because your firm's files never left your machine in the first place.
+
+**No lock-in**
+
+## Questions advisors ask before they install anything.
+
+Q: What is an AI knowledge base for financial advisors?
+
+An AI knowledge base for financial advisors pulls every note, email, statement, and CRM record on a client into one place, then answers questions from that history with a citation back to the source. Briefly builds it from files already on your firm's own computer and updates it as new files come in.
+
+Q: Does Briefly work inside Claude?
+
+Yes. Briefly is a connector you add to Claude Desktop. Once it's installed, you ask Claude a question about a client in plain English, and Briefly reads your firm's files and answers with a citation. There's no separate app to open and no new login to remember.
+
+Q: Is Briefly a web app or a Claude connector?
+
+Both. The Claude connector is the flagship way to run Briefly, and it works from a folder on your own computer. The Briefly web app is the browser option, no install required, built for firms that want a browser workspace instead. The two differ mainly in where your firm's files live.
+
+Q: Is my client data safe?
+
+With the Briefly connector, client files never leave your computer. Briefly reads them locally, and only your sign-in and de-identified preference rules ever reach our server. If your firm uses the Briefly web app instead, files live in Briefly's hosted environment, which we secure and control.
+
+Q: Can I safely put client data into ChatGPT or Claude directly?
+
+Pasting a client's name, account number, or holdings into a general AI chat window sends that data to the vendor's servers, raising real questions under Reg S-P and FINRA recordkeeping rules. With the Briefly connector, client files stay on your computer instead, and only sign-in and de-identified preference rules ever reach our server.
+
+Q: Is Briefly just a meeting prep tool?
+
+No. Briefly is an AI knowledge base built from your firm's own files, and a meeting agenda is one thing it can produce from that base. Ask it a question about a household, a compliance detail, or a plan assumption, and it answers from the same source-backed file, citation included.
+
+Q: What happens if I leave?
+
+It depends on your setup. With the connector, there's nothing to migrate, since your files were always in your own folder, and removing the connector just stops Claude from reading it. With the web app, we work with you to get your firm's files out of our hosted environment before you go.
 
 See Briefly live on your firm's records. We run the walkthrough with the advisor in the room.
 
@@ -139,15 +149,9 @@ See Briefly live on your firm's records. We run the walkthrough with the advisor
 
 Briefly · Demo
 
-Full name
+## Book a live demo
 
-Work email
-
-Firm (optional)
-
-Request demo
-
-Something went wrong sending that. Try again or email connor.florczyk@brieflywealth.com.
+Full name Work email Firm (optional) Request demo
 
 Thanks. We'll be in touch.
 
@@ -157,252 +161,875 @@ Close
 
 
 ---
-# Client Context Graph for Financial Advisors
-Source: https://www.brieflywealth.com/context-graph
+# AI Knowledge Base for Financial Advisors | Briefly
+Source: https://www.brieflywealth.com/knowledge-base
 ---
 
-Context Graphs
+**Knowledge Base**
 
-# Why advisors need a client context graph.
+# An AI knowledge base built from your firm's own files.
 
-Meetings, Inbox, Clients, Documents, Investment thesis, and Settings all depend on the same missing layer: structured context that connects every source back to the client relationship.
+Client documents, email, meeting notes, and portfolio data already exist inside your firm. Briefly turns them into one knowledge base that every advisor workflow can draw from, so nothing depends on a single person's memory.
 
-Most wealth firms do not have a data problem. They have a context problem. Client facts exist across CRM records, emails, meeting notes, custodial statements, financial plans, spreadsheets, and the memory of individual advisors. The hard part is that none of those systems share a model of the relationship.
+Wealth firms already have plenty of data. Client facts live across CRM records, emails, meeting notes, custodial statements, financial plans, and spreadsheets, plus whatever an advisor happens to remember, and none of those systems share a model of the relationship.
 
-A client context graph gives the firm that model. It connects people, households, entities, accounts, goals, concerns, events, tasks, and source citations so every workflow starts from the same client understanding.
-
-Source Layer Emails, notes, meetings, PDFs, CRM, portfolio data, and planning documents.
-
-Graph Layer Resolved people, households, entities, relationships, tasks, goals, and evidence.
-
-V2 Surfaces Meetings, Inbox, Clients, Documents, Investment thesis, and Settings.
-
-## The brief is an output, not the moat.
-
-A meeting brief is valuable because it gives the advisor immediate leverage before a client conversation. But the enduring value is the graph underneath it. Once the source-backed graph exists, the firm can generate more than a brief: open-loop tracking, relationship maps, inherited-wealth workflows, cross-client themes, and advisor handoff context.
+A knowledge base gives the firm that model. It connects people, households, entities, accounts, goals, concerns, events, tasks, and source citations, so every workflow starts from the same understanding of the client.
 
 ## Why this matters in wealth management.
 
-- Households are becoming more complex as wealth transfers across generations.
+Households are becoming more complex as wealth transfers across generations.
 
-- Advisors are responsible for more relationships without proportional support staff.
+Advisors are responsible for more relationships without proportional support staff.
 
-- Client context is often trapped in individual memory, not firm infrastructure.
+What advisors know about a client often stays in individual memory instead of firm infrastructure.
 
-- Generic AI summaries are risky unless they are traceable to source material.
-
-## What Briefly builds.
-
-Briefly turns fragmented advisor sources into a living relationship graph. It preserves provenance, keeps outputs reviewable, and gives each workflow the context it needs without forcing a CRM migration.
-
-The result is a firm memory layer: one graph underneath meeting prep, client detail, document workflows, and investment policy review.
-
-## See the context layer in action.
-
-Briefly maps your existing source systems into the V2 workspace we are coding now.
-
-
----
-# Advisor Context Layer for Financial Advisors
-Source: https://www.brieflywealth.com/relationship-intelligence
----
-
-Context Layer
-
-# Your brain does not have enough RAM for this job.
-
-Advisors are expected to remember hundreds of relationships, years of conversations, family dynamics, planning decisions, and open loops. The bottleneck is not effort. It is memory architecture.
-
-Wealth management is relationship work disguised as information work. The portfolio matters, but so does the daughter starting high school, the brother contesting the trust, the CPA who needs the tax projection, and the client who says they are comfortable with risk but gets anxious every time markets fall.
-
-Those details are not secondary. They are the context that makes advice feel personal and trustworthy.
-
-The advisor does not need another place to store notes. The advisor needs the right context to appear before the next decision.
+Generic AI summaries are risky unless they are traceable to source material.
 
 ## Why CRMs are not enough.
 
-CRMs are important systems of record, but they are not built to reconstruct a relationship across every source. The meaningful context often lives in a note, a forwarded email, a PDF, a meeting transcript, a planning doc, or the head of a senior advisor.
+CRMs are important systems of record, but they are not built to reconstruct a relationship across every source. The details that matter most often live in a note, a forwarded email, a PDF, a meeting transcript, a planning document, or the memory of a senior advisor.
 
-Search helps when you know what to search for. The context layer helps when you need the system to know what matters before you ask.
+Search helps when you already know what to look for. A knowledge base helps when you need the system to surface what matters before you ask.
 
-## What the context layer should include.
+## What a knowledge base should include.
 
-- Family and household relationships, including heirs and decision makers.
+Family and household relationships, including heirs and decision makers.
 
-- Professional network context, including CPAs, attorneys, trustees, and centers of influence.
+Professional network, including CPAs, attorneys, trustees, and centers of influence.
 
-- Planning themes such as liquidity, philanthropy, estate complexity, concentrated positions, and tax deadlines.
+Planning themes such as liquidity, philanthropy, estate complexity, concentrated positions, and tax deadlines.
 
-- Open loops, follow-ups, unresolved concerns, and promises made in prior meetings.
+Open loops, follow-ups, unresolved concerns, and promises made in prior meetings.
 
-- Source citations so advisors can verify the context before using it with a client.
+Source citations so advisors can verify before using anything with a client.
 
-## Why Briefly starts here.
+## A meeting brief is one thing the knowledge base can do.
 
-Briefly builds the memory layer underneath advisor workflows. It connects scattered context, keeps it source-backed, and turns it into the V2 surfaces we are coding now: Meetings, Inbox, Clients, Documents, Investment thesis, Settings, and client detail.
-
-## Scale memory without scaling headcount.
-
-Briefly gives each advisor a source-backed view of the relationship before the meeting starts.
-
-
----
-# AI Meeting Briefs for Financial Advisors
-Source: https://www.brieflywealth.com/meeting-briefs
----
-
-Meeting Prep
-
-# AI meeting briefs are the first output of the context graph.
-
-Briefly helps advisors walk into every client meeting with the relationship history, open loops, portfolio context, and planning themes that matter most.
-
-Briefly Meeting Brief
-
-Open loops and follow-ups
-
-Portfolio and liquidity context
-
-Tax and planning opportunities
-
-Family, sentiment, and relationship history
-
-Meeting prep is where the value of advisor context becomes immediately visible. A good brief saves time. A great brief makes the advisor feel like they remember the whole relationship.
-
-But better meeting prep cannot be built from isolated summaries alone. It needs the context graph behind it: the people, accounts, decisions, conversations, documents, tasks, and source citations that explain what matters now.
+A meeting brief is useful because it gives the advisor an edge before the conversation starts, but that brief is just one output of the knowledge base behind it. The same files also support open-loop tracking, relationship maps, inherited-wealth workflows, cross-client themes, and advisor handoff notes.
 
 ## What an advisor-ready brief needs.
 
-- Open tasks and promises made in prior meetings.
+Open tasks and promises made in prior meetings.
 
-- Portfolio changes, liquidity needs, concentrated positions, and tax themes.
+Portfolio changes, liquidity needs, concentrated positions, and tax themes.
 
-- Client sentiment, concerns, frustrations, and language that signals risk.
+Client sentiment, concerns, frustrations, and language that signals risk.
 
-- Life events, family dynamics, professional network, and planning milestones.
+Life events, family dynamics, professional network, and planning milestones.
 
-- Source evidence that lets the advisor verify before acting.
+Source evidence so the advisor can verify before acting.
 
-## Why the context layer matters after the meeting.
+Each meeting adds more source-backed memory to the knowledge base, and meeting prep gets faster with every cycle. The client page gets richer, and the firm becomes less dependent on any one person's memory.
 
-The meeting brief should not be a dead-end document. The same context should inform the V2 Meetings page, client detail view, Documents workspace, and the next meeting. That is why Briefly treats the brief as an output surface, not the platform itself.
+## What Briefly builds.
 
-## The compounding effect.
+Briefly turns fragmented advisor files into a living knowledge base. It keeps every fact traceable to its source, keeps outputs reviewable, and gives each workflow what it needs without forcing a CRM migration.
 
-Each meeting adds more source-backed memory to the graph. The next prep cycle gets faster, the client detail page gets richer, and the firm becomes less dependent on any one person's memory.
+The result is one base of firm memory. It gets better every time an advisor uses it, and it keeps working long after any single meeting ends.
 
-## Turn meeting prep into firm memory.
+## See the knowledge base in action.
 
-Briefly creates advisor-ready briefs from a context layer that keeps improving over time.
+Briefly runs two ways. The Claude connector is the flagship path. It keeps client files in a folder on your own computer, and only your sign-in, seat checks, and de-identified preference rules reach Briefly's servers, free for the first month, then $150 per advisor seat per month. The web app is the browser option, always available, with files living in Briefly's hosted environment at $150 per seat from day one.
 
 
 ---
-# Security at Briefly Wealth
+# Download Briefly | AI Knowledge Base for Financial Advisors
+Source: https://www.brieflywealth.com/download
+---
+
+# Add Briefly to Claude.
+
+Your firm’s memory, from your own files.
+
+## Five minutes, start to finish.
+
+### Get Claude
+
+Free from claude.ai . Skip this step if you already have it.
+
+## Download Claude
+
+One app for chat, code, and tools.
+
+Download for macOS
+
+**Applications**
+
+**Claude**
+
+### Download Briefly
+
+One click here, then open it from your browser’s downloads. Shown in Chrome. In Safari, downloads live under the arrow next to the address bar.
+
+## Add Briefly to Claude.
+
+Your firm’s memory, from your own files.
+
+Download Briefly ↓
+
+**ALMOST THERE**
+
+### Open the download to install
+
+Briefly saved to your computer. Open the downloaded briefly_wealth.mcpb file to launch Claude Desktop, then click Install .
+
+Find it in your browser downloads (top of the window) or your Downloads folder.
+
+GOT IT
+
+### Claude installs it
+
+Click Install , then Save . Nothing to type. The settings screen is optional. Save and move on. The red Anthropic notice is standard for extensions installed outside its directory.
+
+**Pinned**
+
+**Recents**
+
+### Briefly
+
+A source-backed knowledge base for financial advisors. Reads the firm’s files and answers with citations. The Claude work runs on the firm’s own plan.
+
+Install
+
+Uninstall
+
+Installing will grant this extension access to everything on your computer. Any developer information shown has not been verified by Anthropic. Ensure you trust the source of this extension before installation.
+
+Configure
+
+#### Do you want to install Briefly?
+
+This desktop extension will be installed on your computer and made available to Claude.
+
+Cancel
+
+Install
+
+### Configure Briefly
+
+Your firm’s folder Optional. Browse Inbox folder Optional. Cancel Save
+
+### Sign in once
+
+Your login is the whole setup. Use the login we set up for your firm, and Briefly knows you and your firm.
+
+### Sign in to Briefly
+
+Sign in
+
+### File, then brief
+
+Save statements into intake , then ask. “File everything in my intake folder.” Then, “Prepare a meeting brief.”
+
+Works in Claude Desktop on macOS and Windows
+
+## Questions before you install.
+
+Q: Do I need Claude to use Briefly?
+
+Yes. Briefly is a connector you add to Claude Desktop. You need the free Claude Desktop app installed first, then Briefly plugs into it. If you already use Claude for chat or writing, it’s the same app, and Briefly reads your client files from inside it.
+
+Q: Where do my client files live?
+
+With the Briefly connector, client files live on your computer, in a folder you pick during setup. Briefly reads and writes files there directly, and nothing gets uploaded to a Briefly database or cloud storage account. The browser web app works differently. Its files live in Briefly’s hosted environment instead.
+
+Q: Is this a web app?
+
+Briefly comes in two forms. This page installs the Claude connector, which adds Briefly to Claude Desktop and keeps client files on your computer. The web app is the browser option, with its own sign-in, for firms that prefer no local install. Files live differently in each. Connector files stay local, and web app files live in Briefly’s hosted environment.
+
+Q: What does Briefly’s server see?
+
+With the Claude connector, our server sees your sign-in, so we know which seat is active, and a de-identified layer of preference rules your firm builds over time, never tied to a client name. Client files never leave your computer. The web app differs, since its files live on our side instead.
+
+Q: Does Briefly work on Windows and Mac?
+
+Yes, both. Briefly runs anywhere Claude Desktop runs, which today means macOS and Windows. The same download and the same install steps work on either one, so there’s nothing OS-specific to pick before you start. Linux support isn’t available yet, since Claude Desktop itself doesn’t run there.
+
+Q: How long does setup take?
+
+About five minutes if you already have Claude Desktop installed. Download Briefly, open the file, click Install in Claude, sign in, and point it at a folder on your computer. That’s the whole process, a handful of clicks with no IT ticket and no server setup required.
+
+## Open the download to install
+
+Briefly saved to your computer. Open the downloaded briefly_wealth.mcpb file to launch Claude Desktop, then click Install .
+
+Find it in your browser downloads (top of the window) or your Downloads folder. Download again if you need it.
+
+Opened it and nothing happened? You need the free Claude desktop app first, then open briefly_wealth.mcpb again.
+
+Got it
+
+
+---
+# Security | Briefly
 Source: https://www.brieflywealth.com/security
 ---
 
-Security
+**Security**
 
-# Built for sensitive advisor and client context.
+# With the Briefly connector, client files stay on the advisor's computer.
 
-Briefly is designed around source-backed outputs, advisor review, controlled access, and a security program aligned to the expectations of wealth management firms.
+Briefly is an AI knowledge base for financial advisors. It runs two ways, a connector inside Claude Desktop and a hosted web app you sign into through your browser. This page lays out where your client files live on each surface, what reaches our servers, and what changes under the new SEC rules for AI vendors.
 
-The information Briefly processes is relationship-critical and often client-sensitive. Our product and operating model are built to keep that context controlled, reviewable, and traceable.
+Briefly's flagship product is a connector you add to Claude Desktop. One download, pick a folder on your computer, sign in, and you're set up. From there, your client files stay in that folder, not on a server somewhere. When you ask Briefly a question, it reads those files on your machine, writes the answer, and saves the draft back to the same folder. The only things that reach our servers are sign-in, a check that your seat is active, and a de-identified layer of firm preferences that never carries a client's name.
 
-## Source-backed outputs
+Some firms run Briefly a second way, through the web app, a browser workspace you sign into instead of installing the connector. It's priced and sold separately from the connector. For firms on the web app, client files live in Briefly's hosted environment on AWS, protected by per-firm access controls, and sign-in runs through the same account layer either way.
 
-Briefs and workflow outputs are designed to remain traceable to the documents, notes, emails, and records that support them.
+## Where your client files live on the connector
 
-## Advisor review
+For firms running the connector, there's no upload step in Briefly. You point it at a folder once, during setup, and everything after that happens on your own machine.
 
-Briefly supports advisor-in-the-loop workflows. AI-generated outputs are intended to assist professionals, not replace professional judgment.
+### You choose the folder
 
-## Least-privilege access
+During setup, you pick where on your computer Briefly reads and writes. It's a folder your firm already uses, not a location we assign.
 
-Access controls are designed so users only access the data and workflows required for their role and firm configuration.
+### Nothing to upload
 
-## Encryption and vendor review
+Briefly runs inside Claude Desktop and works with files already on your machine. There's no button or portal that sends a client file anywhere.
 
-We use modern cloud infrastructure patterns, encrypted transport, and vendor review for critical service providers.
+### No client-file database for connector firms
 
-## No general model training on client data
+We don't operate a database of client files for firms on the connector. If someone got into Briefly's servers, there's no trove of those firms' client documents there for them to find.
 
-Client data is processed to provide the service. It is not used to train general-purpose models for other customers.
+## What reaches Briefly's server, when you run the connector
 
-## SOC 2 aligned controls
+Three things reach our servers when you run the connector, and none of them is a client file. The web app works differently, covered below.
 
-Our information security program is aligned with SOC 2 Trust Services Criteria while formal certification work progresses.
+### Sign-in
 
-Need a security review? Contact contact@brieflywealth.com for architecture, vendor, and data-processing questions.
+Briefly checks who you are through Amazon Cognito, the identity system a large share of the software industry runs on. This confirms it's you, not anything about a client.
+
+### Seat and entitlement checks
+
+Briefly checks that your firm's account is active and your seat is licensed before it does any work. It's a subscription check, the kind any paid software runs.
+
+### De-identified preference rules
+
+Briefly learns patterns in how your firm likes its work done. Those patterns are tokenized before they leave your computer, so no client name or account number is attached to them.
+
+## Three ways advisor AI tools handle your data
+
+Every AI tool that touches client files falls into one of three custody models, and Briefly's two surfaces land in two different ones.
+
+**Cloud AI tools**
+
+Files get uploaded to the vendor's servers. From there, the vendor's privacy policy decides what happens next, including how long files sit there and who can review them. You're trusting a policy, not an architecture.
+
+**Briefly web app**
+
+Your firm signs in through a browser, and files live in Briefly's hosted environment on AWS, with access controls scoped to your firm. It's server-side custody, the same category as a hosted private AI tool, except we're the ones running it.
+
+**Briefly connector**
+
+Client files stay in a folder on the advisor's own computer. There's no upload and no server-side client-file store, so there's nothing of yours on our servers for a breach to reach.
+
+## What this means under Reg S-P
+
+The amended Reg S-P rule covers every registered investment adviser as of June 3, 2026. It extends your firm's existing data-security duties to the vendors you rely on, which now explicitly includes AI tools that touch client information. That oversight duty sits with your firm, not just with us.
+
+The SEC's FY2026 exam priorities name AI directly, covering how firms supervise it, what claims they make about it, and how they oversee the vendors behind it. FINRA's 2026 report added a section on generative AI for the same reason. Regulators are looking at the vendor relationship now, not only the advisor's own desk.
+
+No agency certifies an AI tool as SEC-approved. That label doesn't exist. What a firm can document is how a specific tool actually handles client data, which is what the rest of this page lays out.
+
+## How we secure the account layer
+
+For connector firms, client files aren't on our servers, so what we secure there is narrower, the sign-in and entitlement system that confirms who you are and what your firm has access to. Web-app firms have files in our hosted environment too, secured the way the custody section above describes.
+
+### Sign-in
+
+Access runs through Amazon Cognito, the identity system described above, on both surfaces. Every session ties back to your individual login and your firm's account, not a shared password.
+
+### No client-file database to isolate on the connector
+
+For connector firms, there's no per-firm client-file database on our servers to isolate, because those files never reach our servers in the first place. For web-app firms, per-firm access controls scope each firm to its own data. Sign-in and preference records are isolated at the application level for every firm.
+
+### Encrypted transport and vendor review
+
+Sign-in and entitlement traffic between your computer and our servers runs over encrypted connections. We review the vendors behind that layer, including AWS and Cognito, the way we'd want a vendor we depend on reviewed.
+
+### SOC 2 aligned controls
+
+Our security program is built around the SOC 2 Trust Services Criteria, applied to the systems we actually run, sign-in and entitlement. Formal certification is on our roadmap, not yet in audit.
+
+## Compliance officer FAQ
+
+The questions we hear most from the people responsible for signing off on a vendor like Briefly.
+
+Q: What happens if Briefly's servers are breached?
+
+For connector firms, a breach exposes sign-in records and de-identified preference rules, not client files, since those never reach our servers. For web-app firms, Briefly's hosted environment does hold firm data, protected by encryption and per-firm access controls, so the exposure model is different for that surface.
+
+Q: Where exactly do client files live?
+
+It depends on which surface your firm runs. On the connector, files stay in a folder on the advisor's own computer that Briefly reads from and writes back to. On the web app, files live in Briefly's hosted environment on AWS, with access scoped to your firm's account.
+
+Q: Does Briefly train AI models on client data?
+
+No, on either surface. Client data is used to run the product for your firm, not to train general-purpose AI models, and any pattern-level learning we do runs through a de-identified, tokenized layer with no client name or account number attached.
+
+Q: Is Briefly a web app my staff logs into?
+
+Both exist. The connector runs inside Claude Desktop and works with files already on the advisor's computer, without an upload step or a login page. The web app is a separate, browser-based product your staff can sign into instead, priced separately, with files hosted in Briefly's own environment rather than on your machine.
+
+Q: How does this change our Reg S-P vendor due diligence?
+
+Reg S-P treats Briefly as a service provider your firm oversees, the same as any vendor. For connector firms, client files never leave the advisor's computer, so the review covers sign-in, seat entitlement, and the preference layer, not a client-data store. For web-app firms, review Briefly's AWS hosting and per-firm access controls the way you'd review any hosted vendor.
+
+Q: What does Briefly's server actually receive?
+
+It depends on the surface. From the connector, Briefly's server receives sign-in through Amazon Cognito, a seat-active check, and de-identified preference rules, nothing else. From the web app, your firm's files also reach our hosted environment, because that's how the product runs on that surface.
+
+Q: Is Briefly SEC-approved or certified compliant?
+
+No certification like that exists, and no agency approves an AI tool as compliant. What we can show you is exactly how Briefly's architecture, on either the connector or the web app, handles client data, which is the purpose of this page.
 
 
 ---
-# About Briefly
+# About Briefly | AI Knowledge Base for Financial Advisors
 Source: https://www.brieflywealth.com/about
 ---
 
-Our mission
+**Our mission**
 
-# We exist to give advisors back their time, so they can focus on clients, not manual prep.
+# We exist to give advisors back their time, so they can spend it on clients instead of hunting for their own files.
 
-Our founder
+**Our founder**
 
 ## Connor Florczyk
 
-Founder, Briefly Wealth
-
 Connor began his career at Crescent Bay Advisors, Inc. (acquired by Evoke Advisors in 2024), a boutique multi-family office serving ultra-high-net-worth families with complex, multi-entity structures. He later joined a top-performing private wealth team at Morgan Stanley, coordinating investment execution across billions in assets for executives, multi-generational families, and family offices.
 
-At both firms he spent hours prepping for client meetings, pulling data from custodians, CRMs, emails, and research platforms to build a clear picture before every conversation. He saw how much advisor time was lost to fragmentation instead of strategic client work, and founded Briefly to fix it: automating meeting prep and unifying data across custodial platforms and core advisor systems so advisors can deepen client relationships and make better decisions as books grow and wealth passes to the next generation.
+At both firms he spent hours prepping for client meetings, pulling data from custodians, CRMs, emails, and research platforms to build a clear picture before every conversation. He saw how much advisor time was lost to fragmentation instead of strategic client work, and founded Briefly to turn those scattered records into one knowledge base advisors can just ask, whether that means meeting prep for tomorrow or answering a one-off question, so they can deepen client relationships and make better decisions as books grow and wealth passes to the next generation.
 
-The moment
+**The moment**
 
 ## Why now?
 
-01
+**01**
 
 ### Generational Wealth Transfer
 
 Roughly $84T is set to move across generations by 2045. Advisors need systems that preserve personalization at scale.
 
-02
+**02**
 
 ### AI Built for Financial Data
 
 AI can finally read complex statements and filings accurately, and trace every figure back to the source it came from.
 
-03
+**03**
 
 ### RIAs Are Scaling Faster Than Ever
 
 Independent advisors need workflow tools that keep pace with their growth.
 
-What we believe
+**What we believe**
 
 ## Our values
 
-Principle
+**Principle**
 
 ### Nothing Unverified
 
 Every output traces back to a source you can open and check. If Briefly can't cite it, Briefly won't claim it.
 
-Principle
+**Principle**
 
 ### The Advisor Approves
 
 Briefly drafts, surfaces, and prepares the work. It never sends. Nothing reaches a client until you've reviewed and approved it.
 
-Principle
+**Principle**
 
 ### One Client File, Not Twelve Tabs
 
-Notes, emails, statements, meetings, and CRM data become a single source-backed file, so the scramble before every meeting goes away.
+Notes, emails, statements, meeting notes, and CRM data become one source-backed file, and Claude can read it and cite exactly where each answer comes from, no matter what the advisor asks that day.
 
-Get started
+**Get started**
 
 ## See what Briefly does for your team.
 
 Source-backed client files, built from the records you already have.
 
-Request a demo See a sample brief
+
+---
+# ChatGPT and Claude Compliance for Financial Advisors | Briefly
+Source: https://www.brieflywealth.com/ai-compliance-for-financial-advisors
+---
+
+**Compliance**
+
+# Can financial advisors put client data in ChatGPT?
+
+By Connor Florczyk · Published July 23, 2026
+
+A straight answer for advisors and compliance officers weighing ChatGPT, Claude, and the rules that actually govern where client data can go.
+
+The direct answer is yes, you can type a client's name, account number, or portfolio detail into ChatGPT's chat window, and no, doing that does not meet the standard your compliance program is supposed to hold you to. The text travels to a vendor's servers under that vendor's own policy, not your firm's, and the amended Reg S-P rule now treats that vendor as a service provider your firm has to oversee. Advisors can still use ChatGPT and Claude for real work. The rest of this page covers what the rules actually require, where two separate risks stack on something as ordinary as a client email, and how advisors are using these tools without creating that exposure in the first place.
+
+Advisors are asking this question more because ChatGPT and Claude have gotten good enough to be genuinely useful for drafting, summarizing, and research, in the same twelve months the amended Reg S-P safeguards rule reached every RIA and FINRA published its first dedicated guidance on generative AI. The tools got more tempting and the rules got more specific at the same time, so the honest answer needs both halves.
+
+## Can you put client data in ChatGPT?
+
+Physically, yes. Nothing in ChatGPT's interface stops you from pasting a client's name, account number, holdings, or a paraphrased summary of their situation into the chat box, and the model will answer. The real question for an advisor is what happens to that information after you hit enter, not whether typing it in is technically possible.
+
+That text is sent to OpenAI's servers to generate a response, and from there, what happens depends on your plan and your settings rather than anything your firm controls. A Free or Plus account may use the conversation to train future models unless training is turned off in Data Controls settings. ChatGPT Team, Enterprise, and business API access don't train on your data by default. Either way, the information has left your firm's systems and landed on infrastructure your compliance program has probably never reviewed.
+
+Some firms have gone further and licensed ChatGPT Enterprise for the whole office, treating that as the fix. It solves the training question and adds admin-level retention controls, but it doesn't automatically solve the other two problems on this page. The firm still needs to review OpenAI as a vendor under Reg S-P, and it still needs a way to capture AI-assisted client communications in its own archiving system. Buying the enterprise tier is a start, not the finish line.
+
+This shows up in ordinary moments, not just theoretical ones. An advisor answering a quick client question from their phone, using the free ChatGPT app because it's already installed, creates the same exposure as an advisor pasting a full case file into the desktop version. The device doesn't change what happens to the words once they're sent.
+
+Some advisors try to soften this by stripping names and account numbers before pasting, asking about "a client with a $2 million portfolio and two grown children" instead of naming anyone. That reduces the privacy exposure meaningfully and works fine for a hypothetical research question with no real client attached. It doesn't solve the recordkeeping question in the next section on its own, and it only works if the advisor remembers to redact every single time, which is exactly the kind of manual step a compliance program should design around rather than depend on.
+
+That's the part regulators care about. Reg S-P doesn't ask whether ChatGPT is a good or bad product. It asks whether the firm knows where customer information goes and runs a real oversight process for every vendor that touches it. An AI tool an advisor started using on their own, without looping in compliance, is close to a textbook example of the gap the rule was updated to close.
+
+## Is it safe to use ChatGPT for client emails?
+
+Client emails carry two separate risks when they run through a consumer AI tool, and most advisors only think about one of them.
+
+The first is privacy. An email to a client often names an account number, a balance, a beneficiary, or a specific holding. Pasting that email into ChatGPT to fix the tone or tighten the wording sends all of it to OpenAI's servers the moment you hit enter. Under the amended Reg S-P safeguards rule, that's the same category of exposure as handing the same information to any other outside vendor, and it calls for the same oversight, which most advisors haven't set up for a consumer chat tool they started using on their own.
+
+The second risk gets missed more often. A client email is a business communication. FINRA member firms have to retain and supervise those communications the same way they retain any other correspondence about a client's account, and RIAs carry a parallel recordkeeping duty under the Investment Advisers Act. A conversation that happens inside a personal ChatGPT account usually isn't captured by the firm's archiving system at all. Regulators have already spent the last few years fining firms over messaging apps employees used without telling compliance, and an AI chat tool used the same way is shaping up to be the next version of that same problem. If a client complains, or an examiner asks for the correspondence file, the AI-assisted draft is often just missing.
+
+The same exposure covers more than typed text, too. Uploading a PDF statement, a screenshot of a client's account dashboard, or a scanned form into ChatGPT to summarize it sends the entire document to the vendor's servers, not just the sentence you needed answered. A one-line question can turn into a full-document upload without anyone deciding that on purpose.
+
+## What Reg S-P, the SEC, and FINRA actually require
+
+Four separate pieces of the regulatory picture apply here, and the fourth explains why no vendor gets to claim it solved the other three for you.
+
+### The amended Reg S-P safeguards rule
+
+The SEC adopted amendments to Regulation S-P in May 2024, extending the safeguards and disposal rules that used to apply mainly to broker-dealers to registered investment advisers, investment companies, and transfer agents as well. Larger firms had to comply by December 3, 2025, and the deadline for smaller advisory firms landed June 3, 2026, which means every RIA is now inside the rule regardless of size. Covered firms need a written incident response program, a documented process for reviewing the third-party vendors that touch customer information, and a notification clock. Firms generally have to tell affected individuals about a breach as soon as practical, and within 30 days once they learn sensitive customer information was exposed. The disposal side of the same rule matters just as much. Firms have to dispose of customer information securely once it's no longer needed, and that duty doesn't disappear just because a copy sits on a vendor's server instead of the firm's own drive. An AI vendor that receives client data now falls inside that vendor review, and a firm that lets an advisor paste client details into a consumer AI product without ever reviewing that product as a vendor isn't meeting the rule as written.
+
+### The SEC's exam priorities for fiscal year 2026
+
+The SEC's Division of Examinations released its 2026 priorities in November 2025, and artificial intelligence made the list as an area of increased focus. Examiners are checking whether a firm's actual use of AI matches what it discloses to clients and regulators, reviewing the security controls firms use to manage AI-related risk, and running sweep exams of firms most likely to have adopted AI early, including robo-advisers and algorithmic trading funds. The priorities also expect firms to have an AI policy in their compliance manual, whether that's a standalone document or a section added to an existing one. A firm whose advisors picked up ChatGPT or Claude on their own, with nothing written down about it, is a plausible finding in exactly the kind of review the SEC has said it plans to run.
+
+### FINRA's 2026 regulatory oversight report
+
+FINRA published its 2026 Annual Regulatory Oversight Report in December 2025 with a dedicated section on generative AI for the first time. The report expects member firms to assess their regulatory obligations before deploying a GenAI tool, build a governance framework around how it gets supervised, and test for hallucinations and bias rather than trust the output. The most common use FINRA observed among member firms was summarizing documents and pulling information out of large volumes of text, which is close to what an advisor is doing when they paste a client email into ChatGPT to redraft it. The report treats that use case as one to govern, not one to ignore.
+
+### The AI-washing enforcement actions, and why there's no "SEC-approved AI"
+
+In March 2024 the SEC fined two investment advisers, Delphia and Global Predictions , a combined $400,000, $225,000 from Delphia and $175,000 from Global Predictions, for overstating the role artificial intelligence played in how they managed money. It was the industry's first enforcement action for what regulators now call AI-washing. The lesson outlasts those two firms. No AI vendor, not ChatGPT's maker, not Claude's maker, not Briefly, carries an SEC seal of approval, because that seal doesn't exist. Any product marketed as SEC-compliant AI or SEC-approved AI is making a claim the SEC has already shown it will investigate and fine.
+
+Put together, these four things point to the same practical checklist. Know which AI tools your advisors are actually using, not just which ones the firm officially licenses. Treat any AI vendor that receives client data as a vendor under Reg S-P, with the same review any other vendor gets. Keep a documented policy that names the approved tools and the boundaries around them. And never let a vendor's compliance-sounding language substitute for reading the actual rule.
+
+## What about Claude?
+
+Claude raises a version of the same question, with one extra layer. Anthropic sells Claude across several plans, and which plan you're on determines whether your conversations are used to train future models at all.
+
+Personal Claude accounts, on the Free, Pro, or Max plan, started training on user conversations by default in late August 2025, after Anthropic changed its consumer terms. Existing users had to make an active choice by the end of September 2025 or lose access, and anyone who didn't opt out was defaulted into training, with conversation data kept for up to five years when it's used that way. Claude for Work, Claude Enterprise, and access through Anthropic's API weren't part of that change and don't train on conversation content.
+
+The practical rule is to check your plan before you check the tool. An advisor on a personal Claude account should either turn off training in privacy settings or move client-related work onto a business plan. An advisor already using Claude through a business or enterprise agreement clears that first hurdle, though the Reg S-P vendor-oversight question from the last section still applies either way. Anthropic still receives whatever gets typed into the chat, training or not, which is a separate problem from the training setting.
+
+Claude for Work and Claude Enterprise also add administrative controls Anthropic markets toward regulated industries, including configurable data retention windows and activity logs an admin can review. None of that is a compliance certification by itself. It's infrastructure a firm's compliance program still has to evaluate, document, and monitor, the same as it would for any other vendor with access to anything client-related.
+
+A solo advisor paying for Claude Pro out of pocket is on exactly the plan that trains by default. A larger RIA that negotiated a Claude for Work agreement for the whole team is not, though that same RIA still has to confirm procurement actually landed on a business plan and not a handful of individual Pro subscriptions advisors expensed on their own. The two setups can look identical day to day and carry different obligations underneath.
+
+## What advisors use instead
+
+Advisors who want the research and drafting benefit of a large language model without creating a new compliance exposure are moving toward a different structure. Instead of sending client files to an AI vendor, the AI reads the files where they already live, on the advisor's own computer, and only a narrow slice of nonclient information travels anywhere else.
+
+Broadly, advisors evaluating AI tools are choosing between three structures. The first is a consumer AI tool used directly, the path on the left below. The second is a hosted private AI platform, where a vendor still runs servers full of client data, just servers with the firm's name on the contract instead of the public tool. That structure still leaves the same vendor-oversight and breach-notification questions in place, just with better paperwork behind them. The third keeps client files off any vendor's servers entirely and has the AI read them locally instead. The diagram below compares the first structure with the third, since that's the comparison advisors ask about most.
+
+**The common path**
+
+### Cloud AI tools
+
+You paste a file, or type client details, into the chat
+
+The text travels to the vendor's servers
+
+The vendor's own policy decides what happens to it next
+
+From a regulator's view, it's now an undocumented service provider holding your client's data
+
+**What Briefly does instead**
+
+### Briefly inside Claude
+
+You ask a question inside Claude
+
+Briefly reads the relevant file on your own computer
+
+Your own Claude plan governs the model call
+
+Briefly's server sees your sign-in and de-identified preference rules, never the file
+
+The left side is what happens with a consumer AI tool used directly. The right side is what happens when the same question runs through an AI knowledge base for financial advisors built to sit inside Claude instead of alongside it.
+
+Briefly is built around the right-hand path. It's a connector that runs inside Claude Desktop, the local option this page is about. Briefly also runs as a browser workspace for advisors who'd rather sign in that way, though files there live on Briefly's servers instead of staying on your computer. An advisor using the connector points it at a folder of client documents, emails, and notes already stored on their computer. When they ask a question in Claude, whether that's prepping for tomorrow's meeting or answering something specific about a client's account, Briefly reads the relevant files locally and writes the answer with the source cited. With the Briefly connector, client files never leave your computer. Only your sign-in and de-identified preference rules reach Briefly's server.
+
+That's why the Reg S-P questions from earlier in this page get simpler, not more complicated. A vendor that never receives the client file has nothing to safeguard, nothing to disclose in a 30-day breach notice, and nothing for an examiner to ask about in a vendor-oversight review.
+
+This page covers the two most common paths. For a full comparison of what Claude can and can't see out of the box, and how advisors are giving it secure access to client files beyond Briefly, see Claude for financial advisors .
+
+## Frequently asked questions
+
+Q: Can financial advisors put client data into ChatGPT?
+
+Typing a client's name, account number, or portfolio detail into ChatGPT sends that data to OpenAI's servers, outside the advisor's own systems. Reg S-P treats an AI vendor used this way as a service provider the firm must oversee, and most firms have no oversight agreement with OpenAI at all. Summarized data without identifiers carries far less risk.
+
+Q: Is ChatGPT compliant with SEC and FINRA rules for financial advisors?
+
+ChatGPT itself isn't approved or rejected by the SEC or FINRA. Compliance depends on how an advisor uses it. Pasting client information into the consumer chat window creates a Reg S-P and recordkeeping problem. Using ChatGPT for general research or drafting with no client specifics avoids most of that risk.
+
+Q: What happens to client data after it's pasted into ChatGPT or Claude?
+
+It travels to the vendor's servers and is handled under that vendor's own privacy policy and retention rules, not the advisor firm's. Depending on the plan, it may also be used to train future models. The advisor's compliance program has no visibility into or control over any of that once the data leaves the chat window.
+
+Q: Does Regulation S-P apply to AI tools advisors use with client data?
+
+Yes. The amended Reg S-P safeguards rule, in force for all RIAs since June 3, 2026, requires firms to oversee the third-party service providers that touch customer information, and an AI vendor receiving client data counts as one. Firms need a written incident response plan and a real vendor review, not just a terms-of-service click.
+
+Q: Can financial advisors use Claude for client work?
+
+It depends on the plan. A personal Claude account, on the Free, Pro, or Max plan, has trained on conversations by default since August 2025 unless the user opts out in settings. Claude for Work, Enterprise, and API access do not train on conversation data. Check the plan before assuming the tool is safe either way.
+
+Q: Does my firm need a written policy on AI tools like ChatGPT and Claude?
+
+Yes, in practice. FINRA's 2026 guidance expects firms to supervise AI-assisted communications the same way they supervise any other correspondence, and the SEC's exam priorities ask whether a firm's actual AI use matches what it discloses. A firm without a written policy naming which AI tools are approved is exposed in exactly the review both regulators say they're running.
+
+Q: Do advisors need to archive AI chat conversations under FINRA rules?
+
+If the conversation functions as a business communication, drafting a client email, discussing an account, giving investment guidance, it likely falls under the same books-and-records and supervision requirements as any other business correspondence. Most consumer AI chat tools were not built with that archiving requirement in mind, which is part of the compliance gap.
+
+Q: Is there an SEC-approved AI tool for financial advisors?
+
+No, and no vendor can honestly claim that certification exists. The SEC fined two investment advisers, Delphia and Global Predictions, a combined $400,000 in 2024 for overstating their AI capabilities to clients. The lesson for advisors evaluating any AI tool, including Briefly, is to verify specific claims rather than trust a compliance label.
+
+Q: What's the safest way for advisors to use AI with client information?
+
+Use a setup where client files stay on the advisor's own computer and the AI reads them there instead of uploading them to a vendor. Briefly, an AI knowledge base for financial advisors, works this way through its connector inside Claude Desktop. With the connector, client files never leave your computer. Only your sign-in and de-identified preference rules reach Briefly's server.
+
+Q: Is pasting a summary of client information into ChatGPT safer than pasting the raw file?
+
+Somewhat. Removing names, account numbers, and other identifiers reduces the privacy exposure, though the underlying communication may still be a business record a firm needs to retain. It's a smaller risk than pasting a full file, not a compliant workflow on its own. Firm policy should still govern what leaves the building.
+
+## Sources
+
+SEC Press Release 2024-58, "SEC Adopts Rule Amendments to Regulation S-P to Enhance Protection of Customer Information" (May 16, 2024)
+
+SEC, Small Entity Compliance Guide, Regulation S-P
+
+SEC Division of Examinations, 2026 Examination Priorities (November 17, 2025)
+
+FINRA, 2026 Annual Regulatory Oversight Report (December 9, 2025)
+
+SEC Press Release 2024-36, "SEC Charges Two Investment Advisers with Making False and Misleading Statements About Their Use of Artificial Intelligence" (March 18, 2024)
+
+OpenAI, Data Controls FAQ
+
+Anthropic, Consumer Terms of Service
+
+None of this is legal advice. Regulations change, and your firm's specific obligations depend on facts a general article can't know. Talk with your compliance officer or securities counsel before changing how your firm uses ChatGPT, Claude, or any other AI tool.
+
+### Connor Florczyk
+
+Founder of Briefly. Before Briefly, he worked as a private wealth analyst on a top-performing team at Morgan Stanley, where he saw firsthand how much advisor time gets lost hunting for a client's own files.
+
+## See how Briefly keeps client files on your computer.
+
+Briefly runs inside Claude Desktop and reads your firm's own files locally, so client data never has to leave your machine to get an answer.
+
+
+---
+# Claude for Financial Advisors | Briefly
+Source: https://www.brieflywealth.com/claude-for-financial-advisors
+---
+
+**Claude for Financial Advisors**
+
+# What Claude can do for financial advisors, and what it still can't see.
+
+A plain look at what Claude handles out of the box, why your client files aren't part of that by default, and four ways to close the gap, ranked by where your data actually ends up.
+
+A disclosure before we get into it. Briefly is the local connector we built, so we're not a neutral party on this topic. Everything below is written to hold up whether or not you ever install it, and the comparison further down scores our own product the same way it scores everyone else's.
+
+## Why this question keeps coming up
+
+Anthropic has been shipping finance-focused features on a fast clock, something close to every ten weeks, and wealth firms keep getting pulled into the update cycle whether they asked for it or not. Here's a short version of that timeline.
+
+July 2025 Anthropic launches Claude for Financial Services, with data connections to providers including S&P Global, Moody's, Morningstar, and FactSet.
+
+Late 2025 Anthropic extends Claude's spreadsheet and financial-modeling abilities, aimed at teams that live in Excel and portfolio-management tools.
+
+Early 2026 More financial-data and workflow partnerships roll out as part of Anthropic's regular release cadence, each one adding a new data source Claude can reach with permission.
+
+2026 LPL Financial partners with Anthropic, bringing Claude to LPL's network of more than 30,000 affiliated advisors.
+
+None of these releases close the client-file gap on their own. They make Claude more capable in general, not more able to see your specific clients, which is the part this page is actually about.
+
+## What Claude can already do for an advisor
+
+Sign up for Claude and you get a capable general-purpose model with no advisor-specific features and no memory of your book of business. Inside that plain account, it's still useful for a lot of the writing and thinking work that fills an advisor's week.
+
+Drafting client emails, letters, and meeting follow-ups from notes you type or paste in.
+
+Summarizing a document you upload for that conversation, a fund prospectus or a financial plan.
+
+Explaining a tax, estate, or planning concept in language you can hand to a client.
+
+Checking the math on a projection or comparing two scenarios you describe.
+
+Drafting notes ahead of a client meeting, if you paste the relevant background in yourself.
+
+Brainstorming language for compliance-reviewed marketing copy or a client newsletter.
+
+All of it works from what you type or paste into that one conversation. None of it involves Claude reaching out to your computer, your CRM, or your inbox unless you set that up separately.
+
+## What Claude can't see, and why most comparisons skip it
+
+Every new Claude conversation starts with nothing. No memory of a client from last week's chat, no access to the CRM record, no read on the plan you built in March. Claude only knows what you put in front of it, unless you've connected an outside source.
+
+Most articles that compare Claude to other AI tools stop at capability, what it can write, summarize, or calculate, and skip the harder question of what it can reach. That's the decision an advisor actually has to make. Not whether Claude is smart enough, but how, and whether, to let it near client records at all.
+
+## Connectors and MCP, in plain English
+
+Claude can read from and act on other pieces of software through something called a connector, a small program that tells Claude how to talk to a particular system, whether that's Google Drive, a CRM, or a program running on your own computer. Most connectors, including the one Briefly runs, are built on a standard called MCP (Model Context Protocol), which is Anthropic's open specification for how a model talks to outside tools and data. You don't need to understand the standard any more than you need to understand how the postal system routes mail to use your mailbox. What matters is where the other end of that connector lives, on a vendor's server somewhere, or on your own machine.
+
+## How to give Claude access to client files securely
+
+There are four common ways advisors connect Claude to something resembling client information, and they aren't equally safe. The list below is ranked from the least contained to the most.
+
+Pasting into the chat You copy a client's situation, notes, or numbers directly into the conversation. It's the fastest way to get an answer, and also the method with the least oversight. That text becomes part of the conversation on Anthropic's servers, and depending on your plan, may be used to improve their models. Fine for a hypothetical or an already de-identified question. Risky for anything a client would recognize as their own.
+
+Claude's built-in connectors Claude Desktop has a menu of connectors to apps you probably already use, Google Drive and Gmail among them. Anthropic's own infrastructure handles the connection, so your files stay wherever Google or Microsoft already stores them, but Claude, and by extension Anthropic, reads them during the conversation. No extra install, and one more company sitting in the data path.
+
+A vendor's MCP server Some financial software companies run their own connector into Claude the same way Anthropic does. In practice, this usually means the vendor holds a copy of your client data on their own servers so the connector has something to serve up when Claude asks for it. You're now trusting that company's security and retention practices on top of Anthropic's. Our compliance page goes deeper on what regulators expect from a setup like this before you turn one on.
+
+A local connector that reads files from your machine The connector runs on your own computer and reads files from a folder you choose. Claude asks it a question, the connector reads the answer off your machine's disk, and nothing about that specific client goes to a server, not the vendor's, not Anthropic's, beyond the ordinary API call Claude already makes to think. This is the approach we built the Briefly connector around, and it's the only one of the four where client files never end up copied onto someone else's infrastructure. With the Briefly connector, client files never leave your computer. Only your sign-in and de-identified preference rules reach Briefly's server.
+
+## Claude, with and without a local connector
+
+Here's the same comparison laid out directly. ChatGPT and Claude as they ship, next to Claude with the Briefly connector added.
+
+ChatGPT out of the box
+
+Claude out of the box
+
+Claude + Briefly connector
+
+Data access
+
+Whatever you paste into the chat, plus files you upload for that one session.
+
+Whatever you paste into the chat, plus any connected apps you've approved, like Drive or Gmail.
+
+Documents and notes in the folder you point Briefly at, read straight from your computer.
+
+Remembers the client between sessions
+
+No. Every new chat starts blank unless you paste the details back in.
+
+No, not on its own. You'd need to paste the background in again or keep a connector active.
+
+Yes. Briefly writes what it learns back to files on your computer, so the next conversation can pick up where the last one left off.
+
+Where files live
+
+On OpenAI's servers for that conversation, and potentially longer depending on your plan and settings.
+
+With whichever vendor hosts the connector, Google or Microsoft in most cases, plus Anthropic's infrastructure while it's serving the connection.
+
+With the Briefly connector, files stay on your computer, in the folder you chose. Only your sign-in and de-identified preference rules reach Briefly's server.
+
+Compliance posture
+
+You're relying on OpenAI's data policies and your own recordkeeping. No features built for advisor compliance.
+
+You're relying on Anthropic's data policies. Some plans don't train on your conversations, but the recordkeeping question is still yours to answer.
+
+With the Briefly connector, client files never reach a vendor's server, so there's no client data on our end to govern. See our compliance page for the full accounting.
+
+Setup effort
+
+None. Sign up and start typing.
+
+Low. Sign up, connect an app or two if you want to.
+
+One download, pick a folder, sign in. A few minutes.
+
+ChatGPT still wins in a few places worth naming honestly. It plugs into more outside tools today, its Code Interpreter is genuinely useful for one-off spreadsheet math, and most of your staff have already used it at home, so training time is close to zero. If those three things matter more to your firm than where client files end up, that's a reasonable call.
+
+## Getting started
+
+If you're picking this up for the first time, start simple and add access only as you need it.
+
+Pick a Claude plan that matches how you'll use it. Personal plans train on your conversations by default unless you opt out, while Work, Enterprise, and API plans generally don't. Check before you paste anything client-related.
+
+Start with pasting or a built-in connector for occasional use, methods one or two above.
+
+If you want Claude reading your files regularly, decide between a vendor's MCP server and a local connector based on where you're comfortable having that data sit.
+
+If a local connector is what you want, Briefly is one option, an AI knowledge base for financial advisors that runs inside Claude and reads from a folder on your computer. See how it works before deciding anything.
+
+## Frequently asked questions
+
+Q: Can I use Claude for financial advisor work today?
+
+Yes. Claude works like any general AI chat tool out of the box, drafting emails, summarizing documents you paste in, and explaining planning or tax concepts. It has no special financial advisor mode and no access to your client files unless you connect something yourself.
+
+Q: What can Claude do without any extra setup?
+
+Draft client communication, summarize a document you paste in, check math, explain a concept in plain language, and help write compliance-reviewed marketing copy. All of this works inside a plain Claude account. None of it involves Claude reading anything from your computer or your CRM on its own.
+
+Q: Can Claude see my client files automatically?
+
+No. A new Claude conversation starts with nothing about your clients unless you paste details in or connect a source yourself. Claude does not browse your computer, your CRM, or your email on its own. Anything it knows about a client came from what you gave it in that conversation, or from an approved connector.
+
+Q: What is MCP?
+
+MCP, short for Model Context Protocol, is the open standard Anthropic built for connecting Claude to outside tools and data, whether that's a calendar, a CRM, or a program running on your own computer. You don't need to understand the standard itself. What matters is where the other end of the connector lives, a vendor's server or your own machine.
+
+Q: Is it safe to paste client information directly into Claude?
+
+It depends on your plan and what you paste. A personal Claude account may use your conversations to improve its models unless you opt out, and pasted text becomes part of Anthropic's records either way. Work, Enterprise, and API plans typically don't train on your data, but recordkeeping and retention rules still apply.
+
+Q: What's the difference between Claude's built-in connectors and a vendor's MCP server?
+
+Claude's built-in connectors, like Google Drive or Gmail, route through Anthropic's own infrastructure to reach an app you already use. A vendor's MCP server is that vendor's own connector instead, and it often means the vendor has copied your data onto their servers so there's something for Claude to read.
+
+Q: Does Claude remember a client from one conversation to the next?
+
+Not on its own. Each new chat starts blank, so you'd need to paste the same background in again or keep a connector active that can pull it back up. Tools built around Claude, including Briefly, can write what gets learned about a client back to files, so the next conversation starts from there.
+
+Q: How is Briefly different from just using Claude on its own?
+
+Briefly is an AI knowledge base for financial advisors that runs inside Claude as a local connector. It reads and writes files in a folder on your computer instead of a vendor's cloud, so Claude can work from your actual client records without those records leaving your computer.
+
+## Want Claude reading your actual client files?
+
+Briefly is the local option in the ranking above. One download, pick a folder, sign in, and Claude can work from what's already in your files instead of what you remembered to paste in.
+
+
+---
+# Sample Deliverables | Briefly
+Source: https://www.brieflywealth.com/sample-deliverables
+---
+
+# See what Briefly actually produces.
+
+Four real deliverables, generated by Briefly from a firm's own files. Names, firms, and identifying details are fictionalized. The layout, the numbers, and the citations are what an advisor receives.
+
+With the Briefly connector, client files never leave your computer. Only your sign-in and de-identified preference rules reach Briefly's servers.
+
+**Quarterly review**
+
+## A family's quarter, reviewed
+
+Performance for the quarter, allocation drift against policy, and the conversations worth having next, all cited back to the source files.
+
+**Goal analysis**
+
+## A household's goals, priced
+
+Each goal priced against the household's actual accounts, with the funding gaps named and every figure traceable to a statement.
+
+**Month-end commentary**
+
+## A month-end letter, ready to send
+
+Household totals, what moved them since last month, and the market backdrop, written for the client and cited for the advisor.
+
+**Deal summary**
+
+## A private deal, on one page
+
+Terms, traction, and the three biggest risks of a private investment, condensed into a one-page brief a committee can act on.
+
+Every sample above was produced by Briefly and lightly edited only to fictionalize identity. Ask a question in Claude, and documents like these come back with the sources attached.
+
+
+---
+# The Jobs AI Won't Replace | Briefly
+Source: https://www.brieflywealth.com/blog/jobs-ai-wont-replace
+---
+
+By Connor Florczyk • 2 min read • December 17, 2025
+
+The professions people assume AI will replace first (financial advisors, lawyers, doctors, consultants) are actually the most protected. Not because the technology isn't advancing, but because these predictions misunderstand what the work actually is.
+
+From a distance, these jobs look like information processing. Up close, they're trust, judgment, and accountability.
+
+### Why Human Professionals Remain Essential
+
+Trust matters more than accuracy. Only 28% of retail investors trust AI-generated investment recommendations. Majority of patients are uneasy receiving a diagnosis without a clinician present. The value of any plan depends on whether it can be carried out, and that requires human guidance through volatility and uncertainty.
+
+Professionals work with data AI never sees. An estimated 80% of medical diagnoses come from patient history gathered through conversation and observation. Advisors recognize when stated risk tolerance doesn't match behavior. Attorneys sense tension before anything gets written down. Tone, hesitation, body language, context. None of this shows up in a spreadsheet.
+
+Responsibility can't be assigned to a model. Advisors remain legally responsible for recommendations even when using AI analysis. Attorneys are accountable for any filing under their name. Physicians bear legal liability for clinical decisions. When things go wrong, people need someone to hold accountable. A system can't be sued.
+
+### What Changes
+
+AI will handle data-heavy, pattern-matching work that consumes professional time. It will surface insights faster and catch errors humans miss. The advisors, lawyers, and doctors who learn to work effectively with AI will dramatically outperform those who don't.
+
+But they'll still be needed for what they've always done: building trust, exercising judgment, taking responsibility, and helping people navigate decisions that matter.
+
+
+---
+# Your Brain Doesn't Have Enough RAM | Briefly
+Source: https://www.brieflywealth.com/blog/your-brain-doesnt-have-enough-ram
+---
+
+By Connor Florczyk • 3 min read • January 3, 2026
+
+You have 200 unread emails. Somewhere in there is a detail your client mentioned three weeks ago that you promised to follow up on. The meeting is in twenty minutes. This isn't a failure of effort. It's a failure of biology.
+
+### The Core Problem
+
+Dunbar's number limits us to roughly 150 meaningful relationships. The average financial advisor manages 100 households. A therapist sees 40 clients per week. A teacher has 150 students. Each relationship involves not just names and faces, but context: family dynamics, past conversations, unspoken concerns, and years of accumulated history.
+
+Memory has hard limits. You can hold about four to seven things in your head at once. We forget roughly 70% of new information within a day unless we actively work to remember it. Task work gets completed. Relationship work accumulates indefinitely.
+
+### Why Current Tools Fail
+
+CRMs track the data. Email holds the conversations. Meeting notes capture the context. Portfolio systems show the numbers. But none of them talk to each other, and none of them know what you actually need to remember for the meeting in twenty minutes.
+
+### The Real Constraint
+
+The solution isn't to remember everything. It's to get the right information in front of you at the right time so your brain can focus on what it actually does well: reading people, understanding what someone values, and helping them navigate hard decisions.
+
+No one can remember everything about 100 people across years of interactions. That's not a personal failure. It's just how humans work. The question is whether we're going to keep pretending otherwise, or build systems that let people focus on what makes them irreplaceable.
+
+
+---
+# The Great Wealth Transfer Trap | Briefly
+Source: https://www.brieflywealth.com/blog/great-wealth-transfer-trap
+---
+
+By Connor Florczyk • 3 min read • November 5, 2025
+
+The promised $80 trillion wealth transfer isn't a windfall. It's an operational crisis. When a $10 million family divides across three heirs, the same assets require three times as many relationships to manage.
+
+### The Core Problem
+
+A typical advisor handles 100 households and $300M in AUM. If one-third of those families transfer wealth and fragment into 3-4 heir households, that book swells to 180 relationships. That's an 80% increase with zero additional revenue.
+
+The economics don't work: Servicing 80% more households requires 70-90% more headcount. With compensation already consuming 50% of revenue, that math breaks the business model.
+
+### The Real Bottleneck
+
+Most wealth-tech tackles back-office efficiency: rebalancing, compliance, billing. But the true constraint is front-office cognitive load: preparing for meetings, following up, staying contextually relevant. Advisors spend 40% of their time on coordination that should take minutes.
+
+Automation can't scale trust. Email templates reduce clicks, not mental friction. When data lives in silos, every meeting begins with manual reconstruction across CRMs, emails, and portfolio systems.
+
+### The Market Reality
+
+- Global financial wealth hit $300 trillion in 2024, but organic growth among advisors has stalled
+
+- One-third of households will change their primary advisor relationship within a decade
+
+- Less than 25% of firms have integrated intelligent automation into client workflows
+
+- Industry IP (understanding of relationships) remains unstructured and inaccessible
+
+### The Opportunity
+
+Tools like Altruist, Addepar, and Orion have modernized execution. The white space is relationship intelligence: knowing who to call, what to say, when to reach out.
+
+The next competitive edge goes to firms that can double relationship capacity without doubling staff. Those that preserve personalization while scaling from 100 to 200 clients per advisor.
+
+The future belongs to firms that scale context and trust.
+

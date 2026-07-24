@@ -5,6 +5,7 @@ Disallow: /swarm-
 Disallow: /diag-mob-
 Disallow: /redesign-concepts/
 Disallow: /sample-brief-email-preview.html
+Disallow: /legal-drafts/
 
 User-agent: GPTBot
 Allow: /
