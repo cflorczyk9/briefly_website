@@ -258,18 +258,23 @@
     position: absolute;
     z-index: 7;
     left: 50%;
-    top: 42%;
+    top: 35%;
     transform: translate(-50%, -50%) scaleY(.86);
     width: 100%;
     text-align: center;
     color: #1c1d1f;
-    font-size: clamp(82px, 17vw, 260px);
+    font-size: clamp(82px, 14vw, 210px);
     font-weight: 900;
     line-height: .74;
     letter-spacing: -.09em;
     text-transform: uppercase;
     user-select: none;
     pointer-events: none;
+  }
+  /* Mid-width laptops: the copy block and the wordmark share horizontal space,
+     so lift the wordmark clear of the text instead of letting them cross. */
+  @media (min-width: 821px) and (max-width: 1400px) {
+    .center-word { top: 26%; font-size: clamp(78px, 12.5vw, 170px); }
   }
 
   .source-node {
@@ -351,9 +356,9 @@
   .hero-copy h1 {
     margin: 14px 0 0;
     color: var(--ink);
-    font-size: clamp(40px, 5vw, 64px);
-    line-height: .92;
-    letter-spacing: -.055em;
+    font-size: clamp(40px, 5vw, 60px);
+    line-height: 1.04;
+    letter-spacing: -.03em;
     font-weight: 900;
   }
   .hero-copy p {
@@ -1825,17 +1830,20 @@
 <style id="mcp-band-styles">
   .hero-mcp-note {
     margin-top: 16px;
-    display: inline-flex;
-    align-items: center;
-    gap: 9px;
+    display: block;
+    max-width: 460px;
     font-family: var(--mono);
     font-size: 13px;
     font-weight: 700;
     letter-spacing: .03em;
+    line-height: 1.65;
     color: var(--ink-soft);
   }
   .hero-mcp-note b { color: var(--ink); font-weight: 800; }
   .hero-mcp-note .hmn-dot {
+    display: inline-block;
+    vertical-align: 2px;
+    margin-right: 9px;
     width: 7px; height: 7px; border-radius: 50%;
     background: var(--blue);
     box-shadow: 0 0 0 3px rgba(47,140,255,.18);
@@ -3773,5 +3781,41 @@
     return false;
   }
 </script>
+<!-- Nav mid-width fix (2026-07-24): squeeze 1080-1320px, hamburger 821-1079px.
+     Both nav designs need ~1292px at full size, so laptops between the 820px
+     mobile breakpoint and ~1300px used to clip the right-side buttons. -->
+<style id="nav-midwidth-fix">
+  @media (min-width: 1080px) and (max-width: 1320px) {
+    nav.nav { padding: 0 16px; }
+    nav.nav .nav-links { gap: 6px; }
+    nav.nav .nav-links a { font-size: 10.5px; letter-spacing: .02em; padding: 6px 6px; }
+    nav.nav .nav-actions { gap: 8px; }
+    nav.nav .nav-actions a, nav.nav .nav-actions button { font-size: 10.5px; padding-left: 12px; padding-right: 12px; }
+  }
+  @media (min-width: 821px) and (max-width: 1079px) {
+    nav.nav .nav-links { display: none; }
+    nav.nav .nav-toggle { display: inline-flex; }
+    nav.nav .nav-links.open {
+      display: flex;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      gap: 0;
+      padding: 12px 20px 20px;
+      background: var(--paper-2, var(--paper, #efede4));
+      border-bottom: 1px solid var(--rule, rgba(28,29,31,.18));
+    }
+    nav.nav .nav-links.open a {
+      width: 100%;
+      padding: 14px 12px;
+      border: 0;
+      border-bottom: 1px solid var(--rule, rgba(28,29,31,.12));
+      font-size: 12px;
+    }
+    nav.nav .nav-links.open a:last-child { border-bottom: 0; }
+  }
+</style>
 </body>
 </html>

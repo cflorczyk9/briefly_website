@@ -686,5 +686,41 @@
   })();
 </script>
 
+<!-- Nav mid-width fix (2026-07-24): squeeze 1080-1320px, hamburger 821-1079px.
+     Both nav designs need ~1292px at full size, so laptops between the 820px
+     mobile breakpoint and ~1300px used to clip the right-side buttons. -->
+<style id="nav-midwidth-fix">
+  @media (min-width: 1080px) and (max-width: 1320px) {
+    nav.nav { padding: 0 16px; }
+    nav.nav .nav-links { gap: 6px; }
+    nav.nav .nav-links a { font-size: 10.5px; letter-spacing: .02em; padding: 6px 6px; }
+    nav.nav .nav-actions { gap: 8px; }
+    nav.nav .nav-actions a, nav.nav .nav-actions button { font-size: 10.5px; padding-left: 12px; padding-right: 12px; }
+  }
+  @media (min-width: 821px) and (max-width: 1079px) {
+    nav.nav .nav-links { display: none; }
+    nav.nav .nav-toggle { display: inline-flex; }
+    nav.nav .nav-links.open {
+      display: flex;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      gap: 0;
+      padding: 12px 20px 20px;
+      background: var(--paper-2, var(--paper, #efede4));
+      border-bottom: 1px solid var(--rule, rgba(28,29,31,.18));
+    }
+    nav.nav .nav-links.open a {
+      width: 100%;
+      padding: 14px 12px;
+      border: 0;
+      border-bottom: 1px solid var(--rule, rgba(28,29,31,.12));
+      font-size: 12px;
+    }
+    nav.nav .nav-links.open a:last-child { border-bottom: 0; }
+  }
+</style>
 </body>
 </html>
