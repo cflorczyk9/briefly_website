@@ -498,15 +498,15 @@
   .platform-head-left .eyebrow {
     color: var(--ink-muted);
     font-family: var(--mono);
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: .12em;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .08em;
     text-transform: uppercase;
     margin-bottom: 24px;
   }
   .platform-title {
     margin: 0;
-    font-size: clamp(48px, 7.4vw, 116px);
+    font-size: clamp(48px, 6vw, 72px);
     font-weight: 900;
     letter-spacing: -.05em;
     line-height: .88;
@@ -622,7 +622,7 @@
     height: var(--pc-h);
     background: var(--paper-3);
     border: 1px solid var(--ink);
-    border-radius: 20px;
+    border-radius: 0;
     overflow: hidden;
     position: relative;
     cursor: pointer;
@@ -777,8 +777,8 @@
   .aw-head .eyebrow {
     font-family: var(--mono);
     font-size: 11px;
-    font-weight: 800;
-    letter-spacing: .14em;
+    font-weight: 700;
+    letter-spacing: .08em;
     text-transform: uppercase;
     color: var(--ink-muted);
     margin-bottom: 14px;
@@ -806,7 +806,7 @@
   }
   .aw-tab {
     appearance: none;
-    border: 1px solid var(--ink-faint);
+    border: 1px solid var(--rule);
     background: var(--paper-3);
     color: var(--ink-soft);
     font-family: var(--mono);
@@ -907,8 +907,7 @@
   /* ----- sources ----- */
   .aw-sources { display: flex; flex-direction: column; gap: 9px; }
   .aw-source {
-    background: var(--paper);
-    border: 1px solid var(--rule);
+    background: var(--paper-2);
     padding: 9px 12px;
     display: flex;
     flex-direction: column;
@@ -936,8 +935,7 @@
   .aw-agents { display: flex; flex-direction: column; align-items: stretch; padding-top: 6px; }
   .aw-agent-step {
     position: relative;
-    background: var(--paper);
-    border: 1px solid var(--rule);
+    background: var(--paper-2);
     border-radius: 999px;
     padding: 10px 16px 10px 34px;
     display: flex;
@@ -1037,7 +1035,7 @@
   }
   .aw-draft-actions { display: flex; gap: 4px; }
   .aw-draft-actions span {
-    border: 1px solid var(--ink-faint);
+    border: 1px solid var(--rule);
     background: transparent;
     color: var(--ink-soft);
     font-family: var(--mono);
@@ -1152,8 +1150,8 @@
   .cfos-header-eyebrow {
     color: var(--blue);
     font-family: var(--mono);
-    font-size: 12px;
-    font-weight: 800;
+    font-size: 11px;
+    font-weight: 700;
     letter-spacing: .08em;
     text-transform: uppercase;
     margin-bottom: 14px;
@@ -1221,13 +1219,13 @@
   }
   .cfos-num {
     font-family: var(--mono);
-    font-size: clamp(72px, 9vw, 132px);
+    font-size: clamp(56px, 6vw, 88px);
     font-weight: 900;
     line-height: 1;
     letter-spacing: -.04em;
     color: var(--ink);
     flex-shrink: 0;
-    opacity: .26;
+    opacity: .18;
     transition: font-size .55s cubic-bezier(.3, 1.2, .4, 1),
                 color .35s ease,
                 opacity .35s ease;
@@ -1263,7 +1261,7 @@
     height: 22px;
     border-radius: 50%;
     background: var(--paper);
-    border: 2px solid var(--ink-faint);
+    border: 2px solid var(--rule);
     margin: 0 auto;
     z-index: 2;
     transition: background .25s ease,
@@ -1283,7 +1281,6 @@
     font-weight: 800;
     letter-spacing: .04em;
     text-transform: uppercase;
-    border: 1px solid var(--ink-faint);
     padding: 5px 9px;
     color: var(--ink-soft);
     background: var(--paper-2);
@@ -1292,9 +1289,9 @@
     transform-origin: left center;
     transition: opacity .35s ease, transform .45s cubic-bezier(.34, 1.56, .64, 1);
   }
-  .cfos-chip.cite { color: var(--blue); border-color: rgba(11,83,148,.42); background: rgba(11,83,148,.06); }
-  .cfos-chip.warn { color: var(--amber); border-color: rgba(217,119,6,.42); background: rgba(217,119,6,.06); }
-  .cfos-chip.held { color: var(--red); border-color: rgba(220,38,38,.42); background: rgba(220,38,38,.06); }
+  .cfos-chip.cite { color: var(--blue); background: rgba(11,83,148,.06); }
+  .cfos-chip.warn { color: var(--amber); background: rgba(217,119,6,.06); }
+  .cfos-chip.held { color: var(--red); background: rgba(220,38,38,.06); }
 
   .cfos-row.active .cfos-num {
     font-size: clamp(40px, 4vw, 56px);
@@ -1718,6 +1715,14 @@
       },
       {
         "@type": "Question",
+        "name": "Does anyone at Briefly see my client files?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. With the connector, client files stay in a folder on your computer and never reach Briefly's servers, so there is nothing on our side to see. With the web app, files live in Briefly's hosted environment, which we secure and control, and your firm decides who signs in."
+        }
+      },
+      {
+        "@type": "Question",
         "name": "What stops the AI from making things up?",
         "acceptedAnswer": {
           "@type": "Answer",
@@ -1734,10 +1739,42 @@
       },
       {
         "@type": "Question",
+        "name": "How is Briefly different from a CRM?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A CRM keeps a record of activity. Briefly reads what your firm already stores, including CRM records, and turns it into one knowledge base you can question in plain English. Firms keep Salesforce for workflow and use Briefly to find and use what the firm already knows."
+        }
+      },
+      {
+        "@type": "Question",
         "name": "Is Briefly just a meeting prep tool?",
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "No. Briefly is an AI knowledge base built from your firm's own files, and a meeting agenda is one thing it can produce from that base. Ask it a question about a household, a compliance detail, or a plan assumption, and it answers from the same source-backed file, citation included."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I have to move my files or change how my team works?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The connector reads from a folder you pick on your own computer, and your files stay where they already live. There is no migration project and nothing to re-enter. Most firms drop new documents into one intake folder and let Briefly file them from there."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Briefly work for a whole team or just one advisor?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Both. Briefly is priced per advisor seat, and a team shares one knowledge base. When one person files a document or corrects a detail, everyone's answers reflect it from then on, so the newest hire can answer a client question with the full history behind it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does Briefly cost?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The connector is free for your first month, then $150 per advisor seat per month. The web app is $150 per advisor seat from day one. Both include the same knowledge base, and the difference is where your client files live."
         }
       },
       {
@@ -1870,7 +1907,7 @@
     pointer-events: none;
   }
   .mcp-inner { position: relative; max-width: 1140px; margin: 0 auto; }
-  .mcp .eyebrow { color: var(--cyan); margin-bottom: 14px; }
+  .mcp .eyebrow { color: var(--cyan); margin-bottom: 14px; font-size: 11px; font-weight: 700; letter-spacing: .08em; }
   .mcp h2 {
     margin: 0;
     font-size: clamp(32px, 4.4vw, 58px);
@@ -1941,8 +1978,7 @@
     letter-spacing: .07em;
     text-transform: uppercase;
     color: var(--cream-soft);
-    border: 1px solid var(--cream-line);
-    padding: 8px 12px;
+    padding: 9px 13px;
   }
   @media (max-width: 760px) {
     .mcp { padding: 64px 18px 72px; }
@@ -2058,7 +2094,7 @@
   }
   .custody-inner { max-width: 1120px; margin: 0 auto; }
   .custody-head { max-width: 760px; }
-  .custody-head .eyebrow { margin-bottom: 14px; }
+  .custody-head .eyebrow { margin-bottom: 14px; font-size: 11px; font-weight: 700; letter-spacing: .08em; }
   .custody-head h2 {
     margin: 0;
     font-size: clamp(32px, 4.4vw, 54px);
@@ -2100,7 +2136,7 @@
   }
   .custody-col-briefly {
     border-color: var(--blue);
-    background: rgba(11,83,148,.06);
+    background: rgba(47,140,255,.06);
   }
   .custody-col-briefly h3 { color: var(--blue); }
   @media (max-width: 760px) {
@@ -2398,7 +2434,7 @@
   }
   .feat-inner { max-width: 1200px; margin: 0 auto; }
   .feat-head { max-width: 780px; }
-  .feat-head .eyebrow { margin-bottom: 14px; }
+  .feat-head .eyebrow { margin-bottom: 14px; font-size: 11px; font-weight: 700; letter-spacing: .08em; }
   .feat-head h2 {
     margin: 0;
     font-size: clamp(32px, 4.4vw, 58px);
@@ -2516,7 +2552,7 @@
   }
   .site-faq-inner { max-width: 880px; margin: 0 auto; }
   .site-faq-head { max-width: 660px; }
-  .site-faq-head .eyebrow { margin-bottom: 14px; }
+  .site-faq-head .eyebrow { margin-bottom: 14px; font-size: 11px; font-weight: 700; letter-spacing: .08em; }
   .site-faq-head h2 {
     margin: 0;
     font-size: clamp(30px, 4vw, 44px);
@@ -2577,6 +2613,10 @@
         <p>With the Briefly connector, client files never leave your computer. Briefly reads them locally, only your sign-in and de-identified preference rules ever reach our server, and we never train AI models on client data. If your firm uses the Briefly web app instead, files live in Briefly's hosted environment, which we secure and control.</p>
       </details>
       <details class="site-faq-item">
+        <summary>Does anyone at Briefly see my client files?</summary>
+        <p>No. With the connector, client files stay in a folder on your computer and never reach Briefly's servers, so there is nothing on our side to see. With the web app, files live in Briefly's hosted environment, which we secure and control, and your firm decides who signs in.</p>
+      </details>
+      <details class="site-faq-item">
         <summary>What stops the AI from making things up?</summary>
         <p>Every answer Briefly gives carries a citation back to the source document, so you can open the original and check it in seconds. If a fact isn't in your firm's files, Briefly says so instead of guessing. And nothing writes back to a client file without an advisor approving it first.</p>
       </details>
@@ -2585,8 +2625,24 @@
         <p>Pasting a client's name, account number, or holdings into a general AI chat window sends that data to the vendor's servers, raising real questions under Reg S-P and FINRA recordkeeping rules. With the Briefly connector, client files stay on your computer instead, and only sign-in and de-identified preference rules ever reach our server.</p>
       </details>
       <details class="site-faq-item">
+        <summary>How is Briefly different from a CRM?</summary>
+        <p>A CRM keeps a record of activity. Briefly reads what your firm already stores, including CRM records, and turns it into one knowledge base you can question in plain English. Firms keep Salesforce for workflow and use Briefly to find and use what the firm already knows.</p>
+      </details>
+      <details class="site-faq-item">
         <summary>Is Briefly just a meeting prep tool?</summary>
         <p>No. Briefly is an AI knowledge base built from your firm's own files, and a meeting agenda is one thing it can produce from that base. Ask it a question about a household, a compliance detail, or a plan assumption, and it answers from the same source-backed file, citation included.</p>
+      </details>
+      <details class="site-faq-item">
+        <summary>Do I have to move my files or change how my team works?</summary>
+        <p>No. The connector reads from a folder you pick on your own computer, and your files stay where they already live. There is no migration project and nothing to re-enter. Most firms drop new documents into one intake folder and let Briefly file them from there.</p>
+      </details>
+      <details class="site-faq-item">
+        <summary>Does Briefly work for a whole team or just one advisor?</summary>
+        <p>Both. Briefly is priced per advisor seat, and a team shares one knowledge base. When one person files a document or corrects a detail, everyone's answers reflect it from then on, so the newest hire can answer a client question with the full history behind it.</p>
+      </details>
+      <details class="site-faq-item">
+        <summary>What does Briefly cost?</summary>
+        <p>The connector is free for your first month, then $150 per advisor seat per month. The web app is $150 per advisor seat from day one. Both include the same knowledge base, and the difference is where your client files live.</p>
       </details>
       <details class="site-faq-item">
         <summary>What happens if I leave?</summary>
@@ -3666,8 +3722,8 @@
     font-size:24px; color:var(--ink, #1c1d1f); cursor:pointer; line-height:1; padding:6px 8px;
   }
   .demo-modal-eyebrow {
-    font-family:var(--mono, monospace); font-size:11px; font-weight:800;
-    letter-spacing:.16em; text-transform:uppercase; color:var(--navy, #0b5394);
+    font-family:var(--mono, monospace); font-size:11px; font-weight:700;
+    letter-spacing:.08em; text-transform:uppercase; color:var(--navy, #0b5394);
     margin:0 0 8px;
   }
   .demo-modal-title {

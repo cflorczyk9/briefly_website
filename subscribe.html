@@ -72,8 +72,8 @@
     background: var(--blue);
     box-shadow: 0 0 0 2px rgba(47,140,255,.10);
   }
-  nav.nav .nav-links { display: flex; gap: 0; border: 1px solid var(--ink); background: var(--paper); }
-  nav.nav .nav-links a { display: inline-flex; align-items: center; height: 38px; padding: 0 14px; border-right: 1px solid var(--ink); font-family: var(--mono); font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--ink); text-decoration: none; }
+  nav.nav .nav-links { display: flex; gap: 0; background: var(--paper); }
+  nav.nav .nav-links a { display: inline-flex; align-items: center; height: 38px; padding: 0 14px; font-family: var(--mono); font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--ink); text-decoration: none; }
   nav.nav .nav-links a:last-child { border-right: 0; }
   nav.nav .nav-links a:hover { background: var(--ink); color: var(--paper); }
   nav.nav .nav-actions { display: inline-flex; align-items: center; gap: 10px; }
@@ -100,7 +100,7 @@
   .grid { display: grid; grid-template-columns: 5fr 7fr; gap: 56px; align-items: start; }
 
   /* left: copy + form */
-  .eyebrow { font-family: var(--mono); font-size: 12px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--blue); margin-bottom: 14px; display: block; }
+  .eyebrow { font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--blue); margin-bottom: 14px; display: block; }
   h1.hero { font-weight: 900; font-size: clamp(36px, 5vw, 52px); letter-spacing: -.045em; line-height: .98; color: var(--ink); margin-bottom: 18px; }
   .lede { font-size: 17px; line-height: 1.6; color: var(--ink-soft); margin-bottom: 28px; max-width: 44ch; }
 
@@ -223,7 +223,6 @@
   nav.nav .nav-links {
     display: flex;
     align-items: stretch;
-    border: 1px solid var(--rule);
     background: transparent;
     gap: 0;
   }
