@@ -61,61 +61,75 @@
     </script>
     <script type="application/ld+json">
     {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Can financial advisors put client data into ChatGPT?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Typing a client's name, account number, or portfolio detail into ChatGPT sends that data to OpenAI's servers, outside the advisor's own systems. Reg S-P treats an AI vendor used this way as a service provider the firm must oversee, and most firms have no oversight agreement with OpenAI at all. Summarized data without identifiers carries far less risk." }
-        },
-        {
-          "@type": "Question",
-          "name": "Is ChatGPT compliant with SEC and FINRA rules for financial advisors?",
-          "acceptedAnswer": { "@type": "Answer", "text": "ChatGPT itself isn't approved or rejected by the SEC or FINRA. Compliance depends on how an advisor uses it. Pasting client information into the consumer chat window creates a Reg S-P and recordkeeping problem. Using ChatGPT for general research or drafting with no client specifics avoids most of that risk." }
-        },
-        {
-          "@type": "Question",
-          "name": "What happens to client data after it's pasted into ChatGPT or Claude?",
-          "acceptedAnswer": { "@type": "Answer", "text": "It travels to the vendor's servers and is handled under that vendor's own privacy policy and retention rules, not the advisor firm's. Depending on the plan, it may also be used to train future models. The advisor's compliance program has no visibility into or control over any of that once the data leaves the chat window." }
-        },
-        {
-          "@type": "Question",
-          "name": "Does Regulation S-P apply to AI tools advisors use with client data?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes. The amended Reg S-P safeguards rule, in force for all RIAs since June 3, 2026, requires firms to oversee the third-party service providers that touch customer information, and an AI vendor receiving client data counts as one. Firms need a written incident response plan and a real vendor review, not just a terms-of-service click." }
-        },
-        {
-          "@type": "Question",
-          "name": "Can financial advisors use Claude for client work?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes, on the right plan. Claude for Work, Enterprise, and API accounts fall under Anthropic's commercial terms, which prohibit training on customer content. Personal Free, Pro, and Max accounts train on conversations unless the user opts out, and safety-flagged chats can be used even after opting out. Client work belongs on a business plan." }
-        },
-        {
-          "@type": "Question",
-          "name": "Does my firm need a written policy on AI tools like ChatGPT and Claude?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes, in practice. FINRA's 2026 guidance expects firms to supervise AI-assisted communications the same way they supervise any other correspondence, and the SEC's exam priorities ask whether a firm's actual AI use matches what it discloses. A firm without a written policy naming which AI tools are approved is exposed in exactly the review both regulators say they're running." }
-        },
-        {
-          "@type": "Question",
-          "name": "Do advisors need to archive AI chat conversations under FINRA rules?",
-          "acceptedAnswer": { "@type": "Answer", "text": "If the conversation functions as a business communication, drafting a client email, discussing an account, giving investment guidance, it likely falls under the same books-and-records and supervision requirements as any other business correspondence. Most consumer AI chat tools were not built with that archiving requirement in mind, which is part of the compliance gap." }
-        },
-        {
-          "@type": "Question",
-          "name": "Is there an SEC-approved AI tool for financial advisors?",
-          "acceptedAnswer": { "@type": "Answer", "text": "No, and no vendor can honestly claim that certification exists. The SEC fined two investment advisers, Delphia and Global Predictions, a combined $400,000 in 2024 for overstating their AI capabilities to clients. The lesson for advisors evaluating any AI tool, including Briefly, is to verify specific claims rather than trust a compliance label." }
-        },
-        {
-          "@type": "Question",
-          "name": "What's the safest way for advisors to use AI with client information?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Use a setup where client files stay on the advisor's own computer and the AI reads them there instead of uploading them to a vendor. Briefly, an AI knowledge base for financial advisors, works this way through its connector inside Claude Desktop. With the connector, client files never leave your computer. Only your sign-in and de-identified preference rules reach Briefly's server." }
-        },
-        {
-          "@type": "Question",
-          "name": "Is pasting a summary of client information into ChatGPT safer than pasting the raw file?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Somewhat. Removing names, account numbers, and other identifiers reduces the privacy exposure, though the underlying communication may still be a business record a firm needs to retain. It's a smaller risk than pasting a full file, not a compliant workflow on its own. Firm policy should still govern what leaves the building." }
-        }
-      ]
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can financial advisors put client data into ChatGPT?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Typing a client's name, account number, or portfolio detail into ChatGPT sends that data to OpenAI's servers, outside the advisor's own systems. Reg S-P treats an AI vendor used this way as a service provider the firm must oversee, and most firms have no oversight agreement with OpenAI at all. Summarized data without identifiers carries far less risk."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is ChatGPT compliant with SEC and FINRA rules for financial advisors?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ChatGPT itself isn't approved or rejected by the SEC or FINRA. Compliance depends on how an advisor uses it. Pasting client information into the consumer chat window creates a Reg S-P and recordkeeping problem. Using ChatGPT for general research or drafting with no client specifics avoids most of that risk."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Regulation S-P apply to AI tools advisors use with client data?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The amended Reg S-P safeguards rule, in force for all RIAs since June 3, 2026, requires firms to oversee the third-party service providers that touch customer information, and an AI vendor receiving client data counts as one. Firms need a written incident response plan and a real vendor review, not just a terms-of-service click."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can financial advisors use Claude for client work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, on the right plan. Claude for Work, Enterprise, and API accounts fall under Anthropic's commercial terms, which prohibit training on customer content. Personal Free, Pro, and Max accounts train on conversations unless the user opts out, and safety-flagged chats can be used even after opting out. Client work belongs on a business plan."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does my firm need a written policy on AI tools like ChatGPT and Claude?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, in practice. FINRA's 2026 guidance expects firms to supervise AI-assisted communications the same way they supervise any other correspondence, and the SEC's exam priorities ask whether a firm's actual AI use matches what it discloses. A firm without a written policy naming which AI tools are approved is exposed in exactly the review both regulators say they're running."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do advisors need to archive AI chat conversations under FINRA rules?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If the conversation functions as a business communication, drafting a client email, discussing an account, giving investment guidance, it likely falls under the same books-and-records and supervision requirements as any other business correspondence. Most consumer AI chat tools were not built with that archiving requirement in mind, which is part of the compliance gap."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there an SEC-approved AI tool for financial advisors?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, and no vendor can honestly claim that certification exists. The SEC fined two investment advisers, Delphia and Global Predictions, a combined $400,000 in 2024 for overstating their AI capabilities to clients. The lesson for advisors evaluating any AI tool, including Briefly, is to verify specific claims rather than trust a compliance label."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the safest way for advisors to use AI with client information?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use a setup where client files stay on the advisor's own computer and the AI reads them there instead of uploading them to a vendor. Briefly, an AI knowledge base for financial advisors, works this way through its connector inside Claude Desktop. With the connector, client files never leave your computer. Only your sign-in and de-identified preference rules reach Briefly's server."
+      }
     }
+  ]
+}
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -167,13 +181,13 @@
         .flow-caption { margin: 14px 0 40px; font-size: 14px; color: var(--muted); }
 
         /* FAQ accordion */
-        .faq { margin: 8px 0 4px; border-top: 1px solid var(--border); }
-        .faq details { border-bottom: 1px solid var(--border); padding: 18px 0; }
-        .faq summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 16px; color: var(--navy); }
+        .faq { margin: 8px 0 4px; }
+        .faq details { border-bottom: 1px solid var(--ink, #1c1d1f); padding: 22px 0; }
+        .faq summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: baseline; gap: 18px; font-family: 'DM Sans', sans-serif; font-weight: 700; letter-spacing: -.01em; font-size: 17px; color: var(--ink, #1c1d1f); }
         .faq summary::-webkit-details-marker { display: none; }
-        .faq summary::after { content: '+'; font-size: 22px; font-weight: 400; color: var(--muted); flex-shrink: 0; line-height: 1; }
+        .faq summary::after { content: '+'; font-family: "JetBrains Mono", SFMono-Regular, monospace; font-size: 20px; font-weight: 700; color: var(--blue); flex-shrink: 0; line-height: 1; }
         .faq details[open] summary::after { content: '\2212'; }
-        .faq details p { margin: 12px 0 0; color: #334155; font-size: 15.5px; line-height: 1.6; }
+        .faq details p { margin: 14px 0 0; color: var(--muted); font-size: 15px; line-height: 1.65; max-width: 720px; }
 
         /* Sources */
         .sources { margin: 8px 0 0; padding: 26px 28px; border: 1px solid var(--border); border-radius: 12px; background: var(--off); }
@@ -354,10 +368,6 @@
             <p>ChatGPT itself isn't approved or rejected by the SEC or FINRA. Compliance depends on how an advisor uses it. Pasting client information into the consumer chat window creates a Reg S-P and recordkeeping problem. Using ChatGPT for general research or drafting with no client specifics avoids most of that risk.</p>
           </details>
           <details>
-            <summary>What happens to client data after it's pasted into ChatGPT or Claude?</summary>
-            <p>It travels to the vendor's servers and is handled under that vendor's own privacy policy and retention rules, not the advisor firm's. Depending on the plan, it may also be used to train future models. The advisor's compliance program has no visibility into or control over any of that once the data leaves the chat window.</p>
-          </details>
-          <details>
             <summary>Does Regulation S-P apply to AI tools advisors use with client data?</summary>
             <p>Yes. The amended Reg S-P safeguards rule, in force for all RIAs since June 3, 2026, requires firms to oversee the third-party service providers that touch customer information, and an AI vendor receiving client data counts as one. Firms need a written incident response plan and a real vendor review, not just a terms-of-service click.</p>
           </details>
@@ -380,10 +390,6 @@
           <details>
             <summary>What's the safest way for advisors to use AI with client information?</summary>
             <p>Use a setup where client files stay on the advisor's own computer and the AI reads them there instead of uploading them to a vendor. Briefly, an AI knowledge base for financial advisors, works this way through its connector inside Claude Desktop. With the connector, client files never leave your computer. Only your sign-in and de-identified preference rules reach Briefly's server.</p>
-          </details>
-          <details>
-            <summary>Is pasting a summary of client information into ChatGPT safer than pasting the raw file?</summary>
-            <p>Somewhat. Removing names, account numbers, and other identifiers reduces the privacy exposure, though the underlying communication may still be a business record a firm needs to retain. It's a smaller risk than pasting a full file, not a compliant workflow on its own. Firm policy should still govern what leaves the building.</p>
           </details>
         </div>
 
