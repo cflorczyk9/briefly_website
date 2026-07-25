@@ -1671,7 +1671,9 @@
     "@id": "https://www.brieflywealth.com/#website",
     "url": "https://www.brieflywealth.com/",
     "name": "Briefly",
-    "publisher": { "@id": "https://www.brieflywealth.com/#org" }
+    "publisher": {
+      "@id": "https://www.brieflywealth.com/#org"
+    }
   },
   {
     "@context": "https://schema.org",
@@ -1682,7 +1684,9 @@
     "operatingSystem": "macOS, Windows",
     "description": "An AI knowledge base for wealth advisors that runs inside Claude. Connects notes, email, statements, meetings, and CRM records into one client file, with citations on every answer.",
     "url": "https://www.brieflywealth.com/",
-    "publisher": { "@id": "https://www.brieflywealth.com/#org" },
+    "publisher": {
+      "@id": "https://www.brieflywealth.com/#org"
+    },
     "offers": {
       "@type": "Offer",
       "priceCurrency": "USD",
@@ -1706,26 +1710,18 @@
       },
       {
         "@type": "Question",
-        "name": "Does Briefly work inside Claude?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. Briefly is a connector you add to Claude Desktop. Once it's installed, you ask Claude a question about a client in plain English, and Briefly reads your firm's files and answers with a citation. There's no separate app to open and no new login to remember."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Is Briefly a web app or a Claude connector?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Both. The Claude connector is the flagship way to run Briefly, and it works from a folder on your own computer. The Briefly web app is the browser option, no install required, built for firms that want a browser workspace instead. The two differ mainly in where your firm's files live."
-        }
-      },
-      {
-        "@type": "Question",
         "name": "Is my client data safe?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "With the Briefly connector, client files never leave your computer. Briefly reads them locally, and only your sign-in and de-identified preference rules ever reach our server. If your firm uses the Briefly web app instead, files live in Briefly's hosted environment, which we secure and control."
+          "text": "With the Briefly connector, client files never leave your computer. Briefly reads them locally, only your sign-in and de-identified preference rules ever reach our server, and we never train AI models on client data. If your firm uses the Briefly web app instead, files live in Briefly's hosted environment, which we secure and control."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What stops the AI from making things up?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Every answer Briefly gives carries a citation back to the source document, so you can open the original and check it in seconds. If a fact isn't in your firm's files, Briefly says so instead of guessing. And nothing writes back to a client file without an advisor approving it first."
         }
       },
       {
@@ -1808,7 +1804,7 @@
     <div class="hero-copy">
       <div class="eyebrow">AI knowledge base for financial advisor teams</div>
       <h1>Know every client like they're your only client.</h1>
-      <p>Briefly connects every note, email, statement, meeting, and CRM record into one source-backed client file, so you always know what changed, what matters now, and what needs advisor approval.</p>
+      <p>One source-backed file per client, built from the records your firm already has.</p>
       <div class="hero-ctas">
         <a class="btn cta-desktop" href="#engineered">See how it works</a>
         <button type="button" class="btn cta-mobile" onclick="openDemoModal()">Book a live demo</button>
@@ -2577,16 +2573,12 @@
         <p>An AI knowledge base for financial advisors pulls every note, email, statement, and CRM record on a client into one place, then answers questions from that history with a citation back to the source. Briefly builds it from files already on your firm's own computer and updates it as new files come in.</p>
       </details>
       <details class="site-faq-item">
-        <summary>Does Briefly work inside Claude?</summary>
-        <p>Yes. Briefly is a connector you add to Claude Desktop. Once it's installed, you ask Claude a question about a client in plain English, and Briefly reads your firm's files and answers with a citation. There's no separate app to open and no new login to remember.</p>
-      </details>
-      <details class="site-faq-item">
-        <summary>Is Briefly a web app or a Claude connector?</summary>
-        <p>Both. The Claude connector is the flagship way to run Briefly, and it works from a folder on your own computer. The Briefly web app is the browser option, no install required, built for firms that want a browser workspace instead. The two differ mainly in where your firm's files live.</p>
-      </details>
-      <details class="site-faq-item">
         <summary>Is my client data safe?</summary>
-        <p>With the Briefly connector, client files never leave your computer. Briefly reads them locally, and only your sign-in and de-identified preference rules ever reach our server. If your firm uses the Briefly web app instead, files live in Briefly's hosted environment, which we secure and control.</p>
+        <p>With the Briefly connector, client files never leave your computer. Briefly reads them locally, only your sign-in and de-identified preference rules ever reach our server, and we never train AI models on client data. If your firm uses the Briefly web app instead, files live in Briefly's hosted environment, which we secure and control.</p>
+      </details>
+      <details class="site-faq-item">
+        <summary>What stops the AI from making things up?</summary>
+        <p>Every answer Briefly gives carries a citation back to the source document, so you can open the original and check it in seconds. If a fact isn't in your firm's files, Briefly says so instead of guessing. And nothing writes back to a client file without an advisor approving it first.</p>
       </details>
       <details class="site-faq-item">
         <summary>Can I safely put client data into ChatGPT or Claude directly?</summary>
