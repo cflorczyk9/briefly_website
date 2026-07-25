@@ -47,46 +47,75 @@
     </script>
     <script type="application/ld+json">
     {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "What happens if Briefly's servers are breached?",
-          "acceptedAnswer": { "@type": "Answer", "text": "For connector firms, a breach exposes sign-in records and de-identified preference rules, not client files, since those never reach our servers. For web-app firms, Briefly's hosted environment does hold firm data, protected by encryption and per-firm access controls, so the exposure model is different for that surface." }
-        },
-        {
-          "@type": "Question",
-          "name": "Where exactly do client files live?",
-          "acceptedAnswer": { "@type": "Answer", "text": "It depends on which surface your firm runs. On the connector, files stay in a folder on the advisor's own computer that Briefly reads from and writes back to. On the web app, files live in Briefly's hosted environment on AWS, with access scoped to your firm's account." }
-        },
-        {
-          "@type": "Question",
-          "name": "Does Briefly train AI models on client data?",
-          "acceptedAnswer": { "@type": "Answer", "text": "No, on either surface. Client data is used to run the product for your firm, not to train general-purpose AI models, and any pattern-level learning we do runs through a de-identified, tokenized layer with no client name or account number attached." }
-        },
-        {
-          "@type": "Question",
-          "name": "Is Briefly a web app my staff logs into?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Both exist. The connector runs inside Claude Desktop and works with files already on the advisor's computer, without an upload step or a login page. The web app is a separate, browser-based product your staff can sign into instead, priced separately, with files hosted in Briefly's own environment rather than on your machine." }
-        },
-        {
-          "@type": "Question",
-          "name": "How does this change our Reg S-P vendor due diligence?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Reg S-P treats Briefly as a service provider your firm oversees, the same as any vendor. For connector firms, client files never leave the advisor's computer, so the review covers sign-in, seat entitlement, and the preference layer, not a client-data store. For web-app firms, review Briefly's AWS hosting and per-firm access controls the way you'd review any hosted vendor." }
-        },
-        {
-          "@type": "Question",
-          "name": "What does Briefly's server actually receive?",
-          "acceptedAnswer": { "@type": "Answer", "text": "It depends on the surface. From the connector, Briefly's server receives sign-in through Amazon Cognito, a seat-active check, and de-identified preference rules, nothing else. From the web app, your firm's files also reach our hosted environment, because that's how the product runs on that surface." }
-        },
-        {
-          "@type": "Question",
-          "name": "Is Briefly SEC-approved or certified compliant?",
-          "acceptedAnswer": { "@type": "Answer", "text": "No certification like that exists, and no agency approves an AI tool as compliant. What we can show you is exactly how Briefly's architecture, on either the connector or the web app, handles client data, which is the purpose of this page." }
-        }
-      ]
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Where exactly do client files live?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on which surface your firm runs. On the connector, files stay in a folder on the advisor's own computer that Briefly reads from and writes back to. On the web app, files live in Briefly's hosted environment on AWS, with access scoped to your firm's account."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Anthropic see client files when Briefly runs inside Claude?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "When an advisor asks a question, Claude reads what it needs from the client file, and Anthropic processes that content under your firm's own Claude plan. On business plans, Anthropic's commercial terms prohibit training on customer content, and deleted conversations purge within 30 days. Briefly never stores what Claude reads."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does Briefly's server actually receive?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on the surface. From the connector, Briefly's server receives sign-in through Amazon Cognito, a seat-active check, and de-identified preference rules, nothing else. From the web app, your firm's files also reach our hosted environment, because that's how the product runs on that surface."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Briefly train AI models on client data?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, on either surface. Client data is used to run the product for your firm, not to train general-purpose AI models, and any pattern-level learning we do runs through a de-identified, tokenized layer with no client name or account number attached."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Briefly a web app my staff logs into?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Both exist. The connector runs inside Claude Desktop and works with files already on the advisor's computer, without an upload step or a login page. The web app is a separate, browser-based product your staff can sign into instead, priced separately, with files hosted in Briefly's own environment rather than on your machine."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if Briefly's servers are breached?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For connector firms, a breach exposes sign-in records and de-identified preference rules, not client files, since those never reach our servers. For web-app firms, Briefly's hosted environment does hold firm data, protected by encryption and per-firm access controls, so the exposure model is different for that surface."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does this change our Reg S-P vendor due diligence?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Reg S-P treats Briefly as a service provider your firm oversees, the same as any vendor. For connector firms, client files never leave the advisor's computer, so the review covers sign-in, seat entitlement, and the preference layer, not a client-data store. For web-app firms, review Briefly's AWS hosting and per-firm access controls the way you'd review any hosted vendor."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Briefly SEC-approved or certified compliant?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No certification like that exists, and no agency approves an AI tool as compliant. What we can show you is exactly how Briefly's architecture, on either the connector or the web app, handles client data, which is the purpose of this page."
+      }
     }
+  ]
+}
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -259,6 +288,21 @@
             </div>
         </section>
 
+        <section class="section" id="claude-data-path">
+            <h2 class="section-title">What Claude sees, and what Anthropic does with it</h2>
+            <p class="section-lead">Briefly runs inside Claude, so a careful vendor review should ask about Anthropic too. Here is the full path, with nothing left out.</p>
+            <div class="prose">
+                <p>When an advisor asks a question, Claude reads the parts of the client file it needs to answer, straight from the folder on the advisor's computer. Anthropic processes that content to generate the answer, under your firm's own Claude agreement. Briefly never stores it, and it never touches Briefly's servers.</p>
+                <!-- verify-at-publish: re-checked 2026-07-24 against anthropic.com/legal/commercial-terms (2025-06-17), anthropic.com/legal/privacy (effective 2026-07-08), and privacy.claude.com retention articles -->
+                <p>This is why the Claude plan matters. On Claude for Work, Claude Enterprise, and the API, Anthropic's commercial terms prohibit training models on customer content. That is a contract term, and it comes with a data processing agreement your Reg S-P vendor file can hold. Deleted conversations purge from Anthropic's systems within 30 days. We recommend firms run Briefly on a business Claude plan.</p>
+                <p>Personal Claude plans work differently, and the difference is worth writing down. Conversations on a Free, Pro, or Max account train Anthropic's models unless training is turned off in privacy settings, and content used for training is kept for up to five years. Anthropic's July 2026 policy update also allows conversations flagged by its safety systems to be used for model improvement even after a user opts out, with flagged content held for up to two years. An advisor can run Briefly this way, and a compliance officer will reasonably prefer the business plan's written terms.</p>
+                <p>One more fact a thorough vendor review will surface. Since June 2026, even Anthropic's zero-retention API arrangements carry a 30-day retention window on its newest models for safety monitoring. No tool built on a frontier model can honestly promise that nothing is ever retained, so the questions worth asking a vendor are where files are stored, whose agreement governs the processing, and what the vendor itself holds.</p>
+            </div>
+            <div class="note closing-line">
+                <strong>The short version for your vendor file.</strong> Client files are stored only in your folder. Processing happens under your firm's own Claude agreement, and on a business plan Anthropic may not train on your content by contract. Briefly's servers only ever see sign-in, seat checks, and de-identified preference rules.
+            </div>
+        </section>
+
         <section class="section" id="data-custody-models">
             <h2 class="section-title">Three ways advisor AI tools handle your data</h2>
             <p class="section-lead">Every AI tool that touches client files falls into one of three custody models, and Briefly's two surfaces land in two different ones.</p>
@@ -315,12 +359,16 @@
             <p class="section-lead">The questions we hear most from the people responsible for signing off on a vendor like Briefly.</p>
             <div class="faq-list">
                 <details class="faq-item">
-                    <summary>What happens if Briefly's servers are breached?</summary>
-                    <p>For connector firms, a breach exposes sign-in records and de-identified preference rules, not client files, since those never reach our servers. For web-app firms, Briefly's hosted environment does hold firm data, protected by encryption and per-firm access controls, so the exposure model is different for that surface.</p>
-                </details>
-                <details class="faq-item">
                     <summary>Where exactly do client files live?</summary>
                     <p>It depends on which surface your firm runs. On the connector, files stay in a folder on the advisor's own computer that Briefly reads from and writes back to. On the web app, files live in Briefly's hosted environment on AWS, with access scoped to your firm's account.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Does Anthropic see client files when Briefly runs inside Claude?</summary>
+                    <p>When an advisor asks a question, Claude reads what it needs from the client file, and Anthropic processes that content under your firm's own Claude plan. On business plans, Anthropic's commercial terms prohibit training on customer content, and deleted conversations purge within 30 days. Briefly never stores what Claude reads.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>What does Briefly's server actually receive?</summary>
+                    <p>It depends on the surface. From the connector, Briefly's server receives sign-in through Amazon Cognito, a seat-active check, and de-identified preference rules, nothing else. From the web app, your firm's files also reach our hosted environment, because that's how the product runs on that surface.</p>
                 </details>
                 <details class="faq-item">
                     <summary>Does Briefly train AI models on client data?</summary>
@@ -331,12 +379,12 @@
                     <p>Both exist. The connector runs inside Claude Desktop and works with files already on the advisor's computer, without an upload step or a login page. The web app is a separate, browser-based product your staff can sign into instead, priced separately, with files hosted in Briefly's own environment rather than on your machine.</p>
                 </details>
                 <details class="faq-item">
-                    <summary>How does this change our Reg S-P vendor due diligence?</summary>
-                    <p>Reg S-P treats Briefly as a service provider your firm oversees, the same as any vendor. For connector firms, client files never leave the advisor's computer, so the review covers sign-in, seat entitlement, and the preference layer, not a client-data store. For web-app firms, review Briefly's AWS hosting and per-firm access controls the way you'd review any hosted vendor.</p>
+                    <summary>What happens if Briefly's servers are breached?</summary>
+                    <p>For connector firms, a breach exposes sign-in records and de-identified preference rules, not client files, since those never reach our servers. For web-app firms, Briefly's hosted environment does hold firm data, protected by encryption and per-firm access controls, so the exposure model is different for that surface.</p>
                 </details>
                 <details class="faq-item">
-                    <summary>What does Briefly's server actually receive?</summary>
-                    <p>It depends on the surface. From the connector, Briefly's server receives sign-in through Amazon Cognito, a seat-active check, and de-identified preference rules, nothing else. From the web app, your firm's files also reach our hosted environment, because that's how the product runs on that surface.</p>
+                    <summary>How does this change our Reg S-P vendor due diligence?</summary>
+                    <p>Reg S-P treats Briefly as a service provider your firm oversees, the same as any vendor. For connector firms, client files never leave the advisor's computer, so the review covers sign-in, seat entitlement, and the preference layer, not a client-data store. For web-app firms, review Briefly's AWS hosting and per-firm access controls the way you'd review any hosted vendor.</p>
                 </details>
                 <details class="faq-item">
                     <summary>Is Briefly SEC-approved or certified compliant?</summary>
