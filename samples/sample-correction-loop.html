@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sample Deliverable: Correction Loop &middot; Briefly</title>
+<link rel="canonical" href="https://www.brieflywealth.com/samples/sample-correction-loop">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Briefly">
+<meta property="og:title" content="Sample Deliverable: Correction Loop &middot; Briefly">
+<meta property="og:description" content="A sample showing how one detail from a meeting note becomes a standing rule Briefly applies to every brief after, generated from a firm's own notes. Names and firms are fictionalized.">
+<meta property="og:url" content="https://www.brieflywealth.com/samples/sample-correction-loop">
+<meta property="og:image" content="https://www.brieflywealth.com/images/briefly-og-main-2x.png?v=2">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sample Deliverable: Correction Loop &middot; Briefly">
+<meta name="twitter:description" content="A sample showing how one detail from a meeting note becomes a standing rule Briefly applies to every brief after. Names and firms are fictionalized.">
+<meta name="twitter:image" content="https://www.brieflywealth.com/images/briefly-og-main-2x.png?v=2">
+<meta name="description" content="A sample showing how one detail from a meeting note becomes a standing rule Briefly applies to every brief after, generated from a firm's own notes. Names and firms are fictionalized.">
+<style>
+  :root {
+    --page-bg: #eceae0;
+    --navy: #10233f;
+    --navy-2: #16304f;
+    --navy-soft: rgba(255,255,255,.68);
+    --ink: #1b1e24;
+    --ink-soft: #454b56;
+    --ink-muted: #6b7280;
+    --rule: #d7d3c6;
+    --callout-bg: #eef2f7;
+    --callout-border: #10233f;
+    --tile-bg: #f7f6f0;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--page-bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---- sample banner ---- */
+  .banner {
+    text-align: center;
+    padding: 10px 16px;
+    font-size: 12px;
+    color: var(--ink-muted);
+    background: var(--page-bg);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .wrap {
+    max-width: 8.5in;
+    margin: 28px auto 48px;
+    padding: 0 16px;
+  }
+
+  /* ---- the reproduced deliverable ---- */
+  .sheet {
+    background: #fff;
+    width: 100%;
+    max-width: 8.5in;
+    margin: 0 auto;
+    box-shadow: 0 1px 3px rgba(0,0,0,.08), 0 12px 32px rgba(0,0,0,.10);
+    overflow: hidden;
+  }
+
+  .letterhead {
+    background: var(--navy);
+    color: #fff;
+    padding: 18px 0.62in;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .brand-mark {
+    width: 30px;
+    height: 30px;
+    flex: none;
+    border-radius: 7px;
+    background: linear-gradient(150deg, #4d7bb5, #16304f);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 15px;
+    color: #fff;
+  }
+  .brand-text .name {
+    font-weight: 800;
+    font-size: 17px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    line-height: 1.1;
+  }
+  .brand-text .tagline {
+    font-size: 10.5px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--navy-soft);
+    margin-top: 2px;
+  }
+  .doc-meta { text-align: right; }
+  .doc-meta .doc-title {
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  .doc-meta .doc-sub {
+    font-size: 11.5px;
+    color: var(--navy-soft);
+    margin-top: 4px;
+  }
+
+  .body-pad { padding: 26px 0.62in 30px; }
+
+  .co-name {
+    font-size: 25px;
+    font-weight: 800;
+    color: var(--navy);
+    letter-spacing: -.01em;
+  }
+  .co-sub {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    margin-top: 4px;
+  }
+
+  .callout {
+    margin-top: 18px;
+    background: var(--callout-bg);
+    border-left: 3px solid var(--callout-border);
+    padding: 14px 16px;
+    font-size: 13px;
+    color: var(--ink);
+    line-height: 1.55;
+  }
+  .callout b { color: var(--navy); }
+
+  .cols {
+    margin-top: 22px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 34px;
+  }
+  h3.section {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin: 0 0 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .cols section + section { margin-top: 20px; }
+
+  /* ---- panel-specific: the meeting-note excerpt ---- */
+  .meta-line { font-size: 11px; color: var(--ink-muted); margin: 0 0 12px; }
+  .quote-block {
+    background: var(--callout-bg);
+    border-left: 3px solid var(--callout-border);
+    padding: 16px 18px;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--ink);
+    font-style: italic;
+    border-radius: 0 2px 2px 0;
+  }
+  .quote-attr { font-size: 11px; color: var(--ink-muted); margin-top: 8px; }
+
+  /* ---- panel-specific: the mini prepared brief ---- */
+  .brief-mini { border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; }
+  .brief-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--rule);
+    flex-wrap: wrap;
+  }
+  .brief-row:last-child { border-bottom: none; }
+  .brief-row.header-row { background: var(--tile-bg); }
+  .brief-name { font-size: 15px; font-weight: 800; color: var(--navy); }
+  .brief-k { font-size: 11.5px; color: var(--ink-soft); flex: 1 1 auto; min-width: 130px; }
+  .brief-v { font-size: 12.5px; color: var(--ink); font-weight: 600; }
+  .rule-tag {
+    display: inline-block;
+    font-size: 9.5px;
+    font-weight: 800;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: var(--navy);
+    background: var(--callout-bg);
+    padding: 3px 8px;
+    border-radius: 3px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .doc-footer {
+    margin-top: 26px;
+    padding-top: 12px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .doc-footer .sources {
+    font-size: 10px;
+    color: var(--ink-muted);
+    line-height: 1.5;
+    max-width: 6in;
+  }
+  .doc-footer .firm-line {
+    font-size: 10px;
+    color: var(--ink-muted);
+    text-align: right;
+  }
+  .doc-footer .firm-line .site {
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  .credit-footer {
+    max-width: 8.5in;
+    margin: 0 auto 40px;
+    padding: 0 16px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--ink-muted);
+  }
+  .credit-footer .briefly-word {
+    font-weight: 800;
+    color: var(--ink);
+  }
+
+  @media (max-width: 700px) {
+    .cols { grid-template-columns: 1fr; }
+    .letterhead, .body-pad { padding-left: 0.35in; padding-right: 0.35in; }
+  }
+
+  @media print {
+    body { background: #fff; }
+    /* The sample disclosure must survive printing. A printed copy of this page
+       looks like a real client document, so the label goes with it. */
+    .banner { position: static; display: block; background: #fff; color: #000;
+              border: 1px solid #000; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .credit-footer { display: none; }
+    .wrap { margin: 0; padding: 0; max-width: none; }
+    .sheet { box-shadow: none; width: 8.5in; }
+    @page { size: letter; margin: 0; }
+  }
+
+  .banner a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+</style>
+</head>
+<body>
+
+  <div class="banner">Sample deliverable. Names, firms, and identifying details are fictionalized. &middot; <a href="/sample-deliverables">All samples</a> &middot; <a href="/">Briefly</a></div>
+
+  <div class="wrap">
+    <div class="sheet">
+
+      <div class="letterhead">
+        <div class="brand">
+          <div class="brand-mark">M</div>
+          <div class="brand-text">
+            <div class="name">Meridian</div>
+            <div class="tagline">Wealth Partners</div>
+          </div>
+        </div>
+        <div class="doc-meta">
+          <div class="doc-title">Correction Loop</div>
+          <div class="doc-sub">Illustrative &middot; Prepared by Daniel Brooks &middot; July 24, 2026</div>
+        </div>
+      </div>
+
+      <div class="body-pad">
+
+        <div class="co-name">Henderson Household</div>
+        <div class="co-sub">One line from a meeting note, applied to every brief for this household since.</div>
+
+        <div class="callout">
+          <b>What changed:</b> a name correction and a standing preference from one call now apply automatically. Every brief for this household leads with the 529 balances and calls the Hendersons by the names they actually use.
+        </div>
+
+        <div class="cols">
+          <div>
+            <section>
+              <h3 class="section">From The Call</h3>
+              <p class="meta-line">Henderson household &middot; relationship review, May 12, 2026</p>
+              <div class="quote-block">
+                <p>&ldquo;We actually go by our middle names, not our legal first ones. I&rsquo;m Grant, my wife&rsquo;s Elise, not Robert and Patricia like the file probably has us down as. Also, whatever you put together for us should lead with where the boys&rsquo; 529 accounts stand. That&rsquo;s the first thing we ask about every time.&rdquo;</p>
+              </div>
+              <p class="quote-attr">From Daniel Brooks&rsquo;s meeting notes, logged the same afternoon.</p>
+            </section>
+          </div>
+          <div>
+            <section>
+              <h3 class="section">The Next Brief</h3>
+              <p class="meta-line">Henderson household &middot; pre-meeting brief, July 24, 2026</p>
+              <div class="brief-mini">
+                <div class="brief-row header-row">
+                  <span class="brief-name">Grant &amp; Elise Henderson</span>
+                  <span class="rule-tag">Standing rule &middot; 5/12 call</span>
+                </div>
+                <div class="brief-row">
+                  <span class="brief-k">529 balances</span>
+                  <span class="brief-v">Emma $84,200 &middot; Jack $71,900</span>
+                  <span class="rule-tag">Standing rule &middot; 5/12 call</span>
+                </div>
+                <div class="brief-row">
+                  <span class="brief-k">Portfolio value</span>
+                  <span class="brief-v">$2.14M as of June 30</span>
+                </div>
+                <div class="brief-row">
+                  <span class="brief-k">Next meeting</span>
+                  <span class="brief-v">August 14</span>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <div class="doc-footer">
+          <div class="sources">Source: Daniel Brooks&rsquo;s meeting notes, May 12, 2026 call. Brief shown is the July 24, 2026 pre-meeting prep for the same household.<br>Meridian Wealth Partners &middot; Confidential, prepared for internal use.</div>
+          <div class="firm-line"><span class="site">meridianwealthpartners.com</span></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="credit-footer">Generated by <span class="briefly-word">Briefly</span> from the firm's own meeting notes and client file. The correction from the call carries into every brief for this household after.</div>
+
+</body>
+</html>

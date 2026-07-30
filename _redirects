@@ -3,6 +3,8 @@
 /about.html /about 301!
 /security.html /security 301!
 /download.html /download 301!
+/compare.html /compare 301!
+/pricing.html /pricing 301!
 /subscribe.html /subscribe 301!
 /privacy-policy.html /privacy-policy 301!
 /terms-of-service.html /terms-of-service 301!
@@ -20,6 +22,7 @@
 /samples/sample-goal-analysis.html    /samples/sample-goal-analysis    301!
 /samples/sample-month-end-commentary.html    /samples/sample-month-end-commentary    301!
 /samples/sample-deal-summary.html    /samples/sample-deal-summary    301!
+/samples/sample-correction-loop.html    /samples/sample-correction-loop    301!
 
 # Retired V2-era pages, folded into /knowledge-base.
 # The .html forms go straight to the destination: routing them through the

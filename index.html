@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Briefly | AI knowledge base for financial advisors, inside Claude</title>
-<meta name="description" content="Briefly is an AI knowledge base for financial advisors that runs inside Claude. Ask in plain English and get cited answers. With the Briefly connector, client files never leave your computer.">
+<meta name="description" content="Briefly is an AI knowledge base for financial advisors that runs inside Claude. Ask in plain English and get cited answers. With the Briefly connector, client files stay on your computer and Briefly's servers never store them.">
 <meta name="author" content="Briefly Wealth LLC">
 
 <link rel="canonical" href="https://www.brieflywealth.com/">
@@ -13,13 +13,13 @@
 <link rel="apple-touch-icon" sizes="180x180" href="images/briefly_logo_favicon.png?v=2">
 
 <meta property="og:title" content="Briefly | AI knowledge base for financial advisors, inside Claude">
-<meta property="og:description" content="Briefly is an AI knowledge base for financial advisors that runs inside Claude. Your whole team asks in plain English and gets answers from your firm's own files, with citations. With the Briefly connector, client files never leave your computer.">
+<meta property="og:description" content="Briefly is an AI knowledge base for financial advisors that runs inside Claude. Your whole team asks in plain English and gets answers from your firm's own files, with citations. With the Briefly connector, client files stay on your computer and Briefly's servers never store them.">
 <meta property="og:image" content="https://www.brieflywealth.com/images/briefly-og-main-2x.png?v=2">
 <meta property="og:url" content="https://www.brieflywealth.com/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Briefly | AI knowledge base for financial advisors, inside Claude">
-<meta name="twitter:description" content="Briefly is an AI knowledge base for financial advisors that runs inside Claude. With the connector, client files never leave your computer.">
+<meta name="twitter:description" content="Briefly is an AI knowledge base for financial advisors that runs inside Claude. With the connector, client files stay on your computer and Briefly's servers never store them.">
 <meta name="twitter:image" content="https://www.brieflywealth.com/images/briefly-og-main-2x.png?v=2">
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-92NXKY9W1S"></script>
@@ -715,8 +715,10 @@
     line-height: 1.5;
     color: var(--ink-soft);
     max-width: 360px;
-    opacity: 0;
-    max-height: 0;
+    /* Captions used to be hover-gated (opacity 0 until :hover). A scroller who never
+       hovers saw icon and label only, so the captions read as missing content. */
+    opacity: 1;
+    max-height: 160px;
     overflow: hidden;
     transition: opacity .4s ease .08s, max-height .45s ease;
   }
@@ -880,6 +882,11 @@
     line-height: 1.55;
   }
   .closer .hero-ctas { justify-content: center; margin-top: 28px; }
+
+  .closer-founder { margin: 26px auto 0; max-width: 560px; font-size: 14px; line-height: 1.6; color: var(--ink-soft); text-align: center; }
+  .closer-alt { margin: 10px auto 0; font-size: 14px; color: var(--ink-soft); text-align: center; }
+  .closer-alt a { color: var(--blue-ink); text-decoration: underline; text-underline-offset: 3px; }
+
 
   /* ================================================================
      FOOTER
@@ -1157,18 +1164,10 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "What is an AI knowledge base for financial advisors?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "An AI knowledge base for financial advisors pulls every note, email, statement, and CRM record on a client into one place, then answers questions from that history with a citation back to the source. Briefly builds it from files already on your firm's own computer and updates it as new files come in."
-        }
-      },
-      {
-        "@type": "Question",
         "name": "Is my client data safe?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "With the Briefly connector, client files never leave your computer. Briefly reads them locally, only your sign-in and de-identified preference rules ever reach our server, and we never train AI models on client data. If your firm uses the Briefly web app instead, files live in Briefly's hosted environment, which we secure and control."
+          "text": "With the Briefly connector, client files stay on your computer and Briefly's servers never store them. Briefly reads them locally, only your sign-in, a check that your seat is active, and de-identified preference rules about how you like things written ever reach our server, and we never train AI models on client data. If your firm uses the Briefly web app instead, files live in Briefly's hosted environment, which we secure and control."
         }
       },
       {
@@ -1177,14 +1176,6 @@
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "No. With the connector, client files stay in a folder on your computer and never reach Briefly's servers, so there is nothing on our side to see. With the web app, files live in Briefly's hosted environment, which we secure and control, and your firm decides who signs in."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What stops the AI from making things up?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Every answer Briefly gives carries a citation back to the source document, so you can open the original and check it in seconds. If a fact isn't in your firm's files, Briefly says so instead of guessing. And nothing writes back to a client file without an advisor approving it first."
         }
       },
       {
@@ -1205,30 +1196,6 @@
       },
       {
         "@type": "Question",
-        "name": "Is Briefly just a meeting prep tool?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "No. Briefly is an AI knowledge base built from your firm's own files, and a meeting agenda is one thing it can produce from that base. Ask it a question about a household, a compliance detail, or a plan assumption, and it answers from the same source-backed file, citation included."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Do I have to move my files or change how my team works?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "No. The connector reads from a folder you pick on your own computer, and your files stay where they already live. There is no migration project and nothing to re-enter. Most firms drop new documents into one intake folder and let Briefly file them from there."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Does Briefly work for a whole team or just one advisor?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Both. Briefly is priced per advisor seat, and a team shares one knowledge base. When one person files a document or corrects a detail, everyone's answers reflect it from then on, so the newest hire can answer a client question with the full history behind it."
-        }
-      },
-      {
-        "@type": "Question",
         "name": "What does Briefly cost?",
         "acceptedAnswer": {
           "@type": "Answer",
@@ -1241,6 +1208,22 @@
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "It depends on your setup. With the connector, there's nothing to migrate, since your files were always in your own folder, and removing the connector just stops Claude from reading it. With the web app, we work with you to get your firm's files out of our hosted environment before you go."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which one should I pick?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "If your team already works in Claude, get the connector. It reads folders on your own machines and your advisors ask questions right where they already work. If you want the client file built for you, pick the web app. We connect Salesforce and Outlook and your team signs in from a browser. A seat can move between them without rebuilding anything."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why not just use Claude on its own?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "On its own, Claude forgets your firm when the chat ends. Briefly gives it a client file that persists. A correction one advisor makes becomes a standing rule the whole team inherits, answers can draw on your entire book instead of one conversation, and every claim carries a citation you can open."
         }
       }
     ]
@@ -1316,6 +1299,15 @@
     .showit-routes { max-width: 640px; margin-inline: auto; text-align: left; }
   }
 
+
+  /* Panning clips hold native width below their floors and slice at the viewport edge,
+     which reads as a rendering bug unless something says the card continues. */
+  .pan-hint { display: none; font-family: var(--mono); font-size: 11px; font-weight: 700;
+              letter-spacing: .06em; text-transform: uppercase; margin-top: 8px; }
+  @media (max-width: 700px) { .pan-hint--in { display: block; color: var(--cream-soft); } }
+  @media (max-width: 640px) { .pan-hint--out { display: block; color: var(--cream-soft); } }
+  @media (max-width: 500px) { .pan-hint--proof { display: block; color: var(--ink-soft); } }
+
   .showit-clip--in .bpa-stage { max-width: 640px; }
   .showit-clip--out .bpa-stage { max-width: 562px; }
 
@@ -1356,7 +1348,7 @@
   </div>
   <div class="nav-actions">
     <a class="nav-signin" href="https://demo.app.brieflywealth.com/">Web app sign in</a>
-    <a class="nav-cta" href="#" onclick="openDemoModal();return false;">Request a demo</a>
+    <a class="nav-cta" href="#" onclick="openDemoModal();return false;">Book a demo</a>
   </div>
 </nav>
 
@@ -1391,12 +1383,13 @@
     <div class="hero-copy">
       <div class="eyebrow">AI knowledge base for financial advisor teams</div>
       <h1>Know every client like they're your only client.</h1>
-      <p>One source-backed file per client, built from the records your firm already has.</p>
+      <p>One source-backed file per client, built from the statements, the CPA emails, and the meeting notes your firm already has.</p>
       <div class="hero-ctas">
-        <a class="btn cta-desktop" href="#platform">See how it works</a>
-        <button type="button" class="btn cta-mobile" onclick="openDemoModal()">Book a live demo</button>
+        <button type="button" class="btn cta-desktop" onclick="openDemoModal()">Book a demo</button>
+        <a class="btn ghost cta-desktop" href="#see-it">See it work</a>
+        <button type="button" class="btn cta-mobile" onclick="openDemoModal()">Book a demo</button>
       </div>
-      <div class="hero-mcp-note"><span class="hmn-dot" aria-hidden="true"></span>Runs inside <b>Claude</b>. With the connector, client files never leave your computer.</div>
+      <div class="hero-mcp-note"><span class="hmn-dot" aria-hidden="true"></span>Run it inside <b>Claude</b> with files on your own machines, or have us build the client file for you.</div>
     </div>
 
     <aside class="readout" aria-live="polite">
@@ -1414,8 +1407,8 @@
   <div class="container">
     <header class="showit-head reveal">
       <div class="eyebrow">What Briefly is</div>
-      <h2>The client context layer for wealth management.</h2>
-      <p class="showit-lede">Briefly turns what your firm already knows about every client, the statements, the emails, the meeting notes, into memory AI can actually use. Every answer cites the document it came from.</p>
+      <h2>Everything your firm knows about a client, in one file AI can use.</h2>
+      <p class="showit-lede">Briefly is the client context layer for wealth management. It turns the statements, the emails, and the meeting notes into memory AI can actually use, and every answer cites the document it came from.</p>
     </header>
 
     <div class="showit-row reveal">
@@ -1430,20 +1423,114 @@
             <b>Handled for you</b>
             <span>We connect Salesforce and Outlook and build the file for you.</span>
           </div>
-          <p class="showit-merge">Two ways in. The same client file at the end of both.</p>
+          <p class="showit-merge">Both end in the same client file.</p>
         </div>
         <div class="showit-clip showit-clip--in" data-bpa-clip="8"></div>
+        <div class="pan-hint pan-hint--in" aria-hidden="true">swipe to see the rest &rarr;</div>
         <p class="showit-cap">Whichever way the records arrive, they land in one file under the right client.</p>
       </div>
 
       <div class="showit-col">
         <div class="showit-tag">02 / what comes out</div>
         <div class="showit-clip showit-clip--out" data-bpa-clip="2"></div>
+        <div class="pan-hint pan-hint--out" aria-hidden="true">swipe to see the rest &rarr;</div>
         <p class="showit-cap">Briefly drafts the document from those records, and every claim carries the source behind it.</p>
       </div>
     </div>
   </div>
 </section>
+
+<span id="mcp" aria-hidden="true"></span>
+<style id="custody-styles">
+  .custody {
+    position: relative;
+    background: var(--paper-3);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 100px 32px 110px;
+  }
+  .custody-inner { margin: 0 auto; }
+  .custody-head { max-width: 760px; }
+  .custody-head .eyebrow { margin-bottom: 14px; font-size: 11px; font-weight: 700; letter-spacing: .08em; }
+  .custody-head h2 {
+    margin: 0; font-size: clamp(32px, 4.4vw, 54px); line-height: .98;
+    letter-spacing: -.045em; font-weight: 900; color: var(--ink);
+  }
+  .custody-lede { margin: 20px 0 0; color: var(--ink-soft); font-size: 17px; line-height: 1.62; max-width: 660px; }
+
+  .custody-grid { margin-top: 52px; display: grid; grid-template-columns: repeat(2, 1fr);
+                  gap: 20px; align-items: stretch; }
+  .custody-panel {
+    display: flex; flex-direction: column;
+    border: 1px solid var(--rule); border-radius: 10px;
+    box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 1px 3px rgba(15,23,42,.06);
+    background: var(--paper); padding: 32px 32px 34px;
+  }
+  .custody-panel h3 {
+    margin: 0; font-size: 24px; line-height: 1.14; letter-spacing: -.022em;
+    font-weight: 900; color: var(--ink);
+  }
+  .custody-panel .cp-body { margin: 16px 0 0; font-size: 15.5px; line-height: 1.62; color: var(--ink-soft); }
+  .custody-panel .btn { margin-top: auto; align-self: flex-start; padding-top: 0; }
+  .custody-panel .cp-act { margin-top: 24px; }
+
+
+  .custody-note { margin: 40px 0 0; max-width: 780px; color: var(--ink-soft); font-size: 15px; line-height: 1.65; }
+
+  /* Reuses the global .cta-dot / .cta-text-roll / .cta-arrow spans and @keyframes ctaFlicker. */
+  .custody-cta {
+    margin-top: 26px; display: inline-flex; align-items: center; gap: 14px;
+    padding: 14px 4px; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink);
+    color: var(--ink); font-family: var(--mono); font-size: 12px; font-weight: 800;
+    letter-spacing: .12em; text-transform: uppercase; text-decoration: none;
+    position: relative; overflow: hidden;
+  }
+  .custody-cta:hover .cta-dot, .custody-cta:focus-visible .cta-dot { opacity: 1; filter: blur(0); transform: translateX(0); }
+  .custody-cta:hover .cta-text-roll, .custody-cta:focus-visible .cta-text-roll { transform: translateY(-1em); }
+  .custody-cta:hover .cta-arrow, .custody-cta:focus-visible .cta-arrow { transform: translateX(4px); opacity: 1; }
+  .custody-cta:hover { animation: ctaFlicker .42s ease 1; }
+
+  @media (max-width: 900px) {
+    .custody-grid { grid-template-columns: 1fr; gap: 14px; margin-top: 40px; }
+  }
+  @media (max-width: 760px) {
+    .custody { padding: 64px 18px 76px; }
+    .custody-panel { padding: 24px 22px 26px; }
+  }
+</style>
+<section class="custody" id="custody" aria-label="Two ways to run Briefly">
+  <div class="container custody-inner">
+    <div class="custody-head reveal">
+      <div class="eyebrow">Two ways to run Briefly</div>
+      <h2>Same product. Pick the one that fits your firm.</h2>
+      <p class="custody-lede">One client context layer either way, with the same memory and the same citations. What changes is how much of the setup your firm wants to do.</p>
+    </div>
+
+    <div class="custody-grid reveal">
+      <article class="custody-panel">
+        <h3>Your team already works in Claude.</h3>
+        <p class="cp-body">Briefly's connector runs inside Claude. It builds client memory in folders on your own machines, cites every answer back to the source document, and learns how you like things written every time you correct it.</p>
+        <div class="cp-act"><a class="btn" href="/download">Download the connector</a></div>
+      </article>
+
+      <article class="custody-panel">
+        <h3>You want it handled for you.</h3>
+        <p class="cp-body">We connect to your Salesforce and Outlook and build the client file for you, and your advisors keep uploading whatever else they have. They get a prepared brief before every meeting and can ask questions across the whole book, in a private web app we run for your firm. Nothing for your IT to install.</p>
+        <div class="cp-act"><a class="btn ghost" href="#" onclick="openDemoModal();return false;">Book a demo</a></div>
+      </article>
+    </div>
+
+
+    <p class="custody-note reveal">Either way, Briefly builds from the records your firm already has, so there is nothing to migrate. Firms that run both get one client file, so nothing is ever filed twice and a seat can move between them without rebuilding anything.</p>
+
+    <a class="custody-cta" href="/pricing">
+      <span class="cta-dot" aria-hidden="true"></span>
+      <span class="cta-text"><span class="cta-text-roll"><span>See what each costs</span><span>See what each costs</span></span></span>
+      <span class="cta-arrow" aria-hidden="true">&rarr;</span>
+    </a>
+  </div>
+</section>
+
 
 <!-- ==================== 2. PLATFORM (accordion) ==================== -->
 <section class="platform" id="platform" aria-label="The Briefly platform">
@@ -1589,6 +1676,7 @@
         <div class="eyebrow">Correction, once</div>
         <h3>A correction, held as the rule.</h3>
         <p>Say something once on a call, and Briefly keeps it as the standing rule for that client. Every brief after it follows the same rule.</p>
+        <p class="proof-links proof-links--platform"><a href="#" onclick="openDemoModal();return false;">Book a demo &rarr;</a><a href="/sample-deliverables">See sample deliverables &rarr;</a></p>
       </div>
       <div class="platform-proof-clip" data-bpa-clip="7"></div>
       <div class="platform-proof-fallback">
@@ -1697,6 +1785,15 @@
   /* Clip 03 tops out at 470px. It measures clean down to 420px with roughly 60px of
      headroom, but at 340px its content height became unstable across repeated runs, so
      420px is the floor and it pans below that rather than rendering narrower. */
+
+  .proof-links { display: flex; gap: 26px; margin-top: 16px; }
+  .proof-links a {
+    font-family: var(--mono); font-size: 12px; font-weight: 800; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--blue-ink); text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .proof-links--platform { margin: 18px 0 0; }
+
   .feat-proof-clip { flex: 0 1 470px; min-width: 420px; }
   /* Clip 03's 4:5 frame left a large empty band at the bottom. The Ask Briefly panel
      (.bpa-ak) stretches to fill the stage, so the panel itself was mostly empty below the
@@ -1773,123 +1870,37 @@
 
       <article class="feat-card">
         <div class="fc-num">03</div>
-        <h3>One graph across your whole book</h3>
-        <p>Households, accounts, outside professionals, and relationships connect into a single graph. You can ask questions that span the entire book, not just one client file, and get a grounded answer instead of a guess.</p>
-        <span class="fc-tag">Cross-client graph</span>
+        <h3>One view across your whole book</h3>
+        <p>Households, accounts, outside professionals, and relationships all connect. You can ask questions that span your entire book, not just one client file, and get a grounded answer instead of a guess.</p>
+        <span class="fc-tag">Whole-book view</span>
       </article>
 
       <article class="feat-card">
         <div class="fc-num">04</div>
         <h3>Your files can stay on your own machines</h3>
-        <p>A cloud tool needs your files sitting on its own servers before it can read them. Paste the same files into a general AI chat window and it forgets everything once the session ends. Briefly can read straight from your own folders instead, so neither problem applies.</p>
+        <p>Run the connector and Briefly reads straight from folders on your own machines. Paste files into a general AI chat window instead and it forgets them when the session ends. Briefly keeps the memory, and your firm keeps the files.</p>
         <span class="fc-tag">No lock-in</span>
       </article>
     </div>
 
     <div class="feat-proof reveal">
       <div class="feat-proof-copy">
-        <div class="eyebrow">Every answer is source-backed</div>
+        <div class="eyebrow">See it happen</div>
         <p>Ask in plain English. The answer names the documents behind it, and you can open them without leaving the reply.</p>
+        <p class="proof-links"><a href="#" onclick="openDemoModal();return false;">Book a demo &rarr;</a><a href="/sample-deliverables">See a real example &rarr;</a></p>
       </div>
       <div class="feat-proof-clip" data-bpa-clip="3"></div>
+        <div class="pan-hint pan-hint--proof" aria-hidden="true">swipe to see the rest &rarr;</div>
     </div>
   </div>
 </section>
 
 <!-- ==================== 2. AGENT WORKFLOW ==================== -->
 
-<!-- ==================== 1.6 CUSTODY (web app vs MCP) ==================== -->
-<style id="custody-styles">
-  .custody {
-    position: relative;
-    background: var(--paper-3);
-    border-top: 1px solid var(--rule);
-    border-bottom: 1px solid var(--rule);
-    padding: 100px 32px 110px;
-  }
-  .custody-inner { margin: 0 auto; }
-  .custody-head { max-width: 760px; }
-  .custody-head .eyebrow { margin-bottom: 14px; font-size: 11px; font-weight: 700; letter-spacing: .08em; }
-  .custody-head h2 {
-    margin: 0; font-size: clamp(32px, 4.4vw, 54px); line-height: .98;
-    letter-spacing: -.045em; font-weight: 900; color: var(--ink);
-  }
-  .custody-lede { margin: 20px 0 0; color: var(--ink-soft); font-size: 17px; line-height: 1.62; max-width: 660px; }
-
-  .custody-grid { margin-top: 52px; display: grid; grid-template-columns: repeat(2, 1fr);
-                  gap: 20px; align-items: stretch; }
-  .custody-panel {
-    display: flex; flex-direction: column;
-    border: 1px solid var(--rule); border-radius: 10px;
-    box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 1px 3px rgba(15,23,42,.06);
-    background: var(--paper); padding: 32px 32px 34px;
-  }
-  .custody-panel h3 {
-    margin: 0; font-size: 24px; line-height: 1.14; letter-spacing: -.022em;
-    font-weight: 900; color: var(--ink);
-  }
-  .custody-panel .cp-body { margin: 16px 0 0; font-size: 15.5px; line-height: 1.62; color: var(--ink-soft); }
-  .custody-panel .btn { margin-top: auto; align-self: flex-start; padding-top: 0; }
-  .custody-panel .cp-act { margin-top: 24px; }
+<!-- ==================== 1.6 CUSTODY (two ways to run) ==================== -->
 
 
-  .custody-note { margin: 40px 0 0; max-width: 780px; color: var(--ink-soft); font-size: 15px; line-height: 1.65; }
-
-  /* Reuses the global .cta-dot / .cta-text-roll / .cta-arrow spans and @keyframes ctaFlicker. */
-  .custody-cta {
-    margin-top: 26px; display: inline-flex; align-items: center; gap: 14px;
-    padding: 14px 4px; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink);
-    color: var(--ink); font-family: var(--mono); font-size: 12px; font-weight: 800;
-    letter-spacing: .12em; text-transform: uppercase; text-decoration: none;
-    position: relative; overflow: hidden;
-  }
-  .custody-cta:hover .cta-dot, .custody-cta:focus-visible .cta-dot { opacity: 1; filter: blur(0); transform: translateX(0); }
-  .custody-cta:hover .cta-text-roll, .custody-cta:focus-visible .cta-text-roll { transform: translateY(-1em); }
-  .custody-cta:hover .cta-arrow, .custody-cta:focus-visible .cta-arrow { transform: translateX(4px); opacity: 1; }
-  .custody-cta:hover { animation: ctaFlicker .42s ease 1; }
-
-  @media (max-width: 900px) {
-    .custody-grid { grid-template-columns: 1fr; gap: 14px; margin-top: 40px; }
-  }
-  @media (max-width: 760px) {
-    .custody { padding: 64px 18px 76px; }
-    .custody-panel { padding: 24px 22px 26px; }
-  }
-</style>
-<section class="custody" id="custody" aria-label="Two ways to run Briefly">
-  <div class="container custody-inner">
-    <div class="custody-head reveal">
-      <div class="eyebrow">Two ways to run Briefly</div>
-      <h2>Same product. Pick the one that fits your firm.</h2>
-      <p class="custody-lede">One client context layer either way, with the same memory and the same citations. What changes is how much of the setup your firm wants to do.</p>
-    </div>
-
-    <div class="custody-grid reveal">
-      <article class="custody-panel">
-        <h3>Your team already works in Claude.</h3>
-        <p class="cp-body">Briefly runs inside Claude as a plug-in. Your files never leave your machines. It builds client memory in your own folders, cites every answer back to the source document, and learns how you like things written every time you correct it.</p>
-        <div class="cp-act"><a class="btn" href="/download">Download the plug-in</a></div>
-      </article>
-
-      <article class="custody-panel">
-        <h3>You want it handled for you.</h3>
-        <p class="cp-body">We connect to your Salesforce and Outlook and build the client file for you, and your advisors keep uploading whatever else they have. They get a prepared brief before every meeting and can ask questions across the whole book, in a private workspace we run for your firm. Nothing for your IT to install.</p>
-        <div class="cp-act"><a class="btn ghost" href="#" onclick="openDemoModal();return false;">Book a walkthrough</a></div>
-      </article>
-    </div>
-
-
-    <p class="custody-note reveal">Either way, Briefly builds from the records your firm already has, so there is nothing to migrate. Firms that run both get one client file, so nothing is ever filed twice and a seat can move between them without rebuilding anything.</p>
-
-    <a class="custody-cta" href="/pricing">
-      <span class="cta-dot" aria-hidden="true"></span>
-      <span class="cta-text"><span class="cta-text-roll"><span>See what each costs</span><span>See what each costs</span></span></span>
-      <span class="cta-arrow" aria-hidden="true">&rarr;</span>
-    </a>
-  </div>
-</section>
-
-<!-- ==================== 1.5 MCP BAND ==================== -->
+<!-- ==================== hero note styles ==================== -->
 <style id="mcp-band-styles">
   .hero-mcp-note {
     margin-top: 16px;
@@ -1919,51 +1930,7 @@
     .hero-mcp-note .hmn-dot { display: inline-block; margin-right: 8px; }
   }
 
-  .mcp {
-    position: relative;
-    background: var(--navy);
-    color: var(--cream);
-    border-top: 1px solid var(--rule);
-    border-bottom: 1px solid var(--rule);
-    padding: 72px 32px 80px;
-    overflow: hidden;
-  }
-  .mcp::before {
-    content: "";
-    position: absolute; inset: 0;
-    background:
-      linear-gradient(90deg, rgba(241,245,249,.05) 1px, transparent 1px) 0 0 / 56px 56px,
-      linear-gradient(180deg, rgba(241,245,249,.04) 1px, transparent 1px) 0 0 / 56px 56px;
-    pointer-events: none;
-  }
-  .mcp-inner { position: relative; margin: 0 auto; }
-  .mcp .eyebrow { color: var(--cyan); margin-bottom: 14px; font-size: 11px; font-weight: 700; letter-spacing: .08em; }
-  .mcp h2 {
-    margin: 0; font-size: clamp(28px, 3.6vw, 44px); line-height: 1.05;
-    letter-spacing: -.04em; font-weight: 900; color: var(--cream);
-  }
-  .mcp-lede { margin: 16px 0 0; max-width: 520px; font-size: 17px; line-height: 1.6; color: var(--cream-soft); }
-  .mcp-badges { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 10px; }
-  .mcp-badge {
-    font-family: var(--mono); font-size: 10.5px; font-weight: 800; letter-spacing: .07em;
-    text-transform: uppercase; color: var(--cream-soft); padding: 9px 13px;
-  }
-  @media (max-width: 760px) {
-    .mcp { padding: 48px 18px 56px; }
-  }
 </style>
-<section class="mcp" id="mcp" aria-label="Runs inside Claude">
-  <div class="container mcp-inner reveal">
-    <div class="eyebrow">Where you already work</div>
-    <h2>You already have Claude open.</h2>
-    <p class="mcp-lede">Briefly runs there, so nobody has to add another app to their day. Add the connector once and the whole team can start asking in plain English.</p>
-
-    <div class="mcp-badges">
-      <span class="mcp-badge">Works in Claude Desktop</span>
-      <span class="mcp-badge">Citations on every answer</span>
-    </div>
-  </div>
-</section>
 
 <!-- ==================== 7.5 FAQ ==================== -->
 <style id="site-faq-styles">
@@ -2031,41 +1998,29 @@
       <h2>Questions advisors ask before they install anything.</h2>
     </header>
     <div class="site-faq-list">
-      <details class="site-faq-item">
-        <summary>What is an AI knowledge base for financial advisors?</summary>
-        <p>An AI knowledge base for financial advisors pulls every note, email, statement, and CRM record on a client into one place, then answers questions from that history with a citation back to the source. Briefly builds it from files already on your firm's own computer and updates it as new files come in.</p>
-      </details>
-      <details class="site-faq-item">
+      <details class="site-faq-item" open>
         <summary>Is my client data safe?</summary>
-        <p>With the Briefly connector, client files never leave your computer. Briefly reads them locally, only your sign-in and de-identified preference rules ever reach our server, and we never train AI models on client data. If your firm uses the Briefly web app instead, files live in Briefly's hosted environment, which we secure and control.</p>
+        <p>With the Briefly connector, client files stay on your computer and Briefly's servers never store them. Briefly reads them locally, only your sign-in, a check that your seat is active, and de-identified preference rules about how you like things written ever reach our server, and we never train AI models on client data. If your firm uses the Briefly web app instead, files live in Briefly's hosted environment, which we secure and control.</p>
       </details>
-      <details class="site-faq-item">
+      <details class="site-faq-item" open>
         <summary>Does anyone at Briefly see my client files?</summary>
         <p>No. With the connector, client files stay in a folder on your computer and never reach Briefly's servers, so there is nothing on our side to see. With the web app, files live in Briefly's hosted environment, which we secure and control, and your firm decides who signs in.</p>
-      </details>
-      <details class="site-faq-item">
-        <summary>What stops the AI from making things up?</summary>
-        <p>Every answer Briefly gives carries a citation back to the source document, so you can open the original and check it in seconds. If a fact isn't in your firm's files, Briefly says so instead of guessing. And nothing writes back to a client file without an advisor approving it first.</p>
       </details>
       <details class="site-faq-item">
         <summary>Can I safely put client data into ChatGPT or Claude directly?</summary>
         <p>Pasting client details into a general AI chat window sends them to the vendor's servers under the vendor's own terms, the kind of outside data handling securities regulators expect firms to review. There is a cleaner setup. With the Briefly connector, client files stay on your computer, and Claude works from them under your firm's own Claude plan.</p>
       </details>
       <details class="site-faq-item">
+        <summary>Which one should I pick?</summary>
+        <p>If your team already works in Claude, get the connector. It reads folders on your own machines and your advisors ask questions right where they already work. If you want the client file built for you, pick the web app. We connect Salesforce and Outlook and your team signs in from a browser. A seat can move between them without rebuilding anything.</p>
+      </details>
+      <details class="site-faq-item">
+        <summary>Why not just use Claude on its own?</summary>
+        <p>On its own, Claude forgets your firm when the chat ends. Briefly gives it a client file that persists. A correction one advisor makes becomes a standing rule the whole team inherits, answers can draw on your entire book instead of one conversation, and every claim carries a citation you can open. None of that lives in a single chat window.</p>
+      </details>
+      <details class="site-faq-item">
         <summary>How is Briefly different from a CRM?</summary>
         <p>A CRM keeps a record of activity. Briefly reads what your firm already stores, including CRM records, and turns it into one knowledge base you can question in plain English. Firms keep Salesforce for workflow and use Briefly to find and use what the firm already knows.</p>
-      </details>
-      <details class="site-faq-item">
-        <summary>Is Briefly just a meeting prep tool?</summary>
-        <p>No. Briefly is an AI knowledge base built from your firm's own files, and a meeting agenda is one thing it can produce from that base. Ask it a question about a household, a compliance detail, or a plan assumption, and it answers from the same source-backed file, citation included.</p>
-      </details>
-      <details class="site-faq-item">
-        <summary>Do I have to move my files or change how my team works?</summary>
-        <p>No. The connector reads from a folder you pick on your own computer, and your files stay where they already live. There is no migration project and nothing to re-enter. Most firms drop new documents into one intake folder and let Briefly file them from there.</p>
-      </details>
-      <details class="site-faq-item">
-        <summary>Does Briefly work for a whole team or just one advisor?</summary>
-        <p>Both. Briefly is priced per advisor seat, and a team shares one knowledge base. When one person files a document or corrects a detail, everyone's answers reflect it from then on, so the newest hire can answer a client question with the full history behind it.</p>
       </details>
       <details class="site-faq-item">
         <summary>What does Briefly cost?</summary>
@@ -2084,8 +2039,10 @@
   <div class="center-word">Briefly</div>
   <p>See Briefly live on your firm's records. We run the walkthrough with the advisor in the room.</p>
   <div class="hero-ctas">
-    <a class="btn" href="#" onclick="openDemoModal();return false;">Book a live demo</a>
+    <a class="btn" href="#" onclick="openDemoModal();return false;">Book a demo</a>
   </div>
+  <p class="closer-founder">Built by Connor Florczyk, formerly of a top-performing private wealth team at Morgan Stanley and multi-family office Crescent Bay Advisors.</p>
+  <p class="closer-alt">Not ready for a demo? <a href="/subscribe">Get the Morning Brief</a>, our daily market email for advisors.</p>
 </section>
 
 </main>
@@ -2100,16 +2057,14 @@
     <div>
       <h4>Product</h4>
       <a href="#see-it">How it works</a>
+      <a href="/sample-deliverables">Sample deliverables</a>
       <a href="#platform">Platform</a>
-      <a href="#different">Why Briefly</a>
       <a href="/pricing">Pricing</a>
-      <a href="#mcp">Inside Claude</a>
-      <a href="#contact">Demo</a>
+      <a href="/compare">Compare</a>
       <a href="/download">Download</a>
       <a href="/knowledge-base">Knowledge base</a>
       <a href="/ai-compliance-for-financial-advisors">AI compliance for advisors</a>
       <a href="/claude-for-financial-advisors">Claude for financial advisors</a>
-    <a href="/sample-deliverables">Sample deliverables</a>
     </div>
     <div>
       <h4>Company</h4>
@@ -2900,7 +2855,7 @@
     <button class="demo-modal-close" type="button" onclick="closeDemoModal()" aria-label="Close">&times;</button>
     <div id="demoModalForm">
       <p class="demo-modal-eyebrow">Briefly · Demo</p>
-      <h2 class="demo-modal-title" id="demoModalTitle">Book a live demo</h2>
+      <h2 class="demo-modal-title" id="demoModalTitle">Book a demo</h2>
       <form onsubmit="return handleDemoSubmit(event);" novalidate>
         <div class="demo-modal-field">
           <label for="demoName">Full name</label>
@@ -2914,8 +2869,8 @@
           <label for="demoFirm">Firm (optional)</label>
           <input type="text" id="demoFirm" name="firm" autocomplete="organization">
         </div>
-        <button class="demo-modal-submit" type="submit" id="demoSubmitBtn">Request demo</button>
-        <div class="demo-modal-error" id="demoModalError" role="status" aria-live="assertive" tabindex="-1">Something went wrong sending that. Try again or email connor.florczyk@brieflywealth.com.</div>
+        <button class="demo-modal-submit" type="submit" id="demoSubmitBtn">Book a demo</button>
+        <div class="demo-modal-error" id="demoModalError" role="status" aria-live="assertive" tabindex="-1">Something went wrong sending that. Try again or email contact@brieflywealth.com.</div>
       </form>
     </div>
     <div class="demo-modal-success" id="demoModalSuccess" role="status" aria-live="polite" tabindex="-1">

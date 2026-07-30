@@ -242,6 +242,25 @@
     border-top: 1px solid var(--rule);
   }
 
+  /* ---- inline citation chips ---- */
+  .cite-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-style: italic;
+    color: var(--muted);
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 2px;
+    margin-top: 4px;
+  }
+  .cite-note {
+    font-size: 11px;
+    color: var(--muted);
+    margin: 8px 0 0;
+  }
+  .cite-note-inline { padding: 0 44px 8px; }
+
   /* ---- document footer (navy) ---- */
   .doc-footer {
     background: var(--navy-deep);
@@ -281,6 +300,7 @@
     .doc-title { font-size: 26px; }
     .stat-row { grid-template-columns: 1fr; gap: 20px; padding: 22px 22px 4px; }
     .section { padding: 20px 22px; }
+    .cite-note-inline { padding: 0 22px 8px; }
     .doc-footer { padding: 18px 22px 22px; }
   }
 
@@ -325,19 +345,23 @@
         <p class="stat-label">Household Total</p>
         <p class="stat-value">$1,800,000</p>
         <p class="stat-sub">+$26,700 (+1.5%) vs. May &middot; no flows</p>
+        <p class="cite-tag">Sterling Trust statements, Jun 30, 2026</p>
       </div>
       <div class="stat">
         <p class="stat-label">Cash Position</p>
         <p class="stat-value">4.4%</p>
         <p class="stat-sub">$79,400 vs. 3% policy maximum</p>
         <span class="badge">Above Maximum</span>
+        <p class="cite-tag">Sterling Trust statements, Jun 30, 2026</p>
       </div>
       <div class="stat">
         <p class="stat-label">Equity Allocation</p>
         <p class="stat-value">75.4%</p>
         <p class="stat-sub">vs. 80% target &middot; at the floor of the 75&ndash;85% band</p>
+        <p class="cite-tag">Sterling Trust statements, Jun 30, 2026</p>
       </div>
     </div>
+    <p class="cite-note cite-note-inline">In the live product, a citation like this one opens the source document. Here it's just a label.</p>
 
     <!-- Observations -->
     <section class="section">

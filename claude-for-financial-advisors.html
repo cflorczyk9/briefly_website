@@ -79,10 +79,10 @@
         },
         {
           "@type": "Question",
-          "name": "What is MCP?",
+          "name": "What is a Claude connector?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "MCP, short for Model Context Protocol, is the open standard Anthropic built for connecting Claude to outside tools and data, whether that's a calendar, a CRM, or a program running on your own computer. You don't need to understand the standard itself. What matters is where the other end of the connector lives, a vendor's server or your own machine."
+            "text": "A Claude connector is a small program that lets Claude read and act on a firm's own systems and files, whether that's a calendar, a CRM, or a program running on your own computer. You don't need to understand how it works under the hood. What matters is where the other end of the connector lives, a vendor's server or your own machine."
           }
         },
         {
@@ -95,10 +95,10 @@
         },
         {
           "@type": "Question",
-          "name": "What's the difference between Claude's built-in connectors and a vendor's MCP server?",
+          "name": "What's the difference between Claude's built-in connectors and a vendor's own connector?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Claude's built-in connectors, like Google Drive or Gmail, route through Anthropic's own infrastructure to reach an app you already use. A vendor's MCP server is that vendor's own connector instead, and it often means the vendor has copied your data onto their servers so there's something for Claude to read."
+            "text": "Claude's built-in connectors, like Google Drive or Gmail, route through Anthropic's own infrastructure to reach an app you already use. A vendor's own connector works differently, and it often means the vendor has copied your data onto their servers so there's something for Claude to read."
           }
         },
         {
@@ -340,7 +340,7 @@
   </div>
   <div class="nav-actions">
     <a class="nav-signin" href="https://demo.app.brieflywealth.com/">Web app sign in</a>
-    <a class="nav-cta" href="/#contact">Request a demo</a>
+    <a class="nav-cta" href="/#contact">Book a demo</a>
   </div>
 </nav>
 <section class="hero">
@@ -400,8 +400,8 @@
         <p>Every new Claude conversation starts with nothing. No memory of a client from last week's chat, no access to the CRM record, no read on the plan you built in March. Claude only knows what you put in front of it, unless you've connected an outside source.</p>
         <p>Most articles that compare Claude to other AI tools stop at capability, what it can write, summarize, or calculate, and skip the harder question of what it can reach. That's the decision an advisor actually has to make. Not whether Claude is smart enough, but how, and whether, to let it near client records at all.</p>
 
-        <h2>Connectors and MCP, in plain English</h2>
-        <p>Claude can read from and act on other pieces of software through something called a connector, a small program that tells Claude how to talk to a particular system, whether that's Google Drive, a CRM, or a program running on your own computer. Most connectors, including the one Briefly runs, are built on a standard called MCP (Model Context Protocol), which is Anthropic's open specification for how a model talks to outside tools and data. You don't need to understand the standard any more than you need to understand how the postal system routes mail to use your mailbox. What matters is where the other end of that connector lives, on a vendor's server somewhere, or on your own machine.</p>
+        <h2>Claude connectors, in plain English</h2>
+        <p>Claude can read from and act on other pieces of software through something called a connector, a small program that tells Claude how to talk to a particular system, whether that's Google Drive, a CRM, or a program running on your own computer. Most connectors, including the one Briefly runs, are built on the same open standard for how a model talks to outside tools and data. You don't need to understand that standard any more than you need to understand how the postal system routes mail to use your mailbox. What matters is where the other end of the connector lives, on a vendor's server somewhere, or on your own machine.</p>
 
         <h2>How to give Claude access to client files securely</h2>
         <p>There are four common ways advisors connect Claude to something resembling client information, and they aren't equally safe. The list below is ranked from the least contained to the most.</p>
@@ -415,12 +415,12 @@
             <p>Claude Desktop has a menu of connectors to apps you probably already use, Google Drive and Gmail among them. Anthropic's own infrastructure handles the connection, so your files stay wherever Google or Microsoft already stores them, but Claude, and by extension Anthropic, reads them during the conversation. No extra install, and one more company sitting in the data path.</p>
           </li>
           <li class="method-card">
-            <h3>A vendor's MCP server</h3>
+            <h3>A vendor's own connector</h3>
             <p>Some financial software companies run their own connector into Claude the same way Anthropic does. In practice, this usually means the vendor holds a copy of your client data on their own servers so the connector has something to serve up when Claude asks for it. You're now trusting that company's security and retention practices on top of Anthropic's. Our <a href="/ai-compliance-for-financial-advisors">compliance page</a> goes deeper on what regulators expect from a setup like this before you turn one on.</p>
           </li>
           <li class="method-card local">
             <h3>A local connector that reads files from your machine</h3>
-            <p>The connector runs on your own computer and reads files from a folder you choose. Claude asks it a question, the connector reads the answer off your machine's disk, and nothing about that specific client goes to a server, not the vendor's, not Anthropic's, beyond the ordinary API call Claude already makes to think. This is the approach we built the Briefly connector around, and it's the only one of the four where client files never end up copied onto someone else's infrastructure. With the Briefly connector, client files never leave your computer. Only your sign-in and de-identified preference rules reach Briefly's server.</p>
+            <p>The connector runs on your own computer and reads files from a folder you choose. Claude asks it a question, the connector reads the answer off your machine's disk, and nothing about that specific client goes to a server, not the vendor's, not Anthropic's, beyond the ordinary API call Claude already makes to think. This is the approach we built the Briefly connector around, and it's the only one of the four where client files never end up copied onto someone else's infrastructure. With the Briefly connector, client files never leave your computer. Only your sign-in, a check that your seat is active, and de-identified preference rules reach Briefly's server.</p>
           </li>
         </ol>
 
@@ -453,7 +453,7 @@
                 <th scope="row">Where files live</th>
                 <td>On OpenAI's servers for that conversation, and potentially longer depending on your plan and settings.</td>
                 <td>With whichever vendor hosts the connector, Google or Microsoft in most cases, plus Anthropic's infrastructure while it's serving the connection.</td>
-                <td class="win">With the Briefly connector, files stay on your computer, in the folder you chose. Only your sign-in and de-identified preference rules reach Briefly's server.</td>
+                <td class="win">With the Briefly connector, files stay on your computer, in the folder you chose. Only your sign-in, a check that your seat is active, and de-identified preference rules reach Briefly's server.</td>
               </tr>
               <tr>
                 <th scope="row">Compliance posture</th>
@@ -479,7 +479,7 @@
         <ol>
           <li>Pick a Claude plan that matches how you'll use it. Anthropic's commercial terms bar training on customer content for Work, Enterprise, and API accounts, while personal plans train on conversations unless you opt out. Client work generally belongs on a business plan.</li>
           <li>Start with pasting or a built-in connector for occasional use, methods one or two above.</li>
-          <li>If you want Claude reading your files regularly, decide between a vendor's MCP server and a local connector based on where you're comfortable having that data sit.</li>
+          <li>If you want Claude reading your files regularly, decide between a vendor's own connector and a local connector based on where you're comfortable having that data sit.</li>
           <li>If a local connector is what you want, Briefly is one option, an AI knowledge base for financial advisors that runs inside Claude and reads from a folder on your computer. <a href="/download">See how it works</a> before deciding anything.</li>
         </ol>
 
@@ -498,16 +498,16 @@
             <p>No. A new Claude conversation starts with nothing about your clients unless you paste details in or connect a source yourself. Claude does not browse your computer, your CRM, or your email on its own. Anything it knows about a client came from what you gave it in that conversation, or from an approved connector.</p>
           </details>
           <details class="faq-item">
-            <summary>What is MCP?</summary>
-            <p>MCP, short for Model Context Protocol, is the open standard Anthropic built for connecting Claude to outside tools and data, whether that's a calendar, a CRM, or a program running on your own computer. You don't need to understand the standard itself. What matters is where the other end of the connector lives, a vendor's server or your own machine.</p>
+            <summary>What is a Claude connector?</summary>
+            <p>A Claude connector is a small program that lets Claude read and act on a firm's own systems and files, whether that's a calendar, a CRM, or a program running on your own computer. You don't need to understand how it works under the hood. What matters is where the other end of the connector lives, a vendor's server or your own machine.</p>
           </details>
           <details class="faq-item">
             <summary>Is it safe to paste client information directly into Claude?</summary>
             <p>It depends on your plan. On Claude for Work, Enterprise, and API accounts, Anthropic's commercial terms prohibit training on customer content. A personal account trains on conversations unless you opt out in settings, and safety-flagged chats can be used even then. Either way, your firm's recordkeeping duties apply to whatever you paste.</p>
           </details>
           <details class="faq-item">
-            <summary>What's the difference between Claude's built-in connectors and a vendor's MCP server?</summary>
-            <p>Claude's built-in connectors, like Google Drive or Gmail, route through Anthropic's own infrastructure to reach an app you already use. A vendor's MCP server is that vendor's own connector instead, and it often means the vendor has copied your data onto their servers so there's something for Claude to read.</p>
+            <summary>What's the difference between Claude's built-in connectors and a vendor's own connector?</summary>
+            <p>Claude's built-in connectors, like Google Drive or Gmail, route through Anthropic's own infrastructure to reach an app you already use. A vendor's own connector works differently, and it often means the vendor has copied your data onto their servers so there's something for Claude to read.</p>
           </details>
           <details class="faq-item">
             <summary>Does Claude remember a client from one conversation to the next?</summary>
@@ -535,16 +535,14 @@
     <div>
       <h4>Product</h4>
       <a href="/#see-it">How it works</a>
+      <a href="/sample-deliverables">Sample deliverables</a>
       <a href="/#platform">Platform</a>
-      <a href="/#different">Why Briefly</a>
       <a href="/pricing">Pricing</a>
-      <a href="/#mcp">Inside Claude</a>
-      <a href="/#contact">Demo</a>
+      <a href="/compare">Compare</a>
       <a href="/download">Download</a>
       <a href="/knowledge-base">Knowledge base</a>
       <a href="/ai-compliance-for-financial-advisors">AI compliance for advisors</a>
       <a href="/claude-for-financial-advisors">Claude for financial advisors</a>
-      <a href="/sample-deliverables">Sample deliverables</a>
     </div>
     <div>
       <h4>Company</h4>

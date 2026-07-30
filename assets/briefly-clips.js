@@ -1239,12 +1239,26 @@
     var built = stage ? build(stage) : null;
     if (!built) return null;
 
-    var m = { dur: built.dur, tick: built.tick, elapsed: 0, last: null, visible: false, el: element };
+    // A clip's t=0 state is a mostly empty skeleton, which is what a visitor caught
+    // between loops (or before first play) would otherwise see. Two guards:
+    // an end-hold so every loop dwells on the finished frame, and a poster render
+    // so the resting state before first play is the finished frame, never the blank.
+    var HOLD = 2.8;
+    var full = built.dur * 0.999;
+    var m = {
+      dur: built.dur + HOLD,
+      tick: function (t) { built.tick(Math.min(t, full)); },
+      // Start the clock inside the hold: first visible seconds show the finished
+      // frame, then the loop wraps and the build-up plays from empty.
+      elapsed: built.dur,
+      last: null, visible: false, el: element
+    };
     element.__bpaClip = m;
     mounted.push(m);
+    m.tick(full);             // poster frame at rest
 
     if (reduceMotion) {
-      built.tick(0);          // first frame only, loop never starts
+      built.tick(full);       // reduced motion: hold the finished frame, loop never starts
     } else {
       var obs = observer();
       if (obs) {

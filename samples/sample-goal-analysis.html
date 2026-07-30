@@ -146,6 +146,8 @@
   .gloss-item dt{font-family:var(--serif);font-weight:700;font-size:14px;color:var(--navy);margin-bottom:4px;}
   .gloss-item dd{font-family:var(--sans);font-size:12.5px;line-height:1.6;color:var(--ink);margin:0;}
 
+  .cite-tag{display:inline-block;font-family:var(--sans);font-size:9.5px;font-style:italic;color:var(--muted);cursor:pointer;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:2px;}
+  .cite-note{font-family:var(--sans);font-size:11px;color:var(--muted);margin:10px 0 0;}
   .disclosure{font-family:var(--sans);font-size:11px;line-height:1.65;color:var(--muted);margin-bottom:12px;}
   .disclosure b{color:var(--ink);}
   .footer-bar{margin-top:28px;padding-top:14px;border-top:1px solid var(--rule);font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--muted-2);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
@@ -217,11 +219,13 @@
         <div class="stat-label">Investment assets</div>
         <div class="stat-num">$197,420</div>
         <div class="stat-sub">7 accounts</div>
+        <div class="cite-tag" style="margin-top:6px;">custodian statements, 30 Jun 2026</div>
       </div>
       <div class="stat">
         <div class="stat-label">Probability of success &mdash; today</div>
         <div class="stat-num rust">65%</div>
         <div class="stat-sub">Below the 70&ndash;90% confidence zone</div>
+        <div class="cite-tag" style="margin-top:6px;">Monte Carlo model, 1,000 trials</div>
       </div>
       <div class="stat">
         <div class="stat-label">Probability of success &mdash; recommended</div>
@@ -232,8 +236,10 @@
         <div class="stat-label">Largest single holding</div>
         <div class="stat-num">17.4%</div>
         <div class="stat-sub">QQQM, above the 15% guideline</div>
+        <div class="cite-tag" style="margin-top:6px;">E*TRADE Roth IRA statement, Jun 2026</div>
       </div>
     </div>
+    <p class="cite-note">In the live product, a citation like this one opens the source document. Here it's just a label.</p>
 
     <div class="callout">
       <b>The finding.</b> Run as-is, the plan succeeds in about two thirds of simulated markets. That sits below the 70&ndash;90% confidence zone we target. The gap does not close by picking a different fund lineup. It closes by claiming Social Security at 70 instead of 67, stepping retirement spending down from $150,000 to $130,000 once the savings stop, and letting the portfolio de-risk on a schedule rather than staying 88% in stocks into your sixties.
