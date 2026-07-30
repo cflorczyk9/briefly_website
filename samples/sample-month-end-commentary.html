@@ -4,8 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sample Month-End Portfolio Commentary · Briefly</title>
+<link rel="canonical" href="https://www.brieflywealth.com/samples/sample-month-end-commentary">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Briefly">
+<meta property="og:title" content="Sample Month-End Portfolio Commentary · Briefly">
+<meta property="og:description" content="A sample month-end portfolio commentary produced by Briefly, showing household totals, allocation vs. policy, account-level moves, and market context. Names and firm details are fictionalized.">
+<meta property="og:url" content="https://www.brieflywealth.com/samples/sample-month-end-commentary">
+<meta property="og:image" content="https://www.brieflywealth.com/images/briefly-og-main-2x.png?v=2">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sample Month-End Portfolio Commentary · Briefly">
+<meta name="twitter:description" content="A sample month-end portfolio commentary produced by Briefly, showing household totals, allocation vs. policy, account-level moves, and market context. Names and firm details are fictionalized.">
+<meta name="twitter:image" content="https://www.brieflywealth.com/images/briefly-og-main-2x.png?v=2">
 <meta name="description" content="A sample month-end portfolio commentary produced by Briefly, showing household totals, allocation vs. policy, account-level moves, and market context. Names and firm details are fictionalized.">
-<meta name="robots" content="noindex">
 <style>
   :root {
     --page-bg: #eceef1;
@@ -275,12 +285,18 @@
   }
 
   @media print {
-    .sample-banner, .doc-caption { display: none; }
+    /* The sample disclosure must survive printing. A printed copy of this page
+       looks like a real client document, so the label goes with it. */
+    .sample-banner { position: static; display: flex; background: #fff; color: #000;
+                     border: 1px solid #000; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .doc-caption { display: none; }
     body { background: #fff; }
     .page-wrap { padding: 0; display: block; }
     .doc { max-width: 100%; box-shadow: none; }
   }
   @page { size: letter; margin: 0.4in; }
+
+  .sample-banner a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 </style>
 </head>
 <body>
@@ -288,7 +304,9 @@
 <div class="sample-banner">
   <span>Sample deliverable. Names, firms, and identifying details are fictionalized.</span>
   <span class="dot">·</span>
-  <span class="brief-mark">Briefly</span>
+  <a href="/sample-deliverables">All samples</a>
+  <span class="dot">·</span>
+  <a class="brief-mark" href="/">Briefly</a>
 </div>
 
 <div class="page-wrap">

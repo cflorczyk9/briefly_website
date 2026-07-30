@@ -3,16 +3,12 @@
 /about.html /about 301!
 /security.html /security 301!
 /download.html /download 301!
-/context-graph.html /context-graph 301!
-/relationship-intelligence.html /relationship-intelligence 301!
-/meeting-briefs.html /meeting-briefs 301!
 /subscribe.html /subscribe 301!
 /privacy-policy.html /privacy-policy 301!
 /terms-of-service.html /terms-of-service 301!
+/subprocessors.html /subprocessors 301!
+/sample-brief.html /sample-brief 301!
 /unsubscribe.html /unsubscribe 301!
-/context-graph /knowledge-base 301!
-/meeting-briefs /knowledge-base 301!
-/relationship-intelligence /knowledge-base 301!
 /knowledge-base.html    /knowledge-base    301!
 /claude-for-financial-advisors.html    /claude-for-financial-advisors    301!
 /ai-compliance-for-financial-advisors.html    /ai-compliance-for-financial-advisors    301!
@@ -24,3 +20,13 @@
 /samples/sample-goal-analysis.html    /samples/sample-goal-analysis    301!
 /samples/sample-month-end-commentary.html    /samples/sample-month-end-commentary    301!
 /samples/sample-deal-summary.html    /samples/sample-deal-summary    301!
+
+# Retired V2-era pages, folded into /knowledge-base.
+# The .html forms go straight to the destination: routing them through the
+# clean URL first would make every one of these a two-hop redirect chain.
+/context-graph.html /knowledge-base 301!
+/relationship-intelligence.html /knowledge-base 301!
+/meeting-briefs.html /knowledge-base 301!
+/context-graph /knowledge-base 301!
+/meeting-briefs /knowledge-base 301!
+/relationship-intelligence /knowledge-base 301!

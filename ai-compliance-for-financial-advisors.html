@@ -133,10 +133,10 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900&family=DM+Serif+Display&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        :root { --navy:#0B2545; --blue:#0B5394; --off:#F5F4F0; --text:#1d1d1f; --muted:#6b7280; --border:#e5e7eb; --teal:#0d9488; --amber:#d97706; }
+        :root { --navy:#0F172A; --blue:#2F8CFF; --blue-ink:#1D4ED8; --off:#F7F8FA; --text:#0F172A; --muted:#6b7280; --border:#e5e7eb; --teal:#0d9488; --amber:#d97706; --cream:#F1F5F9; --cream-soft:#C3CEDD; --cream-muted:#94A3B8; --mono:"SFMono-Regular","JetBrains Mono",Consolas,monospace; }
         body { font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif; color: var(--text); background: var(--paper); line-height: 1.65; }
         nav { position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,0.94); backdrop-filter: blur(18px); border-bottom: 1px solid rgba(0,0,0,0.06); }
         .nav-inner { max-width: 1120px; height: 72px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; }
@@ -148,31 +148,31 @@
         .hero { background: var(--navy); color: #fff; padding: 112px 32px 86px; }
         .hero-inner { max-width: 900px; margin: 0 auto; }
         .eyebrow { display: block; color: rgba(255,255,255,0.62); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 16px; }
-        h1 { font-family: 'DM Serif Display', serif; font-size: clamp(38px, 6vw, 60px); line-height: 1.1; max-width: 820px; margin-bottom: 22px; }
+        h1 { font-family: var(--sans); font-weight: 900; font-size: clamp(38px, 6vw, 60px); line-height: 1.1; max-width: 820px; margin-bottom: 22px; }
         .hero p { max-width: 720px; color: rgba(255,255,255,0.76); font-size: 20px; }
         .hero .byline { margin: 4px 0 24px; font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace; font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
         main { padding: 76px 32px; }
         .article { max-width: 780px; margin: 0 auto; }
         .article .lede { font-size: 19px; color: #1f2937; }
-        .article h2 { font-family: 'DM Serif Display', serif; color: var(--navy); font-size: 30px; line-height: 1.22; margin: 48px 0 16px; }
+        .article h2 { font-family: var(--sans); font-weight: 900; color: var(--navy); font-size: 30px; line-height: 1.22; margin: 48px 0 16px; }
         .article h2:first-of-type { margin-top: 0; }
         .article h3 { font-family: 'DM Sans', sans-serif; font-weight: 700; color: var(--navy); font-size: 19px; margin: 28px 0 10px; }
         .article p { color: #334155; font-size: 17px; margin-bottom: 18px; }
         .article ul, .article ol.plain { margin: 14px 0 26px 22px; color: #334155; }
         .article li { margin-bottom: 10px; }
-        .article p a, .article li a { color: var(--blue); text-decoration: underline; text-underline-offset: 2px; }
+        .article p a, .article li a { color: var(--blue-ink); text-decoration: underline; text-underline-offset: 2px; }
         .diagram { margin: 42px 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-        .diagram-card { border: 1px solid var(--border); border-radius: 10px; padding: 20px; background: var(--off); }
+        .diagram-card { border: 1px solid var(--border); border-radius: 10px; padding: 20px; background: var(--off); box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 1px 3px rgba(15,23,42,.06); }
         .diagram-card strong { display: block; color: var(--navy); margin-bottom: 8px; }
         .diagram-card span { color: var(--muted); font-size: 14px; }
 
         /* Two-column data-flow diagram */
         .flow-wrap { margin: 8px 0 8px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-        .flow-col { border: 1px solid var(--border); border-radius: 14px; padding: 26px 24px; background: var(--off); }
+        .flow-col { border: 1px solid var(--border); border-radius: 10px; padding: 26px 24px; background: var(--off); box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 1px 3px rgba(15,23,42,.06); }
         .flow-col.risk { background: #FBF2E3; border-color: rgba(217,119,6,.32); }
         .flow-col.safe { background: #E9F5F3; border-color: rgba(13,148,136,.32); }
         .flow-tag { display: inline-block; font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace; font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
-        .flow-title { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--navy); margin: 0 0 18px; }
+        .flow-title { font-family: var(--sans); font-weight: 700; font-size: 22px; color: var(--navy); margin: 0 0 18px; }
         .flow-steps { counter-reset: step; list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 16px; }
         .flow-steps li { position: relative; padding-left: 38px; font-size: 15px; color: #334155; line-height: 1.55; }
         .flow-steps li::before { counter-increment: step; content: counter(step); position: absolute; left: 0; top: -2px; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace; font-size: 12px; font-weight: 800; color: #fff; }
@@ -182,20 +182,20 @@
 
         /* FAQ accordion */
         .faq { margin: 8px 0 4px; }
-        .faq details { border-bottom: 1px solid var(--ink, #1c1d1f); padding: 22px 0; }
-        .faq summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: baseline; gap: 18px; font-family: 'DM Sans', sans-serif; font-weight: 700; letter-spacing: -.01em; font-size: 17px; color: var(--ink, #1c1d1f); }
+        .faq details { border-bottom: 1px solid var(--rule); padding: 22px 0; }
+        .faq summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: baseline; gap: 18px; font-family: 'DM Sans', sans-serif; font-weight: 700; letter-spacing: -.01em; font-size: 17px; color: var(--ink, #0F172A); }
         .faq summary::-webkit-details-marker { display: none; }
-        .faq summary::after { content: '+'; font-family: "JetBrains Mono", SFMono-Regular, monospace; font-size: 20px; font-weight: 700; color: var(--blue); flex-shrink: 0; line-height: 1; }
+        .faq summary::after { content: '+'; font-family: "JetBrains Mono", SFMono-Regular, monospace; font-size: 20px; font-weight: 700; color: var(--blue-ink); flex-shrink: 0; line-height: 1; }
         .faq details[open] summary::after { content: '\2212'; }
         .faq details p { margin: 14px 0 0; color: var(--muted); font-size: 15px; line-height: 1.65; max-width: 720px; }
 
         /* Sources */
-        .sources { margin: 8px 0 0; padding: 26px 28px; border: 1px solid var(--border); border-radius: 12px; background: var(--off); }
+        .sources { margin: 8px 0 0; padding: 26px 28px; border: 1px solid var(--border); border-radius: 10px; background: var(--off); box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 1px 3px rgba(15,23,42,.06); }
         .sources h2 { margin-top: 0; }
         .sources ul { list-style: none; margin: 14px 0 0; padding: 0; }
         .sources li { padding: 10px 0; border-top: 1px solid var(--border); font-size: 14.5px; color: #334155; }
         .sources li:first-child { border-top: 0; }
-        .sources a { color: var(--blue); text-decoration: underline; text-underline-offset: 2px; }
+        .sources a { color: var(--blue-ink); text-decoration: underline; text-underline-offset: 2px; }
 
         /* Disclaimer + author bio */
         .disclaimer { margin: 40px 0 0; font-size: 13.5px; color: var(--muted); border-left: 3px solid var(--border); padding-left: 16px; }
@@ -204,11 +204,87 @@
         .author-bio h3 { margin: 0 0 4px; font-size: 16px; color: var(--navy); font-family: 'DM Sans', sans-serif; }
         .author-bio p { margin: 0; font-size: 14.5px; color: #475569; }
 
-        .cta { margin-top: 56px; padding: 32px; border-radius: 12px; background: var(--off); border: 1px solid var(--border); }
+        .cta { margin-top: 56px; padding: 32px; border-radius: 10px; background: var(--off); border: 1px solid var(--border); box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 1px 3px rgba(15,23,42,.06); }
         .cta h2 { margin-top: 0; }
-        .cta a { display: inline-block; margin-top: 8px; background: var(--navy); color: #fff; text-decoration: none; padding: 12px 20px; border-radius: 8px; font-weight: 700; }
-        footer { padding: 44px 32px; background: var(--navy); color: rgba(255,255,255,0.68); text-align: center; }
-        footer a { color: #fff; text-decoration: none; margin: 0 10px; font-size: 14px; }
+        .cta a { display: inline-block; margin-top: 8px; background: var(--navy); color: #fff; text-decoration: none; padding: 12px 20px; border-radius: 6px; font-weight: 700; }
+        footer {
+          background: var(--ink);
+          color: var(--cream-soft);
+          padding: 60px 32px 40px;
+          font-family: var(--sans);
+        }
+        footer .foot-grid {
+          max-width: 1280px;
+          margin: 0 auto;
+          display: grid;
+          grid-template-columns: 1.4fr 1fr 1fr 1fr;
+          gap: 40px;
+        }
+        footer h4 {
+          margin: 0 0 16px;
+          color: var(--cream);
+          font-family: var(--mono);
+          font-size: 11px;
+          font-weight: 800;
+          letter-spacing: .1em;
+          text-transform: uppercase;
+        }
+        footer a {
+          display: block;
+          color: var(--cream-soft);
+          text-decoration: none;
+          font-size: 14px;
+          line-height: 2;
+        }
+        footer a:hover { color: var(--cream); }
+        footer .foot-brand .brand {
+          position: relative;
+          display: inline-flex;
+          align-items: center;
+          padding-right: 18px;
+          text-decoration: none;
+        }
+        footer .foot-brand .brand-word {
+          font-family: var(--sans);
+          font-weight: 900;
+          font-size: 34px;
+          line-height: .78;
+          letter-spacing: -.085em;
+          text-transform: uppercase;
+          color: var(--cream);
+          transform: scaleY(.88);
+          transform-origin: left center;
+        }
+        footer .foot-brand .brand-pin {
+          top: 6px;
+          width: 8px;
+          height: 8px;
+          box-shadow: 0 0 0 2.5px rgba(47,140,255,.12);
+        }
+        footer .foot-brand p {
+          margin: 14px 0 0;
+          color: var(--cream-muted);
+          font-size: 13px;
+          line-height: 1.6;
+          max-width: 320px;
+        }
+        footer .foot-bottom {
+          max-width: 1280px;
+          margin: 50px auto 0;
+          padding-top: 24px;
+          border-top: 1px solid rgba(241,245,249,.14);
+          display: flex;
+          justify-content: space-between;
+          color: var(--cream-muted);
+          font-family: var(--mono);
+          font-size: 11px;
+          letter-spacing: .06em;
+          text-transform: uppercase;
+        }
+        @media (max-width: 820px) {
+          footer .foot-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+          footer .foot-bottom { flex-direction: column; gap: 12px; text-align: left; }
+        }
         @media (max-width: 760px) {
           .nav-links a:not(.nav-btn) { display: none; }
           .diagram { grid-template-columns: 1fr; }
@@ -223,7 +299,7 @@
     nav.nav { gap: 10px !important; }
     nav.nav .nav-actions { gap: 8px !important; }
     nav.nav .nav-signin,
-    nav.nav .nav-cta { white-space: nowrap !important; height: 40px !important; padding: 0 12px !important; font-size: 10.5px !important; line-height: 1 !important; }
+    nav.nav .nav-cta { white-space: nowrap !important; height: 40px !important; padding: 0 12px !important; font-size: 10.5px !important; line-height: 1 !important; border-radius: 6px; }
     nav.nav .brand-word { font-size: 22px !important; }
 
     .hero { padding: 72px 20px 56px; }
@@ -245,11 +321,10 @@
     .cta a { display: block; text-align: center; padding: 14px 20px; }
 
     footer { padding: 32px 20px; }
-    footer a { display: inline-block; margin: 4px 8px; padding: 4px 0; }
   }
   @media (max-width: 480px) {
     nav.nav .nav-signin { display: none !important; }
-    nav.nav .nav-cta { padding: 0 14px !important; }
+    nav.nav .nav-cta { padding: 0 14px !important; border-radius: 6px; }
     h1 { font-size: 30px; }
     .hero p { font-size: 16px; }
   }
@@ -260,8 +335,9 @@
   <a class="brand" href="/"><span class="brand-word">Briefly</span><span class="brand-pin" aria-hidden="true"></span></a>
   <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu"><span></span><span></span><span></span></button>
   <div class="nav-links" id="nav-links">
-    <a href="/#os">How it works</a>
+    <a href="/#see-it">How it works</a>
     <a href="/sample-deliverables">Samples</a>
+    <a href="/pricing">Pricing</a>
     <a href="/security">Security</a>
     <a href="/download">Download</a>
     <a href="/about">About</a>
@@ -287,7 +363,7 @@
 
         <h2 id="can-you-put-client-data">Can you put client data in ChatGPT?</h2>
         <p>Physically, yes. Nothing in ChatGPT's interface stops you from pasting a client's name, account number, holdings, or a paraphrased summary of their situation into the chat box, and the model will answer. The real question for an advisor is what happens to that information after you hit enter, not whether typing it in is technically possible.</p>
-        <p>That text is sent to OpenAI's servers to generate a response, and from there, what happens depends on your plan and your settings rather than anything your firm controls. <!-- verify-at-publish --> A Free or Plus account may use the conversation to train future models unless training is turned off in Data Controls settings. ChatGPT Team, Enterprise, and business API access don't train on your data by default. Either way, the information has left your firm's systems and landed on infrastructure your compliance program has probably never reviewed.</p>
+        <p>That text is sent to OpenAI's servers to generate a response, and from there, what happens depends on your plan and your settings rather than anything your firm controls. A Free or Plus account may use the conversation to train future models unless training is turned off in Data Controls settings. ChatGPT Team, Enterprise, and business API access don't train on your data by default. Either way, the information has left your firm's systems and landed on infrastructure your compliance program has probably never reviewed.</p>
         <p>Some firms have gone further and licensed ChatGPT Enterprise for the whole office, treating that as the fix. It solves the training question and adds admin-level retention controls, but it doesn't automatically solve the other two problems on this page. The firm still needs to review OpenAI as a vendor under Reg S-P, and it still needs a way to capture AI-assisted client communications in its own archiving system. Buying the enterprise tier is a start, not the finish line.</p>
         <p>This shows up in ordinary moments, not just theoretical ones. An advisor answering a quick client question from their phone, using the free ChatGPT app because it's already installed, creates the same exposure as an advisor pasting a full case file into the desktop version. The device doesn't change what happens to the words once they're sent.</p>
         <p>Some advisors try to soften this by stripping names and account numbers before pasting, asking about "a client with a $2 million portfolio and two grown children" instead of naming anyone. That reduces the privacy exposure meaningfully and works fine for a hypothetical research question with no real client attached. It doesn't solve the recordkeeping question in the next section on its own, and it only works if the advisor remembers to redact every single time, which is exactly the kind of manual step a compliance program should design around rather than depend on.</p>
@@ -318,7 +394,6 @@
 
         <h2 id="what-about-claude">What about Claude?</h2>
         <p>Claude raises a version of the same question, with one extra layer. Anthropic sells Claude across several plans, and the plan determines what happens to your conversations. The difference between the two paths is bigger than most advisors realize, and one of them is far easier for a compliance program to document.</p>
-        <!-- verify-at-publish: re-checked 2026-07-24 against anthropic.com/legal/privacy (effective 2026-07-08), anthropic.com/legal/commercial-terms (2025-06-17), and privacy.claude.com retention articles -->
         <p>On the business side, Anthropic's commercial terms state it plainly. Anthropic may not train models on customer content from Claude for Work, Claude Enterprise, or the API. The commitment sits in the contract itself rather than in a settings toggle, and it comes with a data processing agreement a compliance program can actually file. Deleted conversations purge from Anthropic's systems within 30 days.</p>
         <p>Personal accounts on the Free, Pro, or Max plan work differently. Since Anthropic's August 2025 consumer terms change, those conversations train future models unless the user turns training off in privacy settings, and conversations used for training are kept for up to five years. Anthropic's July 2026 privacy policy update added a detail worth knowing. Even with training turned off, a conversation that Anthropic's automated systems flag for safety review can still be used for model improvement, and flagged content is retained for up to two years. The opt-out is real, and it has a ceiling.</p>
         <p>The practical rule is to check your plan before you check the tool. Client work generally belongs on a business plan, where the no-training commitment is contractual and the retention terms are written down. An advisor on a personal account should turn training off in settings and understand what that setting does and does not cover. Either way, the Reg S-P vendor-oversight question from the last section still applies, because Anthropic processes whatever enters the conversation, training or not.</p>
@@ -424,19 +499,50 @@
     </article>
 </main>
 <footer>
-    <a href="/">Home</a>
-    <a href="/blog">Blog</a>
-    <a href="/subscribe">Morning Brief</a>
-    <a href="/claude-for-financial-advisors">Claude for financial advisors</a>
-    <a href="/sample-deliverables">Sample deliverables</a>
-    <a href="/privacy-policy">Privacy</a>
-    <a href="/terms-of-service">Terms</a>
-    <div style="margin-top:18px;">&copy; 2026 Briefly Wealth, LLC. All rights reserved.</div>
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <a class="brand" href="/"><span class="brand-word">Briefly</span><span class="brand-pin" aria-hidden="true"></span></a>
+      <p>Briefly turns scattered client records into source-backed client files for wealth advisor teams. Built by Briefly Wealth LLC.</p>
+    </div>
+    <div>
+      <h4>Product</h4>
+      <a href="/#see-it">How it works</a>
+      <a href="/#platform">Platform</a>
+      <a href="/#different">Why Briefly</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/#mcp">Inside Claude</a>
+      <a href="/#contact">Demo</a>
+      <a href="/download">Download</a>
+      <a href="/knowledge-base">Knowledge base</a>
+      <a href="/ai-compliance-for-financial-advisors">AI compliance for advisors</a>
+      <a href="/claude-for-financial-advisors">Claude for financial advisors</a>
+      <a href="/sample-deliverables">Sample deliverables</a>
+    </div>
+    <div>
+      <h4>Company</h4>
+      <a href="/about">About</a>
+      <a href="/blog">Blog</a>
+      <a href="/subscribe">Morning Brief</a>
+      <a href="mailto:contact@brieflywealth.com">Contact</a>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <a href="/privacy-policy">Privacy</a>
+      <a href="/terms-of-service">Terms</a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>&copy; 2026 Briefly Wealth LLC</span>
+    <span>brieflywealth.com</span>
+  </div>
 </footer>
 <!-- Canonical nav system (added 2026-05-30) -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&display=swap">
 <style>
-  :root { --paper:#d9d7cb; --paper-2:#e6e3d6; --paper-3:#f1eee2; --ink:#1c1d1f; --rule:rgba(28,29,31,.18); --blue:#2f8cff; --off: #f1eee2; --green: #45d18f; --teal: #65dcc8; }
+  /* Nav chrome only. Do NOT redeclare --blue/--off/--green/--teal here: this block
+     loads after the page palette and silently overwrote it, dropping body and
+     citation links to ~2.3:1 contrast. Nav accent is its own token now. */
+  :root { --paper:#F7F8FA; --paper-2:#EEF1F5; --paper-3:#FFFFFF; --ink:#0F172A; --rule:rgba(15,23,42,.18); --nav-accent:#2f8cff; --sans:"DM Sans", Inter, system-ui, -apple-system, sans-serif; }
   nav.nav { position:sticky; top:0; z-index:50; height:72px; display:flex; align-items:center; justify-content:space-between; gap:18px; padding:0 28px; background:var(--paper); border-bottom:1px solid var(--rule); backdrop-filter:none; }
   nav.nav .brand { position: relative; display: inline-flex; align-items: center; padding-right: 14px; text-decoration: none; }
   nav.nav .brand-icon { display: none; }
@@ -458,7 +564,7 @@
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: var(--blue);
+    background: var(--nav-accent);
     box-shadow: 0 0 0 2px rgba(47,140,255,.10);
   }
   nav.nav .nav-links { display:flex; gap:0; background:var(--paper); }
@@ -466,18 +572,18 @@
   nav.nav .nav-links a:last-child { border-right:0; }
   nav.nav .nav-links a:hover { background:var(--ink); color:var(--paper); }
   nav.nav .nav-actions { display:inline-flex; align-items:center; gap:10px; }
-  nav.nav .nav-cta { display:inline-flex; align-items:center; white-space:nowrap; height:38px; padding:0 16px; background: transparent; color: var(--ink); border:1px solid var(--ink); font-family:"JetBrains Mono",SFMono-Regular,monospace; font-size:12px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; text-decoration:none; }
-  nav.nav .nav-cta:hover { background:var(--blue); border-color:var(--blue); color:#fff; }
+  nav.nav .nav-cta { display:inline-flex; align-items:center; white-space:nowrap; height:38px; padding:0 16px; background: transparent; color: var(--ink); border:1px solid var(--ink); font-family:"JetBrains Mono",SFMono-Regular,monospace; font-size:12px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; text-decoration:none; border-radius: 6px; }
+  nav.nav .nav-cta:hover { background:var(--nav-accent); border-color:var(--nav-accent); color:#fff; }
   nav.nav .nav-signin { display:inline-flex; align-items:center; height:38px; padding:0 14px; background:transparent; color:var(--ink); border: 0; font-family:"JetBrains Mono",SFMono-Regular,monospace; font-size:12px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; text-decoration:none; }
   nav.nav .nav-signin:hover { background:var(--ink); color:var(--paper); }
-  nav.nav .nav-links a:focus-visible, nav.nav .nav-cta:focus-visible, nav.nav .nav-signin:focus-visible, nav.nav .nav-toggle:focus-visible { outline:2px solid var(--blue); outline-offset:2px; }
-  nav.nav .nav-toggle { display:none; width:44px; height:44px; border:1px solid var(--ink); background:var(--paper); cursor:pointer; padding:0; margin-left:auto; flex-direction:column; justify-content:center; align-items:center; gap:4px; }
+  nav.nav .nav-links a:focus-visible, nav.nav .nav-cta:focus-visible, nav.nav .nav-signin:focus-visible, nav.nav .nav-toggle:focus-visible { outline:2px solid var(--nav-accent); outline-offset:2px; }
+  nav.nav .nav-toggle { display:none; width:44px; height:44px; border:1px solid var(--ink); background:var(--paper); cursor:pointer; padding:0; margin-left:auto; flex-direction:column; justify-content:center; align-items:center; gap:4px; border-radius: 6px; }
   nav.nav .nav-toggle span { display:block; width:18px; height:1.5px; background:var(--ink); transition:transform .2s,opacity .2s; }
   nav.nav .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform:translateY(5.5px) rotate(45deg); }
   nav.nav .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity:0; }
   nav.nav .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform:translateY(-5.5px) rotate(-45deg); }
   @media (max-width:820px) {
-    nav.nav .nav-toggle { display:inline-flex; }
+    nav.nav .nav-toggle { display:inline-flex; border-radius: 6px; }
     nav.nav .nav-links { display:none; position:fixed; top:72px; left:0; right:0; flex-direction:column; gap:0; padding:12px 20px 20px; background:var(--paper-2); border:0; border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); z-index:90; }
     nav.nav .nav-links.open { display:flex; }
     nav.nav .nav-links a { width:100%; padding:14px 12px; border-right:0; border-bottom:1px solid var(--rule); }
@@ -512,7 +618,7 @@
   }
   @media (min-width: 821px) and (max-width: 1079px) {
     nav.nav .nav-links { display: none; }
-    nav.nav .nav-toggle { display: inline-flex; }
+    nav.nav .nav-toggle { display: inline-flex; border-radius: 6px; }
     nav.nav .nav-links.open {
       display: flex;
       position: absolute;
@@ -522,14 +628,14 @@
       flex-direction: column;
       gap: 0;
       padding: 12px 20px 20px;
-      background: var(--paper-2, var(--paper, #efede4));
-      border-bottom: 1px solid var(--rule, rgba(28,29,31,.18));
+      background: var(--paper-2, var(--paper, #F7F8FA));
+      border-bottom: 1px solid var(--rule, rgba(15,23,42,.18));
     }
     nav.nav .nav-links.open a {
       width: 100%;
       padding: 14px 12px;
       border: 0;
-      border-bottom: 1px solid var(--rule, rgba(28,29,31,.12));
+      border-bottom: 1px solid var(--rule, rgba(15,23,42,.12));
       font-size: 12px;
     }
     nav.nav .nav-links.open a:last-child { border-bottom: 0; }

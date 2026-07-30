@@ -122,10 +122,10 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900&family=DM+Serif+Display&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        :root { --navy:#0B2545; --blue:#0B5394; --off:#F5F4F0; --text:#1d1d1f; --muted:#6b7280; --border:#e5e7eb; --teal:#0d9488; --amber:#d97706; }
+        :root { --navy:#0F172A; --blue:#2F8CFF; --blue-ink:#1D4ED8; --off:#F7F8FA; --text:#0F172A; --muted:#6b7280; --border:#e5e7eb; --teal:#0d9488; --amber:#d97706; --cream:#F1F5F9; --cream-soft:#C3CEDD; --cream-muted:#94A3B8; --mono:"SFMono-Regular","JetBrains Mono",Consolas,monospace; }
         body { font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif; color: var(--text); background: var(--paper); line-height: 1.65; }
         nav { position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,0.94); backdrop-filter: blur(18px); border-bottom: 1px solid rgba(0,0,0,0.06); }
         .nav-inner { max-width: 1120px; height: 72px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; }
@@ -137,24 +137,100 @@
         .hero { background: var(--navy); color: #fff; padding: 112px 32px 86px; }
         .hero-inner { max-width: 900px; margin: 0 auto; }
         .eyebrow { display: block; color: rgba(255,255,255,0.62); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 16px; }
-        h1 { font-family: 'DM Serif Display', serif; font-size: clamp(38px, 6vw, 64px); line-height: 1.08; max-width: 820px; margin-bottom: 22px; }
+        h1 { font-family: var(--sans); font-weight: 900; font-size: clamp(38px, 6vw, 64px); line-height: 1.08; max-width: 820px; margin-bottom: 22px; }
         .hero p { max-width: 720px; color: rgba(255,255,255,0.76); font-size: 20px; }
         main { padding: 76px 32px; }
         .article { max-width: 780px; margin: 0 auto; }
-        .article h2 { font-family: 'DM Serif Display', serif; color: var(--navy); font-size: 32px; line-height: 1.2; margin: 44px 0 14px; }
-        .article h3 { font-family: 'DM Serif Display', serif; color: var(--navy); font-size: 20px; margin: 0 0 8px; }
+        .article h2 { font-family: var(--sans); font-weight: 900; color: var(--navy); font-size: 32px; line-height: 1.2; margin: 44px 0 14px; }
+        .article h3 { font-family: var(--sans); font-weight: 700; color: var(--navy); font-size: 20px; margin: 0 0 8px; }
         .article p { color: #334155; font-size: 17px; margin-bottom: 18px; }
         .article ul, .article ol { margin: 14px 0 26px 22px; color: #334155; }
         .article li { margin-bottom: 10px; }
         .diagram { margin: 42px 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-        .diagram-card { border: 1px solid var(--border); border-radius: 10px; padding: 20px; background: var(--off); }
+        .diagram-card { border: 1px solid var(--border); border-radius: 10px; padding: 20px; background: var(--off); box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 1px 3px rgba(15,23,42,.06); }
         .diagram-card strong { display: block; color: var(--navy); margin-bottom: 8px; }
         .diagram-card span { color: var(--muted); font-size: 14px; }
-        .cta { margin-top: 56px; padding: 32px; border-radius: 12px; background: var(--off); border: 1px solid var(--border); }
+        .cta { margin-top: 56px; padding: 32px; border-radius: 10px; background: var(--off); border: 1px solid var(--border); box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 1px 3px rgba(15,23,42,.06); }
         .cta h2 { margin-top: 0; }
-        .cta a { display: inline-block; margin-top: 8px; background: var(--navy); color: #fff; text-decoration: none; padding: 12px 20px; border-radius: 8px; font-weight: 700; }
-        footer { padding: 44px 32px; background: var(--navy); color: rgba(255,255,255,0.68); text-align: center; }
-        footer a { color: #fff; text-decoration: none; margin: 0 10px; font-size: 14px; }
+        .cta a { display: inline-block; margin-top: 8px; background: var(--navy); color: #fff; text-decoration: none; padding: 12px 20px; border-radius: 6px; font-weight: 700; }
+        footer {
+          background: var(--ink);
+          color: var(--cream-soft);
+          padding: 60px 32px 40px;
+          font-family: var(--sans);
+        }
+        footer .foot-grid {
+          max-width: 1280px;
+          margin: 0 auto;
+          display: grid;
+          grid-template-columns: 1.4fr 1fr 1fr 1fr;
+          gap: 40px;
+        }
+        footer h4 {
+          margin: 0 0 16px;
+          color: var(--cream);
+          font-family: var(--mono);
+          font-size: 11px;
+          font-weight: 800;
+          letter-spacing: .1em;
+          text-transform: uppercase;
+        }
+        footer a {
+          display: block;
+          color: var(--cream-soft);
+          text-decoration: none;
+          font-size: 14px;
+          line-height: 2;
+        }
+        footer a:hover { color: var(--cream); }
+        footer .foot-brand .brand {
+          position: relative;
+          display: inline-flex;
+          align-items: center;
+          padding-right: 18px;
+          text-decoration: none;
+        }
+        footer .foot-brand .brand-word {
+          font-family: var(--sans);
+          font-weight: 900;
+          font-size: 34px;
+          line-height: .78;
+          letter-spacing: -.085em;
+          text-transform: uppercase;
+          color: var(--cream);
+          transform: scaleY(.88);
+          transform-origin: left center;
+        }
+        footer .foot-brand .brand-pin {
+          top: 6px;
+          width: 8px;
+          height: 8px;
+          box-shadow: 0 0 0 2.5px rgba(47,140,255,.12);
+        }
+        footer .foot-brand p {
+          margin: 14px 0 0;
+          color: var(--cream-muted);
+          font-size: 13px;
+          line-height: 1.6;
+          max-width: 320px;
+        }
+        footer .foot-bottom {
+          max-width: 1280px;
+          margin: 50px auto 0;
+          padding-top: 24px;
+          border-top: 1px solid rgba(241,245,249,.14);
+          display: flex;
+          justify-content: space-between;
+          color: var(--cream-muted);
+          font-family: var(--mono);
+          font-size: 11px;
+          letter-spacing: .06em;
+          text-transform: uppercase;
+        }
+        @media (max-width: 820px) {
+          footer .foot-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+          footer .foot-bottom { flex-direction: column; gap: 12px; text-align: left; }
+        }
         @media (max-width: 760px) { .nav-links a:not(.nav-btn) { display: none; } .diagram { grid-template-columns: 1fr; } .hero { padding-top: 88px; } }
 
         /* Page meta (byline / published / verified) */
@@ -163,7 +239,7 @@
         .page-meta .byline { color: rgba(255,255,255,0.88); font-weight: 700; }
 
         /* Self-disclosure box */
-        .disclosure { max-width: 780px; margin: 0 auto; padding: 20px 24px; background: var(--off); border: 1px solid var(--border); border-left: 3px solid var(--blue); border-radius: 6px; }
+        .disclosure { max-width: 780px; margin: 0 auto; padding: 20px 24px; background: var(--off); border: 1px solid var(--border); border-left: 3px solid var(--blue); border-radius: 10px; box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 1px 3px rgba(15,23,42,.06); }
         .disclosure p { color: #334155; font-size: 15px; margin: 0; }
 
         /* Momentum timeline */
@@ -175,10 +251,10 @@
 
         /* Ranked access methods */
         .methods-list { list-style: none; margin: 26px 0 6px; padding: 0; counter-reset: method; }
-        .method-card { position: relative; padding: 22px 22px 20px 68px; margin-bottom: 14px; background: var(--off); border: 1px solid var(--border); border-radius: 8px; }
+        .method-card { position: relative; padding: 22px 22px 20px 68px; margin-bottom: 14px; background: var(--off); border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 1px 3px rgba(15,23,42,.06); }
         .method-card::before { counter-increment: method; content: counter(method); position: absolute; left: 20px; top: 22px; width: 30px; height: 30px; border-radius: 50%; background: var(--navy); color: #fff; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; font-family: "JetBrains Mono", SFMono-Regular, monospace; }
         .method-card p { margin: 0; color: #334155; font-size: 16px; }
-        .method-card p a { color: var(--blue); }
+        .method-card p a { color: var(--blue-ink); }
         .method-card.local { border-color: var(--teal); background: #f0fdfa; }
         .method-card.local::before { background: var(--teal); }
 
@@ -189,16 +265,16 @@
         .comparison-table thead th { background: var(--navy); color: #fff; font-size: 12.5px; text-transform: uppercase; letter-spacing: .03em; font-weight: 700; }
         .comparison-table tbody th { background: var(--off); color: var(--navy); font-weight: 700; white-space: nowrap; }
         .comparison-table td.win { background: #f0fdfa; }
-        .comparison-table a { color: var(--blue); }
-        .concession { max-width: 780px; margin: 8px 0 0; padding: 18px 22px; border: 1px dashed var(--border); border-radius: 8px; }
+        .comparison-table a { color: var(--blue-ink); }
+        .concession { max-width: 780px; margin: 8px 0 0; padding: 18px 22px; border: 1px dashed var(--border); border-radius: 10px; box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 1px 3px rgba(15,23,42,.06); }
         .concession p { margin: 0; font-size: 15px; }
 
         /* FAQ */
         .faq { margin: 26px 0 10px; }
-        .faq-item { border-bottom: 1px solid var(--ink, #1c1d1f); padding: 22px 0; }
-        .faq-item summary { cursor: pointer; font-weight: 700; color: var(--ink, #1c1d1f); font-size: 17px; letter-spacing: -.01em; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+        .faq-item { border-bottom: 1px solid var(--rule); padding: 22px 0; }
+        .faq-item summary { cursor: pointer; font-weight: 700; color: var(--ink, #0F172A); font-size: 17px; letter-spacing: -.01em; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
         .faq-item summary::-webkit-details-marker { display: none; }
-        .faq-item summary::after { content: "+"; font-family: "JetBrains Mono", SFMono-Regular, monospace; font-size: 20px; font-weight: 700; color: var(--blue); flex-shrink: 0; line-height: 1; }
+        .faq-item summary::after { content: "+"; font-family: "JetBrains Mono", SFMono-Regular, monospace; font-size: 20px; font-weight: 700; color: var(--blue-ink); flex-shrink: 0; line-height: 1; }
         .faq-item[open] summary::after { content: "\2212"; }
         .faq-item p { margin: 14px 0 0; color: var(--muted); font-size: 15px; line-height: 1.65; max-width: 720px; }
 
@@ -216,7 +292,7 @@
     nav.nav { gap: 10px !important; }
     nav.nav .nav-actions { gap: 8px !important; }
     nav.nav .nav-signin,
-    nav.nav .nav-cta { white-space: nowrap !important; height: 40px !important; padding: 0 12px !important; font-size: 10.5px !important; line-height: 1 !important; }
+    nav.nav .nav-cta { white-space: nowrap !important; height: 40px !important; padding: 0 12px !important; font-size: 10.5px !important; line-height: 1 !important; border-radius: 6px; }
     nav.nav .brand-word { font-size: 22px !important; }
 
     /* Hero: tighter padding, sharper headline */
@@ -241,11 +317,10 @@
 
     /* Footer breathing room */
     footer { padding: 32px 20px; }
-    footer a { display: inline-block; margin: 4px 8px; padding: 4px 0; }
   }
   @media (max-width: 480px) {
     nav.nav .nav-signin { display: none !important; }
-    nav.nav .nav-cta { padding: 0 14px !important; }
+    nav.nav .nav-cta { padding: 0 14px !important; border-radius: 6px; }
     h1 { font-size: 30px; }
     .hero p { font-size: 16px; }
   }
@@ -256,8 +331,9 @@
   <a class="brand" href="/"><span class="brand-word">Briefly</span><span class="brand-pin" aria-hidden="true"></span></a>
   <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu"><span></span><span></span><span></span></button>
   <div class="nav-links" id="nav-links">
-    <a href="/#os">How it works</a>
+    <a href="/#see-it">How it works</a>
     <a href="/sample-deliverables">Samples</a>
+    <a href="/pricing">Pricing</a>
     <a href="/security">Security</a>
     <a href="/download">Download</a>
     <a href="/about">About</a>
@@ -290,19 +366,19 @@
         <p>Anthropic has been shipping finance-focused features on a fast clock, something close to every ten weeks, and wealth firms keep getting pulled into the update cycle whether they asked for it or not. Here's a short version of that timeline.</p>
         <ul class="timeline-list">
           <li class="timeline-item">
-            <span class="t-date">July 2025<!-- verify-at-publish --></span>
+            <span class="t-date">July 2025</span>
             <p>Anthropic launches Claude for Financial Services, with data connections to providers including S&amp;P Global, Moody's, Morningstar, and FactSet.</p>
           </li>
           <li class="timeline-item">
-            <span class="t-date">Late 2025<!-- verify-at-publish --></span>
+            <span class="t-date">Late 2025</span>
             <p>Anthropic extends Claude's spreadsheet and financial-modeling abilities, aimed at teams that live in Excel and portfolio-management tools.</p>
           </li>
           <li class="timeline-item">
-            <span class="t-date">Early 2026<!-- verify-at-publish --></span>
+            <span class="t-date">Early 2026</span>
             <p>More financial-data and workflow partnerships roll out as part of Anthropic's regular release cadence, each one adding a new data source Claude can reach with permission.</p>
           </li>
           <li class="timeline-item">
-            <span class="t-date">2026<!-- verify-at-publish --></span>
+            <span class="t-date">2026</span>
             <p>LPL Financial partners with Anthropic, bringing Claude to LPL's network of more than 30,000 affiliated advisors.</p>
           </li>
         </ul>
@@ -451,19 +527,50 @@
     </article>
 </main>
 <footer>
-    <a href="/">Home</a>
-    <a href="/blog">Blog</a>
-    <a href="/subscribe">Morning Brief</a>
-    <a href="/ai-compliance-for-financial-advisors">AI compliance for financial advisors</a>
-    <a href="/sample-deliverables">Sample deliverables</a>
-    <a href="/privacy-policy">Privacy</a>
-    <a href="/terms-of-service">Terms</a>
-    <div style="margin-top:18px;">&copy; 2026 Briefly Wealth, LLC. All rights reserved.</div>
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <a class="brand" href="/"><span class="brand-word">Briefly</span><span class="brand-pin" aria-hidden="true"></span></a>
+      <p>Briefly turns scattered client records into source-backed client files for wealth advisor teams. Built by Briefly Wealth LLC.</p>
+    </div>
+    <div>
+      <h4>Product</h4>
+      <a href="/#see-it">How it works</a>
+      <a href="/#platform">Platform</a>
+      <a href="/#different">Why Briefly</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/#mcp">Inside Claude</a>
+      <a href="/#contact">Demo</a>
+      <a href="/download">Download</a>
+      <a href="/knowledge-base">Knowledge base</a>
+      <a href="/ai-compliance-for-financial-advisors">AI compliance for advisors</a>
+      <a href="/claude-for-financial-advisors">Claude for financial advisors</a>
+      <a href="/sample-deliverables">Sample deliverables</a>
+    </div>
+    <div>
+      <h4>Company</h4>
+      <a href="/about">About</a>
+      <a href="/blog">Blog</a>
+      <a href="/subscribe">Morning Brief</a>
+      <a href="mailto:contact@brieflywealth.com">Contact</a>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <a href="/privacy-policy">Privacy</a>
+      <a href="/terms-of-service">Terms</a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>&copy; 2026 Briefly Wealth LLC</span>
+    <span>brieflywealth.com</span>
+  </div>
 </footer>
 <!-- Canonical nav system (added 2026-05-30) -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&display=swap">
 <style>
-  :root { --paper:#d9d7cb; --paper-2:#e6e3d6; --paper-3:#f1eee2; --ink:#1c1d1f; --rule:rgba(28,29,31,.18); --blue:#2f8cff; --off: #f1eee2; --green: #45d18f; --teal: #65dcc8; }
+  /* Nav chrome only. Do NOT redeclare --blue/--off/--green/--teal here: this block
+     loads after the page palette and silently overwrote it, dropping body and
+     citation links to ~2.3:1 contrast. Nav accent is its own token now. */
+  :root { --paper:#F7F8FA; --paper-2:#EEF1F5; --paper-3:#FFFFFF; --ink:#0F172A; --rule:rgba(15,23,42,.18); --nav-accent:#2f8cff; --sans:"DM Sans", Inter, system-ui, -apple-system, sans-serif; }
   nav.nav { position:sticky; top:0; z-index:50; height:72px; display:flex; align-items:center; justify-content:space-between; gap:18px; padding:0 28px; background:var(--paper); border-bottom:1px solid var(--rule); backdrop-filter:none; }
   nav.nav .brand { position: relative; display: inline-flex; align-items: center; padding-right: 14px; text-decoration: none; }
   nav.nav .brand-icon { display: none; }
@@ -485,7 +592,7 @@
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: var(--blue);
+    background: var(--nav-accent);
     box-shadow: 0 0 0 2px rgba(47,140,255,.10);
   }
   nav.nav .nav-links { display:flex; gap:0; background:var(--paper); }
@@ -493,18 +600,18 @@
   nav.nav .nav-links a:last-child { border-right:0; }
   nav.nav .nav-links a:hover { background:var(--ink); color:var(--paper); }
   nav.nav .nav-actions { display:inline-flex; align-items:center; gap:10px; }
-  nav.nav .nav-cta { display:inline-flex; align-items:center; white-space:nowrap; height:38px; padding:0 16px; background: transparent; color: var(--ink); border:1px solid var(--ink); font-family:"JetBrains Mono",SFMono-Regular,monospace; font-size:12px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; text-decoration:none; }
-  nav.nav .nav-cta:hover { background:var(--blue); border-color:var(--blue); color:#fff; }
+  nav.nav .nav-cta { display:inline-flex; align-items:center; white-space:nowrap; height:38px; padding:0 16px; background: transparent; color: var(--ink); border:1px solid var(--ink); font-family:"JetBrains Mono",SFMono-Regular,monospace; font-size:12px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; text-decoration:none; border-radius: 6px; }
+  nav.nav .nav-cta:hover { background:var(--nav-accent); border-color:var(--nav-accent); color:#fff; }
   nav.nav .nav-signin { display:inline-flex; align-items:center; height:38px; padding:0 14px; background:transparent; color:var(--ink); border: 0; font-family:"JetBrains Mono",SFMono-Regular,monospace; font-size:12px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; text-decoration:none; }
   nav.nav .nav-signin:hover { background:var(--ink); color:var(--paper); }
-  nav.nav .nav-links a:focus-visible, nav.nav .nav-cta:focus-visible, nav.nav .nav-signin:focus-visible, nav.nav .nav-toggle:focus-visible { outline:2px solid var(--blue); outline-offset:2px; }
-  nav.nav .nav-toggle { display:none; width:44px; height:44px; border:1px solid var(--ink); background:var(--paper); cursor:pointer; padding:0; margin-left:auto; flex-direction:column; justify-content:center; align-items:center; gap:4px; }
+  nav.nav .nav-links a:focus-visible, nav.nav .nav-cta:focus-visible, nav.nav .nav-signin:focus-visible, nav.nav .nav-toggle:focus-visible { outline:2px solid var(--nav-accent); outline-offset:2px; }
+  nav.nav .nav-toggle { display:none; width:44px; height:44px; border:1px solid var(--ink); background:var(--paper); cursor:pointer; padding:0; margin-left:auto; flex-direction:column; justify-content:center; align-items:center; gap:4px; border-radius: 6px; }
   nav.nav .nav-toggle span { display:block; width:18px; height:1.5px; background:var(--ink); transition:transform .2s,opacity .2s; }
   nav.nav .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform:translateY(5.5px) rotate(45deg); }
   nav.nav .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity:0; }
   nav.nav .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform:translateY(-5.5px) rotate(-45deg); }
   @media (max-width:820px) {
-    nav.nav .nav-toggle { display:inline-flex; }
+    nav.nav .nav-toggle { display:inline-flex; border-radius: 6px; }
     nav.nav .nav-links { display:none; position:fixed; top:72px; left:0; right:0; flex-direction:column; gap:0; padding:12px 20px 20px; background:var(--paper-2); border:0; border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); z-index:90; }
     nav.nav .nav-links.open { display:flex; }
     nav.nav .nav-links a { width:100%; padding:14px 12px; border-right:0; border-bottom:1px solid var(--rule); }
@@ -539,7 +646,7 @@
   }
   @media (min-width: 821px) and (max-width: 1079px) {
     nav.nav .nav-links { display: none; }
-    nav.nav .nav-toggle { display: inline-flex; }
+    nav.nav .nav-toggle { display: inline-flex; border-radius: 6px; }
     nav.nav .nav-links.open {
       display: flex;
       position: absolute;
@@ -549,14 +656,14 @@
       flex-direction: column;
       gap: 0;
       padding: 12px 20px 20px;
-      background: var(--paper-2, var(--paper, #efede4));
-      border-bottom: 1px solid var(--rule, rgba(28,29,31,.18));
+      background: var(--paper-2, var(--paper, #F7F8FA));
+      border-bottom: 1px solid var(--rule, rgba(15,23,42,.18));
     }
     nav.nav .nav-links.open a {
       width: 100%;
       padding: 14px 12px;
       border: 0;
-      border-bottom: 1px solid var(--rule, rgba(28,29,31,.12));
+      border-bottom: 1px solid var(--rule, rgba(15,23,42,.12));
       font-size: 12px;
     }
     nav.nav .nav-links.open a:last-child { border-bottom: 0; }

@@ -7,55 +7,34 @@ Disallow: /redesign-concepts/
 Disallow: /sample-brief-email-preview.html
 Disallow: /legal-drafts/
 
+# AI assistants and training crawlers are welcome on the public site.
+# These agents are grouped so the exclusions above apply to them too:
+# a named group REPLACES the * group rather than inheriting from it, so
+# every Disallow has to be repeated here. Do not add a named agent
+# without these lines.
 User-agent: GPTBot
-Allow: /
-
 User-agent: ChatGPT-User
-Allow: /
-
 User-agent: OAI-SearchBot
-Allow: /
-
 User-agent: ClaudeBot
-Allow: /
-
 User-agent: Claude-Web
-Allow: /
-
 User-agent: anthropic-ai
-Allow: /
-
 User-agent: PerplexityBot
-Allow: /
-
 User-agent: Perplexity-User
-Allow: /
-
 User-agent: Google-Extended
-Allow: /
-
 User-agent: CCBot
-Allow: /
-
 User-agent: Applebot-Extended
-Allow: /
-
 User-agent: cohere-ai
-Allow: /
-
 User-agent: Bytespider
-Allow: /
-
 User-agent: Amazonbot
-Allow: /
-
 User-agent: DuckAssistBot
-Allow: /
-
 User-agent: Meta-ExternalAgent
-Allow: /
-
 User-agent: FacebookBot
 Allow: /
+Disallow: /nav-
+Disallow: /swarm-
+Disallow: /diag-mob-
+Disallow: /redesign-concepts/
+Disallow: /sample-brief-email-preview.html
+Disallow: /legal-drafts/
 
 Sitemap: https://www.brieflywealth.com/sitemap.xml

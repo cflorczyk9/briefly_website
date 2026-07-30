@@ -1,0 +1,573 @@
+{
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "pageHeight": 10335,
+  "totalWords": 904,
+  "wordsPer1000px": 87.5,
+  "aboveFoldWords": 50,
+  "fontSizes": [
+    {
+      "value": "14px",
+      "count": 27
+    },
+    {
+      "value": "11px",
+      "count": 18
+    },
+    {
+      "value": "14.5px",
+      "count": 15
+    },
+    {
+      "value": "15.5px",
+      "count": 15
+    },
+    {
+      "value": "12px",
+      "count": 13
+    },
+    {
+      "value": "16px",
+      "count": 12
+    },
+    {
+      "value": "10.5px",
+      "count": 8
+    },
+    {
+      "value": "13px",
+      "count": 6
+    },
+    {
+      "value": "17px",
+      "count": 5
+    },
+    {
+      "value": "18px",
+      "count": 4
+    },
+    {
+      "value": "20px",
+      "count": 4
+    },
+    {
+      "value": "21px",
+      "count": 4
+    },
+    {
+      "value": "32px",
+      "count": 3
+    },
+    {
+      "value": "42px",
+      "count": 3
+    },
+    {
+      "value": "15px",
+      "count": 2
+    },
+    {
+      "value": "24px",
+      "count": 2
+    },
+    {
+      "value": "44.85px",
+      "count": 2
+    },
+    {
+      "value": "26px",
+      "count": 1
+    },
+    {
+      "value": "74.1px",
+      "count": 1
+    },
+    {
+      "value": "29.64px",
+      "count": 1
+    },
+    {
+      "value": "30px",
+      "count": 1
+    },
+    {
+      "value": "70.2px",
+      "count": 1
+    },
+    {
+      "value": "34px",
+      "count": 1
+    }
+  ],
+  "textColors": [
+    {
+      "value": "rgb(28, 29, 31)",
+      "count": 41
+    },
+    {
+      "value": "rgba(28, 29, 31, 0.72)",
+      "count": 39
+    },
+    {
+      "value": "rgba(247, 243, 234, 0.66)",
+      "count": 21
+    },
+    {
+      "value": "rgb(47, 140, 255)",
+      "count": 12
+    },
+    {
+      "value": "rgba(28, 29, 31, 0.52)",
+      "count": 12
+    },
+    {
+      "value": "rgb(247, 243, 234)",
+      "count": 8
+    },
+    {
+      "value": "rgb(140, 216, 255)",
+      "count": 6
+    },
+    {
+      "value": "rgba(247, 243, 234, 0.42)",
+      "count": 6
+    },
+    {
+      "value": "rgb(217, 215, 203)",
+      "count": 3
+    },
+    {
+      "value": "rgb(11, 37, 69)",
+      "count": 1
+    }
+  ],
+  "backgroundColors": [
+    {
+      "value": "rgb(241, 238, 226)",
+      "count": 10
+    },
+    {
+      "value": "rgb(217, 215, 203)",
+      "count": 9
+    },
+    {
+      "value": "rgb(28, 29, 31)",
+      "count": 8
+    },
+    {
+      "value": "rgb(47, 140, 255)",
+      "count": 4
+    },
+    {
+      "value": "rgba(11, 83, 148, 0.06)",
+      "count": 4
+    },
+    {
+      "value": "rgba(247, 243, 234, 0.03)",
+      "count": 3
+    },
+    {
+      "value": "rgb(11, 37, 69)",
+      "count": 1
+    },
+    {
+      "value": "rgb(230, 227, 214)",
+      "count": 1
+    }
+  ],
+  "fontFamilies": [
+    {
+      "value": "\"DM Sans\", Inter, system-ui, -apple-system, sans-serif",
+      "count": 106
+    },
+    {
+      "value": "SFMono-Regular, \"JetBrains Mono\", Consolas, monospace",
+      "count": 43
+    }
+  ],
+  "fontWeights": [
+    {
+      "value": "400",
+      "count": 70
+    },
+    {
+      "value": "800",
+      "count": 35
+    },
+    {
+      "value": "700",
+      "count": 24
+    },
+    {
+      "value": "900",
+      "count": 19
+    },
+    {
+      "value": "600",
+      "count": 1
+    }
+  ],
+  "loadedFonts": [
+    "DM Sans 400 normal",
+    "DM Sans 600 normal",
+    "DM Sans 700 normal",
+    "DM Sans 800 normal",
+    "DM Sans 900 normal"
+  ],
+  "h1": {
+    "text": "Know every client like they're your only client.",
+    "fontSize": "29.64px",
+    "fontWeight": "900",
+    "lineHeight": "28.4544px",
+    "letterSpacing": "-0.8892px",
+    "fontFamily": "\"DM Sans\", Inter, system-ui, -apple-system, sans-serif"
+  },
+  "borderElementCount": 49,
+  "shadowElementCount": 7,
+  "horizontalScroll": {
+    "scrolls": false,
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "offenders": []
+  },
+  "contrastFailures": [
+    {
+      "selector": "section.hero:nth-of-type(1) > div.field > div.hero-copy:nth-of-type(2) > div.eyebrow:nth-of-type(1)",
+      "color": "rgb(47, 140, 255)",
+      "background": "rgb(217, 215, 203)",
+      "ratio": 2.3,
+      "threshold": 4.5,
+      "isLarge": false,
+      "fontSizePx": 12,
+      "fontWeight": 800,
+      "textSample": "AI knowledge base for financial advisor teams"
+    },
+    {
+      "selector": "div.mcp-inner.reveal > div.mcp-pipe:nth-of-type(2) > div.mcp-node:nth-of-type(1) > div.mn-p:nth-of-type(3)",
+      "color": "rgba(247, 243, 234, 0.42)",
+      "background": "rgb(18, 43, 74)",
+      "ratio": 3.49,
+      "threshold": 4.5,
+      "isLarge": false,
+      "fontSizePx": 14,
+      "fontWeight": 400,
+      "textSample": "“What's changed with the Millers since our last review, and "
+    },
+    {
+      "selector": "div.mcp-inner.reveal > div.mcp-pipe:nth-of-type(2) > div.mcp-node:nth-of-type(3) > div.mn-p:nth-of-type(3)",
+      "color": "rgba(247, 243, 234, 0.42)",
+      "background": "rgb(18, 43, 74)",
+      "ratio": 3.49,
+      "threshold": 4.5,
+      "isLarge": false,
+      "fontSizePx": 14,
+      "fontWeight": 400,
+      "textSample": "Reads the right client files, runs the work, and returns a g"
+    },
+    {
+      "selector": "div.mcp-inner.reveal > div.mcp-pipe:nth-of-type(2) > div.mcp-node:nth-of-type(5) > div.mn-p:nth-of-type(3)",
+      "color": "rgba(247, 243, 234, 0.42)",
+      "background": "rgb(18, 43, 74)",
+      "ratio": 3.49,
+      "threshold": 4.5,
+      "isLarge": false,
+      "fontSizePx": 14,
+      "fontWeight": 400,
+      "textSample": "With the connector, notes, emails, statements, and CRM recor"
+    },
+    {
+      "selector": "section.custody:nth-of-type(3) > div.container.custody-inner > div.custody-head:nth-of-type(1) > div.eyebrow",
+      "color": "rgb(47, 140, 255)",
+      "background": "rgb(241, 238, 226)",
+      "ratio": 2.86,
+      "threshold": 4.5,
+      "isLarge": false,
+      "fontSizePx": 11,
+      "fontWeight": 700,
+      "textSample": "Ways to run Briefly"
+    },
+    {
+      "selector": "div.plan-grid:nth-of-type(2) > article.plan.plan-lead:nth-of-type(1) > div.plan-head:nth-of-type(1) > p.plan-for",
+      "color": "rgba(28, 29, 31, 0.52)",
+      "background": "rgb(217, 215, 203)",
+      "ratio": 3.14,
+      "threshold": 4.5,
+      "isLarge": false,
+      "fontSizePx": 14,
+      "fontWeight": 400,
+      "textSample": "Files stay on your own computer"
+    },
+    {
+      "selector": "article.plan.plan-lead:nth-of-type(1) > div.plan-body:nth-of-type(2) > p.plan-price > span",
+      "color": "rgba(28, 29, 31, 0.52)",
+      "background": "rgb(217, 215, 203)",
+      "ratio": 3.14,
+      "threshold": 4.5,
+      "isLarge": false,
+      "fontSizePx": 13,
+      "fontWeight": 400,
+      "textSample": "per advisor seat, per month"
+    },
+    {
+      "selector": "div.plan-grid:nth-of-type(2) > article.plan:nth-of-type(2) > div.plan-head:nth-of-type(1) > p.plan-for",
+      "color": "rgba(28, 29, 31, 0.52)",
+      "background": "rgb(217, 215, 203)",
+      "ratio": 3.14,
+      "threshold": 4.5,
+      "isLarge": false,
+      "fontSizePx": 14,
+      "fontWeight": 400,
+      "textSample": "Files live on Briefly's servers"
+    },
+    {
+      "selector": "article.plan:nth-of-type(2) > div.plan-body:nth-of-type(2) > p.plan-price > span",
+      "color": "rgba(28, 29, 31, 0.52)",
+      "background": "rgb(217, 215, 203)",
+      "ratio": 3.14,
+      "threshold": 4.5,
+      "isLarge": false,
+      "fontSizePx": 13,
+      "fontWeight": 400,
+      "textSample": "per advisor seat, per month"
+    },
+    {
+      "selector": "div.plan-grid:nth-of-type(2) > article.plan:nth-of-type(3) > div.plan-head:nth-of-type(1) > p.plan-for",
+      "color": "rgba(28, 29, 31, 0.52)",
+      "background": "rgb(217, 215, 203)",
+      "ratio": 3.14,
+      "threshold": 4.5,
+      "isLarge": false,
+      "fontSizePx": 14,
+      "fontWeight": 400,
+      "textSample": "One knowledge base, either way"
+    },
+    {
+      "selector": "article.plan:nth-of-type(3) > div.plan-body:nth-of-type(2) > p.plan-price > span",
+      "color": "rgba(28, 29, 31, 0.52)",
+      "background": "rgb(217, 215, 203)",
+      "ratio": 3.14,
+      "threshold": 4.5,
+      "isLarge": false,
+      "fontSizePx": 13,
+      "fontWeight": 400,
+      "textSample": "per advisor seat, per month"
+    },
+    {
+      "selector": "body > section.custody:nth-of-type(3) > div.container.custody-inner > p.plan-shared",
+      "color": "rgba(28, 29, 31, 0.52)",
+      "background": "rgb(241, 238, 226)",
+      "ratio": 3.34,
+      "threshold": 4.5,
+      "isLarge": false,
+      "fontSizePx": 14,
+      "fontWeight": 400,
+      "textSample": "All three build from the records your firm already has. Ther"
+    },
+    {
+      "selector": "div.container > header.platform-head.reveal > div.platform-head-left:nth-of-type(1) > div.eyebrow",
+      "color": "rgba(28, 29, 31, 0.52)",
+      "background": "rgb(230, 227, 214)",
+      "ratio": 3.25,
+      "threshold": 4.5,
+      "isLarge": false,
+      "fontSizePx": 11,
+      "fontWeight": 700,
+      "textSample": "The platform"
+    },
+    {
+      "selector": "div.platform-cards.reveal > article.pc-card.pc-1:nth-of-type(1) > div.pc-meta:nth-of-type(2) > div.pc-num",
+      "color": "rgba(28, 29, 31, 0.52)",
+      "background": "rgb(241, 238, 226)",
+      "ratio": 3.34,
+      "threshold": 4.5,
+      "isLarge": false,
+      "fontSizePx": 11,
+      "fontWeight": 800,
+      "textSample": "01"
+    },
+    {
+      "selector": "div.platform-cards.reveal > article.pc-card.pc-2:nth-of-type(2) > div.pc-meta:nth-of-type(2) > div.pc-num",
+      "color": "rgba(28, 29, 31, 0.52)",
+      "background": "rgb(241, 238, 226)",
+      "ratio": 3.34,
+      "threshold": 4.5,
+      "isLarge": false,
+      "fontSizePx": 11,
+      "fontWeight": 800,
+      "textSample": "02"
+    },
+    {
+      "selector": "div.platform-cards.reveal > article.pc-card.pc-3:nth-of-type(3) > div.pc-meta:nth-of-type(2) > div.pc-num",
+      "color": "rgba(28, 29, 31, 0.52)",
+      "background": "rgb(241, 238, 226)",
+      "ratio": 3.34,
+      "threshold": 4.5,
+      "isLarge": false,
+      "fontSizePx": 11,
+      "fontWeight": 800,
+      "textSample": "03"
+    },
+    {
+      "selector": "div.platform-cards.reveal > article.pc-card.pc-4:nth-of-type(4) > div.pc-meta:nth-of-type(2) > div.pc-num",
+      "color": "rgba(28, 29, 31, 0.52)",
+      "background": "rgb(241, 238, 226)",
+      "ratio": 3.34,
+      "threshold": 4.5,
+      "isLarge": false,
+      "fontSizePx": 11,
+      "fontWeight": 800,
+      "textSample": "04"
+    },
+    {
+      "selector": "section.feat:nth-of-type(5) > div.feat-inner > header.feat-head.reveal > div.eyebrow",
+      "color": "rgb(47, 140, 255)",
+      "background": "rgb(217, 215, 203)",
+      "ratio": 2.3,
+      "threshold": 4.5,
+      "isLarge": false,
+      "fontSizePx": 11,
+      "fontWeight": 700,
+      "textSample": "Why Briefly"
+    },
+    {
+      "selector": "div.feat-inner > div.feat-grid.reveal > article.feat-card:nth-of-type(1) > div.fc-num",
+      "color": "rgb(47, 140, 255)",
+      "background": "rgb(241, 238, 226)",
+      "ratio": 2.86,
+      "threshold": 4.5,
+      "isLarge": false,
+      "fontSizePx": 12,
+      "fontWeight": 800,
+      "textSample": "01"
+    },
+    {
+      "selector": "div.feat-inner > div.feat-grid.reveal > article.feat-card:nth-of-type(1) > span.fc-tag",
+      "color": "rgb(47, 140, 255)",
+      "background": "rgb(227, 229, 221)",
+      "ratio": 2.61,
+      "threshold": 4.5,
+      "isLarge": false,
+      "fontSizePx": 10.5,
+      "fontWeight": 800,
+      "textSample": "Firm-owned memory"
+    },
+    {
+      "selector": "div.feat-inner > div.feat-grid.reveal > article.feat-card:nth-of-type(2) > div.fc-num",
+      "color": "rgb(47, 140, 255)",
+      "background": "rgb(241, 238, 226)",
+      "ratio": 2.86,
+      "threshold": 4.5,
+      "isLarge": false,
+      "fontSizePx": 12,
+      "fontWeight": 800,
+      "textSample": "02"
+    },
+    {
+      "selector": "div.feat-inner > div.feat-grid.reveal > article.feat-card:nth-of-type(2) > span.fc-tag",
+      "color": "rgb(47, 140, 255)",
+      "background": "rgb(227, 229, 221)",
+      "ratio": 2.61,
+      "threshold": 4.5,
+      "isLarge": false,
+      "fontSizePx": 10.5,
+      "fontWeight": 800,
+      "textSample": "Citations on every claim"
+    },
+    {
+      "selector": "div.feat-inner > div.feat-grid.reveal > article.feat-card:nth-of-type(3) > div.fc-num",
+      "color": "rgb(47, 140, 255)",
+      "background": "rgb(241, 238, 226)",
+      "ratio": 2.86,
+      "threshold": 4.5,
+      "isLarge": false,
+      "fontSizePx": 12,
+      "fontWeight": 800,
+      "textSample": "03"
+    },
+    {
+      "selector": "div.feat-inner > div.feat-grid.reveal > article.feat-card:nth-of-type(3) > span.fc-tag",
+      "color": "rgb(47, 140, 255)",
+      "background": "rgb(227, 229, 221)",
+      "ratio": 2.61,
+      "threshold": 4.5,
+      "isLarge": false,
+      "fontSizePx": 10.5,
+      "fontWeight": 800,
+      "textSample": "Cross-client graph"
+    },
+    {
+      "selector": "div.feat-inner > div.feat-grid.reveal > article.feat-card:nth-of-type(4) > div.fc-num",
+      "color": "rgb(47, 140, 255)",
+      "background": "rgb(241, 238, 226)",
+      "ratio": 2.86,
+      "threshold": 4.5,
+      "isLarge": false,
+      "fontSizePx": 12,
+      "fontWeight": 800,
+      "textSample": "04"
+    },
+    {
+      "selector": "div.feat-inner > div.feat-grid.reveal > article.feat-card:nth-of-type(4) > span.fc-tag",
+      "color": "rgb(47, 140, 255)",
+      "background": "rgb(227, 229, 221)",
+      "ratio": 2.61,
+      "threshold": 4.5,
+      "isLarge": false,
+      "fontSizePx": 10.5,
+      "fontWeight": 800,
+      "textSample": "No lock-in"
+    },
+    {
+      "selector": "section.site-faq:nth-of-type(6) > div.container.site-faq-inner > header.site-faq-head > div.eyebrow",
+      "color": "rgb(47, 140, 255)",
+      "background": "rgb(241, 238, 226)",
+      "ratio": 2.86,
+      "threshold": 4.5,
+      "isLarge": false,
+      "fontSizePx": 11,
+      "fontWeight": 700,
+      "textSample": "FAQ"
+    },
+    {
+      "selector": "footer > div.foot-grid:nth-of-type(1) > div.foot-brand:nth-of-type(1) > p",
+      "color": "rgba(247, 243, 234, 0.42)",
+      "background": "rgb(28, 29, 31)",
+      "ratio": 3.76,
+      "threshold": 4.5,
+      "isLarge": false,
+      "fontSizePx": 13,
+      "fontWeight": 400,
+      "textSample": "Briefly turns scattered client records into source-backed cl"
+    },
+    {
+      "selector": "body > footer > div.foot-bottom:nth-of-type(2) > span:nth-of-type(1)",
+      "color": "rgba(247, 243, 234, 0.42)",
+      "background": "rgb(28, 29, 31)",
+      "ratio": 3.76,
+      "threshold": 4.5,
+      "isLarge": false,
+      "fontSizePx": 11,
+      "fontWeight": 400,
+      "textSample": "© 2026 Briefly Wealth LLC"
+    },
+    {
+      "selector": "body > footer > div.foot-bottom:nth-of-type(2) > span:nth-of-type(2)",
+      "color": "rgba(247, 243, 234, 0.42)",
+      "background": "rgb(28, 29, 31)",
+      "ratio": 3.76,
+      "threshold": 4.5,
+      "isLarge": false,
+      "fontSizePx": 11,
+      "fontWeight": 400,
+      "textSample": "brieflywealth.com"
+    }
+  ],
+  "contrastElementsChecked": 149,
+  "methodology": {
+    "wordAndDensityMetrics": "natural as-loaded state (FAQ accordions closed, demo modal closed)",
+    "styleAndContrastMetrics": "FAQ <details> accordions force-opened for full text coverage; demo modal NOT opened (JS-triggered, no static switch) -- its contents are excluded from every metric in this report"
+  },
+  "url": "http://localhost:8888/index.html"
+}
