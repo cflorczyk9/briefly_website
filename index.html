@@ -1178,39 +1178,23 @@
   .showit .bpa-stage { margin-inline: auto; border-color: rgba(255,255,255,.12);
                        box-shadow: 0 24px 60px rgba(0,0,0,.45); }
 
-  .sg-card {
-    /* The cards sit fully in the side gutters, never over the clip: the clip is a fixed
-       560px in the middle, so each gutter is (100% - 560px) / 2 and the card takes that
-       minus a 14px gap, capped at 330px on wide screens. */
-    position: absolute; width: min(330px, calc(50% - 294px)); z-index: 3; text-align: left;
-    background: #FFFFFF; border: 1px solid var(--rule); border-radius: 16px;
-    box-shadow: 0 16px 40px rgba(15,23,42,.35);
-    padding: 16px 18px 0; overflow: hidden;
+  /* Phones sit under the clip's 562px floor, so the clip comes off and one line of
+     text carries what it shows. Hidden everywhere the clip renders. */
+  .sg-fallback {
+    display: none; padding: 22px 24px; text-align: left;
+    background: rgba(241,245,249,.05);
+    border: 1px solid rgba(241,245,249,.16);
+    border-radius: 16px;
   }
-  .sg-card h3 { margin: 0; font-size: 15px; font-weight: 700; letter-spacing: -.01em; color: var(--ink); }
-  .sg-card p { margin: 6px 0 13px; font-size: 13px; line-height: 1.5; color: var(--ink-soft); }
-  .sg-line { display: block; margin: 0 -18px; padding: 9px 18px 10px; background: var(--paper);
-             border-top: 1px solid var(--rule); font-family: var(--mono); font-size: 11px;
-             color: var(--ink-soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .sg-card--drop  { left: 0; top: 92px; }
-  .sg-card--sync  { left: 0; bottom: 120px; }
-  .sg-card--agent { right: 0; top: 168px; }
-  .sg-card--ask   { right: 0; bottom: 56px; }
+  .sg-fallback p { margin: 0; color: var(--cream-soft); font-size: 15px; line-height: 1.55; }
 
-  /* Below 1200 the pinned cards run out of side room and become a 2x2 row under the
-     clip, then a single column on phones. The clip's own floor is 562px, so under 640
-     it comes off and the cards carry the story alone. */
-  @media (max-width: 1199px) {
-    .sg-card { position: static; width: auto; }
-    .sg-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 22px; }
-  }
   @media (max-width: 820px) {
     .showit { padding: 72px 20px 80px; }
     .showit-head { margin-bottom: 40px; }
   }
   @media (max-width: 640px) {
     .sg-clipwrap { display: none; }
-    .sg-cards { grid-template-columns: 1fr; gap: 12px; margin-top: 0; }
+    .sg-fallback { display: block; }
   }
 </style>
 </head>
@@ -1295,27 +1279,8 @@
         <div class="sg-clip" data-bpa-clip="2" id="sgClip2"></div>
       </div>
 
-      <div class="sg-cards">
-        <div class="sg-card sg-card--drop sg-anim" data-sg="1">
-          <h3>Your records go in</h3>
-          <p>Outlook mail, Salesforce activity, and anything you drop in file themselves under the right client.</p>
-          <span class="sg-line">outlook &middot; salesforce &middot; uploads</span>
-        </div>
-        <div class="sg-card sg-card--sync sg-anim" data-sg="2">
-          <h3>One file per client</h3>
-          <p>The whole team works from the same client file, and each entry stays tied to its source.</p>
-          <span class="sg-line">patel / mehta &middot; client file</span>
-        </div>
-        <div class="sg-card sg-card--agent sg-anim" data-sg="3">
-          <h3>Run an agent</h3>
-          <p>Agents draft the recurring work from the file. This one reads it, cross-checks citations, and writes the brief for Thursday's review.</p>
-          <span class="sg-line">agent &middot; pre-meeting brief</span>
-        </div>
-        <div class="sg-card sg-card--ask sg-anim" data-sg="4">
-          <h3>Every claim cites its source</h3>
-          <p>The brief lands ready for the meeting, and any citation opens the original document behind it.</p>
-          <span class="sg-line">citation &middot; open the source</span>
-        </div>
+      <div class="sg-fallback sg-anim" data-sg="base">
+        <p>An agent reads the Patel / Mehta file, cross-checks citations, and drafts the brief for Thursday's review, with every claim tied to its source.</p>
       </div>
     </div>
   </div>
