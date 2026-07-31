@@ -448,20 +448,6 @@
     letter-spacing: .05em;
   }
 
-  .hint-strip {
-    position: absolute;
-    z-index: 5;
-    left: 50%;
-    bottom: 18px;
-    transform: translateX(-50%);
-    color: var(--ink-muted);
-    font-family: var(--mono);
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-  }
-
   /* The mobile hero is governed by #mobile-redux-home (layout) and #mobile-strip
      (hides the source field, readout, and hint strip). The 920px-min-height block
      that used to sit here was fully overridden by both and only left dead space. */
@@ -999,7 +985,6 @@
     .hero .field-connector,
     .hero #fieldConnector,
     .hero aside.readout,
-    .hero .hint-strip,
     .hero .source-readout { display: none !important; }
     .hero .field { pointer-events: none; }
     .hero-ctas .cta-desktop { display: none !important; }
@@ -1231,8 +1216,7 @@
      View A is the chat, view SRC is the document a clicked citation opens,
      view B is the agent run. — */
   .sg-uc-views { display: grid; }
-  .sg-uc-view { grid-area: 1 / 1; transition: opacity .5s ease; }
-  .sg-uc-view--a { position: relative; }
+  .sg-uc-view { grid-area: 1 / 1; position: relative; transition: opacity .5s ease; }
   .sg-uc-view--b, .sg-uc-view--src { opacity: 0; }
   .sg-uc.uc-b .sg-uc-view--a { opacity: 0; }
   .sg-uc.uc-b .sg-uc-view--b { opacity: 1; }
@@ -1318,8 +1302,8 @@
              color: var(--ink-soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .sg-card--drop  { left: 0; top: 88px; }
   .sg-card--sync  { left: 22px; bottom: 46px; }
-  .sg-card--ask   { right: 0; top: 235px; }
-  .sg-card--agent { right: 26px; bottom: 10px; }
+  .sg-card--agent { right: 0; top: 235px; }
+  .sg-card--ask   { right: 26px; bottom: 10px; }
   /* While the use-case panel is showing the other view, its card steps back. */
   .sg-card.dim { opacity: .4; }
 
@@ -1395,9 +1379,7 @@
     <button class="source-node" data-key="calendar" data-title="Calendar event" data-copy="Upcoming meetings line up against open actions, sentiment shifts, and unresolved questions." style="--x:96%;--y:54%"><b>calendar</b></button>
     <button class="source-node" data-key="crm" data-title="CRM activity from Salesforce" data-copy="Approved work routes back into the team's workflow with evidence still attached." style="--x:58%;--y:78%"><b>crm activity</b></button>
     <button class="source-node" data-key="risk" data-title="Risk profile / IPS" data-copy="Investment policy and risk tolerance live next to actual holdings, so drift becomes obvious." style="--x:60%;--y:90%"><b>risk profile</b></button>
-    <button class="source-node" data-key="text" data-title="Client text from Sarah Coleman" data-copy="Short client messages become typed, dated context that never gets lost in someone's phone." style="--x:50%;--y:70%"><b>text</b></button>
     <button class="source-node" data-key="signature" data-title="Signed engagement letter" data-copy="Signed agreements and disclosures are attached to the household with version history." style="--x:48%;--y:82%"><b>signed letter</b></button>
-    <button class="source-node" data-key="voicemail" data-title="Voicemail from a recorded call" data-copy="Recorded calls are transcribed, sourced, and attached to the right household." style="--x:68%;--y:68%"><b>voicemail</b></button>
     <button class="source-node" data-key="tax" data-title="1099 / K-1 tax document" data-copy="Tax forms parse into reviewable line items with their source page still attached." style="--x:7%;--y:34%"><b>tax doc</b></button>
     <button class="source-node" data-key="trust" data-title="Trust document" data-copy="Trustees, distributions, and successor language are scoped to advisor + planning." style="--x:6%;--y:56%"><b>trust doc</b></button>
     <button class="source-node" data-key="note" data-title="Advisor note from the 5/14 call" data-copy="Relationship context stays attached to the client file, with the source visible." style="--x:16%;--y:28%"><b>advisor note</b></button>
@@ -1421,7 +1403,6 @@
       <p id="readoutCopy">Portfolio drift becomes a source-backed fact before the advisor enters the review.</p>
     </aside>
 
-    <div class="hint-strip" aria-hidden="true">hover a source to see what it becomes</div>
   </div>
 </section>
 
@@ -1431,7 +1412,7 @@
     <header class="showit-head reveal">
       <div class="eyebrow">What Briefly is</div>
       <h2>Everything your firm knows about a client, in one file AI can use.</h2>
-      <p class="showit-lede">Briefly is the client context layer for wealth management. It turns the statements, the emails, and the meeting notes into memory AI can actually use, and every answer cites the document it came from.</p>
+      <p class="showit-lede">Briefly is the client context layer for wealth management. It turns statements, emails, and meeting notes into memory AI can actually use, and every answer cites the document it came from.</p>
     </header>
 
     <div class="sg-stage" id="sgStage">
@@ -1465,12 +1446,28 @@
             </div>
             <div class="sg-panel sg-uc sg-anim" data-sg="3" id="sgUc">
               <div class="sg-uc-views">
-                <div class="sg-uc-view sg-uc-view--a" id="sgViewA">
-                  <div class="sg-panel-h">Use case 01 &middot; ask anything</div>
-                  <div class="sg-q sg-anim" data-sg="3a">What changed for the Patels since March?</div>
-                  <div class="sg-a sg-anim" data-sg="3b">Raj's 401(k) rollover completed at $412k, the 529 for Maya was opened and funded, and household cash is running $38k above the target Priya set in April.</div>
-                  <div class="sg-cites sg-anim" data-sg="3b"><span class="sg-cite" data-cite="stmt" id="sgChip1">Fidelity Q1 statement &middot; p.2</span><span class="sg-cite" data-cite="crm">April review call log</span></div>
-                  <div class="sg-input sg-anim" data-sg="3b">Ask about any client&hellip;</div>
+                <div class="sg-uc-view sg-uc-view--a">
+                  <div class="sg-panel-h">Use case 01 &middot; run an agent</div>
+                  <div class="sg-uc-row">
+                    <div>
+                      <div class="sg-uc-t">Pre-meeting brief</div>
+                      <div class="sg-uc-sub">Thursday review &middot; Patel / Mehta</div>
+                    </div>
+                    <span class="sg-run" data-sg="3a" id="sgRun"><span class="r1">Run</span><span class="r2">Running</span></span>
+                  </div>
+                  <div class="sg-brief">
+                    <div class="sg-brief-line sg-anim" data-sg="3b"><i></i>Lead with Raj's completed 401(k) rollover, $412k landed 3/28.</div>
+                    <div class="sg-brief-line sg-anim" data-sg="3c"><i></i>Confirm Maya's 529 in writing, Priya asked for that twice.</div>
+                    <div class="sg-brief-line sg-anim" data-sg="3d"><i></i>Cash is $38k above target, tee up the sweep decision.</div>
+                  </div>
+                  <div class="sg-cites sg-anim" data-sg="3d"><span class="sg-cite" data-cite="stmt">Fidelity Q1 statement &middot; p.2</span><span class="sg-cite" data-cite="crm">April review call log</span><span class="sg-cite" data-cite="mail">RE: 529 plan for Maya</span></div>
+                </div>
+                <div class="sg-uc-view sg-uc-view--b" id="sgViewAsk">
+                  <div class="sg-panel-h">Use case 02 &middot; ask anything</div>
+                  <div class="sg-q sg-anim" data-sg="4a">What changed for the Patels since March?</div>
+                  <div class="sg-a sg-anim" data-sg="4b">Raj's 401(k) rollover completed at $412k, the 529 for Maya was opened and funded, and household cash is running $38k above the target Priya set in April.</div>
+                  <div class="sg-cites sg-anim" data-sg="4b"><span class="sg-cite" data-cite="stmt" id="sgChip1">Fidelity Q1 statement &middot; p.2</span><span class="sg-cite" data-cite="crm">April review call log</span></div>
+                  <div class="sg-input sg-anim" data-sg="4b">Ask about any client&hellip;</div>
                   <div class="sg-cursor" id="sgCursor" aria-hidden="true"><svg viewBox="0 0 15 15" width="15" height="15"><path d="M1 1l4.6 12.2 2-5.2 5.2-1.6z" fill="#0F172A" stroke="#fff" stroke-width="1.1"/></svg></div>
                   <div class="sg-click" id="sgClick" aria-hidden="true"></div>
                 </div>
@@ -1485,22 +1482,6 @@
                     <div class="sg-doc-line">Cash sweep, household &middot; $38,412.16</div>
                   </div>
                   <div class="sg-doc-note">The line behind "Raj's 401(k) rollover completed at $412k," highlighted where it sits in the original document.</div>
-                </div>
-                <div class="sg-uc-view sg-uc-view--b">
-                  <div class="sg-panel-h">Use case 02 &middot; run an agent</div>
-                  <div class="sg-uc-row">
-                    <div>
-                      <div class="sg-uc-t">Pre-meeting brief</div>
-                      <div class="sg-uc-sub">Thursday review &middot; Patel / Mehta</div>
-                    </div>
-                    <span class="sg-run" data-sg="4a" id="sgRun"><span class="r1">Run</span><span class="r2">Running</span></span>
-                  </div>
-                  <div class="sg-brief">
-                    <div class="sg-brief-line sg-anim" data-sg="4b"><i></i>Lead with Raj's completed 401(k) rollover, $412k landed 3/28.</div>
-                    <div class="sg-brief-line sg-anim" data-sg="4c"><i></i>Confirm Maya's 529 in writing, Priya asked for that twice.</div>
-                    <div class="sg-brief-line sg-anim" data-sg="4d"><i></i>Cash is $38k above target, tee up the sweep decision.</div>
-                  </div>
-                  <div class="sg-cites sg-anim" data-sg="4d"><span class="sg-cite" data-cite="stmt">Fidelity Q1 statement &middot; p.2</span><span class="sg-cite" data-cite="crm">April review call log</span><span class="sg-cite" data-cite="mail">RE: 529 plan for Maya</span></div>
                 </div>
               </div>
             </div>
@@ -1519,15 +1500,15 @@
           <p>Mail and CRM activity file themselves under the right client from then on.</p>
           <span class="sg-line">outlook &middot; synced&nbsp;&nbsp;&nbsp;salesforce &middot; synced</span>
         </div>
-        <div class="sg-card sg-card--ask sg-anim" data-sg="3" id="sgCardAsk">
-          <h3>Ask in plain English</h3>
-          <p>The answer draws on your firm's own records, and every citation opens the source with the supporting line highlighted.</p>
-          <span class="sg-line">"What changed for the Patels since March?"</span>
-        </div>
-        <div class="sg-card sg-card--agent sg-anim" data-sg="4" id="sgCardAgent">
-          <h3>Or run an agent</h3>
+        <div class="sg-card sg-card--agent sg-anim" data-sg="3" id="sgCardAgent">
+          <h3>Run an agent</h3>
           <p>Agents draft the recurring work from the file. The pre-meeting brief is one of them.</p>
           <span class="sg-line">agent &middot; pre-meeting brief</span>
+        </div>
+        <div class="sg-card sg-card--ask sg-anim" data-sg="4" id="sgCardAsk">
+          <h3>Or just ask</h3>
+          <p>The answer draws on your firm's own records, and every citation opens the source with the supporting line highlighted.</p>
+          <span class="sg-line">"What changed for the Patels since March?"</span>
         </div>
       </div>
 
@@ -2669,18 +2650,18 @@
     if (!stage || !replay || !uc) return;
     const els = [...stage.querySelectorAll("[data-sg]")];
     const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const viewA = document.getElementById("sgViewA");
+    const viewAsk = document.getElementById("sgViewAsk");
     const cursor = document.getElementById("sgCursor");
     const ring = document.getElementById("sgClick");
     const chip1 = document.getElementById("sgChip1");
-    // The story: intake is a fast setup montage, then the chat answers with citations,
-    // the cursor clicks one, and the source opens with the supporting line highlighted.
-    // That click-to-highlight moment is the hero. The agent run is use case 02, and the
-    // whole ask -> click -> source -> agent story keeps looping after the first pass.
-    const BEATS = [["base"], ["1"], ["2"], ["2b"], ["3"], ["3a"], ["3b"]];
-    const AT = [150, 700, 1250, 1700, 2400, 3000, 3650];
+    // The story: intake is a fast setup montage, then use case 01 runs the pre-meeting
+    // brief agent (the primary animation for this section, Connor's call), then use
+    // case 02 asks in the chat, the cursor clicks a citation, and the source opens
+    // with the supporting line highlighted. The whole thing loops after the first pass.
+    const BEATS = [["base"], ["1"], ["2"], ["2b"], ["3"], ["3a"], ["3b"], ["3c"], ["3d"]];
+    const AT = [150, 700, 1250, 1700, 2400, 3000, 3600, 4150, 4700];
     // Which source each brief line draws on, for the build pulse in the agent view.
-    const PULSE_FOR = { "4b": "stmt", "4c": "mail", "4d": "crm" };
+    const PULSE_FOR = { "3b": "stmt", "3c": "mail", "3d": "crm" };
     let timers = [];
     let looper = null;
     let played = false;
@@ -2694,58 +2675,59 @@
       els.forEach(el => { if (keys.includes(el.dataset.sg)) el.classList.add("on"); });
       const p = PULSE_FOR[keys[0]];
       if (p) timers.push(setTimeout(() => pulse(p), 180));
-      if (keys.includes("4d")) run.querySelector(".r2").textContent = "Done";
+      if (keys.includes("3d")) run.querySelector(".r2").textContent = "Done";
     }
     function cursorHome(glide) {
       if (!glide) cursor.style.transition = "none";
-      cursor.style.transform = "translate(" + (viewA.clientWidth - 46) + "px," + (viewA.clientHeight - 24) + "px)";
+      cursor.style.transform = "translate(" + (viewAsk.clientWidth - 46) + "px," + (viewAsk.clientHeight - 24) + "px)";
       if (!glide) { void cursor.offsetWidth; cursor.style.transition = ""; }
     }
     function cursorToChip() {
-      const a = viewA.getBoundingClientRect(), c = chip1.getBoundingClientRect();
+      const a = viewAsk.getBoundingClientRect(), c = chip1.getBoundingClientRect();
       cursor.style.transform = "translate(" + (c.left - a.left + c.width * 0.72) + "px," + (c.top - a.top + c.height * 0.55) + "px)";
     }
     function clickChip() {
-      const a = viewA.getBoundingClientRect(), c = chip1.getBoundingClientRect();
+      const a = viewAsk.getBoundingClientRect(), c = chip1.getBoundingClientRect();
       ring.style.left = (c.left - a.left + c.width * 0.72) + "px";
       ring.style.top = (c.top - a.top + c.height * 0.55) + "px";
       ring.classList.remove("go"); void ring.offsetWidth; ring.classList.add("go");
       chip1.classList.add("hit");
       timers.push(setTimeout(() => chip1.classList.remove("hit"), 450));
     }
-    function toAsk() { uc.classList.remove("uc-b", "uc-src"); cardAgent.classList.add("dim"); cardAsk.classList.remove("dim"); }
+    function toAgent() { uc.classList.remove("uc-b", "uc-src"); cardAsk.classList.add("dim"); cardAgent.classList.remove("dim"); }
+    function toAsk() { uc.classList.remove("uc-src"); uc.classList.add("uc-b"); cardAgent.classList.add("dim"); cardAsk.classList.remove("dim"); }
     function toSrc() { uc.classList.remove("uc-b"); uc.classList.add("uc-src"); }
-    function toAgent() { uc.classList.remove("uc-src"); uc.classList.add("uc-b"); cardAsk.classList.add("dim"); cardAgent.classList.remove("dim"); }
 
-    // One pass of the use-case story, starting from the ask view fully built.
-    // First pass also lands the agent card and runs the brief build; later passes
-    // find that view already built and just revisit it.
+    // One pass of the ask story, entered from the built agent view. First pass also
+    // lands the ask card and builds the question and answer; later passes find the
+    // view built and replay the click.
     function story(first) {
       const t = (ms, fn) => timers.push(setTimeout(fn, ms));
-      t(600,  () => { cursor.classList.add("on"); cursorHome(false); });
-      t(1100, cursorToChip);
-      t(2150, clickChip);
-      t(2650, toSrc);
-      t(5450, () => { toAsk(); cursorHome(true); });
-      t(6200, () => cursor.classList.remove("on"));
+      t(0, toAsk);
       if (first) {
-        t(6400, () => { show(["4"]); toAgent(); });
-        t(7000, () => show(["4a"]));
-        t(7600, () => show(["4b"]));
-        t(8100, () => show(["4c"]));
-        t(8600, () => show(["4d"]));
-        t(11400, () => { toAsk(); replay.classList.add("on"); looper = setTimeout(loop, 1200); });
-      } else {
-        t(6400, toAgent);
-        t(10400, () => { toAsk(); looper = setTimeout(loop, 1200); });
+        t(80, () => show(["4"]));
+        t(600, () => show(["4a"]));
+        t(1300, () => show(["4b"]));
       }
+      const c0 = first ? 2100 : 900;
+      t(c0,        () => { cursor.classList.add("on"); cursorHome(false); });
+      t(c0 + 500,  cursorToChip);
+      t(c0 + 1550, clickChip);
+      t(c0 + 2050, toSrc);
+      t(c0 + 4850, () => { toAsk(); cursorHome(true); });
+      t(c0 + 5600, () => cursor.classList.remove("on"));
+      t(c0 + 6400, () => {
+        toAgent();
+        if (first) replay.classList.add("on");
+        looper = setTimeout(loop, 4200);
+      });
     }
     function loop() { story(false); }
     function play() {
       timers.forEach(clearTimeout);
       if (looper) clearTimeout(looper);
       timers = BEATS.map((keys, i) => setTimeout(() => show(keys), AT[i]));
-      timers.push(setTimeout(() => story(true), AT[AT.length - 1] + 500));
+      timers.push(setTimeout(() => story(true), AT[AT.length - 1] + 2400));
     }
     function reset() {
       timers.forEach(clearTimeout);
@@ -2764,9 +2746,10 @@
       void stage.offsetWidth;
     }
     function finalState() {
+      // Agent view (use case 01) showing, fully built.
       els.forEach(el => el.classList.add("on"));
       run.querySelector(".r2").textContent = "Done";
-      cardAgent.classList.add("dim");
+      cardAsk.classList.add("dim");
     }
 
     if (reduced) {
