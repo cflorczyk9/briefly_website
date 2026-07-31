@@ -1227,12 +1227,45 @@
   .sg-src-row svg { width: 18px; height: 18px; flex: none; }
   .sg-src-row em { margin-left: auto; font-style: normal; font-family: var(--mono); font-size: 10px;
                    letter-spacing: .06em; text-transform: uppercase; color: var(--ink-muted); }
-  /* — use-case panel: one region, numbered use cases cycling through it — */
+  /* — use-case panel: one region, numbered use cases cycling through it.
+     View A is the chat, view SRC is the document a clicked citation opens,
+     view B is the agent run. — */
   .sg-uc-views { display: grid; }
   .sg-uc-view { grid-area: 1 / 1; transition: opacity .5s ease; }
-  .sg-uc-view--b { opacity: 0; }
+  .sg-uc-view--a { position: relative; }
+  .sg-uc-view--b, .sg-uc-view--src { opacity: 0; }
   .sg-uc.uc-b .sg-uc-view--a { opacity: 0; }
   .sg-uc.uc-b .sg-uc-view--b { opacity: 1; }
+  .sg-uc.uc-src .sg-uc-view--a { opacity: 0; }
+  .sg-uc.uc-src .sg-uc-view--src { opacity: 1; }
+
+  /* — the opened source: a statement excerpt with the supporting line highlighted — */
+  .sg-src-head { display: flex; align-items: center; gap: 8px; margin-top: 3px;
+                 font-weight: 600; font-size: 13px; color: var(--ink); }
+  .sg-src-head b { font-weight: 400; color: var(--blue-ink); }
+  .sg-doc { margin-top: 10px; border: 1px solid var(--rule); border-radius: 6px;
+            background: var(--paper); padding: 10px 12px; font-family: var(--mono);
+            font-size: 11px; line-height: 1.7; color: var(--ink-soft); }
+  .sg-doc-line { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .sg-doc-line.hl { background: rgba(47,140,255,.16); box-shadow: inset 2px 0 0 var(--blue);
+                    color: var(--ink); padding-inline: 6px; margin-inline: -6px; }
+  .sg-doc-note { margin-top: 10px; font-size: 12px; line-height: 1.5; color: var(--ink-muted); }
+
+  /* — cursor + click ring for the citation click, view A only — */
+  .sg-cursor { position: absolute; left: 0; top: 0; z-index: 4; width: 15px; height: 15px;
+               opacity: 0; pointer-events: none;
+               transition: transform .95s cubic-bezier(.3,.7,.25,1), opacity .4s ease; }
+  .sg-cursor.on { opacity: 1; }
+  .sg-click { position: absolute; z-index: 4; width: 26px; height: 26px; margin: -13px 0 0 -13px;
+              border: 2px solid var(--blue-ink); border-radius: 50%; opacity: 0;
+              pointer-events: none; transform: scale(.3); }
+  .sg-click.go { animation: sgClick .45s ease-out 1; }
+  @keyframes sgClick {
+    0%   { opacity: .85; transform: scale(.35); }
+    100% { opacity: 0; transform: scale(1.35); }
+  }
+  .sg-cite.hit { background: rgba(29,78,216,.2); border-color: rgba(29,78,216,.7);
+                 transform: scale(.96); }
 
   .sg-uc-row { display: flex; align-items: center; gap: 12px; margin-top: 3px; }
   .sg-uc-t { font-weight: 600; font-size: 13.5px; color: var(--ink); }
@@ -1263,12 +1296,13 @@
   /* Only while the cards are pinned over the window edge: nothing that has to be read may
      extend into the overlap zone, so the use-case panel's text stops 460px in. */
   @media (min-width: 1200px) {
-    .sg-uc-row, .sg-brief-line, .sg-q, .sg-a, .sg-cites { max-width: 460px; }
+    .sg-uc-row, .sg-brief-line, .sg-q, .sg-a, .sg-cites,
+    .sg-src-head, .sg-doc, .sg-doc-note { max-width: 460px; }
   }
   .sg-cite { font-family: var(--mono); font-size: 10px; letter-spacing: .04em; color: var(--blue-ink);
              border: 1px solid rgba(29,78,216,.35); background: rgba(29,78,216,.06);
              border-radius: 999px; padding: 3px 9px;
-             transition: background .35s ease, border-color .35s ease; }
+             transition: background .35s ease, border-color .35s ease, transform .2s ease; }
   .sg-cite.pulse { background: rgba(29,78,216,.18); border-color: rgba(29,78,216,.62); }
 
   .sg-card {
@@ -1284,8 +1318,8 @@
              color: var(--ink-soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .sg-card--drop  { left: 0; top: 88px; }
   .sg-card--sync  { left: 22px; bottom: 46px; }
-  .sg-card--agent { right: 0; top: 235px; }
-  .sg-card--ask   { right: 26px; bottom: 10px; }
+  .sg-card--ask   { right: 0; top: 235px; }
+  .sg-card--agent { right: 26px; bottom: 10px; }
   /* While the use-case panel is showing the other view, its card steps back. */
   .sg-card.dim { opacity: .4; }
 
@@ -1431,28 +1465,42 @@
             </div>
             <div class="sg-panel sg-uc sg-anim" data-sg="3" id="sgUc">
               <div class="sg-uc-views">
-                <div class="sg-uc-view sg-uc-view--a">
-                  <div class="sg-panel-h">Use case 01 &middot; run an agent</div>
+                <div class="sg-uc-view sg-uc-view--a" id="sgViewA">
+                  <div class="sg-panel-h">Use case 01 &middot; ask anything</div>
+                  <div class="sg-q sg-anim" data-sg="3a">What changed for the Patels since March?</div>
+                  <div class="sg-a sg-anim" data-sg="3b">Raj's 401(k) rollover completed at $412k, the 529 for Maya was opened and funded, and household cash is running $38k above the target Priya set in April.</div>
+                  <div class="sg-cites sg-anim" data-sg="3b"><span class="sg-cite" data-cite="stmt" id="sgChip1">Fidelity Q1 statement &middot; p.2</span><span class="sg-cite" data-cite="crm">April review call log</span></div>
+                  <div class="sg-input sg-anim" data-sg="3b">Ask about any client&hellip;</div>
+                  <div class="sg-cursor" id="sgCursor" aria-hidden="true"><svg viewBox="0 0 15 15" width="15" height="15"><path d="M1 1l4.6 12.2 2-5.2 5.2-1.6z" fill="#0F172A" stroke="#fff" stroke-width="1.1"/></svg></div>
+                  <div class="sg-click" id="sgClick" aria-hidden="true"></div>
+                </div>
+                <div class="sg-uc-view sg-uc-view--src">
+                  <div class="sg-panel-h">Source &middot; opened from a citation</div>
+                  <div class="sg-src-head"><b>&larr;</b>Fidelity Q1 statement &middot; page 2</div>
+                  <div class="sg-doc">
+                    <div class="sg-doc-line">Account 4417 &middot; Rollover IRA &middot; Raj Patel</div>
+                    <div class="sg-doc-line">Beginning value 01/01 &middot; $0.00</div>
+                    <div class="sg-doc-line hl">Rollover contribution received 03/28 &middot; $412,000.00</div>
+                    <div class="sg-doc-line">Ending value 03/31 &middot; $412,940.18</div>
+                    <div class="sg-doc-line">Cash sweep, household &middot; $38,412.16</div>
+                  </div>
+                  <div class="sg-doc-note">The line behind "Raj's 401(k) rollover completed at $412k," highlighted where it sits in the original document.</div>
+                </div>
+                <div class="sg-uc-view sg-uc-view--b">
+                  <div class="sg-panel-h">Use case 02 &middot; run an agent</div>
                   <div class="sg-uc-row">
                     <div>
                       <div class="sg-uc-t">Pre-meeting brief</div>
                       <div class="sg-uc-sub">Thursday review &middot; Patel / Mehta</div>
                     </div>
-                    <span class="sg-run" data-sg="3a" id="sgRun"><span class="r1">Run</span><span class="r2">Running</span></span>
+                    <span class="sg-run" data-sg="4a" id="sgRun"><span class="r1">Run</span><span class="r2">Running</span></span>
                   </div>
                   <div class="sg-brief">
-                    <div class="sg-brief-line sg-anim" data-sg="3b"><i></i>Lead with Raj's completed 401(k) rollover, $412k landed 4/2.</div>
-                    <div class="sg-brief-line sg-anim" data-sg="3c"><i></i>Confirm Maya's 529 in writing, Priya asked for that twice.</div>
-                    <div class="sg-brief-line sg-anim" data-sg="3d"><i></i>Cash is $38k above target, tee up the sweep decision.</div>
+                    <div class="sg-brief-line sg-anim" data-sg="4b"><i></i>Lead with Raj's completed 401(k) rollover, $412k landed 3/28.</div>
+                    <div class="sg-brief-line sg-anim" data-sg="4c"><i></i>Confirm Maya's 529 in writing, Priya asked for that twice.</div>
+                    <div class="sg-brief-line sg-anim" data-sg="4d"><i></i>Cash is $38k above target, tee up the sweep decision.</div>
                   </div>
-                  <div class="sg-cites sg-anim" data-sg="3d"><span class="sg-cite" data-cite="stmt">Fidelity Q1 statement &middot; p.2</span><span class="sg-cite" data-cite="crm">April review call log</span><span class="sg-cite" data-cite="mail">RE: 529 plan for Maya</span></div>
-                </div>
-                <div class="sg-uc-view sg-uc-view--b">
-                  <div class="sg-panel-h">Use case 02 &middot; ask anything</div>
-                  <div class="sg-q">What changed for the Patels since March?</div>
-                  <div class="sg-a">Raj's 401(k) rollover completed at $412k, the 529 for Maya was opened and funded, and household cash is running $38k above the target Priya set in April.</div>
-                  <div class="sg-cites"><span class="sg-cite" data-cite="stmt">Fidelity Q1 statement &middot; p.2</span><span class="sg-cite" data-cite="crm">April review call log</span></div>
-                  <div class="sg-input">Ask about any client&hellip;</div>
+                  <div class="sg-cites sg-anim" data-sg="4d"><span class="sg-cite" data-cite="stmt">Fidelity Q1 statement &middot; p.2</span><span class="sg-cite" data-cite="crm">April review call log</span><span class="sg-cite" data-cite="mail">RE: 529 plan for Maya</span></div>
                 </div>
               </div>
             </div>
@@ -1471,15 +1519,15 @@
           <p>Mail and CRM activity file themselves under the right client from then on.</p>
           <span class="sg-line">outlook &middot; synced&nbsp;&nbsp;&nbsp;salesforce &middot; synced</span>
         </div>
-        <div class="sg-card sg-card--agent sg-anim" data-sg="3" id="sgCardAgent">
-          <h3>Run an agent</h3>
+        <div class="sg-card sg-card--ask sg-anim" data-sg="3" id="sgCardAsk">
+          <h3>Ask in plain English</h3>
+          <p>The answer draws on your firm's own records, and every citation opens the source with the supporting line highlighted.</p>
+          <span class="sg-line">"What changed for the Patels since March?"</span>
+        </div>
+        <div class="sg-card sg-card--agent sg-anim" data-sg="4" id="sgCardAgent">
+          <h3>Or run an agent</h3>
           <p>Agents draft the recurring work from the file. The pre-meeting brief is one of them.</p>
           <span class="sg-line">agent &middot; pre-meeting brief</span>
-        </div>
-        <div class="sg-card sg-card--ask sg-anim" data-sg="4" id="sgCardAsk">
-          <h3>Or just ask</h3>
-          <p>Answers come from your firm's own records, and every claim cites the document behind it.</p>
-          <span class="sg-line">"What changed for the Patels since March?"</span>
         </div>
       </div>
 
@@ -2626,22 +2674,21 @@
     if (!stage || !replay || !uc) return;
     const els = [...stage.querySelectorAll("[data-sg]")];
     const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    // Each beat lands the annotation card together with the piece of UI it creates.
-    // The intake is a setup montage and plays FAST (all three sources inside ~1.5s);
-    // the screen time goes to the payoff, where each claim that lands in the output
-    // lights up the source it came from. Then the panel alternates use cases so the
-    // brief reads as one use case rather than the product.
-    const BEATS = [["base"], ["1"], ["2"], ["2b"], ["3"], ["3a"], ["3b"], ["3c"], ["3d"], ["4"]];
-    const AT = [150, 700, 1250, 1700, 2400, 2900, 3500, 4200, 4900, 6900];
-    // Which source each brief line draws on. Fires the claim-to-source pulse.
-    const PULSE_FOR = { "3b": "stmt", "3c": "mail", "3d": "crm" };
-    const CYCLE_MS = 5000;
-    const ROTATE_A = ["stmt", "mail", "crm"];
-    const ROTATE_B = ["stmt", "crm"];
+    const viewA = document.getElementById("sgViewA");
+    const cursor = document.getElementById("sgCursor");
+    const ring = document.getElementById("sgClick");
+    const chip1 = document.getElementById("sgChip1");
+    // The story: intake is a fast setup montage, then the chat answers with citations,
+    // the cursor clicks one, and the source opens with the supporting line highlighted.
+    // That click-to-highlight moment is the hero. The agent run is use case 02, and the
+    // whole ask -> click -> source -> agent story keeps looping after the first pass.
+    const BEATS = [["base"], ["1"], ["2"], ["2b"], ["3"], ["3a"], ["3b"]];
+    const AT = [150, 700, 1250, 1700, 2400, 3000, 3650];
+    // Which source each brief line draws on, for the build pulse in the agent view.
+    const PULSE_FOR = { "4b": "stmt", "4c": "mail", "4d": "crm" };
     let timers = [];
-    let cycler = null;
+    let looper = null;
     let played = false;
-    let rot = 0;
 
     function pulse(key) {
       const targets = stage.querySelectorAll('[data-src="' + key + '"], [data-cite="' + key + '"]');
@@ -2652,51 +2699,79 @@
       els.forEach(el => { if (keys.includes(el.dataset.sg)) el.classList.add("on"); });
       const p = PULSE_FOR[keys[0]];
       if (p) timers.push(setTimeout(() => pulse(p), 180));
-      if (keys.includes("3d")) run.querySelector(".r2").textContent = "Done";
-      if (keys.includes("4")) {
-        toB();
-        timers.push(setTimeout(() => pulse("stmt"), 1300));
+      if (keys.includes("4d")) run.querySelector(".r2").textContent = "Done";
+    }
+    function cursorHome(glide) {
+      if (!glide) cursor.style.transition = "none";
+      cursor.style.transform = "translate(" + (viewA.clientWidth - 46) + "px," + (viewA.clientHeight - 24) + "px)";
+      if (!glide) { void cursor.offsetWidth; cursor.style.transition = ""; }
+    }
+    function cursorToChip() {
+      const a = viewA.getBoundingClientRect(), c = chip1.getBoundingClientRect();
+      cursor.style.transform = "translate(" + (c.left - a.left + c.width * 0.72) + "px," + (c.top - a.top + c.height * 0.55) + "px)";
+    }
+    function clickChip() {
+      const a = viewA.getBoundingClientRect(), c = chip1.getBoundingClientRect();
+      ring.style.left = (c.left - a.left + c.width * 0.72) + "px";
+      ring.style.top = (c.top - a.top + c.height * 0.55) + "px";
+      ring.classList.remove("go"); void ring.offsetWidth; ring.classList.add("go");
+      chip1.classList.add("hit");
+      timers.push(setTimeout(() => chip1.classList.remove("hit"), 450));
+    }
+    function toAsk() { uc.classList.remove("uc-b", "uc-src"); cardAgent.classList.add("dim"); cardAsk.classList.remove("dim"); }
+    function toSrc() { uc.classList.remove("uc-b"); uc.classList.add("uc-src"); }
+    function toAgent() { uc.classList.remove("uc-src"); uc.classList.add("uc-b"); cardAsk.classList.add("dim"); cardAgent.classList.remove("dim"); }
+
+    // One pass of the use-case story, starting from the ask view fully built.
+    // First pass also lands the agent card and runs the brief build; later passes
+    // find that view already built and just revisit it.
+    function story(first) {
+      const t = (ms, fn) => timers.push(setTimeout(fn, ms));
+      t(600,  () => { cursor.classList.add("on"); cursorHome(false); });
+      t(1100, cursorToChip);
+      t(2150, clickChip);
+      t(2650, toSrc);
+      t(5450, () => { toAsk(); cursorHome(true); });
+      t(6200, () => cursor.classList.remove("on"));
+      if (first) {
+        t(6400, () => { show(["4"]); toAgent(); });
+        t(7000, () => show(["4a"]));
+        t(7600, () => show(["4b"]));
+        t(8100, () => show(["4c"]));
+        t(8600, () => show(["4d"]));
+        t(11400, () => { toAsk(); replay.classList.add("on"); looper = setTimeout(loop, 1200); });
+      } else {
+        t(6400, toAgent);
+        t(10400, () => { toAsk(); looper = setTimeout(loop, 1200); });
       }
     }
-    function toB() { uc.classList.add("uc-b"); cardAgent.classList.add("dim"); cardAsk.classList.remove("dim"); }
-    function toA() { uc.classList.remove("uc-b"); cardAgent.classList.remove("dim"); cardAsk.classList.add("dim"); }
+    function loop() { story(false); }
     function play() {
       timers.forEach(clearTimeout);
-      if (cycler) clearInterval(cycler);
+      if (looper) clearTimeout(looper);
       timers = BEATS.map((keys, i) => setTimeout(() => show(keys), AT[i]));
-      timers.push(setTimeout(() => {
-        replay.classList.add("on");
-        // Idle cycle: alternate the use cases, and each time a view settles, run one
-        // claim-to-source pulse so the linkage point keeps being made.
-        cycler = setInterval(() => {
-          if (uc.classList.contains("uc-b")) {
-            toA();
-            timers.push(setTimeout(() => pulse(ROTATE_A[rot++ % ROTATE_A.length]), 1100));
-          } else {
-            toB();
-            timers.push(setTimeout(() => pulse(ROTATE_B[rot++ % ROTATE_B.length]), 1100));
-          }
-        }, CYCLE_MS);
-      }, AT[AT.length - 1] + 900));
+      timers.push(setTimeout(() => story(true), AT[AT.length - 1] + 500));
     }
     function reset() {
       timers.forEach(clearTimeout);
-      if (cycler) { clearInterval(cycler); cycler = null; }
+      if (looper) { clearTimeout(looper); looper = null; }
       replay.classList.remove("on");
       els.forEach(el => el.classList.remove("on"));
       stage.querySelectorAll(".pulse").forEach(el => el.classList.remove("pulse"));
-      uc.classList.remove("uc-b");
+      uc.classList.remove("uc-b", "uc-src");
+      cursor.classList.remove("on");
+      chip1.classList.remove("hit");
+      ring.classList.remove("go");
       cardAgent.classList.remove("dim");
       cardAsk.classList.remove("dim");
       run.querySelector(".r2").textContent = "Running";
-      rot = 0;
       // Flush the removal so the replay transitions from the hidden state.
       void stage.offsetWidth;
     }
     function finalState() {
       els.forEach(el => el.classList.add("on"));
       run.querySelector(".r2").textContent = "Done";
-      cardAsk.classList.add("dim");
+      cardAgent.classList.add("dim");
     }
 
     if (reduced) {
@@ -2720,7 +2795,10 @@
         }
       });
     }, { threshold: 0.3 });
-    io.observe(stage);
+    // Observe the window, not the stage: with the stacked mobile cards the stage runs
+    // ~1800px tall and 30% of it never fits an 844px phone viewport, so the sequence
+    // would never start there.
+    io.observe(stage.querySelector(".sg-window"));
   })();
 
   /* ---------- reveal-on-scroll ---------- */
