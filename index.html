@@ -1167,7 +1167,7 @@
                  color: var(--cream-soft); text-wrap: pretty; }
 
   /* — stage: the clip plus four pinned cards — */
-  .sg-stage { position: relative; max-width: 1200px; margin: 0 auto; }
+  .sg-stage { position: relative; max-width: 1280px; margin: 0 auto; }
 
   .sg-anim { opacity: 0; transform: translateY(14px);
              transition: opacity .55s cubic-bezier(.2,.8,.2,1), transform .55s cubic-bezier(.2,.8,.2,1); }
@@ -1179,7 +1179,10 @@
                        box-shadow: 0 24px 60px rgba(0,0,0,.45); }
 
   .sg-card {
-    position: absolute; width: 330px; z-index: 3; text-align: left;
+    /* The cards sit fully in the side gutters, never over the clip: the clip is a fixed
+       560px in the middle, so each gutter is (100% - 560px) / 2 and the card takes that
+       minus a 14px gap, capped at 330px on wide screens. */
+    position: absolute; width: min(330px, calc(50% - 294px)); z-index: 3; text-align: left;
     background: #FFFFFF; border: 1px solid var(--rule); border-radius: 16px;
     box-shadow: 0 16px 40px rgba(15,23,42,.35);
     padding: 16px 18px 0; overflow: hidden;
@@ -1189,10 +1192,10 @@
   .sg-line { display: block; margin: 0 -18px; padding: 9px 18px 10px; background: var(--paper);
              border-top: 1px solid var(--rule); font-family: var(--mono); font-size: 11px;
              color: var(--ink-soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .sg-card--drop  { left: 36px; top: 92px; }
-  .sg-card--sync  { left: 58px; bottom: 120px; }
-  .sg-card--agent { right: 36px; top: 168px; }
-  .sg-card--ask   { right: 58px; bottom: 56px; }
+  .sg-card--drop  { left: 0; top: 92px; }
+  .sg-card--sync  { left: 0; bottom: 120px; }
+  .sg-card--agent { right: 0; top: 168px; }
+  .sg-card--ask   { right: 0; bottom: 56px; }
 
   /* Below 1200 the pinned cards run out of side room and become a 2x2 row under the
      clip, then a single column on phones. The clip's own floor is 562px, so under 640
