@@ -1537,18 +1537,13 @@
 </section>
 
 <span id="mcp" aria-hidden="true"></span>
-<div class="section-bridge" aria-hidden="true"></div>
 <style id="custody-styles">
-  /* Softens the hard navy-to-white cut out of the dark section above. The custody
-     border-top is gone for the same reason: a hairline under a gradient reads as a seam. */
-  .section-bridge {
-    height: 110px;
-    background: linear-gradient(180deg, #0F172A 0%, #1E293E 20%, #46536D 45%, #8894A9 68%, #CBD3DF 86%, #FFFFFF 100%);
-  }
   /* Cards and panels moved to a 16px surface radius. Clip stages follow via this page-level
      override rather than an edit to briefly-clips.css. */
   .bpa .bpa-stage { border-radius: 16px; }
 
+  /* The gradient bridge that sat here was cut on Connor's call (7/31): the navy section
+     ends on a clean hard edge instead. */
   .custody {
     position: relative;
     background: var(--paper-3);
