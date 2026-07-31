@@ -3,6 +3,23 @@
 Four decisions were made after an eight-lane design review. This spec is the authority. Do not
 improvise values, and do not re-litigate the decisions.
 
+## Amendments ratified 2026-07-31 (Connor, after the ten-lane Stripe/Jump/Plaid review)
+
+These override the matching values below wherever the two disagree.
+
+1. **Radius:** cards, panels, notes, and clip stages moved from 10px to **16px**. Buttons,
+   inputs, and small controls stay 6px. Pills 999px and avatars 50% unchanged.
+2. **Shadows:** cards float at rest now. Resting tier is
+   `0 1px 2px rgba(15,23,42,.05), 0 8px 24px rgba(15,23,42,.08)`, interactive hover is
+   `0 16px 40px rgba(15,23,42,.12)`, modals keep `0 20px 40px rgba(15,23,42,.14)`.
+3. **Type weight:** 900 is reserved for the BRIEFLY wordmark (.brand-word, .center-word).
+   Section headings run **800**, card-level h3s run **700**. None of Stripe, Plaid, or Jump
+   exceed 700, and Connor chose to move toward that feel while keeping the wordmark black.
+4. **Accents:** one accent hue per illustration. Status now reads from fill state
+   (solid blue = done, hollow = pending, solid ink = held), not from green/amber/red.
+   The page-level --teal/--green/--amber/--red tokens were removed as dead; --cyan survives
+   for dark sections only. The clip runtime (.bpa scope) keeps its own internal palette.
+
 `index.html` is the reference for the palette. Its `:root` block holds the canonical tokens.
 
 ---

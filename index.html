@@ -63,11 +63,7 @@
     --blue: #2F8CFF;               /* 3.32 on white: FILLS, ICONS, GRAPHICS ONLY */
     --blue-ink: #1D4ED8;           /* 6.70 on white: links, small text, focus rings */
     --focus: #1D4ED8;
-    --cyan: #8cd8ff;
-    --teal: #65dcc8;
-    --green: #45d18f;
-    --amber: #d97706;
-    --red: #dc2626;
+    --cyan: #8cd8ff;    /* the one non-blue accent, dark sections only */
 
     --sans: "DM Sans", Inter, system-ui, -apple-system, sans-serif;
     --serif: "DM Serif Display", Georgia, serif;
@@ -375,7 +371,7 @@
     font-size: clamp(40px, 5vw, 60px);
     line-height: 1.04;
     letter-spacing: -.03em;
-    font-weight: 900;
+    font-weight: 800;
   }
   .hero-copy p {
     margin: 18px 0 0;
@@ -466,38 +462,9 @@
     text-transform: uppercase;
   }
 
-  @media (max-width: 820px) {
-    .hero { min-height: 920px; }
-    .field { min-height: 920px; }
-    .center-word { top: 30%; font-size: clamp(54px, 19vw, 96px); }
-    .field-connector { display: none; }
-    .source-node span { display: none; }
-    .source-node b { font-size: 14px; }
-    .source-node[data-key="note"],
-    .source-node[data-key="crm"],
-    .source-node[data-key="transcript"],
-    .source-node[data-key="estate"],
-    .source-node[data-key="planning"],
-    .source-node[data-key="calendar"],
-    .source-node[data-key="text"],
-    .source-node[data-key="voicemail"],
-    .source-node[data-key="tax"],
-    .source-node[data-key="rollover"],
-    .source-node[data-key="insurance"],
-    .source-node[data-key="custodian"],
-    .source-node[data-key="slack"],
-    .source-node[data-key="risk"],
-    .source-node[data-key="signature"],
-    .source-node[data-key="trust"],
-    .source-node[data-key="held-away"] { display: none; }
-    .source-node[data-key="statement"] { left: 22% !important; top: 22% !important; }
-    .source-node[data-key="email"] { left: 78% !important; top: 24% !important; }
-    .hero-copy { left: 20px; right: 20px; width: auto; bottom: 280px; }
-    .hero-copy h1 { font-size: 34px; }
-    .hero-copy p { font-size: 15px; }
-    .readout { left: 20px; right: 20px; bottom: 36px; width: auto; }
-    .hint-strip { display: none; }
-  }
+  /* The mobile hero is governed by #mobile-redux-home (layout) and #mobile-strip
+     (hides the source field, readout, and hint strip). The 920px-min-height block
+     that used to sit here was fully overridden by both and only left dead space. */
 
   /* ================================================================
      2. PLATFORM — editorial intro + horizontal accordion (WorldQuant)
@@ -534,7 +501,7 @@
   .platform-title {
     margin: 0;
     font-size: clamp(48px, 6vw, 72px);
-    font-weight: 900;
+    font-weight: 800;
     letter-spacing: -.05em;
     line-height: .88;
     text-transform: uppercase;
@@ -568,24 +535,7 @@
     line-height: 1.6;
   }
 
-  /* — CTA — */
-  .platform-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 14px;
-    padding: 14px 4px 14px 4px;
-    border-top: 1px solid var(--ink);
-    border-bottom: 1px solid var(--ink);
-    color: var(--ink);
-    font-family: var(--mono);
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    text-decoration: none;
-    position: relative;
-    overflow: hidden;
-  }
+  /* — CTA primitives, shared by .custody-cta — */
   .cta-dot {
     width: 8px;
     height: 8px;
@@ -614,20 +564,6 @@
     transition: transform .35s ease, opacity .25s ease;
     opacity: .55;
   }
-  .platform-cta:hover .cta-dot,
-  .platform-cta:focus-visible .cta-dot {
-    opacity: 1;
-    filter: blur(0);
-    transform: translateX(0);
-  }
-  .platform-cta:hover .cta-text-roll,
-  .platform-cta:focus-visible .cta-text-roll { transform: translateY(-1em); }
-  .platform-cta:hover .cta-arrow,
-  .platform-cta:focus-visible .cta-arrow {
-    transform: translateX(4px);
-    opacity: 1;
-  }
-  .platform-cta:hover { animation: ctaFlicker .42s ease 1; }
   @keyframes ctaFlicker {
     0%   { opacity: 1; }
     18%  { opacity: .72; }
@@ -649,14 +585,14 @@
     height: var(--pc-h);
     background: var(--paper-3);
     border: 1px solid var(--rule);
-    border-radius: 10px;
+    border-radius: 16px;
     overflow: hidden;
     position: relative;
     cursor: pointer;
     transition: flex-grow .6s cubic-bezier(.3, 1.15, .35, 1),
                 background .4s ease,
                 box-shadow .4s ease;
-    box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 1px 3px rgba(15,23,42,.06);
+    box-shadow: 0 1px 2px rgba(15,23,42,.05), 0 8px 24px rgba(15,23,42,.08);
   }
   .pc-card:focus-visible {
     outline: 2px solid var(--focus);
@@ -666,7 +602,7 @@
   .pc-card:focus-visible {
     flex-grow: 2.4;
     background: #FFFFFF;
-    box-shadow: 0 8px 24px rgba(15,23,42,.08);
+    box-shadow: 0 16px 40px rgba(15,23,42,.12);
   }
   .pc-graphic {
     position: absolute;
@@ -706,7 +642,7 @@
     font-size: clamp(20px, 1.6vw, 24px);
     line-height: 1.12;
     letter-spacing: -.02em;
-    font-weight: 900;
+    font-weight: 700;
     color: var(--ink);
   }
   .pc-meta p {
@@ -807,7 +743,7 @@
   }
   .platform-proof-copy h3 {
     margin: 0; font-size: clamp(24px, 2.6vw, 32px); line-height: 1.18;
-    letter-spacing: -.02em; font-weight: 900; color: var(--ink);
+    letter-spacing: -.02em; font-weight: 700; color: var(--ink);
   }
   .platform-proof-copy p {
     margin: 14px 0 0; color: var(--ink-soft); font-size: 16px; line-height: 1.6; max-width: 560px;
@@ -816,7 +752,7 @@
   .platform .platform-proof .bpa-stage {
     margin-inline: auto;
     border-color: var(--rule);
-    box-shadow: 0 8px 24px rgba(15,23,42,.08);
+    box-shadow: 0 1px 2px rgba(15,23,42,.05), 0 8px 24px rgba(15,23,42,.08);
   }
   .platform-proof-fallback { display: none; }
 
@@ -829,7 +765,7 @@
     .platform-proof-clip { display: none; }
     .platform-proof-fallback {
       display: block; padding: 22px 24px; background: var(--paper);
-      border: 1px solid var(--rule); border-radius: 10px;
+      border: 1px solid var(--rule); border-radius: 16px;
     }
     .platform-proof-fallback .eyebrow {
       color: var(--ink-muted); font-family: var(--mono); font-size: 11px; font-weight: 700;
@@ -883,8 +819,11 @@
   }
   .closer .hero-ctas { justify-content: center; margin-top: 28px; }
 
-  .closer-founder { margin: 26px auto 0; max-width: 560px; font-size: 14px; line-height: 1.6; color: var(--ink-soft); text-align: center; }
-  .closer-alt { margin: 10px auto 0; font-size: 14px; color: var(--ink-soft); text-align: center; }
+  /* .closer p is class+type specificity, so these need the same weight or the
+     small-print lines inherit its 19px size. */
+  .closer p.closer-price { margin: 20px auto 0; font-size: 14px; line-height: 1.6; color: var(--ink-soft); text-align: center; }
+  .closer p.closer-founder { margin: 22px auto 0; max-width: 560px; font-size: 14px; line-height: 1.6; color: var(--ink-soft); text-align: center; }
+  .closer p.closer-alt { margin: 10px auto 0; font-size: 14px; color: var(--ink-soft); text-align: center; }
   .closer-alt a { color: var(--blue-ink); text-decoration: underline; text-underline-offset: 3px; }
 
 
@@ -968,17 +907,19 @@
      --ink, --ink-soft, --blue, --rule, --sans, --mono.
      ============================================================ */
   @media (max-width: 820px) {
-    /* ----- HERO: stop the BRIEFLY wordmark from crashing into the H1 ----- */
-    .hero { min-height: 760px; padding-bottom: 24px; }
-    .field { min-height: 760px; }
+    /* ----- HERO: stop the BRIEFLY wordmark from crashing into the H1 -----
+       600px fits the copy block with margin. 760px left roughly a screen-quarter of
+       empty grid under the CTAs, which was the first thing a phone visitor saw. */
+    .hero { min-height: 600px; padding-bottom: 24px; }
+    .field { min-height: 600px; }
     .center-word {
-      top: 14%;
+      top: 15%;
       font-size: clamp(56px, 19vw, 96px);
       opacity: .55;
     }
     .hero-copy {
       bottom: auto;
-      top: 200px;
+      top: 180px;
       left: 16px;
       right: 16px;
       width: auto;
@@ -995,14 +936,6 @@
       display: inline-flex;
       align-items: center;
     }
-    .readout {
-      left: 16px;
-      right: 16px;
-      bottom: 16px;
-      width: auto;
-      padding: 14px 16px;
-    }
-
     /* ----- PLATFORM: keep title inside the viewport, tighten padding ----- */
     .platform { padding: 64px 16px 76px; }
     .platform-head { margin-bottom: 36px; gap: 18px; }
@@ -1167,15 +1100,7 @@
         "name": "Is my client data safe?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "With the Briefly connector, client files stay on your computer and Briefly's servers never store them. Briefly reads them locally, only your sign-in, a check that your seat is active, and de-identified preference rules about how you like things written ever reach our server, and we never train AI models on client data. If your firm uses the Briefly web app instead, files live in Briefly's hosted environment, which we secure and control."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Does anyone at Briefly see my client files?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "No. With the connector, client files stay in a folder on your computer and never reach Briefly's servers, so there is nothing on our side to see. With the web app, files live in Briefly's hosted environment, which we secure and control, and your firm decides who signs in."
+          "text": "With the Briefly connector, client files stay on your computer and Briefly's servers never store them, so there is nothing on our side for anyone at Briefly to see. Only your sign-in, a check that your seat is active, and de-identified preference rules about how you like things written ever reach our server, and we never train AI models on client data. If your firm uses the Briefly web app instead, files live in Briefly's hosted environment, which we secure and control, and your firm decides who signs in."
         }
       },
       {
@@ -1249,7 +1174,7 @@
 
   .showit-head { max-width: 760px; margin: 0 auto 52px; text-align: center; }
   .showit-head h2 { margin: 0; font-size: clamp(26px, 3vw, 38px); line-height: 1.08;
-                    letter-spacing: -.03em; font-weight: 900; color: var(--cream);
+                    letter-spacing: -.03em; font-weight: 800; color: var(--cream);
                     text-wrap: balance; }
   .showit-lede { margin: 18px auto 0; max-width: 660px; font-size: 17px; line-height: 1.62;
                  color: var(--cream-soft); text-wrap: pretty; }
@@ -1300,16 +1225,19 @@
   }
 
 
-  /* Panning clips hold native width below their floors and slice at the viewport edge,
-     which reads as a rendering bug unless something says the card continues. */
-  .pan-hint { display: none; font-family: var(--mono); font-size: 11px; font-weight: 700;
-              letter-spacing: .06em; text-transform: uppercase; margin-top: 8px; }
-  @media (max-width: 700px) { .pan-hint--in { display: block; color: var(--cream-soft); } }
-  @media (max-width: 640px) { .pan-hint--out { display: block; color: var(--cream-soft); } }
-  @media (max-width: 500px) { .pan-hint--proof { display: block; color: var(--ink-soft); } }
-
   .showit-clip--in .bpa-stage { max-width: 640px; }
   .showit-clip--out .bpa-stage { max-width: 562px; }
+
+  /* Below their floors these clips used to pin native width and swipe-to-pan, which
+     rendered as a blank white rectangle on phones. Text fallback instead, same pattern
+     as the platform proof. */
+  .showit-fallback {
+    display: none; padding: 22px 24px; text-align: left;
+    background: rgba(241,245,249,.05);
+    border: 1px solid rgba(241,245,249,.16);
+    border-radius: 16px;
+  }
+  .showit-fallback p { margin: 0; color: var(--cream-soft); font-size: 15px; line-height: 1.55; }
 
   /* Side by side needs 600 + 40 + 562 plus 64px of section padding, so it stacks below
      1280 rather than pushing clip 08 under its 600px floor. */
@@ -1323,12 +1251,12 @@
     .showit-head { margin-bottom: 40px; }
   }
   @media (max-width: 700px) {
-    .showit-clip--in { overflow-x: auto; overscroll-behavior-x: contain; padding-bottom: 10px; }
-    .showit-clip--in .bpa-stage { width: 640px; max-width: none; margin-inline: 0; }
+    .showit-clip--in, .showit-cap--in { display: none; }
+    .showit-fallback--in { display: block; }
   }
   @media (max-width: 640px) {
-    .showit-clip--out { overflow-x: auto; overscroll-behavior-x: contain; padding-bottom: 10px; }
-    .showit-clip--out .bpa-stage { width: 562px; max-width: none; margin-inline: 0; }
+    .showit-clip--out, .showit-cap--out { display: none; }
+    .showit-fallback--out { display: block; }
   }
 </style>
 </head>
@@ -1381,7 +1309,7 @@
     <button class="source-node" data-key="held-away" data-title="Held-away account read" data-copy="Outside accounts come in with balances and positions, kept distinct from custodied." style="--x:12%;--y:46%"><b>held-away</b></button>
 
     <div class="hero-copy">
-      <div class="eyebrow">AI knowledge base for financial advisor teams</div>
+      <div class="eyebrow">AI knowledge base for RIAs and advisor teams</div>
       <h1>Know every client like they're your only client.</h1>
       <p>One source-backed file per client, built from the statements, the CPA emails, and the meeting notes your firm already has.</p>
       <div class="hero-ctas">
@@ -1398,7 +1326,7 @@
       <p id="readoutCopy">Portfolio drift becomes a source-backed fact before the advisor enters the review.</p>
     </aside>
 
-    <div class="hint-strip" aria-hidden="true">move through evidence lines</div>
+    <div class="hint-strip" aria-hidden="true">hover a source to see what it becomes</div>
   </div>
 </section>
 
@@ -1426,26 +1354,40 @@
           <p class="showit-merge">Both end in the same client file.</p>
         </div>
         <div class="showit-clip showit-clip--in" data-bpa-clip="8"></div>
-        <div class="pan-hint pan-hint--in" aria-hidden="true">swipe to see the rest &rarr;</div>
-        <p class="showit-cap">Whichever way the records arrive, they land in one file under the right client.</p>
+        <div class="showit-fallback showit-fallback--in">
+          <p>An Outlook email, a Salesforce record, and an uploaded statement land in the same client file, each entry tied to its source.</p>
+        </div>
+        <p class="showit-cap showit-cap--in">Whichever way the records arrive, they land in one file under the right client.</p>
       </div>
 
       <div class="showit-col">
         <div class="showit-tag">02 / what comes out</div>
         <div class="showit-clip showit-clip--out" data-bpa-clip="2"></div>
-        <div class="pan-hint pan-hint--out" aria-hidden="true">swipe to see the rest &rarr;</div>
-        <p class="showit-cap">Briefly drafts the document from those records, and every claim carries the source behind it.</p>
+        <div class="showit-fallback showit-fallback--out">
+          <p>From those records Briefly drafts the meeting document, and every claim in it names the source it came from.</p>
+        </div>
+        <p class="showit-cap showit-cap--out">Briefly drafts the document from those records, and every claim carries the source behind it.</p>
       </div>
     </div>
   </div>
 </section>
 
 <span id="mcp" aria-hidden="true"></span>
+<div class="section-bridge" aria-hidden="true"></div>
 <style id="custody-styles">
+  /* Softens the hard navy-to-white cut out of the dark section above. The custody
+     border-top is gone for the same reason: a hairline under a gradient reads as a seam. */
+  .section-bridge {
+    height: 110px;
+    background: linear-gradient(180deg, #0F172A 0%, #1E293E 20%, #46536D 45%, #8894A9 68%, #CBD3DF 86%, #FFFFFF 100%);
+  }
+  /* Cards and panels moved to a 16px surface radius. Clip stages follow via this page-level
+     override rather than an edit to briefly-clips.css. */
+  .bpa .bpa-stage { border-radius: 16px; }
+
   .custody {
     position: relative;
     background: var(--paper-3);
-    border-top: 1px solid var(--rule);
     border-bottom: 1px solid var(--rule);
     padding: 100px 32px 110px;
   }
@@ -1454,7 +1396,7 @@
   .custody-head .eyebrow { margin-bottom: 14px; font-size: 11px; font-weight: 700; letter-spacing: .08em; }
   .custody-head h2 {
     margin: 0; font-size: clamp(32px, 4.4vw, 54px); line-height: .98;
-    letter-spacing: -.045em; font-weight: 900; color: var(--ink);
+    letter-spacing: -.045em; font-weight: 800; color: var(--ink);
   }
   .custody-lede { margin: 20px 0 0; color: var(--ink-soft); font-size: 17px; line-height: 1.62; max-width: 660px; }
 
@@ -1462,20 +1404,36 @@
                   gap: 20px; align-items: stretch; }
   .custody-panel {
     display: flex; flex-direction: column;
-    border: 1px solid var(--rule); border-radius: 10px;
-    box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 1px 3px rgba(15,23,42,.06);
+    border: 1px solid var(--rule); border-radius: 16px;
+    box-shadow: 0 1px 2px rgba(15,23,42,.05), 0 8px 24px rgba(15,23,42,.08);
     background: var(--paper); padding: 32px 32px 34px;
   }
   .custody-panel h3 {
     margin: 0; font-size: 24px; line-height: 1.14; letter-spacing: -.022em;
-    font-weight: 900; color: var(--ink);
+    font-weight: 700; color: var(--ink);
   }
   .custody-panel .cp-body { margin: 16px 0 0; font-size: 15.5px; line-height: 1.62; color: var(--ink-soft); }
   .custody-panel .btn { margin-top: auto; align-self: flex-start; padding-top: 0; }
   .custody-panel .cp-act { margin-top: 24px; }
 
 
+  /* — what reaches our servers, stated in the open rather than inside an accordion — */
+  .custody-egress {
+    margin-top: 40px; padding: 26px 28px 24px;
+    border: 1px solid var(--rule); border-radius: 16px;
+    background: var(--paper);
+    box-shadow: 0 1px 2px rgba(15,23,42,.05), 0 8px 24px rgba(15,23,42,.08);
+  }
+  .custody-egress .eyebrow { margin-bottom: 10px; font-size: 11px; font-weight: 700; letter-spacing: .08em; }
+  .custody-egress .ce-lede { margin: 0 0 20px; color: var(--ink); font-size: 15.5px; line-height: 1.5; max-width: 640px; }
+  .ce-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .ce-cell { display: flex; align-items: baseline; gap: 10px; border-top: 1px solid var(--rule); padding-top: 12px; }
+  .ce-cell b { font-family: var(--mono); font-size: 11px; font-weight: 800; letter-spacing: .1em; color: var(--blue-ink); }
+  .ce-cell span { color: var(--ink-soft); font-size: 14.5px; line-height: 1.5; }
+  @media (max-width: 760px) { .ce-row { grid-template-columns: 1fr; gap: 10px; } }
+
   .custody-note { margin: 40px 0 0; max-width: 780px; color: var(--ink-soft); font-size: 15px; line-height: 1.65; }
+  .custody-founder { margin: 14px 0 0; max-width: 780px; color: var(--ink-muted); font-size: 14px; line-height: 1.6; }
 
   /* Reuses the global .cta-dot / .cta-text-roll / .cta-arrow spans and @keyframes ctaFlicker. */
   .custody-cta {
@@ -1521,7 +1479,18 @@
     </div>
 
 
+    <div class="custody-egress reveal">
+      <div class="eyebrow">What reaches our servers</div>
+      <p class="ce-lede">With the connector, only three things ever reach Briefly's servers. Client files stay on your machines.</p>
+      <div class="ce-row">
+        <div class="ce-cell"><b>01</b><span>Your sign-in</span></div>
+        <div class="ce-cell"><b>02</b><span>A check that your seat is active</span></div>
+        <div class="ce-cell"><b>03</b><span>De-identified preferences for how you like things written</span></div>
+      </div>
+    </div>
+
     <p class="custody-note reveal">Either way, Briefly builds from the records your firm already has, so there is nothing to migrate. Firms that run both get one client file, so nothing is ever filed twice and a seat can move between them without rebuilding anything.</p>
+    <p class="custody-founder reveal">Briefly is built by Connor Florczyk, who came to it from a private wealth team at Morgan Stanley.</p>
 
     <a class="custody-cta" href="/pricing">
       <span class="cta-dot" aria-hidden="true"></span>
@@ -1546,11 +1515,6 @@
       <div class="platform-head-right">
         <hr class="platform-rule">
         <p>Each file keeps what your team has already corrected. A fix from last quarter still holds in this quarter's brief.</p>
-        <a class="platform-cta" href="#platform-proof">
-          <span class="cta-dot" aria-hidden="true"></span>
-          <span class="cta-text"><span class="cta-text-roll"><span>Watch it stick</span><span>Watch it stick</span></span></span>
-          <span class="cta-arrow" aria-hidden="true">→</span>
-        </a>
       </div>
     </header>
 
@@ -1626,9 +1590,11 @@
               <line x1="50" y1="98"  x2="110" y2="98"  stroke="rgba(15,23,42,.35)" stroke-width="1" />
               <line x1="210" y1="80" x2="290" y2="80"  stroke="rgba(15,23,42,.55)" stroke-width="1" />
               <line x1="210" y1="98" x2="275" y2="98"  stroke="rgba(15,23,42,.35)" stroke-width="1" />
-              <circle cx="298" cy="89"  r="6" fill="#45d18f" /><!-- approved -->
-              <circle cx="298" cy="167" r="6" fill="#d97706" /><!-- needs review -->
-              <circle cx="298" cy="245" r="6" fill="#dc2626" /><!-- held -->
+              <!-- One accent per graphic: state reads from fill, not hue.
+                   Solid blue = approved, hollow = needs review, solid ink = held. -->
+              <circle cx="298" cy="89"  r="6" fill="rgba(29,78,216,.85)" />
+              <circle cx="298" cy="167" r="5.4" fill="#FFFFFF" stroke="#0F172A" stroke-width="1.2" />
+              <circle cx="298" cy="245" r="6" fill="#0F172A" />
               <line x1="50" y1="158" x2="120" y2="158" stroke="rgba(15,23,42,.55)" stroke-width="1" />
               <line x1="210" y1="158" x2="280" y2="158" stroke="rgba(15,23,42,.55)" stroke-width="1" />
               <line x1="50" y1="236" x2="125" y2="236" stroke="rgba(15,23,42,.55)" stroke-width="1" />
@@ -1675,7 +1641,6 @@
       <div class="platform-proof-copy">
         <div class="eyebrow">Correction, once</div>
         <h3>A correction, held as the rule.</h3>
-        <p>Say something once on a call, and Briefly keeps it as the standing rule for that client. Every brief after it follows the same rule.</p>
         <p class="proof-links proof-links--platform"><a href="#" onclick="openDemoModal();return false;">Book a demo &rarr;</a><a href="/sample-deliverables">See sample deliverables &rarr;</a></p>
       </div>
       <div class="platform-proof-clip" data-bpa-clip="7"></div>
@@ -1706,7 +1671,7 @@
     font-size: clamp(32px, 4.4vw, 58px);
     line-height: .96;
     letter-spacing: -.045em;
-    font-weight: 900;
+    font-weight: 800;
     color: var(--ink);
   }
   .feat-head p {
@@ -1716,76 +1681,6 @@
     line-height: 1.6;
     max-width: 640px;
   }
-  .feat-grid {
-    margin-top: 40px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
-    /* Uniform boxes: every card fills its grid cell so all four read as one set. The tag
-       is pushed to the bottom by margin-top:auto rather than floating mid-card. */
-    align-items: stretch;
-  }
-  .feat-card {
-    display: flex; flex-direction: column;
-    border: 1px solid var(--rule);
-    border-radius: 10px;
-    box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 1px 3px rgba(15,23,42,.06);
-    background: var(--paper-3);
-    padding: 30px 30px 32px;
-    position: relative;
-  }
-  .feat-card .fc-num {
-    font-family: var(--mono);
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: .1em;
-    color: var(--blue-ink);
-  }
-  .feat-card h3 {
-    margin: 14px 0 0;
-    font-size: 23px;
-    line-height: 1.14;
-    letter-spacing: -.02em;
-    font-weight: 900;
-    color: var(--ink);
-  }
-  .feat-card p {
-    margin: 12px 0 0;
-    color: var(--ink-soft);
-    font-size: 15.5px;
-    line-height: 1.62;
-  }
-  .feat-card .fc-tag {
-    margin-top: auto; align-self: flex-start;
-    display: inline-flex;
-    font-family: var(--mono);
-    font-size: 10.5px;
-    font-weight: 800;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    color: var(--blue-ink);
-    border: 1px solid rgba(29,78,216,.42);
-    background: rgba(29,78,216,.06);
-    padding: 5px 9px;
-  }
-
-  /* — proof card: clip 02 paired 1:1 with the one claim it proves — */
-  .feat-proof {
-    margin-top: 20px;
-    display: flex;
-    align-items: flex-start;
-    gap: 40px;
-    border: 1px solid var(--rule);
-    border-radius: 10px;
-    box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 1px 3px rgba(15,23,42,.06);
-    background: var(--paper-3);
-    padding: 40px 44px 44px;
-  }
-  .feat-proof-copy { flex: 1 1 360px; min-width: 0; max-width: 560px; padding-top: 4px; }
-  /* Clip 03 tops out at 470px. It measures clean down to 420px with roughly 60px of
-     headroom, but at 340px its content height became unstable across repeated runs, so
-     420px is the floor and it pans below that rather than rendering narrower. */
-
   .proof-links { display: flex; gap: 26px; margin-top: 16px; }
   .proof-links a {
     font-family: var(--mono); font-size: 12px; font-weight: 800; letter-spacing: .08em;
@@ -1794,103 +1689,51 @@
   }
   .proof-links--platform { margin: 18px 0 0; }
 
-  .feat-proof-clip { flex: 0 1 470px; min-width: 420px; }
-  /* Clip 03's 4:5 frame left a large empty band at the bottom. The Ask Briefly panel
-     (.bpa-ak) stretches to fill the stage, so the panel itself was mostly empty below the
-     last message. Visible ink tops out at 337px of a 470px-wide stage, so this ratio sizes
-     the frame to the content with about 20px to spare and the panel hugs it. */
-  .feat-proof-clip .bpa-stage { aspect-ratio: 100 / 76; min-height: 360px; }
-  /* The ratio alone is not enough. Text inside wraps to more lines as the clip narrows,
-     so ink barely shrinks (337px at 470 wide, still 330px at 420), and a pure ratio
-     crops. The min-height is the real floor and the ratio only governs the wide end. */
+  /* — proof: clip 01, the queue working across five households at once — */
+  .feat-proof { margin-top: 44px; }
   .feat .bpa { background: transparent; }
   .feat .bpa-stage { margin-inline: auto; }
+  .feat-cap {
+    margin: 18px auto 0; max-width: 640px; text-align: center;
+    color: var(--ink-soft); font-size: 15px; line-height: 1.5;
+  }
+  .feat-proof-fallback { display: none; }
 
-  .feat-proof-copy .fc-num {
-    font-family: var(--mono); font-size: 12px; font-weight: 800;
-    letter-spacing: .1em; color: var(--blue-ink);
-  }
-  .feat-proof-copy h3 {
-    margin: 14px 0 0; font-size: 23px; line-height: 1.14; letter-spacing: -.02em;
-    font-weight: 900; color: var(--ink);
-  }
-  .feat-proof-copy p { margin: 12px 0 0; color: var(--ink-soft); font-size: 15.5px; line-height: 1.62; }
-  .feat-proof-copy .fc-tag {
-    margin-top: 18px; display: inline-flex; font-family: var(--mono); font-size: 10.5px;
-    font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--blue-ink);
-    border: 1px solid rgba(29,78,216,.42); background: rgba(29,78,216,.06); padding: 5px 9px;
-  }
-
-  @media (max-width: 1024px) {
-    .feat-proof { flex-direction: column; align-items: stretch; gap: 28px; }
-    .feat-proof-copy { max-width: none; padding-top: 0; }
-    .feat-proof-clip { flex: none; width: 100%; }
-  }
-  /* Container is viewport minus 32px section padding and 44px card padding, so a 420px
-     stage stops fitting just under 500px of viewport. Pin and pan from there. */
-  @media (max-width: 500px) {
-    /* min-width must drop back to 0 here, or the wrapper itself stays 420px wide inside a
-       narrower card and pushes the whole page into horizontal scroll. The wrapper shrinks,
-       the stage keeps its 420px, and the overflow scrolls inside the wrapper. */
-    .feat-proof-clip { min-width: 0; width: 100%;
-                       overflow-x: auto; overscroll-behavior-x: contain; padding-bottom: 10px; }
-    .feat-proof-clip .bpa-stage { width: 420px; max-width: none; margin-inline: 0; }
+  /* Clip 01's queue rows carry 560px of fixed columns before the task text gets a pixel,
+     so under ~900px the tasks wrap past the 16:9 frame and crop. Text instead of a broken
+     clip from there down. */
+  @media (max-width: 900px) {
+    .feat-proof-clip, .feat-cap { display: none; }
+    .feat-proof-fallback {
+      display: block; padding: 22px 24px; background: var(--paper-3);
+      border: 1px solid var(--rule); border-radius: 16px;
+    }
+    .feat-proof-fallback .eyebrow {
+      color: var(--ink-muted); font-family: var(--mono); font-size: 11px; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase; margin-bottom: 10px;
+    }
+    .feat-proof-fallback p { margin: 0; color: var(--ink-soft); font-size: 15px; line-height: 1.55; }
   }
   @media (max-width: 820px) {
     .feat { padding: 64px 16px 76px; }
-    .feat-proof { padding: 28px 22px 30px; gap: 22px; }
-    .feat-proof-copy h3 { font-size: 21px; }
-    .feat-grid { grid-template-columns: 1fr; gap: 14px; }
-    .feat-card { padding: 24px 22px 26px; }
-    .feat-card h3 { font-size: 21px; }
   }
 </style>
-<section class="feat" id="different" aria-label="What makes Briefly different">
+<section class="feat" id="different" aria-label="Ask across your whole book">
   <div class="container feat-inner">
     <header class="feat-head reveal">
       <div class="eyebrow">Why Briefly</div>
-      <h2>What a knowledge base gives you that nothing else does.</h2>
-      <p>The value compounds inside your firm's own file and gets sharper every time your team uses it.</p>
+      <h2>Ask across your whole book.</h2>
+      <p>Households, accounts, and outside professionals connect in one knowledge base, so you can ask which clients hold a concentrated position, or who mentioned selling a business, and get a grounded answer instead of a guess. The suggested next steps land the same way, in one queue across every household, each tied to its sources and waiting on advisor approval.</p>
+      <p class="proof-links"><a href="#" onclick="openDemoModal();return false;">Book a demo &rarr;</a><a href="/sample-deliverables">See sample deliverables &rarr;</a></p>
     </header>
 
-    <div class="feat-grid reveal">
-      <article class="feat-card">
-        <div class="fc-num">01</div>
-        <h3>Every answer is source-backed</h3>
-        <p>Briefly cites the original note, email, or statement behind every claim. Open the source in one click and check it yourself. Nothing important reaches a client or a meeting without evidence you can trace.</p>
-        <span class="fc-tag">Citations on every claim</span>
-      </article>
-
-      <article class="feat-card">
-        <div class="fc-num">02</div>
-        <h3>Your whole team's intelligence compounds</h3>
-        <p>Every correction your team makes, a renamed household, a fixed number, the way a senior advisor likes a recap written, is remembered and shared across everyone. The more your firm uses Briefly, the sharper it gets for the whole team, not just the person who taught it.</p>
-        <span class="fc-tag">Firm-owned memory</span>
-      </article>
-
-      <article class="feat-card">
-        <div class="fc-num">03</div>
-        <h3>One view across your whole book</h3>
-        <p>Households, accounts, outside professionals, and relationships all connect. You can ask questions that span your entire book, not just one client file, and get a grounded answer instead of a guess.</p>
-        <span class="fc-tag">Whole-book view</span>
-      </article>
-
-      <article class="feat-card">
-        <div class="fc-num">04</div>
-        <h3>Your files can stay on your own machines</h3>
-        <p>Run the connector and Briefly reads straight from folders on your own machines. Paste files into a general AI chat window instead and it forgets them when the session ends. Briefly keeps the memory, and your firm keeps the files.</p>
-        <span class="fc-tag">No lock-in</span>
-      </article>
-    </div>
-
     <div class="feat-proof reveal">
-      <div class="feat-proof-copy">
-        <div class="eyebrow">See it happen</div>
-        <p>Ask in plain English. The answer names the documents behind it, and you can open them without leaving the reply.</p>
-        <p class="proof-links"><a href="#" onclick="openDemoModal();return false;">Book a demo &rarr;</a><a href="/sample-deliverables">See a real example &rarr;</a></p>
+      <div class="feat-proof-clip" data-bpa-clip="1"></div>
+      <p class="feat-cap">One morning's queue across five households, each item naming its sources before an advisor approves it.</p>
+      <div class="feat-proof-fallback">
+        <div class="eyebrow">One queue, whole book</div>
+        <p>Suggested next steps line up across five households at once, each one tied to its sources and waiting on advisor approval.</p>
       </div>
-      <div class="feat-proof-clip" data-bpa-clip="3"></div>
-        <div class="pan-hint pan-hint--proof" aria-hidden="true">swipe to see the rest &rarr;</div>
     </div>
   </div>
 </section>
@@ -1939,7 +1782,7 @@
     border-top: 1px solid var(--rule);
     padding: 100px 32px 110px;
   }
-  .site-faq-inner { margin: 0 auto; }
+  .site-faq-inner { max-width: 880px; margin: 0 auto; }
   .site-faq-head { max-width: 660px; }
   .site-faq-head .eyebrow { margin-bottom: 14px; font-size: 11px; font-weight: 700; letter-spacing: .08em; }
   .site-faq-head h2 {
@@ -1947,7 +1790,7 @@
     font-size: clamp(30px, 4vw, 44px);
     line-height: 1.04;
     letter-spacing: -.035em;
-    font-weight: 900;
+    font-weight: 800;
     color: var(--ink);
   }
   .site-faq-list { margin-top: 42px; border-top: 1px solid var(--rule); }
@@ -1984,7 +1827,9 @@
     color: var(--ink-soft);
     font-size: 15.5px;
     line-height: 1.62;
-    max-width: 700px;
+    /* 580px at 15.5px is roughly 75 characters per line, the top of the readable range.
+       At 700px the answers ran 94-102 characters and read as too wide. */
+    max-width: 580px;
   }
   @media (max-width: 620px) {
     .site-faq { padding: 64px 18px 76px; }
@@ -2000,11 +1845,7 @@
     <div class="site-faq-list">
       <details class="site-faq-item" open>
         <summary>Is my client data safe?</summary>
-        <p>With the Briefly connector, client files stay on your computer and Briefly's servers never store them. Briefly reads them locally, only your sign-in, a check that your seat is active, and de-identified preference rules about how you like things written ever reach our server, and we never train AI models on client data. If your firm uses the Briefly web app instead, files live in Briefly's hosted environment, which we secure and control.</p>
-      </details>
-      <details class="site-faq-item" open>
-        <summary>Does anyone at Briefly see my client files?</summary>
-        <p>No. With the connector, client files stay in a folder on your computer and never reach Briefly's servers, so there is nothing on our side to see. With the web app, files live in Briefly's hosted environment, which we secure and control, and your firm decides who signs in.</p>
+        <p>With the Briefly connector, client files stay on your computer and Briefly's servers never store them, so there is nothing on our side for anyone at Briefly to see. Only your sign-in, a check that your seat is active, and de-identified preference rules about how you like things written ever reach our server, and we never train AI models on client data. If your firm uses the Briefly web app instead, files live in Briefly's hosted environment, which we secure and control, and your firm decides who signs in.</p>
       </details>
       <details class="site-faq-item">
         <summary>Can I safely put client data into ChatGPT or Claude directly?</summary>
@@ -2041,6 +1882,7 @@
   <div class="hero-ctas">
     <a class="btn" href="#" onclick="openDemoModal();return false;">Book a demo</a>
   </div>
+  <p class="closer-price">The connector is $100 a seat with the first month free. The web app is $150.</p>
   <p class="closer-founder">Built by Connor Florczyk, formerly of a top-performing private wealth team at Morgan Stanley and multi-family office Crescent Bay Advisors.</p>
   <p class="closer-alt">Not ready for a demo? <a href="/subscribe">Get the Morning Brief</a>, our daily market email for advisors.</p>
 </section>
@@ -2818,7 +2660,7 @@
     margin:0 0 8px;
   }
   .demo-modal-title {
-    font-weight:900; font-size:32px; line-height:1; letter-spacing:-.04em;
+    font-weight:800; font-size:32px; line-height:1; letter-spacing:-.04em;
     margin:0 0 18px; color:var(--ink, #0F172A);
   }
   .demo-modal-field { display:block; margin:0 0 14px; }
@@ -2841,12 +2683,12 @@
   }
   .demo-modal-submit:hover { background:var(--blue, #2f8cff); border-color:var(--blue, #2f8cff); color:#fff; }
   .demo-modal-submit:disabled { opacity:.6; cursor:wait; }
-  .demo-modal-error { display:none; margin-top:10px; padding:10px 12px; border:1px solid #dc2626; border-radius:10px; color:#dc2626; font-size:13px; }
+  .demo-modal-error { display:none; margin-top:10px; padding:10px 12px; border:1px solid #dc2626; border-radius:6px; color:#dc2626; font-size:13px; }
   .demo-modal-success {
     display:none; padding:18px 0 4px; text-align:center;
   }
   .demo-modal-success.active { display:block; }
-  .demo-modal-success-title { font-weight:900; font-size:22px; letter-spacing:-.02em; margin:0 0 6px; color:var(--ink, #0F172A); }
+  .demo-modal-success-title { font-weight:700; font-size:22px; letter-spacing:-.02em; margin:0 0 6px; color:var(--ink, #0F172A); }
   .demo-modal-success-body { font-size:14px; color:rgba(15,23,42,.72); line-height:1.5; margin:0 0 16px; }
 </style>
 <div class="demo-modal" id="demoModal" role="dialog" aria-modal="true" aria-labelledby="demoModalTitle">
