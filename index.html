@@ -8,6 +8,7 @@
 <meta name="author" content="Briefly Wealth LLC">
 
 <link rel="canonical" href="https://www.brieflywealth.com/">
+<link rel="stylesheet" href="assets/briefly-clips.css">
 <link rel="icon" type="image/png" sizes="32x32" href="images/briefly_logo_favicon.png?v=2">
 <link rel="icon" type="image/png" sizes="16x16" href="images/briefly_logo_favicon.png?v=2">
 <link rel="apple-touch-icon" sizes="180x180" href="images/briefly_logo_favicon.png?v=2">
@@ -55,14 +56,17 @@
 <style>
   :root {
     --paper: #FBFAF6;          /* warm white ground */
+    --paper-2: #F2EDE1;        /* second warm tone, for band alternation */
     --card: #FFFFFF;
     --ink: #16324F;            /* deep navy, all display type */
     --ink-soft: #46627D;
     --ink-muted: #7C8DA1;
     --rule: #E6E1D5;           /* warm hairline */
-    --cite: #1E7A55;           /* green, reserved for citations and verified marks */
-    --cite-soft: #EAF4EE;
-    --navy-band: #10263D;      /* closer + footer */
+    --blue: #2F8CFF;           /* fills, icons, pins, chip fills. 3.32 on white: never small text */
+    --blue-ink: #1D4ED8;       /* 6.70 on white: small text, links, focus rings */
+    --blue-soft: #E9F2FF;      /* light chip background on paper grounds */
+    --cyan: #8cd8ff;           /* dark navy sections only */
+    --navy-band: #10263D;      /* closer + footer + custody */
     --cream: #F4F1E9;
     --cream-soft: #B9C4CF;
     --serif: Charter, "Iowan Old Style", "Source Serif Pro", Georgia, serif;
@@ -92,10 +96,10 @@
   .textlink { font-size: 14.5px; font-weight: 600; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
   .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; }
 
-  /* citations, the one green in the system */
+  /* citations, the one blue in the system */
   .cite {
-    display: inline-block; font-family: var(--mono); font-size: 11px; color: var(--cite);
-    background: var(--cite-soft); border-radius: 3px; padding: 2px 7px; margin: 3px 6px 0 0;
+    display: inline-block; font-family: var(--mono); font-size: 11px; color: var(--blue-ink);
+    background: var(--blue-soft); border-radius: 3px; padding: 2px 7px; margin: 3px 6px 0 0;
   }
 
   /* drawn chat window, deliberately not Claude's chrome */
@@ -130,7 +134,16 @@
   /* nav */
   nav { border-bottom: 1px solid var(--rule); background: var(--paper); position: relative; }
   .nav-bar { min-height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 10px; padding-bottom: 10px; }
-  .brand-word { font-weight: 800; letter-spacing: -.03em; font-size: 20px; color: var(--ink); text-decoration: none; }
+  .brand { position: relative; display: inline-flex; align-items: center; padding-right: 14px; text-decoration: none; }
+  .brand-word {
+    font-family: var(--sans); font-weight: 900; font-size: 21px; line-height: .78;
+    letter-spacing: -.075em; text-transform: uppercase; color: var(--ink);
+    transform: scaleY(.88); transform-origin: left center;
+  }
+  .brand-pin {
+    position: absolute; top: 3px; right: 0; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--blue); box-shadow: 0 0 0 2px rgba(47,140,255,.10);
+  }
   .nav-right { display: flex; align-items: center; gap: 22px; }
   .nav-panel { display: flex; align-items: center; gap: 26px; }
   .nav-links { display: flex; gap: 24px; }
@@ -147,7 +160,7 @@
   }
   .nav-toggle span { display: block; width: 18px; height: 2px; background: var(--ink); }
   .nav-links a:focus-visible, .nav-signin:focus-visible, .btn:focus-visible, .nav-toggle:focus-visible, .hc-dot:focus-visible, .textlink:focus-visible {
-    outline: 2px solid var(--cite); outline-offset: 2px;
+    outline: 2px solid var(--blue-ink); outline-offset: 2px;
   }
 
   @media (max-width: 860px) {
@@ -221,44 +234,57 @@
   .way p { font-size: 14.5px; color: var(--ink-soft); margin-bottom: 20px; }
   .way-list { list-style: none; margin: 0 0 20px; }
   .way-list li { font-size: 14px; color: var(--ink-soft); border-top: 1px solid var(--rule); padding: 8px 0 8px 22px; position: relative; }
-  .way-list li::before { content: "\2713"; position: absolute; left: 2px; color: var(--cite); font-size: 12px; }
+  .way-list li::before { content: "\2713"; position: absolute; left: 2px; color: var(--blue); font-size: 12px; }
   .ways-note { margin-top: 24px; font-size: 14px; color: var(--ink-soft); max-width: 640px; }
   .way .way-fine { margin: 14px 0 0; font-size: 12.5px; color: var(--ink-muted); }
   .signup-strip { margin-top: 34px; border: 1px solid var(--rule); border-radius: 10px; background: var(--card); padding: 22px 26px; }
   .ss-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-top: 4px; }
   .ss-cell { border: 1px solid var(--rule); border-radius: 8px; padding: 12px 14px; font-size: 13px; background: var(--paper); }
-  .ss-cell b { display: block; font-family: var(--mono); font-size: 11px; color: var(--cite); margin-bottom: 3px; }
+  .ss-cell b { display: block; font-family: var(--mono); font-size: 11px; color: var(--blue-ink); margin-bottom: 3px; }
   .ss-fine { margin-top: 14px; font-size: 12.5px; color: var(--ink-muted); }
 
-  /* custody */
-  .custody { background: var(--card); }
+  /* band alternation + texture */
+  .band-paper2 { background: var(--paper-2); }
+  .band-white { background: var(--card); }
+  .dotbg { position: relative; }
+  .dotbg::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background-image: radial-gradient(rgba(22,50,79,.14) 1px, transparent 1.6px);
+    background-size: 22px 22px;
+  }
+  .dotbg > .container { position: relative; }
+
+  /* custody, dark navy band */
+  .custody { background: var(--navy-band); color: var(--cream-soft); border-bottom-color: rgba(244,241,233,.14); }
+  .custody .eyebrow { color: var(--cream-soft); }
+  .custody h2 { color: var(--cream); }
+  .custody .lede { color: var(--cream-soft); }
   .cols3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; margin-top: 44px; }
-  .col { border: 1px solid var(--rule); border-radius: 10px; padding: 24px; background: var(--paper); }
-  .col h3 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
-  .col .where { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 10px; }
-  .col p, .col li { font-size: 13.5px; color: var(--ink-soft); }
+  .col { border: 1px solid rgba(244,241,233,.16); border-radius: 10px; padding: 24px; background: rgba(244,241,233,.04); }
+  .col h3 { font-size: 15px; font-weight: 700; margin-bottom: 8px; color: var(--cream); }
+  .col .where { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--cyan); margin-bottom: 10px; }
+  .col p, .col li { font-size: 13.5px; color: var(--cream-soft); }
   .col ul { list-style: none; margin-top: 6px; }
-  .col li { border-top: 1px solid var(--rule); padding: 7px 0; }
-  .col.ours { background: var(--card); }
-  .custody-carveout { margin-top: 26px; font-size: 14px; color: var(--ink-soft); max-width: 640px; }
+  .col li { border-top: 1px solid rgba(244,241,233,.16); padding: 7px 0; }
+  .col.ours { background: rgba(140,216,255,.07); box-shadow: 0 0 0 1px rgba(140,216,255,.25) inset; }
+  .custody-carveout { margin-top: 26px; font-size: 14px; color: var(--cream-soft); max-width: 640px; }
   .custody-links { margin-top: 20px; display: flex; gap: 26px; flex-wrap: wrap; }
+  .custody-links .textlink { color: var(--cyan); }
+  .custody-links .textlink:focus-visible { outline-color: var(--cyan); }
 
   /* one day */
   .day-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; margin-top: 44px; }
   .day-time { font-family: var(--mono); font-size: 11px; color: var(--ink-muted); margin-bottom: 10px; }
-  .day-grid .win-body { min-height: 190px; }
+  .day-grid .win-body { padding: 14px 14px 18px; }
+  .day-clip { margin-bottom: 16px; }
+  .day-copy { border-top: 1px solid var(--rule); padding-top: 14px; }
+  .day-copy .msg-q, .day-copy .msg-a { font-size: 13.5px; }
 
   /* correction loop */
-  .learn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; margin-top: 44px; }
-  .rulecard { border: 1px solid var(--rule); border-left: 3px solid var(--cite); border-radius: 6px; background: var(--card); padding: 16px 18px; margin-top: 14px; }
-  .rulecard b { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--cite); display: block; margin-bottom: 5px; }
+  .loop-clip { margin-top: 44px; }
+  .rulecard { border: 1px solid var(--rule); border-left: 3px solid var(--blue); border-radius: 6px; background: var(--card); padding: 16px 18px; margin-top: 20px; max-width: 560px; }
+  .rulecard b { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--blue-ink); display: block; margin-bottom: 5px; }
   .rulecard p { font-size: 13.5px; color: var(--ink-soft); }
-  .quote-slot {
-    border: 1px solid var(--rule); border-radius: 10px; background: var(--card);
-    box-shadow: 0 1px 2px rgba(22,50,79,.05), 0 14px 34px rgba(22,50,79,.08);
-    min-height: 180px; display: flex; align-items: center; justify-content: center; padding: 26px;
-  }
-  .quote-slot p { font-family: var(--serif); font-size: 16px; font-style: italic; color: var(--ink-soft); text-align: center; max-width: 380px; margin: 0 auto; }
 
   /* faq */
   .faq-list { margin-top: 36px; max-width: 780px; }
@@ -279,6 +305,9 @@
   /* footer */
   footer { background: var(--navy-band); color: var(--cream-soft); padding: 56px 0 30px; }
   footer .foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 36px; padding-bottom: 40px; border-bottom: 1px solid #24415E; }
+  footer .foot-brand .brand { padding-right: 18px; }
+  footer .foot-brand .brand-word { color: var(--cream); font-size: 32px; }
+  footer .foot-brand .brand-pin { top: 5px; width: 8px; height: 8px; box-shadow: 0 0 0 2.5px rgba(47,140,255,.12); }
   footer .foot-brand p { margin-top: 14px; font-size: 13px; line-height: 1.6; max-width: 280px; color: var(--cream-soft); }
   footer h4 { font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--cream); margin-bottom: 14px; }
   footer a { display: block; color: var(--cream-soft); text-decoration: none; font-size: 13.5px; line-height: 2.1; }
@@ -286,7 +315,7 @@
   footer .foot-bottom { display: flex; justify-content: space-between; gap: 14px; padding-top: 22px; font-size: 12.5px; color: var(--cream-soft); flex-wrap: wrap; }
 
   @media (max-width: 880px) {
-    .hero-grid, .learn-grid { grid-template-columns: 1fr; gap: 36px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 36px; }
     .mess-grid { grid-template-columns: 1fr; }
     .chip-field { min-height: 260px; }
     .cols3, .day-grid, .ways-grid, .ss-row { grid-template-columns: 1fr; }
@@ -311,7 +340,7 @@
 <!-- ==================== NAV ==================== -->
 <nav aria-label="Primary">
   <div class="container nav-bar">
-    <a class="brand-word" href="/">Briefly</a>
+    <a class="brand" href="/"><span class="brand-word">Briefly</span><span class="brand-pin" aria-hidden="true"></span></a>
     <div class="nav-right">
       <div class="nav-panel" id="navPanel">
         <div class="nav-links">
@@ -396,13 +425,13 @@
 
 <!-- ==================== WHAT IT DOES: mess to memory ==================== -->
 <span id="see-it" aria-hidden="true"></span>
-<section class="pad" id="how" aria-label="What Briefly does">
+<section class="pad band-paper2" id="how" aria-label="What Briefly does">
   <div class="container">
     <div class="eyebrow">What Briefly does</div>
     <h2>Ten years of files, one working memory.</h2>
     <p class="lede">Briefly is an AI knowledge base for financial advisors that runs inside Claude. The answers your firm needs are already sitting in folders, inboxes, and old plans. Briefly files each document into the right client's knowledge base as it arrives, and every fact keeps a link back to the page it came from. The more you add, the better every answer gets.</p>
     <div class="mess-grid">
-      <div class="chip-field" id="chipField" aria-hidden="true">
+      <div class="chip-field dotbg" id="chipField" aria-hidden="true">
         <span class="chip" style="left:6%;  top:8%;  --dur:8.5s; --del:0s;    --dx:22px;  --dy:14px;  --r0:-2deg;   --r1:1.5deg;">Q2_statement_final.pdf</span>
         <span class="chip" style="left:52%; top:4%;  --dur:9.5s; --del:-2s;   --dx:-18px; --dy:18px;  --r0:1.5deg;  --r1:-2deg;">RE: K-1 question</span>
         <span class="chip" style="left:20%; top:26%; --dur:7.5s; --del:-4s;   --dx:26px;  --dy:-12px; --r0:-1deg;   --r1:2deg;">meeting_transcript_0614</span>
@@ -426,7 +455,7 @@
 </section>
 
 <!-- ==================== TWO WAYS TO RUN IT ==================== -->
-<section class="pad" id="ways" aria-label="Two ways to run it">
+<section class="pad band-white" id="ways" aria-label="Two ways to run it">
   <div class="container">
     <div class="eyebrow">Two ways to run it</div>
     <h2>In Claude, or in a web app we set up for you.</h2>
@@ -505,7 +534,7 @@
 </section>
 
 <!-- ==================== ONE DAY ==================== -->
-<section class="pad" aria-label="What a day looks like">
+<section class="pad dotbg" aria-label="What a day looks like">
   <div class="container">
     <div class="eyebrow">What a day looks like</div>
     <h2>One day with the file open.</h2>
@@ -514,30 +543,39 @@
       <div class="win">
         <div class="win-bar"><span class="win-dot"></span><span>8:55 am &middot; in Claude, before the review</span></div>
         <div class="win-body">
-          <p class="msg-q"><b>Advisor</b>Give me the Patel file before the 9:00.</p>
-          <div class="msg-a">
-            <p>Prepared brief ready. Three open items, one sentiment shift since April, and the rollover question is still waiting on their HR paperwork.</p>
-            <p style="margin-top:10px;"><span class="cite">Patel brief &middot; 6 sources</span></p>
+          <div class="day-clip" data-bpa-clip="2" aria-label="Running the pre-meeting brief agent for the Patel household"></div>
+          <div class="day-copy">
+            <p class="msg-q"><b>Advisor</b>Give me the Patel file before the 9:00.</p>
+            <div class="msg-a">
+              <p>Prepared brief ready. Three open items, one sentiment shift since April, and the rollover question is still waiting on their HR paperwork.</p>
+              <p style="margin-top:10px;"><span class="cite">Patel brief &middot; 6 sources</span></p>
+            </div>
           </div>
         </div>
       </div>
       <div class="win">
         <div class="win-bar"><span class="win-dot"></span><span>11:40 am &middot; in the web app, a client calls</span></div>
         <div class="win-body">
-          <p class="msg-q"><b>Operations</b>Did we ever get the updated beneficiary form from the Kims?</p>
-          <div class="msg-a">
-            <p>Yes. Signed copy filed in March, primary changed to their daughter. The document is linked.</p>
-            <p style="margin-top:10px;"><span class="cite">Beneficiary form (filed 3/19/2026)</span></p>
+          <div class="day-clip" data-bpa-clip="5" aria-label="Checking a household's filed sources in the web app"></div>
+          <div class="day-copy">
+            <p class="msg-q"><b>Operations</b>Did we ever get the updated beneficiary form from the Kims?</p>
+            <div class="msg-a">
+              <p>Yes. Signed copy filed in March, primary changed to their daughter. The document is linked.</p>
+              <p style="margin-top:10px;"><span class="cite">Beneficiary form (filed 3/19/2026)</span></p>
+            </div>
           </div>
         </div>
       </div>
       <div class="win">
         <div class="win-bar"><span class="win-dot"></span><span>4:15 pm &middot; in Claude, across the book</span></div>
         <div class="win-body">
-          <p class="msg-q"><b>Advisor</b>Which households have mentioned selling a business?</p>
-          <div class="msg-a">
-            <p>Four households, each with the conversation it came from. Two mentioned a timeline inside three years.</p>
-            <p style="margin-top:10px;"><span class="cite">4 sources across 4 files</span></p>
+          <div class="day-clip" data-bpa-clip="1" aria-label="Working the action-item queue across households"></div>
+          <div class="day-copy">
+            <p class="msg-q"><b>Advisor</b>Which households have mentioned selling a business?</p>
+            <div class="msg-a">
+              <p>Four households, each with the conversation it came from. Two mentioned a timeline inside three years.</p>
+              <p style="margin-top:10px;"><span class="cite">4 sources across 4 files</span></p>
+            </div>
           </div>
         </div>
       </div>
@@ -546,27 +584,21 @@
 </section>
 
 <!-- ==================== THE LOOP: corrections become rules ==================== -->
-<section class="pad custody" aria-label="Why Briefly keeps getting better">
+<section class="pad band-white" aria-label="Why Briefly keeps getting better">
   <div class="container">
-    <div class="learn-grid">
-      <div>
-        <div class="eyebrow">Why it keeps getting better</div>
-        <h2>Correct it once. The whole firm inherits it.</h2>
-        <p class="lede">When an advisor fixes a name, a preference, or a way of phrasing things, Briefly keeps the fix as a standing rule. Next quarter's brief already follows it, for everyone.</p>
-        <div class="rulecard">
-          <b>Rule saved</b>
-          <p>"We call it a planning conversation, never a sales meeting." Applies to every future brief for this firm.</p>
-        </div>
-      </div>
-      <div class="quote-slot">
-        <!-- Named advisor quote goes here once cleared with a pilot firm. Attribution in the "Principal, $1B RIA" style the research found most credible. -->
-      </div>
+    <div class="eyebrow">Why it keeps getting better</div>
+    <h2>Correct it once. The whole firm inherits it.</h2>
+    <p class="lede">When an advisor fixes a name, a preference, or a way of phrasing things, Briefly keeps the fix as a standing rule. Next quarter's brief already follows it, for everyone.</p>
+    <div class="loop-clip" data-bpa-clip="7" aria-label="How a correction becomes a standing rule the whole firm inherits"></div>
+    <div class="rulecard">
+      <b>Rule saved</b>
+      <p>"We call it a planning conversation, never a sales meeting." Applies to every future brief for this firm.</p>
     </div>
   </div>
 </section>
 
 <!-- ==================== FAQ ==================== -->
-<section class="pad" id="faq" aria-label="Frequently asked questions">
+<section class="pad band-paper2" id="faq" aria-label="Frequently asked questions">
   <div class="container">
     <div class="eyebrow">Before you install anything</div>
     <h2>What advisors ask us first.</h2>
@@ -621,7 +653,7 @@
 <footer>
   <div class="container foot-grid">
     <div class="foot-brand">
-      <span class="brand-word" style="color:var(--cream)">Briefly</span>
+      <a class="brand" href="/"><span class="brand-word">Briefly</span><span class="brand-pin" aria-hidden="true"></span></a>
       <p>Briefly is an AI knowledge base for financial advisors and wealth firms, built to run inside Claude.</p>
     </div>
     <div>
@@ -668,7 +700,7 @@
   }
   .demo-modal-eyebrow {
     font-family:var(--mono); font-size:11px; font-weight:700;
-    letter-spacing:.08em; text-transform:uppercase; color:var(--cite);
+    letter-spacing:.08em; text-transform:uppercase; color:var(--blue-ink);
     margin:0 0 8px;
   }
   .demo-modal-title {
@@ -685,7 +717,7 @@
     font-size:15px; border:1px solid var(--ink); background:#fff; color:var(--ink);
     border-radius:4px;
   }
-  .demo-modal-field input:focus { outline:2px solid var(--cite); outline-offset:1px; }
+  .demo-modal-field input:focus { outline:2px solid var(--blue-ink); outline-offset:1px; }
   .demo-modal-submit {
     width:100%; height:44px; border:1px solid var(--ink); background:var(--ink);
     border-radius:4px;
@@ -693,7 +725,7 @@
     letter-spacing:.08em; text-transform:uppercase; cursor:pointer; margin-top:6px;
     transition:background .15s ease, border-color .15s ease, color .15s ease;
   }
-  .demo-modal-submit:hover { background:var(--cite); border-color:var(--cite); color:#fff; }
+  .demo-modal-submit:hover { background:var(--blue-ink); border-color:var(--blue-ink); color:#fff; }
   .demo-modal-submit:disabled { opacity:.6; cursor:wait; }
   .demo-modal-error { display:none; margin-top:10px; padding:10px 12px; border:1px solid #b3261e; border-radius:4px; color:#b3261e; font-size:13px; }
   .demo-modal-success { display:none; padding:18px 0 4px; text-align:center; }
@@ -739,7 +771,10 @@
 </div>
 
 <!-- ==================== SCRIPTS ==================== -->
+<script src="assets/briefly-clips.js"></script>
 <script>
+BrieflyClips.mountAll();
+
 (function () {
   /* the five Q&As live as static, crawlable markup in #hcAll; the animation reads them from there */
   var allEl = document.getElementById('hcAll');

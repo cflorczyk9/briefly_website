@@ -12,121 +12,162 @@
 <link rel="icon" type="image/png" sizes="16x16" href="images/briefly_logo_favicon.png?v=2">
 <link rel="apple-touch-icon" sizes="180x180" href="images/briefly_logo_favicon.png?v=2">
 
-<!-- start.html, 2026-08-01. Built in the concept design language from
-     wiki/system/assets/briefly-homepage-concept-2026-07-31.html (warm paper,
-     serif display type, single green accent). Checkout is dark-wired: see
-     BILLING_API_BASE at the top of the page script. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+
+<!-- start.html, 2026-08-01. Rebuilt as a two-panel Stripe-style checkout with a dark
+     order-summary panel on the left and the sign-up form on the right. Checkout is
+     still dark-wired. See BILLING_API_BASE below. -->
 
 <style>
   :root {
-    --paper: #FBFAF6;
-    --card: #FFFFFF;
-    --ink: #16324F;
-    --ink-soft: #46627D;
-    --ink-muted: #7C8DA1;
-    --rule: #E6E1D5;
-    --cite: #1E7A55;
-    --cite-soft: #EAF4EE;
-    --navy-band: #10263D;
-    --cream: #F4F1E9;
-    --cream-soft: #B9C4CF;
-    --serif: Charter, "Iowan Old Style", "Source Serif Pro", Georgia, serif;
-    --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
-    --mono: "SFMono-Regular", Menlo, Consolas, monospace;
+    --sans: "DM Sans", Inter, system-ui, -apple-system, sans-serif;
+    --mono: "SFMono-Regular", "JetBrains Mono", Consolas, monospace;
+    --navy: #0F172A;
+    --ink: #0F172A;
+    --ink-soft: #475569;
+    --ink-muted: #5E6E85;
+    --rule: #E2E8F0;
+    --paper: #F7F8FA;
+    --paper-2: #EEF1F5;
+    --paper-3: #FFFFFF;
+    --cream: #F1F5F9;
+    --cream-soft: #C3CEDD;
+    --cream-muted: #94A3B8;
+    --blue: #2F8CFF;
+    --blue-ink: #1D4ED8;
+    --cyan: #8cd8ff;
+    --bg: #0B1220;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { font-family: var(--sans); background: var(--paper); color: var(--ink); line-height: 1.6; }
-  .container { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+  body { font-family: var(--sans); color: var(--ink); background: var(--paper-3); line-height: 1.6; overflow-x: hidden; }
 
-  h1 { font-family: var(--serif); font-weight: 400; letter-spacing: 0; }
-  .lede { margin-top: 14px; color: var(--ink-soft); font-size: 17px; max-width: 460px; }
+  .checkout-shell { min-height: 100vh; display: flex; flex-wrap: wrap; }
 
-  .btn {
-    display: inline-block; font-size: 14px; font-weight: 600; padding: 13px 26px;
-    border-radius: 4px; background: var(--ink); color: #fff; text-decoration: none;
-    border: 1px solid var(--ink); cursor: pointer;
-  }
-  .btn.ghost { background: transparent; color: var(--ink); }
-  .btn:disabled { opacity: .45; cursor: not-allowed; }
-  .textlink { font-size: 14.5px; font-weight: 600; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; background: none; border: 0; padding: 0; cursor: pointer; font-family: inherit; }
-
-  /* nav, ported from the concept verbatim */
-  nav { border-bottom: 1px solid var(--rule); background: var(--paper); }
-  nav .container { height: 68px; display: flex; align-items: center; gap: 28px; }
-  .brand-word { font-weight: 800; letter-spacing: -.03em; font-size: 20px; color: var(--ink); text-decoration: none; }
-  .nav-links { display: flex; gap: 26px; flex: 1; justify-content: flex-end; }
-  .nav-links a { font-size: 13px; font-weight: 600; color: var(--ink-soft); text-decoration: none; }
-  nav .btn { padding: 9px 18px; font-size: 13px; }
-  @media (max-width: 720px) {
-    .nav-links { display: none; }
+  /* ---------- left panel: order summary ---------- */
+  .checkout-left {
+    flex: 0 0 42%;
+    background: var(--bg);
+    background-image: radial-gradient(ellipse 620px 420px at 12% 0%, rgba(47,140,255,.14), transparent 60%);
+    color: var(--cream-soft);
+    display: flex;
+    flex-direction: column;
+    padding: 56px 48px;
   }
 
-  /* card flow */
-  .start-section { padding: 76px 0 88px; }
-  .start-wrap { max-width: 560px; margin: 0 auto; }
-  .start-card {
-    background: var(--card); border: 1px solid var(--rule); border-radius: 12px;
-    padding: 40px 36px; box-shadow: 0 1px 2px rgba(22,50,79,.05), 0 14px 34px rgba(22,50,79,.08);
+  .brand { position: relative; display: inline-flex; align-items: center; padding-right: 14px; text-decoration: none; }
+  .brand:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; border-radius: 4px; }
+  .brand-word {
+    font-family: var(--sans); font-weight: 900; font-size: 26px; line-height: .78;
+    letter-spacing: -.085em; text-transform: uppercase; color: var(--cream);
+    transform: scaleY(.88); transform-origin: left center;
   }
-  .start-card h1 { font-size: clamp(28px, 4vw, 34px); line-height: 1.15; }
+  .brand-pin { position: absolute; top: 4px; right: 0; width: 6px; height: 6px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 2px rgba(47,140,255,.12); }
 
-  .field-label {
-    display: block; font-family: var(--mono); font-size: 11px; font-weight: 700;
-    letter-spacing: .08em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 6px;
+  .order-summary { margin-top: 64px; max-width: 340px; }
+  .order-eyebrow { font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--cream-muted); margin-bottom: 20px; }
+  .order-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .order-product { font-size: 16px; font-weight: 700; color: var(--cream); }
+  .order-qty { font-family: var(--mono); font-size: 13.5px; color: var(--cream-soft); white-space: nowrap; }
+  .order-unit { margin-top: 6px; font-family: var(--mono); font-size: 13px; color: var(--cream-muted); }
+  .order-rule { border: 0; border-top: 1px solid rgba(241,245,249,.14); margin: 24px 0; }
+  .order-total-row { display: flex; justify-content: space-between; align-items: baseline; }
+  .order-total-label { font-size: 14px; color: var(--cream-soft); }
+  .order-total-amount { font-family: var(--sans); font-size: 30px; font-weight: 800; letter-spacing: -.02em; color: var(--cream); }
+  .order-then { margin-top: 10px; font-size: 13px; line-height: 1.55; color: var(--cream-muted); }
+
+  .trust-line { display: flex; align-items: flex-start; gap: 10px; margin-top: auto; padding-top: 48px; }
+  .lock-icon { flex: none; width: 16px; height: 16px; margin-top: 2px; color: var(--cream-muted); }
+  .trust-line-main { font-size: 13px; font-weight: 700; color: var(--cream-soft); }
+  .trust-line-sub { margin-top: 2px; font-size: 12.5px; color: var(--cream-muted); }
+
+  /* ---------- right panel: the form ---------- */
+  .checkout-right {
+    flex: 1 1 58%;
+    background: var(--paper-3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 64px 40px;
   }
+  .checkout-form-wrap { width: 100%; max-width: 420px; }
+
+  h1 { font-family: var(--sans); font-weight: 800; font-size: clamp(26px, 3vw, 32px); line-height: 1.18; letter-spacing: -.02em; color: var(--ink); }
+  .lede { margin-top: 10px; font-size: 15.5px; line-height: 1.55; color: var(--ink-soft); }
+
+  .field-label { display: block; font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 8px; }
 
   .seat-block { margin-top: 32px; }
   .stepper { display: flex; align-items: center; gap: 10px; }
   .stepper-btn {
-    width: 36px; height: 36px; border-radius: 6px; border: 1px solid var(--ink);
-    background: var(--card); color: var(--ink); font-size: 18px; line-height: 1; cursor: pointer;
+    width: 38px; height: 38px; border-radius: 6px; border: 1px solid var(--rule);
+    background: #fff; color: var(--ink); font-size: 18px; line-height: 1; cursor: pointer;
+    transition: border-color .15s ease;
   }
-  .stepper-btn:disabled { opacity: .3; cursor: not-allowed; }
+  .stepper-btn:hover:not(:disabled) { border-color: var(--ink-soft); }
+  .stepper-btn:focus-visible { outline: 2px solid var(--blue-ink); outline-offset: 2px; }
+  .stepper-btn:disabled { opacity: .35; cursor: not-allowed; }
   .stepper-input {
-    width: 64px; height: 36px; text-align: center; border: 1px solid var(--ink);
+    width: 64px; height: 38px; text-align: center; border: 1px solid var(--rule);
     border-radius: 6px; font-family: var(--mono); font-size: 15px; color: var(--ink); background: #fff;
   }
-  .price-line { margin-top: 12px; font-family: var(--mono); font-size: 13.5px; color: var(--ink-soft); }
-
-  .step-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 28px; }
-  .step-cell { border: 1px solid var(--rule); border-radius: 8px; padding: 12px 13px; font-size: 12.5px; color: var(--ink-soft); background: var(--paper); }
-  .step-cell b { display: block; font-family: var(--mono); font-size: 11px; color: var(--cite); margin-bottom: 3px; }
+  .stepper-input:focus { outline: 2px solid var(--blue-ink); outline-offset: 1px; }
 
   .checkout-form { margin-top: 28px; }
   .form-field { margin-bottom: 16px; }
   .form-field input {
-    width: 100%; padding: 11px 12px; font-family: var(--sans); font-size: 15px;
-    border: 1px solid var(--ink); background: #fff; color: var(--ink); border-radius: 6px;
+    width: 100%; padding: 12px 13px; font-family: var(--sans); font-size: 15px;
+    border: 1px solid var(--rule); border-radius: 6px; background: #fff; color: var(--ink);
   }
-  .form-field input:focus { outline: 2px solid var(--cite); outline-offset: 1px; }
+  .form-field input:focus { outline: 2px solid var(--blue-ink); outline-offset: 1px; border-color: var(--blue-ink); }
   .hp-field { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
-  .btn-checkout { width: 100%; text-align: center; padding: 14px 26px; margin-top: 4px; }
+  .btn {
+    display: inline-block; font-family: var(--sans); font-size: 14px; font-weight: 700;
+    padding: 11px 22px; border-radius: 6px; background: var(--ink); color: #fff;
+    text-decoration: none; border: 1px solid var(--ink); cursor: pointer;
+  }
+  .btn.ghost { background: transparent; color: var(--ink); border-color: var(--rule); }
+  .btn.ghost:hover { border-color: var(--ink-soft); }
+  .btn:focus-visible { outline: 2px solid var(--blue-ink); outline-offset: 2px; }
+
+  .btn-checkout {
+    width: 100%; text-align: center; padding: 15px 26px; margin-top: 6px;
+    background: var(--blue-ink); border-color: var(--blue-ink); color: #fff;
+    transition: background .15s ease, border-color .15s ease;
+  }
+  .btn-checkout:hover:not(:disabled) { background: var(--ink); border-color: var(--ink); }
+  .btn-checkout:disabled { opacity: .45; cursor: not-allowed; }
 
   .checkout-fallback {
-    margin-top: 16px; border: 1px solid var(--rule); border-radius: 8px; background: var(--cream);
-    padding: 16px 18px;
+    margin-top: 16px; border: 1px solid var(--rule); border-radius: 16px; background: var(--paper-2);
+    box-shadow: 0 1px 2px rgba(15,23,42,.05), 0 8px 24px rgba(15,23,42,.08);
+    padding: 18px 20px;
   }
   .checkout-fallback p { font-size: 14px; color: var(--ink-soft); margin-bottom: 12px; }
 
-  .fine-print { margin-top: 20px; font-size: 12.5px; color: var(--ink-muted); }
-  .fine-print + .fine-print { margin-top: 6px; }
+  .fine-print { margin-top: 20px; font-size: 12.5px; line-height: 1.5; color: var(--ink-muted); }
 
-  .secondary-path { margin-top: 22px; font-size: 14px; color: var(--ink-soft); text-align: center; }
+  .secondary-path { margin-top: 18px; font-size: 14px; color: var(--ink-soft); }
 
-  .webapp-row { margin-top: 22px; font-size: 13.5px; color: var(--ink-soft); text-align: center; }
-  .webapp-row .textlink { margin: 0 4px; }
-
-  @media (max-width: 620px) {
-    .start-card { padding: 30px 22px; }
-    .step-row { grid-template-columns: 1fr; }
+  .textlink {
+    font-size: inherit; font-weight: 600; color: var(--blue-ink); text-decoration: underline;
+    text-underline-offset: 3px; background: none; border: 0; padding: 0; cursor: pointer; font-family: inherit;
   }
+  .textlink:focus-visible { outline: 2px solid var(--blue-ink); outline-offset: 2px; }
 
-  /* footer, ported from the concept */
-  footer { background: var(--navy-band); color: var(--cream-soft); border-top: 1px solid #24415E; padding: 34px 0; }
-  footer .container { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 13px; }
-  footer a { color: var(--cream-soft); text-decoration: none; margin-right: 18px; }
+  .webapp-row { margin-top: 28px; padding-top: 22px; border-top: 1px solid var(--rule); font-size: 13.5px; line-height: 1.55; color: var(--ink-soft); }
+  .webapp-row .textlink { margin: 0 2px; }
+
+  @media (max-width: 900px) {
+    .checkout-shell { flex-direction: column; }
+    .checkout-left, .checkout-right { flex: none; }
+    .checkout-left { padding: 40px 28px 32px; }
+    .order-summary { margin-top: 36px; max-width: none; }
+    .trust-line { margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(241,245,249,.14); }
+    .checkout-right { padding: 40px 28px 64px; justify-content: flex-start; }
+  }
 
   @media (prefers-reduced-motion: reduce) {
     * { transition: none !important; animation: none !important; }
@@ -135,23 +176,39 @@
 </head>
 <body>
 
-<nav>
-  <div class="container">
-    <a class="brand-word" href="/">Briefly</a>
-    <div class="nav-links">
-      <a href="/#how">How it works</a>
-      <a href="/security">Security</a>
-      <a href="/pricing">Pricing</a>
-      <a href="/download">Download</a>
-    </div>
-    <a class="btn" href="#" onclick="openDemoModal();return false;">Book a demo</a>
-  </div>
-</nav>
+<div class="checkout-shell">
+  <aside class="checkout-left" aria-label="Order summary">
+    <a class="brand" href="/"><span class="brand-word">Briefly</span><span class="brand-pin" aria-hidden="true"></span></a>
 
-<main>
-<section class="start-section">
-  <div class="container start-wrap">
-    <div class="start-card">
+    <div class="order-summary">
+      <p class="order-eyebrow">Order summary</p>
+      <div class="order-row">
+        <span class="order-product">Briefly Connector</span>
+        <span class="order-qty" id="orderQty" aria-live="polite">1 seat</span>
+      </div>
+      <p class="order-unit" id="priceLine" aria-live="polite">$100.00 x 1 seat / month</p>
+      <hr class="order-rule">
+      <div class="order-total-row">
+        <span class="order-total-label">Total due today</span>
+        <span class="order-total-amount" id="orderTotal">$0.00</span>
+      </div>
+      <p class="order-then" id="orderThen" aria-live="polite">Then $100.00/month after your 30-day free month</p>
+    </div>
+
+    <div class="trust-line">
+      <svg class="lock-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+        <rect x="4.5" y="10.5" width="15" height="10" rx="2.5" stroke="currentColor" stroke-width="1.6"></rect>
+        <path d="M8 10.5V7.8a4 4 0 0 1 8 0v2.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+      </svg>
+      <div>
+        <p class="trust-line-main">Powered by Stripe</p>
+        <p class="trust-line-sub">We never see your card.</p>
+      </div>
+    </div>
+  </aside>
+
+  <main class="checkout-right">
+    <div class="checkout-form-wrap">
       <h1>Start with the Claude connector.</h1>
       <p class="lede">Pick your seats and check out. Most teams are asking questions inside Claude the same day.</p>
 
@@ -162,13 +219,6 @@
           <input type="number" id="seatInput" class="stepper-input" min="1" max="25" value="1" inputmode="numeric" aria-label="Number of seats">
           <button type="button" class="stepper-btn" id="seatInc" aria-label="Increase seats">+</button>
         </div>
-        <p class="price-line" id="priceLine" aria-live="polite">1 seat &middot; $100 a month after your free first month</p>
-      </div>
-
-      <div class="step-row">
-        <div class="step-cell"><b>01</b>Pick seats and check out</div>
-        <div class="step-cell"><b>02</b>Download the connector and sign in</div>
-        <div class="step-cell"><b>03</b>First charge on day 31, cancel any time before</div>
       </div>
 
       <form class="checkout-form" id="checkoutForm" novalidate>
@@ -193,29 +243,13 @@
       </div>
 
       <p class="fine-print">Checkout takes a card but charges nothing for 30 days. Cancel from the billing portal any time.</p>
-      <p class="fine-print">Payments run on Stripe. We never see your card, which is how we prefer it with your data too.</p>
 
       <p class="secondary-path">Prefer to see it first? <a class="textlink" href="#" onclick="openDemoModal();return false;">Book a demo.</a></p>
-    </div>
 
-    <p class="webapp-row">Want the web app instead? It's $150 a seat and we set it up with you. <a class="textlink" href="#" onclick="openDemoModal();return false;">Book a demo</a> or <a class="textlink" href="/compare">compare the two</a>.</p>
-  </div>
-</section>
-</main>
-
-<footer>
-  <div class="container">
-    <div>
-      <a href="/#how">How it works</a>
-      <a href="/security">Security</a>
-      <a href="/download">Download</a>
-      <a href="/about">About</a>
-      <a href="/privacy-policy">Privacy</a>
-      <a href="/terms-of-service">Terms</a>
+      <p class="webapp-row">Want the web app instead? It's $150 a seat and we set it up with you. <a class="textlink" href="#" onclick="openDemoModal();return false;">Book a demo</a> or <a class="textlink" href="/compare">compare the two</a>.</p>
     </div>
-    <div>&copy; 2026 Briefly Wealth LLC</div>
-  </div>
-</footer>
+  </main>
+</div>
 
 <!-- ==================== DEMO MODAL, ported from index.html so this page works standalone ==================== -->
 <style>
@@ -388,7 +422,11 @@ const BILLING_API_BASE = "";
   var seatInput = document.getElementById('seatInput');
   var seatDec = document.getElementById('seatDec');
   var seatInc = document.getElementById('seatInc');
+  var orderQty = document.getElementById('orderQty');
   var priceLine = document.getElementById('priceLine');
+  var orderThen = document.getElementById('orderThen');
+
+  var PER_SEAT = 100;
 
   function clampSeats(n) {
     n = Math.round(n);
@@ -398,13 +436,18 @@ const BILLING_API_BASE = "";
     return n;
   }
 
+  function formatUSD(n) {
+    return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
   function renderSeats() {
     var n = clampSeats(parseInt(seatInput.value, 10));
     seatInput.value = n;
-    var price = n * 100;
-    var priceStr = '$' + price.toLocaleString('en-US');
+    var total = n * PER_SEAT;
     var seatWord = n === 1 ? 'seat' : 'seats';
-    priceLine.textContent = n + ' ' + seatWord + ' · ' + priceStr + ' a month after your free first month';
+    orderQty.textContent = n + ' ' + seatWord;
+    priceLine.textContent = formatUSD(PER_SEAT) + ' x ' + n + ' ' + seatWord + ' / month';
+    orderThen.textContent = 'Then ' + formatUSD(total) + '/month after your 30-day free month';
     seatDec.disabled = n <= 1;
     seatInc.disabled = n >= 25;
   }
