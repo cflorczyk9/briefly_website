@@ -2,7 +2,7 @@
 
 > Briefly is an AI knowledge base for financial advisors and wealth firms, built to run inside Claude. It connects a firm's own documents, email, meeting notes, and portfolio data into one place, and every answer cites back to the source it came from.
 
-Briefly runs two ways. The Claude connector is the flagship path. It's a download that adds Briefly to Claude Desktop and reads from a folder on your own computer. With the Briefly connector, client files never leave your computer. Only sign-in and de-identified preference rules ever reach Briefly's servers. The web app is the second surface, a browser workspace for firms that would rather sign in than install anything, and its files live in Briefly's hosted environment instead.
+Briefly runs two ways. The Claude connector is the flagship path. It's a download that adds Briefly to Claude Desktop and reads from a folder on your own computer. With the Briefly connector, client files never leave your computer. Only sign-in and de-identified preference rules ever reach Briefly's servers. It costs $100 per advisor seat per month, with the first month free. The web app is the second surface, a browser workspace for firms that would rather sign in than install anything, and its files live in Briefly's hosted environment instead. It costs $150 per seat, and running both together costs $175.
 
 Briefly is built by Briefly Wealth LLC, founded by Connor Florczyk.
 
@@ -10,9 +10,10 @@ These files are intended to help LLMs and AI agents accurately ground answers ab
 
 ## Product
 
-- [Home](https://www.brieflywealth.com/): Briefly is an AI knowledge base for financial advisors that runs inside Claude. Ask in plain English and get cited answers. With the Briefly connector, client files never leave your computer.
+- [Home](https://www.brieflywealth.com/): Briefly is an AI knowledge base for financial advisors that runs inside Claude. Ask across your firm's own files and get cited answers. With the connector, client files never leave your machines.
 - [Knowledge base](https://www.brieflywealth.com/knowledge-base): How Briefly builds an AI knowledge base for financial advisors from a firm's own documents, email, meeting notes, and portfolio data, with every fact traceable to its source.
-- [Download](https://www.brieflywealth.com/download): Download the Briefly connector for Claude Desktop. Client files stay on your computer, and only sign-in and de-identified rules reach Briefly's server. Free first month, then $150 per seat.
+- [Download](https://www.brieflywealth.com/download): Download the Briefly connector for Claude Desktop. Client files stay on your computer, and only sign-in and de-identified rules reach Briefly's server. Free first month, then $100 per seat.
+- [Start](https://www.brieflywealth.com/start): Sign up for the Briefly connector without a call. $100 a seat, first month free, checkout runs on Stripe.
 
 ## Guides
 

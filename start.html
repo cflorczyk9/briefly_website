@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Start with Briefly | $100 a seat, first month free</title>
+<meta name="description" content="Start the Briefly connector for Claude. Pick your seats, check out, and most teams are asking questions inside Claude the same day. First month free.">
+<meta name="author" content="Briefly Wealth LLC">
+
+<link rel="canonical" href="https://www.brieflywealth.com/start">
+<link rel="icon" type="image/png" sizes="32x32" href="images/briefly_logo_favicon.png?v=2">
+<link rel="icon" type="image/png" sizes="16x16" href="images/briefly_logo_favicon.png?v=2">
+<link rel="apple-touch-icon" sizes="180x180" href="images/briefly_logo_favicon.png?v=2">
+
+<!-- start.html, 2026-08-01. Built in the concept design language from
+     wiki/system/assets/briefly-homepage-concept-2026-07-31.html (warm paper,
+     serif display type, single green accent). Checkout is dark-wired: see
+     BILLING_API_BASE at the top of the page script. -->
+
+<style>
+  :root {
+    --paper: #FBFAF6;
+    --card: #FFFFFF;
+    --ink: #16324F;
+    --ink-soft: #46627D;
+    --ink-muted: #7C8DA1;
+    --rule: #E6E1D5;
+    --cite: #1E7A55;
+    --cite-soft: #EAF4EE;
+    --navy-band: #10263D;
+    --cream: #F4F1E9;
+    --cream-soft: #B9C4CF;
+    --serif: Charter, "Iowan Old Style", "Source Serif Pro", Georgia, serif;
+    --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+    --mono: "SFMono-Regular", Menlo, Consolas, monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--paper); color: var(--ink); line-height: 1.6; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+
+  h1 { font-family: var(--serif); font-weight: 400; letter-spacing: 0; }
+  .lede { margin-top: 14px; color: var(--ink-soft); font-size: 17px; max-width: 460px; }
+
+  .btn {
+    display: inline-block; font-size: 14px; font-weight: 600; padding: 13px 26px;
+    border-radius: 4px; background: var(--ink); color: #fff; text-decoration: none;
+    border: 1px solid var(--ink); cursor: pointer;
+  }
+  .btn.ghost { background: transparent; color: var(--ink); }
+  .btn:disabled { opacity: .45; cursor: not-allowed; }
+  .textlink { font-size: 14.5px; font-weight: 600; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; background: none; border: 0; padding: 0; cursor: pointer; font-family: inherit; }
+
+  /* nav, ported from the concept verbatim */
+  nav { border-bottom: 1px solid var(--rule); background: var(--paper); }
+  nav .container { height: 68px; display: flex; align-items: center; gap: 28px; }
+  .brand-word { font-weight: 800; letter-spacing: -.03em; font-size: 20px; color: var(--ink); text-decoration: none; }
+  .nav-links { display: flex; gap: 26px; flex: 1; justify-content: flex-end; }
+  .nav-links a { font-size: 13px; font-weight: 600; color: var(--ink-soft); text-decoration: none; }
+  nav .btn { padding: 9px 18px; font-size: 13px; }
+  @media (max-width: 720px) {
+    .nav-links { display: none; }
+  }
+
+  /* card flow */
+  .start-section { padding: 76px 0 88px; }
+  .start-wrap { max-width: 560px; margin: 0 auto; }
+  .start-card {
+    background: var(--card); border: 1px solid var(--rule); border-radius: 12px;
+    padding: 40px 36px; box-shadow: 0 1px 2px rgba(22,50,79,.05), 0 14px 34px rgba(22,50,79,.08);
+  }
+  .start-card h1 { font-size: clamp(28px, 4vw, 34px); line-height: 1.15; }
+
+  .field-label {
+    display: block; font-family: var(--mono); font-size: 11px; font-weight: 700;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 6px;
+  }
+
+  .seat-block { margin-top: 32px; }
+  .stepper { display: flex; align-items: center; gap: 10px; }
+  .stepper-btn {
+    width: 36px; height: 36px; border-radius: 6px; border: 1px solid var(--ink);
+    background: var(--card); color: var(--ink); font-size: 18px; line-height: 1; cursor: pointer;
+  }
+  .stepper-btn:disabled { opacity: .3; cursor: not-allowed; }
+  .stepper-input {
+    width: 64px; height: 36px; text-align: center; border: 1px solid var(--ink);
+    border-radius: 6px; font-family: var(--mono); font-size: 15px; color: var(--ink); background: #fff;
+  }
+  .price-line { margin-top: 12px; font-family: var(--mono); font-size: 13.5px; color: var(--ink-soft); }
+
+  .step-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 28px; }
+  .step-cell { border: 1px solid var(--rule); border-radius: 8px; padding: 12px 13px; font-size: 12.5px; color: var(--ink-soft); background: var(--paper); }
+  .step-cell b { display: block; font-family: var(--mono); font-size: 11px; color: var(--cite); margin-bottom: 3px; }
+
+  .checkout-form { margin-top: 28px; }
+  .form-field { margin-bottom: 16px; }
+  .form-field input {
+    width: 100%; padding: 11px 12px; font-family: var(--sans); font-size: 15px;
+    border: 1px solid var(--ink); background: #fff; color: var(--ink); border-radius: 6px;
+  }
+  .form-field input:focus { outline: 2px solid var(--cite); outline-offset: 1px; }
+  .hp-field { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  .btn-checkout { width: 100%; text-align: center; padding: 14px 26px; margin-top: 4px; }
+
+  .checkout-fallback {
+    margin-top: 16px; border: 1px solid var(--rule); border-radius: 8px; background: var(--cream);
+    padding: 16px 18px;
+  }
+  .checkout-fallback p { font-size: 14px; color: var(--ink-soft); margin-bottom: 12px; }
+
+  .fine-print { margin-top: 20px; font-size: 12.5px; color: var(--ink-muted); }
+  .fine-print + .fine-print { margin-top: 6px; }
+
+  .secondary-path { margin-top: 22px; font-size: 14px; color: var(--ink-soft); text-align: center; }
+
+  .webapp-row { margin-top: 22px; font-size: 13.5px; color: var(--ink-soft); text-align: center; }
+  .webapp-row .textlink { margin: 0 4px; }
+
+  @media (max-width: 620px) {
+    .start-card { padding: 30px 22px; }
+    .step-row { grid-template-columns: 1fr; }
+  }
+
+  /* footer, ported from the concept */
+  footer { background: var(--navy-band); color: var(--cream-soft); border-top: 1px solid #24415E; padding: 34px 0; }
+  footer .container { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 13px; }
+  footer a { color: var(--cream-soft); text-decoration: none; margin-right: 18px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a class="brand-word" href="/">Briefly</a>
+    <div class="nav-links">
+      <a href="/#how">How it works</a>
+      <a href="/security">Security</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/download">Download</a>
+    </div>
+    <a class="btn" href="#" onclick="openDemoModal();return false;">Book a demo</a>
+  </div>
+</nav>
+
+<main>
+<section class="start-section">
+  <div class="container start-wrap">
+    <div class="start-card">
+      <h1>Start with the Claude connector.</h1>
+      <p class="lede">Pick your seats and check out. Most teams are asking questions inside Claude the same day.</p>
+
+      <div class="seat-block">
+        <span class="field-label" id="seatLabel">Seats</span>
+        <div class="stepper" role="group" aria-labelledby="seatLabel">
+          <button type="button" class="stepper-btn" id="seatDec" aria-label="Decrease seats">&minus;</button>
+          <input type="number" id="seatInput" class="stepper-input" min="1" max="25" value="1" inputmode="numeric" aria-label="Number of seats">
+          <button type="button" class="stepper-btn" id="seatInc" aria-label="Increase seats">+</button>
+        </div>
+        <p class="price-line" id="priceLine" aria-live="polite">1 seat &middot; $100 a month after your free first month</p>
+      </div>
+
+      <div class="step-row">
+        <div class="step-cell"><b>01</b>Pick seats and check out</div>
+        <div class="step-cell"><b>02</b>Download the connector and sign in</div>
+        <div class="step-cell"><b>03</b>First charge on day 31, cancel any time before</div>
+      </div>
+
+      <form class="checkout-form" id="checkoutForm" novalidate>
+        <div class="form-field">
+          <label class="field-label" for="startEmail">Work email</label>
+          <input type="email" id="startEmail" name="email" autocomplete="email" required>
+        </div>
+        <div class="form-field">
+          <label class="field-label" for="startFirm">Firm name</label>
+          <input type="text" id="startFirm" name="firmName" autocomplete="organization" required>
+        </div>
+        <div class="hp-field" aria-hidden="true">
+          <label for="companyWebsite">Leave this field blank</label>
+          <input type="text" id="companyWebsite" name="company-website" tabindex="-1" autocomplete="off">
+        </div>
+        <button type="submit" class="btn btn-checkout" id="checkoutBtn" disabled>Continue to secure checkout</button>
+      </form>
+
+      <div class="checkout-fallback" id="checkoutFallback" role="status" aria-live="assertive" tabindex="-1" hidden>
+        <p>Checkout opens shortly. Book a demo and we'll set your firm up directly.</p>
+        <button type="button" class="btn ghost" onclick="openDemoModal()">Book a demo</button>
+      </div>
+
+      <p class="fine-print">Checkout takes a card but charges nothing for 30 days. Cancel from the billing portal any time.</p>
+      <p class="fine-print">Payments run on Stripe. We never see your card, which is how we prefer it with your data too.</p>
+
+      <p class="secondary-path">Prefer to see it first? <a class="textlink" href="#" onclick="openDemoModal();return false;">Book a demo.</a></p>
+    </div>
+
+    <p class="webapp-row">Want the web app instead? It's $150 a seat and we set it up with you. <a class="textlink" href="#" onclick="openDemoModal();return false;">Book a demo</a> or <a class="textlink" href="/compare">compare the two</a>.</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <div>
+      <a href="/#how">How it works</a>
+      <a href="/security">Security</a>
+      <a href="/download">Download</a>
+      <a href="/about">About</a>
+      <a href="/privacy-policy">Privacy</a>
+      <a href="/terms-of-service">Terms</a>
+    </div>
+    <div>&copy; 2026 Briefly Wealth LLC</div>
+  </div>
+</footer>
+
+<!-- ==================== DEMO MODAL, ported from index.html so this page works standalone ==================== -->
+<style>
+  .demo-modal { position:fixed; inset:0; z-index:200; display:none; align-items:center; justify-content:center; padding:20px; }
+  .demo-modal.active { display:flex; }
+  .demo-modal-backdrop { position:absolute; inset:0; background:rgba(15,23,42,.56); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
+  .demo-modal-card {
+    position:relative; z-index:1; width:100%; max-width:440px;
+    background:var(--paper, #F7F8FA); border:1px solid var(--rule, #E2E8F0);
+    border-radius:16px;
+    padding:32px 28px 28px; box-shadow:0 20px 40px rgba(15,23,42,.14);
+    font-family:var(--sans, "DM Sans", system-ui, sans-serif);
+  }
+  .demo-modal-close {
+    position:absolute; top:10px; right:14px; background:transparent; border:0;
+    font-size:24px; color:var(--ink, #0F172A); cursor:pointer; line-height:1; padding:6px 8px;
+  }
+  .demo-modal-eyebrow {
+    font-family:var(--mono, monospace); font-size:11px; font-weight:700;
+    letter-spacing:.08em; text-transform:uppercase; color:var(--navy, #1D4ED8);
+    margin:0 0 8px;
+  }
+  .demo-modal-title {
+    font-weight:800; font-size:32px; line-height:1; letter-spacing:-.04em;
+    margin:0 0 18px; color:var(--ink, #0F172A);
+  }
+  .demo-modal-field { display:block; margin:0 0 14px; }
+  .demo-modal-field label {
+    display:block; font-family:var(--mono, monospace); font-size:11px; font-weight:700;
+    letter-spacing:.08em; text-transform:uppercase; color:rgba(15,23,42,.72); margin-bottom:6px;
+  }
+  .demo-modal-field input {
+    width:100%; padding:11px 12px; font-family:var(--sans, "DM Sans", system-ui, sans-serif);
+    font-size:15px; border:1px solid var(--ink, #0F172A); background:#fff; color:var(--ink, #0F172A);
+    border-radius:6px;
+  }
+  .demo-modal-field input:focus { outline:2px solid var(--blue, #2f8cff); outline-offset:1px; }
+  .demo-modal-submit {
+    width:100%; height:44px; border:1px solid var(--ink, #0F172A); background:var(--ink, #0F172A);
+    border-radius:6px;
+    color:var(--paper, #F7F8FA); font-family:var(--mono, monospace); font-size:12px; font-weight:800;
+    letter-spacing:.08em; text-transform:uppercase; cursor:pointer; margin-top:6px;
+    transition:background .15s ease, border-color .15s ease, color .15s ease;
+  }
+  .demo-modal-submit:hover { background:var(--blue, #2f8cff); border-color:var(--blue, #2f8cff); color:#fff; }
+  .demo-modal-submit:disabled { opacity:.6; cursor:wait; }
+  .demo-modal-error { display:none; margin-top:10px; padding:10px 12px; border:1px solid #dc2626; border-radius:6px; color:#dc2626; font-size:13px; }
+  .demo-modal-success {
+    display:none; padding:18px 0 4px; text-align:center;
+  }
+  .demo-modal-success.active { display:block; }
+  .demo-modal-success-title { font-weight:700; font-size:22px; letter-spacing:-.02em; margin:0 0 6px; color:var(--ink, #0F172A); }
+  .demo-modal-success-body { font-size:14px; color:rgba(15,23,42,.72); line-height:1.5; margin:0 0 16px; }
+</style>
+<div class="demo-modal" id="demoModal" role="dialog" aria-modal="true" aria-labelledby="demoModalTitle">
+  <div class="demo-modal-backdrop" onclick="closeDemoModal()"></div>
+  <div class="demo-modal-card">
+    <button class="demo-modal-close" type="button" onclick="closeDemoModal()" aria-label="Close">&times;</button>
+    <div id="demoModalForm">
+      <p class="demo-modal-eyebrow">Briefly &middot; Demo</p>
+      <h2 class="demo-modal-title" id="demoModalTitle">Book a demo</h2>
+      <form onsubmit="return handleDemoSubmit(event);" novalidate>
+        <div class="demo-modal-field">
+          <label for="demoName">Full name</label>
+          <input type="text" id="demoName" name="name" autocomplete="name" required>
+        </div>
+        <div class="demo-modal-field">
+          <label for="demoEmail">Work email</label>
+          <input type="email" id="demoEmail" name="email" autocomplete="email" required>
+        </div>
+        <div class="demo-modal-field">
+          <label for="demoFirm">Firm (optional)</label>
+          <input type="text" id="demoFirm" name="firm" autocomplete="organization">
+        </div>
+        <button class="demo-modal-submit" type="submit" id="demoSubmitBtn">Book a demo</button>
+        <div class="demo-modal-error" id="demoModalError" role="status" aria-live="assertive" tabindex="-1">Something went wrong sending that. Try again or email contact@brieflywealth.com.</div>
+      </form>
+    </div>
+    <div class="demo-modal-success" id="demoModalSuccess" role="status" aria-live="polite" tabindex="-1">
+      <p class="demo-modal-success-title" id="demoModalSuccessTitle">Thanks. We'll be in touch.</p>
+      <p class="demo-modal-success-body">We'll be in touch to set up a demo.</p>
+      <button class="demo-modal-submit" type="button" onclick="closeDemoModal()">Close</button>
+    </div>
+  </div>
+</div>
+<script>
+  var demoModalTrigger = null;
+
+  function getDemoModalFocusable() {
+    var modal = document.getElementById('demoModal');
+    var nodes = modal.querySelectorAll(
+      'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    );
+    return Array.prototype.filter.call(nodes, function (el) { return el.offsetParent !== null; });
+  }
+
+  function openDemoModal() {
+    demoModalTrigger = document.activeElement;
+    document.getElementById('demoModal').classList.add('active');
+    document.getElementById('demoModalForm').style.display = '';
+    document.getElementById('demoModalSuccess').classList.remove('active');
+    document.getElementById('demoModalError').style.display = 'none';
+    document.getElementById('demoModal').setAttribute('aria-labelledby', 'demoModalTitle');
+    setTimeout(function(){ var n = document.getElementById('demoName'); if (n) n.focus(); }, 50);
+  }
+  function closeDemoModal() {
+    document.getElementById('demoModal').classList.remove('active');
+    if (demoModalTrigger && typeof demoModalTrigger.focus === 'function') {
+      demoModalTrigger.focus();
+    }
+    demoModalTrigger = null;
+  }
+  document.addEventListener('keydown', function(e){
+    var modal = document.getElementById('demoModal');
+    if (!modal.classList.contains('active')) return;
+    if (e.key === 'Escape') {
+      closeDemoModal();
+      return;
+    }
+    if (e.key === 'Tab') {
+      var focusable = getDemoModalFocusable();
+      if (!focusable.length) { e.preventDefault(); return; }
+      var idx = focusable.indexOf(document.activeElement);
+      e.preventDefault();
+      if (e.shiftKey) {
+        focusable[idx > 0 ? idx - 1 : focusable.length - 1].focus();
+      } else {
+        focusable[idx > -1 && idx < focusable.length - 1 ? idx + 1 : 0].focus();
+      }
+    }
+  });
+  async function handleDemoSubmit(e) {
+    e.preventDefault();
+    var btn = document.getElementById('demoSubmitBtn');
+    var err = document.getElementById('demoModalError');
+    var name = document.getElementById('demoName').value.trim();
+    var email = document.getElementById('demoEmail').value.trim();
+    var firm = document.getElementById('demoFirm').value.trim();
+    if (!name || !email) return false;
+    btn.disabled = true; btn.textContent = 'Sending...';
+    err.style.display = 'none';
+    try {
+      var res = await fetch('https://formspree.io/f/mjgygdyd', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ name: name, email: email, firm: firm, source: 'brieflywealth.com / start' })
+      });
+      if (!res.ok) throw new Error('Request failed');
+      document.getElementById('demoModalForm').style.display = 'none';
+      var success = document.getElementById('demoModalSuccess');
+      success.classList.add('active');
+      document.getElementById('demoModal').setAttribute('aria-labelledby', 'demoModalSuccessTitle');
+      success.focus();
+    } catch (e) {
+      err.style.display = 'block';
+      err.focus();
+    } finally {
+      btn.disabled = false; btn.textContent = 'Request demo';
+    }
+    return false;
+  }
+</script>
+
+<!-- ==================== PAGE SCRIPT: seat stepper + checkout ==================== -->
+<script>
+// set to the API origin when Stripe goes live; empty keeps checkout in preview
+const BILLING_API_BASE = "";
+
+(function () {
+  var seatInput = document.getElementById('seatInput');
+  var seatDec = document.getElementById('seatDec');
+  var seatInc = document.getElementById('seatInc');
+  var priceLine = document.getElementById('priceLine');
+
+  function clampSeats(n) {
+    n = Math.round(n);
+    if (isNaN(n)) n = 1;
+    if (n < 1) n = 1;
+    if (n > 25) n = 25;
+    return n;
+  }
+
+  function renderSeats() {
+    var n = clampSeats(parseInt(seatInput.value, 10));
+    seatInput.value = n;
+    var price = n * 100;
+    var priceStr = '$' + price.toLocaleString('en-US');
+    var seatWord = n === 1 ? 'seat' : 'seats';
+    priceLine.textContent = n + ' ' + seatWord + ' · ' + priceStr + ' a month after your free first month';
+    seatDec.disabled = n <= 1;
+    seatInc.disabled = n >= 25;
+  }
+
+  seatDec.addEventListener('click', function () {
+    seatInput.value = clampSeats(parseInt(seatInput.value, 10) - 1);
+    renderSeats();
+  });
+  seatInc.addEventListener('click', function () {
+    seatInput.value = clampSeats(parseInt(seatInput.value, 10) + 1);
+    renderSeats();
+  });
+  seatInput.addEventListener('input', renderSeats);
+  seatInput.addEventListener('blur', renderSeats);
+  renderSeats();
+
+  var startEmail = document.getElementById('startEmail');
+  var startFirm = document.getElementById('startFirm');
+  var checkoutBtn = document.getElementById('checkoutBtn');
+  var checkoutForm = document.getElementById('checkoutForm');
+  var checkoutFallback = document.getElementById('checkoutFallback');
+
+  function updateCheckoutButtonState() {
+    var valid = startEmail.checkValidity() && startEmail.value.trim() !== '' && startFirm.value.trim() !== '';
+    checkoutBtn.disabled = !valid;
+  }
+  startEmail.addEventListener('input', updateCheckoutButtonState);
+  startFirm.addEventListener('input', updateCheckoutButtonState);
+  updateCheckoutButtonState();
+
+  function showFallback() {
+    checkoutFallback.hidden = false;
+    checkoutFallback.focus();
+  }
+
+  checkoutForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var honeypot = document.getElementById('companyWebsite');
+    if (honeypot && honeypot.value) {
+      showFallback();
+      return;
+    }
+
+    var email = startEmail.value.trim();
+    var firmName = startFirm.value.trim();
+    if (!email || !firmName) return;
+
+    var seats = clampSeats(parseInt(seatInput.value, 10));
+    var originalText = checkoutBtn.textContent;
+    checkoutBtn.disabled = true;
+    checkoutBtn.textContent = 'Checking out...';
+
+    function fallbackAndReset() {
+      showFallback();
+      checkoutBtn.disabled = false;
+      checkoutBtn.textContent = originalText;
+    }
+
+    if (!BILLING_API_BASE) {
+      fallbackAndReset();
+      return;
+    }
+
+    fetch(BILLING_API_BASE + '/billing/checkout-session', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, firmName: firmName, seats: seats })
+    }).then(function (res) {
+      if (!res.ok) throw new Error('checkout session request failed');
+      return res.json();
+    }).then(function (data) {
+      if (data && data.url) {
+        window.location = data.url;
+      } else {
+        fallbackAndReset();
+      }
+    }).catch(function () {
+      fallbackAndReset();
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
