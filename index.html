@@ -307,7 +307,18 @@
   .custody-links .textlink:focus-visible { outline-color: var(--cyan); }
 
   /* one day */
-  .day-rows { display: flex; flex-direction: column; gap: 64px; margin-top: 56px; }
+  .day-carousel { margin-top: 44px; }
+  .day-ctrl { display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 26px; }
+  .day-stops { display: flex; gap: 8px; flex-wrap: wrap; }
+  .day-stop { font-family: var(--mono); font-size: 12px; padding: 7px 15px; border: 1px solid var(--rule); border-radius: 999px; background: transparent; color: var(--ink-muted); cursor: pointer; transition: color .2s, background-color .2s, border-color .2s; }
+  .day-stop:hover { color: var(--ink); border-color: var(--ink-muted); }
+  .day-stop.is-active { background: var(--ink); border-color: var(--ink); color: var(--cream); }
+  .day-arrows { display: flex; gap: 8px; }
+  .day-arrow { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--rule); background: var(--card); color: var(--ink); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: border-color .2s; }
+  .day-arrow:hover { border-color: var(--ink-muted); }
+  .day-viewport { overflow: hidden; transition: height .35s ease; }
+  .day-track { display: flex; align-items: flex-start; transition: transform .45s cubic-bezier(.4, 0, .2, 1); }
+  .day-slide { flex: 0 0 100%; min-width: 100%; }
   .day-row { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 48px; align-items: center; }
   .day-time { font-family: var(--mono); font-size: 11px; color: var(--ink-muted); margin-bottom: 10px; }
   .day-txt .msg-q { font-size: 16px; }
@@ -367,10 +378,13 @@
     .cols3, .ways-grid, .ss-row { grid-template-columns: 1fr; }
     .day-row { grid-template-columns: 1fr; gap: 20px; }
     .day-lede-cols { grid-template-columns: 1fr; gap: 14px; }
-    .day-rows { gap: 44px; }
     footer .foot-grid { grid-template-columns: 1fr 1fr; }
     footer .foot-brand { grid-column: 1 / -1; }
     h2 { font-size: 30px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .day-track, .day-viewport { transition: none; }
   }
 
   @media (max-width: 480px) {
@@ -600,8 +614,21 @@
     <div class="eyebrow">What a day looks like</div>
     <h2>One day with the file open.</h2>
     <p class="lede">Briefly isn't a new place to work. Your team keeps asking questions where they already are, and the firm's own records do the answering.</p>
-    <div class="day-rows">
-      <div class="day-row">
+    <div class="day-carousel">
+      <div class="day-ctrl">
+        <div class="day-stops" role="tablist" aria-label="Three moments in the day">
+          <button type="button" role="tab" class="day-stop is-active" aria-selected="true" data-day-stop="0">8:55 am</button>
+          <button type="button" role="tab" class="day-stop" aria-selected="false" data-day-stop="1">11:40 am</button>
+          <button type="button" role="tab" class="day-stop" aria-selected="false" data-day-stop="2">4:15 pm</button>
+        </div>
+        <div class="day-arrows">
+          <button type="button" class="day-arrow" data-day-arrow="-1" aria-label="Previous moment"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
+          <button type="button" class="day-arrow" data-day-arrow="1" aria-label="Next moment"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
+        </div>
+      </div>
+      <div class="day-viewport" id="dayViewport">
+        <div class="day-track" id="dayTrack">
+      <div class="day-slide day-row">
         <div class="day-txt">
           <div class="day-time">8:55 am &middot; in Claude, before the review</div>
           <p class="msg-q"><b>Advisor</b>Give me the Patel file before the 9:00.</p>
@@ -615,7 +642,7 @@
           <div class="win-body"><div class="day-clip" data-bpa-clip="2" aria-label="Running the pre-meeting brief agent for the Patel household"></div></div>
         </div>
       </div>
-      <div class="day-full">
+      <div class="day-slide day-full">
         <div class="day-lede-cols">
           <div>
             <div class="day-time">11:40 am &middot; in the web app, a client calls</div>
@@ -631,7 +658,7 @@
           <div class="win-body"><div class="clip-fit" data-natural="780"><div class="day-clip" data-bpa-clip="5" aria-label="Checking a household's filed sources in the web app"></div></div></div>
         </div>
       </div>
-      <div class="day-full">
+      <div class="day-slide day-full">
         <div class="day-lede-cols">
           <div>
             <div class="day-time">4:15 pm &middot; in Claude, across the book</div>
@@ -645,6 +672,8 @@
         <div class="win">
           <div class="win-bar"><span class="win-dot"></span><span>One queue across every household</span></div>
           <div class="win-body"><div class="clip-fit" data-natural="1000"><div class="day-clip" data-bpa-clip="1" aria-label="Working the action-item queue across households"></div></div></div>
+        </div>
+      </div>
         </div>
       </div>
     </div>
@@ -858,6 +887,48 @@ BrieflyClips.mountAll();
   window.addEventListener('resize', function () {
     clearTimeout(fitTimer);
     fitTimer = setTimeout(fitClips, 150);
+  });
+})();
+
+(function () {
+  /* Day carousel: one moment on screen at a time. The clips runtime only
+     ticks a clip while it intersects the viewport, so off-screen slides
+     pause on their own and resume where they left off. */
+  var track = document.getElementById('dayTrack');
+  var viewport = document.getElementById('dayViewport');
+  if (!track || !viewport) return;
+  var slides = [].slice.call(track.children);
+  var stops = [].slice.call(document.querySelectorAll('[data-day-stop]'));
+  var idx = 0, hTimer, x0 = null;
+  function setHeight() { viewport.style.height = slides[idx].offsetHeight + 'px'; }
+  function go(i) {
+    idx = (i + slides.length) % slides.length;
+    track.style.transform = 'translateX(-' + idx * 100 + '%)';
+    slides.forEach(function (s, k) { s.setAttribute('aria-hidden', k === idx ? 'false' : 'true'); });
+    stops.forEach(function (b, k) {
+      b.classList.toggle('is-active', k === idx);
+      b.setAttribute('aria-selected', k === idx ? 'true' : 'false');
+    });
+    setHeight();
+  }
+  stops.forEach(function (b) {
+    b.addEventListener('click', function () { go(parseInt(b.getAttribute('data-day-stop'), 10)); });
+  });
+  [].slice.call(document.querySelectorAll('[data-day-arrow]')).forEach(function (b) {
+    b.addEventListener('click', function () { go(idx + parseInt(b.getAttribute('data-day-arrow'), 10)); });
+  });
+  viewport.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+  viewport.addEventListener('touchend', function (e) {
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 48) go(idx + (dx < 0 ? 1 : -1));
+    x0 = null;
+  }, { passive: true });
+  go(0);
+  window.addEventListener('load', setHeight);
+  window.addEventListener('resize', function () {
+    clearTimeout(hTimer);
+    hTimer = setTimeout(setHeight, 200);
   });
 })();
 
