@@ -229,7 +229,7 @@ The result is one base of firm memory. It gets better every time an advisor uses
 
 ## See the knowledge base in action.
 
-Briefly runs two ways. The Claude connector is the flagship path. It keeps client files in a folder on your own computer, and only your sign-in, seat checks, and de-identified preference rules reach Briefly's servers, free for the first month, then $100 per advisor seat per month. The web app is the browser option, always available, with files living in Briefly's hosted environment at $150 per seat from day one.
+Briefly runs two ways. The Claude connector is the flagship path. It keeps client files in a folder on your own computer, and only your sign-in, seat checks, and de-identified preference rules reach Briefly's servers. The web app is the browser option, always available, with files living in Briefly's hosted environment.
 
 
 ---
@@ -366,8 +366,6 @@ Source: https://www.brieflywealth.com/start
 ---
 
 ## The Claude connector
-
-$100 a seat, first month free
 
 Runs inside the Claude your team already uses. Client files never reach our servers. Every answer cites its source document. Learns your firm's corrections as standing rules. Ask across your whole book, not one chat. Sign up today, no call needed.
 

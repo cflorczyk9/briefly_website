@@ -309,14 +309,22 @@
   /* one day */
   .day-rows { display: flex; flex-direction: column; gap: 64px; margin-top: 56px; }
   .day-row { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 48px; align-items: center; }
-  .day-row.rev .day-txt { order: 2; }
-  .day-row.rev .win { order: 1; }
   .day-time { font-family: var(--mono); font-size: 11px; color: var(--ink-muted); margin-bottom: 10px; }
   .day-txt .msg-q { font-size: 16px; }
   .day-txt .msg-a { font-size: 14.5px; max-width: 420px; }
   .day-row .win-body { padding: 12px; }
   .day-row .day-clip { display: flex; justify-content: center; }
   .day-clip { margin-bottom: 16px; }
+  .day-full { display: flex; flex-direction: column; gap: 22px; }
+  .day-full .win-body { padding: 12px; }
+  .day-full .day-clip { display: flex; justify-content: center; }
+  .day-lede-cols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: start; margin-top: 12px; }
+  .day-lede-cols .msg-q { font-size: 16px; }
+  .day-lede-cols .msg-a { font-size: 14.5px; max-width: none; }
+  .clip-fit { width: 100%; margin: 0 auto; overflow: hidden; }
+  .clip-fit > .day-clip { transform-origin: top left; margin-bottom: 0; }
+  .day-full .day-clip { justify-content: flex-start; }
+  .day-full .win-fit { max-width: 806px; margin: 0 auto; width: 100%; }
 
   /* correction loop */
   .loop-clip { margin-top: 44px; }
@@ -357,9 +365,8 @@
     .mess-grid { grid-template-columns: 1fr; }
     .chip-field { min-height: 260px; }
     .cols3, .ways-grid, .ss-row { grid-template-columns: 1fr; }
-    .day-row, .day-row.rev { grid-template-columns: 1fr; gap: 20px; }
-    .day-row.rev .day-txt { order: 1; }
-    .day-row.rev .win { order: 2; }
+    .day-row { grid-template-columns: 1fr; gap: 20px; }
+    .day-lede-cols { grid-template-columns: 1fr; gap: 14px; }
     .day-rows { gap: 44px; }
     footer .foot-grid { grid-template-columns: 1fr 1fr; }
     footer .foot-brand { grid-column: 1 / -1; }
@@ -388,7 +395,6 @@
         <div class="nav-links">
           <a href="#how">How it works</a>
           <a href="/security">Security</a>
-          <a href="/pricing">Pricing</a>
           <a href="/download">Download</a>
         </div>
         <div class="nav-actions">
@@ -413,7 +419,7 @@
       <p class="lede">Briefly turns the statements, emails, and meeting notes your firm already has into one knowledge base. Ask inside Claude or in the Briefly web app, and every answer comes back cited.</p>
       <div class="hero-ctas">
         <a class="btn" href="#" onclick="openDemoModal();return false;">Book a demo</a>
-        <a class="btn ghost" href="/start">Start now, $100 a seat</a>
+        <a class="btn ghost" href="/start">Start now</a>
       </div>
       <p class="hero-trust"><b>Run the connector and client files never leave your machines.</b> Or have us set up the web app, connected to your Salesforce and Outlook.</p>
     </div>
@@ -517,7 +523,7 @@
     <p class="lede">Same knowledge base, same citations. What changes is who does the setup and where your team asks.</p>
     <div class="ways-grid">
       <div class="way">
-        <div class="way-head"><h3>The Claude connector</h3><span class="price-pill">$100 a seat &middot; first month free</span></div>
+        <div class="way-head"><h3>The Claude connector</h3></div>
         <ul class="way-list">
           <li>Runs inside the Claude your team already uses</li>
           <li>Client files never reach our servers</li>
@@ -530,7 +536,7 @@
         <p class="way-fine">Checkout takes a card but charges nothing for 30 days. Cancel from the billing portal any time.</p>
       </div>
       <div class="way">
-        <div class="way-head"><h3>The web app</h3><span class="price-pill">$150 a seat</span></div>
+        <div class="way-head"><h3>The web app</h3></div>
         <ul class="way-list">
           <li>We build the client file for you</li>
           <li>Connects your Salesforce and Outlook</li>
@@ -540,7 +546,7 @@
         <a class="btn ghost" href="#" onclick="openDemoModal();return false;">Book a demo</a>
       </div>
     </div>
-    <p class="ways-note">Run both for $175 and a seat moves between them without rebuilding anything, since it is one client file either way. <a class="textlink" href="/compare">Compare the two in detail</a>.</p>
+    <p class="ways-note">Run both and a seat moves between them without rebuilding anything, since it is one client file either way. <a class="textlink" href="/compare">Compare the two in detail</a>.</p>
     <div class="signup-strip">
       <div class="eyebrow">Sign up without a call</div>
       <div class="ss-row">
@@ -609,24 +615,28 @@
           <div class="win-body"><div class="day-clip" data-bpa-clip="2" aria-label="Running the pre-meeting brief agent for the Patel household"></div></div>
         </div>
       </div>
-      <div class="day-row rev">
-        <div class="day-txt">
-          <div class="day-time">11:40 am &middot; in the web app, a client calls</div>
-          <p class="msg-q"><b>Operations</b>Did we ever get the updated beneficiary form from the Kims?</p>
+      <div class="day-full">
+        <div class="day-lede-cols">
+          <div>
+            <div class="day-time">11:40 am &middot; in the web app, a client calls</div>
+            <p class="msg-q"><b>Operations</b>Did we ever get the updated beneficiary form from the Kims?</p>
+          </div>
           <div class="msg-a">
             <p>Yes. Signed copy filed in March, primary changed to their daughter. The document is linked.</p>
             <p style="margin-top:10px;"><span class="cite">Beneficiary form (filed 3/19/2026)</span></p>
           </div>
         </div>
-        <div class="win">
+        <div class="win win-fit">
           <div class="win-bar"><span class="win-dot"></span><span>The filed sources, checked live</span></div>
-          <div class="win-body"><div class="day-clip" data-bpa-clip="5" aria-label="Checking a household's filed sources in the web app"></div></div>
+          <div class="win-body"><div class="clip-fit" data-natural="780"><div class="day-clip" data-bpa-clip="5" aria-label="Checking a household's filed sources in the web app"></div></div></div>
         </div>
       </div>
-      <div class="day-row">
-        <div class="day-txt">
-          <div class="day-time">4:15 pm &middot; in Claude, across the book</div>
-          <p class="msg-q"><b>Advisor</b>Which households have mentioned selling a business?</p>
+      <div class="day-full">
+        <div class="day-lede-cols">
+          <div>
+            <div class="day-time">4:15 pm &middot; in Claude, across the book</div>
+            <p class="msg-q"><b>Advisor</b>Which households have mentioned selling a business?</p>
+          </div>
           <div class="msg-a">
             <p>Four households, each with the conversation it came from. Two mentioned a timeline inside three years.</p>
             <p style="margin-top:10px;"><span class="cite">4 sources across 4 files</span></p>
@@ -634,7 +644,7 @@
         </div>
         <div class="win">
           <div class="win-bar"><span class="win-dot"></span><span>One queue across every household</span></div>
-          <div class="win-body"><div class="day-clip" data-bpa-clip="1" aria-label="Working the action-item queue across households"></div></div>
+          <div class="win-body"><div class="clip-fit" data-natural="1000"><div class="day-clip" data-bpa-clip="1" aria-label="Working the action-item queue across households"></div></div></div>
         </div>
       </div>
     </div>
@@ -678,10 +688,6 @@
         <p>If your team already works in Claude, start with the connector. It reads folders on your own machines and answers where you already work. If you want the file built for you, take the web app. We connect Salesforce and Outlook and your team signs in from a browser. A seat can move between them without rebuilding anything.</p>
       </details>
       <details>
-        <summary>What does it cost?</summary>
-        <p>The connector is $100 per advisor seat per month with the first month free. The hosted version is $150. Running both is $175. Same knowledge base and the same citations either way, and what changes is where your files live.</p>
-      </details>
-      <details>
         <summary>How long does setup take?</summary>
         <p>The connector installs like any Claude connector and reads the folders you point it at, so most teams are asking questions the same day. The hosted version takes longer because we connect Salesforce and Outlook and build the client file for you.</p>
       </details>
@@ -699,7 +705,6 @@
     <h2>See it answer on your firm's own records.</h2>
     <p class="lede">Twenty minutes, with the advisor in the room. Pick a time that works and we'll run it live.</p>
     <a class="btn" href="#" onclick="openDemoModal();return false;">Book a demo</a>
-    <p class="closer-price">$100 a seat with the first month free. The hosted version is $150.</p>
     <p class="closer-alt">No call needed for the connector. <a href="/start">Start now</a> and you're asking questions today.</p>
     <p class="closer-alt">Not ready? <a href="/subscribe">Get the Morning Brief</a>, our daily market email for advisors.</p>
   </div>
@@ -717,7 +722,6 @@
     <div>
       <h4>Product</h4>
       <a href="#how">How it works</a>
-      <a href="/pricing">Pricing</a>
       <a href="/security">Security</a>
       <a href="/download">Download</a>
       <a href="/compare">Compare</a>
@@ -832,6 +836,30 @@
 <script src="assets/briefly-clips.js"></script>
 <script>
 BrieflyClips.mountAll();
+
+(function () {
+  /* Wide clips (queue, sources) are authored at a fixed natural width and
+     crop rather than reflow, so mount them at that width and scale the
+     whole frame to the space available. */
+  var fitTimer;
+  function fitClips() {
+    [].slice.call(document.querySelectorAll('.clip-fit')).forEach(function (wrap) {
+      var clip = wrap.firstElementChild;
+      var natural = parseFloat(wrap.getAttribute('data-natural'));
+      if (!clip || !natural) return;
+      clip.style.width = natural + 'px';
+      var scale = Math.min(1, wrap.clientWidth / natural);
+      clip.style.transform = scale < 1 ? 'scale(' + scale + ')' : '';
+      wrap.style.height = scale < 1 ? (clip.offsetHeight * scale) + 'px' : '';
+    });
+  }
+  fitClips();
+  window.addEventListener('load', fitClips);
+  window.addEventListener('resize', function () {
+    clearTimeout(fitTimer);
+    fitTimer = setTimeout(fitClips, 150);
+  });
+})();
 
 (function () {
   /* Ask Briefly hero (clip 03's language): the five Q&As live as static,

@@ -4,7 +4,8 @@
 /security.html /security 301!
 /download.html /download 301!
 /compare.html /compare 301!
-/pricing.html /pricing 301!
+/pricing.html /start 301!
+/pricing /start 301!
 /start.html /start 301!
 /subscribe.html /subscribe 301!
 /privacy-policy.html /privacy-policy 301!
