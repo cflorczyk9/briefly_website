@@ -153,9 +153,10 @@
   .ak-prov-b { padding: 8px 11px 10px; font-size: 12px; line-height: 1.55; color: var(--ink-soft); border-top: 1px solid var(--rule); }
   .hl { background: #FFF3C4; box-shadow: 0 0 0 2px #FFF3C4; border-radius: 2px; color: var(--ink); }
   .prov-tbl { display: grid; grid-template-columns: 1fr auto auto; gap: 3px 14px; font-variant-numeric: tabular-nums; }
-  .hc-dots { display: flex; gap: 7px; padding: 0 20px 16px; }
-  .hc-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--rule); border: 0; padding: 0; cursor: pointer; }
-  .hc-dot.on { background: var(--ink); }
+  .hc-dots { display: flex; gap: 1px; padding: 0 14px 10px; }
+  .hc-dot { position: relative; width: 20px; height: 20px; background: transparent; border: 0; padding: 0; cursor: pointer; }
+  .hc-dot::after { content: ""; position: absolute; top: 50%; left: 50%; width: 7px; height: 7px; margin: -3.5px 0 0 -3.5px; border-radius: 50%; background: var(--rule); }
+  .hc-dot.on::after { background: var(--ink); }
   @media (prefers-reduced-motion: reduce) {
     .ak-q, .ak-ans, .ak-prov { transition: none; }
     .ak-dots i { animation: none; }
@@ -310,11 +311,13 @@
   .day-carousel { margin-top: 44px; }
   .day-ctrl { display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 26px; }
   .day-stops { display: flex; gap: 8px; flex-wrap: wrap; }
-  .day-stop { font-family: var(--mono); font-size: 12px; padding: 7px 15px; border: 1px solid var(--rule); border-radius: 999px; background: transparent; color: var(--ink-muted); cursor: pointer; transition: color .2s, background-color .2s, border-color .2s; }
+  .day-stop { position: relative; font-family: var(--mono); font-size: 12px; padding: 7px 15px; border: 1px solid var(--rule); border-radius: 999px; background: transparent; color: var(--ink-muted); cursor: pointer; transition: color .2s, background-color .2s, border-color .2s; }
+  .day-stop::after { content: ""; position: absolute; inset: -7px 0; }
   .day-stop:hover { color: var(--ink); border-color: var(--ink-muted); }
   .day-stop.is-active { background: var(--ink); border-color: var(--ink); color: var(--cream); }
   .day-arrows { display: flex; gap: 8px; }
-  .day-arrow { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--rule); background: var(--card); color: var(--ink); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: border-color .2s; }
+  .day-arrow { position: relative; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--rule); background: var(--card); color: var(--ink); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: border-color .2s; }
+  .day-arrow::after { content: ""; position: absolute; inset: -5px; }
   .day-arrow:hover { border-color: var(--ink-muted); }
   .day-viewport { overflow: hidden; transition: height .35s ease; }
   .day-track { display: flex; align-items: flex-start; transition: transform .45s cubic-bezier(.4, 0, .2, 1); }
