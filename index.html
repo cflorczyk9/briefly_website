@@ -307,12 +307,16 @@
   .custody-links .textlink:focus-visible { outline-color: var(--cyan); }
 
   /* one day */
-  .day-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; margin-top: 44px; }
+  .day-rows { display: flex; flex-direction: column; gap: 64px; margin-top: 56px; }
+  .day-row { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 48px; align-items: center; }
+  .day-row.rev .day-txt { order: 2; }
+  .day-row.rev .win { order: 1; }
   .day-time { font-family: var(--mono); font-size: 11px; color: var(--ink-muted); margin-bottom: 10px; }
-  .day-grid .win-body { padding: 14px 14px 18px; }
+  .day-txt .msg-q { font-size: 16px; }
+  .day-txt .msg-a { font-size: 14.5px; max-width: 420px; }
+  .day-row .win-body { padding: 12px; }
+  .day-row .day-clip { display: flex; justify-content: center; }
   .day-clip { margin-bottom: 16px; }
-  .day-copy { border-top: 1px solid var(--rule); padding-top: 14px; }
-  .day-copy .msg-q, .day-copy .msg-a { font-size: 13.5px; }
 
   /* correction loop */
   .loop-clip { margin-top: 44px; }
@@ -352,7 +356,11 @@
     .hero-grid { grid-template-columns: 1fr; gap: 36px; }
     .mess-grid { grid-template-columns: 1fr; }
     .chip-field { min-height: 260px; }
-    .cols3, .day-grid, .ways-grid, .ss-row { grid-template-columns: 1fr; }
+    .cols3, .ways-grid, .ss-row { grid-template-columns: 1fr; }
+    .day-row, .day-row.rev { grid-template-columns: 1fr; gap: 20px; }
+    .day-row.rev .day-txt { order: 1; }
+    .day-row.rev .win { order: 2; }
+    .day-rows { gap: 44px; }
     footer .foot-grid { grid-template-columns: 1fr 1fr; }
     footer .foot-brand { grid-column: 1 / -1; }
     h2 { font-size: 30px; }
@@ -586,44 +594,47 @@
     <div class="eyebrow">What a day looks like</div>
     <h2>One day with the file open.</h2>
     <p class="lede">Briefly isn't a new place to work. Your team keeps asking questions where they already are, and the firm's own records do the answering.</p>
-    <div class="day-grid">
-      <div class="win">
-        <div class="win-bar"><span class="win-dot"></span><span>8:55 am &middot; in Claude, before the review</span></div>
-        <div class="win-body">
-          <div class="day-clip" data-bpa-clip="2" aria-label="Running the pre-meeting brief agent for the Patel household"></div>
-          <div class="day-copy">
-            <p class="msg-q"><b>Advisor</b>Give me the Patel file before the 9:00.</p>
-            <div class="msg-a">
-              <p>Prepared brief ready. Three open items, one sentiment shift since April, and the rollover question is still waiting on their HR paperwork.</p>
-              <p style="margin-top:10px;"><span class="cite">Patel brief &middot; 6 sources</span></p>
-            </div>
+    <div class="day-rows">
+      <div class="day-row">
+        <div class="day-txt">
+          <div class="day-time">8:55 am &middot; in Claude, before the review</div>
+          <p class="msg-q"><b>Advisor</b>Give me the Patel file before the 9:00.</p>
+          <div class="msg-a">
+            <p>Prepared brief ready. Three open items, one sentiment shift since April, and the rollover question is still waiting on their HR paperwork.</p>
+            <p style="margin-top:10px;"><span class="cite">Patel brief &middot; 6 sources</span></p>
           </div>
         </div>
-      </div>
-      <div class="win">
-        <div class="win-bar"><span class="win-dot"></span><span>11:40 am &middot; in the web app, a client calls</span></div>
-        <div class="win-body">
-          <div class="day-clip" data-bpa-clip="5" aria-label="Checking a household's filed sources in the web app"></div>
-          <div class="day-copy">
-            <p class="msg-q"><b>Operations</b>Did we ever get the updated beneficiary form from the Kims?</p>
-            <div class="msg-a">
-              <p>Yes. Signed copy filed in March, primary changed to their daughter. The document is linked.</p>
-              <p style="margin-top:10px;"><span class="cite">Beneficiary form (filed 3/19/2026)</span></p>
-            </div>
-          </div>
+        <div class="win">
+          <div class="win-bar"><span class="win-dot"></span><span>Running the pre-meeting brief</span></div>
+          <div class="win-body"><div class="day-clip" data-bpa-clip="2" aria-label="Running the pre-meeting brief agent for the Patel household"></div></div>
         </div>
       </div>
-      <div class="win">
-        <div class="win-bar"><span class="win-dot"></span><span>4:15 pm &middot; in Claude, across the book</span></div>
-        <div class="win-body">
-          <div class="day-clip" data-bpa-clip="1" aria-label="Working the action-item queue across households"></div>
-          <div class="day-copy">
-            <p class="msg-q"><b>Advisor</b>Which households have mentioned selling a business?</p>
-            <div class="msg-a">
-              <p>Four households, each with the conversation it came from. Two mentioned a timeline inside three years.</p>
-              <p style="margin-top:10px;"><span class="cite">4 sources across 4 files</span></p>
-            </div>
+      <div class="day-row rev">
+        <div class="day-txt">
+          <div class="day-time">11:40 am &middot; in the web app, a client calls</div>
+          <p class="msg-q"><b>Operations</b>Did we ever get the updated beneficiary form from the Kims?</p>
+          <div class="msg-a">
+            <p>Yes. Signed copy filed in March, primary changed to their daughter. The document is linked.</p>
+            <p style="margin-top:10px;"><span class="cite">Beneficiary form (filed 3/19/2026)</span></p>
           </div>
+        </div>
+        <div class="win">
+          <div class="win-bar"><span class="win-dot"></span><span>The filed sources, checked live</span></div>
+          <div class="win-body"><div class="day-clip" data-bpa-clip="5" aria-label="Checking a household's filed sources in the web app"></div></div>
+        </div>
+      </div>
+      <div class="day-row">
+        <div class="day-txt">
+          <div class="day-time">4:15 pm &middot; in Claude, across the book</div>
+          <p class="msg-q"><b>Advisor</b>Which households have mentioned selling a business?</p>
+          <div class="msg-a">
+            <p>Four households, each with the conversation it came from. Two mentioned a timeline inside three years.</p>
+            <p style="margin-top:10px;"><span class="cite">4 sources across 4 files</span></p>
+          </div>
+        </div>
+        <div class="win">
+          <div class="win-bar"><span class="win-dot"></span><span>One queue across every household</span></div>
+          <div class="win-body"><div class="day-clip" data-bpa-clip="1" aria-label="Working the action-item queue across households"></div></div>
         </div>
       </div>
     </div>
