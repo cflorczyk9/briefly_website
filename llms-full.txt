@@ -373,15 +373,7 @@ Start now
 
 Checkout takes a card but charges nothing for 30 days. Cancel from the billing portal any time.
 
-## Sign up without a call
-
-01. Pick seats and check out
-
-02. Download the connector and sign in
-
-03. First charge on day 31, cancel any time before
-
-Payments run on Stripe. We never see your card, which is how we prefer it with your data too.
+You can sign up without talking to anyone. Pick your seats, check out, and download the connector. The first charge lands on day 31, and you can cancel any time before that. Payments run on Stripe, so we never see your card, which is how we prefer it with your data too.
 
 
 ---

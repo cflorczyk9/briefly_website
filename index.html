@@ -293,11 +293,7 @@
   .way-list li::before { content: "\2713"; position: absolute; left: 2px; color: var(--blue); font-size: 12px; }
   .ways-note { margin-top: 24px; font-size: 14px; color: var(--ink-soft); max-width: 640px; }
   .way .way-fine { margin: 14px 0 0; font-size: 12.5px; color: var(--ink-muted); }
-  .signup-strip { margin-top: 34px; border: 1px solid var(--rule); border-radius: 10px; background: var(--card); padding: 22px 26px; }
-  .ss-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-top: 4px; }
-  .ss-cell { border: 1px solid var(--rule); border-radius: 8px; padding: 12px 14px; font-size: 13px; background: var(--paper); }
-  .ss-cell b { display: block; font-family: var(--mono); font-size: 11px; color: var(--blue-ink); margin-bottom: 3px; }
-  .ss-fine { margin-top: 14px; font-size: 12.5px; color: var(--ink-muted); }
+  .signup-line { margin-top: 30px; max-width: 640px; font-size: 14px; line-height: 1.65; color: var(--ink-soft); }
 
   /* band alternation + texture */
   .band-paper2 { background: var(--paper-2); }
@@ -315,14 +311,14 @@
   .custody .eyebrow { color: var(--cream-soft); }
   .custody h2 { color: var(--cream); }
   .custody .lede { color: var(--cream-soft); }
-  .cols3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; margin-top: 44px; }
-  .col { border: 1px solid rgba(244,241,233,.16); border-radius: 10px; padding: 24px; background: rgba(244,241,233,.04); }
+  .cols3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 34px; margin-top: 44px; }
+  .col { border-top: 1px solid rgba(244,241,233,.28); padding: 18px 0 0; }
   .col h3 { font-size: 15px; font-weight: 700; margin-bottom: 8px; color: var(--cream); }
   .col .where { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--cyan); margin-bottom: 10px; }
   .col p, .col li { font-size: 13.5px; color: var(--cream-soft); }
   .col ul { list-style: none; margin-top: 6px; }
   .col li { border-top: 1px solid rgba(244,241,233,.16); padding: 7px 0; }
-  .col.ours { background: rgba(140,216,255,.07); box-shadow: 0 0 0 1px rgba(140,216,255,.25) inset; }
+  .col.ours { border-top: 2px solid var(--cyan); }
   .custody-carveout { margin-top: 26px; font-size: 14px; color: var(--cream-soft); max-width: 640px; }
   .custody-links { margin-top: 20px; display: flex; gap: 26px; flex-wrap: wrap; }
   .custody-links .textlink { color: var(--cyan); }
@@ -363,9 +359,7 @@
 
   /* correction loop */
   .loop-clip { margin-top: 44px; }
-  .rulecard { border: 1px solid var(--rule); border-left: 3px solid var(--blue); border-radius: 6px; background: var(--card); padding: 16px 18px; margin-top: 20px; max-width: 560px; }
-  .rulecard b { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--blue-ink); display: block; margin-bottom: 5px; }
-  .rulecard p { font-size: 13.5px; color: var(--ink-soft); }
+  .loop-note { margin-top: 20px; max-width: 600px; font-size: 14px; line-height: 1.65; color: var(--ink-soft); }
 
   /* faq */
   .faq-list { margin-top: 36px; max-width: 780px; }
@@ -399,7 +393,7 @@
     .hero-grid { grid-template-columns: 1fr; gap: 36px; }
     .mess-grid { grid-template-columns: 1fr; }
     .chip-field { min-height: 260px; }
-    .cols3, .ways-grid, .ss-row { grid-template-columns: 1fr; }
+    .cols3, .ways-grid { grid-template-columns: 1fr; }
     .day-row { grid-template-columns: 1fr; gap: 20px; }
     .day-lede-cols { grid-template-columns: 1fr; gap: 14px; }
     footer .foot-grid { grid-template-columns: 1fr 1fr; }
@@ -519,7 +513,7 @@
 <!-- ==================== PROOF LINE ==================== -->
 <section class="proofline" aria-label="Proof">
   <div class="container">
-    <p>Used by advisors managing hundreds of millions in AUM.</p>
+    <p>Used by advisors managing billions in AUM.</p>
   </div>
 </section>
 
@@ -586,15 +580,7 @@
       </div>
     </div>
     <p class="ways-note">Run both and a seat moves between them without rebuilding anything, since it is one client file either way. <a class="textlink" href="/compare">Compare the two in detail</a>.</p>
-    <div class="signup-strip">
-      <div class="eyebrow">Sign up without a call</div>
-      <div class="ss-row">
-        <div class="ss-cell"><b>01</b>Pick seats and check out</div>
-        <div class="ss-cell"><b>02</b>Download the connector and sign in</div>
-        <div class="ss-cell"><b>03</b>First charge on day 31, cancel any time before</div>
-      </div>
-      <p class="ss-fine">Payments run on Stripe. We never see your card, which is how we prefer it with your data too.</p>
-    </div>
+    <p class="signup-line">You can sign up without talking to anyone. Pick your seats, check out, and download the connector. The first charge lands on day 31, and you can cancel any time before that. Payments run on Stripe, so we never see your card, which is how we prefer it with your data too.</p>
   </div>
 </section>
 
@@ -602,7 +588,7 @@
 <section class="pad custody" id="custody" aria-label="Where your client data lives">
   <div class="container">
     <div class="eyebrow">Where your client data lives</div>
-    <h2>Your files stay yours. We organize them where they already are.</h2>
+    <h2>Your files stay yours, organized right where they already live.</h2>
     <p class="lede">Most AI tools for advisors upload your client data to their servers and promise to protect it. The Briefly connector is built so the promise isn't needed.</p>
     <div class="cols3">
       <div class="col">
@@ -712,10 +698,7 @@
     <h2>Correct it once. The whole firm inherits it.</h2>
     <p class="lede">When an advisor fixes a name, a preference, or a way of phrasing things, Briefly keeps the fix as a standing rule. Next quarter's brief already follows it, for everyone.</p>
     <div class="loop-clip" data-bpa-clip="7" aria-label="How a correction becomes a standing rule the whole firm inherits"></div>
-    <div class="rulecard">
-      <b>Rule saved</b>
-      <p>"We call it a planning conversation, never a sales meeting." Applies to every future brief for this firm.</p>
-    </div>
+    <p class="loop-note">An advisor at one firm fixed a single phrase, "we call it a planning conversation, never a sales meeting." Every brief that firm has received since says it their way.</p>
   </div>
 </section>
 
