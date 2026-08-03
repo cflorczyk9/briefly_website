@@ -1,3 +1,10 @@
 
 # browse/audit tool artifacts, never deploy
 .gstack/
+
+# Internal dev artifacts: never publish to Netlify (same treatment as .gstack, 8/3)
+DESIGN-SYSTEM.md
+MIGRATION-SPEC.md
+REORDER-SPEC.md
+local-preview.py
+tools/
