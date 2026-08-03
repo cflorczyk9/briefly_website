@@ -323,11 +323,14 @@
   /* custody visual: one flowing scene (machine -> Claude -> Briefly) + web-app band */
   .custody-scene-wrap { position: relative; margin-top: 42px; container-type: inline-size; }
   .custody-scene { display: block; width: 100%; height: auto; position: relative; z-index: 1; }
-  .cdv-ascii { position: absolute; left: 1%; top: 3%; width: 33%; height: 92%; z-index: 0; margin: 0; overflow: hidden; font-family: var(--mono); font-size: 7px; font-size: .74cqw; line-height: 1.06; letter-spacing: .02em; color: rgba(244,241,233,.9); pointer-events: none; user-select: none; }
+  .cdv-ascii { position: absolute; left: 1%; top: 3%; width: 33%; height: 92%; z-index: 0; margin: 0; overflow: hidden; font-family: var(--mono); font-size: 3.5px; font-size: .37cqw; line-height: 1.06; letter-spacing: .02em; color: rgba(244,241,233,.9); pointer-events: none; user-select: none; }
   .cdv-kicker { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--cyan); margin-bottom: 4px; }
   .cdv-cap { font-size: 13.5px; color: var(--cream-soft); margin-top: 2px; max-width: 420px; }
   .cdv-webapp { display: grid; grid-template-columns: 1.2fr 1fr; gap: 34px; align-items: center; margin-top: 34px; border-top: 1px solid rgba(244,241,233,.28); padding-top: 24px; }
   .cdv-fig { display: block; width: 100%; max-width: 330px; height: auto; margin: 0 0 0 auto; }
+  .cdv-cloudwrap { position: relative; width: 100%; max-width: 330px; margin-left: auto; container-type: inline-size; }
+  .cdv-cloudwrap .cdv-fig { max-width: none; margin: 0; position: relative; z-index: 1; }
+  .cdv-ascii-cloud { position: absolute; left: 2%; top: 2%; width: 96%; height: 66%; z-index: 0; margin: 0; overflow: hidden; font-family: var(--mono); font-size: 4px; font-size: 1.33cqw; line-height: 1.05; letter-spacing: 0; color: rgba(244,241,233,.9); pointer-events: none; user-select: none; }
   .custody-scene .ln, .cdv-fig .ln { fill: none; stroke: var(--cream); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
   .custody-scene .ln-soft, .cdv-fig .ln-soft { fill: none; stroke: rgba(244,241,233,.45); stroke-width: 1.2; }
   .custody-scene .fill-soft, .cdv-fig .fill-soft { fill: rgba(244,241,233,.05); }
@@ -711,113 +714,7 @@
     </svg>
     <pre class="cdv-ascii" id="cdvAscii" aria-hidden="true"></pre>
     </div>
-    <script>
-    (function () {
-      var pre = document.getElementById('cdvAscii');
-      if (!pre) return;
-      var COLS = 64, ROWS = 26, RAMP = ' .:-=+*#%@';
-      function box(x0, x1, y0, y1, z0, z1) {
-        return [
-          { p: [[x0,y0,z1],[x1,y0,z1],[x1,y1,z1],[x0,y1,z1]] },
-          { p: [[x1,y0,z0],[x0,y0,z0],[x0,y1,z0],[x1,y1,z0]] },
-          { p: [[x0,y0,z0],[x0,y0,z1],[x0,y1,z1],[x0,y1,z0]] },
-          { p: [[x1,y0,z1],[x1,y0,z0],[x1,y1,z0],[x1,y1,z1]] },
-          { p: [[x0,y1,z1],[x1,y1,z1],[x1,y1,z0],[x0,y1,z0]] },
-          { p: [[x0,y0,z0],[x1,y0,z0],[x1,y0,z1],[x0,y0,z1]] }
-        ];
-      }
-      var faces = box(-70, 70, -60, 60, 40, 72);
-      var fz = 40, b = { x0: -38, x1: 38, y0: -30, y1: 36, z: -85 };
-      faces.push({ p: [[-70,60,fz],[70,60,fz],[b.x1,b.y1,b.z],[b.x0,b.y1,b.z]] });
-      faces.push({ p: [[70,-60,fz],[-70,-60,fz],[b.x0,b.y0,b.z],[b.x1,b.y0,b.z]] });
-      faces.push({ p: [[-70,-60,fz],[-70,60,fz],[b.x0,b.y1,b.z],[b.x0,b.y0,b.z]] });
-      faces.push({ p: [[70,60,fz],[70,-60,fz],[b.x1,b.y0,b.z],[b.x1,b.y1,b.z]] });
-      faces.push({ p: [[b.x1,b.y0,b.z],[b.x0,b.y0,b.z],[b.x0,b.y1,b.z],[b.x1,b.y1,b.z]] });
-      faces = faces.concat(box(-22, 22, -92, -60, 12, 44));
-      faces = faces.concat(box(-46, 46, -102, -92, -2, 58));
-      faces.push({ p: [[-52,-44,72.5],[52,-44,72.5],[52,44,72.5],[-52,44,72.5]], screen: 1 });
-      var LX = 0.66, LY = 0.52, LZ = 0.42, LL = Math.sqrt(LX*LX+LY*LY+LZ*LZ);
-      var pitch = -0.18, cp = Math.cos(pitch), sp = Math.sin(pitch);
-      var grid = new Array(ROWS);
-      function frame(yaw) {
-        var cy = Math.cos(yaw), sy = Math.sin(yaw), i, r, c;
-        for (r = 0; r < ROWS; r++) grid[r] = new Array(COLS).fill(' ');
-        var vis = [];
-        for (i = 0; i < faces.length; i++) {
-          var q = faces[i], rp = [], zsum = 0, k;
-          for (k = 0; k < 4; k++) {
-            var x = q.p[k][0], y = q.p[k][1], z = q.p[k][2];
-            var x1 = x * cy + z * sy, z1 = -x * sy + z * cy;
-            var y2 = y * cp - z1 * sp, z2 = y * sp + z1 * cp;
-            rp.push([x1, y2, z2]); zsum += z2;
-          }
-          var ax = rp[1][0]-rp[0][0], ay = rp[1][1]-rp[0][1], az = rp[1][2]-rp[0][2];
-          var bx = rp[3][0]-rp[0][0], by = rp[3][1]-rp[0][1], bz = rp[3][2]-rp[0][2];
-          var nx = ay*bz-az*by, ny = az*bx-ax*bz, nz = ax*by-ay*bx;
-          if (nz <= 0.01) continue;
-          var nl = Math.sqrt(nx*nx+ny*ny+nz*nz) || 1;
-          var bri = Math.max(0, (nx*LX+ny*LY+nz*LZ)/(nl*LL));
-          vis.push({ rp: rp, z: zsum/4, bri: bri, screen: q.screen });
-        }
-        vis.sort(function (a, b2) { return a.z - b2.z; });
-        for (i = 0; i < vis.length; i++) {
-          var f = vis[i], pts = [], k2;
-          for (k2 = 0; k2 < 4; k2++) {
-            var P = f.rp[k2], per = 1 / (1 - P[2] * 0.0016);
-            pts.push([P[0]*0.26*per + COLS/2, -P[1]*0.26*0.52*per + ROWS/2 + 0.5]);
-          }
-          var minX = COLS, maxX = 0, minY = ROWS, maxY = 0, k3;
-          for (k3 = 0; k3 < 4; k3++) {
-            minX = Math.min(minX, pts[k3][0]); maxX = Math.max(maxX, pts[k3][0]);
-            minY = Math.min(minY, pts[k3][1]); maxY = Math.max(maxY, pts[k3][1]);
-          }
-          var ch = f.screen ? '.' : RAMP[1 + Math.round(Math.pow(f.bri, 1.3) * 5)];
-          for (r = Math.max(0, Math.floor(minY)); r <= Math.min(ROWS-1, Math.ceil(maxY)); r++) {
-            for (c = Math.max(0, Math.floor(minX)); c <= Math.min(COLS-1, Math.ceil(maxX)); c++) {
-              var px = c + 0.5, py = r + 0.5, inside = false, a2, b3;
-              for (a2 = 0, b3 = 3; a2 < 4; b3 = a2++) {
-                if ((pts[a2][1] > py) !== (pts[b3][1] > py) &&
-                    px < (pts[b3][0]-pts[a2][0]) * (py-pts[a2][1]) / (pts[b3][1]-pts[a2][1]) + pts[a2][0]) inside = !inside;
-              }
-              if (!inside) continue;
-              if (f.screen) {
-                var v = (py - minY) / Math.max(1, maxY - minY), u = (px - minX) / Math.max(1, maxX - minX);
-                grid[r][c] = (u > 0.14 && u < 0.58 && ((v > 0.3 && v < 0.4) || (v > 0.54 && v < 0.64))) ? ':' : '.';
-              } else grid[r][c] = ch;
-            }
-          }
-          var e;
-          for (e = 0; e < 4; e++) {
-            var p1 = pts[e], p2 = pts[(e + 1) % 4];
-            var n2 = Math.max(Math.abs(p2[0]-p1[0]), Math.abs(p2[1]-p1[1])) * 2 + 1, s2;
-            for (s2 = 0; s2 <= n2; s2++) {
-              var ex = Math.round(p1[0] + (p2[0]-p1[0]) * s2 / n2 - 0.5), ey = Math.round(p1[1] + (p2[1]-p1[1]) * s2 / n2 - 0.5);
-              if (ex >= 0 && ex < COLS && ey >= 0 && ey < ROWS) grid[ey][ex] = '#';
-            }
-          }
-        }
-        var out = '';
-        for (r = 0; r < ROWS; r++) out += grid[r].join('') + '\n';
-        pre.textContent = out;
-      }
-      var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (reduced) { frame(-0.5); return; }
-      var running = false, tick = 0;
-      function loop(t) {
-        if (!running) return;
-        if ((tick++ & 1) === 0) frame(-0.52 + 0.2 * Math.sin(t / 2300));
-        requestAnimationFrame(loop);
-      }
-      if ('IntersectionObserver' in window) {
-        new IntersectionObserver(function (es) {
-          var on = es[0].isIntersecting;
-          if (on && !running) { running = true; requestAnimationFrame(loop); }
-          if (!on) running = false;
-        }, { rootMargin: '80px' }).observe(pre);
-      } else { running = true; requestAnimationFrame(loop); }
-      frame(-0.5);
-    })();
-    </script>
+    
     <div class="cols3">
       <div class="col">
         <div class="where">Your machines</div>
@@ -845,18 +742,9 @@
         <div class="cdv-kicker">The web app</div>
         <p class="cdv-cap">On the web app, files live in an environment we secure and control, and your firm decides who signs in.</p>
       </div>
-      <svg class="cdv-fig" viewBox="0 0 400 230" role="img" aria-label="A browser sending documents into a locked cloud environment secured by Briefly">
+      <div class="cdv-cloudwrap">
+      <svg class="cdv-fig" viewBox="0 0 400 230" role="img" aria-label="A browser sending documents into a cloud environment secured by Briefly">
           <ellipse class="cdv-shadow" cx="200" cy="206" rx="120" ry="10"/>
-          <g class="cdv-cloud-g">
-            <path class="ln fill-soft" d="M120,140 C86,140 78,106 108,96 C104,68 140,54 166,68 C178,42 224,44 236,70 C270,60 296,88 282,112 C308,122 300,140 268,140 Z"/>
-            <g class="cdv-lock-g">
-              <rect class="ln cy" x="180" y="100" width="30" height="24" rx="4" fill="rgba(140,216,255,.08)"/>
-              <path class="ln cy" d="M186,100 v-8 a9,9 0 0 1 18,0 v8"/>
-              <circle cx="195" cy="112" r="2.5" fill="var(--cyan)"/>
-            </g>
-            <circle cx="262" cy="84" r="4" fill="var(--blue)"/>
-            <circle cx="262" cy="84" r="8" fill="none" stroke="rgba(47,140,255,.35)" stroke-width="2"/>
-          </g>
           <line class="dotpath" x1="200" y1="186" x2="200" y2="148"/>
           <rect class="ln fill-soft" x="142" y="182" width="128" height="34" rx="6"/>
           <line class="ln-soft" x1="142" y1="192" x2="270" y2="192"/>
@@ -867,7 +755,172 @@
           <g class="cdv-up-b"><g transform="translate(192,158)"><path class="chip" d="M0,0 h12 l5,5 v17 h-17 z"/><path class="chip-ln" d="M12,0 v5 h5"/><line class="chip-ln" x1="3.5" y1="11" x2="13.5" y2="11"/><line class="chip-ln" x1="3.5" y1="15" x2="13.5" y2="15"/></g></g>
           <g class="cdv-up-c"><g transform="translate(192,158)"><path class="chip" d="M0,0 h12 l5,5 v17 h-17 z"/><path class="chip-ln" d="M12,0 v5 h5"/><line class="chip-ln" x1="3.5" y1="11" x2="13.5" y2="11"/><line class="chip-ln" x1="3.5" y1="15" x2="13.5" y2="15"/></g></g>
         </svg>
+      <pre class="cdv-ascii-cloud" id="cdvCloud" aria-hidden="true"></pre>
+      </div>
     </div>
+<script>
+    (function () {
+      var pre = document.getElementById('cdvAscii');
+      var preC = document.getElementById('cdvCloud');
+      if (!pre || !preC) return;
+      var RAMP = ' .:-=+*#%@';
+      var LX = 0.66, LY = 0.52, LZ = 0.42, LL = Math.sqrt(LX*LX+LY*LY+LZ*LZ);
+      var YSCALE = 0.571;
+      var COLS = 128, ROWS = 52;
+      var pitch = -0.18, cp = Math.cos(pitch), sp = Math.sin(pitch);
+      function box(x0, x1, y0, y1, z0, z1) {
+        return [
+          { p: [[x0,y0,z1],[x1,y0,z1],[x1,y1,z1],[x0,y1,z1]] },
+          { p: [[x1,y0,z0],[x0,y0,z0],[x0,y1,z0],[x1,y1,z0]] },
+          { p: [[x0,y0,z0],[x0,y0,z1],[x0,y1,z1],[x0,y1,z0]] },
+          { p: [[x1,y0,z1],[x1,y0,z0],[x1,y1,z0],[x1,y1,z1]] },
+          { p: [[x0,y1,z1],[x1,y1,z1],[x1,y1,z0],[x0,y1,z0]] },
+          { p: [[x0,y0,z0],[x1,y0,z0],[x1,y0,z1],[x0,y0,z1]] }
+        ];
+      }
+      var faces = box(-70, 70, -60, 60, 40, 72);
+      var fz = 40, b = { x0: -38, x1: 38, y0: -30, y1: 36, z: -85 };
+      faces.push({ p: [[-70,60,fz],[70,60,fz],[b.x1,b.y1,b.z],[b.x0,b.y1,b.z]] });
+      faces.push({ p: [[70,-60,fz],[-70,-60,fz],[b.x0,b.y0,b.z],[b.x1,b.y0,b.z]] });
+      faces.push({ p: [[-70,-60,fz],[-70,60,fz],[b.x0,b.y1,b.z],[b.x0,b.y0,b.z]] });
+      faces.push({ p: [[70,60,fz],[70,-60,fz],[b.x1,b.y0,b.z],[b.x1,b.y1,b.z]] });
+      faces.push({ p: [[b.x1,b.y0,b.z],[b.x0,b.y0,b.z],[b.x0,b.y1,b.z],[b.x1,b.y1,b.z]] });
+      faces = faces.concat(box(-22, 22, -92, -60, 12, 44));
+      faces = faces.concat(box(-46, 46, -102, -92, -2, 58));
+      faces.push({ p: [[-52,-44,72.5],[52,-44,72.5],[52,44,72.5],[-52,44,72.5]], screen: 1 });
+      var grid = new Array(ROWS);
+      function frame(yaw) {
+        var cy = Math.cos(yaw), sy = Math.sin(yaw), i, r, c;
+        for (r = 0; r < ROWS; r++) grid[r] = new Array(COLS).fill(' ');
+        var vis = [];
+        for (i = 0; i < faces.length; i++) {
+          var q = faces[i], rp = [], zsum = 0, k;
+          for (k = 0; k < 4; k++) {
+            var x = q.p[k][0], y = q.p[k][1], z = q.p[k][2];
+            var x1 = x * cy + z * sy, z1 = -x * sy + z * cy;
+            var y2 = y * cp - z1 * sp, z2 = y * sp + z1 * cp;
+            rp.push([x1, y2, z2]); zsum += z2;
+          }
+          var ax = rp[1][0]-rp[0][0], ay = rp[1][1]-rp[0][1], az = rp[1][2]-rp[0][2];
+          var bx = rp[3][0]-rp[0][0], by = rp[3][1]-rp[0][1], bz = rp[3][2]-rp[0][2];
+          var nx = ay*bz-az*by, ny = az*bx-ax*bz, nz = ax*by-ay*bx;
+          if (nz <= 0.01) continue;
+          var nl = Math.sqrt(nx*nx+ny*ny+nz*nz) || 1;
+          var bri = Math.max(0, (nx*LX+ny*LY+nz*LZ)/(nl*LL));
+          vis.push({ rp: rp, z: zsum/4, bri: bri, screen: q.screen });
+        }
+        vis.sort(function (a, b2) { return a.z - b2.z; });
+        for (i = 0; i < vis.length; i++) {
+          var f = vis[i], pts = [], k2;
+          for (k2 = 0; k2 < 4; k2++) {
+            var P = f.rp[k2], per = 1 / (1 - P[2] * 0.0016);
+            pts.push([P[0]*0.52*per + COLS/2, -P[1]*0.52*0.52*per + ROWS/2 + 1]);
+          }
+          var minX = COLS, maxX = 0, minY = ROWS, maxY = 0, k3;
+          for (k3 = 0; k3 < 4; k3++) {
+            minX = Math.min(minX, pts[k3][0]); maxX = Math.max(maxX, pts[k3][0]);
+            minY = Math.min(minY, pts[k3][1]); maxY = Math.max(maxY, pts[k3][1]);
+          }
+          var ch = f.screen ? '.' : RAMP[1 + Math.round(Math.pow(f.bri, 1.3) * 5)];
+          for (r = Math.max(0, Math.floor(minY)); r <= Math.min(ROWS-1, Math.ceil(maxY)); r++) {
+            for (c = Math.max(0, Math.floor(minX)); c <= Math.min(COLS-1, Math.ceil(maxX)); c++) {
+              var px = c + 0.5, py = r + 0.5, inside = false, a2, b3;
+              for (a2 = 0, b3 = 3; a2 < 4; b3 = a2++) {
+                if ((pts[a2][1] > py) !== (pts[b3][1] > py) &&
+                    px < (pts[b3][0]-pts[a2][0]) * (py-pts[a2][1]) / (pts[b3][1]-pts[a2][1]) + pts[a2][0]) inside = !inside;
+              }
+              if (!inside) continue;
+              if (f.screen) {
+                var v = (py - minY) / Math.max(1, maxY - minY), u = (px - minX) / Math.max(1, maxX - minX);
+                grid[r][c] = (u > 0.14 && u < 0.58 && ((v > 0.3 && v < 0.38) || (v > 0.52 && v < 0.6))) ? ':' : '.';
+              } else grid[r][c] = ch;
+            }
+          }
+          var e;
+          for (e = 0; e < 4; e++) {
+            var p1 = pts[e], p2 = pts[(e + 1) % 4];
+            var n2 = Math.max(Math.abs(p2[0]-p1[0]), Math.abs(p2[1]-p1[1])) * 2 + 1, s2;
+            for (s2 = 0; s2 <= n2; s2++) {
+              var ex = Math.round(p1[0] + (p2[0]-p1[0]) * s2 / n2 - 0.5), ey = Math.round(p1[1] + (p2[1]-p1[1]) * s2 / n2 - 0.5);
+              if (ex >= 0 && ex < COLS && ey >= 0 && ey < ROWS) grid[ey][ex] = '#';
+            }
+          }
+        }
+        var out = '';
+        for (r = 0; r < ROWS; r++) out += grid[r].join('') + '\n';
+        pre.textContent = out;
+      }
+      var CCOLS = 120, CROWS = 26;
+      var SPH = [[0,8,0,44],[-48,-2,6,30],[48,0,-4,32],[-20,26,-8,30],[24,24,8,28]];
+      var CCLIP = -26, CS = 0.4;
+      function frameCloud(yaw, bobT) {
+        var cy = Math.cos(yaw), sy = Math.sin(yaw);
+        var bob = Math.sin(bobT) * 3;
+        var sph = SPH.map(function (o) { return [o[0]*cy + o[2]*sy, o[1] + bob, -o[0]*sy + o[2]*cy, o[3]]; });
+        var g2 = [], hit = [], r, c;
+        for (r = 0; r < CROWS; r++) { g2.push(new Array(CCOLS).fill(' ')); hit.push(new Array(CCOLS).fill(false)); }
+        for (r = 0; r < CROWS; r++) {
+          for (c = 0; c < CCOLS; c++) {
+            var x = (c + 0.5 - CCOLS/2) / CS, y = -(r + 0.5 - CROWS/2 - 3) / (CS * YSCALE);
+            if (y < CCLIP + bob) continue;
+            var best = -1e9, bn = null, i2;
+            for (i2 = 0; i2 < sph.length; i2++) {
+              var dx = x - sph[i2][0], dy = y - sph[i2][1], rr = sph[i2][3];
+              var d2 = dx*dx + dy*dy;
+              if (d2 > rr*rr) continue;
+              var zo = Math.sqrt(rr*rr - d2), zh = sph[i2][2] + zo;
+              if (zh > best) { best = zh; bn = [dx/rr, dy/rr, zo/rr]; }
+            }
+            if (!bn) continue;
+            hit[r][c] = true;
+            var bri = Math.max(0, bn[0]*LX + bn[1]*LY + bn[2]*LZ) / LL;
+            g2[r][c] = RAMP[1 + Math.round(Math.pow(bri, 1.2) * 4)];
+          }
+        }
+        for (r = 0; r < CROWS; r++) {
+          for (c = 0; c < CCOLS; c++) {
+            if (!hit[r][c]) continue;
+            if ((r === 0 || !hit[r-1][c]) || (r === CROWS-1 || !hit[r+1][c]) ||
+                (c === 0 || !hit[r][c-1]) || (c === CCOLS-1 || !hit[r][c+1])) g2[r][c] = '%';
+          }
+        }
+        var out = '';
+        for (r = 0; r < CROWS; r++) out += g2[r].join('') + '\n';
+        preC.textContent = out;
+      }
+      var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduced) { frame(-0.5); frameCloud(-0.3, 0); return; }
+      var runM = false, runC = false, anyRun = false, tick = 0;
+      function loop(t) {
+        if (!anyRun) return;
+        if ((tick++ & 1) === 0) {
+          if (runM) frame(-0.52 + 0.2 * Math.sin(t / 2300));
+          if (runC) frameCloud(-0.31 + 0.12 * Math.sin(t / 2300), t / 1400);
+        }
+        requestAnimationFrame(loop);
+      }
+      function sync() {
+        var was = anyRun; anyRun = runM || runC;
+        if (anyRun && !was) requestAnimationFrame(loop);
+      }
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (es) {
+          es.forEach(function (en) {
+            if (en.target === pre) runM = en.isIntersecting;
+            if (en.target === preC) runC = en.isIntersecting;
+          });
+          sync();
+        }, { rootMargin: '80px' }).observe(pre) || null;
+      }
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (es) {
+          es.forEach(function (en) { if (en.target === preC) runC = en.isIntersecting; });
+          sync();
+        }, { rootMargin: '80px' }).observe(preC);
+      } else { runM = runC = true; sync(); }
+      frame(-0.5); frameCloud(-0.3, 0);
+    })();
+    </script>
     <div class="custody-links">
       <a class="textlink" href="/security">Read the security page</a>
       <a class="textlink" href="#ways">Two ways to run it</a>
