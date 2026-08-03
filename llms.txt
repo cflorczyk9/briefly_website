@@ -12,6 +12,7 @@ These files are intended to help LLMs and AI agents accurately ground answers ab
 
 - [Home](https://www.brieflywealth.com/): Briefly is an AI knowledge base for financial advisors that runs inside Claude. Ask across your firm's own files and get cited answers. With the connector, client files never leave your machines.
 - [Knowledge base](https://www.brieflywealth.com/knowledge-base): How Briefly builds an AI knowledge base for financial advisors from a firm's own documents, email, meeting notes, and portfolio data, with every fact traceable to its source.
+- [Compare](https://www.brieflywealth.com/compare): The Briefly connector and the web app side by side. Both read from the same client file, cited and correctable. With the connector, client files stay on the advisor's computer.
 - [Download](https://www.brieflywealth.com/download): Download the Briefly connector for Claude Desktop. Client files stay on your computer, and only sign-in and de-identified rules reach Briefly's server.
 - [Start](https://www.brieflywealth.com/start): Sign up for the Briefly connector without a call. Checkout runs on Stripe.
 
@@ -27,11 +28,12 @@ These files are intended to help LLMs and AI agents accurately ground answers ab
 
 ## Examples
 
-- [Sample deliverables](https://www.brieflywealth.com/sample-deliverables): Four real Briefly deliverables, a quarterly review, a goal analysis, a month-end letter, and a deal summary, with names and firms fictionalized.
+- [Sample deliverables](https://www.brieflywealth.com/sample-deliverables): Five real Briefly deliverables, a quarterly review, a goal analysis, a month-end letter, a deal summary, and a correction-loop example, with names and firms fictionalized.
 - [Sample quarterly review](https://www.brieflywealth.com/samples/sample-quarterly-review): Performance for the quarter, allocation drift against policy, and the conversations worth having next, cited back to the source files.
 - [Sample goal analysis](https://www.brieflywealth.com/samples/sample-goal-analysis): Each goal priced against a household's actual accounts, with funding gaps named and every figure traceable to a statement.
 - [Sample month-end commentary](https://www.brieflywealth.com/samples/sample-month-end-commentary): A month-end letter showing household totals, what moved since last month, and the market backdrop, written for the client and cited for the advisor.
 - [Sample deal summary](https://www.brieflywealth.com/samples/sample-deal-summary): Terms, traction, and the three biggest risks of a private deal, condensed into a one-page brief a committee can act on.
+- [Sample correction loop](https://www.brieflywealth.com/samples/sample-correction-loop): How one detail from a meeting note becomes a standing rule Briefly applies to every brief after. Names and firms are fictionalized.
 - [Sample Morning Brief](https://www.brieflywealth.com/sample-brief): A sample edition of Briefly's Morning Brief email, with a pre-market table, an advisor talking point, and what to watch that week. Illustrative, not real client data.
 
 ## Blog
