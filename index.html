@@ -319,6 +319,60 @@
   .col ul { list-style: none; margin-top: 6px; }
   .col li { border-top: 1px solid rgba(244,241,233,.16); padding: 7px 0; }
   .col.ours { border-top: 2px solid var(--cyan); }
+
+  /* custody visual: the connector machine and the web-app cloud */
+  .custody-viz { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; margin-top: 42px; }
+  .cdv-panel { border-top: 1px solid rgba(244,241,233,.28); padding-top: 18px; }
+  .cdv-kicker { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--cyan); margin-bottom: 4px; }
+  .cdv-cap { font-size: 13.5px; color: var(--cream-soft); margin-top: 2px; max-width: 380px; }
+  .cdv-fig { display: block; width: 100%; max-width: 400px; height: auto; margin: 6px 0 10px; }
+  .cdv-fig .ln { fill: none; stroke: var(--cream); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .cdv-fig .ln-soft { fill: none; stroke: rgba(244,241,233,.45); stroke-width: 1.2; }
+  .cdv-fig .fill-soft { fill: rgba(244,241,233,.05); }
+  .cdv-fig .cy { stroke: var(--cyan); }
+  .cdv-fig .dotpath { fill: none; stroke: rgba(140,216,255,.5); stroke-width: 1.2; stroke-dasharray: 2 6; }
+  .cdv-fig .chip { fill: #FBFAF6; }
+  .cdv-fig .chip-ln { fill: none; stroke: #46627D; stroke-width: 1.4; }
+  .cdv-fig text { font-family: var(--mono); font-size: 9px; fill: rgba(244,241,233,.6); letter-spacing: .06em; }
+  .cdv-shadow { fill: rgba(0,0,0,.35); }
+  .cdv-chip-a, .cdv-chip-b, .cdv-chip-c, .cdv-up-a, .cdv-up-b, .cdv-up-c, .cdv-pulse, .cdv-lock-g { transform-box: fill-box; }
+  .cdv-chip-a { animation: cdv-dock 7.5s linear infinite; }
+  .cdv-chip-b { animation: cdv-dock 7.5s linear infinite -2.5s; }
+  .cdv-chip-c { animation: cdv-dock 7.5s linear infinite -5s; }
+  @keyframes cdv-dock {
+    0%   { transform: translate(-190px, 64px) rotate(-6deg); opacity: 0; }
+    6%   { opacity: 1; }
+    42%  { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+    50%  { transform: translate(0, 0); opacity: 0; }
+    100% { transform: translate(0, 0); opacity: 0; }
+  }
+  .cdv-pulse { transform-origin: center; animation: cdv-pulse 7.5s ease-out infinite; opacity: 0; }
+  @keyframes cdv-pulse {
+    0%, 40% { opacity: 0; transform: scale(.4); }
+    46% { opacity: .8; }
+    58% { opacity: 0; transform: scale(1.5); }
+    100% { opacity: 0; }
+  }
+  .cdv-cloud-g { animation: cdv-bob 6s ease-in-out infinite alternate; }
+  @keyframes cdv-bob { from { transform: translateY(0); } to { transform: translateY(-5px); } }
+  .cdv-up-a { animation: cdv-rise 7.5s linear infinite; }
+  .cdv-up-b { animation: cdv-rise 7.5s linear infinite -2.5s; }
+  .cdv-up-c { animation: cdv-rise 7.5s linear infinite -5s; }
+  @keyframes cdv-rise {
+    0%   { transform: translateY(0); opacity: 0; }
+    8%   { opacity: 1; }
+    38%  { transform: translateY(-46px); opacity: 1; }
+    46%  { transform: translateY(-52px); opacity: 0; }
+    100% { transform: translateY(-52px); opacity: 0; }
+  }
+  .cdv-lock-g { transform-origin: center; animation: cdv-lockpulse 7.5s ease-in-out infinite; }
+  @keyframes cdv-lockpulse { 0%, 38%, 60%, 100% { transform: scale(1); } 46% { transform: scale(1.12); } }
+  @media (prefers-reduced-motion: reduce) {
+    .cdv-chip-a, .cdv-chip-b, .cdv-chip-c, .cdv-pulse, .cdv-cloud-g, .cdv-up-a, .cdv-up-b, .cdv-up-c, .cdv-lock-g { animation: none; }
+    .cdv-chip-b, .cdv-chip-c, .cdv-up-b, .cdv-up-c, .cdv-pulse { opacity: 0; }
+    .cdv-chip-a { transform: translate(-100px, 34px); opacity: 1; }
+    .cdv-up-a { transform: translateY(-20px); opacity: 1; }
+  }
   .custody-carveout { margin-top: 26px; font-size: 14px; color: var(--cream-soft); max-width: 640px; }
   .custody-links { margin-top: 20px; display: flex; gap: 26px; flex-wrap: wrap; }
   .custody-links .textlink { color: var(--cyan); }
@@ -393,7 +447,7 @@
     .hero-grid { grid-template-columns: 1fr; gap: 36px; }
     .mess-grid { grid-template-columns: 1fr; }
     .chip-field { min-height: 260px; }
-    .cols3, .ways-grid { grid-template-columns: 1fr; }
+    .cols3, .ways-grid, .custody-viz { grid-template-columns: 1fr; }
     .day-row { grid-template-columns: 1fr; gap: 20px; }
     .day-lede-cols { grid-template-columns: 1fr; gap: 14px; }
     footer .foot-grid { grid-template-columns: 1fr 1fr; }
@@ -590,6 +644,59 @@
     <div class="eyebrow">Where your client data lives</div>
     <h2>Your files stay yours, organized right where they already live.</h2>
     <p class="lede">Most AI tools for advisors upload your client data to their servers and promise to protect it. The Briefly connector is built so the promise isn't needed.</p>
+    <div class="custody-viz">
+      <div class="cdv-panel">
+        <div class="cdv-kicker">The connector</div>
+        <svg class="cdv-fig" viewBox="0 0 400 230" role="img" aria-label="Documents filing into a computer that stays in your office">
+          <ellipse class="cdv-shadow" cx="170" cy="206" rx="130" ry="10"/>
+          <polygon class="ln fill-soft" points="52,54 196,32 196,128 52,150"/>
+          <polygon class="ln fill-soft" points="196,32 206,37 206,133 196,128"/>
+          <polygon class="ln-soft" points="68,80 98,75 102,81 130,77 130,101 68,111"/>
+          <line class="ln-soft" x1="68" y1="122" x2="180" y2="105"/>
+          <line class="ln-soft" x1="68" y1="133" x2="164" y2="119"/>
+          <polygon class="ln" points="112,152 136,148 140,176 108,181"/>
+          <polygon class="ln" points="88,186 162,175 168,186 94,197"/>
+          <polygon class="ln fill-soft" points="252,96 300,88 318,96 270,104"/>
+          <polygon class="ln fill-soft" points="252,96 270,104 270,204 252,196"/>
+          <polygon class="ln fill-soft" points="270,104 318,96 318,196 270,204"/>
+          <line class="ln cy" x1="280" y1="122" x2="308" y2="117"/>
+          <circle cx="280" cy="180" r="2.5" fill="var(--cyan)"/>
+          <path class="dotpath" d="M20,190 C90,185 190,160 276,122"/>
+          <circle class="cdv-pulse" cx="294" cy="118" r="10" fill="none" stroke="var(--cyan)" stroke-width="1.5"/>
+          <g class="cdv-chip-a"><g transform="translate(286,106)"><path class="chip" d="M0,0 h12 l5,5 v17 h-17 z"/><path class="chip-ln" d="M12,0 v5 h5"/><line class="chip-ln" x1="3.5" y1="11" x2="13.5" y2="11"/><line class="chip-ln" x1="3.5" y1="15" x2="13.5" y2="15"/></g></g>
+          <g class="cdv-chip-b"><g transform="translate(286,106)"><path class="chip" d="M0,0 h12 l5,5 v17 h-17 z"/><path class="chip-ln" d="M12,0 v5 h5"/><line class="chip-ln" x1="3.5" y1="11" x2="13.5" y2="11"/><line class="chip-ln" x1="3.5" y1="15" x2="13.5" y2="15"/></g></g>
+          <g class="cdv-chip-c"><g transform="translate(286,106)"><path class="chip" d="M0,0 h12 l5,5 v17 h-17 z"/><path class="chip-ln" d="M12,0 v5 h5"/><line class="chip-ln" x1="3.5" y1="11" x2="13.5" y2="11"/><line class="chip-ln" x1="3.5" y1="15" x2="13.5" y2="15"/></g></g>
+          <text x="52" y="222">your machines</text>
+        </svg>
+        <p class="cdv-cap">Statements, notes, and email file into the knowledge base on your own computer. They stay there.</p>
+      </div>
+      <div class="cdv-panel">
+        <div class="cdv-kicker">The web app</div>
+        <svg class="cdv-fig" viewBox="0 0 400 230" role="img" aria-label="A browser sending documents into a locked cloud environment secured by Briefly">
+          <ellipse class="cdv-shadow" cx="200" cy="206" rx="120" ry="10"/>
+          <g class="cdv-cloud-g">
+            <path class="ln fill-soft" d="M120,140 C86,140 78,106 108,96 C104,68 140,54 166,68 C178,42 224,44 236,70 C270,60 296,88 282,112 C308,122 300,140 268,140 Z"/>
+            <g class="cdv-lock-g">
+              <rect class="ln cy" x="180" y="100" width="30" height="24" rx="4" fill="rgba(140,216,255,.08)"/>
+              <path class="ln cy" d="M186,100 v-8 a9,9 0 0 1 18,0 v8"/>
+              <circle cx="195" cy="112" r="2.5" fill="var(--cyan)"/>
+            </g>
+            <circle cx="262" cy="84" r="4" fill="var(--blue)"/>
+            <circle cx="262" cy="84" r="8" fill="none" stroke="rgba(47,140,255,.35)" stroke-width="2"/>
+          </g>
+          <line class="dotpath" x1="200" y1="186" x2="200" y2="148"/>
+          <rect class="ln fill-soft" x="142" y="182" width="128" height="34" rx="6"/>
+          <line class="ln-soft" x1="142" y1="192" x2="270" y2="192"/>
+          <circle cx="150" cy="187" r="1.6" fill="rgba(244,241,233,.6)"/>
+          <circle cx="156" cy="187" r="1.6" fill="rgba(244,241,233,.6)"/>
+          <text x="149" y="207">app.brieflywealth.com</text>
+          <g class="cdv-up-a"><g transform="translate(192,158)"><path class="chip" d="M0,0 h12 l5,5 v17 h-17 z"/><path class="chip-ln" d="M12,0 v5 h5"/><line class="chip-ln" x1="3.5" y1="11" x2="13.5" y2="11"/><line class="chip-ln" x1="3.5" y1="15" x2="13.5" y2="15"/></g></g>
+          <g class="cdv-up-b"><g transform="translate(192,158)"><path class="chip" d="M0,0 h12 l5,5 v17 h-17 z"/><path class="chip-ln" d="M12,0 v5 h5"/><line class="chip-ln" x1="3.5" y1="11" x2="13.5" y2="11"/><line class="chip-ln" x1="3.5" y1="15" x2="13.5" y2="15"/></g></g>
+          <g class="cdv-up-c"><g transform="translate(192,158)"><path class="chip" d="M0,0 h12 l5,5 v17 h-17 z"/><path class="chip-ln" d="M12,0 v5 h5"/><line class="chip-ln" x1="3.5" y1="11" x2="13.5" y2="11"/><line class="chip-ln" x1="3.5" y1="15" x2="13.5" y2="15"/></g></g>
+        </svg>
+        <p class="cdv-cap">Files live in an environment we secure and control, and your firm decides who signs in.</p>
+      </div>
+    </div>
     <div class="cols3">
       <div class="col">
         <div class="where">Your machines</div>
