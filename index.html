@@ -311,24 +311,16 @@
   .custody .eyebrow { color: var(--cream-soft); }
   .custody h2 { color: var(--cream); }
   .custody .lede { color: var(--cream-soft); }
-  .cols3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 34px; margin-top: 44px; }
-  .col { border-top: 1px solid rgba(244,241,233,.28); padding: 18px 0 0; }
-  .col h3 { font-size: 15px; font-weight: 700; margin-bottom: 8px; color: var(--cream); }
-  .col .where { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--cyan); margin-bottom: 10px; }
-  .col p, .col li { font-size: 13.5px; color: var(--cream-soft); }
-  .col ul { list-style: none; margin-top: 6px; }
-  .col li { border-top: 1px solid rgba(244,241,233,.16); padding: 7px 0; }
-  .col.ours { border-top: 2px solid var(--cyan); }
-
-  /* custody visual: toggle between the two types, one ASCII stage */
-  .cdv-tabs { display: flex; gap: 10px; margin-top: 36px; flex-wrap: wrap; }
-  .cdv-tabs button { font-family: var(--mono); font-size: 12px; padding: 8px 18px; border-radius: 999px; border: 1px solid rgba(244,241,233,.28); background: transparent; color: var(--cream-soft); cursor: pointer; transition: color .2s, background-color .2s, border-color .2s; }
-  .cdv-tabs button:hover { border-color: var(--cream-soft); }
-  .cdv-tabs button.on { background: var(--cream); color: var(--navy-band); border-color: var(--cream); }
-  .cdv-tabs button:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
-  .custody-stage-wrap { container-type: inline-size; margin-top: 26px; }
-  .cdv-stage { display: block; width: 100%; margin: 0; overflow: hidden; font-family: var(--mono); font-size: 3.8px; font-size: .371cqw; line-height: 1.06; letter-spacing: 0; color: rgba(244,241,233,.9); pointer-events: none; user-select: none; }
-  .cdv-stagecap { margin-top: 16px; font-size: 14px; color: var(--cream-soft); max-width: 640px; }
+  /* custody visual: two doors, hard side-by-side split */
+  .cdv-doors { display: grid; grid-template-columns: 1fr 52px 1fr; margin-top: 40px; align-items: stretch; }
+  .cdv-door { container-type: inline-size; }
+  .cdv-door-cnv { display: block; width: 100%; margin: 0; overflow: hidden; font-family: var(--mono); font-size: 4px; font-size: .874cqw; line-height: 1.06; letter-spacing: 0; color: rgba(244,241,233,.9); pointer-events: none; user-select: none; }
+  .cdv-door-kicker { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--cyan); margin: 16px 0 6px; }
+  .cdv-door h3 { font-family: var(--serif); font-weight: 400; font-size: 21px; color: var(--cream); }
+  .cdv-door p { font-size: 13.5px; color: var(--cream-soft); margin-top: 6px; max-width: 400px; line-height: 1.6; }
+  .cdv-divider { position: relative; }
+  .cdv-divider::before { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: rgba(244,241,233,.22); }
+  .cdv-divider span { position: absolute; left: 50%; top: 42%; transform: translate(-50%,-50%); font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--cream-soft); background: var(--navy-band); padding: 8px 2px; }
   .custody-carveout { margin-top: 26px; font-size: 14px; color: var(--cream-soft); max-width: 640px; }
   .custody-links { margin-top: 20px; display: flex; gap: 26px; flex-wrap: wrap; }
   .custody-links .textlink { color: var(--cyan); }
@@ -403,7 +395,9 @@
     .hero-grid { grid-template-columns: 1fr; gap: 36px; }
     .mess-grid { grid-template-columns: 1fr; }
     .chip-field { min-height: 260px; }
-    .cols3, .ways-grid { grid-template-columns: 1fr; }
+    .ways-grid { grid-template-columns: 1fr; }
+    .cdv-doors { grid-template-columns: 1fr; gap: 34px; }
+    .cdv-divider { display: none; }
     .day-row { grid-template-columns: 1fr; gap: 20px; }
     .day-lede-cols { grid-template-columns: 1fr; gap: 14px; }
     footer .foot-grid { grid-template-columns: 1fr 1fr; }
@@ -599,47 +593,28 @@
   <div class="container">
     <div class="eyebrow">Where your client data lives</div>
     <h2>Your files stay yours, organized right where they already live.</h2>
-    <p class="lede">Most AI tools for advisors upload your client data to their servers and promise to protect it. The Briefly connector is built so the promise isn't needed.</p>
-    <div class="cdv-tabs" role="group" aria-label="Choose how Briefly runs">
-      <button id="cdvTabConn" class="on" type="button" aria-pressed="true">The connector</button>
-      <button id="cdvTabWeb" type="button" aria-pressed="false">The web app</button>
-    </div>
-    <div class="custody-stage-wrap" role="img" aria-label="The connector keeps client files on your machines, Claude reads them there, and only three small signals reach Briefly. The web app keeps files in an environment Briefly secures and controls, and your team signs in from a browser.">
-      <pre class="cdv-stage" id="cdvStage" aria-hidden="true"></pre>
-    </div>
-    <p class="cdv-stagecap" id="cdvStageCap">Client files stay on your machines. Claude reads them there on your firm's plan, and only three small signals, your sign-in, a seat check, and de-identified preferences, ever reach Briefly.</p>
-    <div id="cdvConnDetail">
-    <div class="cols3">
-      <div class="col">
-        <div class="where">Your machines</div>
-        <h3>The client files</h3>
-        <p>Every statement, note, and email stays in your firm's own folders. Briefly builds and maintains the knowledge base right there.</p>
+    <p class="lede">Most AI tools for advisors upload your client data to their servers and promise to protect it. Briefly gives you two ways to run it, and both put the choice in your hands.</p>
+    <div class="cdv-doors">
+      <div class="cdv-door" role="img" aria-label="Documents filing into a computer that stays in your office">
+        <pre class="cdv-door-cnv" id="cdvDoorL" aria-hidden="true"></pre>
+        <div class="cdv-door-kicker">The connector</div>
+        <h3>Files stay on your machines.</h3>
+        <p>Briefly builds the knowledge base in your firm's own folders and Claude reads it right there, on your plan. Only your sign-in, a seat check, and de-identified preferences ever reach Briefly.</p>
       </div>
-      <div class="col">
-        <div class="where">Claude, on your firm's plan</div>
-        <h3>The reading</h3>
-        <p>Claude reads the knowledge base from your machines through Briefly's connector, under the terms of your own Claude plan.</p>
-      </div>
-      <div class="col ours">
-        <div class="where">Briefly's servers</div>
-        <h3>Three things, ever</h3>
-        <ul>
-          <li>Your sign-in</li>
-          <li>A check that your seat is active</li>
-          <li>De-identified preferences for how you like things written</li>
-        </ul>
+      <div class="cdv-divider" aria-hidden="true"><span>or</span></div>
+      <div class="cdv-door" role="img" aria-label="A browser sending documents up into a cloud environment secured by Briefly">
+        <pre class="cdv-door-cnv" id="cdvDoorR" aria-hidden="true"></pre>
+        <div class="cdv-door-kicker">The web app</div>
+        <h3>Files live with us, locked down.</h3>
+        <p>We build the client file for you in an environment we secure and control. Your team signs in from a browser, and your firm decides who gets a seat.</p>
       </div>
     </div>
-    <p class="custody-carveout">That third column is the complete list. Client files, client names, and account data never appear in it, and we never train AI models on client data.</p>
-    </div>
+    <p class="custody-carveout">Either way, we never train AI models on client data, and a seat can move between the two without rebuilding anything.</p>
 <script>
     (function () {
-      var stage = document.getElementById('cdvStage');
-      var cap = document.getElementById('cdvStageCap');
-      var detail = document.getElementById('cdvConnDetail');
-      var tabC = document.getElementById('cdvTabConn');
-      var tabW = document.getElementById('cdvTabWeb');
-      if (!stage || !tabC || !tabW) return;
+      var dL = document.getElementById('cdvDoorL');
+      var dR = document.getElementById('cdvDoorR');
+      if (!dL || !dR) return;
       var RAMP = ' .:-=+*#%@';
       var LX = 0.66, LY = 0.52, LZ = 0.42, LL = Math.sqrt(LX*LX+LY*LY+LZ*LZ);
       var YS = 0.52, PITCH = -0.18, CP = Math.cos(PITCH), SP = Math.sin(PITCH);
@@ -675,7 +650,7 @@
       function doc(g,r,c){ for (var i=0;i<DOC.length;i++) stamp(g,r+i,c,DOC[i]); }
       function qbez(a,b,cc,t){ var u=1-t; return [u*u*a[0]+2*u*t*b[0]+t*t*cc[0], u*u*a[1]+2*u*t*b[1]+t*t*cc[1]]; }
       function grid(rows, cols) { var g=[]; for (var r=0;r<rows;r++) g.push(new Array(cols).fill(' ')); return g; }
-      function flush(g) { var out='', r; for (r=0;r<g.length;r++) out += g[r].join('')+'\n'; stage.textContent = out; }
+      function flush(pre, g) { var out='', r; for (r=0;r<g.length;r++) out += g[r].join('')+'\n'; pre.textContent = out; }
       function mesh(g, yaw, cx, cyr, s) {
         var i, r, c, vis = [];
         var cy = Math.cos(yaw), sy = Math.sin(yaw);
@@ -756,106 +731,65 @@
           }
         }
       }
-      var SP0=[6,44], SP1=[46,47], SP2=[78,26];
-      function drawConn(t, yaw) {
-        var g = grid(52, 448), c, r;
-        mesh(g, yaw, 83, 25, 0.44);
-        roundbox(g, 8, 198, 38, 277);
-        for (c=199;c<277;c++) put(g,12,c,'-');
-        stamp(g,10,201,'..'); stamp(g,10,205,'Claude');
-        for (r=14;r<=15;r++) for (c=202;c<=234;c++) put(g,r,c,'=');
-        var lines=[[19,272],[22,266],[25,258]], li;
-        for (li=0;li<3;li++) for (c=202;c<=lines[li][1];c++) put(g,lines[li][0],c,':');
-        stamp(g,29,202,'[ 3 sources ]');
-        var sweep = 14 + Math.floor(((t / 5500) % 1) * 22);
-        if (sweep > 13 && sweep < 37) for (c = 200; c < 275; c++) if (g[sweep][c] === ' ' || g[sweep][c] === ':' || g[sweep][c] === '.') put(g, sweep, c, '~');
-        roundbox(g, 10, 352, 38, 380);
-        stamp(g,13,363,'.--.'); stamp(g,14,363,'|  |');
-        stamp(g,15,361,'+------+'); stamp(g,16,361,'|  ::  |'); stamp(g,17,361,'|  ::  |'); stamp(g,18,361,'+------+');
-        stamp(g,23,356,'o --------------------');
-        stamp(g,28,356,'o --------------------');
-        stamp(g,33,356,'o --------------------');
-        var m=Math.floor(t/160)%3;
-        for (c=146;c<=192;c++) if ((c+3-m)%3===0) put(g,24,c,'.');
-        for (c=281;c<=348;c++) if (c%3===0) put(g,24,c,'.');
-        var ph=(t/9000)%1, d;
-        for (d=0;d<3;d++){
-          var pd=ph-0.5-d*0.07;
-          if (pd>=0 && pd<=0.22) put(g,24,Math.round(281+(pd/0.22)*67),'o');
-        }
-        var i;
-        for (i=0.08;i<0.95;i+=0.06){ var tp=qbez(SP0,SP1,SP2,i); if (g[Math.round(tp[1])][Math.round(tp[0])]===' ') put(g,Math.round(tp[1]),Math.round(tp[0]),'.'); }
-        for (d=0;d<2;d++){
-          var pd2=ph-d*0.5; if (pd2<0) pd2+=1;
-          if (pd2<0.42){ var pos=qbez(SP0,SP1,SP2,pd2/0.42); doc(g,Math.round(pos[1])-2,Math.round(pos[0])-3); }
-          else if (pd2<0.55){
-            var rp2=Math.round(2+((pd2-0.42)/0.13)*5);
-            put(g,26-rp2,80,'*'); put(g,26+rp2,80,'*');
-            put(g,26,80-rp2*2,'*'); put(g,26,80+rp2*2,'*');
-          }
-        }
-        flush(g);
-      }
-      function drawWeb(t, yaw, bob) {
-        var g = grid(52, 448), c, r;
-        roundbox(g, 14, 30, 40, 150);
-        for (c=31;c<150;c++) put(g,18,c,'-');
-        stamp(g,16,34,'..');
-        stamp(g,16,40,'app.brieflywealth.com');
-        for (r=22;r<=23;r++) for (c=36;c<=80;c++) put(g,r,c,'=');
-        var lines=[[27,140],[30,132],[33,120]], li;
-        for (li=0;li<3;li++) for (c=36;c<=lines[li][1];c++) put(g,lines[li][0],c,':');
-        stamp(g,36,36,'[ your team signs in ]');
-        cloudR(g, yaw, bob, 300, 22, 0.62, 46);
-        stamp(g,20,289,'.--.'); stamp(g,21,289,'|  |');
-        stamp(g,22,287,'+------+'); stamp(g,23,287,'|  ::  |'); stamp(g,24,287,'|  ::  |'); stamp(g,25,287,'+------+');
-        stamp(g,44,272,'[ an environment we secure and control ]');
-        var m=Math.floor(t/160)%3;
-        for (c=156;c<=248;c++) if ((c+3-m)%3===0) put(g,26,c,'.');
+      var BP0=[4,38], BP1=[34,40], BP2=[62,20];
+      function drawDoorL(t, yaw) {
+        var g = grid(46, 190), i;
+        mesh(g, yaw, 100, 21, 0.4);
+        for (i=0.08;i<0.95;i+=0.07){ var tp=qbez(BP0,BP1,BP2,i); if (g[Math.round(tp[1])][Math.round(tp[0])]===' ') put(g,Math.round(tp[1]),Math.round(tp[0]),'.'); }
         var ph=(t/9000)%1, d;
         for (d=0;d<2;d++){
           var pd=ph-d*0.5; if (pd<0) pd+=1;
-          if (pd<0.36){ doc(g, 22, Math.round(156+(pd/0.36)*92)-3); }
+          if (pd<0.42){ var pos=qbez(BP0,BP1,BP2,pd/0.42); doc(g,Math.round(pos[1])-2,Math.round(pos[0])-3); }
+          else if (pd<0.55){
+            var rp2=Math.round(1+((pd-0.42)/0.13)*4);
+            put(g,20-rp2,63,'*'); put(g,20+rp2,63,'*');
+            put(g,20,63-rp2*2,'*'); put(g,20,63+rp2*2,'*');
+          }
         }
-        flush(g);
+        flush(dL, g);
       }
-      var CAP = {
-        conn: "Client files stay on your machines. Claude reads them there on your firm's plan, and only three small signals, your sign-in, a seat check, and de-identified preferences, ever reach Briefly.",
-        web: "We build the client file for you in an environment we secure and control. Your team signs in from a browser, your firm decides who gets a seat, and answers come back cited the same way."
-      };
-      var mode = 'conn';
-      function drawActive(t) {
-        if (mode === 'conn') drawConn(t, -0.52 + 0.2*Math.sin(t/2300));
-        else drawWeb(t, -0.31 + 0.12*Math.sin(t/2300), Math.sin(t/1400)*3);
+      function drawDoorR(t, yaw, bob) {
+        var g = grid(46, 190), c;
+        cloudR(g, yaw, bob, 95, 13, 0.5, 26);
+        roundbox(g, 33, 55, 43, 135);
+        for (c=56;c<135;c++) put(g,35,c,'-');
+        stamp(g, 34, 58, '..');
+        stamp(g, 39, 84, 'app.brieflywealth.com');
+        var m=Math.floor(t/160)%3, r2;
+        for (r2=27;r2<=32;r2++) if ((r2+3-m)%3===0) put(g,r2,95,'.');
+        var ph=(t/9000)%1, d;
+        for (d=0;d<2;d++){
+          var pd=ph-d*0.5; if (pd<0) pd+=1;
+          if (pd<0.3){ var rr=Math.round(33-(pd/0.3)*14); if (rr>16) doc(g,rr-4,91); }
+        }
+        flush(dR, g);
       }
-      function setMode(m2) {
-        mode = m2;
-        tabC.className = m2==='conn' ? 'on' : '';
-        tabW.className = m2==='web' ? 'on' : '';
-        tabC.setAttribute('aria-pressed', m2==='conn' ? 'true' : 'false');
-        tabW.setAttribute('aria-pressed', m2==='web' ? 'true' : 'false');
-        cap.textContent = CAP[m2];
-        if (detail) detail.style.display = m2==='conn' ? '' : 'none';
-        drawActive(2000);
-      }
-      tabC.addEventListener('click', function(){ setMode('conn'); });
-      tabW.addEventListener('click', function(){ setMode('web'); });
       var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (reduced) { drawActive(2000); return; }
-      var running = false, tick = 0;
+      if (reduced) { drawDoorL(2000, -0.5); drawDoorR(0, -0.3, 0); return; }
+      var runL = false, runR = false, anyRun = false, tick = 0;
       function loop(t) {
-        if (!running) return;
-        if ((tick++ & 1) === 0) drawActive(t);
+        if (!anyRun) return;
+        if ((tick++ & 1) === 0) {
+          if (runL) drawDoorL(t, -0.52 + 0.2*Math.sin(t/2300));
+          if (runR) drawDoorR(t, -0.31 + 0.12*Math.sin(t/2300), Math.sin(t/1400)*3);
+        }
         requestAnimationFrame(loop);
       }
+      function sync() {
+        var was = anyRun; anyRun = runL || runR;
+        if (anyRun && !was) requestAnimationFrame(loop);
+      }
       if ('IntersectionObserver' in window) {
-        new IntersectionObserver(function (es) {
-          var on = es[0].isIntersecting;
-          if (on && !running) { running = true; requestAnimationFrame(loop); }
-          if (!on) running = false;
-        }, { rootMargin: '80px' }).observe(stage);
-      } else { running = true; requestAnimationFrame(loop); }
-      drawActive(2000);
+        var io = new IntersectionObserver(function (es) {
+          es.forEach(function (en) {
+            if (en.target === dL) runL = en.isIntersecting;
+            if (en.target === dR) runR = en.isIntersecting;
+          });
+          sync();
+        }, { rootMargin: '80px' });
+        io.observe(dL); io.observe(dR);
+      } else { runL = runR = true; sync(); }
+      drawDoorL(2000, -0.5); drawDoorR(0, -0.3, 0);
     })();
     </script>
     <div class="custody-links">
