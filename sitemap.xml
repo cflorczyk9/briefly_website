@@ -128,19 +128,25 @@
   </url>
   <url>
     <loc>https://www.brieflywealth.com/privacy-policy</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://www.brieflywealth.com/terms-of-service</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://www.brieflywealth.com/subprocessors</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-08-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.brieflywealth.com/eula</loc>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>

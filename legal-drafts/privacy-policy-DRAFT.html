@@ -531,7 +531,7 @@
 
 <!-- ==================== DRAFT BANNER ==================== -->
 <div class="draft-banner" role="note" aria-label="Draft status notice">
-  <strong>Draft for legal review</strong> · July 23, 2026 · Not published. Internal working draft only, do not send to customers.
+  <strong>Draft for legal review</strong> · July 23, 2026, amended August 3, 2026 · Not published. Internal working draft only, do not send to customers.
 </div>
 
 <!-- ==================== NAV ==================== -->
@@ -666,7 +666,7 @@
         <p><strong>Account and sign-in information.</strong> To provision and authenticate a Connector Customer's account, Briefly's servers receive and store the same category of account information described in subsection (a): name, email address, firm name, job title, and related registration details, processed through Amazon Cognito.</p>
         <p><strong>Seat and entitlement records.</strong> We store records of which seats, features, and entitlements are assigned to a Connector Customer's account, used to license and meter the Connector.</p>
         <p><strong>De-identified preference rules.</strong> As a Connector Customer uses the Service, Briefly's servers may receive and store de-identified, tokenized preference rules, small pieces of learned formatting or workflow preference that are stripped of client names, account numbers, and other identifying detail before they leave the customer's computer. <mark>[CONFIRM WITH ENGINEERING: tokenization has zero exceptions incl. logs]</mark></p>
-        <p><strong>Telemetry.</strong> <mark>[CONFIRM WITH ENGINEERING: does the Connector send Briefly any basic usage or diagnostic telemetry beyond the categories above, such as install or launch events, error logs, or tool-call counts? If yes, describe it here. If no, state that none is collected.]</mark></p>
+        <p><strong>Usage telemetry.</strong> When a Connector Customer uses a Briefly tool inside Claude, the Connector sends Briefly's servers a usage event record describing the call: the tool invoked, the event type (query, capture, injection, or artifact), the outcome (for example success or error), seat and firm identifiers, an internal compute-cost figure, and timestamps. These records do not include the contents of the customer's files, prompts, or Outputs. We use them to license and meter seats, monitor reliability, and understand feature usage. <mark>[CONFIRM WITH ENGINEERING: whether any diagnostic or error logging beyond these usage event records reaches Briefly's servers]</mark></p>
 
         <p><strong>Categories of Personal Information (Connector).</strong> The following table summarizes what Briefly processes for Connector Customers. No row in this table includes client documents, financial account information, or other Client Data, because Briefly does not receive it through the Connector.</p>
 
@@ -700,6 +700,13 @@
               <td>Sign-in logs, IP address at authentication</td>
               <td>From the Connector's sign-in flow</td>
               <td>Security, fraud detection</td>
+              <td>No</td>
+            </tr>
+            <tr>
+              <td>Usage Telemetry</td>
+              <td>Tool-call event records: tool name, event type, outcome, seat and firm identifiers, timestamps (no file contents, prompts, or Outputs)</td>
+              <td>From the Connector's tool calls</td>
+              <td>Seat licensing and metering, reliability, feature usage</td>
               <td>No</td>
             </tr>
             <tr>
@@ -740,6 +747,7 @@
 
         <h3>Connector Customers</h3>
         <p>The Connector reads client files locally and passes relevant content into the customer's own Claude conversation. That AI processing runs on the customer's own Claude or Anthropic plan, under the customer's own agreement with Anthropic, not through a Briefly-operated AI pipeline. Briefly does not transmit client data to Anthropic on the customer's behalf. <mark>[LEGAL REVIEW: confirm accurate for connector architecture]</mark></p>
+        <p><strong>The Claude boundary.</strong> Content a Connector Customer passes into a Claude conversation is handled by Anthropic under the customer's own agreement with Anthropic and Anthropic's own privacy documentation, not under this Policy. Briefly does not control, and is not responsible for, Anthropic's retention or use of that content. Anthropic offers plan types that differ in how customer content is retained and used; selecting a plan appropriate to the customer's regulatory obligations is the customer's responsibility.</p>
       </section>
 
       <section>
@@ -827,6 +835,7 @@
           <li><strong>Opt out of profiling.</strong> Opt out of profiling in furtherance of decisions that produce legal or similarly significant effects (we do not engage in such profiling).</li>
           <li><strong>Non-discrimination.</strong> We will not discriminate against you for exercising any of these rights.</li>
         </ul>
+        <p><strong>Opt-out preference signals.</strong> We recognize and honor browser-based universal opt-out preference signals, including Global Privacy Control (GPC), as valid opt-out requests in states that require them. Because we do not sell Personal Information or share it for cross-context behavioral advertising, a GPC signal does not change how we handle your data; it is honored as confirmation of a practice that is already our default.</p>
         <h3>How to submit a request</h3>
         <p>Submit requests to <a href="mailto:contact@brieflywealth.com">contact@brieflywealth.com</a>. We will acknowledge within ten (10) business days and respond within forty-five (45) calendar days, extendable once by an additional forty-five (45) days with written notice. We verify requests by matching the account email plus one additional identifier. If we deny your request, you may appeal by replying to our denial. We will respond to appeals within sixty (60) days. Authorized agents may submit requests on your behalf with written authorization. We will contact you to verify the agent's authority.</p>
         <p><strong>Service-provider routing.</strong> Where Briefly processes Client Data on behalf of an RIA Customer, we will route end-client requests to the Customer (the controller) within ten (10) business days, and the Customer is responsible for substantive response.</p>
@@ -901,6 +910,7 @@
       <h4>Legal</h4>
       <a href="privacy-policy-DRAFT.html">Privacy (draft)</a>
       <a href="terms-of-service-DRAFT.html">Terms (draft)</a>
+      <a href="eula-DRAFT.html">Connector EULA (draft)</a>
       <a href="subprocessors-DRAFT.html">Sub-processors (draft)</a>
     </div>
   </div>

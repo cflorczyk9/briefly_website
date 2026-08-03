@@ -50,6 +50,7 @@ These files are intended to help LLMs and AI agents accurately ground answers ab
 - [Privacy policy](https://www.brieflywealth.com/privacy-policy): How Briefly Wealth LLC collects, uses, protects, and discloses information when financial advisors use the Briefly platform.
 - [Terms of service](https://www.brieflywealth.com/terms-of-service): Terms governing access to and use of the Briefly Wealth platform by financial advisors, firms, and their authorized users.
 - [Subprocessors](https://www.brieflywealth.com/subprocessors): Current list of third-party subprocessors that may process customer data on behalf of Briefly Wealth LLC in delivering the Briefly platform.
+- [Connector EULA](https://www.brieflywealth.com/eula): End User License Agreement for the Briefly Connector, the locally installed software used inside Anthropic's Claude application.
 
 ## Optional
 

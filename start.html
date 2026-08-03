@@ -148,6 +148,7 @@
   .checkout-fallback p { font-size: 14px; color: var(--ink-soft); margin-bottom: 12px; }
 
   .fine-print { margin-top: 20px; font-size: 12.5px; line-height: 1.5; color: var(--ink-muted); }
+  .fine-print a { color: var(--blue-ink); text-decoration: underline; text-underline-offset: 2px; }
 
   .secondary-path { margin-top: 18px; font-size: 14px; color: var(--ink-soft); }
 
@@ -235,6 +236,7 @@
           <input type="text" id="companyWebsite" name="company-website" tabindex="-1" autocomplete="off">
         </div>
         <button type="submit" class="btn btn-checkout" id="checkoutBtn" disabled>Continue to secure checkout</button>
+        <p class="fine-print">By continuing to checkout, you agree to the <a href="/terms-of-service">Terms of Service</a> and <a href="/privacy-policy">Privacy Policy</a>.</p>
       </form>
 
       <div class="checkout-fallback" id="checkoutFallback" role="status" aria-live="assertive" tabindex="-1" hidden>

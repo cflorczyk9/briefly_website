@@ -3,27 +3,27 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sub-processors · Briefly</title>
-<meta name="description" content="Current list of third-party sub-processors that may process customer data on behalf of Briefly Wealth LLC in delivering the Briefly platform.">
+<title>Connector EULA · Briefly</title>
+<meta name="description" content="End User License Agreement for the Briefly Connector, the locally installed software used inside Anthropic's Claude application.">
 <meta name="author" content="Briefly Wealth LLC">
 
-<link rel="canonical" href="https://www.brieflywealth.com/subprocessors" />
+<link rel="canonical" href="https://www.brieflywealth.com/eula" />
 <link rel="icon" type="image/png" sizes="32x32" href="images/briefly_logo_favicon.png?v=2">
 <link rel="icon" type="image/png" sizes="16x16" href="images/briefly_logo_favicon.png?v=2">
 <link rel="apple-touch-icon" sizes="180x180" href="images/briefly_logo_favicon.png?v=2">
 
-<meta property="og:title" content="Sub-processors · Briefly">
-<meta property="og:description" content="Current list of third-party sub-processors that may process customer data on behalf of Briefly Wealth LLC in delivering the Briefly platform.">
+<meta property="og:title" content="Connector EULA · Briefly">
+<meta property="og:description" content="End User License Agreement for the Briefly Connector, the locally installed software used inside Anthropic's Claude application.">
 <meta property="og:image" content="https://www.brieflywealth.com/images/briefly-og-main-2x.png?v=2">
-<meta property="og:url" content="https://www.brieflywealth.com/subprocessors">
+<meta property="og:url" content="https://www.brieflywealth.com/eula">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Sub-processors · Briefly">
-<meta name="twitter:description" content="Current list of third-party sub-processors that may process customer data on behalf of Briefly Wealth LLC.">
+<meta name="twitter:title" content="Connector EULA · Briefly">
+<meta name="twitter:description" content="End User License Agreement for the Briefly Connector, the locally installed software used inside Anthropic's Claude application.">
 <meta name="twitter:image" content="https://www.brieflywealth.com/images/briefly-og-main-2x.png?v=2">
 
 <!-- No analytics on the legal pages. /subprocessors states that Google Analytics
-     is "Not loaded on the Privacy Policy, Terms of Service, Connector EULA, or this page." Do not
+     is "Not loaded on the Privacy Policy, Terms of Service, or this page." Do not
      re-add the GA4 tag here without changing that sentence first. -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -167,6 +167,14 @@
   }
   .legal-body p strong { font-weight: 700; color: var(--ink); }
   .legal-body p em { font-style: italic; }
+  .legal-body p.caps {
+    font-family: var(--mono);
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 1.7;
+    letter-spacing: .04em;
+    color: var(--ink-soft);
+  }
   .legal-body a {
     color: var(--ink);
     text-decoration: none;
@@ -535,8 +543,8 @@
   }
 </style>
 <!-- mobile-redux -->
-<style id="mobile-redux-subprocessors">
-  /* mobile-redux: long-form legal pages (privacy/terms/subprocessors) */
+<style id="mobile-redux-eula">
+  /* mobile-redux: long-form legal pages (privacy/terms/subprocessors/eula) */
   @media (max-width: 820px) {
     /* tighten page padding so body text has full width */
     main.legal { padding: 40px 18px 64px; }
@@ -620,18 +628,18 @@
     "@graph": [
       {
         "@type": "WebPage",
-        "name": "Sub-processors",
-        "description": "Current list of third-party sub-processors that may process customer data on behalf of Briefly Wealth LLC in delivering the Briefly platform.",
-        "url": "https://www.brieflywealth.com/subprocessors",
+        "name": "Connector EULA",
+        "description": "End User License Agreement for the Briefly Connector, the locally installed software used inside Anthropic's Claude application.",
+        "url": "https://www.brieflywealth.com/eula",
         "publisher": { "@id": "https://www.brieflywealth.com/#org" },
         "inLanguage": "en",
-        "about": "Third-party data sub-processors engaged by Briefly Wealth LLC to support the Briefly platform."
+        "about": "End User License Agreement governing installation and use of the Briefly Connector."
       },
       {
         "@type": "BreadcrumbList",
         "itemListElement": [
           { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.brieflywealth.com/" },
-          { "@type": "ListItem", "position": 2, "name": "Sub-processors", "item": "https://www.brieflywealth.com/subprocessors" }
+          { "@type": "ListItem", "position": 2, "name": "Connector EULA", "item": "https://www.brieflywealth.com/eula" }
         ]
       }
     ]
@@ -662,104 +670,138 @@
   <div class="legal-inner">
 
     <header class="legal-head">
-      <div class="eyebrow">Legal · Sub-processors</div>
-      <h1>Sub-processors</h1>
+      <div class="eyebrow">Legal · Connector EULA</div>
+      <h1>End User License Agreement</h1>
       <div class="meta">Last updated · August 3, 2026</div>
     </header>
 
     <article class="legal-body">
 
-      <p>Briefly Wealth LLC ("Brieflywealth," "we," "us," or "our") engages third-party companies to perform functions of the Service on our behalf. The Service is offered through two surfaces, a hosted Web App and a locally installed Connector for use inside Anthropic's Claude application (each as defined in the Terms of Service), and a sub-processor's access to Customer Data or Client Data can differ by surface; see the "Applies to" column below. This page lists all sub-processors that process Customer Data or Client Data, and serves as the canonical reference for the disclosures and notice commitments in our <a href="/privacy-policy">Privacy Policy</a> and <a href="/terms-of-service">Terms of Service</a>.</p>
-
-      <div class="quick-take">
-        <p><strong>Notice commitment.</strong> We provide at least thirty (30) days' advance notice on this page before adding or replacing any sub-processor that processes Client Data. Customers with active subscriptions may also subscribe to email notifications by writing to <a href="mailto:contact@brieflywealth.com">contact@brieflywealth.com</a> with the subject line "Sub-processor notifications." Customers may terminate the affected services without penalty if they reasonably object on regulatory or security grounds.</p>
-      </div>
+      <section>
+        <p>This End User License Agreement ("EULA") is a binding agreement between you and Briefly Wealth LLC ("Brieflywealth," "we," "us," or "our") governing your download, installation, and use of the Briefly Connector, the software you install locally to use Briefly inside Anthropic's Claude application, together with its documentation and any updates (the "Connector"). By downloading, installing, signing in to, or using the Connector, you (a) acknowledge that you have read and understand this EULA, (b) represent that you are at least 18 years of age and legally able to enter into a binding contract, and (c) accept this EULA and agree to be bound by its terms. If you do not agree, do not download, install, or use the Connector.</p>
+        <p><strong>Relationship to the Customer Agreement.</strong> The Connector is licensed to the firm or individual that holds the Briefly account and subscription (the "Customer") under the Briefly <a href="/terms-of-service">Terms of Service</a> or a separately signed agreement between the Customer and Brieflywealth (either, the "Customer Agreement"). This EULA binds each individual who installs or uses the Connector under the Customer's account (an "End User"). If you are the Customer, both the Customer Agreement and this EULA apply to you. If this EULA conflicts with the Customer Agreement, the Customer Agreement controls as to the rights and obligations of the Customer. <!-- LEGAL REVIEW: confirm the EULA-to-Customer-Agreement precedence and that signed pilot agreements are captured by the "separately signed agreement" language --></p>
+      </section>
 
       <section>
         <div class="section-eyebrow">§ 01</div>
-        <h2>Current Sub-processors</h2>
-        <p>The following sub-processors are engaged by Briefly to deliver the Service as of the "Last updated" date above. Each is bound by a written agreement requiring it to protect Personal Information consistent with our Privacy Policy and applicable law. The "Applies to" column states which surface, or surfaces, each sub-processor's access covers.</p>
-
-        <table class="subprocessors">
-          <thead>
-            <tr>
-              <th>Sub-processor</th>
-              <th>Purpose</th>
-              <th>Data categories</th>
-              <th>Applies to</th>
-              <th>Location</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Amazon Web Services, Inc.</td>
-              <td>Cloud hosting (compute, storage, database, Cognito authentication)</td>
-              <td>Account Information, Usage Data, and, for Web App Customers, Client Data</td>
-              <td>Web app (all customer data categories); Connector (account and entitlement data only)</td>
-              <td>United States (us-east-2, Ohio)</td>
-            </tr>
-            <tr>
-              <td>Anthropic, PBC</td>
-              <td>LLM inference for document extraction and brief generation</td>
-              <td>Client Data passed in prompts; Outputs</td>
-              <td>Web app (client data passed in prompts). Not a Briefly sub-processor for Connector Customers; the customer's own Anthropic plan governs. <!-- LEGAL REVIEW: confirm accurate for connector architecture --></td>
-              <td>United States</td>
-            </tr>
-          </tbody>
-        </table>
+        <h2>License Grant</h2>
+        <p>Subject to your compliance with this EULA and the Customer Agreement, Brieflywealth grants you a limited, non-exclusive, non-transferable, non-sublicensable, revocable license to: (a) download and install the Connector on computers or devices that you own or control; and (b) use the Connector within Anthropic's Claude application, solely for the Customer's internal business purposes and within the seats and entitlements assigned to the Customer's account.</p>
       </section>
 
       <section>
         <div class="section-eyebrow">§ 02</div>
-        <h2>No-Training Commitment</h2>
-        <p>For the Web App, we route Client Data only to AI sub-processors that contractually prohibit use of inputs and outputs for training general-purpose models. As of the date above, our sole AI sub-processor for the Web App is Anthropic, PBC, operating under its Commercial Terms (§ B.1), which prohibit Anthropic from training models on Customer Content.</p>
-        <p>We do not use Client Data to train, fine-tune, or improve any Brieflywealth-owned model. The Service does not currently include any Brieflywealth-trained model.</p>
-        <p>For Connector Customers, Brieflywealth does not route Client Data anywhere, because Brieflywealth does not receive Client Data from Connector Customers. Any processing of Client Data by Claude for a Connector Customer happens under that customer's own Anthropic plan and is not a Brieflywealth sub-processor relationship. <!-- LEGAL REVIEW: confirm accurate for connector architecture --></p>
+        <h2>License Restrictions</h2>
+        <p>You shall not:</p>
+        <ul>
+          <li>Copy the Connector, except as necessary to install and run it or to keep one archival copy.</li>
+          <li>Modify, translate, adapt, or create derivative works of the Connector.</li>
+          <li>Reverse engineer, decompile, disassemble, or otherwise attempt to derive the source code of the Connector, except to the extent applicable law permits this notwithstanding this restriction.</li>
+          <li>Distribute, sell, rent, lease, lend, host, or otherwise make the Connector available to any person other than End Users authorized under the Customer's account.</li>
+          <li>Remove, alter, or obscure any copyright, trademark, or other proprietary notices in or on the Connector.</li>
+          <li>Circumvent, disable, or interfere with the Connector's seat, entitlement, authentication, or usage-metering mechanisms.</li>
+          <li>Use the Connector to develop a competing product or service, or for benchmarking or competitive analysis purposes.</li>
+          <li>Share your sign-in credentials, use another person's seat, or access another user's account.</li>
+          <li>Use the Connector in violation of any applicable law or regulation, or of the Acceptable Use provisions of the Customer Agreement, which apply to your use of the Connector as an End User.</li>
+        </ul>
       </section>
 
       <section>
         <div class="section-eyebrow">§ 03</div>
-        <h2>Infrastructure Sub-processors (Non-Data-Processing)</h2>
-        <p>The following providers support the Service but do not process Client Data, regardless of surface:</p>
-        <ul>
-          <li><strong>Namecheap, Inc.</strong> Domain registration and DNS for brieflywealth.com (United States).</li>
-          <li><strong>GitHub, Inc.</strong> Source code hosting (United States). No Client Data is stored in source repositories.</li>
-        </ul>
+        <h2>Reservation of Rights</h2>
+        <p>The Connector is provided under license, and not sold, to you. You receive no ownership interest in the Connector, and Brieflywealth and its licensors retain all rights, title, and interest in and to the Connector, including all software, prompts, workflow architecture, documentation, and all copyrights, trademarks, and other intellectual property rights therein. All rights not expressly granted in this EULA are reserved. Nothing in this EULA grants you any rights by implication, estoppel, or otherwise.</p>
       </section>
 
       <section>
         <div class="section-eyebrow">§ 04</div>
-        <h2>Marketing-Site Sub-processors</h2>
-        <p>The following providers support the public marketing site at brieflywealth.com only. They do not process Client Data or any data submitted through the Web App or the Connector.</p>
-        <ul>
-          <li><strong>Google LLC (Google Analytics).</strong> Website analytics (GA4) on the marketing site. Collects approximate IP, browser, device, page-view, and session metadata for aggregate traffic measurement. Not loaded on the Privacy Policy, Terms of Service, Connector EULA, or this page.</li>
-          <li><strong>Google LLC (Google Fonts).</strong> Web font delivery. Receives the visitor's IP address solely to serve the font file.</li>
-        </ul>
+        <h2>Your Files, Local Processing, and What Brieflywealth Receives</h2>
+        <p>The Connector reads client files from a folder on your own computer. Those files, and any client data within them ("Client Data"), are not uploaded to or stored on Brieflywealth's infrastructure. Content from your files enters an AI model only when you use the Connector inside your own Claude conversation, and that processing runs on the Customer's own Claude or Anthropic plan, under the Customer's own agreement with Anthropic. Brieflywealth does not transmit your Client Data to Anthropic on your behalf. <!-- LEGAL REVIEW: confirm accurate for connector architecture --></p>
+        <p><strong>What the Connector does send Brieflywealth.</strong> To operate the account layer of the Service, the Connector transmits to Brieflywealth: (a) account and sign-in information; (b) seat and entitlement records; (c) usage event records describing each tool call (the tool invoked, the event type, the outcome, seat and firm identifiers, an internal cost figure, and timestamps), which do not include the contents of your files, your prompts, or your Outputs; and (d) de-identified, tokenized preference rules that are stripped of client names, account numbers, and other identifying detail before they leave your computer. This information is handled as described in our <a href="/privacy-policy">Privacy Policy</a>. By using the Connector, you consent to this processing.</p>
       </section>
 
       <section>
         <div class="section-eyebrow">§ 05</div>
-        <h2>Sub-processor Change History</h2>
-        <p>We maintain a chronological log of material additions and removals to the sub-processor list. The current list above supersedes earlier versions.</p>
-        <ul>
-          <li><strong>May 31, 2026.</strong> Initial publication of this Sub-processors page. Confirms current list of Amazon Web Services and Anthropic, PBC as Client-Data-processing sub-processors.</li>
-          <li><strong>August 3, 2026.</strong> Added the Connector as a second Service surface and added the "Applies to" column to distinguish sub-processor scope between Web App Customers and Connector Customers. Clarified that Anthropic is not a Brieflywealth sub-processor for Connector Customers.</li>
-        </ul>
+        <h2>Claude and Third-Party Services</h2>
+        <p>The Connector functions only inside Anthropic's Claude application and requires a Claude plan to use. Claude is a third-party service. Your use of Claude is governed by the Customer's agreement with Anthropic, and Anthropic's handling of content you pass into a Claude conversation is governed by Anthropic's own terms and privacy documentation, not by this EULA or by Brieflywealth's Privacy Policy. Brieflywealth does not control, and is not responsible for, Claude's availability, behavior, outputs, or data handling, or those of any other third-party application or service you use with the Connector.</p>
+        <p>Anthropic offers plan types that differ in how customer content is retained and used. Selecting and maintaining a Claude plan appropriate to the Customer's regulatory and confidentiality obligations is the Customer's responsibility.</p>
       </section>
 
       <section>
         <div class="section-eyebrow">§ 06</div>
-        <h2>Customer Objection Rights</h2>
-        <p>Customers may object to a proposed new sub-processor by writing to <a href="mailto:contact@brieflywealth.com">contact@brieflywealth.com</a> within thirty (30) days of the change being posted to this page. We will work in good faith to address the objection. If we cannot reasonably resolve the objection, the Customer may terminate the affected services without penalty pursuant to § 08 of the Terms of Service.</p>
+        <h2>Outputs</h2>
+        <p>Briefs, summaries, and other materials generated through the Connector ("Outputs") are produced by automated AI processing within your own Claude session and are subject to the Outputs and Disclaimer provisions of the Customer Agreement, which apply to you as an End User. Outputs do not constitute financial, investment, legal, tax, or compliance advice; they may contain errors, omissions, or hallucinated content, including statements that appear to be sourced from your files but do not in fact appear there; and you are solely responsible for verifying every factual assertion in an Output against the underlying source material before any client-facing or professional use.</p>
       </section>
 
       <section>
         <div class="section-eyebrow">§ 07</div>
-        <h2>Contact</h2>
+        <h2>Updates</h2>
+        <p>Brieflywealth may from time to time release updates to the Connector, including new versions of the installable package, bug fixes, security patches, and feature changes. Some updates may be required for the Connector to continue working with the Service or with current versions of Claude, and Brieflywealth has no obligation to maintain or support superseded versions. All updates are part of the Connector and are governed by this EULA.</p>
+      </section>
+
+      <section>
+        <div class="section-eyebrow">§ 08</div>
+        <h2>Term and Termination</h2>
+        <p>This EULA is effective from the date you first download, install, or use the Connector and continues until terminated. This EULA terminates automatically, without notice, when the Customer Agreement or the Customer's subscription expires or is terminated, or when the Customer deactivates the seat under which you use the Connector. You may terminate this EULA at any time by uninstalling and deleting the Connector. Brieflywealth may terminate this EULA immediately upon written notice if you breach it.</p>
+        <p>Upon termination, you must stop using the Connector and delete all copies of it. Termination does not affect your client files, which remain in your own folder on your own computer and were never held by Brieflywealth; account-layer data held by Brieflywealth is retained and deleted according to the schedule in the <a href="/privacy-policy">Privacy Policy</a>. Sections 03 through 06 and 09 through 16 survive termination.</p>
+      </section>
+
+      <section>
+        <div class="section-eyebrow">§ 09</div>
+        <h2>Disclaimer of Warranties</h2>
+        <p class="caps">THE CONNECTOR IS PROVIDED "AS IS" AND "AS AVAILABLE," WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, ACCURACY, AND NON-INFRINGEMENT. WE DO NOT WARRANT THAT THE CONNECTOR WILL BE UNINTERRUPTED, ERROR-FREE, OR COMPLETELY SECURE, THAT IT WILL REMAIN COMPATIBLE WITH ANY VERSION OF CLAUDE, OR THAT ANY OUTPUTS WILL BE ACCURATE, COMPLETE, OR RELIABLE. WE DO NOT WARRANT THAT THE CONNECTOR WILL SATISFY ANY SPECIFIC REGULATORY OR COMPLIANCE REQUIREMENTS APPLICABLE TO YOUR PRACTICE.</p>
+      </section>
+
+      <section>
+        <div class="section-eyebrow">§ 10</div>
+        <h2>Limitation of Liability</h2>
+        <p>To the fullest extent permitted by law, Brieflywealth's aggregate liability to you as an End User arising out of or related to this EULA shall not exceed the greater of (a) the amounts you personally paid for your license to the Connector in the twelve (12) months preceding the event giving rise to the claim or (b) one hundred dollars ($100). In no event shall Brieflywealth be liable to you for indirect, incidental, consequential, special, punitive, or exemplary damages, including lost profits, lost data, or business interruption, even if advised of the possibility of such damages. <!-- LEGAL REVIEW: confirm the End User cap figure; the Customer-level caps live in the Terms of Service --></p>
+        <p>The Customer's remedies against Brieflywealth are governed by the Customer Agreement, not by this EULA. Nothing in this Section limits liability for gross negligence or willful misconduct, or any liability that cannot be limited as a matter of law.</p>
+      </section>
+
+      <section>
+        <div class="section-eyebrow">§ 11</div>
+        <h2>Indemnification</h2>
+        <p>You agree to indemnify, defend, and hold harmless Brieflywealth and its officers, directors, employees, agents, and affiliates from and against any losses, damages, liabilities, and costs (including reasonable attorneys' fees) arising from or relating to your use or misuse of the Connector in violation of this EULA or applicable law, or your breach of this EULA. This obligation does not apply to the extent a claim arises from Brieflywealth's own breach of this EULA, gross negligence, or willful misconduct, and it does not expand any indemnification obligation the Customer has under the Customer Agreement. <!-- LEGAL REVIEW: confirm the individual End User indemnity is wanted alongside the Customer indemnity in the Terms of Service --></p>
+      </section>
+
+      <section>
+        <div class="section-eyebrow">§ 12</div>
+        <h2>Export Regulation</h2>
+        <p>The Connector may be subject to U.S. export control laws, including the Export Control Reform Act and its associated regulations. You shall not, directly or indirectly, export, re-export, or release the Connector to, or make the Connector accessible from, any jurisdiction or country to which export, re-export, or release is prohibited by law, rule, or regulation, and you shall comply with all applicable federal laws, regulations, and rules prior to exporting, re-exporting, releasing, or otherwise making the Connector available outside the United States.</p>
+      </section>
+
+      <section>
+        <div class="section-eyebrow">§ 13</div>
+        <h2>U.S. Government End Users</h2>
+        <p>The Connector is commercial computer software as defined in 48 C.F.R. § 2.101. Accordingly, if you are an agency of the U.S. Government or any contractor therefor, you receive only those rights with respect to the Connector as are granted to all other end users under license, in accordance with 48 C.F.R. § 12.212 and 48 C.F.R. §§ 227.7202-1 through 227.7202-4, as applicable.</p>
+      </section>
+
+      <section>
+        <div class="section-eyebrow">§ 14</div>
+        <h2>Governing Law and Venue</h2>
+        <p>This EULA shall be governed by and construed in accordance with the laws of the State of Illinois, without regard to its conflict of law principles. Any dispute arising out of or relating to this EULA or the Connector shall be resolved exclusively in the state or federal courts located in Cook County, Illinois, and you consent to the personal jurisdiction of such courts.</p>
+      </section>
+
+      <section>
+        <div class="section-eyebrow">§ 15</div>
+        <h2>Limitation of Time to File Claims</h2>
+        <p>Any cause of action or claim you may have arising out of or relating to this EULA or the Connector must be commenced within one (1) year after the cause of action accrues; otherwise, such cause of action or claim is permanently barred. <!-- LEGAL REVIEW: the Terms of Service contain no equivalent limitation; conform the two documents or delete this Section --></p>
+      </section>
+
+      <section>
+        <div class="section-eyebrow">§ 16</div>
+        <h2>Severability, Waiver, and Entire Agreement</h2>
+        <p>If any provision of this EULA is illegal or unenforceable under applicable law, the remainder of the provision will be amended to achieve as closely as possible the effect of the original term, and all other provisions of this EULA will continue in full force and effect. No failure to exercise, and no delay in exercising, any right or power under this EULA operates as a waiver of that right or power, and no single or partial exercise of any right or power precludes further exercise of that or any other right or power.</p>
+        <p>This EULA, the <a href="/privacy-policy">Privacy Policy</a>, and the Customer Agreement constitute the entire agreement between you and Brieflywealth with respect to the Connector and supersede all prior or contemporaneous understandings regarding it. As to the Customer, the Customer Agreement controls in the event of a conflict with this EULA.</p>
+      </section>
+
+      <section>
+        <div class="section-eyebrow">§ 17</div>
+        <h2>Contact Us</h2>
+        <p>If you have any questions about this EULA, please contact us at:</p>
         <address>
           <div class="row"><span class="label">Entity ·</span><span class="value">Briefly Wealth LLC</span></div>
           <div class="row"><span class="label">Email ·</span><span class="value"><a href="mailto:contact@brieflywealth.com">contact@brieflywealth.com</a></span></div>
-          <div class="row"><span class="label">Location ·</span><span class="value">Chicago, Illinois</span></div>
+          <div class="row"><span class="label">Office ·</span><span class="value">Chicago, Illinois</span></div>
         </address>
       </section>
 
