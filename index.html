@@ -323,14 +323,14 @@
   /* custody visual: one flowing scene (machine -> Claude -> Briefly) + web-app band */
   .custody-scene-wrap { position: relative; margin-top: 42px; container-type: inline-size; }
   .custody-scene { display: block; width: 100%; height: auto; position: relative; z-index: 1; }
-  .cdv-ascii { position: absolute; left: 1%; top: 3%; width: 33%; height: 92%; z-index: 0; margin: 0; overflow: hidden; font-family: var(--mono); font-size: 3.5px; font-size: .37cqw; line-height: 1.06; letter-spacing: .02em; color: rgba(244,241,233,.9); pointer-events: none; user-select: none; }
+  .cdv-ascii { display: block; width: 100%; margin: 0; overflow: hidden; font-family: var(--mono); font-size: 3.8px; font-size: .371cqw; line-height: 1.06; letter-spacing: 0; color: rgba(244,241,233,.9); pointer-events: none; user-select: none; }
   .cdv-kicker { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--cyan); margin-bottom: 4px; }
   .cdv-cap { font-size: 13.5px; color: var(--cream-soft); margin-top: 2px; max-width: 420px; }
   .cdv-webapp { display: grid; grid-template-columns: 1.2fr 1fr; gap: 34px; align-items: center; margin-top: 34px; border-top: 1px solid rgba(244,241,233,.28); padding-top: 24px; }
   .cdv-fig { display: block; width: 100%; max-width: 330px; height: auto; margin: 0 0 0 auto; }
   .cdv-cloudwrap { position: relative; width: 100%; max-width: 330px; margin-left: auto; container-type: inline-size; }
   .cdv-cloudwrap .cdv-fig { max-width: none; margin: 0; position: relative; z-index: 1; }
-  .cdv-ascii-cloud { position: absolute; left: 2%; top: 2%; width: 96%; height: 66%; z-index: 0; margin: 0; overflow: hidden; font-family: var(--mono); font-size: 4px; font-size: 1.33cqw; line-height: 1.05; letter-spacing: 0; color: rgba(244,241,233,.9); pointer-events: none; user-select: none; }
+  .cdv-ascii-cloud { display: block; width: 100%; margin: 0; overflow: hidden; font-family: var(--mono); font-size: 4.4px; font-size: 1.384cqw; line-height: 1.06; letter-spacing: 0; color: rgba(244,241,233,.9); pointer-events: none; user-select: none; }
   .custody-scene .ln, .cdv-fig .ln { fill: none; stroke: var(--cream); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
   .custody-scene .ln-soft, .cdv-fig .ln-soft { fill: none; stroke: rgba(244,241,233,.45); stroke-width: 1.2; }
   .custody-scene .fill-soft, .cdv-fig .fill-soft { fill: rgba(244,241,233,.05); }
@@ -671,47 +671,7 @@
     <div class="eyebrow">Where your client data lives</div>
     <h2>Your files stay yours, organized right where they already live.</h2>
     <p class="lede">Most AI tools for advisors upload your client data to their servers and promise to protect it. The Briefly connector is built so the promise isn't needed.</p>
-    <div class="custody-scene-wrap">
-    <svg class="custody-scene" viewBox="0 0 1080 240" role="img" aria-label="Client files flow into a computer that stays in your office. Claude reads from it on your firm's plan. Only three small signals ever reach Briefly's servers.">
-      <!-- node 1: old-style machine, big rear housing -->
-      <ellipse class="cdv-shadow" cx="205" cy="222" rx="155" ry="8"/>
-      <path class="dotpath" d="M12,168 C60,166 88,150 100,130"/>
-      <circle class="cdv-pulse" cx="152" cy="112" r="11" fill="none" stroke="var(--cyan)" stroke-width="1.5"/>
-      <g class="cdv-chip-a"><g transform="translate(144,100)"><path class="chip" d="M0,0 h12 l5,5 v17 h-17 z"/><path class="chip-ln" d="M12,0 v5 h5"/><line class="chip-ln" x1="3.5" y1="11" x2="13.5" y2="11"/><line class="chip-ln" x1="3.5" y1="15" x2="13.5" y2="15"/></g></g>
-      <g class="cdv-chip-b"><g transform="translate(144,100)"><path class="chip" d="M0,0 h12 l5,5 v17 h-17 z"/><path class="chip-ln" d="M12,0 v5 h5"/><line class="chip-ln" x1="3.5" y1="11" x2="13.5" y2="11"/><line class="chip-ln" x1="3.5" y1="15" x2="13.5" y2="15"/></g></g>
-      <!-- link: machine -> Claude -->
-      <path class="dotpath cdv-march" d="M362,126 H466"/>
-      <!-- node 2: Claude reading card -->
-      <ellipse class="cdv-shadow" cx="560" cy="222" rx="110" ry="7"/>
-      <rect class="ln fill-soft" x="470" y="58" width="180" height="130" rx="10"/>
-      <line class="ln-soft" x1="470" y1="82" x2="650" y2="82"/>
-      <circle cx="482" cy="70" r="1.6" fill="rgba(244,241,233,.6)"/>
-      <circle cx="489" cy="70" r="1.6" fill="rgba(244,241,233,.6)"/>
-      <text x="500" y="74">Claude</text>
-      <rect x="484" y="94" width="84" height="14" rx="7" fill="rgba(244,241,233,.14)"/>
-      <line class="ln-soft" x1="484" y1="122" x2="636" y2="122"/>
-      <line class="ln-soft" x1="484" y1="134" x2="620" y2="134"/>
-      <line class="ln-soft" x1="484" y1="146" x2="600" y2="146"/>
-      <rect x="484" y="158" width="58" height="13" rx="3" fill="rgba(140,216,255,.12)"/>
-      <line class="cdv-scan cy" x1="478" y1="92" x2="642" y2="92" stroke-width="1.2"/>
-      <!-- link: Claude -> Briefly, exactly three small signals -->
-      <path class="dotpath" d="M654,126 H858"/>
-      <circle class="cdv-dot-a" cx="650" cy="126" r="3" fill="var(--cyan)"/>
-      <circle class="cdv-dot-b" cx="650" cy="126" r="3" fill="var(--cyan)"/>
-      <circle class="cdv-dot-c" cx="650" cy="126" r="3" fill="var(--cyan)"/>
-      <!-- node 3: Briefly badge -->
-      <ellipse class="cdv-shadow" cx="908" cy="222" rx="80" ry="7"/>
-      <rect class="ln fill-soft" x="862" y="64" width="92" height="118" rx="10"/>
-      <path class="ln cy" d="M899,86 v-7 a8,8 0 0 1 16,0 v7" fill="none"/>
-      <rect class="ln cy" x="894" y="86" width="26" height="20" rx="3" fill="rgba(140,216,255,.08)"/>
-      <circle cx="907" cy="96" r="2" fill="var(--cyan)"/>
-      <circle cx="876" cy="128" r="2" fill="var(--cyan)"/>
-      <line class="ln-soft" x1="884" y1="128" x2="940" y2="128"/>
-      <circle cx="876" cy="144" r="2" fill="var(--cyan)"/>
-      <line class="ln-soft" x1="884" y1="144" x2="940" y2="144"/>
-      <circle cx="876" cy="160" r="2" fill="var(--cyan)"/>
-      <line class="ln-soft" x1="884" y1="160" x2="940" y2="160"/>
-    </svg>
+    <div class="custody-scene-wrap" role="img" aria-label="Client files flow into a computer that stays in your office. Claude reads from it on your firm's plan. Only three small signals ever reach Briefly's servers.">
     <pre class="cdv-ascii" id="cdvAscii" aria-hidden="true"></pre>
     </div>
     
@@ -742,19 +702,7 @@
         <div class="cdv-kicker">The web app</div>
         <p class="cdv-cap">On the web app, files live in an environment we secure and control, and your firm decides who signs in.</p>
       </div>
-      <div class="cdv-cloudwrap">
-      <svg class="cdv-fig" viewBox="0 0 400 230" role="img" aria-label="A browser sending documents into a cloud environment secured by Briefly">
-          <ellipse class="cdv-shadow" cx="200" cy="206" rx="120" ry="10"/>
-          <line class="dotpath" x1="200" y1="186" x2="200" y2="148"/>
-          <rect class="ln fill-soft" x="142" y="182" width="128" height="34" rx="6"/>
-          <line class="ln-soft" x1="142" y1="192" x2="270" y2="192"/>
-          <circle cx="150" cy="187" r="1.6" fill="rgba(244,241,233,.6)"/>
-          <circle cx="156" cy="187" r="1.6" fill="rgba(244,241,233,.6)"/>
-          <text x="149" y="207">app.brieflywealth.com</text>
-          <g class="cdv-up-a"><g transform="translate(192,158)"><path class="chip" d="M0,0 h12 l5,5 v17 h-17 z"/><path class="chip-ln" d="M12,0 v5 h5"/><line class="chip-ln" x1="3.5" y1="11" x2="13.5" y2="11"/><line class="chip-ln" x1="3.5" y1="15" x2="13.5" y2="15"/></g></g>
-          <g class="cdv-up-b"><g transform="translate(192,158)"><path class="chip" d="M0,0 h12 l5,5 v17 h-17 z"/><path class="chip-ln" d="M12,0 v5 h5"/><line class="chip-ln" x1="3.5" y1="11" x2="13.5" y2="11"/><line class="chip-ln" x1="3.5" y1="15" x2="13.5" y2="15"/></g></g>
-          <g class="cdv-up-c"><g transform="translate(192,158)"><path class="chip" d="M0,0 h12 l5,5 v17 h-17 z"/><path class="chip-ln" d="M12,0 v5 h5"/><line class="chip-ln" x1="3.5" y1="11" x2="13.5" y2="11"/><line class="chip-ln" x1="3.5" y1="15" x2="13.5" y2="15"/></g></g>
-        </svg>
+      <div class="cdv-cloudwrap" role="img" aria-label="A browser sending documents up into a cloud environment secured by Briefly">
       <pre class="cdv-ascii-cloud" id="cdvCloud" aria-hidden="true"></pre>
       </div>
     </div>
@@ -765,9 +713,10 @@
       if (!pre || !preC) return;
       var RAMP = ' .:-=+*#%@';
       var LX = 0.66, LY = 0.52, LZ = 0.42, LL = Math.sqrt(LX*LX+LY*LY+LZ*LZ);
-      var YSCALE = 0.571;
-      var COLS = 128, ROWS = 52;
+      var YSCALE = 0.52;
+      var COLS = 448, ROWS = 58;
       var pitch = -0.18, cp = Math.cos(pitch), sp = Math.sin(pitch);
+
       function box(x0, x1, y0, y1, z0, z1) {
         return [
           { p: [[x0,y0,z1],[x1,y0,z1],[x1,y1,z1],[x0,y1,z1]] },
@@ -779,22 +728,40 @@
         ];
       }
       var faces = box(-70, 70, -60, 60, 40, 72);
-      var fz = 40, b = { x0: -38, x1: 38, y0: -30, y1: 36, z: -85 };
-      faces.push({ p: [[-70,60,fz],[70,60,fz],[b.x1,b.y1,b.z],[b.x0,b.y1,b.z]] });
-      faces.push({ p: [[70,-60,fz],[-70,-60,fz],[b.x0,b.y0,b.z],[b.x1,b.y0,b.z]] });
-      faces.push({ p: [[-70,-60,fz],[-70,60,fz],[b.x0,b.y1,b.z],[b.x0,b.y0,b.z]] });
-      faces.push({ p: [[70,60,fz],[70,-60,fz],[b.x1,b.y0,b.z],[b.x1,b.y1,b.z]] });
-      faces.push({ p: [[b.x1,b.y0,b.z],[b.x0,b.y0,b.z],[b.x0,b.y1,b.z],[b.x1,b.y1,b.z]] });
+      var fz = 40, bk = { x0: -38, x1: 38, y0: -30, y1: 36, z: -85 };
+      faces.push({ p: [[-70,60,fz],[70,60,fz],[bk.x1,bk.y1,bk.z],[bk.x0,bk.y1,bk.z]] });
+      faces.push({ p: [[70,-60,fz],[-70,-60,fz],[bk.x0,bk.y0,bk.z],[bk.x1,bk.y0,bk.z]] });
+      faces.push({ p: [[-70,-60,fz],[-70,60,fz],[bk.x0,bk.y1,bk.z],[bk.x0,bk.y0,bk.z]] });
+      faces.push({ p: [[70,60,fz],[70,-60,fz],[bk.x1,bk.y0,bk.z],[bk.x1,bk.y1,bk.z]] });
+      faces.push({ p: [[bk.x1,bk.y0,bk.z],[bk.x0,bk.y0,bk.z],[bk.x0,bk.y1,bk.z],[bk.x1,bk.y1,bk.z]] });
       faces = faces.concat(box(-22, 22, -92, -60, 12, 44));
       faces = faces.concat(box(-46, 46, -102, -92, -2, 58));
       faces.push({ p: [[-52,-44,72.5],[52,-44,72.5],[52,44,72.5],[-52,44,72.5]], screen: 1 });
-      var grid = new Array(ROWS);
-      function frame(yaw) {
-        var cy = Math.cos(yaw), sy = Math.sin(yaw), i, r, c;
-        for (r = 0; r < ROWS; r++) grid[r] = new Array(COLS).fill(' ');
+
+      var MCX = 83, MCY = 28, MS = 0.5;
+      function put(g, r, c, ch) { if (r >= 0 && r < g.length && c >= 0 && c < g[0].length) g[r][c] = ch; }
+      function stamp(g, r, c, str) { for (var i = 0; i < str.length; i++) if (str[i] !== ' ') put(g, r, c + i, str[i]); }
+      function roundbox(g, r0, c0, r1, c1) {
+        var r, c;
+        for (c = c0 + 1; c < c1; c++) { put(g, r0, c, '-'); put(g, r1, c, '-'); }
+        for (r = r0 + 1; r < r1; r++) { put(g, r, c0, '|'); put(g, r, c1, '|'); }
+        put(g, r0, c0, '.'); put(g, r0, c1, '.');
+        put(g, r1, c0, "'"); put(g, r1, c1, "'");
+      }
+      var DOC = ['.----.', '|====|', '|    |', '|====|', "'----'"];
+      function doc(g, r, c) { for (var i = 0; i < DOC.length; i++) stamp(g, r + i, c, DOC[i]); }
+      function qbez(a, b, cc, t) {
+        var u = 1 - t;
+        return [u*u*a[0] + 2*u*t*b[0] + t*t*cc[0], u*u*a[1] + 2*u*t*b[1] + t*t*cc[1]];
+      }
+      var P0 = [6, 50], P1 = [46, 53], P2 = [78, 30];
+
+      function renderMachine(g, yaw) {
+        var i, r, c;
         var vis = [];
         for (i = 0; i < faces.length; i++) {
           var q = faces[i], rp = [], zsum = 0, k;
+          var cy = Math.cos(yaw), sy = Math.sin(yaw);
           for (k = 0; k < 4; k++) {
             var x = q.p[k][0], y = q.p[k][1], z = q.p[k][2];
             var x1 = x * cy + z * sy, z1 = -x * sy + z * cy;
@@ -806,15 +773,14 @@
           var nx = ay*bz-az*by, ny = az*bx-ax*bz, nz = ax*by-ay*bx;
           if (nz <= 0.01) continue;
           var nl = Math.sqrt(nx*nx+ny*ny+nz*nz) || 1;
-          var bri = Math.max(0, (nx*LX+ny*LY+nz*LZ)/(nl*LL));
-          vis.push({ rp: rp, z: zsum/4, bri: bri, screen: q.screen });
+          vis.push({ rp: rp, z: zsum/4, bri: Math.max(0,(nx*LX+ny*LY+nz*LZ)/(nl*LL)), screen: q.screen });
         }
         vis.sort(function (a, b2) { return a.z - b2.z; });
         for (i = 0; i < vis.length; i++) {
           var f = vis[i], pts = [], k2;
           for (k2 = 0; k2 < 4; k2++) {
             var P = f.rp[k2], per = 1 / (1 - P[2] * 0.0016);
-            pts.push([P[0]*0.52*per + COLS/2, -P[1]*0.52*0.52*per + ROWS/2 + 1]);
+            pts.push([P[0]*MS*per + MCX, -P[1]*MS*YSCALE*per + MCY]);
           }
           var minX = COLS, maxX = 0, minY = ROWS, maxY = 0, k3;
           for (k3 = 0; k3 < 4; k3++) {
@@ -832,36 +798,106 @@
               if (!inside) continue;
               if (f.screen) {
                 var v = (py - minY) / Math.max(1, maxY - minY), u = (px - minX) / Math.max(1, maxX - minX);
-                grid[r][c] = (u > 0.14 && u < 0.58 && ((v > 0.3 && v < 0.38) || (v > 0.52 && v < 0.6))) ? ':' : '.';
-              } else grid[r][c] = ch;
+                g[r][c] = (u > 0.14 && u < 0.58 && ((v > 0.3 && v < 0.38) || (v > 0.52 && v < 0.6))) ? ':' : '.';
+              } else g[r][c] = ch;
             }
           }
           var e;
           for (e = 0; e < 4; e++) {
-            var p1 = pts[e], p2 = pts[(e + 1) % 4];
-            var n2 = Math.max(Math.abs(p2[0]-p1[0]), Math.abs(p2[1]-p1[1])) * 2 + 1, s2;
+            var q1 = pts[e], q2 = pts[(e + 1) % 4];
+            var n2 = Math.max(Math.abs(q2[0]-q1[0]), Math.abs(q2[1]-q1[1])) * 2 + 1, s2;
             for (s2 = 0; s2 <= n2; s2++) {
-              var ex = Math.round(p1[0] + (p2[0]-p1[0]) * s2 / n2 - 0.5), ey = Math.round(p1[1] + (p2[1]-p1[1]) * s2 / n2 - 0.5);
-              if (ex >= 0 && ex < COLS && ey >= 0 && ey < ROWS) grid[ey][ex] = '#';
+              put(g, Math.round(q1[1] + (q2[1]-q1[1]) * s2 / n2 - 0.5), Math.round(q1[0] + (q2[0]-q1[0]) * s2 / n2 - 0.5), '#');
             }
           }
         }
+      }
+
+      function renderPanels(g, t) {
+        var r, c;
+        roundbox(g, 8, 198, 40, 277);
+        for (c = 199; c < 277; c++) put(g, 12, c, '-');
+        stamp(g, 10, 201, '..');
+        stamp(g, 10, 205, 'Claude');
+        for (r = 14; r <= 15; r++) for (c = 202; c <= 234; c++) put(g, r, c, '=');
+        var lines = [[19, 272], [22, 266], [25, 258]];
+        for (var li = 0; li < 3; li++) for (c = 202; c <= lines[li][1]; c++) put(g, lines[li][0], c, ':');
+        stamp(g, 30, 202, '[ 3 sources ]');
+        var sweep = 14 + Math.floor(((t / 5500) % 1) * 23);
+        if (sweep > 13 && sweep < 39) for (c = 200; c < 275; c++) if (g[sweep][c] === ' ' || g[sweep][c] === ':' || g[sweep][c] === '.') put(g, sweep, c, '~');
+        roundbox(g, 10, 352, 40, 380);
+        stamp(g, 13, 363, '.--.');
+        stamp(g, 14, 363, '|  |');
+        stamp(g, 15, 361, '+------+');
+        stamp(g, 16, 361, '|  ::  |');
+        stamp(g, 17, 361, '|  ::  |');
+        stamp(g, 18, 361, '+------+');
+        stamp(g, 24, 356, 'o --------------------');
+        stamp(g, 29, 356, 'o --------------------');
+        stamp(g, 34, 356, 'o --------------------');
+      }
+
+      function renderLinks(g, t) {
+        var m = Math.floor(t / 160) % 3, c;
+        for (c = 146; c <= 192; c++) if ((c + 3 - m) % 3 === 0) put(g, 26, c, '.');
+        for (c = 281; c <= 348; c++) if (c % 3 === 0) put(g, 26, c, '.');
+        var ph = (t / 9000) % 1, d;
+        for (d = 0; d < 3; d++) {
+          var pd = (ph - 0.5 - d * 0.07);
+          if (pd < 0 || pd > 0.22) continue;
+          put(g, 26, Math.round(281 + (pd / 0.22) * 67), 'o');
+        }
+      }
+
+      function renderDocs(g, t) {
+        var i2;
+        for (i2 = 0.08; i2 < 0.95; i2 += 0.06) {
+          var tp = qbez(P0, P1, P2, i2);
+          if (g[Math.round(tp[1])][Math.round(tp[0])] === ' ') put(g, Math.round(tp[1]), Math.round(tp[0]), '.');
+        }
+        var ph = (t / 9000) % 1, d;
+        for (d = 0; d < 2; d++) {
+          var pd = ph - d * 0.5;
+          if (pd < 0) pd += 1;
+          if (pd < 0.42) {
+            var pos = qbez(P0, P1, P2, pd / 0.42);
+            doc(g, Math.round(pos[1]) - 2, Math.round(pos[0]) - 3);
+          } else if (pd < 0.55) {
+            var rp2 = Math.round(2 + ((pd - 0.42) / 0.13) * 5);
+            put(g, 30 - rp2, 80, '*'); put(g, 30 + rp2, 80, '*');
+            put(g, 30, 80 - rp2 * 2, '*'); put(g, 30, 80 + rp2 * 2, '*');
+            put(g, 30 - Math.round(rp2 * 0.7), 80 + Math.round(rp2 * 1.4), '*');
+            put(g, 30 - Math.round(rp2 * 0.7), 80 - Math.round(rp2 * 1.4), '*');
+            put(g, 30 + Math.round(rp2 * 0.7), 80 + Math.round(rp2 * 1.4), '*');
+            put(g, 30 + Math.round(rp2 * 0.7), 80 - Math.round(rp2 * 1.4), '*');
+          }
+        }
+      }
+
+      function frame(t, yaw) {
+        var grid = [], r;
+        for (r = 0; r < ROWS; r++) grid.push(new Array(COLS).fill(' '));
+        renderMachine(grid, yaw);
+        renderPanels(grid, t);
+        renderLinks(grid, t);
+        renderDocs(grid, t);
         var out = '';
         for (r = 0; r < ROWS; r++) out += grid[r].join('') + '\n';
         pre.textContent = out;
       }
-      var CCOLS = 120, CROWS = 26;
+
+      var CCOLS = 120, CROWS = 41;
       var SPH = [[0,8,0,44],[-48,-2,6,30],[48,0,-4,32],[-20,26,-8,30],[24,24,8,28]];
-      var CCLIP = -26, CS = 0.4;
-      function frameCloud(yaw, bobT) {
+      var CCLIP = -26, CS = 0.36;
+      function frameCloud(t, yaw, bobT) {
         var cy = Math.cos(yaw), sy = Math.sin(yaw);
         var bob = Math.sin(bobT) * 3;
         var sph = SPH.map(function (o) { return [o[0]*cy + o[2]*sy, o[1] + bob, -o[0]*sy + o[2]*cy, o[3]]; });
-        var g2 = [], hit = [], r, c;
-        for (r = 0; r < CROWS; r++) { g2.push(new Array(CCOLS).fill(' ')); hit.push(new Array(CCOLS).fill(false)); }
-        for (r = 0; r < CROWS; r++) {
+        var g = [], hit = [], r, c;
+        for (r = 0; r < CROWS; r++) { g.push(new Array(CCOLS).fill(' ')); hit.push(new Array(CCOLS).fill(false)); }
+        for (r = 0; r < 27; r++) {
           for (c = 0; c < CCOLS; c++) {
-            var x = (c + 0.5 - CCOLS/2) / CS, y = -(r + 0.5 - CROWS/2 - 3) / (CS * YSCALE);
+            var x = (c + 0.5 - CCOLS/2) / CS, y = -(r + 0.5 - 14) / (CS * YSCALE);
             if (y < CCLIP + bob) continue;
             var best = -1e9, bn = null, i2;
             for (i2 = 0; i2 < sph.length; i2++) {
@@ -874,28 +910,44 @@
             if (!bn) continue;
             hit[r][c] = true;
             var bri = Math.max(0, bn[0]*LX + bn[1]*LY + bn[2]*LZ) / LL;
-            g2[r][c] = RAMP[1 + Math.round(Math.pow(bri, 1.2) * 4)];
+            g[r][c] = RAMP[1 + Math.round(Math.pow(bri, 1.2) * 4)];
           }
         }
-        for (r = 0; r < CROWS; r++) {
+        for (r = 0; r < 27; r++) {
           for (c = 0; c < CCOLS; c++) {
             if (!hit[r][c]) continue;
-            if ((r === 0 || !hit[r-1][c]) || (r === CROWS-1 || !hit[r+1][c]) ||
-                (c === 0 || !hit[r][c-1]) || (c === CCOLS-1 || !hit[r][c+1])) g2[r][c] = '%';
+            if ((r === 0 || !hit[r-1][c]) || (r === 26 || !hit[r+1][c]) ||
+                (c === 0 || !hit[r][c-1]) || (c === CCOLS-1 || !hit[r][c+1])) g[r][c] = '%';
+          }
+        }
+        roundbox(g, 31, 28, 39, 92);
+        for (c = 29; c < 92; c++) put(g, 33, c, '-');
+        stamp(g, 32, 30, '..');
+        stamp(g, 36, 49, 'app.brieflywealth.com');
+        var m = Math.floor(t / 160) % 3, r2;
+        for (r2 = 27; r2 <= 30; r2++) if ((r2 + 3 - m) % 3 === 0) put(g, r2, 60, '.');
+        var ph = (t / 9000) % 1, d;
+        for (d = 0; d < 2; d++) {
+          var pd = ph - d * 0.5;
+          if (pd < 0) pd += 1;
+          if (pd < 0.3) {
+            var rr2 = Math.round(31 - (pd / 0.3) * 12);
+            if (rr2 > 18) doc(g, rr2 - 4, 54);
           }
         }
         var out = '';
-        for (r = 0; r < CROWS; r++) out += g2[r].join('') + '\n';
+        for (r = 0; r < CROWS; r++) out += g[r].join('') + '\n';
         preC.textContent = out;
       }
+
       var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (reduced) { frame(-0.5); frameCloud(-0.3, 0); return; }
+      if (reduced) { frame(2000, -0.5); frameCloud(0, -0.3, 0); return; }
       var runM = false, runC = false, anyRun = false, tick = 0;
       function loop(t) {
         if (!anyRun) return;
         if ((tick++ & 1) === 0) {
-          if (runM) frame(-0.52 + 0.2 * Math.sin(t / 2300));
-          if (runC) frameCloud(-0.31 + 0.12 * Math.sin(t / 2300), t / 1400);
+          if (runM) frame(t, -0.52 + 0.2 * Math.sin(t / 2300));
+          if (runC) frameCloud(t, -0.31 + 0.12 * Math.sin(t / 2300), t / 1400);
         }
         requestAnimationFrame(loop);
       }
@@ -904,21 +956,16 @@
         if (anyRun && !was) requestAnimationFrame(loop);
       }
       if ('IntersectionObserver' in window) {
-        new IntersectionObserver(function (es) {
+        var io = new IntersectionObserver(function (es) {
           es.forEach(function (en) {
             if (en.target === pre) runM = en.isIntersecting;
             if (en.target === preC) runC = en.isIntersecting;
           });
           sync();
-        }, { rootMargin: '80px' }).observe(pre) || null;
-      }
-      if ('IntersectionObserver' in window) {
-        new IntersectionObserver(function (es) {
-          es.forEach(function (en) { if (en.target === preC) runC = en.isIntersecting; });
-          sync();
-        }, { rootMargin: '80px' }).observe(preC);
+        }, { rootMargin: '80px' });
+        io.observe(pre); io.observe(preC);
       } else { runM = runC = true; sync(); }
-      frame(-0.5); frameCloud(-0.3, 0);
+      frame(2000, -0.5); frameCloud(0, -0.3, 0);
     })();
     </script>
     <div class="custody-links">
