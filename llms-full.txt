@@ -377,6 +377,35 @@ You can sign up without talking to anyone. Pick your seats, check out, and downl
 
 
 ---
+# Compare the connector and the web app | Briefly
+Source: https://www.brieflywealth.com/compare
+---
+
+The connector and the web app, side by side. Both read from the same client file, cited and correctable. What changes is where the file lives, who builds it, and where you ask.
+
+## What you're comparing, row by row
+
+- Where your files live. Connector: in a folder on your own machines. Web app: in Briefly's hosted environment.
+- Who builds the client file. Connector: your team, working inside Claude. Web app: we build it from Salesforce and Outlook.
+- Where you ask. Connector: inside Claude, the app your team already has open. Web app: the Briefly web app, from any browser.
+- Salesforce routing. Connector: not connected, point Claude at the files you already have. Web app: connected during setup, along with Outlook.
+- Setup effort. Connector: download, sign in, point it at your folder. Web app: we connect your systems and build the file for you.
+- Best for. Connector: teams that already live in Claude. Web app: teams that want the file built for them.
+
+Both plans read and write the same client file. A correction made in one shows up in the other.
+
+## The Claude connector
+
+Your team already works in Claude. One client file per household. Every answer cites the document it came from. Files stay in folders on your own machines. Works inside the Claude your team already opens. Nothing new for advisors to learn. Only your sign-in, a check that your seat is active, and de-identified preference rules reach Briefly's servers. Share a client like any other file.
+
+## The Briefly web app
+
+You want it handled for you. One client file per household. Every answer cites the document it came from. We connect Salesforce and Outlook and build the file for you. A prepared brief before every meeting. You see only your own clients. Share a client, your colleague gets everything. Quarterly reviews and month-end commentary, one click.
+
+Move between them without starting over. Every plan reads from the same knowledge base, and a seat can move from one to the other without rebuilding anything.
+
+
+---
 # Security | Briefly
 Source: https://www.brieflywealth.com/security
 ---
