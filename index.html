@@ -72,15 +72,27 @@
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
+  "@id": "https://www.brieflywealth.com/#faq",
+  "isPartOf": { "@id": "https://www.brieflywealth.com/#website" },
   "mainEntity": [
     {
       "@type": "Question",
       "name": "Is my client data safe?",
-      "acceptedAnswer": { "@type": "Answer", "text": "With the connector, client files stay on your computer and our servers never store them. What does reach us stays at the account level, your sign-in, a seat check, de-identified preference rules, and a short usage record for each tool call. On the AI side, Claude reads the file under your firm's own Claude plan, and on business plans Anthropic's commercial terms bar training on customer content. We don't train AI models on client data either. Firms that choose the hosted version keep their files in an environment we secure and control, and the firm decides who signs in." }
+      "acceptedAnswer": { "@type": "Answer", "text": "With the connector, client files never reach Briefly's servers. They stay in a folder on your own computer, and only your sign-in, a seat check, de-identified preference rules, and a short usage record for each tool call reach us instead. Firms on the hosted version keep files in an environment we secure and control, and the firm decides who signs in. Our security page breaks down the full data path if you want more detail." }
     },
     {
       "@type": "Question",
-      "name": "Can I put client data into ChatGPT or Claude?",
+      "name": "Do you train AI models on my client data?",
+      "acceptedAnswer": { "@type": "Answer", "text": "We don't use client data to train AI models, and any pattern-level learning runs through a de-identified layer with no client name or account number attached. Claude reads the file under your firm's own Claude plan when it answers a question, and for Claude for Work, Claude Enterprise, and the API, Anthropic's commercial terms bar training on customer content. We recommend running Briefly on a business Claude plan for that reason, and our security page covers the difference in full." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Anthropic see my client files when Briefly runs inside Claude?",
+      "acceptedAnswer": { "@type": "Answer", "text": "When you ask a question, Claude reads the file under your firm's own Claude plan to answer it, and Briefly never stores what Claude reads. On business plans, Anthropic's commercial terms bar training on customer content, and that commitment sits in a contract your compliance officer can review. Our security page lays out the full data path, including how personal Claude plans work differently." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I put client data into ChatGPT or Claude directly?",
       "acceptedAnswer": { "@type": "Answer", "text": "Pasting client details into a personal AI chat window sends them to the vendor's servers under consumer terms your firm never reviewed. The SEC's amended Reg S-P rule requires firms to oversee the service providers that handle customer information, which is why compliance teams are asking about AI chat tools. With the Briefly connector, client files stay in your firm's own folders and Claude reads them under the Claude plan your firm chose and can review like any other vendor." }
     },
     {
@@ -91,12 +103,7 @@
     {
       "@type": "Question",
       "name": "Which one should I pick?",
-      "acceptedAnswer": { "@type": "Answer", "text": "If your team already works in Claude, start with the connector. It reads folders on your own machines and answers where you already work. If you want the file built for you, take the web app. We connect Salesforce and Outlook and your team signs in from a browser. A seat can move between them without rebuilding anything." }
-    },
-    {
-      "@type": "Question",
-      "name": "How long does setup take?",
-      "acceptedAnswer": { "@type": "Answer", "text": "The connector installs like any Claude connector and reads the folders you point it at, so most teams are asking questions the same day. The hosted version takes longer because we connect Salesforce and Outlook and build the client file for you." }
+      "acceptedAnswer": { "@type": "Answer", "text": "If your team already works in Claude, start with the connector. It reads folders on your own machines and answers where you already work, usually the same day you install it. If you want the file built for you, take the web app instead. We connect Salesforce and Outlook and build the client file, which takes longer on our side, and your team signs in from a browser. A seat can move between them without rebuilding anything." }
     },
     {
       "@type": "Question",
@@ -324,9 +331,9 @@
   .way-list { list-style: none; margin: 0 0 20px; }
   .way-list li { font-size: 14px; color: var(--ink-soft); border-top: 1px solid var(--rule); padding: 8px 0 8px 22px; position: relative; }
   .way-list li::before { content: "\2713"; position: absolute; left: 2px; color: var(--blue); font-size: 12px; }
-  .ways-note { margin-top: 24px; font-size: 14px; color: var(--ink-soft); max-width: 640px; }
+  .ways-note { margin-top: 24px; font-size: 14px; color: var(--ink-soft); }
   .way .way-fine { margin: 14px 0 0; font-size: 12.5px; color: var(--ink-muted); }
-  .signup-line { margin-top: 30px; max-width: 640px; font-size: 14px; line-height: 1.65; color: var(--ink-soft); }
+  .signup-line { margin-top: 30px; font-size: 14px; line-height: 1.65; color: var(--ink-soft); }
 
   /* band alternation + texture */
   .band-paper2 { background: var(--paper-2); }
@@ -501,12 +508,12 @@
     <div class="win" aria-label="Five advisor questions answered with cited sources in the Briefly web app, cycling">
       <div class="win-bar"><span class="win-dot"></span><span>app.brieflywealth.com &middot; the Briefly web app</span></div>
       <div class="ak" aria-live="polite">
-        <div class="ak-h">Ask Briefly <span class="ak-chip" id="akChip">Henderson, David &amp; Priya</span></div>
-        <div class="ak-q" id="akQ">What changed for the Hendersons since our March review?</div>
+        <div class="ak-h">Ask Briefly <span class="ak-chip" id="akChip">Smith, John &amp; Jane</span></div>
+        <div class="ak-q" id="akQ">What changed for the Smiths since our March review?</div>
         <div class="ak-load" id="akLoad" aria-hidden="true"><span class="ak-dots"><i></i><i></i><i></i></span><span class="ak-ph" id="akPh">Reading the file&hellip;</span></div>
         <div class="ak-ans" id="akAns">
           <p id="akAnsText">Two things. The 401(k) rollover completed at $412,000, and their CPA flagged an open K-1 question in June. Both are filed and linked below.</p>
-          <div class="ak-src"><b>Sources</b><ol id="akSrcList"><li>Henderson Q2 statement (filed 6/30/2026)</li><li>CPA email, M. Hill (filed 6/12/2026)</li></ol></div>
+          <div class="ak-src"><b>Sources</b><ol id="akSrcList"><li>Smith Q2 statement (filed 6/30/2026)</li><li>CPA email, M. Hill (filed 6/12/2026)</li></ol></div>
         </div>
         <div class="ak-prov" id="akProv" data-kind="email">
           <div class="ak-prov-hd" id="akProvHd">Re: K-1 question &middot; M. Hill, CPA</div>
@@ -517,10 +524,10 @@
       </div>
       <div class="hc-dots" id="hcDots" aria-label="Question picker"></div>
       <div class="sr-only" id="hcAll">
-        <div class="hc-item" data-chip="Henderson, David &amp; Priya" data-ph="Reading the file&hellip;|Checking the Q2 statement&hellip;" data-click="2">
-          <p class="hc-q">What changed for the Hendersons since our March review?</p>
+        <div class="hc-item" data-chip="Smith, John &amp; Jane" data-ph="Reading the file&hellip;|Checking the Q2 statement&hellip;" data-click="2">
+          <p class="hc-q">What changed for the Smiths since our March review?</p>
           <p class="hc-ans">Two things. The 401(k) rollover completed at $412,000, and their CPA flagged an open K-1 question in June. Both are filed and linked below.</p>
-          <p class="hc-src">Henderson Q2 statement (filed 6/30/2026) | CPA email, M. Hill (filed 6/12/2026)</p>
+          <p class="hc-src">Smith Q2 statement (filed 6/30/2026) | CPA email, M. Hill (filed 6/12/2026)</p>
           <div class="hc-prov" data-kind="email" data-title="Re: K-1 question &middot; M. Hill, CPA">Still waiting on the K-1 from the Riverside partnership before I can close out their 2025 return. <span class="hl">Can you confirm the rollover check cleared before year end?</span></div>
         </div>
         <div class="hc-item" data-chip="Whole book" data-ph="Reading the file&hellip;|Scanning 84 statements&hellip;" data-click="1">
@@ -581,7 +588,7 @@
         <span class="chip" style="left:36%; top:86%; --dur:7.8s; --del:-3.6s; --dx:-22px; --dy:-10px; --r0:-1deg;   --r1:2.5deg;">2019 financial plan</span>
       </div>
       <div class="filecard" id="fileCard">
-        <h3>Henderson, David &amp; Priya</h3>
+        <h3>Smith, John &amp; Jane</h3>
         <div class="fc-sub">CLIENT KNOWLEDGE BASE &middot; <span id="docCount">84</span> documents &middot; updated today</div>
         <div class="fc-row"><span>401(k) rollover completed, $412,000</span><span class="cite">Q2 statement</span></div>
         <div class="fc-row"><span>Open K-1 question with CPA</span><span class="cite">email, 6/12</span></div>
@@ -634,7 +641,7 @@
   <div class="container">
     <div class="eyebrow">Where your client data lives</div>
     <h2>You choose where your files live, and they stay yours either way.</h2>
-    <p class="lede">Most AI tools for advisors upload your client data to their servers and promise to protect it. Briefly gives you two ways to run it, and both put the choice in your hands.</p>
+    <p class="lede">Most AI tools for advisors upload your client data to their servers and promise to protect it. The two ways to run it above are also the two ways your files can live, and both put the choice in your hands.</p>
     <div class="cdv-doors">
       <div class="cdv-door">
         <svg class="cdv-fig" viewBox="0 0 400 260" role="img" aria-label="A desktop computer in your office">
@@ -644,7 +651,7 @@
           <path class="fill-soft ln" d="M191,170 h18 l5,22 h-28 z"/>
           <rect class="fill-soft ln" x="152" y="192" width="96" height="9" rx="4.5"/>
         </svg>
-        <div class="cdv-door-kicker">The connector</div>
+        <div class="cdv-door-kicker">The Claude connector</div>
         <h3>Files stay on your machines.</h3>
         <p>Briefly builds the knowledge base in your firm's own folders and Claude reads it right there, on your plan. Only your sign-in, a seat check, de-identified preferences, and a short usage record for each tool call ever reach Briefly.</p>
       </div>
@@ -762,10 +769,18 @@
     <div class="faq-list">
       <details open>
         <summary>Is my client data safe?</summary>
-        <p>With the connector, client files stay on your computer and our servers never store them. What does reach us stays at the account level, your sign-in, a seat check, de-identified preference rules, and a short usage record for each tool call. On the AI side, Claude reads the file under your firm's own Claude plan, and on business plans Anthropic's commercial terms bar training on customer content. We don't train AI models on client data either. Firms that choose the hosted version keep their files in an environment we secure and control, and the firm decides who signs in.</p>
+        <p>With the connector, client files never reach Briefly's servers. They stay in a folder on your own computer, and only your sign-in, a seat check, de-identified preference rules, and a short usage record for each tool call reach us instead. Firms on the hosted version keep files in an environment we secure and control, and the firm decides who signs in. Our <a class="textlink" href="/security">security page</a> breaks down the full data path if you want more detail.</p>
       </details>
       <details>
-        <summary>Can I put client data into ChatGPT or Claude?</summary>
+        <summary>Do you train AI models on my client data?</summary>
+        <p>We don't use client data to train AI models, and any pattern-level learning runs through a de-identified layer with no client name or account number attached. Claude reads the file under your firm's own Claude plan when it answers a question, and for Claude for Work, Claude Enterprise, and the API, Anthropic's commercial terms bar training on customer content. We recommend running Briefly on a business Claude plan for that reason, and our <a class="textlink" href="/security">security page</a> covers the difference in full.</p>
+      </details>
+      <details>
+        <summary>Does Anthropic see my client files when Briefly runs inside Claude?</summary>
+        <p>When you ask a question, Claude reads the file under your firm's own Claude plan to answer it, and Briefly never stores what Claude reads. On business plans, Anthropic's commercial terms bar training on customer content, and that commitment sits in a contract your compliance officer can review. Our <a class="textlink" href="/security">security page</a> lays out the full data path, including how personal Claude plans work differently.</p>
+      </details>
+      <details>
+        <summary>Can I put client data into ChatGPT or Claude directly?</summary>
         <p>Pasting client details into a personal AI chat window sends them to the vendor's servers under consumer terms your firm never reviewed. The SEC's amended Reg S-P rule requires firms to oversee the service providers that handle customer information, which is why compliance teams are asking about AI chat tools. With the Briefly connector, client files stay in your firm's own folders and Claude reads them under the Claude plan your firm chose and can review like any other vendor.</p>
       </details>
       <details>
@@ -774,11 +789,7 @@
       </details>
       <details>
         <summary>Which one should I pick?</summary>
-        <p>If your team already works in Claude, start with the connector. It reads folders on your own machines and answers where you already work. If you want the file built for you, take the web app. We connect Salesforce and Outlook and your team signs in from a browser. A seat can move between them without rebuilding anything.</p>
-      </details>
-      <details>
-        <summary>How long does setup take?</summary>
-        <p>The connector installs like any Claude connector and reads the folders you point it at, so most teams are asking questions the same day. The hosted version takes longer because we connect Salesforce and Outlook and build the client file for you.</p>
+        <p>If your team already works in Claude, start with the connector. It reads folders on your own machines and answers where you already work, usually the same day you install it. If you want the file built for you, take the web app instead. We connect Salesforce and Outlook and build the client file, which takes longer on our side, and your team signs in from a browser. A seat can move between them without rebuilding anything.</p>
       </details>
       <details>
         <summary>What happens if I leave?</summary>
@@ -1216,7 +1227,7 @@ BrieflyClips.mountAll();
   show(0);
 })();
 
-/* intake animation: chips swirl, then flow into the Henderson file */
+/* intake animation: chips swirl, then flow into the Smith file */
 (function () {
   var field = document.getElementById('chipField');
   var card = document.getElementById('fileCard');
