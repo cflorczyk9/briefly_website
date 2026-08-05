@@ -11,7 +11,7 @@ Briefly turns the statements, emails, and meeting notes your firm already has in
 
 Run the connector and client files never reach our servers. Or have us set up the web app, connected to your Salesforce and Outlook.
 
-Correct a phrase once, and every brief your firm gets from then on says it your way.
+Used by advisors managing billions in AUM.
 
 ## Ten years of files, one working memory.
 
