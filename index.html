@@ -319,37 +319,6 @@
   .cdv-fig .ln-soft { fill: none; stroke: rgba(244,241,233,.45); stroke-width: 1.2; }
   .cdv-fig .fill-soft { fill: rgba(244,241,233,.05); }
   .cdv-fig .fill-deep { fill: rgba(0,0,0,.22); }
-  .cdv-fig .cy { stroke: var(--cyan); }
-  .cdv-fig .flow { fill: none; stroke: rgba(244,241,233,.3); stroke-width: 1.2; }
-  .cdv-fig .chip { fill: #FBFAF6; }
-  .cdv-fig .chip-ln { fill: none; stroke: #46627D; stroke-width: 1.4; }
-  .cdv-fig text { font-family: var(--mono); font-size: 10px; fill: rgba(244,241,233,.6); letter-spacing: .06em; }
-  .cdv-doc-a, .cdv-doc-b, .cdv-rise-a, .cdv-rise-b { transform-box: fill-box; transform-origin: center; }
-  .cdv-doc-a { animation: cdv-absorb 9s cubic-bezier(.4,0,.2,1) infinite; }
-  .cdv-doc-b { animation: cdv-absorb 9s cubic-bezier(.4,0,.2,1) infinite -4.5s; }
-  @keyframes cdv-absorb {
-    0% { transform: translate(-190px, 58px) rotate(-5deg) scale(1); opacity: 0; }
-    7% { opacity: 1; }
-    38% { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 1; }
-    47% { transform: translate(4px, -3px) scale(.2); opacity: 0; }
-    100% { transform: translate(4px, -3px) scale(.2); opacity: 0; }
-  }
-  .cdv-rise-a { animation: cdv-sink 9s cubic-bezier(.4,0,.2,1) infinite; }
-  .cdv-rise-b { animation: cdv-sink 9s cubic-bezier(.4,0,.2,1) infinite -4.5s; }
-  @keyframes cdv-sink {
-    0% { transform: translateY(0) scale(1); opacity: 0; }
-    8% { opacity: 1; }
-    36% { transform: translateY(-44px) scale(1); opacity: 1; }
-    45% { transform: translateY(-52px) scale(.2); opacity: 0; }
-    100% { transform: translateY(-52px) scale(.2); opacity: 0; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .cdv-doc-a, .cdv-doc-b, .cdv-rise-a, .cdv-rise-b { animation: none; }
-    .cdv-doc-b, .cdv-rise-b { opacity: 0; }
-    .cdv-doc-a { transform: translate(-100px, 30px); opacity: 1; }
-    .cdv-rise-a { transform: translateY(-20px); opacity: 1; }
-    .cdv-flowdot { display: none; }
-  }
   .cdv-door-kicker { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--cyan); margin: 16px 0 6px; }
   .cdv-door h3 { font-family: var(--serif); font-weight: 400; font-size: 21px; color: var(--cream); }
   .cdv-door p { font-size: 13.5px; color: var(--cream-soft); margin-top: 6px; max-width: 400px; line-height: 1.6; }
@@ -631,26 +600,12 @@
     <p class="lede">Most AI tools for advisors upload your client data to their servers and promise to protect it. Briefly gives you two ways to run it, and both put the choice in your hands.</p>
     <div class="cdv-doors">
       <div class="cdv-door">
-        <svg class="cdv-fig" viewBox="0 0 400 260" role="img" aria-label="Files disappearing into a computer that stays in your office">
-          <polygon class="fill-soft ln" points="70,60 210,60 262,86 122,86"/>
-          <polygon class="fill-soft ln" points="210,60 262,86 262,152 210,170"/>
-          <rect class="fill-soft ln" x="70" y="60" width="140" height="110" rx="8"/>
-          <rect class="fill-deep ln-soft" x="84" y="74" width="112" height="82" rx="4"/>
-          <polygon class="ln-soft" points="94,92 118,92 122,98 148,98 148,120 94,120"/>
-          <line class="ln-soft" x1="94" y1="132" x2="176" y2="132"/>
-          <line class="ln-soft" x1="94" y1="142" x2="160" y2="142"/>
-          <line class="ln-soft" x1="228" y1="98" x2="228" y2="140"/>
-          <line class="ln-soft" x1="240" y1="102" x2="240" y2="144"/>
-          <circle cx="198" cy="162" r="2.5" fill="var(--blue)"/>
-          <polygon class="fill-soft ln" points="122,170 160,170 166,192 116,192"/>
-          <rect class="fill-soft ln" x="98" y="192" width="86" height="9" rx="4.5"/>
-          <path class="flow" d="M8,196 C70,192 108,158 132,116"/>
-          <circle class="cdv-flowdot" r="3.2" fill="var(--blue)">
-            <animateMotion dur="4.5s" repeatCount="indefinite" path="M8,196 C70,192 108,158 132,116"/>
-          </circle>
-          <g class="cdv-doc-a"><g transform="translate(130,102)"><path class="chip" d="M0,0 h13 l5,5 v18 h-18 z"/><path class="chip-ln" d="M13,0 v5 h5"/><line class="chip-ln" x1="4" y1="11" x2="14" y2="11"/><line class="chip-ln" x1="4" y1="15" x2="14" y2="15"/></g></g>
-          <g class="cdv-doc-b"><g transform="translate(130,102)"><path class="chip" d="M0,0 h13 l5,5 v18 h-18 z"/><path class="chip-ln" d="M13,0 v5 h5"/><line class="chip-ln" x1="4" y1="11" x2="14" y2="11"/><line class="chip-ln" x1="4" y1="15" x2="14" y2="15"/></g></g>
-          <text x="70" y="252">your machines</text>
+        <svg class="cdv-fig" viewBox="0 0 400 260" role="img" aria-label="A desktop computer in your office">
+          <rect class="fill-soft ln" x="115" y="58" width="170" height="112" rx="10"/>
+          <rect class="fill-deep ln-soft" x="127" y="70" width="146" height="88" rx="5"/>
+          <circle cx="200" cy="164" r="2.5" fill="var(--blue)"/>
+          <path class="fill-soft ln" d="M191,170 h18 l5,22 h-28 z"/>
+          <rect class="fill-soft ln" x="152" y="192" width="96" height="9" rx="4.5"/>
         </svg>
         <div class="cdv-door-kicker">The connector</div>
         <h3>Files stay on your machines.</h3>
@@ -658,24 +613,12 @@
       </div>
       <div class="cdv-divider" aria-hidden="true"><span>or</span></div>
       <div class="cdv-door">
-        <svg class="cdv-fig" viewBox="0 0 400 260" role="img" aria-label="Files from a browser disappearing into a locked cloud secured by Briefly">
-          <path class="fill-soft ln" d="M120,150 C86,150 78,116 108,106 C104,78 140,64 166,78 C178,52 224,54 236,80 C270,70 296,98 282,122 C308,132 300,150 268,150 Z"/>
-          <rect class="ln cy" x="180" y="110" width="30" height="24" rx="4" fill="rgba(140,216,255,.08)"/>
-          <path class="ln cy" d="M186,110 v-8 a9,9 0 0 1 18,0 v8"/>
-          <circle cx="195" cy="122" r="2.5" fill="var(--cyan)"/>
-          <circle cx="262" cy="94" r="4" fill="var(--blue)"/>
-          <circle cx="262" cy="94" r="8" fill="none" stroke="rgba(47,140,255,.35)" stroke-width="2"/>
-          <line class="flow" x1="200" y1="192" x2="200" y2="152"/>
-          <circle class="cdv-flowdot" r="3.2" fill="var(--blue)">
-            <animateMotion dur="3.5s" repeatCount="indefinite" path="M200,192 L200,152"/>
-          </circle>
-          <rect class="fill-soft ln" x="142" y="192" width="128" height="34" rx="6"/>
-          <line class="ln-soft" x1="142" y1="202" x2="270" y2="202"/>
-          <circle cx="150" cy="197" r="1.6" fill="rgba(244,241,233,.6)"/>
-          <circle cx="156" cy="197" r="1.6" fill="rgba(244,241,233,.6)"/>
-          <text x="149" y="217">app.brieflywealth.com</text>
-          <g class="cdv-rise-a"><g transform="translate(191,166)"><path class="chip" d="M0,0 h13 l5,5 v18 h-18 z"/><path class="chip-ln" d="M13,0 v5 h5"/><line class="chip-ln" x1="4" y1="11" x2="14" y2="11"/><line class="chip-ln" x1="4" y1="15" x2="14" y2="15"/></g></g>
-          <g class="cdv-rise-b"><g transform="translate(191,166)"><path class="chip" d="M0,0 h13 l5,5 v18 h-18 z"/><path class="chip-ln" d="M13,0 v5 h5"/><line class="chip-ln" x1="4" y1="11" x2="14" y2="11"/><line class="chip-ln" x1="4" y1="15" x2="14" y2="15"/></g></g>
+        <svg class="cdv-fig" viewBox="0 0 400 260" role="img" aria-label="A cloud secured with a padlock">
+          <path class="fill-soft ln" d="M132,174 C104,174 94,144 118,132 C112,104 146,88 172,100 C182,74 226,74 240,98 C270,86 298,108 288,132 C312,140 306,174 276,174 Z"/>
+          <path class="ln" d="M189,128 v-9 a11,11 0 0 1 22,0 v9"/>
+          <rect class="fill-soft ln" x="181" y="128" width="38" height="30" rx="6"/>
+          <circle cx="200" cy="140" r="3" fill="var(--blue)"/>
+          <path d="M200,143 v6" stroke="var(--blue)" stroke-width="1.6" stroke-linecap="round" fill="none"/>
         </svg>
         <div class="cdv-door-kicker">The web app</div>
         <h3>Files live with us, locked down.</h3>
