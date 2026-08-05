@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Download Briefly | AI Knowledge Base for Financial Advisors</title>
-<meta name="description" content="Add Briefly to Claude Desktop. Client files stay on your computer, only your sign-in, a seat check, and de-identified preference rules reach our servers.">
+<meta name="description" content="Add Briefly to Claude Desktop. Client files stay on your computer and never reach our servers. A five-step install, five minutes start to finish.">
 <link rel="canonical" href="https://www.brieflywealth.com/download">
 <link rel="icon" type="image/png" sizes="32x32" href="images/briefly_logo_favicon.png?v=2">
 <link rel="icon" type="image/png" sizes="16x16" href="images/briefly_logo_favicon.png?v=2">
@@ -111,6 +111,11 @@
   .dl-explainer { margin-top:20px; background: var(--paper-3); border:1px solid var(--rule); border-radius:10px; box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 1px 3px rgba(15,23,42,.06); padding: 22px 26px; font-size:15px; line-height:1.6; color:#33404f; }
   .dl-explainer::before { content:"Before you install"; display:block; font-family:var(--mono); font-size:11px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:var(--blue-ink); margin-bottom:10px; }
   .dl-explainer strong { color: var(--ink); }
+  .dl-note .dl-lead, .dl-explainer .dl-lead, .dl-explainer .dl-alt { margin:0; }
+  .dl-note .dl-list, .dl-explainer .dl-list { margin-top:10px; padding-left:20px; }
+  .dl-note .dl-list li, .dl-explainer .dl-list li { margin-top:6px; }
+  .dl-explainer .dl-alt { margin-top:12px; }
+  .walkthrough-hint { margin-top:14px; font-family: var(--mono); font-size:12px; color: var(--muted); letter-spacing:.02em; }
 
   /* ---------- FAQ accordion ---------- */
   .dl-faq { margin-top:88px; }
@@ -2300,7 +2305,7 @@
         "name": "What does Briefly’s server see?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "With the Claude connector, our server sees your sign-in, so we know which seat is active, and a de-identified layer of preference rules your firm builds over time, never tied to a client name. Client files never leave your computer. The web app differs, since its files live on our side instead."
+          "text": "With the Claude connector, our server sees your sign-in, so we know which seat is active, and a de-identified layer of preference rules your firm builds over time, never tied to a client name, and a short usage record for each tool call. Client files never leave your computer. The web app differs, since its files live on our side instead."
         }
       },
       {
@@ -2356,11 +2361,26 @@
 
 <main>
   <div class="dl-wrap">
-    <div class="dl-note"><strong>Using Briefly starts with a login we set up for you.</strong> Download first, then book a demo so we set up your firm's sign-in. From there your whole team shares how your firm likes its briefs written. <a class="dl-note-btn" href="#" onclick="openDemoModal();return false;">Request access</a></div>
+    <div class="dl-note">
+      <p class="dl-lead"><strong>Using Briefly starts with a login we set up for you.</strong></p>
+      <ul class="dl-list">
+        <li>Download first, then book a demo so we set up your firm's sign-in.</li>
+        <li>From there your whole team shares how your firm likes its briefs written.</li>
+      </ul>
+      <a class="dl-note-btn" href="#" onclick="openDemoModal();return false;">Request access</a>
+    </div>
 
-    <div class="dl-explainer"><strong>Not sure what you&rsquo;re about to open?</strong> This page installs the Briefly connector, which adds Briefly to Claude Desktop. One download, pick a folder on your computer, sign in, and you&rsquo;re set up. With the connector, your client files stay in that folder, and our servers only see your sign-in and a de-identified personalization layer. They never see a client file. If your firm would rather work from a browser with no install, Briefly also has a web app with its own sign-in.</div>
+    <div class="dl-explainer">
+      <p class="dl-lead"><strong>Not sure what you&rsquo;re about to open?</strong> This page installs the Briefly connector, which adds Briefly to Claude Desktop.</p>
+      <ul class="dl-list">
+        <li>One download, pick a folder on your computer, sign in, and you&rsquo;re set up.</li>
+        <li>Client files stay in that folder. Our servers only see your sign-in, a seat check, de-identified preferences, and a short usage record for each tool call, never a client file.</li>
+      </ul>
+      <p class="dl-alt">If your firm would rather work from a browser with no install, Briefly also has a web app with its own sign-in.</p>
+    </div>
 
     <h2 class="steps-head">Five minutes, start to finish.</h2>
+    <p class="walkthrough-hint">Five steps. Use the dots to jump ahead.</p>
     <div class="setup-pin" id="setupPin">
       <div class="setup-pin-inner">
         <div class="setup-dots">
@@ -3058,7 +3078,7 @@
         </details>
         <details class="faq-item">
           <summary>What does Briefly&rsquo;s server see?</summary>
-          <p class="faq-a">With the Claude connector, our server sees your sign-in, so we know which seat is active, and a de-identified layer of preference rules your firm builds over time, never tied to a client name. Client files never leave your computer. The web app differs, since its files live on our side instead.</p>
+          <p class="faq-a">With the Claude connector, our server sees your sign-in, so we know which seat is active, and a de-identified layer of preference rules your firm builds over time, never tied to a client name, and a short usage record for each tool call. Client files never leave your computer. The web app differs, since its files live on our side instead.</p>
         </details>
         <details class="faq-item">
           <summary>Does Briefly work on Windows and Mac?</summary>

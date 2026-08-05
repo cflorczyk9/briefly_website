@@ -2,7 +2,7 @@
 
 > Briefly is an AI knowledge base for financial advisors and wealth firms, built to run inside Claude. It connects a firm's own documents, email, meeting notes, and portfolio data into one place, and every answer cites back to the source it came from.
 
-Briefly runs two ways. The Claude connector is the flagship path. It's a download that adds Briefly to Claude Desktop and reads from a folder on your own computer. With the Briefly connector, client files never leave your computer. Only sign-in and de-identified preference rules ever reach Briefly's servers. The web app is the second surface, a browser workspace for firms that would rather sign in than install anything, and its files live in Briefly's hosted environment instead.
+Briefly runs two ways. The Claude connector is the flagship path. It's a download that adds Briefly to Claude Desktop and reads from a folder on your own computer. With the Briefly connector, client files never leave your computer. Only your sign-in, a seat check, de-identified preference rules, and a short usage record for each tool call ever reach Briefly's servers. The web app is the second surface, a browser workspace for firms that would rather sign in than install anything, and its files live in Briefly's hosted environment instead.
 
 Briefly is built by Briefly Wealth LLC, founded by Connor Florczyk.
 

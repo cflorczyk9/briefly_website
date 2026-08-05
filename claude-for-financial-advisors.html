@@ -35,8 +35,8 @@
         "url": "https://www.brieflywealth.com/claude-for-financial-advisors",
         "description": "What Claude can do for financial advisors out of the box, why it can't see your client files by default, and four ways to change that, ranked by where the data goes.",
         "datePublished": "2026-07-23",
-        "dateModified": "2026-07-30",
-        "author": { "@type": "Organization", "@id": "https://www.brieflywealth.com/#org", "name": "Briefly" },
+        "dateModified": "2026-08-05",
+        "author": { "@type": "Person", "name": "Connor Florczyk", "url": "https://www.brieflywealth.com/about", "sameAs": ["https://www.linkedin.com/in/connor-florczyk"] },
         "publisher": { "@type": "Organization", "@id": "https://www.brieflywealth.com/#org", "name": "Briefly", "url": "https://www.brieflywealth.com/", "description": "Briefly is an AI knowledge base for financial advisors and wealth firms, built to run inside Claude." },
         "mainEntityOfPage": "https://www.brieflywealth.com/claude-for-financial-advisors",
         "breadcrumb": {
@@ -56,8 +56,8 @@
         "description": "What Claude can do for financial advisors out of the box, why it can't see your client files by default, and four ways to change that, ranked by where the data goes.",
         "image": "https://www.brieflywealth.com/images/briefly-og-main-2x.png?v=2",
         "datePublished": "2026-07-23",
-        "dateModified": "2026-07-30",
-        "author": { "@type": "Organization", "@id": "https://www.brieflywealth.com/#org", "name": "Briefly" },
+        "dateModified": "2026-08-05",
+        "author": { "@type": "Person", "name": "Connor Florczyk", "url": "https://www.brieflywealth.com/about", "sameAs": ["https://www.linkedin.com/in/connor-florczyk"] },
         "publisher": {
           "@type": "Organization",
           "@id": "https://www.brieflywealth.com/#org",
@@ -262,6 +262,25 @@
         .disclosure { max-width: 780px; margin: 0 auto; padding: 20px 24px; background: var(--off); border: 1px solid var(--border); border-left: 3px solid var(--blue); border-radius: 10px; box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 1px 3px rgba(15,23,42,.06); }
         .disclosure p { color: #334155; font-size: 15px; margin: 0; }
 
+        /* Table of contents */
+        .toc { max-width: 780px; margin: 20px auto 0; padding: 20px 24px; background: var(--off); border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 1px 3px rgba(15,23,42,.06); }
+        .toc-label { margin: 0 0 10px; font-family: "JetBrains Mono", SFMono-Regular, monospace; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+        .toc ol { margin: 0; padding: 0 0 0 20px; columns: 2; column-gap: 28px; }
+        .toc li { margin-bottom: 8px; font-size: 14.5px; break-inside: avoid; }
+        .toc a { color: var(--blue-ink); text-decoration: none; }
+        .toc a:hover { text-decoration: underline; }
+        @media (max-width: 600px) { .toc ol { columns: 1; } }
+
+        /* Article body links */
+        .article p a, .article li a { color: var(--blue-ink); }
+
+        /* Author bio */
+        .author-bio { display: flex; gap: 18px; align-items: flex-start; margin: 40px 0 0; padding-top: 32px; border-top: 1px solid var(--border); max-width: 780px; }
+        .author-bio img { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+        .author-bio h3 { margin: 0 0 4px; font-size: 16px; color: var(--navy); font-family: 'DM Sans', sans-serif; }
+        .author-bio p { margin: 0; font-size: 14.5px; color: #475569; }
+        @media (max-width: 760px) { .author-bio { flex-direction: column; } }
+
         /* Momentum timeline */
         .timeline-list { list-style: none; margin: 24px 0 20px; padding: 0; border-left: 2px solid var(--border); }
         .timeline-item { position: relative; padding: 0 0 22px 26px; }
@@ -369,9 +388,9 @@
         <h1>What Claude can do for financial advisors, and what it still can't see.</h1>
         <p>A plain look at what Claude handles out of the box, why your client files aren't part of that by default, and four ways to close the gap, ranked by where your data actually ends up.</p>
         <div class="page-meta">
-          <span class="byline">Briefly Team</span>
+          <span class="byline">Connor Florczyk</span>
           <span>Published July 23, 2026</span>
-          <span>Last verified July 30, 2026</span>
+          <span>Last verified August 5, 2026</span>
         </div>
     </div>
 </section>
@@ -382,29 +401,44 @@
           <p>A disclosure before we get into it. Briefly is the local connector we built, so we're not a neutral party on this topic. Everything below is written to hold up whether or not you ever install it, and the comparison further down scores our own product the same way it scores everyone else's.</p>
         </div>
 
-        <h2>Why this question keeps coming up</h2>
-        <p>Anthropic has been shipping finance-focused features on a fast clock, something close to every ten weeks, and wealth firms keep getting pulled into the update cycle whether they asked for it or not. Here's a short version of that timeline.</p>
+        <nav class="toc" aria-label="On this page">
+          <p class="toc-label">On this page</p>
+          <ol>
+            <li><a href="#why-this-matters">Why this question keeps coming up</a></li>
+            <li><a href="#what-claude-can-do">What Claude can already do for an advisor</a></li>
+            <li><a href="#what-claude-cant-see">What Claude can't see</a></li>
+            <li><a href="#claude-connectors">Claude connectors, in plain English</a></li>
+            <li><a href="#comparison">Claude, with and without a local connector</a></li>
+            <li><a href="#access-methods">Four ways to give Claude access</a></li>
+            <li><a href="#practical-workflows">What Claude handles well once it can see your files</a></li>
+            <li><a href="#getting-started">Getting started</a></li>
+            <li><a href="#faq">Frequently asked questions</a></li>
+          </ol>
+        </nav>
+
+        <h2 id="why-this-matters">Why this question keeps coming up</h2>
+        <p>Anthropic has been shipping finance-focused features on a fast clock, close to every ten weeks, and wealth firms keep getting pulled into the update cycle whether they asked for it or not. Here's a sourced version of that timeline.</p>
         <ul class="timeline-list">
           <li class="timeline-item">
-            <span class="t-date">July 2025</span>
-            <p>Anthropic launches Claude for Financial Services, with data connections to providers including S&amp;P Global, Moody's, Morningstar, and FactSet.</p>
+            <span class="t-date">July 15, 2025</span>
+            <p><a href="https://www.anthropic.com/news/claude-for-financial-services" target="_blank" rel="noopener">Anthropic launches Claude for Financial Services</a>, with data connections to providers including S&amp;P Global, Morningstar, and FactSet.</p>
           </li>
           <li class="timeline-item">
-            <span class="t-date">Late 2025</span>
-            <p>Anthropic extends Claude's spreadsheet and financial-modeling abilities, aimed at teams that live in Excel and portfolio-management tools.</p>
+            <span class="t-date">October 27, 2025</span>
+            <p>Anthropic adds a <a href="https://www.anthropic.com/news/advancing-claude-for-financial-services" target="_blank" rel="noopener">Claude for Excel plugin</a> and new data connectors, including Moody's, aimed at teams that live in spreadsheets.</p>
           </li>
           <li class="timeline-item">
-            <span class="t-date">Early 2026</span>
-            <p>More financial-data and workflow partnerships roll out as part of Anthropic's regular release cadence, each one adding a new data source Claude can reach with permission.</p>
+            <span class="t-date">February 24, 2026</span>
+            <p>LPL Financial <a href="https://www.linkedin.com/posts/lpl-financial_lpl-has-been-intentionally-building-advisorcentric-activity-7432070090688466944-rArh" target="_blank" rel="noopener">expands its partnership with Anthropic</a>, bringing Claude to LPL's network of more than 30,000 affiliated advisors.</p>
           </li>
           <li class="timeline-item">
-            <span class="t-date">2026</span>
-            <p>LPL Financial partners with Anthropic, bringing Claude to LPL's network of more than 30,000 affiliated advisors.</p>
+            <span class="t-date">May 5, 2026</span>
+            <p>Anthropic ships <a href="https://www.anthropic.com/news/finance-agents" target="_blank" rel="noopener">ten ready-to-use agent templates for financial services</a> plus full Microsoft 365 integration, adding still more data partners.</p>
           </li>
         </ul>
-        <p>None of these releases close the client-file gap on their own. They make Claude more capable in general, not more able to see your specific clients, which is the part this page is actually about.</p>
+        <p>None of these releases close the client-file gap on their own. They put Claude in front of institutions and large broker-dealer networks like LPL's rather than in front of a solo advisor's desktop, which is exactly why the access methods further down this page exist.</p>
 
-        <h2>What Claude can already do for an advisor</h2>
+        <h2 id="what-claude-can-do">What Claude can already do for an advisor</h2>
         <p>Sign up for Claude and you get a capable general-purpose model with no advisor-specific features and no memory of your book of business. Inside that plain account, it's still useful for a lot of the writing and thinking work that fills an advisor's week.</p>
         <ul>
           <li>Drafting client emails, letters, and meeting follow-ups from notes you type or paste in.</li>
@@ -416,36 +450,15 @@
         </ul>
         <p>All of it works from what you type or paste into that one conversation. None of it involves Claude reaching out to your computer, your CRM, or your inbox unless you set that up separately.</p>
 
-        <h2>What Claude can't see, and why most comparisons skip it</h2>
+        <h2 id="what-claude-cant-see">What Claude can't see, and why most comparisons skip it</h2>
         <p>Every new Claude conversation starts with nothing. No memory of a client from last week's chat, no access to the CRM record, no read on the plan you built in March. Claude only knows what you put in front of it, unless you've connected an outside source.</p>
         <p>Most articles that compare Claude to other AI tools stop at capability, what it can write, summarize, or calculate, and skip the harder question of what it can reach. That's the decision an advisor actually has to make. Not whether Claude is smart enough, but how, and whether, to let it near client records at all.</p>
 
-        <h2>Claude connectors, in plain English</h2>
+        <h2 id="claude-connectors">Claude connectors, in plain English</h2>
         <p>Claude can read from and act on other pieces of software through something called a connector, a small program that tells Claude how to talk to a particular system, whether that's Google Drive, a CRM, or a program running on your own computer. Most connectors, including the one Briefly runs, are built on the same open standard for how a model talks to outside tools and data. You don't need to understand that standard any more than you need to understand how the postal system routes mail to use your mailbox. What matters is where the other end of the connector lives, on a vendor's server somewhere, or on your own machine.</p>
 
-        <h2>How to give Claude access to client files securely</h2>
-        <p>There are four common ways advisors connect Claude to something resembling client information, and they aren't equally safe. The list below is ranked from the least contained to the most.</p>
-        <ol class="methods-list">
-          <li class="method-card">
-            <h3>Pasting into the chat</h3>
-            <p>You copy a client's situation, notes, or numbers directly into the conversation. It's the fastest way to get an answer, and also the method with the least oversight. That text becomes part of the conversation on Anthropic's servers, and depending on your plan, may be used to improve their models. Fine for a hypothetical or an already de-identified question. Risky for anything a client would recognize as their own.</p>
-          </li>
-          <li class="method-card">
-            <h3>Claude's built-in connectors</h3>
-            <p>Claude Desktop has a menu of connectors to apps you probably already use, Google Drive and Gmail among them. Anthropic's own infrastructure handles the connection, so your files stay wherever Google or Microsoft already stores them, but Claude, and by extension Anthropic, reads them during the conversation. No extra install, and one more company sitting in the data path.</p>
-          </li>
-          <li class="method-card">
-            <h3>A vendor's own connector</h3>
-            <p>Some financial software companies run their own connector into Claude the same way Anthropic does. In practice, this usually means the vendor holds a copy of your client data on their own servers so the connector has something to serve up when Claude asks for it. You're now trusting that company's security and retention practices on top of Anthropic's. Our <a href="/ai-compliance-for-financial-advisors">compliance page</a> goes deeper on what regulators expect from a setup like this before you turn one on.</p>
-          </li>
-          <li class="method-card local">
-            <h3>A local connector that reads files from your machine</h3>
-            <p>The connector runs on your own computer and reads files from a folder you choose. Claude asks it a question, the connector reads the answer off your machine's disk, and nothing about that specific client goes to a server, not the vendor's, not Anthropic's, beyond the ordinary API call Claude already makes to think. This is the approach we built the Briefly connector around, and it's the only one of the four where client files never end up copied onto someone else's infrastructure. With the Briefly connector, client files never leave your computer. Only your sign-in, a check that your seat is active, and de-identified preference rules reach Briefly's server.</p>
-          </li>
-        </ol>
-
-        <h2>Claude, with and without a local connector</h2>
-        <p>Here's the same comparison laid out directly. ChatGPT and Claude as they ship, next to Claude with the Briefly connector added.</p>
+        <h2 id="comparison">Claude, with and without a local connector</h2>
+        <p>Here's what that looks like in practice. ChatGPT and Claude as they ship, next to Claude with the Briefly connector added.</p>
         <div class="compare-wrap">
           <table class="comparison-table">
             <thead>
@@ -473,7 +486,7 @@
                 <th scope="row">Where files live</th>
                 <td>On OpenAI's servers for that conversation, and potentially longer depending on your plan and settings.</td>
                 <td>With whichever vendor hosts the connector, Google or Microsoft in most cases, plus Anthropic's infrastructure while it's serving the connection.</td>
-                <td class="win">With the Briefly connector, files stay on your computer, in the folder you chose. Only your sign-in, a check that your seat is active, and de-identified preference rules reach Briefly's server.</td>
+                <td class="win">With the Briefly connector, files stay on your computer, in the folder you chose. Only your sign-in, a check that your seat is active, de-identified preference rules, and a short usage record for each tool call reach Briefly's server.</td>
               </tr>
               <tr>
                 <th scope="row">Compliance posture</th>
@@ -494,16 +507,57 @@
           <p>ChatGPT still wins in a few places worth naming honestly. It plugs into more outside tools today, its Code Interpreter is genuinely useful for one-off spreadsheet math, and most of your staff have already used it at home, so training time is close to zero. If those three things matter more to your firm than where client files end up, that's a reasonable call.</p>
         </div>
 
-        <h2>Getting started</h2>
+        <h2 id="access-methods">How to give Claude access to client files securely</h2>
+        <p>There are four common ways advisors connect Claude to something resembling client information, and they aren't equally safe. The list below is ranked from the least contained to the most.</p>
+        <ol class="methods-list">
+          <li class="method-card">
+            <h3>Pasting into the chat</h3>
+            <p>You copy a client's situation, notes, or numbers directly into the conversation. It's the fastest way to get an answer, and also the method with the least oversight. That text becomes part of the conversation on Anthropic's servers, and depending on your plan, may be used to improve their models. Fine for a hypothetical or an already de-identified question. Risky for anything a client would recognize as their own.</p>
+          </li>
+          <li class="method-card">
+            <h3>Claude's built-in connectors</h3>
+            <p>Claude Desktop has a menu of connectors to apps you probably already use, Google Drive and Gmail among them. Anthropic's own infrastructure handles the connection, so your files stay wherever Google or Microsoft already stores them, but Claude, and by extension Anthropic, reads them during the conversation. No extra install, and one more company sitting in the data path.</p>
+          </li>
+          <li class="method-card">
+            <h3>A vendor's own connector</h3>
+            <p>Some financial software companies run their own connector into Claude the same way Anthropic does. In practice, this usually means the vendor holds a copy of your client data on their own servers so the connector has something to serve up when Claude asks for it. You're now trusting that company's security and retention practices on top of Anthropic's. Our <a href="/ai-compliance-for-financial-advisors">compliance page</a> goes deeper on what regulators expect from a setup like this before you turn one on.</p>
+          </li>
+          <li class="method-card local">
+            <h3>A local connector that reads files from your machine</h3>
+            <p>The connector runs on your own computer and reads files from a folder you choose. Claude asks it a question, the connector reads the answer off your machine's disk, and nothing about that specific client goes to a server, not the vendor's, not Anthropic's, beyond the ordinary API call Claude already makes to think. This is the approach we built the Briefly connector around, and it's the only one of the four where client files never end up copied onto someone else's infrastructure. With the Briefly connector, client files never leave your computer. Only your sign-in, a check that your seat is active, de-identified preference rules, and a short usage record for each tool call reach Briefly's server.</p>
+          </li>
+        </ol>
+
+        <h2 id="practical-workflows">What Claude handles well once it can see your files</h2>
+        <p>The five examples below show up every week once Claude can read a client's files instead of relying on whatever an advisor remembered to type in. Each one assumes a local connector like Briefly's, which reads whatever sits in the folder you point it at and cites the specific file behind every number, rather than a generic answer about what a typical client's situation looks like. Ask Claude for a client's current allocation and it can either guess from general knowledge of how portfolios tend to look, or read the actual statement in front of it and say which document the number came from. Everything below assumes the second version.</p>
+
+        <h3>Meeting prep from a folder of statements</h3>
+        <p>Drop the last two or three custodian statements for a client into an intake folder and ask for a meeting brief. Claude reads each PDF, pulls the account values, contribution or withdrawal activity, and anything that changed since the last statement, then writes a short brief with every number cited back to the specific statement it came from. The advisor still reads it over before the meeting and fixes anything that looks off. An advisor meeting a client Tuesday can drop Friday's statements in over the weekend and have a brief waiting Monday morning. A brief that used to mean opening the CRM plus three or four PDF tabs turns into a file drop and one question.</p>
+
+        <h3>Drafting a client email from a plan document</h3>
+        <p>Point Claude at a financial plan already sitting in the folder and ask for a follow-up email explaining one recommendation in plain language, a Roth conversion amount, a new savings rate, a change to the glide path. Because it's reading the actual plan rather than guessing at what a typical plan recommends, the numbers in the draft match the document the client received. The advisor is editing a real first draft instead of staring at a blank compose window, and still runs it through the firm's normal compliance review before sending, the same as any other client communication.</p>
+
+        <h3>Summarizing a custodian PDF</h3>
+        <p>A forty-page brokerage statement is not something anyone wants to read cover to cover before a call. Ask Claude to summarize holdings, cash flows, and anything that changed since the prior statement. It comes back with a short summary, for example that a client's equity allocation drifted three points higher after a rally and their cash position doubled after a required distribution, and cites the source PDF next to each figure so the advisor can click through and check any number against the original before repeating it to a client.</p>
+
+        <h3>Checking concentration across accounts</h3>
+        <p>A client holding the same stock in a taxable account, an IRA, and a 401(k) held away at a different custodian usually means opening three statements and adding the position up by hand. Claude can total that position across every statement on file and flag what share of the household's assets sit in one name, whether that's 12 percent or 40, with the source statement cited for each account the number came from, so the advisor isn't taking the total on faith.</p>
+
+        <h3>Quarterly review notes</h3>
+        <p>Ahead of a quarterly review, ask Claude to pull performance numbers, the notes from the last meeting, and any open follow-ups into one outline. It reads what's already sitting in the folder instead of the advisor reconstructing the quarter from memory or old email threads, so the advisor walks into the review already knowing what changed and why. Every figure in the outline traces back to the statement or note it came from.</p>
+
+        <p>The mechanism is the same in every example above. The connector hands Claude the actual file, and every answer points back to the line the number came from, instead of a fluent-sounding paragraph nobody can trace to anything.</p>
+
+        <h2 id="getting-started">Getting started</h2>
         <p>If you're picking this up for the first time, start simple and add access only as you need it.</p>
         <ol>
           <li>Pick a Claude plan that matches how you'll use it. Anthropic's commercial terms bar training on customer content for Work, Enterprise, and API accounts, while personal plans train on conversations unless you opt out. Client work generally belongs on a business plan.</li>
           <li>Start with pasting or a built-in connector for occasional use, methods one or two above.</li>
           <li>If you want Claude reading your files regularly, decide between a vendor's own connector and a local connector based on where you're comfortable having that data sit.</li>
-          <li>If a local connector is what you want, Briefly is one option, an AI knowledge base for financial advisors that runs inside Claude and reads from a folder on your computer. <a href="/download">See how it works</a> before deciding anything.</li>
+          <li>If a local connector is what you want, Briefly is one option, an AI knowledge base for financial advisors that runs inside Claude and reads from a folder on your computer. <a href="/download">See how it works</a> before deciding anything, or look at <a href="/sample-deliverables">sample deliverables</a> to see what a brief looks like before you install anything.</li>
         </ol>
 
-        <h2>Frequently asked questions</h2>
+        <h2 id="faq">Frequently asked questions</h2>
         <div class="faq">
           <details class="faq-item">
             <summary>Can I use Claude for financial advisor work today?</summary>
@@ -537,6 +591,14 @@
             <summary>How is Briefly different from just using Claude on its own?</summary>
             <p>Briefly is an AI knowledge base for financial advisors that runs inside Claude as a local connector. It reads and writes files in a folder on your computer instead of a vendor's cloud, so Claude can work from your actual client records without those records leaving your computer.</p>
           </details>
+        </div>
+
+        <div class="author-bio">
+          <img src="images/connor_florczyk.png" width="60" height="60" decoding="async" alt="Connor Florczyk, founder of Briefly">
+          <div>
+            <h3>Connor Florczyk</h3>
+            <p>Founder of Briefly. Before Briefly, he worked as a private wealth analyst on a top-performing team at Morgan Stanley, where he saw firsthand how much advisor time gets lost hunting for a client's own files.</p>
+          </div>
         </div>
 
         <div class="cta">

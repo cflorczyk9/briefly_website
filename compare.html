@@ -203,12 +203,16 @@
     transition: color .15s ease, border-color .15s ease, background .15s ease;
   }
   .nav-signin:hover { background: transparent; color: var(--blue-ink); border-color: var(--blue-ink); }
+  /* Solid primary, matching the homepage's Book a demo (nav + hero both use plain
+     .btn there). Kept as its own .nav-cta class rather than switching to .btn so
+     the nav-specific sizing, focus ring, and the 400px breakpoint rule below still
+     apply, only the fill flips from outline to solid. */
   .nav-cta {
     white-space: nowrap;
     border: 1px solid var(--ink);
     border-radius: 6px;
-    background: transparent;
-    color: var(--ink);
+    background: var(--ink);
+    color: var(--paper);
     height: 44px;
     padding: 0 18px;
     font-family: var(--mono);
@@ -338,6 +342,17 @@
      PLANS, same card system as pricing.html
      ================================================================ */
   .plans { background: var(--paper-3); padding: 92px 32px 100px; }
+  .plans .eyebrow { display: block; text-align: center; margin: 0 0 16px; }
+  .plans h2 {
+    margin: 0 auto 18px;
+    max-width: 640px;
+    text-align: center;
+    font-weight: 900;
+    font-size: clamp(26px, 3.2vw, 36px);
+    line-height: 1.08;
+    letter-spacing: -.04em;
+    color: var(--ink);
+  }
   .compare-note { margin: 0 0 40px; text-align: center; color: var(--ink-muted); font-size: 15px; max-width: 640px; margin-left: auto; margin-right: auto; }
   .plan-grid {
     display: grid;
@@ -418,6 +433,7 @@
      COMPARISON TABLE
      ================================================================ */
   .compare-table-section { background: var(--paper); padding: 56px 32px 88px; }
+  .compare-table-intro { margin: 0 0 28px; max-width: 640px; color: var(--ink-soft); font-size: 17px; line-height: 1.6; }
   .compare-table-wrap {
     overflow-x: auto;
     border: 1px solid var(--rule);
@@ -552,6 +568,7 @@
 <!-- ==================== COMPARISON TABLE ==================== -->
 <section class="compare-table-section" aria-label="Feature comparison">
   <div class="container reveal">
+    <p class="compare-table-intro">Choose the connector if your team already works in Claude and wants files to stay on your own machines. Choose the web app if you want the client file built for you from Salesforce and Outlook. A seat can move from one to the other without rebuilding anything.</p>
     <div class="compare-table-wrap">
       <table class="compare-table">
         <caption class="sr-only">A row by row comparison of the Claude connector and the Briefly web app</caption>
@@ -602,6 +619,8 @@
 <!-- ==================== BENEFITS ==================== -->
 <section class="plans" id="plans" aria-label="Compare benefits">
   <div class="container reveal">
+    <span class="eyebrow">Included</span>
+    <h2>Everything each plan includes.</h2>
     <p class="compare-note">Both plans read and write the same client file. A correction made in one shows up in the other.</p>
     <div class="plan-grid">
       <article class="plan plan-lead">
@@ -617,7 +636,7 @@
             <li>Works inside the Claude your team already opens</li>
             <li>Nothing new for advisors to learn</li>
             <li>Ask about the 529 they mentioned once</li>
-            <li>Only your sign-in, a check that your seat is active, and de-identified preference rules reach Briefly's servers</li>
+            <li>Only your sign-in, a seat check, de-identified preference rules, and a short usage record for each tool call reach Briefly's servers</li>
             <li>Share a client like any other file</li>
           </ul>
           <a class="btn" href="/start">Start now</a>
@@ -651,7 +670,7 @@
   <h2>Move between them without starting over.</h2>
   <p>Every plan reads from the same knowledge base, and a seat can move from one to the other without rebuilding anything.</p>
   <div class="ctas">
-    <a class="btn" href="/start">Start now</a>
+    <a class="btn ghost" href="/start">Start now</a>
   </div>
 </section>
 

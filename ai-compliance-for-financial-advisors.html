@@ -37,7 +37,7 @@
         "image": "https://www.brieflywealth.com/images/briefly-og-main-2x.png?v=2",
         "publisher": { "@type": "Organization", "@id": "https://www.brieflywealth.com/#org", "name": "Briefly", "url": "https://www.brieflywealth.com/", "logo": { "@type": "ImageObject", "url": "https://www.brieflywealth.com/images/briefly_logo_favicon.png" }, "description": "Briefly is an AI knowledge base for financial advisors and wealth firms, built to run inside Claude." },
         "datePublished": "2026-07-23",
-        "dateModified": "2026-07-23",
+        "dateModified": "2026-08-05",
         "mainEntityOfPage": "https://www.brieflywealth.com/ai-compliance-for-financial-advisors"
     }
     </script>
@@ -126,7 +126,7 @@
       "name": "What's the safest way for advisors to use AI with client information?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Use a setup where client files stay on the advisor's own computer and the AI reads them there instead of uploading them to a vendor. Briefly, an AI knowledge base for financial advisors, works this way through its connector inside Claude Desktop. With the connector, client files never leave your computer. Only your sign-in, a check that your seat is active, and de-identified preference rules reach Briefly's server."
+        "text": "Use a setup where client files stay on the advisor's own computer and the AI reads them there instead of uploading them to a vendor. Briefly, an AI knowledge base for financial advisors, works this way through its connector inside Claude Desktop. With the connector, client files never leave your computer. Only your sign-in, a check that your seat is active, de-identified preference rules, and a short usage record for each tool call reach Briefly's server."
       }
     }
   ]
@@ -151,7 +151,9 @@
         .eyebrow { display: block; color: rgba(255,255,255,0.62); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 16px; }
         h1 { font-family: var(--sans); font-weight: 900; font-size: clamp(38px, 6vw, 60px); line-height: 1.1; max-width: 820px; margin-bottom: 22px; }
         .hero p { max-width: 720px; color: rgba(255,255,255,0.76); font-size: 20px; }
-        .hero .byline { margin: 4px 0 24px; font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace; font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+        .hero .page-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin: 4px 0 24px; }
+        .hero .page-meta span { font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace; font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+        .hero .page-meta .byline { color: rgba(255,255,255,0.88); }
         main { padding: 76px 32px; }
         .article { max-width: 780px; margin: 0 auto; }
         .article .lede { font-size: 19px; color: #1f2937; }
@@ -198,6 +200,19 @@
         .sources li:first-child { border-top: 0; }
         .sources a { color: var(--blue-ink); text-decoration: underline; text-underline-offset: 2px; }
 
+        /* Vendor-review checklist table */
+        .checklist { margin: 8px 0 28px; padding: 26px 28px; border: 1px solid var(--border); border-radius: 10px; background: var(--off); box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 1px 3px rgba(15,23,42,.06); }
+        .checklist h3 { margin: 0 0 16px; }
+        .checklist table { width: 100%; border-collapse: collapse; }
+        .checklist th { text-align: left; font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace; font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); padding: 0 16px 10px 0; border-bottom: 1px solid var(--border); }
+        .checklist td { padding: 14px 16px 14px 0; border-top: 1px solid var(--border); font-size: 14.5px; color: #334155; vertical-align: top; }
+        .checklist tr:first-child td { border-top: 0; }
+        .checklist td:first-child { font-weight: 700; color: var(--navy); width: 44%; }
+
+        /* Inline secondary CTA */
+        .inline-cta { margin: 8px 0 40px; padding: 20px 24px; border-left: 3px solid var(--blue-ink); background: var(--off); border-radius: 0 8px 8px 0; font-size: 15.5px; color: #334155; }
+        .inline-cta a { color: var(--blue-ink); font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+
         /* Disclaimer + author bio */
         .disclaimer { margin: 40px 0 0; font-size: 13.5px; color: var(--muted); border-left: 3px solid var(--border); padding-left: 16px; }
         .author-bio { display: flex; gap: 18px; align-items: flex-start; margin: 28px 0 0; padding-top: 32px; border-top: 1px solid var(--border); }
@@ -207,7 +222,8 @@
 
         .cta { margin-top: 56px; padding: 32px; border-radius: 10px; background: var(--off); border: 1px solid var(--border); box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 1px 3px rgba(15,23,42,.06); }
         .cta h2 { margin-top: 0; }
-        .cta a { display: inline-block; margin-top: 8px; background: var(--navy); color: #fff; text-decoration: none; padding: 12px 20px; border-radius: 6px; font-weight: 700; }
+        .cta a.cta-primary { display: inline-block; margin-top: 8px; background: var(--navy); color: #fff; text-decoration: none; padding: 12px 20px; border-radius: 6px; font-weight: 700; }
+        .cta a.cta-secondary { display: inline-block; margin-top: 8px; margin-left: 14px; color: var(--blue-ink); text-decoration: underline; text-underline-offset: 2px; font-weight: 700; }
         footer {
           background: var(--ink);
           color: var(--cream-soft);
@@ -292,6 +308,13 @@
           .flow-wrap { grid-template-columns: 1fr; }
           .hero { padding-top: 88px; }
           .author-bio { flex-direction: column; }
+          .checklist { padding: 20px 18px; }
+          .checklist table, .checklist thead, .checklist tbody, .checklist tr, .checklist th, .checklist td { display: block; width: 100%; }
+          .checklist thead { display: none; }
+          .checklist tr { padding: 14px 0; border-top: 1px solid var(--border); }
+          .checklist tr:first-child { border-top: 0; }
+          .checklist td { border: 0; padding: 3px 0; }
+          .checklist td:last-child { color: var(--muted); font-weight: 400; }
         }
     </style>
 <!-- mobile-redux -->
@@ -319,7 +342,8 @@
     .flow-col { padding: 20px 18px; }
 
     .cta { padding: 24px 20px; margin-top: 40px; }
-    .cta a { display: block; text-align: center; padding: 14px 20px; }
+    .cta a.cta-primary { display: block; text-align: center; padding: 14px 20px; }
+    .cta a.cta-secondary { display: block; text-align: center; margin-left: 0; margin-top: 14px; }
 
     footer { padding: 32px 20px; }
   }
@@ -352,7 +376,11 @@
     <div class="hero-inner">
         <span class="eyebrow">Compliance</span>
         <h1>Can financial advisors put client data in ChatGPT?</h1>
-        <p class="byline">By Connor Florczyk &middot; Published July 23, 2026</p>
+        <div class="page-meta">
+          <span class="byline">By Connor Florczyk</span>
+          <span>Published July 23, 2026</span>
+          <span>Last verified August 5, 2026</span>
+        </div>
         <p>A straight answer for advisors and compliance officers weighing ChatGPT, Claude, and the rules that actually govern where client data can go.</p>
     </div>
 </section>
@@ -393,6 +421,25 @@
 
         <p>Put together, these four things point to the same practical checklist. Know which AI tools your advisors are actually using, not just which ones the firm officially licenses. Treat any AI vendor that receives client data as a vendor under Reg S-P, with the same review any other vendor gets. Keep a documented policy that names the approved tools and the boundaries around them. And never let a vendor's compliance-sounding language substitute for reading the actual rule.</p>
 
+        <div class="checklist" id="vendor-checklist">
+          <h3>Six questions worth putting to any AI vendor</h3>
+          <table>
+            <thead>
+              <tr><th>Ask the vendor</th><th>What the rule requires</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Where do client files or details go once the tool processes them?</td><td>The disposal rule under Reg S-P still applies even when a copy sits on a vendor's server instead of your own drive.</td></tr>
+              <tr><td>Whose agreement governs the processing, a business contract or a personal consumer account?</td><td>A real vendor review needs a data processing agreement on file, not a terms-of-service click.</td></tr>
+              <tr><td>Does the vendor train future models on your conversations, and can that be turned off?</td><td>Free and Plus-tier defaults can differ from what a business plan commits to in writing.</td></tr>
+              <tr><td>What does the vendor keep after you delete a conversation or opt out of training?</td><td>The safeguards rule's disposal duty means your firm needs to know what a vendor holds onto, not just what it promises to delete.</td></tr>
+              <tr><td>Is there a written incident-response commitment behind this vendor relationship?</td><td>The amended Reg S-P rule requires a written incident response program and a notification clock, not an assumption that the vendor has one.</td></tr>
+              <tr><td>Can your firm archive this tool's conversations the way it archives other client communications?</td><td>FINRA's books-and-records duty covers an AI-assisted client conversation the same as any other correspondence.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="inline-cta">The checklist above works for any AI vendor your firm is weighing. <a href="/security">See how Briefly answers these questions</a>, since that's the one vendor we can speak to firsthand. Prefer to talk it through instead? <a href="/#contact">Book a demo</a>.</p>
+
         <h2 id="what-about-claude">What about Claude?</h2>
         <p>Claude raises a version of the same question, with one extra layer. Anthropic sells Claude across several plans, and the plan determines what happens to your conversations. The difference between the two paths is bigger than most advisors realize, and one of them is far easier for a compliance program to document.</p>
         <p>On the business side, Anthropic's commercial terms state it plainly. Anthropic may not train models on customer content from Claude for Work, Claude Enterprise, or the API. The commitment sits in the contract itself rather than in a settings toggle, and it comes with a data processing agreement a compliance program can actually file. Deleted conversations purge from Anthropic's systems within 30 days.</p>
@@ -423,13 +470,13 @@
               <li>You ask a question inside Claude</li>
               <li>Briefly reads the relevant file on your own computer</li>
               <li>Your own Claude plan governs the model call</li>
-              <li>Briefly's server sees your sign-in, a check that your seat is active, and de-identified preference rules, never the file</li>
+              <li>Briefly's server sees your sign-in, a check that your seat is active, de-identified preference rules, and a short usage record for each tool call, never the file</li>
             </ol>
           </div>
         </div>
         <p class="flow-caption">The left side is what happens with a consumer AI tool used directly. The right side is what happens when the same question runs through an AI knowledge base for financial advisors built to sit inside Claude instead of alongside it.</p>
 
-        <p>Briefly is built around the right-hand path. It's a connector that runs inside Claude Desktop, the local option this page is about, and it fits a team that already works inside Claude day to day. Briefly also runs as a browser workspace for firms that would rather have Briefly handle the setup. An advisor using the connector points it at a folder of client documents, emails, and notes already stored on their computer. When they ask a question in Claude, whether that's prepping for tomorrow's meeting or answering something specific about a client's account, Briefly reads the relevant files locally and writes the answer with the source cited. With the Briefly connector, client files never leave your computer. Only your sign-in, a check that your seat is active, and de-identified preference rules reach Briefly's server.</p>
+        <p>Briefly is built around the right-hand path. It's a connector that runs inside Claude Desktop, the local option this page is about, and it fits a team that already works inside Claude day to day. Briefly also runs as a browser workspace for firms that would rather have Briefly handle the setup. An advisor using the connector points it at a folder of client documents, emails, and notes already stored on their computer. When they ask a question in Claude, whether that's prepping for tomorrow's meeting or answering something specific about a client's account, Briefly reads the relevant files locally and writes the answer with <a href="/sample-deliverables">the source cited</a>. With the Briefly connector, client files never leave your computer. Only your sign-in, a check that your seat is active, de-identified preference rules, and a short usage record for each tool call reach Briefly's server. Briefly is advisory-workflow software only. It reads files and never touches accounts, trading, or custody.</p>
         <p>That's why the Reg S-P questions from earlier in this page get simpler, not more complicated. A vendor that never receives the client file has nothing to safeguard, nothing to disclose in a 30-day breach notice, and nothing for an examiner to ask about in a vendor-oversight review.</p>
         <p>This page covers the two most common paths. For a full comparison of what Claude can and can't see out of the box, and how advisors are giving it secure access to client files beyond Briefly, see <a href="/claude-for-financial-advisors">Claude for financial advisors</a>.</p>
 
@@ -465,7 +512,7 @@
           </details>
           <details>
             <summary>What's the safest way for advisors to use AI with client information?</summary>
-            <p>Use a setup where client files stay on the advisor's own computer and the AI reads them there instead of uploading them to a vendor. Briefly, an AI knowledge base for financial advisors, works this way through its connector inside Claude Desktop. With the connector, client files never leave your computer. Only your sign-in, a check that your seat is active, and de-identified preference rules reach Briefly's server.</p>
+            <p>Use a setup where client files stay on the advisor's own computer and the AI reads them there instead of uploading them to a vendor. Briefly, an AI knowledge base for financial advisors, works this way through its connector inside Claude Desktop. With the connector, client files never leave your computer. Only your sign-in, a check that your seat is active, de-identified preference rules, and a short usage record for each tool call reach Briefly's server.</p>
           </details>
         </div>
 
@@ -495,7 +542,8 @@
         <div class="cta">
             <h2>See how Briefly keeps client files on your computer.</h2>
             <p>Briefly runs inside Claude Desktop and reads your firm's own files locally, so client data never has to leave your machine to get an answer.</p>
-            <a href="/#contact">Request a Demo</a>
+            <a href="/start" class="cta-primary">Start now</a>
+            <a href="/#contact" class="cta-secondary">Or book a demo</a>
         </div>
     </article>
 </main>

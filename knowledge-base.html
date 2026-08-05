@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Knowledge Base for Financial Advisors | Briefly</title>
-    <meta name="description" content="Briefly builds an AI knowledge base for financial advisors from your firm's documents, email, and notes, with every fact traceable to its source.">
+    <meta name="description" content="Briefly is an AI knowledge base for financial advisors that runs inside Claude. Ask across your whole book and get every answer cited.">
     <link rel="canonical" href="https://www.brieflywealth.com/knowledge-base">
     <link rel="icon" type="image/png" sizes="32x32" href="images/briefly_logo_favicon.png?v=2">
     <link rel="icon" type="image/png" sizes="16x16" href="images/briefly_logo_favicon.png?v=2">
     <link rel="apple-touch-icon" sizes="180x180" href="images/briefly_logo_favicon.png?v=2">
     <meta property="og:title" content="AI Knowledge Base for Financial Advisors">
-    <meta property="og:description" content="Briefly connects a firm's documents, email, notes, and portfolio data into one source-backed knowledge base that powers Meetings, Inbox, Clients, Documents, Investment thesis, and Settings.">
+    <meta property="og:description" content="Briefly is an AI knowledge base for financial advisors that runs inside Claude, built from your firm's own documents, email, and meeting notes, with every answer cited to its source.">
     <meta property="og:image" content="https://www.brieflywealth.com/images/briefly-og-main-2x.png?v=2">
     <meta property="og:url" content="https://www.brieflywealth.com/knowledge-base">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="AI Knowledge Base for Financial Advisors">
-    <meta name="twitter:description" content="Briefly connects a firm's documents, email, notes, and portfolio data into one source-backed knowledge base that powers Meetings, Inbox, Clients, Documents, Investment thesis, and Settings.">
+    <meta name="twitter:description" content="Briefly is an AI knowledge base for financial advisors that runs inside Claude, built from your firm's own documents, email, and meeting notes, with every answer cited to its source.">
     <meta name="twitter:image" content="https://www.brieflywealth.com/images/briefly-og-main-2x.png?v=2">
     <meta name="author" content="Briefly Wealth LLC">
     <!-- Google Analytics -->
@@ -46,6 +46,7 @@
         .eyebrow { display: block; color: rgba(255,255,255,0.62); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 16px; }
         h1 { font-family: var(--sans); font-weight: 900; font-size: clamp(38px, 6vw, 60px); line-height: 1.08; margin-bottom: 22px; }
         .hero p { color: rgba(255,255,255,0.76); font-size: 20px; }
+        .hero .byline { margin: 4px 0 18px; font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace; font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
         .brief-card { background: #fff; color: var(--text); border-radius: 10px; overflow: hidden; box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 1px 3px rgba(15,23,42,.06); }
         .brief-head { padding: 16px 20px; border-bottom: 1px solid var(--border); font-weight: 700; color: var(--navy); }
         .brief-body { padding: 18px 20px; }
@@ -66,6 +67,11 @@
         .cta { margin-top: 56px; padding: 32px; border-radius: 10px; background: var(--off); border: 1px solid var(--border); box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 1px 3px rgba(15,23,42,.06); }
         .cta h2 { margin-top: 0; }
         .cta a { display: inline-block; margin-top: 8px; background: var(--navy); color: #fff; text-decoration: none; padding: 12px 20px; border-radius: 6px; font-weight: 700; }
+        .cta a.cta-secondary { background: transparent; color: var(--navy); border: 1px solid var(--navy); margin-left: 10px; }
+        .author-bio { display: flex; gap: 18px; align-items: flex-start; margin: 48px 0 0; padding-top: 32px; border-top: 1px solid var(--border); }
+        .author-bio img { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+        .author-bio h3 { margin: 0 0 4px; font-size: 16px; color: var(--navy); font-family: 'DM Sans', sans-serif; }
+        .author-bio p { margin: 0; font-size: 14.5px; color: #475569; }
         footer {
           background: var(--ink);
           color: var(--cream-soft);
@@ -145,7 +151,7 @@
           footer .foot-bottom { flex-direction: column; gap: 12px; text-align: left; }
         }
         @media (max-width: 860px) { .hero-inner { grid-template-columns: 1fr; } .nav-links a:not(.nav-btn) { display: none; } }
-        @media (max-width: 760px) { .diagram { grid-template-columns: 1fr; } }
+        @media (max-width: 760px) { .diagram { grid-template-columns: 1fr; } .author-bio { flex-direction: column; } }
     </style>
 <!-- mobile-redux -->
 <style id="mobile-redux-knowledge-base">
@@ -186,6 +192,7 @@
     /* CTA: full-width tap target */
     .cta { padding: 24px 20px; margin-top: 40px; }
     .cta a { display: block; text-align: center; padding: 14px 20px; }
+    .cta a.cta-secondary { margin-left: 0; margin-top: 10px; }
 
     /* Footer breathing room */
     footer { padding: 32px 20px; }
@@ -204,8 +211,8 @@
   "@type": "WebPage",
   "name": "AI Knowledge Base for Financial Advisors",
   "url": "https://www.brieflywealth.com/knowledge-base",
-  "description": "Briefly builds an AI knowledge base for financial advisors from your firm's own documents, email, meeting notes, and portfolio data, with every fact traceable to its source.",
-  "dateModified": "2026-07-24",
+  "description": "Briefly is an AI knowledge base for financial advisors that runs inside Claude, built from your firm's own documents, email, and meeting notes, with every fact traceable to its source.",
+  "dateModified": "2026-08-05",
   "isPartOf": { "@id": "https://www.brieflywealth.com/#website" },
   "about": { "@id": "https://www.brieflywealth.com/#app" },
   "publisher": { "@type": "Organization", "@id": "https://www.brieflywealth.com/#org", "name": "Briefly", "url": "https://www.brieflywealth.com/", "description": "Briefly is an AI knowledge base for financial advisors and wealth firms, built to run inside Claude." },
@@ -240,16 +247,16 @@
     <div class="hero-inner">
         <div>
             <span class="eyebrow">Knowledge Base</span>
-            <h1>An AI knowledge base built from your firm's own files.</h1>
-            <p>Client documents, email, meeting notes, and portfolio data already exist inside your firm. Briefly turns them into one knowledge base that every advisor workflow can draw from, so nothing depends on a single person's memory.</p>
+            <h1>An AI knowledge base for financial advisors that runs inside Claude.</h1>
+            <p class="byline">By Connor Florczyk &middot; Updated August 5, 2026</p>
+            <p>Client documents, email, and meeting notes already sit inside your firm. Briefly turns them into one knowledge base that Claude can read across every account in your book. Ask which clients hold a concentrated position over $500K and get an answer with a name, a number, and the statement it came from, the same way you'd get an answer about one household.</p>
         </div>
-        <div class="brief-card" aria-label="Sample meeting brief modules">
-            <div class="brief-head">Briefly Meeting Brief</div>
+        <div class="brief-card" aria-label="Sample cross-client query answered by Briefly">
+            <div class="brief-head">Which clients hold a concentrated position over $500K?</div>
             <div class="brief-body">
-                <div class="row"><span class="dot" style="background:var(--red)"></span><span>Open loops and follow-ups</span></div>
-                <div class="row"><span class="dot" style="background:var(--blue)"></span><span>Portfolio and liquidity picture</span></div>
-                <div class="row"><span class="dot" style="background:var(--green)"></span><span>Tax and planning opportunities</span></div>
-                <div class="row"><span class="dot" style="background:var(--amber)"></span><span>Family, sentiment, and relationship history</span></div>
+                <div class="row"><span class="dot" style="background:var(--red)"></span><span>Rivera, $684,300 in employer stock (31%), Q2 statement</span></div>
+                <div class="row"><span class="dot" style="background:var(--blue)"></span><span>Okafor, $558,900 in a single legacy position (24%), Q2 statement</span></div>
+                <div class="row"><span class="dot" style="background:var(--green)"></span><span>Lindqvist, $511,000 in concentrated equity (22%), Q1 statement</span></div>
             </div>
         </div>
     </div>
@@ -257,12 +264,21 @@
 <main>
     <article class="article">
         <p>Wealth firms already have plenty of data. Client facts live across CRM records, emails, meeting notes, custodial statements, financial plans, and spreadsheets, plus whatever an advisor happens to remember, and none of those systems share a model of the relationship.</p>
-        <p>A knowledge base gives the firm that model. It connects people, households, entities, accounts, goals, concerns, events, tasks, and source citations, so every workflow starts from the same understanding of the client.</p>
+        <p>A knowledge base gives the firm that model. It connects people, households, entities, accounts, goals, concerns, events, tasks, and source citations, so every workflow starts from the same understanding of the client. Ask a question about one household or about every household in the book, and the answer comes from the same place.</p>
         <div class="diagram">
             <div class="diagram-card"><strong>Sources</strong><span>Emails, notes, meetings, PDFs, CRM records, portfolio data, and planning documents.</span></div>
             <div class="diagram-card"><strong>Knowledge Base</strong><span>Resolved people, households, entities, relationships, tasks, goals, and evidence.</span></div>
-            <div class="diagram-card"><strong>Where It Shows Up</strong><span>Meetings, Inbox, Clients, Documents, Investment thesis, and Settings.</span></div>
+            <div class="diagram-card"><strong>Where It Shows Up</strong><span>Inside Claude, through the connector, or in the Briefly web app if we set it up for you.</span></div>
         </div>
+        <h2>Ask across your whole book, not one client file.</h2>
+        <p>Most tools answer a question about whatever client file happens to be open. Briefly checks every household in your book for the same question, then answers it the way it would answer about one client, with a name, a number, and the document behind it.</p>
+        <div class="diagram">
+            <div class="diagram-card"><strong>The question</strong><span>Which clients hold a concentrated position above $500K? One question, checked against every household in the book, not just the one open on screen.</span></div>
+            <div class="diagram-card"><strong>The answer</strong><span>Rivera holds $684,300 in employer stock, 31% of the account. Okafor holds $558,900 in a single legacy position, 24%. Lindqvist holds $511,000 in concentrated equity, 22%.</span></div>
+            <div class="diagram-card"><strong>Where it comes from</strong><span>Each figure links back to the document it came from. Rivera's Q2 statement, filed July 8. Okafor's Q2 statement, filed July 2. Lindqvist's Q1 statement, filed April 14.</span></div>
+        </div>
+        <p>The same pattern holds for any cross-client question, whether it's about concentrated positions, upcoming distributions, or clients who mentioned selling a business. Briefly reads the statements, transcripts, and notes already filed for each household and answers from what's actually there, with the file it read linked under every claim.</p>
+        <p>This works because every document lands in a household's own record first, then gets checked across the whole book whenever a question calls for it. Filing an email into the Rivera file doesn't just help the next Rivera question. It also becomes one of the records checked the next time someone asks about concentrated positions, upcoming distributions, or anything else that spans the book. A CRM field or a folder of PDFs can't do this on its own, because nothing connects the file you're looking at to the dozens of others you'd need to check by hand.</p>
         <h2>Why this matters in wealth management.</h2>
         <ul>
             <li>Households are becoming more complex as wealth transfers across generations.</li>
@@ -270,11 +286,15 @@
             <li>What advisors know about a client often stays in individual memory instead of firm infrastructure.</li>
             <li>Generic AI summaries are risky unless they are traceable to source material.</li>
         </ul>
+        <p>Briefly is built to answer inside that reality without asking a firm to change how it works. It runs inside Claude, where many advisor teams are already working, and reads the files that are already there. If a firm runs the connector, those files stay on the advisor's own computer, and the only things that reach Briefly's servers are a sign-in, a check that the seat is active, a de-identified layer of firm preferences, and a short usage record for each tool call, never the client file itself. That's true whether the question comes up during meeting prep the morning of, or mid-call about a household nobody on the call remembers well. The advisor doesn't have to leave Claude, open a second app, or wait for someone else to pull the file.</p>
         <h2>Why CRMs are not enough.</h2>
         <p>CRMs are important systems of record, but they are not built to reconstruct a relationship across every source. The details that matter most often live in a note, a forwarded email, a PDF, a meeting transcript, a planning document, or the memory of a senior advisor.</p>
         <p>Search helps when you already know what to look for. A knowledge base helps when you need the system to surface what matters before you ask.</p>
+        <p>A CRM also only knows what someone typed into it. It doesn't read the email you forwarded, the PDF you saved to a folder, or the transcript from last week's call, not unless someone copies the details in by hand. Briefly reads those files directly, so the knowledge base grows every time a document gets filed, not every time someone remembers to update a record.</p>
+        <p>Neither one learns from being corrected. If an advisor tells a CRM once that a client goes by a nickname, or that the firm calls it a planning conversation and never a sales meeting, someone has to remember to make the same fix again the next time it comes up. Briefly keeps a correction like that as a standing rule instead. One firm did exactly this with a single phrase, telling Briefly to say planning conversation instead of sales meeting, and every brief that firm has received since has followed it, for every advisor on the team.</p>
         <div class="quote">Your brain does not have enough RAM for this job.</div>
         <h2>What a knowledge base should include.</h2>
+        <p>The concentrated-position example above pulled from one category, portfolio positions. A full client file covers more ground than that.</p>
         <ul>
             <li>Family and household relationships, including heirs and decision makers.</li>
             <li>Professional network, including CPAs, attorneys, trustees, and centers of influence.</li>
@@ -282,24 +302,27 @@
             <li>Open loops, follow-ups, unresolved concerns, and promises made in prior meetings.</li>
             <li>Source citations so advisors can verify before using anything with a client.</li>
         </ul>
+        <p>None of this shows up on its own. A knowledge base only holds what gets filed into it, so the categories above are really a checklist for what to point Briefly at first, statements, planning documents, and the emails and notes an advisor already has sitting in a folder.</p>
         <h2>A meeting brief is one thing the knowledge base can do.</h2>
-        <p>A meeting brief is useful because it gives the advisor an edge before the conversation starts, but that brief is just one output of the knowledge base behind it. The same files also support open-loop tracking, relationship maps, inherited-wealth workflows, cross-client themes, and advisor handoff notes.</p>
-        <h2>What an advisor-ready brief needs.</h2>
-        <ul>
-            <li>Open tasks and promises made in prior meetings.</li>
-            <li>Portfolio changes, liquidity needs, concentrated positions, and tax themes.</li>
-            <li>Client sentiment, concerns, frustrations, and language that signals risk.</li>
-            <li>Life events, family dynamics, professional network, and planning milestones.</li>
-            <li>Source evidence so the advisor can verify before acting.</li>
-        </ul>
-        <p>Each meeting adds more source-backed memory to the knowledge base, and meeting prep gets faster with every cycle. The client page gets richer, and the firm becomes less dependent on any one person's memory.</p>
+        <p>A meeting brief is useful because it gives the advisor an edge before the conversation starts, but the brief draws on the same knowledge base behind the whole-book questions above it. Open tasks, portfolio changes, client sentiment, life events, and the professional network around a client all come from files that were filed for other reasons first. The brief just pulls the relevant pieces together and cites where each one came from. <a href="/sample-deliverables">See an actual brief</a>, with names and firms changed.</p>
+        <p>Each meeting adds more source-backed memory to the knowledge base, and meeting prep gets faster with every cycle because there's less new material to review each time. The client file gets richer, and the firm becomes less dependent on any one person's memory.</p>
         <h2>What Briefly builds.</h2>
         <p>Briefly turns fragmented advisor files into a living knowledge base. It keeps every fact traceable to its source, keeps outputs reviewable, and gives each workflow what it needs without forcing a CRM migration.</p>
+        <p>Each new document, an email forwarded from a client, a statement uploaded after it arrives, a note typed up after a call, gets filed into the household it belongs to and read into the knowledge base right away. Nothing has to be reformatted or copied into a separate system first. The file just gets bigger and more accurate, and the next question about that household, or about the whole book, draws on it.</p>
+        <p>Briefly <a href="/compare">runs two ways</a>, inside Claude with the connector or as a web app Briefly sets up for you. Either way it's the same knowledge base underneath, built from the same files, with the same citations on every answer.</p>
         <p>The result is one base of firm memory. It gets better every time an advisor uses it, and it keeps working long after any single meeting ends.</p>
+        <div class="author-bio">
+          <img src="images/connor_florczyk.png" width="60" height="60" decoding="async" alt="Connor Florczyk, founder of Briefly">
+          <div>
+            <h3>Connor Florczyk</h3>
+            <p>Founder of Briefly. Before Briefly, he worked as a private wealth analyst on a top-performing team at Morgan Stanley, where he saw firsthand how much advisor time gets lost hunting for a client's own files.</p>
+          </div>
+        </div>
         <div class="cta">
-            <h2>See the knowledge base in action.</h2>
-            <p>Briefly runs two ways. If your team already works inside Claude, the connector is the natural fit. It keeps client files in a folder on your own computer, and only your sign-in, a check that your seat is active, and de-identified preference rules reach Briefly's servers. If you'd rather Briefly handle the setup, the web app works the same way in a browser, with files in Briefly's hosted environment.</p>
-            <a href="/#contact">Request a Demo</a>
+            <h2>See it answer a question on your own files.</h2>
+            <p>Start the connector and ask it something real about your book. Every answer comes back with the file it was pulled from, so you can check it before you use it with a client.</p>
+            <a href="/start">Start now</a>
+            <a class="cta-secondary" href="/#contact">Book a demo</a>
         </div>
     </article>
 </main>

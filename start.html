@@ -248,6 +248,7 @@
           <input type="number" id="seatInput" class="stepper-input" min="1" max="25" value="1" inputmode="numeric" aria-label="Number of seats">
           <button type="button" class="stepper-btn" id="seatInc" aria-label="Increase seats">+</button>
         </div>
+        <p class="fine-print">More than 25 seats? <a class="textlink" href="#" onclick="openDemoModal();return false;">Book a demo</a> and we'll set your firm up directly.</p>
       </div>
 
       <form class="checkout-form" id="checkoutForm" novalidate>
@@ -259,12 +260,14 @@
           <label class="field-label" for="startFirm">Firm name</label>
           <input type="text" id="startFirm" name="firmName" autocomplete="organization" required>
         </div>
+        <p class="fine-print">The connector reads files on your own computer. Client files never reach our servers.</p>
         <div class="hp-field" aria-hidden="true">
           <label for="companyWebsite">Leave this field blank</label>
           <input type="text" id="companyWebsite" name="company-website" tabindex="-1" autocomplete="off">
         </div>
         <button type="submit" class="btn btn-checkout" id="checkoutBtn" disabled>Continue to secure checkout</button>
-        <p class="fine-print">By continuing to checkout, you agree to the <a href="/terms-of-service">Terms of Service</a> and <a href="/privacy-policy">Privacy Policy</a>.</p>
+        <p class="fine-print">After checkout, you download the connector and point it at your folders.</p>
+        <p class="fine-print">By continuing to checkout, you agree to the <a href="/terms-of-service">Terms of Service</a>, <a href="/privacy-policy">Privacy Policy</a>, and <a href="/eula">Connector EULA</a>.</p>
       </form>
 
       <div class="checkout-fallback" id="checkoutFallback" role="status" aria-live="assertive" tabindex="-1" hidden>
