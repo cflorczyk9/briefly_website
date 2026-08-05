@@ -94,7 +94,7 @@
           "name": "Can Claude see my client files automatically?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No. A new Claude conversation starts with nothing about your clients unless you paste details in or connect a source yourself. Claude does not browse your computer, your CRM, or your email on its own. Anything it knows about a client came from what you gave it in that conversation, or from an approved connector."
+            "text": "No. Claude does not browse your computer, your CRM, or your email on its own. Anything it knows about a client came from what someone gave it, whether pasted into a chat, carried forward by its memory feature from an earlier chat, or read through an approved connector."
           }
         },
         {
@@ -110,7 +110,7 @@
           "name": "Is it safe to paste client information directly into Claude?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "It depends on your plan. On Claude for Work, Enterprise, and API accounts, Anthropic's commercial terms prohibit training on customer content. A personal account trains on conversations unless you opt out in settings, and safety-flagged chats can be used even then. Either way, your firm's recordkeeping duties apply to whatever you paste."
+            "text": "It depends on your plan. On Claude for Work, Enterprise, and API accounts, Anthropic's commercial terms bar training on customer content. A personal account trains on conversations unless you opt out in settings, and safety-flagged chats can be used even then. There's also a recordkeeping question, since what you paste may count as business correspondence under your firm's own rules, which is worth confirming with your compliance officer."
           }
         },
         {
@@ -126,7 +126,7 @@
           "name": "Does Claude remember a client from one conversation to the next?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Not on its own. Each new chat starts blank, so you'd need to paste the same background in again or keep a connector active that can pull it back up. Tools built around Claude, including Briefly, can write what gets learned about a client back to files, so the next conversation starts from there."
+            "text": "Partly. Claude's memory is on by default now and carries context between conversations, so a client you discussed last week can come up again. That memory lives in one person's account though, where the firm can't review it, correct it, or cite it, and nobody else on the team inherits it. Briefly writes what gets learned about a client back to files your firm owns, so every advisor's next conversation starts from the same record, with citations."
           }
         },
         {
@@ -134,7 +134,7 @@
           "name": "How is Briefly different from just using Claude on its own?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Briefly is an AI knowledge base for financial advisors that runs inside Claude as a local connector. It reads and writes files in a folder on your computer instead of a vendor's cloud, so Claude can work from your actual client records without those records leaving your computer."
+            "text": "Briefly is an AI knowledge base for financial advisors that runs inside Claude as a local connector. It reads and writes files in a folder on your computer instead of a vendor's cloud, so Claude works from your actual client records and Briefly never holds a copy of them."
           }
         }
       ]
@@ -520,21 +520,21 @@
               </tr>
               <tr>
                 <th scope="row">Remembers the client between sessions</th>
-                <td>No. Every new chat starts blank unless you paste the details back in.</td>
-                <td>No, not on its own. You'd need to paste the background in again or keep a connector active.</td>
+                <td>Partly. ChatGPT's memory can carry details between chats, but it lives in one person's account, with nothing your firm can review or cite.</td>
+                <td>Partly. Claude's memory is on by default and carries context between chats, but it sits in one person's account, and the firm can't review or correct it.</td>
                 <td class="win">Yes. Briefly writes what it learns back to files on your computer, so the next conversation can pick up where the last one left off.</td>
               </tr>
               <tr>
                 <th scope="row">Where files live</th>
                 <td>On OpenAI's servers for that conversation, and potentially longer depending on your plan and settings.</td>
                 <td>With whichever vendor hosts the connector, Google or Microsoft in most cases, plus Anthropic's infrastructure while it's serving the connection.</td>
-                <td class="win">With the Briefly connector, files stay on your computer, in the folder you chose. Only your sign-in, a check that your seat is active, de-identified preference rules, and a short usage record for each tool call reach Briefly's server.</td>
+                <td class="win">With the Briefly connector, files stay on your computer, in the folder you chose. Only your sign-in, a check that your seat is active, de-identified preference rules, and a short usage record for each tool call reach Briefly's server. Claude still processes what it reads through Anthropic's infrastructure to answer, under your firm's own Claude plan.</td>
               </tr>
               <tr>
                 <th scope="row">Compliance posture</th>
                 <td>You're relying on OpenAI's data policies and your own recordkeeping. No features built for advisor compliance.</td>
                 <td>You're relying on Anthropic's data policies. Business plans are barred from training on your content by contract, and the recordkeeping question is still yours to answer.</td>
-                <td class="win">With the Briefly connector, client files never reach a vendor's server, so there's no client data on our end to govern. See our <a href="/ai-compliance-for-financial-advisors">compliance page</a> for the full accounting.</td>
+                <td class="win">With the Briefly connector, client files never reach Briefly's servers, so there's no client data on our end to govern, and Claude reads the files under the same firm plan named in the middle column. See our <a href="/ai-compliance-for-financial-advisors">compliance page</a> for the full accounting.</td>
               </tr>
               <tr>
                 <th scope="row">Setup effort</th>
@@ -562,11 +562,11 @@
           </li>
           <li class="method-card">
             <h3>A vendor's own connector</h3>
-            <p>Some financial software companies run their own connector into Claude the same way Anthropic does. In practice, this usually means the vendor holds a copy of your client data on their own servers so the connector has something to serve up when Claude asks for it. You're now trusting that company's security and retention practices on top of Anthropic's. Our <a href="/ai-compliance-for-financial-advisors">compliance page</a> goes deeper on what regulators expect from a setup like this before you turn one on.</p>
+            <p>Some financial software companies run their own connector into Claude the same way Anthropic does. In practice, this usually means the vendor holds a copy of your client data on their own servers so the connector has something to serve up when Claude asks for it. You're now trusting that company's security and retention practices on top of Anthropic's. Our <a href="/ai-compliance-for-financial-advisors">compliance page</a> goes deeper on the vendor-oversight questions a setup like this raises before you turn one on.</p>
           </li>
           <li class="method-card local">
             <h3>A local connector that reads files from your machine</h3>
-            <p>The connector runs on your own computer and reads files from a folder you choose. Claude asks it a question, the connector reads the answer off your machine's disk, and nothing about that specific client goes to a server, not the vendor's, not Anthropic's, beyond the ordinary API call Claude already makes to think. This is the approach we built the Briefly connector around, and it's the only one of the four where client files never end up copied onto someone else's infrastructure. With the Briefly connector, client files never leave your computer. Only your sign-in, a check that your seat is active, de-identified preference rules, and a short usage record for each tool call reach Briefly's server.</p>
+            <p>The connector runs on your own computer and reads files from a folder you choose. Claude asks it a question, the connector reads the answer off your machine's disk, and Anthropic processes what Claude reads under your firm's own Claude plan, the same model call every method on this list involves. The difference is storage, since this is the only one of the four where client files never end up copied onto a vendor's infrastructure, and it's the approach we built the Briefly connector around. Client files never reach Briefly's servers. Only your sign-in, a check that your seat is active, de-identified preference rules, and a short usage record for each tool call do.</p>
           </li>
         </ol>
 
@@ -593,7 +593,7 @@
         <h2 id="getting-started">Getting started</h2>
         <p>If you're picking this up for the first time, start simple and add access only as you need it.</p>
         <ol>
-          <li>Pick a Claude plan that matches how you'll use it. Anthropic's commercial terms bar training on customer content for Work, Enterprise, and API accounts, while personal plans train on conversations unless you opt out. Client work generally belongs on a business plan.</li>
+          <li>Pick a Claude plan that matches how you'll use it. Anthropic's commercial terms bar training on customer content for Work, Enterprise, and API accounts, while personal plans train on conversations unless you opt out. Many firms keep client work on a business plan for that reason, and your compliance officer can weigh in on the right setup for yours.</li>
           <li>Start with pasting or a built-in connector for occasional use, methods one or two above.</li>
           <li>If you want Claude reading your files regularly, decide between a vendor's own connector and a local connector based on where you're comfortable having that data sit.</li>
           <li>If a local connector is what you want, Briefly is one option, an AI knowledge base for financial advisors that runs inside Claude and reads from a folder on your computer. <a href="/download">See how it works</a> before deciding anything, or look at <a href="/sample-deliverables">sample deliverables</a> to see what a brief looks like before you install anything.</li>
@@ -611,7 +611,7 @@
           </details>
           <details class="faq-item">
             <summary>Can Claude see my client files automatically?</summary>
-            <p>No. A new Claude conversation starts with nothing about your clients unless you paste details in or connect a source yourself. Claude does not browse your computer, your CRM, or your email on its own. Anything it knows about a client came from what you gave it in that conversation, or from an approved connector.</p>
+            <p>No. Claude does not browse your computer, your CRM, or your email on its own. Anything it knows about a client came from what someone gave it, whether pasted into a chat, carried forward by its memory feature from an earlier chat, or read through an approved connector.</p>
           </details>
           <details class="faq-item">
             <summary>What is a Claude connector?</summary>
@@ -619,7 +619,7 @@
           </details>
           <details class="faq-item">
             <summary>Is it safe to paste client information directly into Claude?</summary>
-            <p>It depends on your plan. On Claude for Work, Enterprise, and API accounts, Anthropic's commercial terms prohibit training on customer content. A personal account trains on conversations unless you opt out in settings, and safety-flagged chats can be used even then. Either way, your firm's recordkeeping duties apply to whatever you paste.</p>
+            <p>It depends on your plan. On Claude for Work, Enterprise, and API accounts, Anthropic's commercial terms bar training on customer content. A personal account trains on conversations unless you opt out in settings, and safety-flagged chats can be used even then. There's also a recordkeeping question, since what you paste may count as business correspondence under your firm's own rules, which is worth confirming with your compliance officer.</p>
           </details>
           <details class="faq-item">
             <summary>What's the difference between Claude's built-in connectors and a vendor's own connector?</summary>
@@ -627,13 +627,15 @@
           </details>
           <details class="faq-item">
             <summary>Does Claude remember a client from one conversation to the next?</summary>
-            <p>Not on its own. Each new chat starts blank, so you'd need to paste the same background in again or keep a connector active that can pull it back up. Tools built around Claude, including Briefly, can write what gets learned about a client back to files, so the next conversation starts from there.</p>
+            <p>Partly. Claude's memory is on by default now and carries context between conversations, so a client you discussed last week can come up again. That memory lives in one person's account though, where the firm can't review it, correct it, or cite it, and nobody else on the team inherits it. Briefly writes what gets learned about a client back to files your firm owns, so every advisor's next conversation starts from the same record, with citations.</p>
           </details>
           <details class="faq-item">
             <summary>How is Briefly different from just using Claude on its own?</summary>
-            <p>Briefly is an AI knowledge base for financial advisors that runs inside Claude as a local connector. It reads and writes files in a folder on your computer instead of a vendor's cloud, so Claude can work from your actual client records without those records leaving your computer.</p>
+            <p>Briefly is an AI knowledge base for financial advisors that runs inside Claude as a local connector. It reads and writes files in a folder on your computer instead of a vendor's cloud, so Claude works from your actual client records and Briefly never holds a copy of them.</p>
           </details>
         </div>
+
+        <p style="font-size:14px; color:var(--ink-muted); margin-top:28px;">This page describes products and regulatory background for information only. It is not legal or compliance advice. Talk with your compliance officer or counsel about your firm's own obligations.</p>
 
         <div class="author-bio">
           <img src="images/connor_florczyk.png" width="60" height="60" decoding="async" alt="Connor Florczyk, founder of Briefly">

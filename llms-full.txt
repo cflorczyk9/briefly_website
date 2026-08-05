@@ -45,7 +45,7 @@ Briefly builds the knowledge base in your firm's own folders and Claude reads it
 
 We build the client file for you in an environment we secure and control. Your team signs in from a browser, and your firm decides who gets a seat.
 
-Either way, Briefly never trains AI models on client data, and a seat can move between the two without rebuilding anything.
+Either way, Briefly doesn't use client data to train AI models, and a seat can move between the two without rebuilding anything.
 
 ## One day with the file open.
 
@@ -89,15 +89,15 @@ Their daughter's tuition starts this fall, the 529 is short of the plan, and Mar
 
 Q: Is my client data safe?
 
-With the connector, client files stay on your computer and our servers never store them, so there is nothing on our side for anyone to see. We never train AI models on client data. Firms that choose the hosted version keep their files in an environment we secure and control, and the firm decides who signs in.
+With the connector, client files stay on your computer and our servers never store them. What does reach us stays at the account level, your sign-in, a seat check, de-identified preference rules, and a short usage record for each tool call. On the AI side, Claude reads the file under your firm's own Claude plan, and on business plans Anthropic's commercial terms bar training on customer content. We don't train AI models on client data either. Firms that choose the hosted version keep their files in an environment we secure and control, and the firm decides who signs in.
 
 Q: Can I put client data into ChatGPT or Claude?
 
-Pasting client details into a general AI chat window sends them to the vendor's servers under the vendor's own terms, the kind of outside data handling regulators expect firms to review. With the Briefly connector, client files stay on your computer and Claude works from them under your firm's own plan.
+Pasting client details into a personal AI chat window sends them to the vendor's servers under consumer terms your firm never reviewed. The SEC's amended Reg S-P rule requires firms to oversee the service providers that handle customer information, which is why compliance teams are asking about AI chat tools. With the Briefly connector, client files stay in your firm's own folders and Claude reads them under the Claude plan your firm chose and can review like any other vendor.
 
 Q: Why not just use Claude or ChatGPT on their own?
 
-A chat window forgets your firm when the conversation ends. Briefly gives Claude a client file that persists on your machines, so answers draw on your whole book, corrections hold, and every claim carries a citation you can open.
+AI models change every few months, and what a chat window learned about your firm doesn't carry over. Briefly organizes your firm's knowledge into plain files you own, so the context you build keeps working as models improve or get swapped out. Answers draw on your whole book, corrections hold, and every claim carries a citation you can open.
 
 Q: Which one should I pick?
 
@@ -109,7 +109,7 @@ The connector installs like any Claude connector and reads the folders you point
 
 Q: What happens if I leave?
 
-With the connector there is nothing to migrate, because the files were always in your own folders. Removing it just stops Claude from reading them. On the hosted version, we get your firm's files out to you before you go.
+With the connector there is nothing to migrate, because the files were always in your own folders. Removing it just stops Claude from reading them. On the hosted version, your firm has ninety days after leaving to export its files in a standard format, and after that window we delete them.
 
 See it answer on your firm's own records. Twenty minutes, with the advisor in the room. No call needed for the connector, start now and you're asking questions today. Not ready? Get the Morning Brief, a daily market email for advisors.
 
@@ -259,11 +259,11 @@ Briefly comes in two forms, and this page installs the Claude connector, where y
 
 Q: What does Briefly's server see?
 
-With the Claude connector, our server sees your sign-in, a seat check, de-identified preference rules your firm builds over time, never tied to a client name, and a short usage record for each tool call. Client files never leave your computer. The web app differs, since its files live on our side instead.
+With the Claude connector, our server sees your sign-in, a seat check, de-identified preference rules your firm builds over time, never tied to a client name, and a short usage record for each tool call. Client files never reach our servers. The web app differs, since its files live on our side instead.
 
 Q: Does Briefly work on Windows and Mac?
 
-Yes, both. Briefly runs anywhere Claude Desktop runs, which today means macOS and Windows. The same download and the same install steps work on either one. Linux support isn't available yet, since Claude Desktop itself doesn't run there.
+Yes, both. The same download and the same install steps work on macOS and Windows. Claude Desktop also has a Linux beta on Ubuntu and Debian, though we haven't certified Briefly there yet.
 
 Q: How long does setup take?
 
@@ -384,7 +384,7 @@ Briefly learns patterns in how your firm likes its work done. Those patterns are
 
 Each time you run a Briefly tool, Briefly logs a short record of that call, the tool, the outcome, and a timestamp, tied to your seat and firm. It carries no content from your client files.
 
-On the connector, client files never leave your computer. Only your sign-in, a seat check, de-identified preference rules, and a short usage record for each tool call reach Briefly's server, and none of it carries anything about a specific client. Firms on the web app work under a different model, laid out below.
+On the connector, client files never reach Briefly's servers. Only your sign-in, a seat check, de-identified preference rules, and a short usage record for each tool call reach Briefly's server, and none of it carries anything about a specific client. Firms on the web app work under a different model, laid out below.
 
 ## What Claude sees, and what Anthropic does with it
 
@@ -412,7 +412,7 @@ Every AI tool that touches client files falls into one of three custody models, 
 
 ## What this means under Reg S-P
 
-SEC privacy and safeguards rules, Reg S-P among them, put the duty on advisory firms to know how their vendors handle customer information, and AI tools count as vendors. That oversight duty sits with your firm, not just with Briefly.
+SEC privacy and safeguards rules, Reg S-P among them, put the duty on advisory firms to know how their vendors handle customer information, and firms are treating AI tools as part of that vendor review. That oversight duty sits with your firm, not just with Briefly.
 
 Both the SEC and FINRA have said publicly that they are watching how firms use and supervise AI. The practical effect is that the vendor relationship gets reviewed, not only the advisor's own desk.
 
@@ -466,7 +466,7 @@ For connector firms, a breach exposes sign-in records, seat-check records, de-id
 
 Q: How does this change our Reg S-P vendor due diligence?
 
-Reg S-P treats Briefly as a service provider your firm oversees, the same as any vendor. For connector firms, client files never leave the advisor's computer, so the review covers sign-in, seat entitlement, the preference layer, and usage records, not a client-data store. For web-app firms, review Briefly's AWS hosting and per-firm access controls the way you'd review any hosted vendor.
+Firms generally review Briefly as a service provider under Reg S-P, the same as any vendor. For connector firms, client files never reach our servers, so what our side holds for that review is sign-in, seat entitlement, the preference layer, and usage records, with no client-data store. The model call runs under your firm's own Claude plan, laid out earlier on this page. For web-app firms, the review also takes in Briefly's AWS hosting and per-firm access controls, the way any hosted vendor gets reviewed.
 
 Q: Is Briefly SEC-approved or certified compliant?
 
@@ -550,7 +550,7 @@ By Connor Florczyk. Published July 23, 2026. Last verified August 5, 2026.
 
 A straight answer for advisors and compliance officers weighing ChatGPT, Claude, and the rules that actually govern where client data can go.
 
-The direct answer is yes, you can type a client's name, account number, or portfolio detail into ChatGPT's chat window, and no, doing that does not meet the standard your compliance program is supposed to hold you to. The text travels to a vendor's servers under that vendor's own policy, not your firm's, and under the SEC's updated privacy rules that vendor is generally a service provider your firm has to oversee. Advisors can still use ChatGPT and Claude for real work. The rest of this page covers what the rules actually require and the setup that gets advisors the benefit of these tools while keeping their compliance program in the loop.
+The direct answer is yes, you can type a client's name, account number, or portfolio detail into ChatGPT's chat window, and the harder question is whether your compliance program has ever looked at where that text goes. It travels to a vendor's servers under that vendor's own policy, not your firm's, and the SEC's updated privacy rules require firms to oversee the service providers that handle customer information. Advisors can still use ChatGPT and Claude for real work. The rest of this page covers what the rules say and the setup that gets advisors the benefit of these tools while keeping their compliance program in the loop. None of it is legal advice, and your compliance officer or counsel gets the final word on your firm's own obligations.
 
 Advisors are asking this question more because ChatGPT and Claude have gotten good enough to be genuinely useful for drafting, summarizing, and research, in the same twelve months the amended Reg S-P safeguards rule reached every RIA and FINRA published its first dedicated guidance on generative AI. The tools got more tempting and the rules got more specific at the same time, so the honest answer needs both halves.
 
@@ -598,7 +598,7 @@ FINRA published its 2026 Annual Regulatory Oversight Report in December 2025 wit
 
 In March 2024 the SEC fined two investment advisers, Delphia and Global Predictions, a combined $400,000, $225,000 from Delphia and $175,000 from Global Predictions, for overstating the role artificial intelligence played in how they managed money, the industry's first enforcement action for what regulators now call AI-washing. No AI vendor, not ChatGPT's maker, not Claude's maker, not Briefly, carries an SEC seal of approval, because that seal doesn't exist.
 
-Put together, these four things point to the same practical checklist. Know which AI tools your advisors are actually using, not just which ones the firm officially licenses. Treat any AI vendor that receives client data as a vendor under Reg S-P, with the same review any other vendor gets. Keep a documented policy that names the approved tools and the boundaries around them. And never let a vendor's compliance-sounding language substitute for reading the actual rule.
+Put together, these four things point to the same short list of questions firms are working through with their compliance officers. Which AI tools are advisors actually using, beyond the ones the firm officially licenses? Does an AI vendor that receives client data get the same review as any other vendor? Does a written policy name the approved tools and the boundaries around them? And does a vendor's compliance-sounding language hold up against the actual rule text?
 
 ## Six questions worth putting to any AI vendor
 
@@ -619,7 +619,7 @@ On the business side, Anthropic's commercial terms state it plainly. Anthropic m
 
 Personal accounts on the Free, Pro, or Max plan work differently. Since Anthropic's August 2025 consumer terms change, those conversations train future models unless the user turns training off in privacy settings, and conversations used for training are kept for up to five years. Anthropic's July 2026 privacy policy update added a detail worth knowing. Even with training turned off, a conversation that Anthropic's automated systems flag for safety review can still be used for model improvement, and flagged content is retained for up to two years. The opt-out is real, and it has a ceiling.
 
-The practical rule is to check your plan before you check the tool. Client work generally belongs on a business plan, where the no-training commitment is contractual and the retention terms are written down. Either way, the Reg S-P vendor-oversight question from the last section still applies, because Anthropic processes whatever enters the conversation, training or not.
+The practical starting point is which plan you're on. Many firms keep client work on a business plan, where the no-training commitment is contractual and the retention terms are written down. Either way, the Reg S-P vendor-oversight question from the last section still applies, because Anthropic processes whatever enters the conversation, training or not.
 
 Claude for Work and Claude Enterprise also add administrative controls Anthropic markets toward regulated industries, including configurable data retention windows and activity logs an admin can review. None of that is a compliance certification by itself. It's infrastructure a firm's compliance program still has to evaluate, document, and monitor, the same as it would for any other vendor with access to anything client-related.
 
@@ -629,7 +629,7 @@ A solo advisor paying for Claude Pro out of pocket is on exactly the plan that t
 
 Advisors who want the research and drafting benefit of a large language model without creating a new compliance exposure are moving toward a different structure. Instead of sending client files to an AI vendor, the AI reads the files where they already live, on the advisor's own computer, and only a narrow slice of nonclient information travels anywhere else.
 
-Broadly, advisors evaluating AI tools are choosing between three structures. The first is a consumer AI tool used directly. The second is a hosted private AI platform, where a vendor still runs servers full of client data, just servers with the firm's name on the contract instead of the public tool, a structure that still leaves the same vendor-oversight and breach-notification questions in place, just with better paperwork behind them. The third keeps client files off any vendor's servers entirely and has the AI read them locally instead.
+Broadly, advisors evaluating AI tools are choosing between three structures. The first is a consumer AI tool used directly. The second is a hosted private AI platform, where a vendor still runs servers full of client data, just servers with the firm's name on the contract instead of the public tool, a structure that still leaves the same vendor-oversight and breach-notification questions in place, just with better paperwork behind them. The third keeps client files out of any new vendor's storage and has the AI read them locally instead, under the Claude plan the firm already holds.
 
 **The common path.**
 
@@ -651,15 +651,15 @@ You ask a question inside Claude.
 
 Briefly reads the relevant file on your own computer.
 
-Your own Claude plan governs the model call.
+Claude reads the file and Anthropic processes it, under your firm's own Claude plan.
 
 Briefly's server sees your sign-in, a seat check, de-identified preference rules, and a short usage record for each tool call, never the file.
 
 The left side is what happens with a consumer AI tool used directly. The right side is what happens when the same question runs through an AI knowledge base for financial advisors built to sit inside Claude instead of alongside it.
 
-Briefly is built around the local path. It's a connector that runs inside Claude Desktop and fits a team that already works inside Claude day to day. Briefly also runs as a browser workspace for firms that would rather have Briefly handle the setup. An advisor using the connector points it at a folder of client documents, emails, and notes already stored on their computer. When they ask a question in Claude, Briefly reads the relevant files locally and writes the answer with the source cited. With the Briefly connector, client files never leave your computer. Only your sign-in, a seat check, de-identified preference rules, and a short usage record for each tool call reach Briefly's server. Briefly is advisory-workflow software only, it reads files and never touches accounts, trading, or custody.
+Briefly is built around the local path. It's a connector that runs inside Claude Desktop and fits a team that already works inside Claude day to day. Briefly also runs as a browser workspace for firms that would rather have Briefly handle the setup. An advisor using the connector points it at a folder of client documents, emails, and notes already stored on their computer. When they ask a question in Claude, Briefly reads the relevant files locally and writes the answer with the source cited. With the Briefly connector, client files never reach Briefly's servers. Only your sign-in, a seat check, de-identified preference rules, and a short usage record for each tool call do, and Claude reads the files under your firm's own Claude plan. Briefly is advisory-workflow software only, it reads files and never touches accounts, trading, or custody.
 
-That's why the Reg S-P questions from earlier in this page get simpler, not more complicated. A vendor that never receives the client file has nothing to safeguard, nothing to disclose in a 30-day breach notice, and nothing for an examiner to ask about in a vendor-oversight review.
+That's why the Reg S-P questions from earlier in this page narrow. Briefly never receives the client file, so there's nothing of your clients' on our servers to safeguard or disclose in a breach notice. Anthropic still processes what Claude reads, under the firm's own Claude plan, so that plan stays in your vendor file the way it already does today. What Briefly avoids adding is a second, unreviewed vendor holding client data.
 
 This page covers the two most common paths. For a full comparison of what Claude can and can't see out of the box, and how advisors are giving it secure access to client files beyond Briefly, see Claude for financial advisors.
 
@@ -667,27 +667,27 @@ This page covers the two most common paths. For a full comparison of what Claude
 
 Q: Can financial advisors put client data into ChatGPT?
 
-Typing a client's name, account number, or portfolio detail into ChatGPT sends that data to OpenAI's servers, outside the advisor's own systems. Reg S-P treats an AI vendor used this way as a service provider the firm must oversee, and most firms have no oversight agreement with OpenAI at all. Summarized data without identifiers carries far less risk.
+Typing a client's name, account number, or portfolio detail into ChatGPT sends that data to OpenAI's servers under a consumer agreement the firm never reviewed. The amended Reg S-P rule requires firms to oversee the service providers that handle customer information, and few firms have any oversight arrangement with OpenAI on file.
 
 Q: Is ChatGPT compliant with SEC and FINRA rules for financial advisors?
 
-ChatGPT itself isn't approved or rejected by the SEC or FINRA. Compliance depends on how an advisor uses it. Pasting client information into the consumer chat window creates a Reg S-P and recordkeeping problem. Using ChatGPT for general research or drafting with no client specifics avoids most of that risk.
+ChatGPT itself isn't approved or rejected by the SEC or FINRA, and how an advisor uses it is what compliance programs look at. Pasting client information into the consumer chat window raises Reg S-P and recordkeeping questions firms are bringing to their compliance officers. General research or drafting with no client specifics raises far fewer of them.
 
 Q: Does Regulation S-P apply to AI tools advisors use with client data?
 
-Yes. The amended Reg S-P safeguards rule, in force for all RIAs since June 3, 2026, requires firms to oversee the third-party service providers that touch customer information, and an AI vendor receiving client data counts as one. Firms need a written incident response plan and a real vendor review, not just a terms-of-service click.
+The amended Reg S-P safeguards rule, in force for all RIAs since June 3, 2026, requires firms to oversee the third-party service providers that touch customer information, and an AI vendor receiving client data matches the kind of service provider the rule describes. The rule also calls for a written incident response program and a documented vendor review process.
 
 Q: Can financial advisors use Claude for client work?
 
-Yes, on the right plan. Claude for Work, Enterprise, and API accounts fall under Anthropic's commercial terms, which prohibit training on customer content. Personal Free, Pro, and Max accounts train on conversations unless the user opts out, and safety-flagged chats can be used even after opting out. Client work generally belongs on a business plan.
+Yes, and the plan is what matters. Claude for Work, Enterprise, and API accounts fall under Anthropic's commercial terms, which state that Anthropic may not train models on customer content. Personal Free, Pro, and Max accounts train on conversations unless the user opts out, and safety-flagged chats can be used even after opting out. Many firms keep client work on a business plan for that reason.
 
 Q: Does my firm need a written policy on AI tools like ChatGPT and Claude?
 
-Yes, in practice. FINRA's 2026 guidance expects firms to supervise AI-assisted communications the same way they supervise any other correspondence, and the SEC's exam priorities ask whether a firm's actual AI use matches what it discloses. A firm without a written policy naming which AI tools are approved is exposed in exactly the review both regulators say they're running.
+Many firms are writing one now. FINRA's 2026 oversight report says firms should assess and supervise their use of generative AI, and the SEC's 2026 exam priorities look at whether a firm's actual AI use matches what it discloses. Both reviews get easier to answer with a written policy naming which tools are approved, and what yours should say is a question for your compliance officer.
 
 Q: Do advisors need to archive AI chat conversations under FINRA rules?
 
-If the conversation functions as a business communication, drafting a client email, discussing an account, giving investment guidance, it likely falls under the same books-and-records and supervision requirements as any other business correspondence. Most consumer AI chat tools were not built with that archiving requirement in mind.
+FINRA's books-and-records rules cover business correspondence broadly, and firms are asking their compliance officers whether an AI chat that drafts a client email or discusses an account functions as business correspondence under them. Most consumer AI chat tools were not built with archiving in mind.
 
 Q: Is there an SEC-approved AI tool for financial advisors?
 
@@ -695,7 +695,7 @@ No, and no vendor can honestly claim that certification exists. The SEC fined tw
 
 Q: What's the safest way for advisors to use AI with client information?
 
-Use a setup where client files stay on the advisor's own computer and the AI reads them there instead of uploading them to a vendor. Briefly, an AI knowledge base for financial advisors, works this way through its connector inside Claude Desktop. With the connector, client files never leave your computer. Only your sign-in, a seat check, de-identified preference rules, and a short usage record for each tool call reach Briefly's server.
+One structure keeps client files in the firm's own storage and has the AI read them there, under an agreement the firm has already reviewed. Briefly, an AI knowledge base for financial advisors, is built that way. Its connector runs inside Claude Desktop, client files never reach Briefly's servers, and only your sign-in, a seat check, de-identified preference rules, and a short usage record for each tool call do.
 
 ## Sources
 
@@ -795,7 +795,7 @@ With the Briefly connector, documents and notes in the folder you point Briefly 
 
 Remembers the client between sessions
 
-No, on ChatGPT. Every new chat starts blank unless you paste the details back in.
+Partly, on ChatGPT. Its memory can carry details between chats, but it lives in one person's account, with nothing your firm can review or cite.
 
 No, not on its own, on Claude. You'd need to paste the background in again or keep a connector active.
 
@@ -815,7 +815,7 @@ You're relying on OpenAI's data policies and your own recordkeeping on ChatGPT. 
 
 You're relying on Anthropic's data policies on Claude. Business plans are barred from training on your content by contract, and the recordkeeping question is still yours to answer.
 
-With the Briefly connector, client files never reach a vendor's server, so there's no client data on Briefly's end to govern. See the compliance page for the full accounting.
+With the Briefly connector, client files never reach Briefly's servers, so there's no client data on Briefly's end to govern, and Claude reads the files under the firm's own Claude plan. See the compliance page for the full accounting.
 
 Setup effort
 
@@ -845,7 +845,7 @@ Some financial software companies run their own connector into Claude the same w
 
 ### A local connector that reads files from your machine
 
-The connector runs on your own computer and reads files from a folder you choose. Claude asks it a question, the connector reads the answer off your machine's disk, and nothing about that specific client goes to a server, not the vendor's, not Anthropic's, beyond the ordinary API call Claude already makes to think. This is the approach Briefly built its connector around, and it's the only one of the four where client files never end up copied onto someone else's infrastructure. With the Briefly connector, client files never leave your computer. Only your sign-in, a seat check, de-identified preference rules, and a short usage record for each tool call reach Briefly's server.
+The connector runs on your own computer and reads files from a folder you choose. Claude asks it a question, the connector reads the answer off your machine's disk, and Anthropic processes what Claude reads under the firm's own Claude plan, the same model call every method on this list involves. The difference is storage, since this is the only one of the four where client files never end up copied onto a vendor's infrastructure, and it's the approach Briefly built its connector around. Client files never reach Briefly's servers. Only your sign-in, a seat check, de-identified preference rules, and a short usage record for each tool call do.
 
 ## What Claude handles well once it can see your files
 
@@ -875,7 +875,7 @@ The mechanism is the same in every example above. The connector hands Claude the
 
 ## Getting started
 
-Pick a Claude plan that matches how you'll use it. Anthropic's commercial terms bar training on customer content for Work, Enterprise, and API accounts, while personal plans train on conversations unless you opt out. Client work generally belongs on a business plan.
+Pick a Claude plan that matches how you'll use it. Anthropic's commercial terms bar training on customer content for Work, Enterprise, and API accounts, while personal plans train on conversations unless you opt out. Many firms keep client work on a business plan for that reason, and your compliance officer can weigh in on the right setup for yours.
 
 Start with pasting or a built-in connector for occasional use.
 
@@ -903,7 +903,7 @@ A Claude connector is a small program that lets Claude read and act on a firm's 
 
 Q: Is it safe to paste client information directly into Claude?
 
-It depends on your plan. On Claude for Work, Enterprise, and API accounts, Anthropic's commercial terms prohibit training on customer content. A personal account trains on conversations unless you opt out in settings, and safety-flagged chats can be used even then. Either way, your firm's recordkeeping duties apply to whatever you paste.
+It depends on your plan. On Claude for Work, Enterprise, and API accounts, Anthropic's commercial terms bar training on customer content. A personal account trains on conversations unless you opt out in settings, and safety-flagged chats can be used even then. There's also a recordkeeping question, since what you paste may count as business correspondence under your firm's own rules, which is worth confirming with your compliance officer.
 
 Q: What's the difference between Claude's built-in connectors and a vendor's own connector?
 
@@ -911,11 +911,11 @@ Claude's built-in connectors, like Google Drive or Gmail, route through Anthropi
 
 Q: Does Claude remember a client from one conversation to the next?
 
-Not on its own. Each new chat starts blank, so you'd need to paste the same background in again or keep a connector active that can pull it back up. Tools built around Claude, including Briefly, can write what gets learned about a client back to files, so the next conversation starts from there.
+Partly. Claude's memory is on by default now and carries context between conversations, so a client you discussed last week can come up again. That memory lives in one person's account though, where the firm can't review it, correct it, or cite it, and nobody else on the team inherits it. Briefly writes what gets learned about a client back to files your firm owns, so every advisor's next conversation starts from the same record, with citations.
 
 Q: How is Briefly different from just using Claude on its own?
 
-Briefly is an AI knowledge base for financial advisors that runs inside Claude as a local connector. It reads and writes files in a folder on your computer instead of a vendor's cloud, so Claude can work from your actual client records without those records leaving your computer.
+Briefly is an AI knowledge base for financial advisors that runs inside Claude as a local connector. It reads and writes files in a folder on your computer instead of a vendor's cloud, so Claude works from your actual client records and Briefly never holds a copy of them.
 
 ### Connor Florczyk
 

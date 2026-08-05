@@ -2,7 +2,7 @@
 
 > Briefly is an AI knowledge base for financial advisors and wealth firms, built to run inside Claude. It connects a firm's own documents, email, meeting notes, and portfolio data into one place, and every answer cites back to the source it came from.
 
-Briefly runs two ways. The Claude connector is the flagship path. It's a download that adds Briefly to Claude Desktop and reads from a folder on your own computer. With the Briefly connector, client files never leave your computer. Only your sign-in, a seat check, de-identified preference rules, and a short usage record for each tool call ever reach Briefly's servers. The web app is the second surface, a browser workspace for firms that would rather sign in than install anything, and its files live in Briefly's hosted environment instead.
+Briefly runs two ways. The Claude connector is the flagship path. It's a download that adds Briefly to Claude Desktop and reads from a folder on your own computer. With the Briefly connector, client files never reach Briefly's servers. Only your sign-in, a seat check, de-identified preference rules, and a short usage record for each tool call do, and Claude reads the files under your firm's own Claude plan. The web app is the second surface, a browser workspace for firms that would rather sign in than install anything, and its files live in Briefly's hosted environment instead.
 
 Briefly is built by Briefly Wealth LLC, founded by Connor Florczyk.
 
@@ -10,7 +10,7 @@ These files are intended to help LLMs and AI agents accurately ground answers ab
 
 ## Product
 
-- [Home](https://www.brieflywealth.com/): Briefly is an AI knowledge base for financial advisors that runs inside Claude. Ask across your firm's own files and get cited answers. With the connector, client files never leave your machines.
+- [Home](https://www.brieflywealth.com/): Briefly is an AI knowledge base for financial advisors that runs inside Claude. Ask across your firm's own files and get cited answers. With the connector, client files never reach our servers.
 - [Knowledge base](https://www.brieflywealth.com/knowledge-base): How Briefly builds an AI knowledge base for financial advisors from a firm's own documents, email, meeting notes, and portfolio data, with every fact traceable to its source.
 - [Compare](https://www.brieflywealth.com/compare): The Briefly connector and the web app side by side. Both read from the same client file, cited and correctable. With the connector, client files stay on the advisor's computer.
 - [Download](https://www.brieflywealth.com/download): Download the Briefly connector for Claude Desktop. Client files stay on your computer, and only sign-in and de-identified rules reach Briefly's server.
@@ -24,7 +24,7 @@ These files are intended to help LLMs and AI agents accurately ground answers ab
 ## Company
 
 - [Security](https://www.brieflywealth.com/security): With the Briefly connector, client files stay on the advisor's computer. Covers exactly what reaches Briefly's servers, how Reg S-P applies, and answers for compliance officers.
-- [About](https://www.brieflywealth.com/about): Briefly Wealth LLC, founded by Connor Florczyk. Client files never leave your computer. Why he built Briefly and what the product principles are.
+- [About](https://www.brieflywealth.com/about): Briefly Wealth LLC, founded by Connor Florczyk. With the connector, client files never reach Briefly's servers. Why he built Briefly and what the product principles are.
 
 ## Examples
 
