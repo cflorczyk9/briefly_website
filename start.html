@@ -20,10 +20,6 @@
   gtag('config', 'G-92NXKY9W1S', { 'send_page_view': true });
 </script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
-
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -50,33 +46,47 @@
 
 <style>
   :root {
-    --sans: "DM Sans", Inter, system-ui, -apple-system, sans-serif;
-    --mono: "SFMono-Regular", "JetBrains Mono", Consolas, monospace;
-    --navy: #0F172A;
-    --ink: #0F172A;
-    --ink-soft: #475569;
-    --ink-muted: #5B6C80;
-    --rule: #E2E8F0;
-    --paper: #F7F8FA;
-    --paper-2: #EEF1F5;
-    --paper-3: #FFFFFF;
-    --cream: #F1F5F9;
-    --cream-soft: #C3CEDD;
-    --cream-muted: #94A3B8;
-    --blue: #2F8CFF;
-    --blue-ink: #1D4ED8;
-    --cyan: #8cd8ff;
-    --bg: #0B1220;
+    --paper: #FBFAF6;          /* warm white ground */
+    --paper-2: #F2EDE1;        /* second warm tone, for band alternation */
+    --card: #FFFFFF;
+    --ink: #16324F;            /* deep navy, all display type */
+    --ink-soft: #46627D;
+    --ink-muted: #5B6C80;   /* AA: 4.6+ on every light surface it labels */
+    --rule: #E6E1D5;           /* warm hairline */
+    --blue: #2F8CFF;           /* fills, icons, pins, chip fills. 3.32 on white: never small text */
+    --blue-ink: #1D4ED8;       /* 6.70 on white: small text, links, focus rings */
+    --blue-soft: #E9F2FF;      /* light chip background on paper grounds */
+    --cyan: #8cd8ff;           /* dark navy sections only */
+    --navy-band: #10263D;      /* closer + footer + custody */
+    --cream: #F4F1E9;
+    --cream-soft: #B9C4CF;
+    --serif: Charter, "Iowan Old Style", "Source Serif Pro", Georgia, serif;
+    --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+    --mono: "SFMono-Regular", Menlo, Consolas, monospace;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: var(--sans); color: var(--ink); background: var(--paper-3); line-height: 1.6; overflow-x: hidden; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--paper); color: var(--ink); line-height: 1.6; overflow-x: hidden; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
 
-  .checkout-shell { min-height: 100vh; display: flex; flex-wrap: wrap; }
+  /* ---------- connector / web app toggle ---------- */
+  .start-toggle-bar { background: var(--paper); border-bottom: 1px solid var(--rule); padding: 18px 0; }
+  .start-toggle-bar .container { display: flex; justify-content: center; }
+  .start-toggle { display: inline-flex; gap: 4px; background: var(--paper-2); border: 1px solid var(--rule); border-radius: 999px; padding: 4px; }
+  .start-tab {
+    font-family: var(--sans); font-size: 13.5px; font-weight: 600; color: var(--ink-soft);
+    background: transparent; border: 0; border-radius: 999px; padding: 9px 18px;
+    cursor: pointer; white-space: nowrap;
+  }
+  .start-tab[aria-selected="true"] { background: var(--ink); color: #fff; }
+  .start-tab:focus-visible { outline: 2px solid var(--blue-ink); outline-offset: 2px; }
+  .start-panel.is-hidden { display: none; }
 
   /* ---------- left panel: order summary ---------- */
   .checkout-left {
     flex: 0 0 42%;
-    background: var(--bg);
+    background: var(--navy-band);
     background-image: radial-gradient(ellipse 620px 420px at 12% 0%, rgba(47,140,255,.14), transparent 60%);
     color: var(--cream-soft);
     display: flex;
@@ -84,36 +94,36 @@
     padding: 56px 48px;
   }
 
-  .brand { position: relative; display: inline-flex; align-items: center; align-self: flex-start; padding-right: 14px; text-decoration: none; }
+  .brand { position: relative; display: inline-flex; align-items: center; align-self: flex-start; padding-right: 18px; text-decoration: none; }
   .brand:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; border-radius: 4px; }
   .brand-word {
-    font-family: var(--sans); font-weight: 900; font-size: 26px; line-height: .78;
-    letter-spacing: -.085em; text-transform: uppercase; color: var(--cream);
+    font-family: var(--sans); font-weight: 900; font-size: 32px; line-height: .78;
+    letter-spacing: -.075em; text-transform: uppercase; color: var(--cream);
     transform: scaleY(.88); transform-origin: left center;
   }
-  .brand-pin { position: absolute; top: 4px; right: 0; width: 6px; height: 6px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 2px rgba(47,140,255,.12); }
+  .brand-pin { position: absolute; top: 5px; right: 0; width: 8px; height: 8px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 2.5px rgba(47,140,255,.12); }
 
   .order-summary { margin-top: 64px; max-width: 340px; }
-  .order-eyebrow { font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--cream-muted); margin-bottom: 20px; }
+  .order-eyebrow { font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--cream-soft); margin-bottom: 20px; }
   .order-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
   .order-product { font-size: 16px; font-weight: 700; color: var(--cream); }
   .order-qty { font-family: var(--mono); font-size: 13.5px; color: var(--cream-soft); white-space: nowrap; }
-  .order-unit { margin-top: 6px; font-family: var(--mono); font-size: 13px; color: var(--cream-muted); }
-  .order-rule { border: 0; border-top: 1px solid rgba(241,245,249,.14); margin: 24px 0; }
+  .order-unit { margin-top: 6px; font-family: var(--mono); font-size: 13px; color: var(--cream-soft); }
+  .order-rule { border: 0; border-top: 1px solid rgba(244,241,233,.14); margin: 24px 0; }
   .order-total-row { display: flex; justify-content: space-between; align-items: baseline; }
   .order-total-label { font-size: 14px; color: var(--cream-soft); }
   .order-total-amount { font-family: var(--sans); font-size: 30px; font-weight: 800; letter-spacing: -.02em; color: var(--cream); }
-  .order-then { margin-top: 10px; font-size: 13px; line-height: 1.55; color: var(--cream-muted); }
+  .order-then { margin-top: 10px; font-size: 13px; line-height: 1.55; color: var(--cream-soft); }
 
   .trust-line { display: flex; align-items: flex-start; gap: 10px; margin-top: auto; padding-top: 48px; }
-  .lock-icon { flex: none; width: 16px; height: 16px; margin-top: 2px; color: var(--cream-muted); }
-  .trust-line-main { font-size: 13px; font-weight: 700; color: var(--cream-soft); }
-  .trust-line-sub { margin-top: 2px; font-size: 12.5px; color: var(--cream-muted); }
+  .lock-icon { flex: none; width: 16px; height: 16px; margin-top: 2px; color: var(--cream-soft); }
+  .trust-line-main { font-size: 13px; font-weight: 700; color: var(--cream); }
+  .trust-line-sub { margin-top: 2px; font-size: 12.5px; color: var(--cream-soft); }
 
   /* ---------- right panel: the form ---------- */
   .checkout-right {
     flex: 1 1 58%;
-    background: var(--paper-3);
+    background: var(--paper);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -121,7 +131,7 @@
   }
   .checkout-form-wrap { width: 100%; max-width: 420px; }
 
-  h1 { font-family: var(--sans); font-weight: 800; font-size: clamp(26px, 3vw, 32px); line-height: 1.18; letter-spacing: -.02em; color: var(--ink); }
+  h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(26px, 3vw, 32px); line-height: 1.18; letter-spacing: 0; color: var(--ink); }
   .lede { margin-top: 10px; font-size: 15.5px; line-height: 1.55; color: var(--ink-soft); }
 
   .field-label { display: block; font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 8px; }
@@ -152,25 +162,24 @@
   .hp-field { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
   .btn {
-    display: inline-block; font-family: var(--sans); font-size: 14px; font-weight: 700;
-    padding: 11px 22px; border-radius: 6px; background: var(--ink); color: #fff;
-    text-decoration: none; border: 1px solid var(--ink); cursor: pointer;
+    display: inline-block; font-size: 14px; font-weight: 600; padding: 13px 26px;
+    border-radius: 4px; background: var(--ink); color: #fff; text-decoration: none;
+    border: 1px solid var(--ink); cursor: pointer;
   }
-  .btn.ghost { background: transparent; color: var(--ink); border-color: var(--rule); }
-  .btn.ghost:hover { border-color: var(--ink-soft); }
-  .btn:focus-visible { outline: 2px solid var(--blue-ink); outline-offset: 2px; }
+  .btn.ghost { background: transparent; color: var(--ink); }
+  .btn:focus-visible, .textlink:focus-visible { outline: 2px solid var(--blue-ink); outline-offset: 2px; }
+  .textlink { font-size: 14.5px; font-weight: 600; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
 
   .btn-checkout {
     width: 100%; text-align: center; padding: 15px 26px; margin-top: 6px;
     background: var(--blue-ink); border-color: var(--blue-ink); color: #fff;
     transition: background .15s ease, border-color .15s ease;
   }
-  .btn-checkout:hover:not(:disabled) { background: var(--ink); border-color: var(--ink); }
   .btn-checkout:disabled { background: var(--rule); border-color: var(--rule); color: var(--ink-soft); cursor: not-allowed; }
 
   .checkout-fallback {
-    margin-top: 16px; border: 1px solid var(--rule); border-radius: 16px; background: var(--paper-2);
-    box-shadow: 0 1px 2px rgba(15,23,42,.05), 0 8px 24px rgba(15,23,42,.08);
+    margin-top: 16px; border: 1px solid var(--rule); border-radius: 10px; background: var(--card);
+    box-shadow: 0 1px 2px rgba(22,50,79,.05), 0 14px 34px rgba(22,50,79,.08);
     padding: 18px 20px;
   }
   .checkout-fallback p { font-size: 14px; color: var(--ink-soft); margin-bottom: 12px; }
@@ -180,21 +189,20 @@
 
   .secondary-path { margin-top: 18px; font-size: 14px; color: var(--ink-soft); }
 
-  .textlink {
-    font-size: inherit; font-weight: 600; color: var(--blue-ink); text-decoration: underline;
-    text-underline-offset: 3px; background: none; border: 0; padding: 0; cursor: pointer; font-family: inherit;
-  }
-  .textlink:focus-visible { outline: 2px solid var(--blue-ink); outline-offset: 2px; }
-
   .webapp-row { margin-top: 28px; padding-top: 22px; border-top: 1px solid var(--rule); font-size: 13.5px; line-height: 1.55; color: var(--ink-soft); }
   .webapp-row .textlink { margin: 0 2px; }
+
+  /* ---------- web app panel (new) ---------- */
+  .start-panel-webapp { min-height: calc(100vh - 68px); display: flex; align-items: center; justify-content: center; background: var(--paper); padding: 64px 28px; }
+  .webapp-panel-inner { width: 100%; max-width: 440px; }
+  .webapp-panel-ctas { margin-top: 28px; display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
 
   @media (max-width: 900px) {
     .checkout-shell { flex-direction: column; }
     .checkout-left, .checkout-right { flex: none; }
     .checkout-left { padding: 40px 28px 32px; }
     .order-summary { margin-top: 36px; max-width: none; }
-    .trust-line { margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(241,245,249,.14); }
+    .trust-line { margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(244,241,233,.14); }
     .checkout-right { padding: 40px 28px 64px; justify-content: flex-start; }
   }
 
@@ -202,9 +210,123 @@
     * { transition: none !important; animation: none !important; }
   }
 </style>
+<style>
+/* canonical chrome (nav/footer/buttons), stamped 2026-08-05 */
+.container { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+.btn {
+    display: inline-block; font-size: 14px; font-weight: 600; padding: 13px 26px;
+    border-radius: 4px; background: var(--ink); color: #fff; text-decoration: none;
+    border: 1px solid var(--ink); cursor: pointer;
+  }
+.btn.ghost { background: transparent; color: var(--ink); }
+.textlink { font-size: 14.5px; font-weight: 600; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+/* nav */
+  nav { border-bottom: 1px solid var(--rule); background: var(--paper); position: relative; }
+.nav-bar { min-height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 10px; padding-bottom: 10px; }
+.brand { position: relative; display: inline-flex; align-items: center; padding-right: 14px; text-decoration: none; }
+.brand-word {
+    font-family: var(--sans); font-weight: 900; font-size: 21px; line-height: .78;
+    letter-spacing: -.075em; text-transform: uppercase; color: var(--ink);
+    transform: scaleY(.88); transform-origin: left center;
+  }
+.brand-pin {
+    position: absolute; top: 3px; right: 0; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--blue); box-shadow: 0 0 0 2px rgba(47,140,255,.10);
+  }
+.nav-right { display: flex; align-items: center; gap: 22px; }
+.nav-panel { display: flex; align-items: center; gap: 26px; }
+.nav-links { display: flex; gap: 24px; }
+.nav-links a { font-size: 13px; font-weight: 600; color: var(--ink-soft); text-decoration: none; white-space: nowrap; }
+.nav-links a:hover { color: var(--ink); }
+.nav-actions { display: flex; align-items: center; gap: 16px; }
+.nav-signin { font-size: 13px; font-weight: 600; color: var(--ink-soft); text-decoration: none; white-space: nowrap; }
+.nav-signin:hover { color: var(--ink); }
+.nav-bar .btn { padding: 9px 18px; font-size: 13px; white-space: nowrap; }
+.nav-toggle {
+    display: none; width: 40px; height: 40px; flex-shrink: 0;
+    border: 1px solid var(--rule); border-radius: 6px; background: var(--card); cursor: pointer;
+    flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+  }
+.nav-toggle span { display: block; width: 18px; height: 2px; background: var(--ink); }
+.nav-links a:focus-visible, .nav-signin:focus-visible, .btn:focus-visible, .nav-toggle:focus-visible, .hc-dot:focus-visible, .textlink:focus-visible {
+    outline: 2px solid var(--blue-ink); outline-offset: 2px;
+  }
+@media (max-width: 860px) {
+  .nav-toggle { display: inline-flex; }
+  .nav-panel {
+      display: none;
+      position: absolute; top: 100%; left: 0; right: 0;
+      flex-direction: column; align-items: stretch; gap: 0;
+      background: var(--paper); border-bottom: 1px solid var(--rule);
+      padding: 6px 28px 20px; z-index: 40;
+    }
+  .nav-panel.open { display: flex; }
+  .nav-links { flex-direction: column; gap: 0; }
+  .nav-links a { padding: 12px 0; border-top: 1px solid var(--rule); }
+  .nav-actions { flex-direction: column; align-items: stretch; gap: 10px; margin-top: 6px; }
+  .nav-signin { padding: 8px 0; }
+  .nav-actions .btn.ghost { width: 100%; text-align: center; }
+}
+.dotbg > .container { position: relative; }
+.custody-links .textlink { color: var(--cyan); }
+.custody-links .textlink:focus-visible { outline-color: var(--cyan); }
+.closer .btn { background: var(--cream); color: var(--navy-band); border-color: var(--cream); }
+/* footer */
+  footer { background: var(--navy-band); color: var(--cream-soft); padding: 56px 0 30px; }
+footer .foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 36px; padding-bottom: 40px; border-bottom: 1px solid #24415E; }
+footer .foot-brand .brand { padding-right: 18px; }
+footer .foot-brand .brand-word { color: var(--cream); font-size: 32px; }
+footer .foot-brand .brand-pin { top: 5px; width: 8px; height: 8px; box-shadow: 0 0 0 2.5px rgba(47,140,255,.12); }
+footer .foot-brand p { margin-top: 14px; font-size: 13px; line-height: 1.6; max-width: 280px; color: var(--cream-soft); }
+footer h4 { font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--cream); margin-bottom: 14px; }
+footer a { display: block; color: var(--cream-soft); text-decoration: none; font-size: 13.5px; line-height: 2.1; }
+footer a:hover { color: var(--cream); }
+footer .foot-bottom { display: flex; justify-content: space-between; gap: 14px; padding-top: 22px; font-size: 12.5px; color: var(--cream-soft); flex-wrap: wrap; }
+@media (max-width: 880px) {
+  footer .foot-grid { grid-template-columns: 1fr 1fr; }
+  footer .foot-brand { grid-column: 1 / -1; }
+}
+@media (max-width: 480px) {
+  .container { padding: 0 18px; }
+  .hero-ctas .btn { text-align: center; }
+}
+</style>
 </head>
 <body>
 
+<nav aria-label="Primary">
+  <div class="container nav-bar">
+    <a class="brand" href="/"><span class="brand-word">Briefly</span><span class="brand-pin" aria-hidden="true"></span></a>
+    <div class="nav-right">
+      <div class="nav-panel" id="navPanel">
+        <div class="nav-links">
+          <a href="/#how">How it works</a>
+          <a href="/security">Security</a>
+          <a href="/sample-deliverables">Samples</a>
+          <a href="/download">Download</a>
+        </div>
+        <div class="nav-actions">
+          <a class="nav-signin" href="https://demo.app.brieflywealth.com/">Web app sign in</a>
+          <a class="btn ghost" href="/start">Start now</a>
+        </div>
+      </div>
+      <a class="btn" href="#" onclick="openDemoModal();return false;">Book a demo</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navPanel" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+
+<div class="start-toggle-bar">
+  <div class="container">
+    <div class="start-toggle" role="tablist" aria-label="Choose how to start">
+      <button type="button" class="start-tab" id="tabConnector" role="tab" aria-selected="true" aria-controls="panelConnector" tabindex="0">The Claude connector</button>
+      <button type="button" class="start-tab" id="tabWebapp" role="tab" aria-selected="false" aria-controls="panelWebapp" tabindex="-1">The Briefly web app</button>
+    </div>
+  </div>
+</div>
+
+<div id="panelConnector" class="start-panel start-panel-connector" role="tabpanel" aria-labelledby="tabConnector" tabindex="0">
 <div class="checkout-shell">
   <aside class="checkout-left" aria-label="Order summary">
     <a class="brand" href="/"><span class="brand-word">Briefly</span><span class="brand-pin" aria-hidden="true"></span></a>
@@ -283,59 +405,76 @@
     </div>
   </main>
 </div>
+</div>
+
+<div id="panelWebapp" class="start-panel start-panel-webapp is-hidden" role="tabpanel" aria-labelledby="tabWebapp" tabindex="0">
+  <div class="webapp-panel-inner">
+    <h1>Start with the Briefly web app.</h1>
+    <p class="lede">Your files live in Briefly's hosted environment. We connect Salesforce and Outlook and build the client file for your firm, then your team signs in from a browser. No setup on your end.</p>
+    <div class="webapp-panel-ctas">
+      <a class="btn" href="#" onclick="openDemoModal();return false;">Book a demo</a>
+      <a class="textlink" href="https://demo.app.brieflywealth.com/">Web app sign in</a>
+    </div>
+  </div>
+</div>
 
 <!-- ==================== DEMO MODAL, ported from index.html so this page works standalone ==================== -->
 <style>
   .demo-modal { position:fixed; inset:0; z-index:200; display:none; align-items:center; justify-content:center; padding:20px; }
   .demo-modal.active { display:flex; }
-  .demo-modal-backdrop { position:absolute; inset:0; background:rgba(15,23,42,.56); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
+  .demo-modal-backdrop { position:absolute; inset:0; background:rgba(16,38,61,.56); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
   .demo-modal-card {
     position:relative; z-index:1; width:100%; max-width:440px;
-    background:var(--paper, #F7F8FA); border:1px solid var(--rule, #E2E8F0);
-    border-radius:16px;
-    padding:32px 28px 28px; box-shadow:0 20px 40px rgba(15,23,42,.14);
-    font-family:var(--sans, "DM Sans", system-ui, sans-serif);
+    background:var(--paper); border:1px solid var(--rule);
+    border-radius:10px;
+    padding:32px 28px 28px; box-shadow:0 20px 40px rgba(22,50,79,.18);
+    font-family:var(--sans);
   }
   .demo-modal-close {
     position:absolute; top:10px; right:14px; background:transparent; border:0;
-    font-size:24px; color:var(--ink, #0F172A); cursor:pointer; line-height:1; padding:6px 8px;
+    font-size:24px; color:var(--ink); cursor:pointer; line-height:1; padding:6px 8px;
   }
   .demo-modal-eyebrow {
-    font-family:var(--mono, monospace); font-size:11px; font-weight:700;
-    letter-spacing:.08em; text-transform:uppercase; color:var(--navy, #1D4ED8);
+    font-family:var(--mono); font-size:11px; font-weight:700;
+    letter-spacing:.08em; text-transform:uppercase; color:var(--blue-ink);
     margin:0 0 8px;
   }
   .demo-modal-title {
-    font-weight:800; font-size:32px; line-height:1; letter-spacing:-.04em;
-    margin:0 0 18px; color:var(--ink, #0F172A);
+    font-family:var(--serif); font-weight:400; font-size:30px; line-height:1.1; letter-spacing:0;
+    margin:0 0 18px; color:var(--ink);
   }
   .demo-modal-field { display:block; margin:0 0 14px; }
   .demo-modal-field label {
-    display:block; font-family:var(--mono, monospace); font-size:11px; font-weight:700;
-    letter-spacing:.08em; text-transform:uppercase; color:rgba(15,23,42,.72); margin-bottom:6px;
+    display:block; font-family:var(--mono); font-size:11px; font-weight:700;
+    letter-spacing:.08em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px;
   }
   .demo-modal-field input {
-    width:100%; padding:11px 12px; font-family:var(--sans, "DM Sans", system-ui, sans-serif);
-    font-size:15px; border:1px solid var(--ink, #0F172A); background:#fff; color:var(--ink, #0F172A);
-    border-radius:6px;
+    width:100%; padding:11px 12px; font-family:var(--sans);
+    font-size:15px; border:1px solid var(--ink); background:#fff; color:var(--ink);
+    border-radius:4px;
   }
-  .demo-modal-field input:focus { outline:2px solid var(--blue, #2f8cff); outline-offset:1px; }
+  .demo-modal-field input:focus { outline:2px solid var(--blue-ink); outline-offset:1px; }
   .demo-modal-submit {
-    width:100%; height:44px; border:1px solid var(--ink, #0F172A); background:var(--ink, #0F172A);
-    border-radius:6px;
-    color:var(--paper, #F7F8FA); font-family:var(--mono, monospace); font-size:12px; font-weight:800;
+    width:100%; height:44px; border:1px solid var(--ink); background:var(--ink);
+    border-radius:4px;
+    color:#fff; font-family:var(--mono); font-size:12px; font-weight:700;
     letter-spacing:.08em; text-transform:uppercase; cursor:pointer; margin-top:6px;
     transition:background .15s ease, border-color .15s ease, color .15s ease;
   }
-  .demo-modal-submit:hover { background:var(--blue, #2f8cff); border-color:var(--blue, #2f8cff); color:#fff; }
+  .demo-modal-submit:hover { background:var(--blue-ink); border-color:var(--blue-ink); color:#fff; }
   .demo-modal-submit:disabled { opacity:.6; cursor:wait; }
-  .demo-modal-error { display:none; margin-top:10px; padding:10px 12px; border:1px solid #dc2626; border-radius:6px; color:#dc2626; font-size:13px; }
+  .demo-modal-error { display:none; margin-top:10px; padding:10px 12px; border:1px solid #b3261e; border-radius:4px; color:#b3261e; font-size:13px; }
   .demo-modal-success {
     display:none; padding:18px 0 4px; text-align:center;
   }
   .demo-modal-success.active { display:block; }
-  .demo-modal-success-title { font-weight:700; font-size:22px; letter-spacing:-.02em; margin:0 0 6px; color:var(--ink, #0F172A); }
-  .demo-modal-success-body { font-size:14px; color:rgba(15,23,42,.72); line-height:1.5; margin:0 0 16px; }
+  .demo-modal-success-title { font-family:var(--serif); font-weight:400; font-size:22px; letter-spacing:0; margin:0 0 6px; color:var(--ink); }
+  .demo-modal-success-body { font-size:14px; color:var(--ink-soft); line-height:1.5; margin:0 0 16px; }
+  @media (max-width: 480px) {
+    .demo-modal { padding: 14px; }
+    .demo-modal-card { padding: 26px 22px 22px; }
+    .demo-modal-title { font-size: 26px; }
+  }
 </style>
 <div class="demo-modal" id="demoModal" role="dialog" aria-modal="true" aria-labelledby="demoModalTitle">
   <div class="demo-modal-backdrop" onclick="closeDemoModal()"></div>
@@ -369,81 +508,7 @@
   </div>
 </div>
 <script>
-  var demoModalTrigger = null;
 
-  function getDemoModalFocusable() {
-    var modal = document.getElementById('demoModal');
-    var nodes = modal.querySelectorAll(
-      'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
-    );
-    return Array.prototype.filter.call(nodes, function (el) { return el.offsetParent !== null; });
-  }
-
-  function openDemoModal() {
-    demoModalTrigger = document.activeElement;
-    document.getElementById('demoModal').classList.add('active');
-    document.getElementById('demoModalForm').style.display = '';
-    document.getElementById('demoModalSuccess').classList.remove('active');
-    document.getElementById('demoModalError').style.display = 'none';
-    document.getElementById('demoModal').setAttribute('aria-labelledby', 'demoModalTitle');
-    setTimeout(function(){ var n = document.getElementById('demoName'); if (n) n.focus(); }, 50);
-  }
-  function closeDemoModal() {
-    document.getElementById('demoModal').classList.remove('active');
-    if (demoModalTrigger && typeof demoModalTrigger.focus === 'function') {
-      demoModalTrigger.focus();
-    }
-    demoModalTrigger = null;
-  }
-  document.addEventListener('keydown', function(e){
-    var modal = document.getElementById('demoModal');
-    if (!modal.classList.contains('active')) return;
-    if (e.key === 'Escape') {
-      closeDemoModal();
-      return;
-    }
-    if (e.key === 'Tab') {
-      var focusable = getDemoModalFocusable();
-      if (!focusable.length) { e.preventDefault(); return; }
-      var idx = focusable.indexOf(document.activeElement);
-      e.preventDefault();
-      if (e.shiftKey) {
-        focusable[idx > 0 ? idx - 1 : focusable.length - 1].focus();
-      } else {
-        focusable[idx > -1 && idx < focusable.length - 1 ? idx + 1 : 0].focus();
-      }
-    }
-  });
-  async function handleDemoSubmit(e) {
-    e.preventDefault();
-    var btn = document.getElementById('demoSubmitBtn');
-    var err = document.getElementById('demoModalError');
-    var name = document.getElementById('demoName').value.trim();
-    var email = document.getElementById('demoEmail').value.trim();
-    var firm = document.getElementById('demoFirm').value.trim();
-    if (!name || !email) return false;
-    btn.disabled = true; btn.textContent = 'Sending...';
-    err.style.display = 'none';
-    try {
-      var res = await fetch('https://formspree.io/f/mjgygdyd', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({ name: name, email: email, firm: firm, source: 'brieflywealth.com / start' })
-      });
-      if (!res.ok) throw new Error('Request failed');
-      document.getElementById('demoModalForm').style.display = 'none';
-      var success = document.getElementById('demoModalSuccess');
-      success.classList.add('active');
-      document.getElementById('demoModal').setAttribute('aria-labelledby', 'demoModalSuccessTitle');
-      success.focus();
-    } catch (e) {
-      err.style.display = 'block';
-      err.focus();
-    } finally {
-      btn.disabled = false; btn.textContent = 'Request demo';
-    }
-    return false;
-  }
 </script>
 
 <!-- ==================== PAGE SCRIPT: seat stepper + checkout ==================== -->
@@ -565,5 +630,192 @@ const BILLING_API_BASE = "";
 })();
 </script>
 
+<!-- ==================== PAGE SCRIPT: connector / web app tab toggle ==================== -->
+<script>
+(function () {
+  var tabs = [document.getElementById('tabConnector'), document.getElementById('tabWebapp')];
+  var panels = {
+    tabConnector: document.getElementById('panelConnector'),
+    tabWebapp: document.getElementById('panelWebapp')
+  };
+
+  function activate(tab, syncHash) {
+    tabs.forEach(function (t) {
+      var isActive = t === tab;
+      t.setAttribute('aria-selected', String(isActive));
+      t.tabIndex = isActive ? 0 : -1;
+      panels[t.id].classList.toggle('is-hidden', !isActive);
+    });
+    if (syncHash && window.history && window.history.replaceState) {
+      var path = window.location.pathname + window.location.search;
+      window.history.replaceState(null, '', tab.id === 'tabWebapp' ? path + '#webapp' : path);
+    }
+  }
+
+  tabs.forEach(function (tab, i) {
+    tab.addEventListener('click', function () { activate(tab, true); });
+    tab.addEventListener('keydown', function (e) {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      e.preventDefault();
+      var next = tabs[i === 0 ? 1 : 0];
+      next.focus();
+      activate(next, true);
+    });
+  });
+
+  if (window.location.hash === '#webapp') {
+    activate(tabs[1], false);
+  }
+})();
+</script>
+
+
+<footer>
+  <div class="container foot-grid">
+    <div class="foot-brand">
+      <a class="brand" href="/"><span class="brand-word">Briefly</span><span class="brand-pin" aria-hidden="true"></span></a>
+      <p>Briefly is an AI knowledge base for financial advisors and wealth firms, built to run inside Claude.</p>
+    </div>
+    <div>
+      <h4>Product</h4>
+      <a href="/start">Start now</a>
+      <a href="#how">How it works</a>
+      <a href="/sample-deliverables">Sample deliverables</a>
+      <a href="/security">Security</a>
+      <a href="#platform">Platform</a>
+      <a href="/compare">Compare</a>
+      <a href="/download">Download</a>
+      <a href="/knowledge-base">Knowledge base</a>
+      <a href="/ai-compliance-for-financial-advisors">AI compliance for advisors</a>
+      <a href="/claude-for-financial-advisors">Claude for financial advisors</a>
+    </div>
+    <div>
+      <h4>Company</h4>
+      <a href="/about">About</a>
+      <a href="/blog">Blog</a>
+      <a href="/subscribe">Morning Brief</a>
+      <a href="mailto:contact@brieflywealth.com">Contact</a>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <a href="/privacy-policy">Privacy</a>
+      <a href="/terms-of-service">Terms</a>
+      <a href="/eula">Connector EULA</a>
+      <a href="/subprocessors">Sub-processors</a>
+    </div>
+  </div>
+  <div class="container foot-bottom">
+    <span>&copy; 2026 Briefly Wealth LLC</span>
+    <span>brieflywealth.com</span>
+  </div>
+</footer>
+
+
+<script>
+/* nav hamburger toggle */
+(function () {
+  var btn = document.querySelector('.nav-toggle');
+  var panel = document.getElementById('navPanel');
+  if (!btn || !panel) return;
+  function setOpen(open) {
+    panel.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', String(open));
+    btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  }
+  btn.addEventListener('click', function () { setOpen(!panel.classList.contains('open')); });
+  [].slice.call(panel.querySelectorAll('a')).forEach(function (a) {
+    a.addEventListener('click', function () { setOpen(false); });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && panel.classList.contains('open')) setOpen(false);
+  });
+})();
+
+/* demo modal */
+var demoModalTrigger = null;
+
+// Focusable elements currently visible inside the modal, for the Tab trap.
+// tabindex="-1" nodes (the status regions) are deliberately excluded from the
+// cycle -- they're reachable via .focus() from JS but aren't tab stops.
+function getDemoModalFocusable() {
+  var modal = document.getElementById('demoModal');
+  var nodes = modal.querySelectorAll(
+    'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+  );
+  return Array.prototype.filter.call(nodes, function (el) { return el.offsetParent !== null; });
+}
+
+function openDemoModal() {
+  demoModalTrigger = document.activeElement;
+  document.getElementById('demoModal').classList.add('active');
+  document.getElementById('demoModalForm').style.display = '';
+  document.getElementById('demoModalSuccess').classList.remove('active');
+  document.getElementById('demoModalError').style.display = 'none';
+  document.getElementById('demoModal').setAttribute('aria-labelledby', 'demoModalTitle');
+  setTimeout(function(){ var n = document.getElementById('demoName'); if (n) n.focus(); }, 50);
+}
+function closeDemoModal() {
+  document.getElementById('demoModal').classList.remove('active');
+  if (demoModalTrigger && typeof demoModalTrigger.focus === 'function') {
+    demoModalTrigger.focus();
+  }
+  demoModalTrigger = null;
+}
+document.addEventListener('keydown', function(e){
+  var modal = document.getElementById('demoModal');
+  if (!modal.classList.contains('active')) return;
+  if (e.key === 'Escape') {
+    closeDemoModal();
+    return;
+  }
+  if (e.key === 'Tab') {
+    var focusable = getDemoModalFocusable();
+    if (!focusable.length) { e.preventDefault(); return; }
+    // Indexed cycle rather than a boundary check: focus can currently sit on
+    // a tabindex="-1" node (the error/success status region gets focus() on
+    // state change) which isn't IN this list, so comparing against first/last
+    // alone would miss that case and let Tab walk out of the modal. Looking
+    // up the index and defaulting to -1 handles every position, tracked or not.
+    var idx = focusable.indexOf(document.activeElement);
+    e.preventDefault();
+    if (e.shiftKey) {
+      focusable[idx > 0 ? idx - 1 : focusable.length - 1].focus();
+    } else {
+      focusable[idx > -1 && idx < focusable.length - 1 ? idx + 1 : 0].focus();
+    }
+  }
+});
+async function handleDemoSubmit(e) {
+  e.preventDefault();
+  var btn = document.getElementById('demoSubmitBtn');
+  var err = document.getElementById('demoModalError');
+  var name = document.getElementById('demoName').value.trim();
+  var email = document.getElementById('demoEmail').value.trim();
+  var firm = document.getElementById('demoFirm').value.trim();
+  if (!name || !email) return false;
+  btn.disabled = true; btn.textContent = 'Sending...';
+  err.style.display = 'none';
+  try {
+    var res = await fetch('https://formspree.io/f/mjgygdyd', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ name: name, email: email, firm: firm, source: 'brieflywealth.com / book a live demo' })
+    });
+    if (!res.ok) throw new Error('Request failed');
+    document.getElementById('demoModalForm').style.display = 'none';
+    var success = document.getElementById('demoModalSuccess');
+    success.classList.add('active');
+    document.getElementById('demoModal').setAttribute('aria-labelledby', 'demoModalSuccessTitle');
+    success.focus();
+  } catch (e) {
+    err.style.display = 'block';
+    err.focus();
+  } finally {
+    btn.disabled = false; btn.textContent = 'Request demo';
+  }
+  return false;
+}
+
+</script>
 </body>
 </html>

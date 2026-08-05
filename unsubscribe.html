@@ -12,54 +12,63 @@
 <link rel="icon" type="image/png" sizes="16x16" href="images/briefly_logo_favicon.png?v=2">
 <link rel="apple-touch-icon" sizes="180x180" href="images/briefly_logo_favicon.png?v=2">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
-
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
-    --paper:#F7F8FA; --paper-2:#EEF1F5; --paper-3:#FFFFFF;
-    --ink:#0F172A; --ink-soft:rgba(15,23,42,.72); --ink-muted:rgba(15,23,42,.52); --rule:rgba(15,23,42,.18);
-    --blue:#2f8cff; --blue-ink:#1D4ED8; --focus:#1D4ED8;
-    --sans:'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
-    --mono:'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;
+    --paper: #FBFAF6;
+    --paper-2: #F2EDE1;
+    --card: #FFFFFF;
+    --ink: #16324F;
+    --ink-soft: #46627D;
+    --ink-muted: #5B6C80;
+    --rule: #E6E1D5;
+    --blue: #2F8CFF;
+    --blue-ink: #1D4ED8;
+    --blue-soft: #E9F2FF;
+    --cyan: #8cd8ff;
+    --navy-band: #10263D;
+    --cream: #F4F1E9;
+    --cream-soft: #B9C4CF;
+    --serif: Charter, "Iowan Old Style", "Source Serif Pro", Georgia, serif;
+    --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+    --mono: "SFMono-Regular", Menlo, Consolas, monospace;
   }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   html, body { height: 100%; }
   body {
-    background: var(--paper);
     font-family: var(--sans);
+    background: var(--paper);
     color: var(--ink);
+    line-height: 1.6;
+    overflow-x: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 24px;
   }
   .card {
-    background: var(--paper-3);
+    background: var(--card);
     border: 1px solid var(--rule);
     border-radius: 10px;
-    box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 1px 3px rgba(15,23,42,.06);
+    box-shadow: 0 1px 2px rgba(22,50,79,.05), 0 14px 34px rgba(22,50,79,.08);
     max-width: 480px;
     width: 100%;
     padding: 44px 36px 36px;
     text-align: center;
   }
-  .kicker {
-    font-family: var(--mono);
-    font-size: 10.5px;
-    font-weight: 800;
-    letter-spacing: .22em;
-    text-transform: uppercase;
-    color: var(--blue-ink);
-    margin-bottom: 14px;
+  .eyebrow {
+    font-family: var(--sans); font-size: 11.5px; font-weight: 600; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--ink-muted); margin-bottom: 16px;
   }
   .rule { border-top: 2px solid var(--ink); margin-bottom: 18px; }
   h1 {
+    font-family: var(--serif);
+    font-weight: 400;
+    letter-spacing: 0;
     font-size: 28px;
-    font-weight: 900;
-    letter-spacing: -.025em;
     line-height: 1.1;
+    color: var(--ink);
     margin-bottom: 14px;
   }
   p { font-size: 15px; line-height: 1.6; color: var(--ink-soft); margin-bottom: 10px; }
@@ -78,21 +87,14 @@
   }
   .actions { margin-top: 22px; }
   .btn {
-    display: inline-block;
-    font-family: var(--mono);
-    font-size: 11.5px;
-    font-weight: 800;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    color: #fff;
-    background: var(--blue);
-    border-radius: 6px;
-    padding: 13px 22px;
-    text-decoration: none;
+    display: inline-block; font-size: 14px; font-weight: 600; padding: 13px 26px;
+    border-radius: 4px; background: var(--ink); color: #fff; text-decoration: none;
+    border: 1px solid var(--ink); cursor: pointer;
   }
-  .btn:focus-visible {
-    outline: 2px solid var(--focus);
-    outline-offset: 3px;
+  .btn.ghost { background: transparent; color: var(--ink); }
+  .textlink { font-size: 14.5px; font-weight: 600; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+  .nav-links a:focus-visible, .nav-signin:focus-visible, .btn:focus-visible, .nav-toggle:focus-visible, .hc-dot:focus-visible, .textlink:focus-visible {
+    outline: 2px solid var(--blue-ink); outline-offset: 2px;
   }
   .foot-note {
     font-family: var(--mono);
@@ -114,11 +116,115 @@
     color: var(--ink-muted);
   }
 </style>
+<style>
+/* canonical chrome (nav/footer/buttons), stamped 2026-08-05 */
+.container { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+.btn {
+    display: inline-block; font-size: 14px; font-weight: 600; padding: 13px 26px;
+    border-radius: 4px; background: var(--ink); color: #fff; text-decoration: none;
+    border: 1px solid var(--ink); cursor: pointer;
+  }
+.btn.ghost { background: transparent; color: var(--ink); }
+.textlink { font-size: 14.5px; font-weight: 600; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+/* nav */
+  nav { border-bottom: 1px solid var(--rule); background: var(--paper); position: relative; }
+.nav-bar { min-height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 10px; padding-bottom: 10px; }
+.brand { position: relative; display: inline-flex; align-items: center; padding-right: 14px; text-decoration: none; }
+.brand-word {
+    font-family: var(--sans); font-weight: 900; font-size: 21px; line-height: .78;
+    letter-spacing: -.075em; text-transform: uppercase; color: var(--ink);
+    transform: scaleY(.88); transform-origin: left center;
+  }
+.brand-pin {
+    position: absolute; top: 3px; right: 0; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--blue); box-shadow: 0 0 0 2px rgba(47,140,255,.10);
+  }
+.nav-right { display: flex; align-items: center; gap: 22px; }
+.nav-panel { display: flex; align-items: center; gap: 26px; }
+.nav-links { display: flex; gap: 24px; }
+.nav-links a { font-size: 13px; font-weight: 600; color: var(--ink-soft); text-decoration: none; white-space: nowrap; }
+.nav-links a:hover { color: var(--ink); }
+.nav-actions { display: flex; align-items: center; gap: 16px; }
+.nav-signin { font-size: 13px; font-weight: 600; color: var(--ink-soft); text-decoration: none; white-space: nowrap; }
+.nav-signin:hover { color: var(--ink); }
+.nav-bar .btn { padding: 9px 18px; font-size: 13px; white-space: nowrap; }
+.nav-toggle {
+    display: none; width: 40px; height: 40px; flex-shrink: 0;
+    border: 1px solid var(--rule); border-radius: 6px; background: var(--card); cursor: pointer;
+    flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+  }
+.nav-toggle span { display: block; width: 18px; height: 2px; background: var(--ink); }
+.nav-links a:focus-visible, .nav-signin:focus-visible, .btn:focus-visible, .nav-toggle:focus-visible, .hc-dot:focus-visible, .textlink:focus-visible {
+    outline: 2px solid var(--blue-ink); outline-offset: 2px;
+  }
+@media (max-width: 860px) {
+  .nav-toggle { display: inline-flex; }
+  .nav-panel {
+      display: none;
+      position: absolute; top: 100%; left: 0; right: 0;
+      flex-direction: column; align-items: stretch; gap: 0;
+      background: var(--paper); border-bottom: 1px solid var(--rule);
+      padding: 6px 28px 20px; z-index: 40;
+    }
+  .nav-panel.open { display: flex; }
+  .nav-links { flex-direction: column; gap: 0; }
+  .nav-links a { padding: 12px 0; border-top: 1px solid var(--rule); }
+  .nav-actions { flex-direction: column; align-items: stretch; gap: 10px; margin-top: 6px; }
+  .nav-signin { padding: 8px 0; }
+  .nav-actions .btn.ghost { width: 100%; text-align: center; }
+}
+.dotbg > .container { position: relative; }
+.custody-links .textlink { color: var(--cyan); }
+.custody-links .textlink:focus-visible { outline-color: var(--cyan); }
+.closer .btn { background: var(--cream); color: var(--navy-band); border-color: var(--cream); }
+/* footer */
+  footer { background: var(--navy-band); color: var(--cream-soft); padding: 56px 0 30px; }
+footer .foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 36px; padding-bottom: 40px; border-bottom: 1px solid #24415E; }
+footer .foot-brand .brand { padding-right: 18px; }
+footer .foot-brand .brand-word { color: var(--cream); font-size: 32px; }
+footer .foot-brand .brand-pin { top: 5px; width: 8px; height: 8px; box-shadow: 0 0 0 2.5px rgba(47,140,255,.12); }
+footer .foot-brand p { margin-top: 14px; font-size: 13px; line-height: 1.6; max-width: 280px; color: var(--cream-soft); }
+footer h4 { font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--cream); margin-bottom: 14px; }
+footer a { display: block; color: var(--cream-soft); text-decoration: none; font-size: 13.5px; line-height: 2.1; }
+footer a:hover { color: var(--cream); }
+footer .foot-bottom { display: flex; justify-content: space-between; gap: 14px; padding-top: 22px; font-size: 12.5px; color: var(--cream-soft); flex-wrap: wrap; }
+@media (max-width: 880px) {
+  footer .foot-grid { grid-template-columns: 1fr 1fr; }
+  footer .foot-brand { grid-column: 1 / -1; }
+}
+@media (max-width: 480px) {
+  .container { padding: 0 18px; }
+  .hero-ctas .btn { text-align: center; }
+}
+</style>
 </head>
 <body>
 
+<nav aria-label="Primary">
+  <div class="container nav-bar">
+    <a class="brand" href="/"><span class="brand-word">Briefly</span><span class="brand-pin" aria-hidden="true"></span></a>
+    <div class="nav-right">
+      <div class="nav-panel" id="navPanel">
+        <div class="nav-links">
+          <a href="/#how">How it works</a>
+          <a href="/security">Security</a>
+          <a href="/sample-deliverables">Samples</a>
+          <a href="/download">Download</a>
+        </div>
+        <div class="nav-actions">
+          <a class="nav-signin" href="https://demo.app.brieflywealth.com/">Web app sign in</a>
+          <a class="btn ghost" href="/start">Start now</a>
+        </div>
+      </div>
+      <a class="btn" href="#" onclick="openDemoModal();return false;">Book a demo</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navPanel" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+
 <div class="card">
-  <p class="kicker">Briefly Wealth</p>
+  <p class="eyebrow">Briefly Wealth</p>
   <div class="rule"></div>
 
   <div id="working">
@@ -183,5 +289,240 @@
   run();
 </script>
 
+
+<footer>
+  <div class="container foot-grid">
+    <div class="foot-brand">
+      <a class="brand" href="/"><span class="brand-word">Briefly</span><span class="brand-pin" aria-hidden="true"></span></a>
+      <p>Briefly is an AI knowledge base for financial advisors and wealth firms, built to run inside Claude.</p>
+    </div>
+    <div>
+      <h4>Product</h4>
+      <a href="/start">Start now</a>
+      <a href="#how">How it works</a>
+      <a href="/sample-deliverables">Sample deliverables</a>
+      <a href="/security">Security</a>
+      <a href="#platform">Platform</a>
+      <a href="/compare">Compare</a>
+      <a href="/download">Download</a>
+      <a href="/knowledge-base">Knowledge base</a>
+      <a href="/ai-compliance-for-financial-advisors">AI compliance for advisors</a>
+      <a href="/claude-for-financial-advisors">Claude for financial advisors</a>
+    </div>
+    <div>
+      <h4>Company</h4>
+      <a href="/about">About</a>
+      <a href="/blog">Blog</a>
+      <a href="/subscribe">Morning Brief</a>
+      <a href="mailto:contact@brieflywealth.com">Contact</a>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <a href="/privacy-policy">Privacy</a>
+      <a href="/terms-of-service">Terms</a>
+      <a href="/eula">Connector EULA</a>
+      <a href="/subprocessors">Sub-processors</a>
+    </div>
+  </div>
+  <div class="container foot-bottom">
+    <span>&copy; 2026 Briefly Wealth LLC</span>
+    <span>brieflywealth.com</span>
+  </div>
+</footer>
+
+
+<style>
+  .demo-modal { position:fixed; inset:0; z-index:200; display:none; align-items:center; justify-content:center; padding:20px; }
+  .demo-modal.active { display:flex; }
+  .demo-modal-backdrop { position:absolute; inset:0; background:rgba(16,38,61,.56); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
+  .demo-modal-card {
+    position:relative; z-index:1; width:100%; max-width:440px;
+    background:var(--paper); border:1px solid var(--rule);
+    border-radius:10px;
+    padding:32px 28px 28px; box-shadow:0 20px 40px rgba(22,50,79,.18);
+    font-family:var(--sans);
+  }
+  .demo-modal-close {
+    position:absolute; top:10px; right:14px; background:transparent; border:0;
+    font-size:24px; color:var(--ink); cursor:pointer; line-height:1; padding:6px 8px;
+  }
+  .demo-modal-eyebrow {
+    font-family:var(--mono); font-size:11px; font-weight:700;
+    letter-spacing:.08em; text-transform:uppercase; color:var(--blue-ink);
+    margin:0 0 8px;
+  }
+  .demo-modal-title {
+    font-family:var(--serif); font-weight:400; font-size:30px; line-height:1.1; letter-spacing:0;
+    margin:0 0 18px; color:var(--ink);
+  }
+  .demo-modal-field { display:block; margin:0 0 14px; }
+  .demo-modal-field label {
+    display:block; font-family:var(--mono); font-size:11px; font-weight:700;
+    letter-spacing:.08em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px;
+  }
+  .demo-modal-field input {
+    width:100%; padding:11px 12px; font-family:var(--sans);
+    font-size:15px; border:1px solid var(--ink); background:#fff; color:var(--ink);
+    border-radius:4px;
+  }
+  .demo-modal-field input:focus { outline:2px solid var(--blue-ink); outline-offset:1px; }
+  .demo-modal-submit {
+    width:100%; height:44px; border:1px solid var(--ink); background:var(--ink);
+    border-radius:4px;
+    color:#fff; font-family:var(--mono); font-size:12px; font-weight:700;
+    letter-spacing:.08em; text-transform:uppercase; cursor:pointer; margin-top:6px;
+    transition:background .15s ease, border-color .15s ease, color .15s ease;
+  }
+  .demo-modal-submit:hover { background:var(--blue-ink); border-color:var(--blue-ink); color:#fff; }
+  .demo-modal-submit:disabled { opacity:.6; cursor:wait; }
+  .demo-modal-error { display:none; margin-top:10px; padding:10px 12px; border:1px solid #b3261e; border-radius:4px; color:#b3261e; font-size:13px; }
+  .demo-modal-success { display:none; padding:18px 0 4px; text-align:center; }
+  .demo-modal-success.active { display:block; }
+  .demo-modal-success-title { font-family:var(--serif); font-weight:400; font-size:22px; letter-spacing:0; margin:0 0 6px; color:var(--ink); }
+  .demo-modal-success-body { font-size:14px; color:var(--ink-soft); line-height:1.5; margin:0 0 16px; }
+  @media (max-width: 480px) {
+    .demo-modal { padding: 14px; }
+    .demo-modal-card { padding: 26px 22px 22px; }
+    .demo-modal-title { font-size: 26px; }
+  }
+</style>
+<div class="demo-modal" id="demoModal" role="dialog" aria-modal="true" aria-labelledby="demoModalTitle">
+  <div class="demo-modal-backdrop" onclick="closeDemoModal()"></div>
+  <div class="demo-modal-card">
+    <button class="demo-modal-close" type="button" onclick="closeDemoModal()" aria-label="Close">&times;</button>
+    <div id="demoModalForm">
+      <p class="demo-modal-eyebrow">Briefly &middot; Demo</p>
+      <h2 class="demo-modal-title" id="demoModalTitle">Book a demo</h2>
+      <form onsubmit="return handleDemoSubmit(event);" novalidate>
+        <div class="demo-modal-field">
+          <label for="demoName">Full name</label>
+          <input type="text" id="demoName" name="name" autocomplete="name" required>
+        </div>
+        <div class="demo-modal-field">
+          <label for="demoEmail">Work email</label>
+          <input type="email" id="demoEmail" name="email" autocomplete="email" required>
+        </div>
+        <div class="demo-modal-field">
+          <label for="demoFirm">Firm (optional)</label>
+          <input type="text" id="demoFirm" name="firm" autocomplete="organization">
+        </div>
+        <button class="demo-modal-submit" type="submit" id="demoSubmitBtn">Book a demo</button>
+        <div class="demo-modal-error" id="demoModalError" role="status" aria-live="assertive" tabindex="-1">Something went wrong sending that. Try again or email contact@brieflywealth.com.</div>
+      </form>
+    </div>
+    <div class="demo-modal-success" id="demoModalSuccess" role="status" aria-live="polite" tabindex="-1">
+      <p class="demo-modal-success-title" id="demoModalSuccessTitle">Thanks. We'll be in touch.</p>
+      <p class="demo-modal-success-body">We'll be in touch to set up a demo.</p>
+      <button class="demo-modal-submit" type="button" onclick="closeDemoModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* nav hamburger toggle */
+(function () {
+  var btn = document.querySelector('.nav-toggle');
+  var panel = document.getElementById('navPanel');
+  if (!btn || !panel) return;
+  function setOpen(open) {
+    panel.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', String(open));
+    btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  }
+  btn.addEventListener('click', function () { setOpen(!panel.classList.contains('open')); });
+  [].slice.call(panel.querySelectorAll('a')).forEach(function (a) {
+    a.addEventListener('click', function () { setOpen(false); });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && panel.classList.contains('open')) setOpen(false);
+  });
+})();
+
+/* demo modal */
+var demoModalTrigger = null;
+
+// Focusable elements currently visible inside the modal, for the Tab trap.
+// tabindex="-1" nodes (the status regions) are deliberately excluded from the
+// cycle -- they're reachable via .focus() from JS but aren't tab stops.
+function getDemoModalFocusable() {
+  var modal = document.getElementById('demoModal');
+  var nodes = modal.querySelectorAll(
+    'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+  );
+  return Array.prototype.filter.call(nodes, function (el) { return el.offsetParent !== null; });
+}
+
+function openDemoModal() {
+  demoModalTrigger = document.activeElement;
+  document.getElementById('demoModal').classList.add('active');
+  document.getElementById('demoModalForm').style.display = '';
+  document.getElementById('demoModalSuccess').classList.remove('active');
+  document.getElementById('demoModalError').style.display = 'none';
+  document.getElementById('demoModal').setAttribute('aria-labelledby', 'demoModalTitle');
+  setTimeout(function(){ var n = document.getElementById('demoName'); if (n) n.focus(); }, 50);
+}
+function closeDemoModal() {
+  document.getElementById('demoModal').classList.remove('active');
+  if (demoModalTrigger && typeof demoModalTrigger.focus === 'function') {
+    demoModalTrigger.focus();
+  }
+  demoModalTrigger = null;
+}
+document.addEventListener('keydown', function(e){
+  var modal = document.getElementById('demoModal');
+  if (!modal.classList.contains('active')) return;
+  if (e.key === 'Escape') {
+    closeDemoModal();
+    return;
+  }
+  if (e.key === 'Tab') {
+    var focusable = getDemoModalFocusable();
+    if (!focusable.length) { e.preventDefault(); return; }
+    // Indexed cycle rather than a boundary check: focus can currently sit on
+    // a tabindex="-1" node (the error/success status region gets focus() on
+    // state change) which isn't IN this list, so comparing against first/last
+    // alone would miss that case and let Tab walk out of the modal. Looking
+    // up the index and defaulting to -1 handles every position, tracked or not.
+    var idx = focusable.indexOf(document.activeElement);
+    e.preventDefault();
+    if (e.shiftKey) {
+      focusable[idx > 0 ? idx - 1 : focusable.length - 1].focus();
+    } else {
+      focusable[idx > -1 && idx < focusable.length - 1 ? idx + 1 : 0].focus();
+    }
+  }
+});
+async function handleDemoSubmit(e) {
+  e.preventDefault();
+  var btn = document.getElementById('demoSubmitBtn');
+  var err = document.getElementById('demoModalError');
+  var name = document.getElementById('demoName').value.trim();
+  var email = document.getElementById('demoEmail').value.trim();
+  var firm = document.getElementById('demoFirm').value.trim();
+  if (!name || !email) return false;
+  btn.disabled = true; btn.textContent = 'Sending...';
+  err.style.display = 'none';
+  try {
+    var res = await fetch('https://formspree.io/f/mjgygdyd', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ name: name, email: email, firm: firm, source: 'brieflywealth.com / book a live demo' })
+    });
+    if (!res.ok) throw new Error('Request failed');
+    document.getElementById('demoModalForm').style.display = 'none';
+    var success = document.getElementById('demoModalSuccess');
+    success.classList.add('active');
+    document.getElementById('demoModal').setAttribute('aria-labelledby', 'demoModalSuccessTitle');
+    success.focus();
+  } catch (e) {
+    err.style.display = 'block';
+    err.focus();
+  } finally {
+    btn.disabled = false; btn.textContent = 'Request demo';
+  }
+  return false;
+}
+
+</script>
 </body>
 </html>
