@@ -71,7 +71,7 @@
      so the homepage token values must not leak past the nav's own subtree. */
   .container { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
   @media (max-width: 480px) { .container { padding: 0 18px; } }
-  nav {
+  nav[aria-label="Primary"] {
     --paper: #FBFAF6; --ink: #16324F; --ink-soft: #46627D; --rule: #E6E1D5;
     --blue: #2F8CFF; --blue-ink: #1D4ED8; --card: #FFFFFF;
     --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
