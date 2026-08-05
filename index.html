@@ -497,7 +497,7 @@
   <div class="container hero-grid">
     <div>
       <div class="eyebrow">AI knowledge base for RIAs and advisor teams</div>
-      <h1>Ask your firm's files anything, in Claude.</h1>
+      <h1>Ask your firm's files anything.</h1>
       <p class="lede">Briefly turns the statements, emails, and meeting notes your firm already has into one knowledge base. Ask inside Claude or in the Briefly web app, and every answer comes back cited. Fix something once, and it holds for the whole team from then on.</p>
       <div class="hero-ctas">
         <a class="btn" href="#" onclick="openDemoModal();return false;">Book a demo</a>
@@ -1049,7 +1049,7 @@ BrieflyClips.mountAll();
   var akEl = document.querySelector('.ak');
   var curEl = document.getElementById('akCur');
   var ringEl = document.getElementById('akRing');
-  if (!chipEl || !qEl || !loadEl || !ansEl || !ansText || !srcList || !provEl || !dotsEl) return;
+  if (!chipEl || !qEl || !loadEl || !ansEl || !ansText || !srcList || !provEl || !provHd || !provB || !dotsEl) return;
 
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var timeouts = [];
@@ -1214,6 +1214,14 @@ BrieflyClips.mountAll();
     }
   }
 
+  /* Tab switches: hidden-tab timer throttling leaves the cycle half-drawn
+     (loader stacked with the answer, then a long freeze). Park the sequence
+     while hidden and restart the current question cleanly on return. */
+  document.addEventListener('visibilitychange', function () {
+    stopAll();
+    if (!document.hidden) show(idx);
+  });
+
   show(0);
 })();
 
@@ -1281,6 +1289,15 @@ BrieflyClips.mountAll();
       });
     }, 4200);
   }
+
+  /* Same tab-switch protection as the hero: clear the timer chain while
+     hidden, restart the cycle from a clean state on return. */
+  document.addEventListener('visibilitychange', function () {
+    if (!started) return;
+    timers.forEach(clearTimeout);
+    timers = [];
+    if (!document.hidden) runCycle();
+  });
 
   var started = false;
   var io = new IntersectionObserver(function (entries) {

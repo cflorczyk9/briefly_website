@@ -5,7 +5,7 @@ Source: https://www.brieflywealth.com/
 
 **AI knowledge base for RIAs and advisor teams**
 
-# Ask your firm's files anything, in Claude.
+# Ask your firm's files anything.
 
 Briefly turns the statements, emails, and meeting notes your firm already has into one knowledge base. Ask inside Claude or in the Briefly web app, and every answer comes back cited. Fix something once, and it holds for the whole team from then on.
 
