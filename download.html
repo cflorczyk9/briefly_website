@@ -3514,5 +3514,42 @@ async function handleDemoSubmit(e) {
 }
 
 </script>
+
+<!-- Personalized download + checkout hand-off. The invite email links here with
+     ?t=<signed token>; the API personalizes the .mcpb for that firm + advisor
+     (GET /signup/download). Stripe's success_url lands here with
+     ?signup=complete. Without either param this script changes nothing. -->
+<script>
+(function () {
+  var params = new URLSearchParams(window.location.search);
+  var API_ORIGIN = 'https://demo-api.app.brieflywealth.com';
+
+  var token = params.get('t');
+  if (token) {
+    var personalized = API_ORIGIN + '/signup/download?t=' + encodeURIComponent(token);
+    ['dl', 'dlRepeat'].forEach(function (id) {
+      var a = document.getElementById(id);
+      if (a) { a.href = personalized; a.removeAttribute('download'); }
+    });
+    // the "Download again" fallback link inside the post-download panel
+    document.querySelectorAll('.dl-fallback a[download]').forEach(function (a) {
+      a.href = personalized; a.removeAttribute('download');
+    });
+  }
+
+  if (params.get('signup') === 'complete') {
+    var hero = document.querySelector('.dl-hero-inner');
+    if (hero) {
+      var note = document.createElement('p');
+      note.setAttribute('role', 'status');
+      note.style.cssText = 'margin:0 0 18px;padding:12px 16px;border:1px solid rgba(255,255,255,.25);border-radius:8px;font-size:14.5px;line-height:1.5;';
+      note.textContent = token
+        ? 'Payment confirmed. Your Briefly login is on its way to your inbox. Download below, and sign in with that login when Briefly asks.'
+        : 'Payment confirmed. Your Briefly login is on its way to your inbox. The email also has your download link, set up for your firm.';
+      hero.insertBefore(note, hero.firstChild);
+    }
+  }
+})();
+</script>
 </body>
 </html>

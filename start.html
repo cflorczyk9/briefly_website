@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Start with Briefly | Claude connector signup</title>
-<meta name="description" content="Start the Briefly connector for Claude. Pick your seats and check out. Most teams are asking questions inside Claude the same day.">
+<title>Start with Briefly | Connector checkout and web app access</title>
+<meta name="description" content="Start Briefly. Check out for the Claude connector, or request access to the hosted web app. Pick your seats either way.">
 <meta name="author" content="Briefly Wealth LLC">
 
 <link rel="canonical" href="https://www.brieflywealth.com/start">
@@ -24,9 +24,9 @@
 {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "Start with Briefly | Claude connector signup",
+  "name": "Start with Briefly | Connector checkout and web app access",
   "url": "https://www.brieflywealth.com/start",
-  "description": "Start the Briefly connector for Claude. Pick your seats and check out. Most teams are asking questions inside Claude the same day.",
+  "description": "Start Briefly. Check out for the Claude connector, or request access to the hosted web app. Pick your seats either way.",
   "isPartOf": { "@id": "https://www.brieflywealth.com/#website" },
   "about": { "@id": "https://www.brieflywealth.com/#app" },
   "publisher": { "@type": "Organization", "@id": "https://www.brieflywealth.com/#org", "name": "Briefly", "url": "https://www.brieflywealth.com/" },
@@ -40,9 +40,10 @@
 }
 </script>
 
-<!-- start.html, 2026-08-01. Rebuilt as a two-panel Stripe-style checkout with a dark
-     order-summary panel on the left and the sign-up form on the right. Checkout is
-     still dark-wired. See BILLING_API_BASE below. -->
+<!-- start.html, 2026-08-01. Two-panel Stripe-style checkout, dark order-summary
+     panel left, form right. Two tabs: the connector runs real (dark-wired) Stripe
+     checkout — arm it via apiBase in its wireCheckout config at the bottom of this
+     file. The web app tab runs mode "request" (no card, lead capture only). -->
 
 <style>
   :root {
@@ -83,6 +84,9 @@
   .start-tab:focus-visible { outline: 2px solid var(--blue-ink); outline-offset: 2px; }
   .start-panel.is-hidden { display: none; }
 
+  /* ---------- the two-column checkout shell ---------- */
+  .checkout-shell { min-height: 100vh; display: flex; flex-wrap: wrap; }
+
   /* ---------- left panel: order summary ---------- */
   .checkout-left {
     flex: 0 0 42%;
@@ -94,14 +98,17 @@
     padding: 56px 48px;
   }
 
-  .brand { position: relative; display: inline-flex; align-items: center; align-self: flex-start; padding-right: 18px; text-decoration: none; }
-  .brand:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; border-radius: 4px; }
-  .brand-word {
+  /* Scoped to the navy panel so the canonical nav/footer chrome below (which
+     restyles a bare .brand-word to dark ink at 21px) can't paint this one
+     navy-on-navy. Same pattern the footer brand override already uses. */
+  .checkout-left .brand { position: relative; display: inline-flex; align-items: center; align-self: flex-start; padding-right: 18px; text-decoration: none; }
+  .checkout-left .brand:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; border-radius: 4px; }
+  .checkout-left .brand-word {
     font-family: var(--sans); font-weight: 900; font-size: 32px; line-height: .78;
     letter-spacing: -.075em; text-transform: uppercase; color: var(--cream);
     transform: scaleY(.88); transform-origin: left center;
   }
-  .brand-pin { position: absolute; top: 5px; right: 0; width: 8px; height: 8px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 2.5px rgba(47,140,255,.12); }
+  .checkout-left .brand-pin { position: absolute; top: 5px; right: 0; width: 8px; height: 8px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 2.5px rgba(47,140,255,.12); }
 
   .order-summary { margin-top: 64px; max-width: 340px; }
   .order-eyebrow { font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--cream-soft); margin-bottom: 20px; }
@@ -192,10 +199,10 @@
   .webapp-row { margin-top: 28px; padding-top: 22px; border-top: 1px solid var(--rule); font-size: 13.5px; line-height: 1.55; color: var(--ink-soft); }
   .webapp-row .textlink { margin: 0 2px; }
 
-  /* ---------- web app panel (new) ---------- */
-  .start-panel-webapp { min-height: calc(100vh - 68px); display: flex; align-items: center; justify-content: center; background: var(--paper); padding: 64px 28px; }
-  .webapp-panel-inner { width: 100%; max-width: 440px; }
-  .webapp-panel-ctas { margin-top: 28px; display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+  /* ---------- web app panel ---------- */
+  /* Deliberately carries NO layout of its own. Both tabs render the same
+     .checkout-shell, so the only thing that changes between them is the
+     product name, the per-seat price, and the copy. */
 
   @media (max-width: 900px) {
     .checkout-shell { flex-direction: column; }
@@ -401,21 +408,90 @@ footer .foot-bottom { display: flex; justify-content: space-between; gap: 14px; 
 
       <p class="secondary-path">Prefer to see it first? <a class="textlink" href="#" onclick="openDemoModal();return false;">Book a demo.</a></p>
 
-      <p class="webapp-row">Want the web app instead? We set it up with you. <a class="textlink" href="#" onclick="openDemoModal();return false;">Book a demo</a> or <a class="textlink" href="/compare">compare the two</a>.</p>
+      <p class="webapp-row">Want the web app instead? <a class="textlink" href="#webapp" onclick="document.getElementById('tabWebapp').click();return false;">Switch to the web app tab</a> or <a class="textlink" href="/compare">compare the two</a>.</p>
     </div>
   </main>
 </div>
 </div>
 
 <div id="panelWebapp" class="start-panel start-panel-webapp is-hidden" role="tabpanel" aria-labelledby="tabWebapp" tabindex="0">
-  <div class="webapp-panel-inner">
-    <h1>Start with the Briefly web app.</h1>
-    <p class="lede">Your files live in Briefly's hosted environment. We connect Salesforce and Outlook and build the client file for your firm, then your team signs in from a browser. No setup on your end.</p>
-    <div class="webapp-panel-ctas">
-      <a class="btn" href="#" onclick="openDemoModal();return false;">Book a demo</a>
-      <a class="textlink" href="https://demo.app.brieflywealth.com/">Web app sign in</a>
+<div class="checkout-shell">
+  <aside class="checkout-left" aria-label="Order summary">
+    <a class="brand" href="/"><span class="brand-word">Briefly</span><span class="brand-pin" aria-hidden="true"></span></a>
+
+    <div class="order-summary">
+      <p class="order-eyebrow">Order summary</p>
+      <div class="order-row">
+        <span class="order-product">Briefly Web App</span>
+        <span class="order-qty" id="waOrderQty" aria-live="polite">1 seat</span>
+      </div>
+      <p class="order-unit" id="waPriceLine" aria-live="polite">$150.00 x 1 seat / month</p>
+      <hr class="order-rule">
+      <div class="order-total-row">
+        <span class="order-total-label">Due today</span>
+        <span class="order-total-amount" id="waOrderTotal">$0.00</span>
+      </div>
+      <p class="order-then" id="waOrderThen" aria-live="polite">Then $150.00/month, invoiced once your firm is set up</p>
     </div>
-  </div>
+
+    <div class="trust-line">
+      <svg class="lock-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+        <rect x="4.5" y="10.5" width="15" height="10" rx="2.5" stroke="currentColor" stroke-width="1.6"></rect>
+        <path d="M8 10.5V7.8a4 4 0 0 1 8 0v2.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+      </svg>
+      <div>
+        <p class="trust-line-main">Set up with you</p>
+        <p class="trust-line-sub"><a class="custody-link" href="/security" style="color:inherit;">How we protect firm data</a></p>
+      </div>
+    </div>
+  </aside>
+
+  <main class="checkout-right">
+    <div class="checkout-form-wrap">
+      <h1>Start with the Briefly web app.</h1>
+      <p class="lede">Pick your seats and request access. Your team signs in from a browser, with nothing to install.</p>
+
+      <div class="seat-block">
+        <span class="field-label" id="waSeatLabel">Seats</span>
+        <div class="stepper" role="group" aria-labelledby="waSeatLabel">
+          <button type="button" class="stepper-btn" id="waSeatDec" aria-label="Decrease seats">&minus;</button>
+          <input type="number" id="waSeatInput" class="stepper-input" min="1" max="25" value="1" inputmode="numeric" aria-label="Number of seats">
+          <button type="button" class="stepper-btn" id="waSeatInc" aria-label="Increase seats">+</button>
+        </div>
+        <p class="fine-print">More than 25 seats? <a class="textlink" href="#" onclick="openDemoModal();return false;">Book a demo</a> and we'll set your firm up directly.</p>
+      </div>
+
+      <form class="checkout-form" id="waCheckoutForm" novalidate>
+        <div class="form-field">
+          <label class="field-label" for="waStartEmail">Work email</label>
+          <input type="email" id="waStartEmail" name="email" autocomplete="email" required>
+        </div>
+        <div class="form-field">
+          <label class="field-label" for="waStartFirm">Firm name</label>
+          <input type="text" id="waStartFirm" name="firmName" autocomplete="organization" required>
+        </div>
+        <p class="fine-print">Your files live in Briefly's hosted environment. We connect Salesforce and Outlook and build your firm's client file with you.</p>
+        <div class="hp-field" aria-hidden="true">
+          <label for="waCompanyWebsite">Leave this field blank</label>
+          <input type="text" id="waCompanyWebsite" name="company-website" tabindex="-1" autocomplete="off">
+        </div>
+        <button type="submit" class="btn btn-checkout" id="waCheckoutBtn" disabled>Request access</button>
+        <p class="fine-print">We reach out to connect your systems and build your firm's file, usually within one business day.</p>
+        <p class="fine-print">By requesting access, you agree to the <a href="/terms-of-service">Terms of Service</a> and <a href="/privacy-policy">Privacy Policy</a>.</p>
+      </form>
+
+      <div class="checkout-fallback" id="waCheckoutFallback" role="status" aria-live="assertive" tabindex="-1" hidden>
+        <p id="waFallbackText">Something went wrong sending that. Try again, or <a class="textlink" href="#" onclick="openDemoModal();return false;">book a demo</a> and we'll set your firm up directly.</p>
+      </div>
+
+      <p class="fine-print">No card now. We connect your Salesforce and Outlook with you, then invoice.</p>
+
+      <p class="secondary-path">Prefer to see it first? <a class="textlink" href="#" onclick="openDemoModal();return false;">Book a demo.</a></p>
+
+      <p class="webapp-row">Already set up? <a class="textlink" href="https://demo.app.brieflywealth.com/">Web app sign in</a> or <a class="textlink" href="/compare">compare the two</a>.</p>
+    </div>
+  </main>
+</div>
 </div>
 
 <!-- ==================== DEMO MODAL, ported from index.html so this page works standalone ==================== -->
@@ -513,18 +589,22 @@ footer .foot-bottom { display: flex; justify-content: space-between; gap: 14px; 
 
 <!-- ==================== PAGE SCRIPT: seat stepper + checkout ==================== -->
 <script>
-// set to the API origin when Stripe goes live; empty keeps checkout in preview
-const BILLING_API_BASE = "";
+// Both tabs share this wiring. The connector runs mode "stripe" (real checkout
+// against the billing API). The web app runs mode "request": same page, same
+// seat picker, but the button files an access request through Formspree and no
+// card is taken — the founder sets the firm up and invoices manually. Flip the
+// web app to mode "stripe" only once the webapp plan exists server-side.
+var LEAD_FORM_URL = 'https://formspree.io/f/mjgygdyd'; // same inbox as the demo modal
 
-(function () {
-  var seatInput = document.getElementById('seatInput');
-  var seatDec = document.getElementById('seatDec');
-  var seatInc = document.getElementById('seatInc');
-  var orderQty = document.getElementById('orderQty');
-  var priceLine = document.getElementById('priceLine');
-  var orderThen = document.getElementById('orderThen');
+function wireCheckout(cfg) {
+  var seatInput = document.getElementById(cfg.seatInput);
+  var seatDec = document.getElementById(cfg.seatDec);
+  var seatInc = document.getElementById(cfg.seatInc);
+  var orderQty = document.getElementById(cfg.orderQty);
+  var priceLine = document.getElementById(cfg.priceLine);
+  var orderThen = document.getElementById(cfg.orderThen);
 
-  var PER_SEAT = 100;
+  var PER_SEAT = cfg.perSeat;
 
   function clampSeats(n) {
     n = Math.round(n);
@@ -545,7 +625,9 @@ const BILLING_API_BASE = "";
     var seatWord = n === 1 ? 'seat' : 'seats';
     orderQty.textContent = n + ' ' + seatWord;
     priceLine.textContent = formatUSD(PER_SEAT) + ' x ' + n + ' ' + seatWord + ' / month';
-    orderThen.textContent = 'Then ' + formatUSD(total) + '/month after your 30-day free month';
+    orderThen.textContent = cfg.mode === 'request'
+      ? 'Then ' + formatUSD(total) + '/month, invoiced once your firm is set up'
+      : 'Then ' + formatUSD(total) + '/month after your 30-day free month';
     seatDec.disabled = n <= 1;
     seatInc.disabled = n >= 25;
   }
@@ -562,11 +644,11 @@ const BILLING_API_BASE = "";
   seatInput.addEventListener('blur', renderSeats);
   renderSeats();
 
-  var startEmail = document.getElementById('startEmail');
-  var startFirm = document.getElementById('startFirm');
-  var checkoutBtn = document.getElementById('checkoutBtn');
-  var checkoutForm = document.getElementById('checkoutForm');
-  var checkoutFallback = document.getElementById('checkoutFallback');
+  var startEmail = document.getElementById(cfg.email);
+  var startFirm = document.getElementById(cfg.firm);
+  var checkoutBtn = document.getElementById(cfg.btn);
+  var checkoutForm = document.getElementById(cfg.form);
+  var checkoutFallback = document.getElementById(cfg.fallback);
 
   function updateCheckoutButtonState() {
     var valid = startEmail.checkValidity() && startEmail.value.trim() !== '' && startFirm.value.trim() !== '';
@@ -584,7 +666,7 @@ const BILLING_API_BASE = "";
   checkoutForm.addEventListener('submit', function (e) {
     e.preventDefault();
 
-    var honeypot = document.getElementById('companyWebsite');
+    var honeypot = document.getElementById(cfg.honeypot);
     if (honeypot && honeypot.value) {
       showFallback();
       return;
@@ -597,7 +679,7 @@ const BILLING_API_BASE = "";
     var seats = clampSeats(parseInt(seatInput.value, 10));
     var originalText = checkoutBtn.textContent;
     checkoutBtn.disabled = true;
-    checkoutBtn.textContent = 'Checking out...';
+    checkoutBtn.textContent = cfg.mode === 'request' ? 'Sending...' : 'Checking out...';
 
     function fallbackAndReset() {
       showFallback();
@@ -605,15 +687,41 @@ const BILLING_API_BASE = "";
       checkoutBtn.textContent = originalText;
     }
 
-    if (!BILLING_API_BASE) {
+    if (cfg.mode === 'request') {
+      // Access request: no card, no Stripe. Files the lead (email, firm, seat
+      // count) to the same Formspree inbox the demo modal uses.
+      fetch(LEAD_FORM_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          email: email, firm: firmName, seats: seats,
+          product: cfg.plan, source: 'brieflywealth.com /start ' + cfg.plan + ' access request'
+        })
+      }).then(function (res) {
+        if (!res.ok) throw new Error('request failed');
+        checkoutForm.hidden = true;
+        var text = document.getElementById(cfg.fallbackText);
+        if (text) text.textContent = 'Thanks. We\'ll reach out to ' + email + ' within one business day to set your firm up.';
+        checkoutFallback.hidden = false;
+        checkoutFallback.focus();
+      }).catch(function () {
+        fallbackAndReset();
+      });
+      return;
+    }
+
+    if (!cfg.apiBase) {
       fallbackAndReset();
       return;
     }
 
-    fetch(BILLING_API_BASE + '/billing/checkout-session', {
+    fetch(cfg.apiBase + '/billing/checkout-session', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email, firmName: firmName, seats: seats })
+      body: JSON.stringify({
+        email: email, firmName: firmName, seats: seats, plan: cfg.plan,
+        honeypot: honeypot ? honeypot.value : ''
+      })
     }).then(function (res) {
       if (!res.ok) throw new Error('checkout session request failed');
       return res.json();
@@ -627,7 +735,26 @@ const BILLING_API_BASE = "";
       fallbackAndReset();
     });
   });
-})();
+}
+
+wireCheckout({
+  plan: 'connector', perSeat: 100, mode: 'stripe',
+  // set to the API origin when Stripe goes live; empty keeps checkout in preview
+  apiBase: '',
+  seatInput: 'seatInput', seatDec: 'seatDec', seatInc: 'seatInc',
+  orderQty: 'orderQty', priceLine: 'priceLine', orderThen: 'orderThen',
+  email: 'startEmail', firm: 'startFirm', btn: 'checkoutBtn',
+  form: 'checkoutForm', fallback: 'checkoutFallback', honeypot: 'companyWebsite'
+});
+
+wireCheckout({
+  plan: 'webapp', perSeat: 150, mode: 'request',
+  seatInput: 'waSeatInput', seatDec: 'waSeatDec', seatInc: 'waSeatInc',
+  orderQty: 'waOrderQty', priceLine: 'waPriceLine', orderThen: 'waOrderThen',
+  email: 'waStartEmail', firm: 'waStartFirm', btn: 'waCheckoutBtn',
+  form: 'waCheckoutForm', fallback: 'waCheckoutFallback', fallbackText: 'waFallbackText',
+  honeypot: 'waCompanyWebsite'
+});
 </script>
 
 <!-- ==================== PAGE SCRIPT: connector / web app tab toggle ==================== -->
