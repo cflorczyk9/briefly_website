@@ -71,17 +71,28 @@
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   .container { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
 
-  /* ---------- connector / web app toggle ---------- */
-  .start-toggle-bar { background: var(--paper); border-bottom: 1px solid var(--rule); padding: 18px 0; }
-  .start-toggle-bar .container { display: flex; justify-content: center; }
-  .start-toggle { display: inline-flex; gap: 4px; background: var(--paper-2); border: 1px solid var(--rule); border-radius: 999px; padding: 4px; }
-  .start-tab {
-    font-family: var(--sans); font-size: 13.5px; font-weight: 600; color: var(--ink-soft);
-    background: transparent; border: 0; border-radius: 999px; padding: 9px 18px;
-    cursor: pointer; white-space: nowrap;
+  /* ---------- connector / web app switch, inside the checkout column ---------- */
+  .start-toggle {
+    display: inline-flex; gap: 2px; margin-bottom: 26px;
+    background: var(--paper-2); border: 1px solid var(--rule);
+    border-radius: 999px; padding: 3px;
   }
-  .start-tab[aria-selected="true"] { background: var(--ink); color: #fff; }
+  .start-tab {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--ink-muted);
+    background: transparent; border: 0; border-radius: 999px; padding: 8px 15px;
+    cursor: pointer; white-space: nowrap;
+    transition: background-color .22s ease, color .22s ease, box-shadow .22s ease;
+  }
+  .start-tab svg { width: 15px; height: 15px; flex-shrink: 0; }
+  .start-tab:hover { color: var(--ink); }
+  .start-tab[aria-selected="true"] {
+    background: var(--card); color: var(--ink);
+    box-shadow: 0 1px 2px rgba(22,50,79,.10), 0 3px 8px rgba(22,50,79,.06);
+  }
   .start-tab:focus-visible { outline: 2px solid var(--blue-ink); outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) { .start-tab { transition: none; } }
+  .checkout-form-wrap.is-paying .start-toggle { display: none; }
   .start-panel.is-hidden { display: none; }
 
   /* ---------- the two-column checkout shell ---------- */
@@ -332,14 +343,6 @@ footer .foot-bottom { display: flex; justify-content: space-between; gap: 14px; 
 </nav>
 
 
-<div class="start-toggle-bar">
-  <div class="container">
-    <div class="start-toggle" role="tablist" aria-label="Choose how to start">
-      <button type="button" class="start-tab" id="tabConnector" role="tab" aria-selected="true" aria-controls="panelConnector" tabindex="0">The Claude connector</button>
-      <button type="button" class="start-tab" id="tabWebapp" role="tab" aria-selected="false" aria-controls="panelWebapp" tabindex="-1">The Briefly web app</button>
-    </div>
-  </div>
-</div>
 
 <div id="panelConnector" class="start-panel start-panel-connector" role="tabpanel" aria-labelledby="tabConnector" tabindex="0">
 <div class="checkout-shell">
@@ -375,6 +378,10 @@ footer .foot-bottom { display: flex; justify-content: space-between; gap: 14px; 
 
   <main class="checkout-right">
     <div class="checkout-form-wrap">
+      <div class="start-toggle" role="tablist" aria-label="Choose how to start">
+        <button type="button" class="start-tab" id="tabConnector" role="tab" data-start-tab="connector" aria-selected="true" aria-controls="panelConnector" tabindex="0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>Claude connector</button>
+        <button type="button" class="start-tab" id="tabWebapp" role="tab" data-start-tab="webapp" aria-selected="false" aria-controls="panelWebapp" tabindex="-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/></svg>Web app</button>
+      </div>
       <h1>Start with the Claude connector.</h1>
       <p class="lede">Pick your seats and check out. Most teams are asking questions inside Claude the same day.</p>
 
@@ -427,7 +434,7 @@ footer .foot-bottom { display: flex; justify-content: space-between; gap: 14px; 
 </div>
 </div>
 
-<div id="panelWebapp" class="start-panel start-panel-webapp is-hidden" role="tabpanel" aria-labelledby="tabWebapp" tabindex="0">
+<div id="panelWebapp" class="start-panel start-panel-webapp is-hidden" role="tabpanel" aria-labelledby="tabWebappWa" tabindex="0">
 <div class="checkout-shell">
   <aside class="checkout-left" aria-label="Order summary">
     <a class="brand" href="/"><span class="brand-word">Briefly</span><span class="brand-pin" aria-hidden="true"></span></a>
@@ -461,6 +468,10 @@ footer .foot-bottom { display: flex; justify-content: space-between; gap: 14px; 
 
   <main class="checkout-right">
     <div class="checkout-form-wrap">
+      <div class="start-toggle" role="tablist" aria-label="Choose how to start">
+        <button type="button" class="start-tab" id="tabConnectorWa" role="tab" data-start-tab="connector" aria-selected="false" aria-controls="panelConnector" tabindex="-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>Claude connector</button>
+        <button type="button" class="start-tab" id="tabWebappWa" role="tab" data-start-tab="webapp" aria-selected="true" aria-controls="panelWebapp" tabindex="0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/></svg>Web app</button>
+      </div>
       <h1>Start with the Briefly web app.</h1>
       <p class="lede">Pick your seats and request access. Your team signs in from a browser, with nothing to install.</p>
 
@@ -828,38 +839,49 @@ wireCheckout({
 <!-- ==================== PAGE SCRIPT: connector / web app tab toggle ==================== -->
 <script>
 (function () {
-  var tabs = [document.getElementById('tabConnector'), document.getElementById('tabWebapp')];
+  // The switch lives inside each checkout column, so there are two copies of
+  // it. Only the visible panel's copy is in the accessibility tree (the other
+  // panel is display:none), and both stay in sync by data-start-tab value.
+  var tabs = [].slice.call(document.querySelectorAll('[data-start-tab]'));
   var panels = {
-    tabConnector: document.getElementById('panelConnector'),
-    tabWebapp: document.getElementById('panelWebapp')
+    connector: document.getElementById('panelConnector'),
+    webapp: document.getElementById('panelWebapp')
   };
+  if (!tabs.length || !panels.connector || !panels.webapp) return;
 
-  function activate(tab, syncHash) {
+  function activate(which, syncHash, moveFocus) {
     tabs.forEach(function (t) {
-      var isActive = t === tab;
+      var isActive = t.getAttribute('data-start-tab') === which;
       t.setAttribute('aria-selected', String(isActive));
       t.tabIndex = isActive ? 0 : -1;
-      panels[t.id].classList.toggle('is-hidden', !isActive);
     });
+    panels.connector.classList.toggle('is-hidden', which !== 'connector');
+    panels.webapp.classList.toggle('is-hidden', which !== 'webapp');
+    if (moveFocus) {
+      // Focus the copy inside the panel that is now visible.
+      var target = panels[which].querySelector('[data-start-tab="' + which + '"]');
+      if (target) target.focus();
+    }
     if (syncHash && window.history && window.history.replaceState) {
       var path = window.location.pathname + window.location.search;
-      window.history.replaceState(null, '', tab.id === 'tabWebapp' ? path + '#webapp' : path);
+      window.history.replaceState(null, '', which === 'webapp' ? path + '#webapp' : path);
     }
   }
 
-  tabs.forEach(function (tab, i) {
-    tab.addEventListener('click', function () { activate(tab, true); });
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      activate(tab.getAttribute('data-start-tab'), true, false);
+    });
     tab.addEventListener('keydown', function (e) {
       if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
       e.preventDefault();
-      var next = tabs[i === 0 ? 1 : 0];
-      next.focus();
-      activate(next, true);
+      var other = tab.getAttribute('data-start-tab') === 'connector' ? 'webapp' : 'connector';
+      activate(other, true, true);
     });
   });
 
   if (window.location.hash === '#webapp') {
-    activate(tabs[1], false);
+    activate('webapp', false, false);
   }
 })();
 </script>
