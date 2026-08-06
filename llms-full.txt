@@ -1,5 +1,5 @@
 ---
-# Briefly | AI knowledge base for financial advisors, inside Claude
+# Briefly | AI Knowledge Base for Financial Advisors
 Source: https://www.brieflywealth.com/
 ---
 
@@ -57,7 +57,7 @@ Briefly isn't a new place to work. Your team keeps asking questions where they a
 
 **4:15 pm, in Claude, across the book.** The advisor asks, "Which households have mentioned selling a business?" Briefly finds four households, each with the conversation it came from, cited to four sources across four files. Two mentioned a timeline inside three years.
 
-## Correct it once. The whole firm inherits it.
+## Correct it once. The whole team inherits it.
 
 When an advisor fixes a name, a preference, or a way of phrasing things, Briefly keeps the fix as a standing rule. Next quarter's brief already follows it, for everyone. An advisor at one firm fixed a single phrase, "we call it a planning conversation, never a sales meeting." Every brief that firm has received since says it their way.
 

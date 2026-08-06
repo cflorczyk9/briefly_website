@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <style>
+      .sans { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+      .mono { font-family: Menlo, "SF Mono", Consolas, monospace; }
+    </style>
+    <pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse">
+      <path d="M100 0 L0 0 0 100" fill="none" stroke="#E6E1D5" stroke-width="1" opacity="0.7"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="#FBFAF6"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- eyebrow -->
+  <circle cx="101" cy="93" r="5" fill="#2F8CFF"/>
+  <text x="117" y="98" class="mono" font-size="14" font-weight="700"
+        letter-spacing="2.2" fill="#2F8CFF">FOR RIAS AND ADVISOR TEAMS</text>
+
+  <!-- domain, top right -->
+  <text x="1104" y="98" class="mono" font-size="14" font-weight="600"
+        letter-spacing="1.6" fill="#5B6C80" text-anchor="end">BRIEFLYWEALTH.COM</text>
+
+  <!-- wordmark -->
+  <text x="96" y="248" class="sans" font-size="86" font-weight="700"
+        letter-spacing="-2" fill="#16324F">BRIEFLY</text>
+  <circle cx="437" cy="200" r="14" fill="#2F8CFF"/>
+
+  <!-- headline -->
+  <text x="96" y="330" class="sans" font-size="46" font-weight="700"
+        letter-spacing="-1" fill="#16324F">Know every client like they're your only</text>
+  <text x="96" y="384" class="sans" font-size="46" font-weight="700"
+        letter-spacing="-1" fill="#16324F">client.</text>
+
+  <!-- subline -->
+  <text x="96" y="436" class="sans" font-size="21" font-weight="500"
+        fill="#46627D">An AI knowledge base for financial advisors, inside Claude.</text>
+
+  <!-- source chips -->
+  <g class="mono" font-size="13" font-weight="600" letter-spacing="1.2" fill="#46627D">
+    <rect x="96"  y="506" width="112" height="38" rx="8" fill="#FFFFFF" stroke="#E6E1D5"/>
+    <circle cx="114" cy="525" r="4" fill="#2F8CFF"/>
+    <text x="126" y="530">NOTES</text>
+
+    <rect x="220" y="506" width="122" height="38" rx="8" fill="#FFFFFF" stroke="#E6E1D5"/>
+    <circle cx="238" cy="525" r="4" fill="#2F8CFF"/>
+    <text x="250" y="530">EMAILS</text>
+
+    <rect x="354" y="506" width="166" height="38" rx="8" fill="#FFFFFF" stroke="#E6E1D5"/>
+    <circle cx="372" cy="525" r="4" fill="#2F8CFF"/>
+    <text x="384" y="530">STATEMENTS</text>
+
+    <rect x="532" y="506" width="150" height="38" rx="8" fill="#FFFFFF" stroke="#E6E1D5"/>
+    <circle cx="550" cy="525" r="4" fill="#2F8CFF"/>
+    <text x="562" y="530">MEETINGS</text>
+
+    <rect x="694" y="506" width="90" height="38" rx="8" fill="#FFFFFF" stroke="#E6E1D5"/>
+    <circle cx="712" cy="525" r="4" fill="#2F8CFF"/>
+    <text x="724" y="530">CRM</text>
+  </g>
+
+  <!-- badge, bottom right -->
+  <rect x="884" y="506" width="220" height="38" rx="8" fill="#FFFFFF" stroke="#2F8CFF"/>
+  <text x="994" y="530" class="mono" font-size="13" font-weight="700"
+        letter-spacing="1.2" fill="#2F8CFF" text-anchor="middle">EVERY ANSWER CITED</text>
+</svg>
