@@ -289,7 +289,7 @@ Source: https://www.brieflywealth.com/start
 
 Pick your seats and check out. Most teams are asking questions inside Claude the same day.
 
-Choose your seat count. More than 25 seats routes to booking a demo instead, so Briefly can set your firm up directly.
+Choose your seat count, one per advisor who will use it. Teammates claim the remaining seats by installing Briefly and signing in with an email at the firm's domain, so the buyer has nothing to send them. More than 25 seats routes to booking a demo instead, so Briefly can set your firm up directly.
 
 The signup form asks for a work email and a firm name. The connector reads files on your own computer, and client files never reach Briefly's servers.
 
