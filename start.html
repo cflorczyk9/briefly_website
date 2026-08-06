@@ -346,23 +346,9 @@ footer .foot-bottom { display: flex; justify-content: space-between; gap: 14px; 
 
 <div id="panelConnector" class="start-panel start-panel-connector" role="tabpanel" aria-labelledby="tabConnector" tabindex="0">
 <div class="checkout-shell">
-  <aside class="checkout-left" aria-label="Order summary">
+  <aside class="checkout-left">
     <a class="brand" href="/"><span class="brand-word">Briefly</span><span class="brand-pin" aria-hidden="true"></span></a>
 
-    <div class="order-summary">
-      <p class="order-eyebrow">Order summary</p>
-      <div class="order-row">
-        <span class="order-product">Briefly Connector</span>
-        <span class="order-qty" id="orderQty" aria-live="polite">1 seat</span>
-      </div>
-      <p class="order-unit" id="priceLine" aria-live="polite">$100.00 x 1 seat / month</p>
-      <hr class="order-rule">
-      <div class="order-total-row">
-        <span class="order-total-label">Total due today</span>
-        <span class="order-total-amount" id="orderTotal">$0.00</span>
-      </div>
-      <p class="order-then" id="orderThen" aria-live="polite">Then $100.00/month after your 30-day free month</p>
-    </div>
 
     <div class="trust-line">
       <svg class="lock-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
@@ -394,6 +380,21 @@ footer .foot-bottom { display: flex; justify-content: space-between; gap: 14px; 
         </div>
         <p class="fine-print">Buy a seat for each advisor who will use it. Your team claims the rest by installing Briefly and signing in with an email at your firm's domain, so there is nothing to send them.</p>
         <p class="fine-print">More than 25 seats? <a class="textlink" href="#" onclick="openDemoModal();return false;">Book a demo</a> and we'll set your firm up directly.</p>
+      </div>
+
+      <div class="order-summary">
+        <p class="order-eyebrow">Order summary</p>
+        <div class="order-row">
+          <span class="order-product">Briefly Connector</span>
+          <span class="order-qty" id="orderQty" aria-live="polite">1 seat</span>
+        </div>
+        <p class="order-unit" id="priceLine" aria-live="polite">$100.00 x 1 seat / month</p>
+        <hr class="order-rule">
+        <div class="order-total-row">
+          <span class="order-total-label">Total due today</span>
+          <span class="order-total-amount" id="orderTotal">$0.00</span>
+        </div>
+        <p class="order-then" id="orderThen" aria-live="polite">Then $100.00/month after your 30-day free month</p>
       </div>
 
       <form class="checkout-form" id="checkoutForm" novalidate>
@@ -437,23 +438,9 @@ footer .foot-bottom { display: flex; justify-content: space-between; gap: 14px; 
 
 <div id="panelWebapp" class="start-panel start-panel-webapp is-hidden" role="tabpanel" aria-labelledby="tabWebappWa" tabindex="0">
 <div class="checkout-shell">
-  <aside class="checkout-left" aria-label="Order summary">
+  <aside class="checkout-left">
     <a class="brand" href="/"><span class="brand-word">Briefly</span><span class="brand-pin" aria-hidden="true"></span></a>
 
-    <div class="order-summary">
-      <p class="order-eyebrow">Order summary</p>
-      <div class="order-row">
-        <span class="order-product">Briefly Web App</span>
-        <span class="order-qty" id="waOrderQty" aria-live="polite">1 seat</span>
-      </div>
-      <p class="order-unit" id="waPriceLine" aria-live="polite">$150.00 x 1 seat / month</p>
-      <hr class="order-rule">
-      <div class="order-total-row">
-        <span class="order-total-label">Due today</span>
-        <span class="order-total-amount" id="waOrderTotal">$0.00</span>
-      </div>
-      <p class="order-then" id="waOrderThen" aria-live="polite">Then $150.00/month, invoiced once your firm is set up</p>
-    </div>
 
     <div class="trust-line">
       <svg class="lock-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
@@ -484,6 +471,21 @@ footer .foot-bottom { display: flex; justify-content: space-between; gap: 14px; 
           <button type="button" class="stepper-btn" id="waSeatInc" aria-label="Increase seats">+</button>
         </div>
         <p class="fine-print">More than 25 seats? <a class="textlink" href="#" onclick="openDemoModal();return false;">Book a demo</a> and we'll set your firm up directly.</p>
+      </div>
+
+      <div class="order-summary">
+        <p class="order-eyebrow">Order summary</p>
+        <div class="order-row">
+          <span class="order-product">Briefly Web App</span>
+          <span class="order-qty" id="waOrderQty" aria-live="polite">1 seat</span>
+        </div>
+        <p class="order-unit" id="waPriceLine" aria-live="polite">$150.00 x 1 seat / month</p>
+        <hr class="order-rule">
+        <div class="order-total-row">
+          <span class="order-total-label">Due today</span>
+          <span class="order-total-amount" id="waOrderTotal">$0.00</span>
+        </div>
+        <p class="order-then" id="waOrderThen" aria-live="polite">Then $150.00/month, invoiced once your firm is set up</p>
       </div>
 
       <form class="checkout-form" id="waCheckoutForm" novalidate>
