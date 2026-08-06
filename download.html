@@ -2389,6 +2389,9 @@
 
 <section class="dl-hero">
   <div class="dl-hero-inner">
+    <div id="signupCompleteNote" role="status" hidden style="margin:0 0 26px; padding:14px 18px; background:rgba(140,216,255,.10); border:1px solid rgba(140,216,255,.35); border-radius:8px; font-size:15px; line-height:1.55; color:var(--cream);">
+      <strong>Payment method saved.</strong> Your sign-in and download link are on their way to your email. You can also install below whenever you're ready.
+    </div>
     <h1>Add Briefly to Claude.</h1>
     <p>Your firm&rsquo;s memory, from your own files.</p>
     <div class="dl-cta-row">
@@ -3548,6 +3551,15 @@ async function handleDemoSubmit(e) {
         : 'Payment confirmed. Your Briefly login is on its way to your inbox. The email also has your download link, set up for your firm.';
       hero.insertBefore(note, hero.firstChild);
     }
+  }
+})();
+</script>
+<script>
+(function () {
+  var p = new URLSearchParams(window.location.search);
+  if (p.get('signup') === 'complete') {
+    var n = document.getElementById('signupCompleteNote');
+    if (n) n.hidden = false;
   }
 })();
 </script>

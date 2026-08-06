@@ -184,6 +184,14 @@
   }
   .btn-checkout:disabled { background: var(--rule); border-color: var(--rule); color: var(--ink-soft); cursor: not-allowed; }
 
+  /* Embedded Stripe checkout: the payment form mounts inside the page. */
+  #embeddedCheckout { min-height: 460px; margin-top: 14px; }
+  .embedded-back { background: none; border: 0; padding: 0; font-family: var(--sans); font-size: 14px; color: var(--blue-ink); cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+  .checkout-form-wrap.is-paying .seat-block,
+  .checkout-form-wrap.is-paying .checkout-form,
+  .checkout-form-wrap.is-paying > .fine-print,
+  .checkout-form-wrap.is-paying .secondary-path,
+  .checkout-form-wrap.is-paying .webapp-row { display: none; }
   .checkout-fallback {
     margin-top: 16px; border: 1px solid var(--rule); border-radius: 10px; background: var(--card);
     box-shadow: 0 1px 2px rgba(22,50,79,.05), 0 14px 34px rgba(22,50,79,.08);
@@ -394,7 +402,7 @@ footer .foot-bottom { display: flex; justify-content: space-between; gap: 14px; 
           <label for="companyWebsite">Leave this field blank</label>
           <input type="text" id="companyWebsite" name="company-website" tabindex="-1" autocomplete="off">
         </div>
-        <button type="submit" class="btn btn-checkout" id="checkoutBtn" disabled>Continue to secure checkout</button>
+        <button type="submit" class="btn btn-checkout" id="checkoutBtn" disabled>Continue to payment</button>
         <p class="fine-print">After checkout, you download the connector and point it at your folders.</p>
         <p class="fine-print">By continuing to checkout, you agree to the <a href="/terms-of-service">Terms of Service</a>, <a href="/privacy-policy">Privacy Policy</a>, and <a href="/eula">Connector EULA</a>.</p>
       </form>
@@ -402,6 +410,11 @@ footer .foot-bottom { display: flex; justify-content: space-between; gap: 14px; 
       <div class="checkout-fallback" id="checkoutFallback" role="status" aria-live="assertive" tabindex="-1" hidden>
         <p>Checkout opens shortly. Book a demo and we'll set your firm up directly.</p>
         <button type="button" class="btn ghost" onclick="openDemoModal()">Book a demo</button>
+      </div>
+
+      <div id="embeddedCheckoutWrap" hidden>
+        <button type="button" class="embedded-back" id="embeddedBack">&larr; Change seats or details</button>
+        <div id="embeddedCheckout" aria-label="Secure payment form"></div>
       </div>
 
       <p class="fine-print">Checkout takes a card but charges nothing for 30 days. Cancel from the billing portal any time.</p>
@@ -596,6 +609,23 @@ footer .foot-bottom { display: flex; justify-content: space-between; gap: 14px; 
 // web app to mode "stripe" only once the webapp plan exists server-side.
 var LEAD_FORM_URL = 'https://formspree.io/f/mjgygdyd'; // same inbox as the demo modal
 
+// Stripe.js loads only when a checkout actually starts, from js.stripe.com as
+// PCI requires (never bundled or self-hosted). Card fields render in Stripe's
+// iframe, so card data never touches this origin.
+var stripeJsPromise = null;
+function loadStripeJs() {
+  if (!stripeJsPromise) {
+    stripeJsPromise = new Promise(function (resolve, reject) {
+      var el = document.createElement('script');
+      el.src = 'https://js.stripe.com/dahlia/stripe.js';
+      el.onload = resolve;
+      el.onerror = reject;
+      document.head.appendChild(el);
+    });
+  }
+  return stripeJsPromise;
+}
+
 function wireCheckout(cfg) {
   var seatInput = document.getElementById(cfg.seatInput);
   var seatDec = document.getElementById(cfg.seatDec);
@@ -726,7 +756,10 @@ function wireCheckout(cfg) {
       if (!res.ok) throw new Error('checkout session request failed');
       return res.json();
     }).then(function (data) {
-      if (data && data.url) {
+      if (data && data.clientSecret && cfg.pubKey) {
+        mountEmbedded(data.clientSecret, originalText);
+      } else if (data && data.url) {
+        // Older backend shape: hosted checkout redirect still works.
         window.location = data.url;
       } else {
         fallbackAndReset();
@@ -735,12 +768,47 @@ function wireCheckout(cfg) {
       fallbackAndReset();
     });
   });
+
+  // The payment form mounts in place of the details form. Back destroys the
+  // Stripe frame and restores the form with everything still filled in.
+  var activeCheckout = null;
+  var formWrap = checkoutForm.closest('.checkout-form-wrap');
+  function mountEmbedded(clientSecret, restoreText) {
+    loadStripeJs().then(function () {
+      return Stripe(cfg.pubKey).createEmbeddedCheckoutPage({
+        fetchClientSecret: function () { return Promise.resolve(clientSecret); }
+      });
+    }).then(function (co) {
+      activeCheckout = co;
+      formWrap.classList.add('is-paying');
+      document.getElementById('embeddedCheckoutWrap').hidden = false;
+      co.mount('#embeddedCheckout');
+      checkoutBtn.disabled = false;
+      checkoutBtn.textContent = restoreText;
+    }).catch(function () {
+      checkoutBtn.disabled = false;
+      checkoutBtn.textContent = restoreText;
+      showFallback();
+    });
+  }
+  var backBtn = document.getElementById('embeddedBack');
+  if (backBtn && cfg.mode === 'stripe') {
+    backBtn.addEventListener('click', function () {
+      if (activeCheckout) { activeCheckout.destroy(); activeCheckout = null; }
+      document.getElementById('embeddedCheckoutWrap').hidden = true;
+      formWrap.classList.remove('is-paying');
+      updateCheckoutButtonState();
+    });
+  }
 }
 
 wireCheckout({
   plan: 'connector', perSeat: 100, mode: 'stripe',
-  // set to the API origin when Stripe goes live; empty keeps checkout in preview
-  apiBase: '',
+  // Go-live needs BOTH: apiBase = the billing API origin, pubKey = the
+  // pk_live publishable key. Empty keeps checkout dark. The localStorage
+  // overrides (bwBillingApi / bwStripePk) exist for local preview testing.
+  apiBase: localStorage.getItem('bwBillingApi') || '',
+  pubKey: localStorage.getItem('bwStripePk') || '',
   seatInput: 'seatInput', seatDec: 'seatDec', seatInc: 'seatInc',
   orderQty: 'orderQty', priceLine: 'priceLine', orderThen: 'orderThen',
   email: 'startEmail', firm: 'startFirm', btn: 'checkoutBtn',
