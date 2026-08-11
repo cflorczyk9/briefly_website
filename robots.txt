@@ -5,7 +5,6 @@ Disallow: /swarm-
 Disallow: /diag-mob-
 Disallow: /redesign-concepts/
 Disallow: /sample-brief-email-preview.html
-Disallow: /legal-drafts/
 
 # AI assistants and training crawlers are welcome on the public site.
 # These agents are grouped so the exclusions above apply to them too:
@@ -35,6 +34,5 @@ Disallow: /swarm-
 Disallow: /diag-mob-
 Disallow: /redesign-concepts/
 Disallow: /sample-brief-email-preview.html
-Disallow: /legal-drafts/
 
 Sitemap: https://www.brieflywealth.com/sitemap.xml

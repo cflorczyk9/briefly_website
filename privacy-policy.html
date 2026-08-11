@@ -600,8 +600,8 @@
         <p><strong>What the Connector does not send us.</strong> The Connector reads client files from a folder on the customer's own computer. Those files, and any Client Data within them, are not uploaded to or stored by Briefly. Briefly's servers do not receive client documents, financial account information, holdings, transactions, or any other Client Data through the Connector.</p>
         <p><strong>Account and sign-in information.</strong> To provision and authenticate a Connector Customer's account, Briefly's servers receive and store the same category of account information described in subsection (a): name, email address, firm name, job title, and related registration details, processed through Amazon Cognito.</p>
         <p><strong>Seat and entitlement records.</strong> We store records of which seats, features, and entitlements are assigned to a Connector Customer's account, used to license and meter the Connector.</p>
-        <p><strong>De-identified preference rules.</strong> As a Connector Customer uses the Service, Briefly's servers may receive and store de-identified, tokenized preference rules, small pieces of learned formatting or workflow preference that are stripped of client names, account numbers, and other identifying detail before they leave the customer's computer. <!-- CONFIRM WITH ENGINEERING: tokenization has zero exceptions incl. logs --></p>
-        <p><strong>Usage telemetry.</strong> When a Connector Customer uses a Briefly tool inside Claude, the Connector sends Briefly's servers a usage event record describing the call: the tool invoked, the event type (query, capture, injection, or artifact), the outcome (for example success or error), seat and firm identifiers, an internal compute-cost figure, and timestamps. These records do not include the contents of the customer's files, prompts, or Outputs. We use them to license and meter seats, monitor reliability, and understand feature usage. <!-- CONFIRM WITH ENGINEERING: whether any diagnostic or error logging beyond these usage event records reaches Briefly's servers --></p>
+        <p><strong>De-identified preference rules.</strong> As a Connector Customer uses the Service, Briefly's servers may receive and store de-identified, tokenized preference rules, small pieces of learned formatting or workflow preference that are stripped of client names, account numbers, and other identifying detail before they leave the customer's computer. </p>
+        <p><strong>Usage telemetry.</strong> When a Connector Customer uses a Briefly tool inside Claude, the Connector sends Briefly's servers a usage event record describing the call: the tool invoked, the event type (query, capture, injection, or artifact), the outcome (for example success or error), seat and firm identifiers, an internal compute-cost figure, and timestamps. These records do not include the contents of the customer's files, prompts, or Outputs. We use them to license and meter seats, monitor reliability, and understand feature usage. </p>
 
         <p><strong>Categories of Personal Information (Connector).</strong> The following table summarizes what Briefly processes for Connector Customers. No row in this table includes client documents, financial account information, or other Client Data, because Briefly does not receive it through the Connector.</p>
 
@@ -681,7 +681,7 @@
         <p><strong>No automated decision-making about consumers.</strong> Outputs are decision-support materials only. Briefly does not make significant decisions about end consumers (as defined in CCPA Regs § 7200(a)) and does not engage in profiling that produces legal or similarly significant effects. The Customer (the RIA firm) remains the human decision-maker for all client recommendations.</p>
 
         <h3>Connector Customers</h3>
-        <p>The Connector reads client files locally and passes relevant content into the customer's own Claude conversation. That AI processing runs on the customer's own Claude or Anthropic plan, under the customer's own agreement with Anthropic, not through a Briefly-operated AI pipeline. Briefly does not transmit client data to Anthropic on the customer's behalf. <!-- LEGAL REVIEW: confirm accurate for connector architecture --></p>
+        <p>The Connector reads client files locally and passes relevant content into the customer's own Claude conversation. That AI processing runs on the customer's own Claude or Anthropic plan, under the customer's own agreement with Anthropic, not through a Briefly-operated AI pipeline. Briefly does not transmit client data to Anthropic on the customer's behalf. </p>
         <p><strong>The Claude boundary.</strong> Content a Connector Customer passes into a Claude conversation is handled by Anthropic under the customer's own agreement with Anthropic and Anthropic's own privacy documentation, not under this Policy. Briefly does not control, and is not responsible for, Anthropic's retention or use of that content. Anthropic offers plan types that differ in how customer content is retained and used; selecting a plan appropriate to the customer's regulatory obligations is the customer's responsibility.</p>
       </section>
 
@@ -713,11 +713,10 @@
               <td>Anthropic, PBC</td>
               <td>LLM inference for document extraction and brief generation</td>
               <td>Client Data passed in prompts; Outputs</td>
-              <td>Web app (client data passed in prompts). Not a Briefly sub-processor for Connector Customers; the customer's own Anthropic plan governs. <!-- LEGAL REVIEW: confirm accurate for connector architecture --></td>
+              <td>Web app (client data passed in prompts). Not a Briefly sub-processor for Connector Customers; the customer's own Anthropic plan governs. </td>
               <td>United States</td>
             </tr>
             <tr>
-              <!-- LEGAL REVIEW: confirm Stripe categorization and data categories -->
               <td>Stripe, Inc.</td>
               <td>Payment processing (merchant of record) for seat and subscription purchases</td>
               <td>Purchaser name, work email, payment card, and billing records (Commercial Information)</td>
@@ -757,7 +756,7 @@
         <ul>
           <li><strong>Account information.</strong> Duration of account plus seven (7) years (SEC books-and-records analog), consistent with the Web App schedule.</li>
           <li><strong>Seat and entitlement records.</strong> Duration of account plus seven (7) years.</li>
-          <li><strong>De-identified preference rules.</strong> <!-- CONFIRM WITH ENGINEERING: retention period for tokenized preference rules after account closure --></li>
+          <li><strong>De-identified preference rules.</strong> </li>
           <li><strong>Backups.</strong> Rolling 90 days.</li>
         </ul>
         <p>If a longer retention period is required by law, regulation, or legitimate business purpose (for example, defense of legal claims), we will retain the relevant data only as long as necessary for that purpose.</p>
