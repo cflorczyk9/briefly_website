@@ -2324,6 +2324,14 @@
       },
       {
         "@type": "Question",
+        "name": "Will my Mac warn me when I open the download?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It might. The connector isn’t yet signed with an Apple developer certificate, so macOS may show an unidentified developer notice the first time you open the file. Right-click the file, choose Open, and confirm once. Claude Desktop then shows its own notice that the extension isn’t verified by Anthropic, which is normal for any third-party connector. Neither notice means the file reached our servers. It installs locally either way."
+        }
+      },
+      {
+        "@type": "Question",
         "name": "Where do my client files live?",
         "acceptedAnswer": {
           "@type": "Answer",
@@ -2375,9 +2383,10 @@
       <div class="nav-panel" id="navPanel">
         <div class="nav-links">
           <a href="/#how">How it works</a>
-          <a href="/security">Security</a>
           <a href="/sample-deliverables">Samples</a>
+          <a href="/security">Security</a>
           <a href="/download">Download</a>
+          <a href="/about">About</a>
         </div>
         <div class="nav-actions">
           <a class="nav-signin" href="https://demo.app.brieflywealth.com/">Web app sign in</a>
@@ -2396,7 +2405,7 @@
       <strong>Payment method saved.</strong> Your sign-in and download link are on their way to your email. You can also install below whenever you're ready.
     </div>
     <h1>Add Briefly to Claude.</h1>
-    <p>Your firm&rsquo;s memory, from your own files.</p>
+    <p>Your firm&rsquo;s knowledge base, from your own files.</p>
     <div class="dl-cta-row">
       <a class="dl-btn" id="dl" href="briefly-mcp.mcpb" download="briefly_wealth.mcpb">Download Briefly <span class="arr" aria-hidden="true">&darr;</span></a>
       <span class="dl-meta">Mac &amp; Windows &middot; Requires <a href="https://claude.ai/download" target="_blank" rel="noopener">Claude</a></span>
@@ -3115,6 +3124,10 @@
           <p class="faq-a">Yes. Briefly is a connector you add to Claude Desktop. You need the free Claude Desktop app installed first, then Briefly plugs into it. If you already use Claude for chat or writing, it&rsquo;s the same app, and Briefly reads your client files from inside it.</p>
         </details>
         <details class="faq-item">
+          <summary>Will my Mac warn me when I open the download?</summary>
+          <p class="faq-a">It might. The connector isn&rsquo;t yet signed with an Apple developer certificate, so macOS may show an unidentified developer notice the first time you open the file. Right-click the file, choose Open, and confirm once. Claude Desktop then shows its own notice that the extension isn&rsquo;t verified by Anthropic, which is normal for any third-party connector. Neither notice means the file reached our servers. It installs locally either way.</p>
+        </details>
+        <details class="faq-item">
           <summary>Where do my client files live?</summary>
           <p class="faq-a">With the Briefly connector, client files live on your computer, in a folder you pick during setup. Briefly reads and writes files there directly, and nothing gets uploaded to a Briefly database or cloud storage account. The browser web app works differently. Its files live in Briefly&rsquo;s hosted environment instead.</p>
         </details>
@@ -3165,10 +3178,10 @@
     <div>
       <h4>Product</h4>
       <a href="/start">Start now</a>
-      <a href="#how">How it works</a>
+      <a href="/#how">How it works</a>
       <a href="/sample-deliverables">Sample deliverables</a>
       <a href="/security">Security</a>
-      <a href="#platform">Platform</a>
+      <a href="/#platform">Platform</a>
       <a href="/compare">Compare</a>
       <a href="/download">Download</a>
       <a href="/knowledge-base">Knowledge base</a>

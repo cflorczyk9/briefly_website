@@ -81,7 +81,7 @@
     {
       "@type": "Question",
       "name": "Is my client data safe?",
-      "acceptedAnswer": { "@type": "Answer", "text": "With the connector, client files never reach Briefly's servers. They stay in a folder on your own computer, and only your sign-in, a seat check, de-identified preference rules, and a short usage record for each tool call reach us instead. Firms on the hosted version keep files in an environment we secure and control, and the firm decides who signs in. Our security page breaks down the full data path if you want more detail." }
+      "acceptedAnswer": { "@type": "Answer", "text": "With the connector, client files never reach Briefly's servers. They stay in a folder on your own computer, and only your sign-in, a seat check, de-identified preference rules, and a short usage record for each tool call reach us instead. Firms on the web app keep files in an environment we secure and control, and the firm decides who signs in. Our security page breaks down the full data path if you want more detail." }
     },
     {
       "@type": "Question",
@@ -111,7 +111,7 @@
     {
       "@type": "Question",
       "name": "What happens if I leave?",
-      "acceptedAnswer": { "@type": "Answer", "text": "With the connector there is nothing to migrate, because the files were always in your own folders. Removing it just stops Claude from reading them. On the hosted version, your firm has ninety days after leaving to export its files in a standard format, and after that window we delete them." }
+      "acceptedAnswer": { "@type": "Answer", "text": "With the connector there is nothing to migrate, because the files were always in your own folders. Removing it just stops Claude from reading them. On the web app, your firm has ninety days after leaving to export its files in a standard format, and after that window we delete them." }
     }
   ]
 }
@@ -165,6 +165,8 @@
     display: inline-block; font-family: var(--mono); font-size: 11px; color: var(--blue-ink);
     background: var(--blue-soft); border-radius: 3px; padding: 2px 7px; margin: 3px 6px 0 0;
   }
+  a.cite { text-decoration: none; }
+  a.cite:hover { text-decoration: underline; }
 
   /* drawn chat window, deliberately not Claude's chrome */
   .win { background: var(--card); border: 1px solid var(--rule); border-radius: 10px;
@@ -403,7 +405,10 @@
   .day-arrow:hover { border-color: var(--ink-muted); }
   .day-viewport { overflow: hidden; transition: height .35s ease; }
   .day-track { display: flex; align-items: flex-start; transition: transform .45s cubic-bezier(.4, 0, .2, 1); }
-  .day-slide { flex: 0 0 100%; min-width: 100%; }
+  .day-slide { flex: 0 0 100%; min-width: 100%; visibility: visible; transition: visibility 0s linear 0s; }
+  /* A parked slide's window shadow (34px) otherwise bleeds across the viewport edge into the
+     active slide as a faint line. Hide it once it has finished sliding out; show incoming at once. */
+  .day-slide[aria-hidden="true"] { visibility: hidden; transition-delay: .45s; }
   .day-row { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 48px; align-items: center; }
   .day-time { font-family: var(--mono); font-size: 11px; color: var(--ink-muted); margin-bottom: 10px; }
   .day-txt .msg-q { font-size: 16px; }
@@ -438,15 +443,15 @@
   .pa-step { opacity: 0; transform: translateY(6px); transition: opacity .5s ease, transform .5s ease; }
   .pa-doc.play .pa-step { opacity: 1; transform: none; }
   .pa-doc.snap .pa-step { transition: none; }
-  .pa-doc.play > .pa-step:nth-child(1) { transition-delay: .05s; }
-  .pa-doc.play .pa-tile:nth-child(1) { transition-delay: .3s; }
-  .pa-doc.play .pa-tile:nth-child(2) { transition-delay: .45s; }
-  .pa-doc.play .pa-tile:nth-child(3) { transition-delay: .6s; }
-  .pa-doc.play > .pa-step:nth-child(3) { transition-delay: .9s; }
-  .pa-doc.play > .pa-step:nth-child(4) { transition-delay: 1.2s; }
-  .pa-doc.play > .pa-step:nth-child(5) { transition-delay: 1.5s; }
-  .pa-doc.play > .pa-step:nth-child(6) { transition-delay: 1.8s; }
-  .pa-doc.play > .pa-step:nth-child(7) { transition-delay: 2.1s; }
+  .pa-doc.play > .pa-step:nth-child(1) { transition-delay: 0s; }
+  .pa-doc.play .pa-tile:nth-child(1) { transition-delay: .15s; }
+  .pa-doc.play .pa-tile:nth-child(2) { transition-delay: .25s; }
+  .pa-doc.play .pa-tile:nth-child(3) { transition-delay: .35s; }
+  .pa-doc.play > .pa-step:nth-child(3) { transition-delay: .55s; }
+  .pa-doc.play > .pa-step:nth-child(4) { transition-delay: .75s; }
+  .pa-doc.play > .pa-step:nth-child(5) { transition-delay: .95s; }
+  .pa-doc.play > .pa-step:nth-child(6) { transition-delay: 1.15s; }
+  .pa-doc.play > .pa-step:nth-child(7) { transition-delay: 1.35s; }
   @media (prefers-reduced-motion: reduce) { .pa-step { opacity: 1; transform: none; transition: none; } }
 
   /* correction loop */
@@ -521,9 +526,10 @@
       <div class="nav-panel" id="navPanel">
         <div class="nav-links">
           <a href="#how">How it works</a>
-          <a href="/security">Security</a>
           <a href="/sample-deliverables">Samples</a>
+          <a href="/security">Security</a>
           <a href="/download">Download</a>
+          <a href="/about">About</a>
         </div>
         <div class="nav-actions">
           <a class="nav-signin" href="https://demo.app.brieflywealth.com/">Web app sign in</a>
@@ -621,7 +627,7 @@
 <section class="pad band-paper2" id="how" aria-label="What Briefly does">
   <div class="container">
     <div class="eyebrow">What Briefly does</div>
-    <h2>Ten years of files, one working memory.</h2>
+    <h2>Ten years of files, one knowledge base.</h2>
     <p class="lede">Briefly is an AI knowledge base for financial advisors that runs inside Claude. The answers your firm needs are already sitting in folders, inboxes, and old plans. Briefly files each document into the right client's knowledge base as it arrives, and every fact keeps a link back to the page it came from. The more you add, the better every answer gets.</p>
     <div class="mess-grid">
       <div class="chip-field dotbg" id="chipField" aria-hidden="true">
@@ -647,40 +653,119 @@
   </div>
 </section>
 
-<!-- ==================== TWO WAYS TO RUN IT ==================== -->
-<section class="pad band-white" id="ways" aria-label="Two ways to run it">
+<!-- ==================== ONE DAY ==================== -->
+<section class="pad dotbg" aria-label="What a day looks like">
   <div class="container">
-    <div class="eyebrow">Two ways to run it</div>
-    <h2>In Claude, or in a web app we set up for you.</h2>
-    <p class="lede">Same knowledge base, same citations. What changes is who does the setup and where your team asks.</p>
-    <div class="ways-grid">
-      <div class="way">
-        <div class="way-head"><h3>The Claude connector</h3></div>
-        <ul class="way-list">
-          <li>Runs inside the Claude your team already uses</li>
-          <li>Client files never reach our servers</li>
-          <li>Every answer cites its source document</li>
-          <li>Learns your firm's corrections as standing rules</li>
-          <li>Ask across your whole book, not one chat</li>
-          <li>Sign up today, no call needed</li>
-        </ul>
-        <a class="btn" href="/start">Start now</a>
-        <p class="way-fine">Checkout takes a card but charges nothing for 30 days. Cancel from the billing portal any time.</p>
+    <div class="eyebrow">What a day looks like</div>
+    <h2>One day with the file open.</h2>
+    <p class="lede">Briefly isn't a new place to work. Your team keeps asking questions where they already are, and the firm's own records do the answering.</p>
+    <div class="day-carousel">
+      <div class="day-ctrl">
+        <div class="day-stops" role="tablist" aria-label="Four moments in the day">
+          <button type="button" role="tab" class="day-stop is-active" aria-selected="true" data-day-stop="0">8:55 am</button>
+          <button type="button" role="tab" class="day-stop" aria-selected="false" data-day-stop="1">11:40 am</button>
+          <button type="button" role="tab" class="day-stop" aria-selected="false" data-day-stop="2">2:30 pm</button>
+          <button type="button" role="tab" class="day-stop" aria-selected="false" data-day-stop="3">4:15 pm</button>
+        </div>
+        <div class="day-arrows">
+          <button type="button" class="day-arrow" data-day-arrow="-1" aria-label="Previous moment"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
+          <button type="button" class="day-arrow" data-day-arrow="1" aria-label="Next moment"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
+        </div>
       </div>
-      <div class="way">
-        <div class="way-head"><h3>The web app</h3></div>
-        <ul class="way-list">
-          <li>We build the client file for you</li>
-          <li>Connects your Salesforce and Outlook</li>
-          <li>Approved next steps route back into Salesforce</li>
-          <li>Runs a prospect analysis before the first meeting</li>
-          <li>Sign in from a browser, nothing for IT to install</li>
-        </ul>
-        <a class="btn ghost" href="#" onclick="openDemoModal();return false;">Book a demo</a>
+      <div class="day-viewport" id="dayViewport">
+        <div class="day-track" id="dayTrack">
+      <div class="day-slide day-row">
+        <div class="day-txt">
+          <div class="day-time">8:55 am &middot; in Claude, before the review</div>
+          <p class="msg-q"><b>Advisor</b>Give me the Patel file before the 9:00.</p>
+          <div class="msg-a">
+            <p>Brief's ready. The sell-rate decision is the headline, the deferred-comp window opens 8/15, and the Q2 estimated tax is still due from Raj. Six sources, all linked.</p>
+            <p style="margin-top:10px;"><span class="cite">Patel brief &middot; 6 sources</span></p>
+          </div>
+        </div>
+        <div class="win">
+          <div class="win-bar"><span class="win-dot"></span><span>Running the pre-meeting brief</span></div>
+          <div class="win-body"><div class="day-clip" data-bpa-clip="2" aria-label="Running the pre-meeting brief agent for the Patel household"></div></div>
+        </div>
+      </div>
+      <div class="day-slide day-full">
+        <div class="day-lede-cols">
+          <div>
+            <div class="day-time">11:40 am &middot; in the web app, a client calls</div>
+            <p class="msg-q"><b>Operations</b>Sarah Coleman called. Hold the last AAPL tranche until after the Roth window.</p>
+          </div>
+          <div class="msg-a">
+            <p>Saved as a note in the Coleman file, indexed next to the April statement and the Roth conversion email. The next brief picks it up.</p>
+            <p style="margin-top:10px;"><span class="cite">Coleman note (filed today) &middot; 5 sources on file</span></p>
+          </div>
+        </div>
+        <div class="win win-fit">
+          <div class="win-bar"><span class="win-dot"></span><span>A phone note, filed and indexed</span></div>
+          <div class="win-body"><div class="clip-fit" data-natural="780"><div class="day-clip" data-bpa-clip="5" aria-label="Checking a household's filed sources in the web app"></div></div></div>
+        </div>
+      </div>
+      <div class="day-slide day-full">
+        <div class="day-lede-cols">
+          <div>
+            <div class="day-time">2:30 pm &middot; in the web app, after a referral call</div>
+            <p class="msg-q"><b>Advisor</b>What should I know about the Kesslers before Thursday?</p>
+          </div>
+          <div class="msg-a">
+            <p>Their analysis is ready. Four findings backed by the statements they sent, six questions worth asking, and two accounts mentioned on the call that haven't come in yet.</p>
+            <p style="margin-top:10px;"><a class="cite" href="/samples/sample-prospect-analysis">Kessler prospect analysis &middot; 2 statements + the intake</a></p>
+          </div>
+        </div>
+        <div class="win win-fit">
+          <div class="win-bar"><span class="win-dot"></span><span>Nine checks, run against what's on file</span></div>
+          <div class="win-body">
+            <!-- Copy below mirrors the product's finding-vs-question rule: a FINDING is proven by a
+                 document, everything else stays a QUESTION. Never phrase a row as advice. -->
+            <div class="pa-doc" id="paDoc">
+              <div class="pa-head pa-step"><span>Prospect analysis &middot; Kessler household</span><span>From the intake and 2 statements</span></div>
+              <div class="pa-metrics">
+                <div class="pa-tile pa-step"><b>$810,568</b>On file across 2 accounts</div>
+                <div class="pa-tile pa-step"><b>86.8%</b>In equities, 3-year timeline</div>
+                <div class="pa-tile pa-step"><b>18.2%</b>In a single stock</div>
+              </div>
+              <p class="pa-lead pa-step">The acquirer stock in their brokerage account is where this conversation should start.</p>
+              <div class="pa-row pa-step"><span class="pa-tag">Finding</span><span>The 18.2% position is stock in the company behind his September retention decision.</span></div>
+              <div class="pa-row pa-step"><span class="pa-tag">Finding</span><span>All-in fund cost is 0.62%, about $5,050 a year, with no advisor engaged.</span></div>
+              <div class="pa-row pa-step"><span class="pa-tag pa-tag-q">Question</span><span>A 401(k) and a SEP IRA came up on the call. Neither is on file.</span></div>
+              <div class="pa-foot pa-step">Ends with Questions to ask &middot; What we could not verify &middot; Nothing here is a recommendation</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="day-slide day-full">
+        <div class="day-lede-cols">
+          <div>
+            <div class="day-time">4:15 pm &middot; in the web app, across the book</div>
+            <p class="msg-q"><b>Advisor</b>What did today's meetings and uploads leave on my plate?</p>
+          </div>
+          <div class="msg-a">
+            <p>Five proposed next steps across five households, each tied to the conversation it came from. Approve one and it lands in Salesforce as a task.</p>
+            <p style="margin-top:10px;"><span class="cite">5 items &middot; 5 households &middot; 2 sources each</span></p>
+          </div>
+        </div>
+        <div class="win">
+          <div class="win-bar"><span class="win-dot"></span><span>One queue across every household</span></div>
+          <div class="win-body"><div class="clip-fit" data-natural="1000"><div class="day-clip" data-bpa-clip="1" aria-label="Working the action-item queue across households"></div></div></div>
+        </div>
+      </div>
+        </div>
       </div>
     </div>
-    <p class="ways-note">Run both and a seat moves between them without rebuilding anything, since it is one client file either way. <a class="textlink" href="/compare">Compare the two in detail</a>.</p>
-    <p class="signup-line">You can sign up without talking to anyone. Pick your seats, check out, and download the connector. The first charge lands on day 31, and you can cancel any time before that. Payments run on Stripe, so we never see your card.</p>
+  </div>
+</section>
+
+<!-- ==================== THE LOOP: corrections become rules ==================== -->
+<section class="pad band-white" aria-label="Why Briefly keeps getting better">
+  <div class="container">
+    <div class="eyebrow">Why it keeps getting better</div>
+    <h2>Correct it once. The whole team inherits it.</h2>
+    <p class="lede">When an advisor fixes a name, a preference, or a way of phrasing things, Briefly keeps the fix as a standing rule. Next quarter's brief already follows it, for everyone.</p>
+    <div class="loop-clip" data-bpa-clip="7" aria-label="How a correction becomes a standing rule the whole team inherits"></div>
+    <p class="loop-note">An advisor at one firm fixed a single phrase, "we call it a planning conversation, never a sales meeting." Every brief that firm has received since says it their way.</p>
   </div>
 </section>
 
@@ -690,7 +775,7 @@
   <div class="container">
     <div class="eyebrow">Where your client data lives</div>
     <h2>You choose where your files live, and they stay yours either way.</h2>
-    <p class="lede">Most AI tools for advisors upload your client data to their servers and promise to protect it. The two ways to run it above are also the two ways your files can live, and both put the choice in your hands.</p>
+    <p class="lede">Most AI tools for advisors upload your client data to their servers and promise to protect it. The two ways to run it below are also the two ways your files can live, and both put the choice in your hands.</p>
     <div class="cdv-doors">
       <div class="cdv-door">
         <svg class="cdv-fig" viewBox="0 0 400 260" role="img" aria-label="A desktop computer in your office">
@@ -727,119 +812,40 @@
   </div>
 </section>
 
-<!-- ==================== ONE DAY ==================== -->
-<section class="pad dotbg" aria-label="What a day looks like">
+<!-- ==================== TWO WAYS TO RUN IT ==================== -->
+<section class="pad band-white" id="ways" aria-label="Two ways to run it">
   <div class="container">
-    <div class="eyebrow">What a day looks like</div>
-    <h2>One day with the file open.</h2>
-    <p class="lede">Briefly isn't a new place to work. Your team keeps asking questions where they already are, and the firm's own records do the answering.</p>
-    <div class="day-carousel">
-      <div class="day-ctrl">
-        <div class="day-stops" role="tablist" aria-label="Four moments in the day">
-          <button type="button" role="tab" class="day-stop is-active" aria-selected="true" data-day-stop="0">8:55 am</button>
-          <button type="button" role="tab" class="day-stop" aria-selected="false" data-day-stop="1">11:40 am</button>
-          <button type="button" role="tab" class="day-stop" aria-selected="false" data-day-stop="2">2:30 pm</button>
-          <button type="button" role="tab" class="day-stop" aria-selected="false" data-day-stop="3">4:15 pm</button>
-        </div>
-        <div class="day-arrows">
-          <button type="button" class="day-arrow" data-day-arrow="-1" aria-label="Previous moment"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
-          <button type="button" class="day-arrow" data-day-arrow="1" aria-label="Next moment"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
-        </div>
+    <div class="eyebrow">Two ways to run it</div>
+    <h2>In Claude, or in a web app we set up for you.</h2>
+    <p class="lede">Same knowledge base, same citations. What changes is who does the setup and where your team asks.</p>
+    <div class="ways-grid">
+      <div class="way">
+        <div class="way-head"><h3>The Claude connector</h3><span class="price-pill">$100 per seat per month</span></div>
+        <ul class="way-list">
+          <li>Runs inside the Claude your team already uses</li>
+          <li>Client files never reach our servers</li>
+          <li>Every answer cites its source document</li>
+          <li>Learns your firm's corrections as standing rules</li>
+          <li>Ask across your whole book, not one chat</li>
+          <li>Set up in a day, no IT ticket</li>
+        </ul>
+        <a class="btn" href="/start">Start now</a>
+        <p class="way-fine">Checkout takes a card but charges nothing for 30 days. Cancel from the billing portal any time.</p>
       </div>
-      <div class="day-viewport" id="dayViewport">
-        <div class="day-track" id="dayTrack">
-      <div class="day-slide day-row">
-        <div class="day-txt">
-          <div class="day-time">8:55 am &middot; in Claude, before the review</div>
-          <p class="msg-q"><b>Advisor</b>Give me the Patel file before the 9:00.</p>
-          <div class="msg-a">
-            <p>Prepared brief ready. Three open items, one sentiment shift since April, and the rollover question is still waiting on their HR paperwork.</p>
-            <p style="margin-top:10px;"><span class="cite">Patel brief &middot; 6 sources</span></p>
-          </div>
-        </div>
-        <div class="win">
-          <div class="win-bar"><span class="win-dot"></span><span>Running the pre-meeting brief</span></div>
-          <div class="win-body"><div class="day-clip" data-bpa-clip="2" aria-label="Running the pre-meeting brief agent for the Patel household"></div></div>
-        </div>
-      </div>
-      <div class="day-slide day-full">
-        <div class="day-lede-cols">
-          <div>
-            <div class="day-time">11:40 am &middot; in the web app, a client calls</div>
-            <p class="msg-q"><b>Operations</b>Did we ever get the updated beneficiary form from the Kims?</p>
-          </div>
-          <div class="msg-a">
-            <p>Yes. Signed copy filed in March, primary changed to their daughter. The document is linked.</p>
-            <p style="margin-top:10px;"><span class="cite">Beneficiary form (filed 3/19/2026)</span></p>
-          </div>
-        </div>
-        <div class="win win-fit">
-          <div class="win-bar"><span class="win-dot"></span><span>The filed sources, checked live</span></div>
-          <div class="win-body"><div class="clip-fit" data-natural="780"><div class="day-clip" data-bpa-clip="5" aria-label="Checking a household's filed sources in the web app"></div></div></div>
-        </div>
-      </div>
-      <div class="day-slide day-full">
-        <div class="day-lede-cols">
-          <div>
-            <div class="day-time">2:30 pm &middot; in the web app, after a referral call</div>
-            <p class="msg-q"><b>Advisor</b>What should I know about the Kesslers before Thursday?</p>
-          </div>
-          <div class="msg-a">
-            <p>Their analysis is ready. Four findings backed by the statements they sent, six questions worth asking, and two accounts mentioned on the call that haven't come in yet.</p>
-            <p style="margin-top:10px;"><span class="cite">Kessler prospect analysis &middot; 2 statements + the intake</span></p>
-          </div>
-        </div>
-        <div class="win win-fit">
-          <div class="win-bar"><span class="win-dot"></span><span>Nine checks, run against what's on file</span></div>
-          <div class="win-body">
-            <!-- Copy below mirrors the product's finding-vs-question rule: a FINDING is proven by a
-                 document, everything else stays a QUESTION. Never phrase a row as advice. -->
-            <div class="pa-doc" id="paDoc">
-              <div class="pa-head pa-step"><span>Prospect analysis &middot; Kessler household</span><span>From the intake and 2 statements</span></div>
-              <div class="pa-metrics">
-                <div class="pa-tile pa-step"><b>$810,568</b>On file across 2 accounts</div>
-                <div class="pa-tile pa-step"><b>86.8%</b>In equities, 3-year timeline</div>
-                <div class="pa-tile pa-step"><b>18.2%</b>In a single stock</div>
-              </div>
-              <p class="pa-lead pa-step">The acquirer stock in their brokerage account is where this conversation should start.</p>
-              <div class="pa-row pa-step"><span class="pa-tag">Finding</span><span>The 18.2% position is stock in the company behind his September retention decision.</span></div>
-              <div class="pa-row pa-step"><span class="pa-tag">Finding</span><span>All-in fund cost is 0.62%, about $5,050 a year, with no advisor engaged.</span></div>
-              <div class="pa-row pa-step"><span class="pa-tag pa-tag-q">Question</span><span>A 401(k) and a SEP IRA came up on the call. Neither is on file.</span></div>
-              <div class="pa-foot pa-step">Ends with Questions to ask &middot; What we could not verify &middot; Nothing here is a recommendation</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="day-slide day-full">
-        <div class="day-lede-cols">
-          <div>
-            <div class="day-time">4:15 pm &middot; in Claude, across the book</div>
-            <p class="msg-q"><b>Advisor</b>Which households have mentioned selling a business?</p>
-          </div>
-          <div class="msg-a">
-            <p>Four households, each with the conversation it came from. Two mentioned a timeline inside three years.</p>
-            <p style="margin-top:10px;"><span class="cite">4 sources across 4 files</span></p>
-          </div>
-        </div>
-        <div class="win">
-          <div class="win-bar"><span class="win-dot"></span><span>One queue across every household</span></div>
-          <div class="win-body"><div class="clip-fit" data-natural="1000"><div class="day-clip" data-bpa-clip="1" aria-label="Working the action-item queue across households"></div></div></div>
-        </div>
-      </div>
-        </div>
+      <div class="way">
+        <div class="way-head"><h3>The web app</h3><span class="price-pill">$150 per seat per month</span></div>
+        <ul class="way-list">
+          <li>We build the client file for you</li>
+          <li>Connects your Salesforce and Outlook</li>
+          <li>Approved next steps route back into Salesforce</li>
+          <li>Runs a prospect analysis before the first meeting</li>
+          <li>Sign in from a browser, nothing for IT to install</li>
+        </ul>
+        <a class="btn ghost" href="#" onclick="openDemoModal();return false;">Book a demo</a>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ==================== THE LOOP: corrections become rules ==================== -->
-<section class="pad band-white" aria-label="Why Briefly keeps getting better">
-  <div class="container">
-    <div class="eyebrow">Why it keeps getting better</div>
-    <h2>Correct it once. The whole team inherits it.</h2>
-    <p class="lede">When an advisor fixes a name, a preference, or a way of phrasing things, Briefly keeps the fix as a standing rule. Next quarter's brief already follows it, for everyone.</p>
-    <div class="loop-clip" data-bpa-clip="7" aria-label="How a correction becomes a standing rule the whole team inherits"></div>
-    <p class="loop-note">An advisor at one firm fixed a single phrase, "we call it a planning conversation, never a sales meeting." Every brief that firm has received since says it their way.</p>
+    <p class="ways-note">Run both and a seat moves between them without rebuilding anything, since it is one client file either way. <a class="textlink" href="/compare">Compare the two in detail</a>.</p>
+    <p class="signup-line">Pick your seats, check out, and download the connector. The first charge lands on day 31, and you can cancel any time before that. Payments run on Stripe, so we never see your card.</p>
   </div>
 </section>
 
@@ -851,7 +857,7 @@
     <div class="faq-list">
       <details open>
         <summary>Is my client data safe?</summary>
-        <p>With the connector, client files never reach Briefly's servers. They stay in a folder on your own computer, and only your sign-in, a seat check, de-identified preference rules, and a short usage record for each tool call reach us instead. Firms on the hosted version keep files in an environment we secure and control, and the firm decides who signs in. Our <a class="textlink" href="/security">security page</a> breaks down the full data path if you want more detail.</p>
+        <p>With the connector, client files never reach Briefly's servers. They stay in a folder on your own computer, and only your sign-in, a seat check, de-identified preference rules, and a short usage record for each tool call reach us instead. Firms on the web app keep files in an environment we secure and control, and the firm decides who signs in. Our <a class="textlink" href="/security">security page</a> breaks down the full data path if you want more detail.</p>
       </details>
       <details>
         <summary>Do you train AI models on my client data?</summary>
@@ -871,7 +877,7 @@
       </details>
       <details>
         <summary>Can Briefly analyze a prospect before they sign on?</summary>
-        <p>Yes, and you supply everything it works from. Answer five questions about their goals and situation, then attach whatever statements they've shared. Briefly runs up to nine checks against what's actually in those documents, the allocation, the all-in fee, and concentration among them, and hands back findings it can prove alongside questions worth asking at the next meeting. It doesn't make recommendations, and every analysis ends with a plain list of what it could not verify.</p>
+        <p>Yes, and you supply everything it works from. Answer five questions about their goals and situation, then attach whatever statements they've shared. Briefly runs up to nine checks against what's actually in those documents, the allocation, the all-in fee, and concentration among them, and hands back findings it can prove alongside questions worth asking at the next meeting. It doesn't make recommendations, and every analysis ends with a plain list of what it could not verify. <a class="textlink" href="/samples/sample-prospect-analysis">Read a full sample</a>.</p>
       </details>
       <details>
         <summary>Which one should I pick?</summary>
@@ -879,7 +885,7 @@
       </details>
       <details>
         <summary>What happens if I leave?</summary>
-        <p>With the connector there is nothing to migrate, because the files were always in your own folders. Removing it just stops Claude from reading them. On the hosted version, your firm has ninety days after leaving to export its files in a standard format, and after that window we delete them.</p>
+        <p>With the connector there is nothing to migrate, because the files were always in your own folders. Removing it just stops Claude from reading them. On the web app, your firm has ninety days after leaving to export its files in a standard format, and after that window we delete them.</p>
       </details>
     </div>
   </div>
@@ -889,9 +895,10 @@
 <section class="closer" id="contact" aria-label="Book a demo">
   <div class="container">
     <h2>See it answer on your firm's own records.</h2>
-    <p class="lede">Twenty minutes, with the advisor in the room. Pick a time that works and we'll run it live.</p>
+    <p class="lede">Twenty minutes, with the advisor in the room. Tell us a bit about your firm and we'll set up a time to run it live.</p>
     <a class="btn" href="#" onclick="openDemoModal();return false;">Book a demo</a>
-    <p class="closer-alt">No call needed for the connector. <a href="/start">Start now</a> and you're asking questions today.</p>
+    <p class="closer-alt">Prefer to start on your own? <a href="/start">Start now</a> with the connector.</p>
+    <p class="closer-alt">Already in touch with us? Write to <a href="mailto:contact@brieflywealth.com">contact@brieflywealth.com</a> and skip the form.</p>
     <p class="closer-alt">Not ready? <a href="/subscribe">Get the Morning Brief</a>, our daily market email for advisors.</p>
   </div>
 </section>
@@ -908,10 +915,10 @@
     <div>
       <h4>Product</h4>
       <a href="/start">Start now</a>
-      <a href="#how">How it works</a>
+      <a href="/#how">How it works</a>
       <a href="/sample-deliverables">Sample deliverables</a>
       <a href="/security">Security</a>
-      <a href="#platform">Platform</a>
+      <a href="/#platform">Platform</a>
       <a href="/compare">Compare</a>
       <a href="/download">Download</a>
       <a href="/knowledge-base">Knowledge base</a>
@@ -1021,7 +1028,7 @@
     </div>
     <div class="demo-modal-success" id="demoModalSuccess" role="status" aria-live="polite" tabindex="-1">
       <p class="demo-modal-success-title" id="demoModalSuccessTitle">Thanks. We'll be in touch.</p>
-      <p class="demo-modal-success-body">We'll be in touch to set up a demo.</p>
+      <p class="demo-modal-success-body">Expect a reply within one business day to set up a time.</p>
       <button class="demo-modal-submit" type="button" onclick="closeDemoModal()">Close</button>
     </div>
   </div>
@@ -1071,6 +1078,10 @@ BrieflyClips.mountAll();
     idx = (i + slides.length) % slides.length;
     track.style.transform = 'translateX(-' + idx * 100 + '%)';
     slides.forEach(function (s, k) { s.setAttribute('aria-hidden', k === idx ? 'false' : 'true'); });
+    /* Start the prospect document reveal the moment its slide is chosen, rather than
+       waiting for the slide transition to finish and the observer to notice. */
+    var pa = slides[idx].querySelector('#paDoc');
+    if (pa && !pa.classList.contains('play')) { pa.classList.add('play'); }
     stops.forEach(function (b, k) {
       b.classList.toggle('is-active', k === idx);
       b.setAttribute('aria-selected', k === idx ? 'true' : 'false');
@@ -1549,7 +1560,7 @@ async function handleDemoSubmit(e) {
     err.style.display = 'block';
     err.focus();
   } finally {
-    btn.disabled = false; btn.textContent = 'Request demo';
+    btn.disabled = false; btn.textContent = 'Book a demo';
   }
   return false;
 }

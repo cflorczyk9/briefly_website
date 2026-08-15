@@ -192,6 +192,7 @@
   .plan-head { padding: 24px 26px 20px; border-bottom: 1px solid var(--rule); }
   .plan-head h3 { font-family: var(--serif); font-size: 21px; font-weight: 400; margin: 0; }
   .plan-for { margin: 6px 0 0; color: var(--ink-soft); font-size: 14px; }
+  .plan-price { margin: 10px 0 0; font-family: var(--mono); font-size: 12.5px; font-weight: 700; letter-spacing: .04em; color: var(--blue-ink); }
   .plan-body { padding: 26px 26px 30px; }
   .plan ul { margin: 0 0 20px; padding: 0; list-style: none; }
   .plan li { font-size: 14px; color: var(--ink-soft); border-top: 1px solid var(--rule); padding: 8px 0 8px 22px; position: relative; }
@@ -288,9 +289,10 @@
       <div class="nav-panel" id="navPanel">
         <div class="nav-links">
           <a href="/#how">How it works</a>
-          <a href="/security">Security</a>
           <a href="/sample-deliverables">Samples</a>
+          <a href="/security">Security</a>
           <a href="/download">Download</a>
+          <a href="/about">About</a>
         </div>
         <div class="nav-actions">
           <a class="nav-signin" href="https://demo.app.brieflywealth.com/">Web app sign in</a>
@@ -329,6 +331,11 @@
           </tr>
         </thead>
         <tbody>
+          <tr>
+            <th scope="row">Price</th>
+            <td>$100 per seat per month</td>
+            <td>$150 per seat per month</td>
+          </tr>
           <tr>
             <th scope="row">Where your files live</th>
             <td>In a folder on your own machines</td>
@@ -376,6 +383,7 @@
         <div class="plan-head">
           <h3>The Claude connector</h3>
           <p class="plan-for">Your team already works in Claude.</p>
+          <p class="plan-price">$100 per seat per month</p>
         </div>
         <div class="plan-body">
           <ul role="list">
@@ -395,6 +403,7 @@
         <div class="plan-head">
           <h3>The Briefly web app</h3>
           <p class="plan-for">You want it handled for you.</p>
+          <p class="plan-price">$150 per seat per month</p>
         </div>
         <div class="plan-body">
           <ul role="list">
@@ -437,10 +446,10 @@
     <div>
       <h4>Product</h4>
       <a href="/start">Start now</a>
-      <a href="#how">How it works</a>
+      <a href="/#how">How it works</a>
       <a href="/sample-deliverables">Sample deliverables</a>
       <a href="/security">Security</a>
-      <a href="#platform">Platform</a>
+      <a href="/#platform">Platform</a>
       <a href="/compare">Compare</a>
       <a href="/download">Download</a>
       <a href="/knowledge-base">Knowledge base</a>
