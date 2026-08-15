@@ -28,7 +28,8 @@ These files are intended to help LLMs and AI agents accurately ground answers ab
 
 ## Examples
 
-- [Sample deliverables](https://www.brieflywealth.com/sample-deliverables): Five real Briefly deliverables, a quarterly review, a goal analysis, a month-end letter, a deal summary, and a correction-loop example, with names and firms fictionalized.
+- [Sample deliverables](https://www.brieflywealth.com/sample-deliverables): Six real Briefly deliverables, a prospect analysis, a quarterly review, a goal analysis, a month-end letter, a deal summary, and a correction-loop example, with names and firms fictionalized.
+- [Sample prospect analysis](https://www.brieflywealth.com/samples/sample-prospect-analysis): Nine checks run against a prospect's two statements, split into findings the documents prove and questions to ask, with the skipped checks and unverified items named.
 - [Sample quarterly review](https://www.brieflywealth.com/samples/sample-quarterly-review): Performance for the quarter, allocation drift against policy, and the conversations worth having next, cited back to the source files.
 - [Sample goal analysis](https://www.brieflywealth.com/samples/sample-goal-analysis): Each goal priced against a household's actual accounts, with funding gaps named and every figure traceable to a statement.
 - [Sample month-end commentary](https://www.brieflywealth.com/samples/sample-month-end-commentary): A month-end letter showing household totals, what moved since last month, and the market backdrop, written for the client and cited for the advisor.

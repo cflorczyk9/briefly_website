@@ -208,7 +208,9 @@
   .ak-ring { position: absolute; left: 0; top: 0; width: 26px; height: 26px; margin: -13px 0 0 -13px; border: 2px solid var(--blue); border-radius: 50%; opacity: 0; z-index: 5; pointer-events: none; }
   .ak-ring.pulse { animation: ak-pulse .55s ease-out; }
   @keyframes ak-pulse { 0% { opacity: .85; transform: scale(.35); } 100% { opacity: 0; transform: scale(1.5); } }
-  .ak-prov { align-self: stretch; background: var(--card); border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; margin-top: 9px; opacity: 0; transform: translateY(8px); transition: opacity .45s ease, transform .45s ease; }
+  /* The receipt overlays the bottom of the stage instead of sitting in flow, so opening
+     it never changes the stage height and the page below the hero never shifts. */
+  .ak-prov { position: absolute; left: 12px; right: 12px; bottom: 12px; z-index: 4; background: var(--card); border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; box-shadow: 0 10px 26px rgba(22,50,79,.16); opacity: 0; transform: translateY(8px); transition: opacity .45s ease, transform .45s ease; }
   .ak-prov.on { opacity: 1; transform: none; }
   .ak-prov-hd { padding: 6px 11px; font-size: 11px; font-weight: 600; }
   .ak-prov[data-kind="email"] .ak-prov-hd { background: #EAF2FB; color: #0B4A86; }
@@ -227,7 +229,7 @@
     .ak-cur, .ak-ring { display: none; }
   }
   @media (max-width: 880px) {
-    .ak { min-height: 0; }
+    .ak { min-height: 430px; }
   }
 
   /* nav */
@@ -289,8 +291,22 @@
   .hero-trust b { color: var(--ink); font-weight: 600; }
 
   /* proof line */
-  .proofline { padding: 26px 0; border-bottom: 1px solid var(--rule); text-align: center; }
-  .proofline p { font-family: var(--serif); font-size: 17px; font-style: italic; color: var(--ink-soft); }
+  /* Proof band: its own stop on the page. The static line never moves. The phrase slot is
+     an inline grid holding all ten phrases stacked in one cell, so the slot's width is the
+     widest phrase and line two keeps one width while the blue phrase cross-fades. */
+  .proofline { padding: 104px 0; border-bottom: 1px solid var(--rule); text-align: center; }
+  .proofline p { font-family: var(--serif); font-style: italic; }
+  .proof-static { font-size: clamp(26px, 3.2vw, 36px); color: var(--ink); line-height: 1.3; }
+  .proof-fill { font-size: clamp(22px, 2.8vw, 30px); color: var(--ink); margin-top: 12px; line-height: 1.4; }
+  .proof-cycle { display: inline-grid; text-align: left; }
+  .proof-cycle .pc { grid-area: 1 / 1; align-self: center; white-space: nowrap; color: var(--blue); font-weight: 600; opacity: 0; filter: blur(7px); transition: opacity .9s ease, filter .9s ease; }
+  .proof-cycle .pc.is-on { opacity: 1; filter: blur(0); }
+  @media (max-width: 700px) {
+    .proofline { padding: 72px 0; }
+    .proof-cycle { display: grid; margin-top: 4px; text-align: center; justify-items: center; }
+    .proof-cycle .pc { white-space: normal; }
+  }
+  @media (prefers-reduced-motion: reduce) { .proof-cycle .pc { transition: none; } }
 
   .pad { padding: 96px 0; border-bottom: 1px solid var(--rule); }
 
@@ -406,6 +422,33 @@
   .day-full .day-clip { justify-content: flex-start; }
   .day-full .win-fit { max-width: 806px; margin: 0 auto; width: 100%; }
 
+  /* Prospect-analysis slide: staged document reveal. Plain CSS transitions scoped to this
+     file, deliberately outside the protected clips runtime. Steps use opacity/transform
+     only, so the slide's measured height never changes mid-reveal. */
+  .pa-doc { max-width: 640px; margin: 0 auto; }
+  .pa-head { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-family: var(--mono); font-size: 10.5px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: .07em; padding-bottom: 10px; border-bottom: 1px solid var(--rule); }
+  .pa-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 14px; }
+  .pa-tile { border: 1px solid var(--rule); border-radius: 8px; padding: 10px 12px; font-size: 11.5px; color: var(--ink-muted); }
+  .pa-tile b { display: block; font-family: var(--serif); font-size: 19px; font-weight: 400; color: var(--ink); margin-bottom: 2px; }
+  .pa-lead { font-family: var(--serif); font-style: italic; font-size: 15.5px; color: var(--ink); margin: 14px 0 12px; }
+  .pa-row { display: flex; gap: 10px; align-items: baseline; font-size: 13px; color: var(--ink-soft); padding: 7px 0; border-top: 1px solid var(--rule); }
+  .pa-tag { flex-shrink: 0; font-family: var(--mono); font-size: 9.5px; text-transform: uppercase; letter-spacing: .08em; color: var(--blue-ink); background: var(--blue-soft); border-radius: 4px; padding: 2px 7px; }
+  .pa-tag-q { color: var(--ink-muted); background: transparent; border: 1px dashed var(--rule); }
+  .pa-foot { font-family: var(--mono); font-size: 10px; color: var(--ink-muted); border-top: 1px solid var(--rule); padding-top: 10px; margin-top: 4px; }
+  .pa-step { opacity: 0; transform: translateY(6px); transition: opacity .5s ease, transform .5s ease; }
+  .pa-doc.play .pa-step { opacity: 1; transform: none; }
+  .pa-doc.snap .pa-step { transition: none; }
+  .pa-doc.play > .pa-step:nth-child(1) { transition-delay: .05s; }
+  .pa-doc.play .pa-tile:nth-child(1) { transition-delay: .3s; }
+  .pa-doc.play .pa-tile:nth-child(2) { transition-delay: .45s; }
+  .pa-doc.play .pa-tile:nth-child(3) { transition-delay: .6s; }
+  .pa-doc.play > .pa-step:nth-child(3) { transition-delay: .9s; }
+  .pa-doc.play > .pa-step:nth-child(4) { transition-delay: 1.2s; }
+  .pa-doc.play > .pa-step:nth-child(5) { transition-delay: 1.5s; }
+  .pa-doc.play > .pa-step:nth-child(6) { transition-delay: 1.8s; }
+  .pa-doc.play > .pa-step:nth-child(7) { transition-delay: 2.1s; }
+  @media (prefers-reduced-motion: reduce) { .pa-step { opacity: 1; transform: none; transition: none; } }
+
   /* correction loop */
   .loop-clip { margin-top: 44px; }
   .loop-note { margin-top: 20px; max-width: 600px; font-size: 14px; line-height: 1.65; color: var(--ink-soft); }
@@ -447,6 +490,7 @@
     .cdv-divider { display: none; }
     .day-row { grid-template-columns: 1fr; gap: 20px; }
     .day-lede-cols { grid-template-columns: 1fr; gap: 14px; }
+    .pa-metrics { grid-template-columns: 1fr; }
     footer .foot-grid { grid-template-columns: 1fr 1fr; }
     footer .foot-brand { grid-column: 1 / -1; }
     h2 { font-size: 30px; }
@@ -567,7 +611,8 @@
 <!-- ==================== PROOF LINE ==================== -->
 <section class="proofline" aria-label="Proof">
   <div class="container">
-    <p>Used by advisors managing billions in AUM.</p>
+    <p class="proof-static">Used by advisors managing billions in AUM</p>
+    <p class="proof-fill">to <span class="proof-cycle" id="proofCycle"><span class="pc is-on">remember a client's thoughts on NVIDIA.</span><span class="pc">compare their fee to a prospective client's.</span><span class="pc">create quarterly reports.</span><span class="pc">find every household that mentioned selling a business.</span><span class="pc">remember how a client feels about the oil industry.</span><span class="pc">build the brief before a client review.</span><span class="pc">read a prospect's statements before the first meeting.</span><span class="pc">find the beneficiary form from last March.</span><span class="pc">draft month-end commentary in the firm's voice.</span><span class="pc">remember who asked about Roth conversions.</span></span></p>
   </div>
 </section>
 
@@ -628,6 +673,7 @@
           <li>We build the client file for you</li>
           <li>Connects your Salesforce and Outlook</li>
           <li>Approved next steps route back into Salesforce</li>
+          <li>Runs a prospect analysis before the first meeting</li>
           <li>Sign in from a browser, nothing for IT to install</li>
         </ul>
         <a class="btn ghost" href="#" onclick="openDemoModal();return false;">Book a demo</a>
@@ -689,10 +735,11 @@
     <p class="lede">Briefly isn't a new place to work. Your team keeps asking questions where they already are, and the firm's own records do the answering.</p>
     <div class="day-carousel">
       <div class="day-ctrl">
-        <div class="day-stops" role="tablist" aria-label="Three moments in the day">
+        <div class="day-stops" role="tablist" aria-label="Four moments in the day">
           <button type="button" role="tab" class="day-stop is-active" aria-selected="true" data-day-stop="0">8:55 am</button>
           <button type="button" role="tab" class="day-stop" aria-selected="false" data-day-stop="1">11:40 am</button>
-          <button type="button" role="tab" class="day-stop" aria-selected="false" data-day-stop="2">4:15 pm</button>
+          <button type="button" role="tab" class="day-stop" aria-selected="false" data-day-stop="2">2:30 pm</button>
+          <button type="button" role="tab" class="day-stop" aria-selected="false" data-day-stop="3">4:15 pm</button>
         </div>
         <div class="day-arrows">
           <button type="button" class="day-arrow" data-day-arrow="-1" aria-label="Previous moment"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
@@ -729,6 +776,38 @@
         <div class="win win-fit">
           <div class="win-bar"><span class="win-dot"></span><span>The filed sources, checked live</span></div>
           <div class="win-body"><div class="clip-fit" data-natural="780"><div class="day-clip" data-bpa-clip="5" aria-label="Checking a household's filed sources in the web app"></div></div></div>
+        </div>
+      </div>
+      <div class="day-slide day-full">
+        <div class="day-lede-cols">
+          <div>
+            <div class="day-time">2:30 pm &middot; in the web app, after a referral call</div>
+            <p class="msg-q"><b>Advisor</b>What should I know about the Kesslers before Thursday?</p>
+          </div>
+          <div class="msg-a">
+            <p>Their analysis is ready. Four findings backed by the statements they sent, six questions worth asking, and two accounts mentioned on the call that haven't come in yet.</p>
+            <p style="margin-top:10px;"><span class="cite">Kessler prospect analysis &middot; 2 statements + the intake</span></p>
+          </div>
+        </div>
+        <div class="win win-fit">
+          <div class="win-bar"><span class="win-dot"></span><span>Nine checks, run against what's on file</span></div>
+          <div class="win-body">
+            <!-- Copy below mirrors the product's finding-vs-question rule: a FINDING is proven by a
+                 document, everything else stays a QUESTION. Never phrase a row as advice. -->
+            <div class="pa-doc" id="paDoc">
+              <div class="pa-head pa-step"><span>Prospect analysis &middot; Kessler household</span><span>From the intake and 2 statements</span></div>
+              <div class="pa-metrics">
+                <div class="pa-tile pa-step"><b>$810,568</b>On file across 2 accounts</div>
+                <div class="pa-tile pa-step"><b>86.8%</b>In equities, 3-year timeline</div>
+                <div class="pa-tile pa-step"><b>18.2%</b>In a single stock</div>
+              </div>
+              <p class="pa-lead pa-step">The acquirer stock in their brokerage account is where this conversation should start.</p>
+              <div class="pa-row pa-step"><span class="pa-tag">Finding</span><span>The 18.2% position is stock in the company behind his September retention decision.</span></div>
+              <div class="pa-row pa-step"><span class="pa-tag">Finding</span><span>All-in fund cost is 0.62%, about $5,050 a year, with no advisor engaged.</span></div>
+              <div class="pa-row pa-step"><span class="pa-tag pa-tag-q">Question</span><span>A 401(k) and a SEP IRA came up on the call. Neither is on file.</span></div>
+              <div class="pa-foot pa-step">Ends with Questions to ask &middot; What we could not verify &middot; Nothing here is a recommendation</div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="day-slide day-full">
@@ -789,6 +868,10 @@
       <details>
         <summary>Why not just use Claude or ChatGPT on their own?</summary>
         <p>AI models change every few months, and what a chat window learned about your firm doesn't carry over. Briefly organizes your firm's knowledge into plain files you own, so the context you build keeps working as models improve or get swapped out. Answers draw on your whole book, corrections hold, and every claim carries a citation you can open.</p>
+      </details>
+      <details>
+        <summary>Can Briefly analyze a prospect before they sign on?</summary>
+        <p>Yes, and you supply everything it works from. Answer five questions about their goals and situation, then attach whatever statements they've shared. Briefly runs up to nine checks against what's actually in those documents, the allocation, the all-in fee, and concentration among them, and hands back findings it can prove alongside questions worth asking at the next meeting. It doesn't make recommendations, and every analysis ends with a plain list of what it could not verify.</p>
       </details>
       <details>
         <summary>Which one should I pick?</summary>
@@ -1016,6 +1099,42 @@ BrieflyClips.mountAll();
 })();
 
 (function () {
+  /* Prospect slide: replay the document reveal each time the slide comes into view.
+     Same visibility-gating idiom as the clips runtime, none of its code. */
+  var doc = document.getElementById('paDoc');
+  if (!doc) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { doc.classList.add('play'); return; }
+  if (!('IntersectionObserver' in window)) { doc.classList.add('play'); return; }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { doc.classList.add('play'); }
+      else if (doc.classList.contains('play')) {
+        doc.classList.add('snap'); doc.classList.remove('play');
+        void doc.offsetWidth; doc.classList.remove('snap');
+      }
+    });
+  }, { threshold: 0.35 });
+  io.observe(doc);
+})();
+
+(function () {
+  /* Proofline: the blue phrase cross-fades with a blur through ten reasons an advisor
+     opens Briefly. The phrases live in the markup, one .pc each, so they stay crawlable. */
+  var host = document.getElementById('proofCycle');
+  if (!host) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var items = [].slice.call(host.children);
+  if (items.length < 2) return;
+  var i = 0;
+  setInterval(function () {
+    if (document.hidden) return;
+    items[i].classList.remove('is-on');
+    i = (i + 1) % items.length;
+    items[i].classList.add('is-on');
+  }, 4600);
+})();
+
+(function () {
   /* Ask Briefly hero (clip 03's language): the five Q&As live as static,
      crawlable markup in #hcAll with chip/phrase/provenance data; the
      animation reads them from the DOM. Sequence per question: bubble in,
@@ -1219,13 +1338,31 @@ BrieflyClips.mountAll();
     }
   }
 
-  /* Tab switches: hidden-tab timer throttling leaves the cycle half-drawn
-     (loader stacked with the answer, then a long freeze). Park the sequence
-     while hidden and restart the current question cleanly on return. */
-  document.addEventListener('visibilitychange', function () {
+  /* Tab switches and scroll: hidden-tab timer throttling leaves the cycle half-drawn,
+     and a cycler still running above the fold competes with whatever the visitor
+     scrolled down to read. Park the sequence when the stage is hidden or mostly out
+     of view, resting on a complete question-and-answer frame, and restart the current
+     question cleanly on return. */
+  var inView = true;
+  function park() {
     stopAll();
-    if (!document.hidden) show(idx);
+    loadEl.classList.remove('on');
+    qEl.classList.add('on');
+    ansEl.classList.add('on');
+  }
+  function wake() { stopAll(); show(idx); }
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) { park(); } else if (inView) { wake(); }
   });
+  if ('IntersectionObserver' in window && !reduced) {
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting === inView) return;
+        inView = e.isIntersecting;
+        if (!inView) { park(); } else if (!document.hidden) { wake(); }
+      });
+    }, { threshold: 0.3 }).observe(akEl);
+  }
 
   show(0);
 })();
