@@ -135,7 +135,8 @@
   ]
 }
     </script>
-    <style>
+    <link rel="stylesheet" href="/assets/site.css">
+<style>
         :root {
           --paper: #FBFAF6;          /* warm white ground */
           --paper-2: #F2EDE1;        /* second warm tone, for band alternation */
@@ -345,6 +346,7 @@
     </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <nav aria-label="Primary">
   <div class="container nav-bar">
     <a class="brand" href="/"><span class="brand-word">Briefly</span><span class="brand-pin" aria-hidden="true"></span></a>
@@ -359,7 +361,7 @@
         </div>
         <div class="nav-actions">
           <a class="nav-signin" href="https://demo.app.brieflywealth.com/">Web app sign in</a>
-          <a class="btn ghost" href="/start">Start now</a>
+          <a class="nav-start" href="/start">Start now</a>
         </div>
       </div>
       <a class="btn" href="#" onclick="openDemoModal();return false;">Book a demo</a>
@@ -379,7 +381,7 @@
         <p>A straight answer for advisors and compliance officers weighing ChatGPT, Claude, and the rules that actually govern where client data can go.</p>
     </div>
 </section>
-<main>
+<main id="main">
     <article class="article">
         <p class="lede">The direct answer is yes, you can type a client's name, account number, or portfolio detail into ChatGPT's chat window, and the harder question is whether your compliance program has ever looked at where that text goes. It travels to a vendor's servers under that vendor's own policy, not your firm's, and the SEC's updated privacy rules require firms to oversee the service providers that handle customer information. Advisors can still use ChatGPT and Claude for real work. The rest of this page covers what the rules say and the setup that gets advisors the benefit of these tools while keeping their compliance program in the loop. None of it is legal advice, and your compliance officer or counsel gets the final word on your firm's own obligations.</p>
 

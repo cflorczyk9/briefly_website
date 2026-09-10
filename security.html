@@ -121,7 +121,8 @@
   ]
 }
     </script>
-    <style>
+    <link rel="stylesheet" href="/assets/site.css">
+<style>
         :root {
           --paper: #FBFAF6;
           --paper-2: #F2EDE1;
@@ -309,6 +310,7 @@
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <nav aria-label="Primary">
   <div class="container nav-bar">
     <a class="brand" href="/"><span class="brand-word">Briefly</span><span class="brand-pin" aria-hidden="true"></span></a>
@@ -323,7 +325,7 @@
         </div>
         <div class="nav-actions">
           <a class="nav-signin" href="https://demo.app.brieflywealth.com/">Web app sign in</a>
-          <a class="btn ghost" href="/start">Start now</a>
+          <a class="nav-start" href="/start">Start now</a>
         </div>
       </div>
       <a class="btn" href="#" onclick="openDemoModal();return false;">Book a demo</a>
@@ -338,7 +340,7 @@
         <p>Briefly is an AI knowledge base for financial advisors. It runs two ways, a connector inside Claude Desktop and a hosted web app you sign into through your browser. This page lays out where your client files live on each surface, what reaches our servers, and what changes under the new SEC rules for AI vendors.</p>
     </div>
 </section>
-<main>
+<main id="main">
     <div class="content">
 
         <section class="section">

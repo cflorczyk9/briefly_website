@@ -30,7 +30,8 @@
       gtag('js', new Date());
       gtag('config', 'G-92NXKY9W1S', { 'send_page_view': true });
     </script>
-    <style>
+    <link rel="stylesheet" href="/assets/site.css">
+<style>
         :root {
           --paper: #FBFAF6;          /* warm white ground */
           --paper-2: #F2EDE1;        /* second warm tone, for band alternation */
@@ -163,6 +164,7 @@
 </script>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <nav aria-label="Primary">
   <div class="container nav-bar">
     <a class="brand" href="/"><span class="brand-word">Briefly</span><span class="brand-pin" aria-hidden="true"></span></a>
@@ -177,7 +179,7 @@
         </div>
         <div class="nav-actions">
           <a class="nav-signin" href="https://demo.app.brieflywealth.com/">Web app sign in</a>
-          <a class="btn ghost" href="/start">Start now</a>
+          <a class="nav-start" href="/start">Start now</a>
         </div>
       </div>
       <a class="btn" href="#" onclick="openDemoModal();return false;">Book a demo</a>
@@ -186,7 +188,7 @@
   </div>
 </nav>
 <div class="banner">Every sample below is a produced deliverable. Names, firms, and identifying details are fictionalized. &middot; <a href="/">Briefly</a></div>
-<main>
+<main id="main">
 <style>
   .gal-wrap { max-width: 1040px; margin: 0 auto; padding: 52px 28px 28px; }
   .gal-eyebrow { font-family: var(--sans); font-size: 11.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 16px; }

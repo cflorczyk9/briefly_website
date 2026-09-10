@@ -30,7 +30,8 @@
       gtag('js', new Date());
       gtag('config', 'G-92NXKY9W1S', { 'send_page_view': true });
     </script>
-    <style>
+    <link rel="stylesheet" href="/assets/site.css">
+<style>
         :root {
           --paper: #FBFAF6;          /* warm white ground */
           --paper-2: #F2EDE1;        /* second warm tone, for band alternation */
@@ -218,6 +219,7 @@
 </script>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <nav aria-label="Primary">
   <div class="container nav-bar">
@@ -233,7 +235,7 @@
         </div>
         <div class="nav-actions">
           <a class="nav-signin" href="https://demo.app.brieflywealth.com/">Web app sign in</a>
-          <a class="btn ghost" href="/start">Start now</a>
+          <a class="nav-start" href="/start">Start now</a>
         </div>
       </div>
       <a class="btn" href="#" onclick="openDemoModal();return false;">Book a demo</a>
@@ -260,7 +262,7 @@
         </div>
     </div>
 </section>
-<main>
+<main id="main">
     <article class="article">
         <p>Wealth firms already have plenty of data. Client facts live across CRM records, emails, meeting notes, custodial statements, financial plans, and spreadsheets, plus whatever an advisor happens to remember, and none of those systems share a model of the relationship.</p>
         <p>A knowledge base gives the firm that model. It connects people, households, entities, accounts, goals, concerns, events, tasks, and source citations, so every workflow starts from the same understanding of the client. Ask a question about one household or about every household in the book, and the answer comes from the same place.</p>

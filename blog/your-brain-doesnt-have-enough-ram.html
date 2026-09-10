@@ -35,7 +35,8 @@
         gtag('config', 'G-92NXKY9W1S', { 'send_page_view': true });
     </script>
 
-    <style>
+    <link rel="stylesheet" href="/assets/site.css">
+<style>
         :root {
             --paper: #FBFAF6;          /* warm white ground */
             --paper-2: #F2EDE1;        /* second warm tone, for band alternation */
@@ -272,6 +273,7 @@
     </script>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <!-- NAV -->
 <nav aria-label="Primary">
@@ -288,7 +290,7 @@
         </div>
         <div class="nav-actions">
           <a class="nav-signin" href="https://demo.app.brieflywealth.com/">Web app sign in</a>
-          <a class="btn ghost" href="/start">Start now</a>
+          <a class="nav-start" href="/start">Start now</a>
         </div>
       </div>
       <a class="btn" href="#" onclick="openDemoModal();return false;">Book a demo</a>
@@ -297,7 +299,7 @@
   </div>
 </nav>
 
-<main>
+<main id="main">
 <!-- POST HEADER -->
 <section class="post-header">
     <div class="post-header-inner">

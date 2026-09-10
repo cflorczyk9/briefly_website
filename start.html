@@ -61,6 +61,7 @@
      the wireCheckout config at the bottom of this file. The web app tab runs
      mode "request" (no card, lead capture only). -->
 
+<link rel="stylesheet" href="/assets/site.css">
 <style>
   :root {
     --paper: #FBFAF6;          /* warm white ground */
@@ -337,6 +338,7 @@ footer .foot-bottom { display: flex; justify-content: space-between; gap: 14px; 
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <nav aria-label="Primary">
   <div class="container nav-bar">
@@ -352,7 +354,7 @@ footer .foot-bottom { display: flex; justify-content: space-between; gap: 14px; 
         </div>
         <div class="nav-actions">
           <a class="nav-signin" href="https://demo.app.brieflywealth.com/">Web app sign in</a>
-          <a class="btn ghost" href="/start">Start now</a>
+          <a class="nav-start" href="/start">Start now</a>
         </div>
       </div>
       <a class="btn" href="#" onclick="openDemoModal();return false;">Book a demo</a>
