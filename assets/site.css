@@ -36,7 +36,7 @@
 
 /* reset */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; overflow-x: clip; -webkit-text-size-adjust: 100%; }
+html { scroll-behavior: smooth; overflow-x: clip; -webkit-text-size-adjust: 100%; scroll-padding-top: 80px; }
 body {
   font-family: var(--sans); font-size: 17px; line-height: 1.6;
   background: var(--paper); color: var(--ink); overflow-x: clip;
@@ -87,8 +87,16 @@ a { color: var(--blue-ink); }
 :focus-visible { outline: 2px solid var(--blue-ink); outline-offset: 2px; }
 .btn:focus-visible { outline-offset: 3px; }
 
-/* nav */
-nav[aria-label="Primary"] { border-bottom: 1px solid var(--rule); background: var(--paper); position: relative; }
+/* nav: the one sticky, translucent layer on the page */
+nav[aria-label="Primary"] {
+  border-bottom: 1px solid var(--rule); position: sticky; top: 0; z-index: 50;
+  background: rgba(255,255,255,.82);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+}
+@media (prefers-reduced-transparency: reduce) {
+  nav[aria-label="Primary"] { background: var(--paper); backdrop-filter: none; -webkit-backdrop-filter: none; }
+}
 .nav-bar { min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 8px; padding-bottom: 8px; }
 .brand { position: relative; display: inline-flex; align-items: center; padding-right: 14px; min-height: 36px; text-decoration: none; border-radius: var(--r-control); }
 .brand-word {
@@ -136,6 +144,55 @@ nav[aria-label="Primary"] { border-bottom: 1px solid var(--rule); background: va
 .pad { padding: 96px 0; border-bottom: 1px solid var(--rule); }
 .band-paper2 { background: var(--paper-2); }
 .band-white { background: var(--card); }
+
+/* hero: bigger, airier scale shared by every hero section */
+.hero { padding: clamp(96px, 11vw, 136px) 0 clamp(72px, 8vw, 104px); border-bottom: 1px solid var(--rule); }
+.hero h1 { font-size: clamp(40px, 4.6vw, 60px); line-height: 1.04; letter-spacing: -0.025em; text-wrap: balance; }
+.hero .lede { font-size: 19px; max-width: 560px; }
+.hero-ctas { display: flex; gap: 14px; margin-top: 30px; flex-wrap: wrap; }
+/* hero-wide: single-column heroes go one step bigger still */
+.hero-wide h1 { font-size: clamp(44px, 5.4vw, 68px); max-width: 16ch; }
+
+/* info card */
+.card { background: var(--card); border: 1px solid var(--rule); border-radius: var(--r-card); padding: 24px 28px; }
+.card h3 { margin-bottom: 8px; }
+
+/* category pill */
+.pill {
+  display: inline-flex; align-items: center; min-height: 26px; padding: 0 10px;
+  border-radius: 999px; font-size: 13px; font-weight: 600; color: var(--blue-ink);
+  background: var(--blue-soft); white-space: nowrap;
+}
+
+/* faq disclosure, shared by every page that lists questions */
+.faq-list { margin-top: 36px; max-width: 780px; }
+.faq-list details { border-top: 1px solid var(--rule); padding: 16px 4px; }
+.faq-list details:last-child { border-bottom: 1px solid var(--rule); }
+.faq-list summary {
+  position: relative; font-family: var(--display); font-size: 17px; font-weight: 600;
+  letter-spacing: -0.01em; cursor: pointer; padding: 4px 28px 4px 0; list-style: none;
+}
+.faq-list summary::-webkit-details-marker { display: none; }
+.faq-list summary::after {
+  content: ""; position: absolute; right: 4px; top: 50%; width: 8px; height: 8px;
+  border-right: 1.5px solid var(--ink-muted); border-bottom: 1.5px solid var(--ink-muted);
+  transform: translateY(-75%) rotate(45deg); transition: transform .2s ease;
+}
+.faq-list details[open] summary::after { transform: translateY(-25%) rotate(225deg); }
+.faq-list details p { margin-top: 10px; font-size: 15px; color: var(--ink-soft); max-width: 700px; }
+
+/* reveal on scroll: subtle, once per element, off under reduced motion, never a blank
+   first frame (site.js marks anything already in view before this can ever paint hidden) */
+.reveal { opacity: 1; transform: none; }
+html.js .reveal:not(.is-in) { opacity: 0; transform: translateY(14px); }
+html.js .reveal.is-in {
+  opacity: 1; transform: none;
+  transition: opacity .55s cubic-bezier(.2,.6,.2,1), transform .55s cubic-bezier(.2,.6,.2,1);
+}
+@media (prefers-reduced-motion: reduce) {
+  html.js .reveal:not(.is-in) { opacity: 1; transform: none; }
+  .reveal { transition: none; }
+}
 
 /* closer: the one dark moment before the footer */
 .closer { background: var(--navy-band); color: var(--cream); text-align: center; padding: 110px 0 96px; border-bottom: 0; }

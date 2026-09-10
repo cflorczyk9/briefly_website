@@ -118,6 +118,7 @@
 </script>
 
 <link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/site.js"></script>
 <style>
 
 
@@ -197,12 +198,8 @@
   }
 
 
-  /* hero */
-  .hero { padding: 92px 0 88px; border-bottom: 1px solid var(--rule); }
+  /* hero: padding and h1 size now come from site.css's shared .hero scale */
   .hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 60px; align-items: center; }
-  .hero h1 { font-size: clamp(38px, 4.4vw, 52px); line-height: 1.06; }
-  .hero .lede { font-size: 18px; }
-  .hero-ctas { display: flex; gap: 14px; margin-top: 30px; flex-wrap: wrap; }
   .hero-trust { margin-top: 22px; font-size: 15px; color: var(--ink-soft); }
   .hero-trust b { color: var(--ink); font-weight: 600; }
 
@@ -355,14 +352,7 @@
   .loop-clip { margin-top: 44px; }
   .loop-note { margin-top: 20px; max-width: 600px; font-size: 15px; line-height: 1.65; color: var(--ink-soft); }
 
-  /* faq */
-  .faq-list { margin-top: 36px; max-width: 780px; }
-  details { border-top: 1px solid var(--rule); padding: 16px 4px; }
-  details:last-child { border-bottom: 1px solid var(--rule); }
-  summary { font-family: var(--display); font-size: 17px; font-weight: 600; letter-spacing: -0.01em; cursor: pointer; padding: 4px 0; }
-  details p { margin-top: 10px; font-size: 15px; color: var(--ink-soft); max-width: 700px; }
-
-
+  /* faq: recipe now shared from site.css's .faq-list */
 
   @media (max-width: 880px) {
     .hero-grid { grid-template-columns: 1fr; gap: 36px; }
@@ -381,7 +371,6 @@
   }
 
   @media (max-width: 480px) {
-    .hero { padding: 56px 0 48px; }
     .hero-ctas { flex-direction: column; align-items: stretch; }
     .hero-ctas .btn { text-align: center; }
     .custody-links { gap: 14px; }
@@ -489,7 +478,7 @@
 
 <!-- ==================== PROOF LINE ==================== -->
 <section class="proofline" aria-label="Proof">
-  <div class="container">
+  <div class="container reveal">
     <p class="proof-static">Used by advisors managing billions in AUM</p>
     <p class="proof-fill">to <span class="proof-cycle" id="proofCycle"><span class="pc is-on">remember a client's thoughts on NVIDIA.</span><span class="pc">compare their fee to a prospective client's.</span><span class="pc">create quarterly reports.</span><span class="pc">find every household that mentioned selling a business.</span><span class="pc">remember how a client feels about the oil industry.</span><span class="pc">build the brief before a client review.</span><span class="pc">read a prospect's statements before the first meeting.</span><span class="pc">find the beneficiary form from last March.</span><span class="pc">draft month-end commentary in the firm's voice.</span><span class="pc">remember who asked about Roth conversions.</span></span></p>
   </div>
@@ -498,7 +487,7 @@
 <!-- ==================== WHAT IT DOES: mess to memory ==================== -->
 <span id="see-it" aria-hidden="true"></span>
 <section class="pad band-paper2" id="how" aria-label="What Briefly does">
-  <div class="container">
+  <div class="container reveal">
     <div class="eyebrow">What Briefly does</div>
     <h2>Ten years of files, one knowledge base.</h2>
     <p class="lede">Briefly is an AI knowledge base for financial advisors that runs inside Claude. The answers your firm needs are already sitting in folders, inboxes, and old plans. Briefly files each document into the right client's knowledge base as it arrives, and every fact keeps a link back to the page it came from. The more you add, the better every answer gets.</p>
@@ -529,9 +518,9 @@
 <!-- ==================== ONE DAY ==================== -->
 <section class="pad" aria-label="What a day looks like">
   <div class="container">
-    <div class="eyebrow">What a day looks like</div>
-    <h2>One day with the file open.</h2>
-    <p class="lede">Briefly isn't a new place to work. Your team keeps asking questions where they already are, and the firm's own records do the answering.</p>
+    <div class="eyebrow reveal">What a day looks like</div>
+    <h2 class="reveal">One day with the file open.</h2>
+    <p class="lede reveal">Briefly isn't a new place to work. Your team keeps asking questions where they already are, and the firm's own records do the answering.</p>
     <div class="day-carousel">
       <div class="day-ctrl">
         <div class="day-stops" role="tablist" aria-label="Four moments in the day">
@@ -633,7 +622,7 @@
 
 <!-- ==================== THE LOOP: corrections become rules ==================== -->
 <section class="pad band-white" aria-label="Why Briefly keeps getting better">
-  <div class="container">
+  <div class="container reveal">
     <div class="eyebrow">Why it keeps getting better</div>
     <h2>Correct it once. The whole team inherits it.</h2>
     <p class="lede">When an advisor fixes a name, a preference, or a way of phrasing things, Briefly keeps the fix as a standing rule. Next quarter's brief already follows it, for everyone.</p>
@@ -645,7 +634,7 @@
 <!-- ==================== WHERE THE DATA LIVES ==================== -->
 <span id="platform" aria-hidden="true"></span>
 <section class="pad custody" id="custody" aria-label="Where your client data lives">
-  <div class="container">
+  <div class="container reveal">
     <div class="eyebrow">Where your client data lives</div>
     <h2>You choose where your files live, and they stay yours either way.</h2>
     <p class="lede">Most AI tools for advisors upload your client data to their servers and promise to protect it. The two ways to run it below are also the two ways your files can live, and both put the choice in your hands.</p>
@@ -687,7 +676,7 @@
 
 <!-- ==================== TWO WAYS TO RUN IT ==================== -->
 <section class="pad band-white" id="ways" aria-label="Two ways to run it">
-  <div class="container">
+  <div class="container reveal">
     <div class="eyebrow">Two ways to run it</div>
     <h2>In Claude, or in a web app we set up for you.</h2>
     <p class="lede">Same knowledge base, same citations. What changes is who does the setup and where your team asks.</p>
@@ -724,7 +713,7 @@
 
 <!-- ==================== FAQ ==================== -->
 <section class="pad band-paper2" id="faq" aria-label="Frequently asked questions">
-  <div class="container">
+  <div class="container reveal">
     <div class="eyebrow">Before you install anything</div>
     <h2>What advisors ask us first.</h2>
     <div class="faq-list">
@@ -766,7 +755,7 @@
 
 <!-- ==================== CLOSER ==================== -->
 <section class="closer" id="contact" aria-label="Book a demo">
-  <div class="container">
+  <div class="container reveal">
     <h2>See it answer on your firm's own records.</h2>
     <p class="lede">Twenty minutes, with the advisor in the room. Tell us a bit about your firm and we'll set up a time to run it live.</p>
     <a class="btn" href="#" onclick="openDemoModal();return false;">Book a demo</a>
