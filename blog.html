@@ -36,88 +36,7 @@
 
     <link rel="stylesheet" href="/assets/site.css">
 <style>
-        :root {
-            --paper: #FBFAF6;          /* warm white ground */
-            --paper-2: #F2EDE1;        /* second warm tone, for band alternation */
-            --card: #FFFFFF;
-            --ink: #16324F;            /* deep navy, all display type */
-            --ink-soft: #46627D;
-            --ink-muted: #5B6C80;   /* AA: 4.6+ on every light surface it labels */
-            --rule: #E6E1D5;           /* warm hairline */
-            --blue: #2F8CFF;           /* fills, icons, pins, chip fills. 3.32 on white: never small text */
-            --blue-ink: #1D4ED8;       /* 6.70 on white: small text, links, focus rings */
-            --blue-soft: #E9F2FF;      /* light chip background on paper grounds */
-            --cyan: #8cd8ff;           /* dark navy sections only */
-            --navy-band: #10263D;      /* closer + footer + custody */
-            --cream: #F4F1E9;
-            --cream-soft: #B9C4CF;
-            --serif: Charter, "Iowan Old Style", "Source Serif Pro", Georgia, serif;
-            --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
-            --mono: "SFMono-Regular", Menlo, Consolas, monospace;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { font-family: var(--sans); background: var(--paper); color: var(--ink); line-height: 1.6; overflow-x: hidden; }
-        @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-        .container { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
-
-        /* nav */
-        nav[aria-label="Primary"] { border-bottom: 1px solid var(--rule); background: var(--paper); position: relative; }
-        .nav-bar { min-height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 10px; padding-bottom: 10px; }
-        .brand { position: relative; display: inline-flex; align-items: center; padding-right: 14px; text-decoration: none; }
-        .brand-word {
-          font-family: var(--sans); font-weight: 900; font-size: 21px; line-height: .78;
-          letter-spacing: -.075em; text-transform: uppercase; color: var(--ink);
-          transform: scaleY(.88); transform-origin: left center;
-        }
-        .brand-pin {
-          position: absolute; top: 3px; right: 0; width: 6px; height: 6px; border-radius: 50%;
-          background: var(--blue); box-shadow: 0 0 0 2px rgba(47,140,255,.10);
-        }
-        .nav-right { display: flex; align-items: center; gap: 22px; }
-        .nav-panel { display: flex; align-items: center; gap: 26px; }
-        .nav-links { display: flex; gap: 24px; }
-        .nav-links a { font-size: 13px; font-weight: 600; color: var(--ink-soft); text-decoration: none; white-space: nowrap; }
-        .nav-links a:hover { color: var(--ink); }
-        .nav-actions { display: flex; align-items: center; gap: 16px; }
-        .nav-signin { font-size: 13px; font-weight: 600; color: var(--ink-soft); text-decoration: none; white-space: nowrap; }
-        .nav-signin:hover { color: var(--ink); }
-        .nav-bar .btn { padding: 9px 18px; font-size: 13px; white-space: nowrap; }
-        .nav-toggle {
-          display: none; width: 40px; height: 40px; flex-shrink: 0;
-          border: 1px solid var(--rule); border-radius: 6px; background: var(--card); cursor: pointer;
-          flex-direction: column; align-items: center; justify-content: center; gap: 4px;
-        }
-        .nav-toggle span { display: block; width: 18px; height: 2px; background: var(--ink); }
-        .nav-links a:focus-visible, .nav-signin:focus-visible, .btn:focus-visible, .nav-toggle:focus-visible, .hc-dot:focus-visible, .textlink:focus-visible {
-          outline: 2px solid var(--blue-ink); outline-offset: 2px;
-        }
-
-        @media (max-width: 860px) {
-          .nav-toggle { display: inline-flex; }
-          .nav-panel {
-            display: none;
-            position: absolute; top: 100%; left: 0; right: 0;
-            flex-direction: column; align-items: stretch; gap: 0;
-            background: var(--paper); border-bottom: 1px solid var(--rule);
-            padding: 6px 28px 20px; z-index: 40;
-          }
-          .nav-panel.open { display: flex; }
-          .nav-links { flex-direction: column; gap: 0; }
-          .nav-links a { padding: 12px 0; border-top: 1px solid var(--rule); }
-          .nav-actions { flex-direction: column; align-items: stretch; gap: 10px; margin-top: 6px; }
-          .nav-signin { padding: 8px 0; }
-          .nav-actions .btn.ghost { width: 100%; text-align: center; }
-        }
-
-        /* buttons */
-        .btn {
-          display: inline-block; font-size: 14px; font-weight: 600; padding: 13px 26px;
-          border-radius: 4px; background: var(--ink); color: #fff; text-decoration: none;
-          border: 1px solid var(--ink); cursor: pointer;
-        }
-        .btn.ghost { background: transparent; color: var(--ink); }
-        .textlink { font-size: 14.5px; font-weight: 600; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+        /* page-only extras: none. Tokens, reset, nav, buttons, and .container all come from site.css. */
 
         /* ================================================================
            BLOG HEADER BAND
@@ -131,23 +50,8 @@
             max-width: 1280px;
             margin: 0 auto;
         }
-        .eyebrow {
-            font-family: var(--sans);
-            font-size: 11.5px;
-            font-weight: 600;
-            letter-spacing: .14em;
-            text-transform: uppercase;
-            color: var(--ink-muted);
-            margin-bottom: 16px;
-        }
         .blog-title {
-            font-family: var(--serif);
-            font-weight: 400;
-            font-size: clamp(32px, 4.4vw, 60px);
-            line-height: 1.08;
-            letter-spacing: 0;
             margin: 0 0 20px;
-            color: var(--ink);
         }
         .blog-subtitle {
             color: var(--ink-soft);
@@ -179,12 +83,11 @@
             flex-direction: column;
             background: var(--card);
             border: 1px solid var(--rule);
-            border-radius: 10px;
+            border-radius: var(--r-card);
             overflow: hidden;
             cursor: pointer;
             text-align: left;
             text-decoration: none;
-            box-shadow: 0 1px 2px rgba(22,50,79,.05), 0 14px 34px rgba(22,50,79,.08);
         }
         .blog-card-image {
             height: 184px;
@@ -200,21 +103,17 @@
         }
         .blog-card-tag {
             align-self: flex-start;
-            font-family: var(--mono);
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: .1em;
-            text-transform: uppercase;
+            font-size: 13px;
+            font-weight: 600;
             color: var(--blue-ink);
-            border: 1px solid var(--rule);
+            background: var(--blue-soft);
             border-radius: 999px;
-            padding: 4px 10px;
+            padding: 4px 12px;
             margin-bottom: 16px;
         }
         .blog-card-title {
-            font-family: var(--serif);
-            font-size: 21px;
-            font-weight: 400;
+            font-size: 20px;
+            font-weight: 600;
             color: var(--ink);
             margin: 0 0 12px;
             line-height: 1.25;
@@ -227,35 +126,18 @@
         }
         .blog-card-meta {
             margin-top: auto;
-            font-family: var(--mono);
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: .08em;
-            text-transform: uppercase;
+            font-size: 13px;
             color: var(--ink-muted);
         }
         .blog-cta {
             text-align: center;
             margin-top: 56px;
         }
-
-        /* ================================================================
-           FOOTER
-           ================================================================ */
-        footer { background: var(--navy-band); color: var(--cream-soft); padding: 56px 0 30px; }
-        footer .foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 36px; padding-bottom: 40px; border-bottom: 1px solid #24415E; }
-        footer .foot-brand .brand { padding-right: 18px; }
-        footer .foot-brand .brand-word { color: var(--cream); font-size: 32px; }
-        footer .foot-brand .brand-pin { top: 5px; width: 8px; height: 8px; box-shadow: 0 0 0 2.5px rgba(47,140,255,.12); }
-        footer .foot-brand p { margin-top: 14px; font-size: 13px; line-height: 1.6; max-width: 280px; color: var(--cream-soft); }
-        footer h4 { font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--cream); margin-bottom: 14px; }
-        footer a { display: block; color: var(--cream-soft); text-decoration: none; font-size: 13.5px; line-height: 2.1; }
-        footer a:hover { color: var(--cream); }
-        footer .foot-bottom { display: flex; justify-content: space-between; gap: 14px; padding-top: 22px; font-size: 12.5px; color: var(--cream-soft); flex-wrap: wrap; }
-
-        @media (max-width: 880px) {
-          footer .foot-grid { grid-template-columns: 1fr 1fr; }
-          footer .foot-brand { grid-column: 1 / -1; }
+        .blog-substack {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--ink-muted);
+            text-decoration: underline;
         }
 
         /* ================================================================
@@ -264,9 +146,7 @@
         @media (max-width: 880px) {
             .blog-grid { grid-template-columns: 1fr; gap: 20px; }
             .blog-header { padding: 52px 20px 40px; }
-            .blog-title { font-size: clamp(30px, 8.6vw, 40px); line-height: 1.08; margin-bottom: 14px; }
             .blog-subtitle { font-size: 16px; line-height: 1.55; }
-            .eyebrow { margin-bottom: 14px; }
             .blog-section { padding: 40px 20px 64px; }
             .blog-card-image { height: 150px; }
             .blog-card-content { padding: 20px; }
@@ -330,11 +210,12 @@
   </div>
 </nav>
 
+<main id="main">
 <!-- BLOG HEADER -->
 <section class="blog-header">
     <div class="blog-header-inner">
         <p class="eyebrow">Blog</p>
-        <h1 class="blog-title">From Our Blog</h1>
+        <h1 class="blog-title">From the blog</h1>
         <p class="blog-subtitle">Practical insights on advisor workflows, portfolio prep, and client communication</p>
     </div>
 </section>
@@ -346,30 +227,30 @@
             <a class="blog-card" href="/blog/jobs-ai-wont-replace">
                 <div class="blog-card-image" style="background-image: url('images/robot_image_substack.png');"></div>
                 <div class="blog-card-content">
-                    <span class="blog-card-tag">AI &amp; Technology</span>
+                    <span class="blog-card-tag">AI and technology</span>
                     <h3 class="blog-card-title">The Jobs AI Won't Replace</h3>
                     <p class="blog-card-excerpt">Why financial advisors, lawyers, and doctors are actually the most protected from AI disruption, and what's really about to change.</p>
-                    <span class="blog-card-meta">December 17, 2025 &bull; 2 min read</span>
+                    <span class="blog-card-meta">December 17, 2025 &middot; 2 min read</span>
                 </div>
             </a>
 
             <a class="blog-card" href="/blog/your-brain-doesnt-have-enough-ram">
                 <div class="blog-card-image" style="background-image: url('images/the_cognitive_limit_substack.png');"></div>
                 <div class="blog-card-content">
-                    <span class="blog-card-tag">Advisor Workflows</span>
+                    <span class="blog-card-tag">Advisor workflows</span>
                     <h3 class="blog-card-title">Your Brain Doesn't Have Enough RAM</h3>
                     <p class="blog-card-excerpt">Your brain isn't built to remember this much and Outlook's search function isn't helping.</p>
-                    <span class="blog-card-meta">January 3, 2026 &bull; 3 min read</span>
+                    <span class="blog-card-meta">January 3, 2026 &middot; 3 min read</span>
                 </div>
             </a>
 
             <a class="blog-card" href="/blog/great-wealth-transfer-trap">
                 <div class="blog-card-image" style="background-image: url('images/wealth_transfer_image_substack.png');"></div>
                 <div class="blog-card-content">
-                    <span class="blog-card-tag">Wealth Management</span>
+                    <span class="blog-card-tag">Wealth management</span>
                     <h3 class="blog-card-title">The Great Wealth Transfer Trap</h3>
                     <p class="blog-card-excerpt">The $80 trillion wealth transfer isn't a windfall, it's an operational crisis. Learn how to scale client relationships without breaking your business model.</p>
-                    <span class="blog-card-meta">November 5, 2025 &bull; 3 min read</span>
+                    <span class="blog-card-meta">November 5, 2025 &middot; 3 min read</span>
                 </div>
             </a>
         </div>
@@ -379,11 +260,12 @@
                 See what Briefly builds →
             </a>
             <p style="margin-top:16px;">
-                <a href="https://substack.com/@connorflorczyk" target="_blank" rel="noopener noreferrer" style="font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-muted); text-decoration:underline;">Also on Substack</a>
+                <a class="blog-substack" href="https://substack.com/@connorflorczyk" target="_blank" rel="noopener noreferrer">Also on Substack</a>
             </p>
         </div>
     </div>
 </section>
+</main>
 
 <!-- FOOTER -->
 <footer>
@@ -428,61 +310,6 @@
 
 
 
-<style>
-  .demo-modal { position:fixed; inset:0; z-index:200; display:none; align-items:center; justify-content:center; padding:20px; }
-  .demo-modal.active { display:flex; }
-  .demo-modal-backdrop { position:absolute; inset:0; background:rgba(16,38,61,.56); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
-  .demo-modal-card {
-    position:relative; z-index:1; width:100%; max-width:440px;
-    background:var(--paper); border:1px solid var(--rule);
-    border-radius:10px;
-    padding:32px 28px 28px; box-shadow:0 20px 40px rgba(22,50,79,.18);
-    font-family:var(--sans);
-  }
-  .demo-modal-close {
-    position:absolute; top:10px; right:14px; background:transparent; border:0;
-    font-size:24px; color:var(--ink); cursor:pointer; line-height:1; padding:6px 8px;
-  }
-  .demo-modal-eyebrow {
-    font-family:var(--mono); font-size:11px; font-weight:700;
-    letter-spacing:.08em; text-transform:uppercase; color:var(--blue-ink);
-    margin:0 0 8px;
-  }
-  .demo-modal-title {
-    font-family:var(--serif); font-weight:400; font-size:30px; line-height:1.1; letter-spacing:0;
-    margin:0 0 18px; color:var(--ink);
-  }
-  .demo-modal-field { display:block; margin:0 0 14px; }
-  .demo-modal-field label {
-    display:block; font-family:var(--mono); font-size:11px; font-weight:700;
-    letter-spacing:.08em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px;
-  }
-  .demo-modal-field input {
-    width:100%; padding:11px 12px; font-family:var(--sans);
-    font-size:15px; border:1px solid var(--ink); background:#fff; color:var(--ink);
-    border-radius:4px;
-  }
-  .demo-modal-field input:focus { outline:2px solid var(--blue-ink); outline-offset:1px; }
-  .demo-modal-submit {
-    width:100%; height:44px; border:1px solid var(--ink); background:var(--ink);
-    border-radius:4px;
-    color:#fff; font-family:var(--mono); font-size:12px; font-weight:700;
-    letter-spacing:.08em; text-transform:uppercase; cursor:pointer; margin-top:6px;
-    transition:background .15s ease, border-color .15s ease, color .15s ease;
-  }
-  .demo-modal-submit:hover { background:var(--blue-ink); border-color:var(--blue-ink); color:#fff; }
-  .demo-modal-submit:disabled { opacity:.6; cursor:wait; }
-  .demo-modal-error { display:none; margin-top:10px; padding:10px 12px; border:1px solid #b3261e; border-radius:4px; color:#b3261e; font-size:13px; }
-  .demo-modal-success { display:none; padding:18px 0 4px; text-align:center; }
-  .demo-modal-success.active { display:block; }
-  .demo-modal-success-title { font-family:var(--serif); font-weight:400; font-size:22px; letter-spacing:0; margin:0 0 6px; color:var(--ink); }
-  .demo-modal-success-body { font-size:14px; color:var(--ink-soft); line-height:1.5; margin:0 0 16px; }
-  @media (max-width: 480px) {
-    .demo-modal { padding: 14px; }
-    .demo-modal-card { padding: 26px 22px 22px; }
-    .demo-modal-title { font-size: 26px; }
-  }
-</style>
 <div class="demo-modal" id="demoModal" role="dialog" aria-modal="true" aria-labelledby="demoModalTitle">
   <div class="demo-modal-backdrop" onclick="closeDemoModal()"></div>
   <div class="demo-modal-card">

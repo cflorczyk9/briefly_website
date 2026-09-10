@@ -32,109 +32,16 @@
     </script>
     <link rel="stylesheet" href="/assets/site.css">
 <style>
-        :root {
-          --paper: #FBFAF6;          /* warm white ground */
-          --paper-2: #F2EDE1;        /* second warm tone, for band alternation */
-          --card: #FFFFFF;
-          --ink: #16324F;            /* deep navy, all display type */
-          --ink-soft: #46627D;
-          --ink-muted: #5B6C80;   /* AA: 4.6+ on every light surface it labels */
-          --rule: #E6E1D5;           /* warm hairline */
-          --blue: #2F8CFF;           /* fills, icons, pins, chip fills. 3.32 on white: never small text */
-          --blue-ink: #1D4ED8;       /* 6.70 on white: small text, links, focus rings */
-          --blue-soft: #E9F2FF;      /* light chip background on paper grounds */
-          --cyan: #8cd8ff;           /* dark navy sections only */
-          --navy-band: #10263D;      /* closer + footer + custody */
-          --cream: #F4F1E9;
-          --cream-soft: #B9C4CF;
-          --serif: Charter, "Iowan Old Style", "Source Serif Pro", Georgia, serif;
-          --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
-          --mono: "SFMono-Regular", Menlo, Consolas, monospace;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { font-family: var(--sans); background: var(--paper); color: var(--ink); line-height: 1.6; overflow-x: hidden; }
-        @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-        .container { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
-
-        /* nav */
-        nav[aria-label="Primary"] { border-bottom: 1px solid var(--rule); background: var(--paper); position: relative; }
-        .nav-bar { min-height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 10px; padding-bottom: 10px; }
-        .brand { position: relative; display: inline-flex; align-items: center; padding-right: 14px; text-decoration: none; }
-        .brand-word {
-          font-family: var(--sans); font-weight: 900; font-size: 21px; line-height: .78;
-          letter-spacing: -.075em; text-transform: uppercase; color: var(--ink);
-          transform: scaleY(.88); transform-origin: left center;
-        }
-        .brand-pin {
-          position: absolute; top: 3px; right: 0; width: 6px; height: 6px; border-radius: 50%;
-          background: var(--blue); box-shadow: 0 0 0 2px rgba(47,140,255,.10);
-        }
-        .nav-right { display: flex; align-items: center; gap: 22px; }
-        .nav-panel { display: flex; align-items: center; gap: 26px; }
-        .nav-links { display: flex; gap: 24px; }
-        .nav-links a { font-size: 13px; font-weight: 600; color: var(--ink-soft); text-decoration: none; white-space: nowrap; }
-        .nav-links a:hover { color: var(--ink); }
-        .nav-actions { display: flex; align-items: center; gap: 16px; }
-        .nav-signin { font-size: 13px; font-weight: 600; color: var(--ink-soft); text-decoration: none; white-space: nowrap; }
-        .nav-signin:hover { color: var(--ink); }
-        .nav-bar .btn { padding: 9px 18px; font-size: 13px; white-space: nowrap; }
-        .nav-toggle {
-          display: none; width: 40px; height: 40px; flex-shrink: 0;
-          border: 1px solid var(--rule); border-radius: 6px; background: var(--card); cursor: pointer;
-          flex-direction: column; align-items: center; justify-content: center; gap: 4px;
-        }
-        .nav-toggle span { display: block; width: 18px; height: 2px; background: var(--ink); }
-        .nav-links a:focus-visible, .nav-signin:focus-visible, .btn:focus-visible, .nav-toggle:focus-visible, .hc-dot:focus-visible, .textlink:focus-visible {
-          outline: 2px solid var(--blue-ink); outline-offset: 2px;
-        }
-
-        @media (max-width: 860px) {
-          .nav-toggle { display: inline-flex; }
-          .nav-panel {
-            display: none;
-            position: absolute; top: 100%; left: 0; right: 0;
-            flex-direction: column; align-items: stretch; gap: 0;
-            background: var(--paper); border-bottom: 1px solid var(--rule);
-            padding: 6px 28px 20px; z-index: 40;
-          }
-          .nav-panel.open { display: flex; }
-          .nav-links { flex-direction: column; gap: 0; }
-          .nav-links a { padding: 12px 0; border-top: 1px solid var(--rule); }
-          .nav-actions { flex-direction: column; align-items: stretch; gap: 10px; margin-top: 6px; }
-          .nav-signin { padding: 8px 0; }
-          .nav-actions .btn.ghost { width: 100%; text-align: center; }
-        }
-
-        /* type */
-        .eyebrow {
-          font-family: var(--sans); font-size: 11.5px; font-weight: 600; letter-spacing: .14em;
-          text-transform: uppercase; color: var(--ink-muted); margin-bottom: 16px;
-        }
-        h1, h2 { font-family: var(--serif); font-weight: 400; letter-spacing: 0; }
-        h2 { font-size: 38px; line-height: 1.15; max-width: 620px; }
-        .lede { margin-top: 16px; max-width: 600px; color: var(--ink-soft); font-size: 17px; }
-        .hero h1 { font-size: clamp(40px, 4.6vw, 58px); line-height: 1.08; }
-        .hero .lede { font-size: 18px; }
-        @media (max-width: 880px) { h2 { font-size: 30px; } }
-
-        /* buttons + textlink */
-        .btn {
-          display: inline-block; font-size: 14px; font-weight: 600; padding: 13px 26px;
-          border-radius: 4px; background: var(--ink); color: #fff; text-decoration: none;
-          border: 1px solid var(--ink); cursor: pointer;
-        }
-        .btn.ghost { background: transparent; color: var(--ink); }
-        .textlink { font-size: 14.5px; font-weight: 600; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
-
         /* hero */
         .hero { padding: 92px 0 88px; border-bottom: 1px solid var(--rule); }
         .hero-inner { display: grid; grid-template-columns: 1fr 340px; gap: 48px; align-items: center; }
-        .byline { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-muted); margin: 4px 0 18px; }
+        .hero h1 { font-size: clamp(38px, 4.4vw, 52px); line-height: 1.08; }
+        .hero .lede { font-size: 18px; }
+        .byline { font-size: 13px; font-weight: 500; color: var(--ink-muted); margin: 4px 0 18px; }
 
-        /* brief-card: the cross-client answer card, styled on the .win card recipe */
-        .brief-card { background: var(--card); border: 1px solid var(--rule); border-radius: 10px; overflow: hidden;
-          box-shadow: 0 1px 2px rgba(22,50,79,.05), 0 14px 34px rgba(22,50,79,.08); }
+        /* brief-card: the cross-client answer card, a product mockup styled on the .win recipe */
+        .brief-card { background: var(--card); border: 1px solid var(--rule); border-radius: var(--r-card); overflow: hidden;
+          box-shadow: var(--shadow-float); }
         .brief-head { padding: 16px 20px; border-bottom: 1px solid var(--rule); font-family: var(--serif); font-size: 17px; font-weight: 400; color: var(--ink); }
         .brief-body { padding: 8px 20px; }
         .row { display: flex; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--rule); font-size: 14px; color: var(--ink-soft); }
@@ -142,22 +49,20 @@
         .dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 8px; flex-shrink: 0; background: var(--blue); }
 
         main { padding: 76px 0; }
-        .article { max-width: 780px; margin: 0 auto; padding: 0 28px; }
+        .article { max-width: 720px; margin: 0 auto; padding: 0 28px; }
         .article h2 { margin: 44px 0 14px; }
         .article p { color: var(--ink-soft); font-size: 17px; margin-bottom: 18px; }
         .article ul { margin: 14px 0 26px 22px; color: var(--ink-soft); }
         .article li { margin-bottom: 10px; font-size: 17px; }
 
         .diagram { margin: 42px 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-        .diagram-card { background: var(--card); border: 1px solid var(--rule); border-radius: 10px; padding: 20px;
-          box-shadow: 0 1px 2px rgba(22,50,79,.05), 0 14px 34px rgba(22,50,79,.08); }
-        .diagram-card strong { display: block; font-family: var(--serif); font-weight: 400; font-size: 17px; color: var(--ink); margin-bottom: 8px; }
-        .diagram-card span { color: var(--ink-soft); font-size: 14px; }
+        .diagram-card { background: var(--card); border: 1px solid var(--rule); border-radius: var(--r-card); padding: 20px; }
+        .diagram-card strong { display: block; font-family: var(--display); font-weight: 600; font-size: 17px; color: var(--ink); margin-bottom: 8px; }
+        .diagram-card span { color: var(--ink-soft); font-size: 15px; }
 
-        .quote { margin: 38px 0; padding: 26px 28px; border-left: 3px solid var(--blue); background: var(--paper-2); color: var(--ink); font-size: 21px; font-family: var(--serif); font-style: italic; border-radius: 10px; }
+        .quote { margin: 38px 0; padding: 26px 28px; border-left: 3px solid var(--blue); background: var(--paper-2); color: var(--ink); font-size: 21px; font-family: var(--display); font-weight: 600; border-radius: var(--r-card); }
 
-        .cta { margin-top: 56px; padding: 30px; border-radius: 10px; background: var(--card); border: 1px solid var(--rule);
-          box-shadow: 0 1px 2px rgba(22,50,79,.05), 0 14px 34px rgba(22,50,79,.08); }
+        .cta { margin-top: 56px; padding: 30px; border-radius: var(--r-card); background: var(--card); border: 1px solid var(--rule); }
         .cta h2 { margin-top: 0; font-size: 30px; }
         .cta p { color: var(--ink-soft); }
         .cta a { margin-top: 8px; margin-right: 10px; }
@@ -165,29 +70,14 @@
         .author-bio { display: flex; gap: 18px; align-items: flex-start; margin: 48px 0 0; padding-top: 32px; border-top: 1px solid var(--rule); }
         .author-bio img { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
         .author-bio h3 { margin: 0 0 4px; font-size: 16px; font-weight: 600; color: var(--ink); }
-        .author-bio p { margin: 0; font-size: 14.5px; color: var(--ink-soft); }
-
-        /* footer */
-        footer { background: var(--navy-band); color: var(--cream-soft); padding: 56px 0 30px; }
-        footer .foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 36px; padding-bottom: 40px; border-bottom: 1px solid #24415E; }
-        footer .foot-brand .brand { padding-right: 18px; }
-        footer .foot-brand .brand-word { color: var(--cream); font-size: 32px; }
-        footer .foot-brand .brand-pin { top: 5px; width: 8px; height: 8px; box-shadow: 0 0 0 2.5px rgba(47,140,255,.12); }
-        footer .foot-brand p { margin-top: 14px; font-size: 13px; line-height: 1.6; max-width: 280px; color: var(--cream-soft); }
-        footer h4 { font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--cream); margin-bottom: 14px; }
-        footer a { display: block; color: var(--cream-soft); text-decoration: none; font-size: 13.5px; line-height: 2.1; }
-        footer a:hover { color: var(--cream); }
-        footer .foot-bottom { display: flex; justify-content: space-between; gap: 14px; padding-top: 22px; font-size: 12.5px; color: var(--cream-soft); flex-wrap: wrap; }
+        .author-bio p { margin: 0; font-size: 15px; color: var(--ink-soft); }
 
         @media (max-width: 880px) {
           .hero-inner { grid-template-columns: 1fr; gap: 36px; }
           .diagram { grid-template-columns: 1fr; }
           .author-bio { flex-direction: column; }
-          footer .foot-grid { grid-template-columns: 1fr 1fr; }
-          footer .foot-brand { grid-column: 1 / -1; }
         }
         @media (max-width: 480px) {
-          .container { padding: 0 18px; }
           .article { padding: 0 18px; }
           .hero { padding: 56px 0 48px; }
           main { padding: 48px 0; }
@@ -247,12 +137,12 @@
 <section class="hero">
     <div class="container hero-inner">
         <div>
-            <span class="eyebrow">Knowledge Base</span>
+            <span class="eyebrow">Knowledge base</span>
             <h1>An AI knowledge base for financial advisors that runs inside Claude.</h1>
             <p class="byline">By Connor Florczyk &middot; Updated August 5, 2026</p>
             <p class="lede">Client documents, email, and meeting notes already sit inside your firm. Briefly turns them into one knowledge base that Claude can read across every account in your book. Ask which clients hold a concentrated position over $500K and get an answer with a name, a number, and the statement it came from, the same way you'd get an answer about one household.</p>
         </div>
-        <div class="brief-card" aria-label="Sample cross-client query answered by Briefly">
+        <div class="brief-card" data-mockup="" aria-label="Sample cross-client query answered by Briefly">
             <div class="brief-head">Which clients hold a concentrated position over $500K?</div>
             <div class="brief-body">
                 <div class="row"><span class="dot"></span><span>Rivera, $684,300 in employer stock (31%), Q2 statement</span></div>
@@ -366,65 +256,6 @@
     <span>brieflywealth.com</span>
   </div>
 </footer>
-<script>
-
-</script>
-
-<style>
-  .demo-modal { position:fixed; inset:0; z-index:200; display:none; align-items:center; justify-content:center; padding:20px; }
-  .demo-modal.active { display:flex; }
-  .demo-modal-backdrop { position:absolute; inset:0; background:rgba(16,38,61,.56); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
-  .demo-modal-card {
-    position:relative; z-index:1; width:100%; max-width:440px;
-    background:var(--paper); border:1px solid var(--rule);
-    border-radius:10px;
-    padding:32px 28px 28px; box-shadow:0 20px 40px rgba(22,50,79,.18);
-    font-family:var(--sans);
-  }
-  .demo-modal-close {
-    position:absolute; top:10px; right:14px; background:transparent; border:0;
-    font-size:24px; color:var(--ink); cursor:pointer; line-height:1; padding:6px 8px;
-  }
-  .demo-modal-eyebrow {
-    font-family:var(--mono); font-size:11px; font-weight:700;
-    letter-spacing:.08em; text-transform:uppercase; color:var(--blue-ink);
-    margin:0 0 8px;
-  }
-  .demo-modal-title {
-    font-family:var(--serif); font-weight:400; font-size:30px; line-height:1.1; letter-spacing:0;
-    margin:0 0 18px; color:var(--ink);
-  }
-  .demo-modal-field { display:block; margin:0 0 14px; }
-  .demo-modal-field label {
-    display:block; font-family:var(--mono); font-size:11px; font-weight:700;
-    letter-spacing:.08em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px;
-  }
-  .demo-modal-field input {
-    width:100%; padding:11px 12px; font-family:var(--sans);
-    font-size:15px; border:1px solid var(--ink); background:#fff; color:var(--ink);
-    border-radius:4px;
-  }
-  .demo-modal-field input:focus { outline:2px solid var(--blue-ink); outline-offset:1px; }
-  .demo-modal-submit {
-    width:100%; height:44px; border:1px solid var(--ink); background:var(--ink);
-    border-radius:4px;
-    color:#fff; font-family:var(--mono); font-size:12px; font-weight:700;
-    letter-spacing:.08em; text-transform:uppercase; cursor:pointer; margin-top:6px;
-    transition:background .15s ease, border-color .15s ease, color .15s ease;
-  }
-  .demo-modal-submit:hover { background:var(--blue-ink); border-color:var(--blue-ink); color:#fff; }
-  .demo-modal-submit:disabled { opacity:.6; cursor:wait; }
-  .demo-modal-error { display:none; margin-top:10px; padding:10px 12px; border:1px solid #b3261e; border-radius:4px; color:#b3261e; font-size:13px; }
-  .demo-modal-success { display:none; padding:18px 0 4px; text-align:center; }
-  .demo-modal-success.active { display:block; }
-  .demo-modal-success-title { font-family:var(--serif); font-weight:400; font-size:22px; letter-spacing:0; margin:0 0 6px; color:var(--ink); }
-  .demo-modal-success-body { font-size:14px; color:var(--ink-soft); line-height:1.5; margin:0 0 16px; }
-  @media (max-width: 480px) {
-    .demo-modal { padding: 14px; }
-    .demo-modal-card { padding: 26px 22px 22px; }
-    .demo-modal-title { font-size: 26px; }
-  }
-</style>
 <div class="demo-modal" id="demoModal" role="dialog" aria-modal="true" aria-labelledby="demoModalTitle">
   <div class="demo-modal-backdrop" onclick="closeDemoModal()"></div>
   <div class="demo-modal-card">

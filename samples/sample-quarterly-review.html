@@ -73,7 +73,7 @@
     text-align:center;
     padding:9px 16px;
     font-size:12px;
-    color:#6b7280;
+    color:var(--gray-text);
     background:#eef0f4;
     border-bottom:1px solid #d7dae2;
     letter-spacing:.01em;
@@ -112,7 +112,7 @@
     font-size:16px;font-weight:700;color:var(--navy);letter-spacing:.06em;
   }
   .brand-lockup .brand-sub{
-    font-size:8.5px;font-weight:600;color:#8890a0;letter-spacing:.18em;
+    font-size:11px;font-weight:600;color:var(--gray-text);letter-spacing:.18em;
   }
   .section-label{
     font-size:11px;font-weight:700;color:var(--navy);letter-spacing:.09em;
@@ -128,7 +128,7 @@
     align-items:center;
     justify-content:space-between;
     padding:13px 56px;
-    font-size:10.5px;
+    font-size:11px;
     letter-spacing:.01em;
   }
   .page-footer span{opacity:.92;}
@@ -162,7 +162,7 @@
   .cover-prepared{font-size:13px;font-weight:600;margin:0 0 6px;}
   .cover-firm-line{font-size:11px;color:#b7bdd6;margin:0 0 3px;}
   .cover-confidential{
-    font-size:10px;color:#8890b5;margin-top:16px;
+    font-size:11px;color:#a9b0d0;margin-top:16px;
   }
 
   /* ---- logo marks ---- */
@@ -175,7 +175,7 @@
     padding:13px 0;border-bottom:1px solid var(--border);
     font-size:14.5px;color:#242c46;
   }
-  .toc-num{color:var(--gold);font-weight:700;width:14px;}
+  .toc-num{color:#8a6a14;font-weight:700;width:14px;}
   .toc-title{flex:1;}
   .toc-page{color:#242c46;}
   .toc-note{
@@ -184,7 +184,7 @@
 
   /* ---- generic page furniture ---- */
   .eyebrow{
-    font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.12em;margin:0 0 6px;
+    font-size:11px;font-weight:700;color:#8a6a14;letter-spacing:.12em;margin:0 0 6px;
   }
   h2.page-title{
     font-size:26px;font-weight:600;color:var(--navy);margin:0 0 18px;
@@ -196,14 +196,14 @@
     font-size:12.5px;line-height:1.65;color:#333a4f;margin:0 0 12px;
   }
   .footnote{
-    font-size:10.5px;line-height:1.55;color:var(--gray-text);margin:8px 0 0;
+    font-size:11px;line-height:1.55;color:var(--gray-text);margin:8px 0 0;
   }
   .cite-tag{
-    display:inline-block;font-size:9.5px;font-style:italic;color:var(--gray-text);
+    display:inline-block;font-size:11px;font-style:italic;color:var(--gray-text);
     cursor:pointer;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:2px;
   }
   .cite-note{
-    font-size:10.5px;color:var(--gray-text);margin:6px 0 0;
+    font-size:11px;color:var(--gray-text);margin:6px 0 0;
   }
 
   /* ---- stat tiles ---- */
@@ -217,7 +217,7 @@
   .stat-tile:last-child{border-right:none;}
   .stat-value{font-size:23px;font-weight:700;color:var(--navy);}
   .stat-value.pos{color:var(--green);}
-  .stat-label{font-size:10.5px;color:var(--gray-text);margin-top:3px;}
+  .stat-label{font-size:11px;color:var(--gray-text);margin-top:3px;}
 
   /* ---- tables ---- */
   table.doc-table{
@@ -225,7 +225,7 @@
   }
   table.doc-table thead th{
     background:var(--navy);color:#fff;text-align:left;
-    font-size:10.5px;font-weight:600;letter-spacing:.03em;
+    font-size:11px;font-weight:600;letter-spacing:.03em;
     padding:9px 12px;
   }
   table.doc-table thead th.num{text-align:right;}
@@ -259,7 +259,7 @@
     align-items:center;justify-content:center;z-index:1;text-align:center;
   }
   .donut-center .dv{font-size:19px;font-weight:700;color:var(--navy);}
-  .donut-center .dl{font-size:9.5px;color:var(--gray-text);margin-top:2px;}
+  .donut-center .dl{font-size:11px;color:var(--gray-text);margin-top:2px;}
   .legend{list-style:none;margin:0;padding:0;font-size:12px;}
   .legend li{display:flex;align-items:center;gap:9px;margin-bottom:11px;color:#2c3350;}
   .legend .swatch{width:11px;height:11px;border-radius:2px;flex-shrink:0;}
@@ -267,7 +267,7 @@
   /* ---- horizontal bar charts ---- */
   .barchart{margin-top:16px;}
   .bar-row{display:flex;align-items:center;gap:10px;margin-bottom:9px;}
-  .bar-label{width:210px;flex-shrink:0;font-size:10.5px;color:#333a4f;text-align:right;}
+  .bar-label{width:210px;flex-shrink:0;font-size:11px;color:#333a4f;text-align:right;}
   .bar-track{flex:1;white-space:nowrap;}
   .bar-fill{display:inline-block;vertical-align:middle;height:15px;min-width:2px;border-radius:1px;background:var(--navy);}
   .bar-fill.alt{background:var(--gold);}
@@ -275,13 +275,13 @@
   .bar-fill.flag{background:var(--red);}
   .bar-fill.pos{background:#3f8f63;}
   .bar-value{
-    display:inline-block;vertical-align:middle;margin-left:8px;font-size:10.5px;
+    display:inline-block;vertical-align:middle;margin-left:8px;font-size:11px;
     color:#333a4f;white-space:nowrap;line-height:15px;
   }
 
   .section-note{
     margin-top:16px;padding-top:10px;border-top:1px solid var(--border);
-    font-size:10.5px;color:var(--gray-text);line-height:1.55;
+    font-size:11px;color:var(--gray-text);line-height:1.55;
   }
 
   @media print{
@@ -304,6 +304,7 @@
 </head>
 <body>
 
+<main id="main">
 <div class="sample-banner">Sample deliverable. Names, firms, and identifying details are fictionalized. · <a href="/sample-deliverables">All samples</a> · <a href="/">Briefly</a></div>
 
 <div class="doc-wrap">
@@ -348,7 +349,7 @@
         </svg>
         <div class="brand-text-nav">
           <div class="brand-name" style="font-size:13px;">MERIDIAN</div>
-          <div class="brand-sub" style="font-size:7px;">WEALTH&nbsp;PARTNERS</div>
+          <div class="brand-sub" style="font-size:11px;">WEALTH&nbsp;PARTNERS</div>
         </div>
       </div>
       <div class="section-label">CONTENTS</div>
@@ -384,7 +385,7 @@
         </svg>
         <div class="brand-text-nav">
           <div class="brand-name" style="font-size:13px;">MERIDIAN</div>
-          <div class="brand-sub" style="font-size:7px;">WEALTH&nbsp;PARTNERS</div>
+          <div class="brand-sub" style="font-size:11px;">WEALTH&nbsp;PARTNERS</div>
         </div>
       </div>
       <div class="section-label">PORTFOLIO OVERVIEW</div>
@@ -461,7 +462,7 @@
         </svg>
         <div class="brand-text-nav">
           <div class="brand-name" style="font-size:13px;">MERIDIAN</div>
-          <div class="brand-sub" style="font-size:7px;">WEALTH&nbsp;PARTNERS</div>
+          <div class="brand-sub" style="font-size:11px;">WEALTH&nbsp;PARTNERS</div>
         </div>
       </div>
       <div class="section-label">PORTFOLIO OVERVIEW</div>
@@ -501,7 +502,7 @@
         </svg>
         <div class="brand-text-nav">
           <div class="brand-name" style="font-size:13px;">MERIDIAN</div>
-          <div class="brand-sub" style="font-size:7px;">WEALTH&nbsp;PARTNERS</div>
+          <div class="brand-sub" style="font-size:11px;">WEALTH&nbsp;PARTNERS</div>
         </div>
       </div>
       <div class="section-label">PERFORMANCE BY ENTITY</div>
@@ -563,7 +564,7 @@
         </svg>
         <div class="brand-text-nav">
           <div class="brand-name" style="font-size:13px;">MERIDIAN</div>
-          <div class="brand-sub" style="font-size:7px;">WEALTH&nbsp;PARTNERS</div>
+          <div class="brand-sub" style="font-size:11px;">WEALTH&nbsp;PARTNERS</div>
         </div>
       </div>
       <div class="section-label">EQUITY HOLDINGS</div>
@@ -617,7 +618,7 @@
         </svg>
         <div class="brand-text-nav">
           <div class="brand-name" style="font-size:13px;">MERIDIAN</div>
-          <div class="brand-sub" style="font-size:7px;">WEALTH&nbsp;PARTNERS</div>
+          <div class="brand-sub" style="font-size:11px;">WEALTH&nbsp;PARTNERS</div>
         </div>
       </div>
       <div class="section-label">FIXED INCOME &amp; CASH</div>
@@ -669,7 +670,7 @@
         </svg>
         <div class="brand-text-nav">
           <div class="brand-name" style="font-size:13px;">MERIDIAN</div>
-          <div class="brand-sub" style="font-size:7px;">WEALTH&nbsp;PARTNERS</div>
+          <div class="brand-sub" style="font-size:11px;">WEALTH&nbsp;PARTNERS</div>
         </div>
       </div>
       <div class="section-label">ALTERNATIVE INVESTMENTS</div>
@@ -707,7 +708,7 @@
         </svg>
         <div class="brand-text-nav">
           <div class="brand-name" style="font-size:13px;">MERIDIAN</div>
-          <div class="brand-sub" style="font-size:7px;">WEALTH&nbsp;PARTNERS</div>
+          <div class="brand-sub" style="font-size:11px;">WEALTH&nbsp;PARTNERS</div>
         </div>
       </div>
       <div class="section-label">BALANCE SHEET</div>
@@ -750,7 +751,7 @@
         </svg>
         <div class="brand-text-nav">
           <div class="brand-name" style="font-size:13px;">MERIDIAN</div>
-          <div class="brand-sub" style="font-size:7px;">WEALTH&nbsp;PARTNERS</div>
+          <div class="brand-sub" style="font-size:11px;">WEALTH&nbsp;PARTNERS</div>
         </div>
       </div>
       <div class="section-label">PLANNING ITEMS &amp; CALENDAR</div>
@@ -788,7 +789,7 @@
         </svg>
         <div class="brand-text-nav">
           <div class="brand-name" style="font-size:13px;">MERIDIAN</div>
-          <div class="brand-sub" style="font-size:7px;">WEALTH&nbsp;PARTNERS</div>
+          <div class="brand-sub" style="font-size:11px;">WEALTH&nbsp;PARTNERS</div>
         </div>
       </div>
       <div class="section-label">IMPORTANT DISCLOSURES</div>
@@ -817,6 +818,7 @@
   <a href="/start" style="display:inline-block;padding:12px 22px;margin:0 6px 8px;background:#0b2545;color:#fff;border-radius:10px;text-decoration:none;font-weight:600;">Start now</a>
   <a href="/download" style="display:inline-block;padding:12px 22px;margin:0 6px 8px;border:1.5px solid #0b2545;color:#0b2545;border-radius:10px;text-decoration:none;font-weight:600;">Download the connector</a>
 </div>
+</main>
 
 </body>
 </html>
