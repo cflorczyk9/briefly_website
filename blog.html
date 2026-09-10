@@ -35,30 +35,20 @@
     </script>
 
     <link rel="stylesheet" href="/assets/site.css">
+    <script src="/assets/site.js"></script>
 <style>
         /* page-only extras: none. Tokens, reset, nav, buttons, and .container all come from site.css. */
 
         /* ================================================================
-           BLOG HEADER BAND
+           BLOG HEADER BAND: padding and h1 size now come from the shared
+           .hero / .hero-wide scale. The subtitle is the shared .lede.
            ================================================================ */
-        .blog-header {
-            padding: 110px 32px 72px;
-            border-bottom: 1px solid var(--rule);
-            background: var(--paper);
-        }
         .blog-header-inner {
             max-width: 1280px;
             margin: 0 auto;
         }
         .blog-title {
             margin: 0 0 20px;
-        }
-        .blog-subtitle {
-            color: var(--ink-soft);
-            font-size: 17px;
-            line-height: 1.6;
-            max-width: 600px;
-            margin-top: 16px;
         }
 
         /* ================================================================
@@ -78,16 +68,16 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 28px;
         }
+        /* .blog-card is the shared .card, with the illustration band flush
+           (padding reset to 0) and its own grid-item layout kept local. */
         .blog-card {
             display: flex;
             flex-direction: column;
-            background: var(--card);
-            border: 1px solid var(--rule);
-            border-radius: var(--r-card);
             overflow: hidden;
             cursor: pointer;
             text-align: left;
             text-decoration: none;
+            padding: 0;
         }
         .blog-card-image {
             height: 184px;
@@ -101,17 +91,12 @@
             flex-direction: column;
             flex: 1;
         }
+        /* .blog-card-tag is the shared .pill, with grid placement kept local */
         .blog-card-tag {
             align-self: flex-start;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--blue-ink);
-            background: var(--blue-soft);
-            border-radius: 999px;
-            padding: 4px 12px;
             margin-bottom: 16px;
         }
-        .blog-card-title {
+        .blog-card-content .blog-card-title {
             font-size: 20px;
             font-weight: 600;
             color: var(--ink);
@@ -145,8 +130,6 @@
            ================================================================ */
         @media (max-width: 880px) {
             .blog-grid { grid-template-columns: 1fr; gap: 20px; }
-            .blog-header { padding: 52px 20px 40px; }
-            .blog-subtitle { font-size: 16px; line-height: 1.55; }
             .blog-section { padding: 40px 20px 64px; }
             .blog-card-image { height: 150px; }
             .blog-card-content { padding: 20px; }
@@ -212,42 +195,42 @@
 
 <main id="main">
 <!-- BLOG HEADER -->
-<section class="blog-header">
+<section class="hero hero-wide">
     <div class="blog-header-inner">
         <p class="eyebrow">Blog</p>
         <h1 class="blog-title">From the blog</h1>
-        <p class="blog-subtitle">Practical insights on advisor workflows, portfolio prep, and client communication</p>
+        <p class="lede">Practical insights on advisor workflows, portfolio prep, and client communication</p>
     </div>
 </section>
 
 <!-- BLOG SECTION -->
 <section class="blog-section">
-    <div class="blog-container">
+    <div class="blog-container reveal">
         <div class="blog-grid">
-            <a class="blog-card" href="/blog/jobs-ai-wont-replace">
+            <a class="card blog-card" href="/blog/jobs-ai-wont-replace">
                 <div class="blog-card-image" style="background-image: url('images/robot_image_substack.png');"></div>
                 <div class="blog-card-content">
-                    <span class="blog-card-tag">AI and technology</span>
+                    <span class="pill blog-card-tag">AI and technology</span>
                     <h3 class="blog-card-title">The Jobs AI Won't Replace</h3>
                     <p class="blog-card-excerpt">Why financial advisors, lawyers, and doctors are actually the most protected from AI disruption, and what's really about to change.</p>
                     <span class="blog-card-meta">December 17, 2025 &middot; 2 min read</span>
                 </div>
             </a>
 
-            <a class="blog-card" href="/blog/your-brain-doesnt-have-enough-ram">
+            <a class="card blog-card" href="/blog/your-brain-doesnt-have-enough-ram">
                 <div class="blog-card-image" style="background-image: url('images/the_cognitive_limit_substack.png');"></div>
                 <div class="blog-card-content">
-                    <span class="blog-card-tag">Advisor workflows</span>
+                    <span class="pill blog-card-tag">Advisor workflows</span>
                     <h3 class="blog-card-title">Your Brain Doesn't Have Enough RAM</h3>
                     <p class="blog-card-excerpt">Your brain isn't built to remember this much and Outlook's search function isn't helping.</p>
                     <span class="blog-card-meta">January 3, 2026 &middot; 3 min read</span>
                 </div>
             </a>
 
-            <a class="blog-card" href="/blog/great-wealth-transfer-trap">
+            <a class="card blog-card" href="/blog/great-wealth-transfer-trap">
                 <div class="blog-card-image" style="background-image: url('images/wealth_transfer_image_substack.png');"></div>
                 <div class="blog-card-content">
-                    <span class="blog-card-tag">Wealth management</span>
+                    <span class="pill blog-card-tag">Wealth management</span>
                     <h3 class="blog-card-title">The Great Wealth Transfer Trap</h3>
                     <p class="blog-card-excerpt">The $80 trillion wealth transfer isn't a windfall, it's an operational crisis. Learn how to scale client relationships without breaking your business model.</p>
                     <span class="blog-card-meta">November 5, 2025 &middot; 3 min read</span>

@@ -136,11 +136,11 @@
 }
     </script>
     <link rel="stylesheet" href="/assets/site.css">
+    <script src="/assets/site.js"></script>
 <style>
-        /* hero: white ground, ink text, same recipe as the homepage hero */
-        .hero { padding: 92px 32px 88px; border-bottom: 1px solid var(--rule); }
+        /* hero: padding and h1 size now come from site.css's shared .hero / .hero-wide scale */
         .hero-inner { max-width: 900px; margin: 0 auto; }
-        .hero h1 { font-size: clamp(38px, 4.4vw, 52px); line-height: 1.08; max-width: 820px; margin-bottom: 22px; }
+        .hero h1 { max-width: 820px; margin-bottom: 22px; }
         .hero p { max-width: 720px; color: var(--ink-soft); font-size: 18px; }
         .hero .page-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; margin: 4px 0 24px; }
         .hero .page-meta span { font-size: 13px; color: var(--ink-muted); }
@@ -173,24 +173,17 @@
         .flow-col.safe .flow-steps li::before { background: var(--blue); }
         .flow-caption { margin: 14px 0 40px; font-size: 15px; color: var(--ink-muted); }
 
-        /* FAQ accordion */
-        .faq { margin: 8px 0 4px; }
-        .faq details { border-bottom: 1px solid var(--rule); padding: 22px 0; }
-        .faq summary { font-family: var(--display); font-weight: 600; font-size: 19px; color: var(--ink); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: baseline; gap: 18px; }
-        .faq summary::-webkit-details-marker { display: none; }
-        .faq summary::after { content: '+'; font-size: 20px; font-weight: 700; color: var(--blue-ink); flex-shrink: 0; line-height: 1; }
-        .faq details[open] summary::after { content: '\2212'; }
-        .faq details p { margin: 14px 0 0; color: var(--ink-muted); font-size: 15px; line-height: 1.65; max-width: 720px; }
+        /* FAQ: recipe now shared from site.css's .faq-list */
 
-        /* Sources */
-        .sources { margin: 8px 0 0; padding: 26px 28px; background: var(--card); border: 1px solid var(--rule); border-radius: var(--r-card); }
+        /* Sources: shared .card */
+        .sources { margin: 8px 0 0; }
         .sources h2 { margin-top: 0; }
         .sources ul { list-style: none; margin: 14px 0 0; padding: 0; }
         .sources li { padding: 10px 0; border-top: 1px solid var(--rule); font-size: 15px; }
         .sources li:first-child { border-top: 0; }
 
-        /* Vendor-review checklist table */
-        .checklist { margin: 8px 0 28px; padding: 26px 28px; background: var(--card); border: 1px solid var(--rule); border-radius: var(--r-card); }
+        /* Vendor-review checklist table: shared .card */
+        .checklist { margin: 8px 0 28px; }
         .checklist h3 { margin: 0 0 16px; }
         .checklist table { width: 100%; border-collapse: collapse; }
         .checklist th { text-align: left; font-size: 13px; font-weight: 600; color: var(--ink-muted); padding: 0 16px 10px 0; border-bottom: 1px solid var(--rule); }
@@ -231,9 +224,6 @@
           .checklist td:last-child { font-weight: 400; }
         }
 
-        @media (max-width: 480px) {
-          .hero { padding: 56px 20px 48px; }
-        }
     </style>
 </head>
 <body>
@@ -260,7 +250,7 @@
     </div>
   </div>
 </nav>
-<section class="hero">
+<section class="hero hero-wide">
     <div class="hero-inner">
         <span class="eyebrow">Compliance</span>
         <h1>Can financial advisors put client data in ChatGPT?</h1>
@@ -274,10 +264,13 @@
 </section>
 <main id="main">
     <article class="article">
+        <div class="reveal">
         <p class="lede">The direct answer is yes, you can type a client's name, account number, or portfolio detail into ChatGPT's chat window, and the harder question is whether your compliance program has ever looked at where that text goes. It travels to a vendor's servers under that vendor's own policy, not your firm's, and the SEC's updated privacy rules require firms to oversee the service providers that handle customer information. Advisors can still use ChatGPT and Claude for real work. The rest of this page covers what the rules say and the setup that gets advisors the benefit of these tools while keeping their compliance program in the loop. None of it is legal advice, and your compliance officer or counsel gets the final word on your firm's own obligations.</p>
 
         <p>Advisors are asking this question more because ChatGPT and Claude have gotten good enough to be genuinely useful for drafting, summarizing, and research, in the same twelve months the amended Reg S-P safeguards rule reached every RIA and FINRA published its first dedicated guidance on generative AI. The tools got more tempting and the rules got more specific at the same time, so the honest answer needs both halves.</p>
 
+        </div>
+        <div class="reveal">
         <h2 id="can-you-put-client-data">Can you put client data in ChatGPT?</h2>
         <p>Physically, yes. Nothing in ChatGPT's interface stops you from pasting a client's name, account number, holdings, or a paraphrased summary of their situation into the chat box, and the model will answer. The real question for an advisor is what happens to that information after you hit enter, not whether typing it in is technically possible.</p>
         <p>That text is sent to OpenAI's servers to generate a response, and from there, what happens depends on your plan and your settings rather than anything your firm controls. A Free or Plus account may use the conversation to train future models unless training is turned off in Data Controls settings. ChatGPT Team, Enterprise, and business API access don't train on your data by default. Either way, the information has left your firm's systems and landed on infrastructure your compliance program has probably never reviewed.</p>
@@ -286,12 +279,16 @@
         <p>Some advisors try to soften this by stripping names and account numbers before pasting, asking about "a client with a $2 million portfolio and two grown children" instead of naming anyone. That reduces the privacy exposure meaningfully and works fine for a hypothetical research question with no real client attached. It doesn't solve the recordkeeping question in the next section on its own, and it only works if the advisor remembers to redact every single time, which is exactly the kind of manual step a compliance program should design around rather than depend on.</p>
         <p>That's the part regulators care about. Reg S-P doesn't ask whether ChatGPT is a good or bad product. It asks whether the firm knows where customer information goes and runs a real oversight process for every vendor that touches it. An AI tool an advisor started using on their own, without looping in compliance, is the kind of gap the amended rule was written to surface.</p>
 
+        </div>
+        <div class="reveal">
         <h2 id="is-it-safe-for-emails">Is it safe to use ChatGPT for client emails?</h2>
         <p>Client emails carry two separate risks when they run through a consumer AI tool, and most advisors only think about one of them.</p>
         <p>The first is privacy. An email to a client often names an account number, a balance, a beneficiary, or a specific holding. Pasting that email into ChatGPT to fix the tone or tighten the wording sends all of it to OpenAI's servers the moment you hit enter. Under the amended Reg S-P safeguards rule, the vendor-oversight duty covers outside providers that handle customer information, and most advisors haven't set up any review for a consumer chat tool they started using on their own.</p>
         <p>The second risk gets missed more often. A client email is a business communication. FINRA member firms have to retain and supervise those communications the same way they retain any other correspondence about a client's account, and RIAs carry a parallel recordkeeping duty under the Investment Advisers Act. A conversation that happens inside a personal ChatGPT account usually isn't captured by the firm's archiving system at all. Regulators have already spent the last few years fining firms over messaging apps employees used without telling compliance, and an AI chat tool used the same way is shaping up to be the next version of that same problem. If a client complains, or an examiner asks for the correspondence file, the AI-assisted draft is often just missing.</p>
         <p>The same exposure covers more than typed text, too. Uploading a PDF statement, a screenshot of a client's account dashboard, or a scanned form into ChatGPT to summarize it sends the entire document to the vendor's servers, not just the sentence you needed answered. A one-line question can turn into a full-document upload without anyone deciding that on purpose.</p>
 
+        </div>
+        <div class="reveal">
         <h2 id="what-reg-sp-requires">What Reg S-P, the SEC, and FINRA actually require</h2>
         <p>Four separate pieces of the regulatory picture apply here, and the fourth explains why no vendor gets to claim it solved the other three for you.</p>
 
@@ -309,7 +306,7 @@
 
         <p>Put together, these four things point to the same short list of questions firms are working through with their compliance officers. Which AI tools are advisors actually using, beyond the ones the firm officially licenses? Does an AI vendor that receives client data get the same review as any other vendor? Does a written policy name the approved tools and the boundaries around them? And does a vendor's compliance-sounding language hold up against the actual rule text?</p>
 
-        <div class="checklist" id="vendor-checklist">
+        <div class="card checklist" id="vendor-checklist">
           <h3>Six questions worth putting to any AI vendor</h3>
           <table>
             <thead>
@@ -328,6 +325,8 @@
 
         <p class="inline-cta">The checklist above works for any AI vendor your firm is weighing. <a href="/security">See how Briefly answers these questions</a>, since that's the one vendor we can speak to firsthand. Prefer to talk it through instead? <a href="/#contact">Book a demo</a>.</p>
 
+        </div>
+        <div class="reveal">
         <h2 id="what-about-claude">What about Claude?</h2>
         <p>Claude raises a version of the same question, with one extra layer. Anthropic sells Claude across several plans, and the plan determines what happens to your conversations. The difference between the two paths is bigger than most advisors realize, and one of them is far easier for a compliance program to document.</p>
         <p>On the business side, Anthropic's commercial terms state it plainly. Anthropic may not train models on customer content from Claude for Work, Claude Enterprise, or the API. The commitment sits in the contract itself rather than in a settings toggle, and it comes with a data processing agreement a compliance program can actually file. Deleted conversations purge from Anthropic's systems within 30 days.</p>
@@ -336,6 +335,8 @@
         <p>Claude for Work and Claude Enterprise also add administrative controls Anthropic markets toward regulated industries, including configurable data retention windows and activity logs an admin can review. None of that is a compliance certification by itself. It's infrastructure a firm's compliance program still has to evaluate, document, and monitor, the same as it would for any other vendor with access to anything client-related.</p>
         <p>A solo advisor paying for Claude Pro out of pocket is on exactly the plan that trains by default. A larger RIA that negotiated a Claude for Work agreement for the whole team is not, though that same RIA still has to confirm procurement actually landed on a business plan and not a handful of individual Pro subscriptions advisors expensed on their own. The two setups can look identical day to day and carry different obligations underneath.</p>
 
+        </div>
+        <div class="reveal">
         <h2 id="what-advisors-use-instead">What advisors use instead</h2>
         <p>Advisors who want the research and drafting benefit of a large language model without creating a new compliance exposure are moving toward a different structure. Instead of sending client files to an AI vendor, the AI reads the files where they already live, on the advisor's own computer, and only a narrow slice of nonclient information travels anywhere else.</p>
         <p>Broadly, advisors evaluating AI tools are choosing between three structures. The first is a consumer AI tool used directly, the path on the left below. The second is a hosted private AI platform, where a vendor still runs servers full of client data, just servers with the firm's name on the contract instead of the public tool. That structure still leaves the same vendor-oversight and breach-notification questions in place, just with better paperwork behind them. The third keeps client files out of any new vendor's storage and has the AI read them locally instead, under the Claude plan the firm already holds. The diagram below compares the first structure with the third, since that's the comparison advisors ask about most.</p>
@@ -368,8 +369,10 @@
         <p>That's why the Reg S-P questions from earlier in this page narrow. Briefly never receives the client file, so there's nothing of your clients' on our servers to safeguard or disclose in a breach notice. Anthropic still processes what Claude reads, under the firm's own Claude plan, so that plan stays in your vendor file the way it already does today. What Briefly avoids adding is a second, unreviewed vendor holding client data.</p>
         <p>This page covers the two most common paths. For a full comparison of what Claude can and can't see out of the box, and how advisors are giving it secure access to client files beyond Briefly, see <a href="/claude-for-financial-advisors">Claude for financial advisors</a>.</p>
 
+        </div>
+        <div class="reveal">
         <h2 id="faq">Frequently asked questions</h2>
-        <div class="faq">
+        <div class="faq-list">
           <details>
             <summary>Can financial advisors put client data into ChatGPT?</summary>
             <p>Typing a client's name, account number, or portfolio detail into ChatGPT sends that data to OpenAI's servers under a consumer agreement the firm never reviewed. The amended Reg S-P rule requires firms to oversee the service providers that handle customer information, and few firms have any oversight arrangement with OpenAI on file.</p>
@@ -404,7 +407,9 @@
           </details>
         </div>
 
-        <div class="sources" id="sources">
+        </div>
+        <div class="reveal">
+        <div class="card sources" id="sources">
           <h2>Sources</h2>
           <ul>
             <li>SEC Press Release 2024-58, <a href="https://www.sec.gov/newsroom/press-releases/2024-58" target="_blank" rel="noopener">"SEC Adopts Rule Amendments to Regulation S-P to Enhance Protection of Customer Information"</a> (May 16, 2024)</li>
@@ -417,6 +422,8 @@
           </ul>
         </div>
 
+        </div>
+        <div class="reveal">
         <p class="disclaimer">None of this is legal advice. Regulations change, and your firm's specific obligations depend on facts a general article can't know. Talk with your compliance officer or securities counsel before changing how your firm uses ChatGPT, Claude, or any other AI tool.</p>
 
         <div class="author-bio">
@@ -432,6 +439,7 @@
             <p>Briefly runs inside Claude Desktop and reads your firm's own files locally, so client data never has to leave your machine to get an answer.</p>
             <a href="/start" class="btn">Start now</a>
             <a href="/#contact" class="textlink">Or book a demo</a>
+        </div>
         </div>
     </article>
 </main>

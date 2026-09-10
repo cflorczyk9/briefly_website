@@ -27,6 +27,7 @@
 <meta name="twitter:image" content="https://www.brieflywealth.com/images/briefly-og-main.png?v=3">
 
 <link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/site.js"></script>
 <style>
   /* ================================================================
      UNSUBSCRIBE
@@ -37,9 +38,10 @@
     justify-content: center;
     padding: 96px 24px;
   }
+  /* .card here overrides site.css's shared radius and padding for this one
+     centered confirmation panel; background and border already match the
+     shared rule, so only the differences stay local. */
   .card {
-    background: var(--card);
-    border: 1px solid var(--rule);
     border-radius: var(--r-panel);
     max-width: 480px;
     width: 100%;

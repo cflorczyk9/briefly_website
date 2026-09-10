@@ -33,12 +33,13 @@
 </script>
 
 <link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/site.js"></script>
 <style>
-  /* hero: copy + form on the left, the email in a window frame on the right */
-  .hero { padding: 92px 0 88px; border-bottom: 1px solid var(--rule); }
+  /* hero: copy + form on the left, the email in a window frame on the right.
+     padding and h1 size now come from site.css's shared .hero scale (two-column,
+     so no hero-wide). */
   .hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 60px; align-items: start; }
   .hero-grid > div { min-width: 0; }
-  .hero h1 { font-size: clamp(38px, 4.4vw, 52px); line-height: 1.06; }
 
   .sub-form { max-width: 460px; margin-top: 30px; }
   .sub-field { display: block; margin: 0 0 14px; }
@@ -91,26 +92,22 @@
   .np-view-sample { display: block; text-align: center; padding: 13px 24px; font-size: 13.5px; font-weight: 600; color: var(--ink); background: var(--doc-paper-2); border-top: 1px solid var(--doc-rule); text-decoration: none; }
   .np-view-sample:hover { text-decoration: underline; text-underline-offset: 3px; }
 
-  /* what each edition carries */
+  /* what each edition carries: card look now comes from site.css's shared .card recipe */
   .inc-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 40px; }
-  .inc { background: var(--card); border: 1px solid var(--rule); border-radius: var(--r-card); padding: 22px 24px; }
   .inc p { margin-top: 8px; font-size: 15px; line-height: 1.55; color: var(--ink-soft); }
 
   @media (max-width: 880px) {
-    .hero { padding: 64px 0 60px; }
     .hero-grid { grid-template-columns: 1fr; gap: 36px; }
     .inc-grid { grid-template-columns: 1fr; }
   }
   @media (max-width: 480px) {
-    .hero { padding: 56px 0 48px; }
     .sub-row { grid-template-columns: 1fr; gap: 0; }
   }
 </style>
 <!-- mobile-redux -->
 <style id="mobile-redux-subscribe">
   @media (max-width: 820px) {
-    .hero h1 { font-size: clamp(28px, 8.4vw, 40px); line-height: 1; }
-    .hero .lede { font-size: 16px; line-height: 1.55; }
+    /* hero h1/lede size now come from site.css's shared .hero scale */
     .sub-form { max-width: 100%; }
     .sub-field input { font-size: 16px; padding: 13px 14px; }
     .sub-form .btn { width: 100%; text-align: center; padding: 14px 26px; }
@@ -240,23 +237,23 @@
 </section>
 
 <section class="pad band-paper2" aria-label="Each morning includes">
-  <div class="container">
+  <div class="container reveal">
     <div class="eyebrow">What lands in your inbox</div>
     <h2>Each morning includes</h2>
     <p class="lede">Five short sections, written for an advisor's first cup of coffee, and one thing you can say to a client before nine.</p>
     <div class="inc-grid">
-      <div class="inc"><h3>Markets at a glance</h3><p>S&amp;P, Nasdaq, Dow, yields, oil, gold, bitcoin. The whole tape in one block.</p></div>
-      <div class="inc"><h3>The bottom line</h3><p>What moved overnight and why it matters, in a few plain sentences.</p></div>
-      <div class="inc"><h3>Advisor talking point</h3><p>A ready-to-use angle for client conversations today, not generic commentary.</p></div>
-      <div class="inc"><h3>What to watch</h3><p>Data releases, earnings, and events on the calendar that could move the day.</p></div>
-      <div class="inc"><h3>Water cooler</h3><p>One story worth knowing about before your first meeting.</p></div>
-      <div class="inc"><h3>Free, weekdays only</h3><p>Lands before the open every market day. Unsubscribe with one click.</p></div>
+      <div class="card inc"><h3>Markets at a glance</h3><p>S&amp;P, Nasdaq, Dow, yields, oil, gold, bitcoin. The whole tape in one block.</p></div>
+      <div class="card inc"><h3>The bottom line</h3><p>What moved overnight and why it matters, in a few plain sentences.</p></div>
+      <div class="card inc"><h3>Advisor talking point</h3><p>A ready-to-use angle for client conversations today, not generic commentary.</p></div>
+      <div class="card inc"><h3>What to watch</h3><p>Data releases, earnings, and events on the calendar that could move the day.</p></div>
+      <div class="card inc"><h3>Water cooler</h3><p>One story worth knowing about before your first meeting.</p></div>
+      <div class="card inc"><h3>Free, weekdays only</h3><p>Lands before the open every market day. Unsubscribe with one click.</p></div>
     </div>
   </div>
 </section>
 
 <section class="closer" aria-label="Subscribe">
-  <div class="container">
+  <div class="container reveal">
     <h2>One email, before the open.</h2>
     <p class="lede">Free for advisors, weekdays only, and it takes ten seconds to sign up.</p>
     <a class="btn" href="#formSection">Subscribe</a>

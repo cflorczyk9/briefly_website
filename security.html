@@ -122,21 +122,21 @@
 }
     </script>
     <link rel="stylesheet" href="/assets/site.css">
+    <script src="/assets/site.js"></script>
 <style>
-        .hero { background: var(--paper-2); color: var(--ink); padding: 96px 32px 64px; border-bottom: 1px solid var(--rule); }
-        .hero-inner { max-width: 900px; margin: 0 auto; }
-        h1 { font-size: clamp(38px, 4.4vw, 52px); line-height: 1.08; margin-bottom: 20px; color: var(--ink); }
-        .hero p { color: var(--ink-soft); font-size: 18px; max-width: 720px; }
+        /* hero: padding, background, and h1 size now come from site.css's
+           shared .hero / .hero-wide scale plus the .band-paper2 band. */
+        .hero-inner { margin: 0 auto; }
+        /* this headline is longer than the shared 16ch cap allows in three lines */
+        .hero-inner h1 { max-width: none; }
         main { padding: 72px 32px; }
         .content { max-width: 1000px; margin: 0 auto; }
         .intro { max-width: 720px; color: var(--ink-soft); font-size: 17px; margin-bottom: 44px; }
         .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-        .card { border: 1px solid var(--rule); border-radius: var(--r-card); padding: 24px; background: var(--card); }
-        .card h2, .card h3 { font-weight: 600; font-size: 20px; color: var(--ink); margin-bottom: 10px; }
-        .card p { color: var(--ink-soft); font-size: 15px; }
+        /* card look now comes from site.css's shared .card recipe */
         .note { margin-top: 44px; padding: 28px; border-radius: var(--r-card); background: var(--card); border: 1px solid var(--rule); color: var(--ink-soft); }
         .note strong { color: var(--ink); }
-        @media (max-width: 760px) { .grid, .grid-3, .grid-4 { grid-template-columns: 1fr; } .hero { padding-top: 88px; } }
+        @media (max-width: 760px) { .grid, .grid-3, .grid-4 { grid-template-columns: 1fr; } }
 
         /* --- security page rebuild, 2026-07-23 --- */
         .section { margin-top: 68px; }
@@ -152,23 +152,14 @@
         .compare-card.is-briefly { box-shadow: var(--ring); }
         .compare-card.is-briefly .compare-label { color: var(--ink); }
         .closing-line { margin-top: 24px; }
-        .faq-list { margin-top: 8px; }
-        .faq-item { border: 0; border-bottom: 1px solid var(--rule); border-radius: 0; margin-bottom: 0; background: transparent; padding: 22px 0; }
-        .faq-item summary { cursor: pointer; list-style: none; padding: 0; font-weight: 600; color: var(--ink); font-size: 18px; display: flex; justify-content: space-between; align-items: baseline; gap: 18px; }
-        .faq-item summary::-webkit-details-marker { display: none; }
-        .faq-item summary::after { content: "+"; font-size: 20px; font-weight: 600; line-height: 1; color: var(--blue-ink); flex-shrink: 0; }
-        .faq-item[open] summary::after { content: "\2212"; }
-
-        .faq-item p { padding: 14px 0 0; color: var(--ink-soft); font-size: 15px; line-height: 1.65; max-width: 720px; }
+        /* faq: recipe now shared from site.css's .faq-list */
     </style>
 <!-- mobile-redux -->
 <style id="mobile-redux-security">
   /* mobile-redux: security page */
   @media (max-width: 820px) {
-    /* hero: kill oversized padding + tighten headline */
-    .hero { padding: 56px 20px 48px; }
-    .hero h1 { font-size: 34px; line-height: 1.1; margin-bottom: 14px; }
-    .hero p { font-size: 17px; line-height: 1.55; }
+    /* hero padding, h1 size, and lede size now come from site.css's shared
+       .hero / .hero-wide scale, which already tightens on narrow viewports */
 
     /* main body */
     main { padding: 44px 20px 56px; }
@@ -176,25 +167,17 @@
 
     /* cards */
     .grid, .grid-3, .grid-4 { gap: 14px; grid-template-columns: 1fr; }
-    .card { padding: 20px; }
-    .card h2, .card h3 { font-size: 18px; margin-bottom: 8px; }
-    .card p { font-size: 15px; line-height: 1.55; }
 
     /* new sections */
     .section { margin-top: 48px; }
     .section-title { font-size: 24px; }
     .section-lead, .prose p { font-size: 15px; }
-    .faq-item summary { padding: 16px 18px; font-size: 15px; }
-    .faq-item p { padding: 0 18px 18px; }
 
     /* contact note */
     .note { margin-top: 32px; padding: 20px; font-size: 15px; line-height: 1.55; }
     .note a { overflow-wrap: anywhere; }
   }
   @media (max-width: 480px) {
-    .hero { padding: 48px 18px 40px; }
-    .hero h1 { font-size: 30px; }
-    .hero p { font-size: 16px; }
     main { padding: 36px 18px 48px; }
   }
 </style>
@@ -223,22 +206,22 @@
     </div>
   </div>
 </nav>
-<section class="hero">
-    <div class="hero-inner">
+<section class="hero hero-wide band-paper2">
+    <div class="hero-inner container">
         <span class="eyebrow">Security</span>
         <h1>With the Briefly connector, client files stay on the advisor's computer.</h1>
-        <p>Briefly is an AI knowledge base for financial advisors. It runs two ways, a connector inside Claude Desktop and a hosted web app you sign into through your browser. This page lays out where your client files live on each surface, what reaches our servers, and what changes under the new SEC rules for AI vendors.</p>
+        <p class="lede">Briefly is an AI knowledge base for financial advisors. It runs two ways, a connector inside Claude Desktop and a hosted web app you sign into through your browser. This page lays out where your client files live on each surface, what reaches our servers, and what changes under the new SEC rules for AI vendors.</p>
     </div>
 </section>
 <main id="main">
     <div class="content">
 
-        <section class="section">
+        <section class="section reveal">
             <p class="intro">Briefly's flagship product is a connector you add to Claude Desktop. One download, pick a folder on your computer, sign in, and you're set up. From there, your client files stay in that folder, not on a server somewhere. When you ask Briefly a question, it reads those files on your machine, writes the answer, and saves the draft back to the same folder. The only things that reach our servers are sign-in, a check that your seat is active, a de-identified layer of firm preferences that never carries a client's name, and a short usage record for each tool call, which carries no client file content.</p>
             <p class="intro">Some firms run Briefly a second way, through the web app you sign into instead of installing the connector. It's priced and sold separately from the connector. For firms on the web app, client files live in Briefly's hosted environment on AWS, protected by per-firm access controls, and sign-in runs through the same account layer either way.</p>
         </section>
 
-        <section class="section" id="where-files-live">
+        <section class="section reveal" id="where-files-live">
             <h2 class="section-title">Where your client files live on the connector</h2>
             <p class="section-lead">For firms running the connector, there's no upload step in Briefly. You point it at a folder once, during setup, and everything after that happens on your own machine.</p>
             <div class="grid-3">
@@ -257,7 +240,7 @@
             </div>
         </section>
 
-        <section class="section" id="server-reach">
+        <section class="section reveal" id="server-reach">
             <h2 class="section-title">What reaches Briefly's server, when you run the connector</h2>
             <p class="section-lead">Four things reach our servers when you run the connector, and none of them is a client file. The web app works differently, covered below.</p>
             <div class="grid-4">
@@ -283,7 +266,7 @@
             </div>
         </section>
 
-        <section class="section" id="claude-data-path">
+        <section class="section reveal" id="claude-data-path">
             <h2 class="section-title">What Claude sees, and what Anthropic does with it</h2>
             <p class="section-lead">Briefly runs inside Claude, so a careful vendor review should ask about Anthropic too. Here is the full path, with nothing left out.</p>
             <div class="prose">
@@ -297,7 +280,7 @@
             </div>
         </section>
 
-        <section class="section" id="data-custody-models">
+        <section class="section reveal" id="data-custody-models">
             <h2 class="section-title">Three ways advisor AI tools handle your data</h2>
             <p class="section-lead">Every AI tool that touches client files falls into one of three custody models, and Briefly's two surfaces land in two different ones.</p>
             <div class="grid-3">
@@ -316,7 +299,7 @@
             </div>
         </section>
 
-        <section class="section" id="reg-sp">
+        <section class="section reveal" id="reg-sp">
             <h2 class="section-title">What this means under Reg S-P</h2>
             <div class="prose">
                 <p>SEC privacy and safeguards rules, Reg S-P among them, put the duty on advisory firms to know how their vendors handle customer information, and firms are treating AI tools as part of that vendor review. That oversight duty sits with your firm, not just with us.</p>
@@ -325,7 +308,7 @@
             </div>
         </section>
 
-        <section class="section" id="account-layer">
+        <section class="section reveal" id="account-layer">
             <h2 class="section-title">How we secure the account layer</h2>
             <p class="section-lead">For connector firms, client files aren't on our servers, so what we secure there is narrower, the sign-in and entitlement system that confirms who you are and what your firm has access to. Web-app firms have files in our hosted environment too, secured the way the custody section above describes.</p>
             <div class="grid">
@@ -348,39 +331,39 @@
             </div>
         </section>
 
-        <section class="section" id="faq">
+        <section class="section reveal" id="faq">
             <h2 class="section-title">Compliance officer FAQ</h2>
             <p class="section-lead">The questions we hear most from the people responsible for signing off on a vendor like Briefly.</p>
             <div class="faq-list">
-                <details class="faq-item">
+                <details>
                     <summary>Where exactly do client files live?</summary>
                     <p>It depends on which surface your firm runs. On the connector, files stay in a folder on the advisor's own computer that Briefly reads from and writes back to. On the web app, files live in Briefly's hosted environment on AWS, with access scoped to your firm's account.</p>
                 </details>
-                <details class="faq-item">
+                <details>
                     <summary>Does Anthropic see client files when Briefly runs inside Claude?</summary>
                     <p>When an advisor asks a question, Claude reads what it needs from the client file, and Anthropic processes that content under your firm's own Claude plan. On business plans, Anthropic's commercial terms prohibit training on customer content, and deleted conversations purge within 30 days, except content flagged by Anthropic's safety systems. Briefly never stores what Claude reads.</p>
                 </details>
-                <details class="faq-item">
+                <details>
                     <summary>What does Briefly's server actually receive?</summary>
                     <p>It depends on the surface. From the connector, Briefly's server receives sign-in through Amazon Cognito, a seat-active check, de-identified preference rules, and a short usage record for each tool call, which carries no client file content. From the web app, your firm's files also reach our hosted environment, because that's how the product runs on that surface.</p>
                 </details>
-                <details class="faq-item">
+                <details>
                     <summary>Does Briefly train AI models on client data?</summary>
                     <p>No, on either surface. Client data is used to run the product for your firm, not to train general-purpose AI models, and any pattern-level learning we do runs through a de-identified, tokenized layer with no client name or account number attached.</p>
                 </details>
-                <details class="faq-item">
+                <details>
                     <summary>Is Briefly a web app my staff logs into?</summary>
                     <p>Both exist. The connector runs inside Claude Desktop and works with files already on the advisor's computer, without an upload step, just a one-time sign-in. The web app is a separate, browser-based product your staff can sign into instead, priced separately, with files hosted in Briefly's own environment rather than on your machine.</p>
                 </details>
-                <details class="faq-item">
+                <details>
                     <summary>What happens if Briefly's servers are breached?</summary>
                     <p>For connector firms, a breach exposes sign-in records, seat-check records, de-identified preference rules, and usage records, not client files, since those never reach our servers. For web-app firms, Briefly's hosted environment does hold firm data, protected by encryption and per-firm access controls, so the exposure model is different for that surface.</p>
                 </details>
-                <details class="faq-item">
+                <details>
                     <summary>How does this change our Reg S-P vendor due diligence?</summary>
                     <p>Firms generally review Briefly as a service provider under Reg S-P, the same as any vendor. For connector firms, client files never reach our servers, so what our side holds for that review is sign-in, seat entitlement, the preference layer, and usage records, with no client-data store. The model call runs under your firm's own Claude plan, laid out earlier on this page. For web-app firms, the review also takes in Briefly's AWS hosting and per-firm access controls, the way any hosted vendor gets reviewed.</p>
                 </details>
-                <details class="faq-item">
+                <details>
                     <summary>Is Briefly SEC-approved or certified compliant?</summary>
                     <p>No certification like that exists, and no agency approves an AI tool as compliant. What we can show you is exactly how Briefly's architecture, on either the connector or the web app, handles client data, which is the purpose of this page.</p>
                 </details>

@@ -52,14 +52,12 @@
 </script>
 
 <link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/site.js"></script>
 <style>
   button, a { font: inherit; }
   img { display: block; }
 
-  /* type */
-  .hero { padding: 92px 0 88px; border-bottom: 1px solid var(--rule); }
-  .hero h1 { font-size: clamp(38px, 4.4vw, 52px); line-height: 1.08; max-width: 720px; }
-  .hero .lede { font-size: 18px; }
+  /* hero: padding and h1 size now come from site.css's shared .hero / .hero-wide scale */
 
   /* ================================================================
      BENEFITS, plan cards on the shared card recipe: var(--card) fill,
@@ -139,20 +137,12 @@
   }
 
   @media (max-width: 480px) {
-    .hero { padding: 56px 0 48px; }
     .plans { padding: 64px 0; }
     .compare-table-section { padding: 40px 0 56px; }
     .compare-closer { padding: 64px 0; }
   }
 
-  /* ================================================================
-     reveal-on-scroll
-     ================================================================ */
-  .reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .7s ease; }
-  .reveal.in { opacity: 1; transform: translateY(0); }
-  @media (prefers-reduced-motion: reduce) {
-    .reveal { opacity: 1; transform: none; transition: none; }
-  }
+  /* reveal-on-scroll: recipe and script now shared from site.css / site.js */
 </style>
 </head>
 <body>
@@ -185,8 +175,8 @@
 <main id="main">
 
 <!-- ==================== PAGE HEAD ==================== -->
-<section class="hero" aria-label="Compare overview">
-  <div class="container reveal">
+<section class="hero hero-wide" aria-label="Compare overview">
+  <div class="container">
     <span class="eyebrow">Compare</span>
     <h1>The connector and the web app, side by side.</h1>
     <p class="lede">Both read from the same client file, cited and correctable. What changes is where the file lives, who builds it, and where you ask.</p>
@@ -301,7 +291,7 @@
 
 <!-- ==================== CLOSER ==================== -->
 <section class="compare-closer" aria-label="Get started">
-  <div class="container">
+  <div class="container reveal">
     <span class="eyebrow">Get started</span>
     <h2>Move between them without starting over.</h2>
     <p class="lede">Every plan reads from the same knowledge base, and a seat can move from one to the other without rebuilding anything.</p>
@@ -375,27 +365,7 @@
     });
   })();
 
-  /* reveal-on-scroll */
-  (() => {
-    const items = document.querySelectorAll(".reveal");
-    if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      items.forEach(el => el.classList.add("in"));
-      return;
-    }
-    if (!("IntersectionObserver" in window)) {
-      items.forEach(el => el.classList.add("in"));
-      return;
-    }
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("in");
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    items.forEach(el => io.observe(el));
-  })();
+  /* reveal-on-scroll: handled by the shared site.js */
 </script>
 
 <div class="demo-modal" id="demoModal" role="dialog" aria-modal="true" aria-labelledby="demoModalTitle">

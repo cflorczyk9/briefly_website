@@ -144,11 +144,11 @@
     }
     </script>
     <link rel="stylesheet" href="/assets/site.css">
+    <script src="/assets/site.js"></script>
 <style>
-        /* hero: white ground, ink text, same recipe as the homepage hero */
-        .hero { padding: 92px 32px 88px; border-bottom: 1px solid var(--rule); }
+        /* hero: padding and h1 size now come from site.css's shared .hero / .hero-wide scale */
         .hero-inner { max-width: 900px; margin: 0 auto; }
-        .hero h1 { font-size: clamp(38px, 4.4vw, 52px); line-height: 1.08; max-width: 820px; margin-bottom: 22px; }
+        .hero h1 { max-width: 820px; margin-bottom: 22px; }
         .hero p { max-width: 720px; color: var(--ink-soft); font-size: 18px; }
         main { padding: 76px 32px; }
         .article { max-width: 720px; margin: 0 auto; }
@@ -167,12 +167,12 @@
         .page-meta .byline { font-weight: 600; color: var(--ink-muted); }
         .page-meta span:not(:first-child)::before { content: "\00b7\00A0"; }
 
-        /* Self-disclosure box: blue left border callout */
-        .disclosure { max-width: 720px; margin: 0 auto; padding: 20px 24px; background: var(--card); border: 1px solid var(--rule); border-left: 3px solid var(--blue); border-radius: var(--r-card); }
+        /* Self-disclosure box: shared .card, page keeps the blue left border */
+        .disclosure { max-width: 720px; margin: 0 auto; border-left: 3px solid var(--blue); }
         .disclosure p { color: var(--ink-soft); font-size: 15px; margin: 0; }
 
-        /* Table of contents */
-        .toc { max-width: 720px; margin: 20px auto 0; padding: 20px 24px; background: var(--card); border: 1px solid var(--rule); border-radius: var(--r-card); }
+        /* Table of contents: shared .card, page keeps the max-width and columns */
+        .toc { max-width: 720px; margin: 20px auto 0; }
         .toc-label { margin: 0 0 10px; font-size: 13px; font-weight: 600; color: var(--ink-muted); }
         .toc ol { margin: 0; padding: 0 0 0 20px; columns: 2; column-gap: 28px; }
         .toc li { margin-bottom: 8px; font-size: 15px; break-inside: avoid; }
@@ -219,17 +219,9 @@
         .concession { max-width: 720px; margin: 8px 0 0; padding: 18px 22px; border: 1px dashed var(--rule); border-radius: var(--r-card); background: var(--card); }
         .concession p { margin: 0; font-size: 15px; }
 
-        /* FAQ */
-        .faq { margin: 26px 0 10px; }
-        .faq-item { border-bottom: 1px solid var(--rule); padding: 22px 0; }
-        .faq-item summary { font-family: var(--display); font-weight: 600; cursor: pointer; color: var(--ink); font-size: 19px; letter-spacing: -0.01em; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
-        .faq-item summary::-webkit-details-marker { display: none; }
-        .faq-item summary::after { content: "+"; font-size: 20px; font-weight: 700; color: var(--blue-ink); flex-shrink: 0; line-height: 1; }
-        .faq-item[open] summary::after { content: "\2212"; }
-        .faq-item p { margin: 14px 0 0; color: var(--ink-muted); font-size: 15px; line-height: 1.65; max-width: 720px; }
+        /* FAQ: recipe now shared from site.css's .faq-list */
 
         @media (max-width: 880px) {
-          .hero { padding: 72px 20px 56px; }
           h1 { margin-bottom: 16px; }
           .hero p { font-size: 17px; }
           main { padding: 48px 20px; }
@@ -245,7 +237,6 @@
         }
 
         @media (max-width: 480px) {
-          .hero h1 { font-size: 30px; }
           .hero p { font-size: 16px; }
         }
     </style>
@@ -274,7 +265,7 @@
     </div>
   </div>
 </nav>
-<section class="hero">
+<section class="hero hero-wide">
     <div class="hero-inner">
         <span class="eyebrow">Claude for Financial Advisors</span>
         <h1>What Claude can do for financial advisors, and what it still can't see.</h1>
@@ -289,11 +280,12 @@
 <main id="main">
     <article class="article">
 
-        <div class="disclosure">
+        <div class="reveal">
+        <div class="card disclosure">
           <p>A disclosure before we get into it. Briefly is the local connector we built, so we're not a neutral party on this topic. Everything below is written to hold up whether or not you ever install it, and the comparison further down scores our own product the same way it scores everyone else's.</p>
         </div>
 
-        <nav class="toc" aria-label="On this page">
+        <nav class="card toc" aria-label="On this page">
           <p class="toc-label">On this page</p>
           <ol>
             <li><a href="#why-this-matters">Why this question keeps coming up</a></li>
@@ -308,6 +300,8 @@
           </ol>
         </nav>
 
+        </div>
+        <div class="reveal">
         <h2 id="why-this-matters">Why this question keeps coming up</h2>
         <p>Anthropic has been shipping finance-focused features on a fast clock, close to every ten weeks, and wealth firms keep getting pulled into the update cycle whether they asked for it or not. Here's a sourced version of that timeline.</p>
         <ul class="timeline-list">
@@ -330,6 +324,8 @@
         </ul>
         <p>None of these releases close the client-file gap on their own. They put Claude in front of institutions and large broker-dealer networks like LPL's rather than in front of a solo advisor's desktop, which is exactly why the access methods further down this page exist.</p>
 
+        </div>
+        <div class="reveal">
         <h2 id="what-claude-can-do">What Claude can already do for an advisor</h2>
         <p>Sign up for Claude and you get a capable general-purpose model with no advisor-specific features and no memory of your book of business. Inside that plain account, it's still useful for a lot of the writing and thinking work that fills an advisor's week.</p>
         <ul>
@@ -342,13 +338,19 @@
         </ul>
         <p>All of it works from what you type or paste into that one conversation. None of it involves Claude reaching out to your computer, your CRM, or your inbox unless you set that up separately.</p>
 
+        </div>
+        <div class="reveal">
         <h2 id="what-claude-cant-see">What Claude can't see, and why most comparisons skip it</h2>
         <p>Every new Claude conversation starts with nothing. No memory of a client from last week's chat, no access to the CRM record, no read on the plan you built in March. Claude only knows what you put in front of it, unless you've connected an outside source.</p>
         <p>Most articles that compare Claude to other AI tools stop at capability, what it can write, summarize, or calculate, and skip the harder question of what it can reach. That's the decision an advisor actually has to make. Not whether Claude is smart enough, but how, and whether, to let it near client records at all.</p>
 
+        </div>
+        <div class="reveal">
         <h2 id="claude-connectors">Claude connectors, in plain English</h2>
         <p>Claude can read from and act on other pieces of software through something called a connector, a small program that tells Claude how to talk to a particular system, whether that's Google Drive, a CRM, or a program running on your own computer. Most connectors, including the one Briefly runs, are built on the same open standard for how a model talks to outside tools and data. You don't need to understand that standard any more than you need to understand how the postal system routes mail to use your mailbox. What matters is where the other end of the connector lives, on a vendor's server somewhere, or on your own machine.</p>
 
+        </div>
+        <div class="reveal">
         <h2 id="comparison">Claude, with and without a local connector</h2>
         <p>Here's what that looks like in practice. ChatGPT and Claude as they ship, next to Claude with the Briefly connector added.</p>
         <div class="compare-wrap">
@@ -399,6 +401,8 @@
           <p>ChatGPT still wins in a few places worth naming honestly. It plugs into more outside tools today, its Code Interpreter is genuinely useful for one-off spreadsheet math, and most of your staff have already used it at home, so training time is close to zero. If those three things matter more to your firm than where client files end up, that's a reasonable call.</p>
         </div>
 
+        </div>
+        <div class="reveal">
         <h2 id="access-methods">How to give Claude access to client files securely</h2>
         <p>There are four common ways advisors connect Claude to something resembling client information, and they aren't equally safe. The list below is ranked from the least contained to the most.</p>
         <ol class="methods-list">
@@ -420,6 +424,8 @@
           </li>
         </ol>
 
+        </div>
+        <div class="reveal">
         <h2 id="practical-workflows">What Claude handles well once it can see your files</h2>
         <p>The five examples below show up every week once Claude can read a client's files instead of relying on whatever an advisor remembered to type in. Each one assumes a local connector like Briefly's, which reads whatever sits in the folder you point it at and cites the specific file behind every number, rather than a generic answer about what a typical client's situation looks like. Ask Claude for a client's current allocation and it can either guess from general knowledge of how portfolios tend to look, or read the actual statement in front of it and say which document the number came from. Everything below assumes the second version.</p>
 
@@ -440,6 +446,8 @@
 
         <p>The mechanism is the same in every example above. The connector hands Claude the actual file, and every answer points back to the line the number came from, instead of a fluent-sounding paragraph nobody can trace to anything.</p>
 
+        </div>
+        <div class="reveal">
         <h2 id="getting-started">Getting started</h2>
         <p>If you're picking this up for the first time, start simple and add access only as you need it.</p>
         <ol>
@@ -449,42 +457,46 @@
           <li>If a local connector is what you want, Briefly is one option, an AI knowledge base for financial advisors that runs inside Claude and reads from a folder on your computer. <a href="/download">See how it works</a> before deciding anything, or look at <a href="/sample-deliverables">sample deliverables</a> to see what a brief looks like before you install anything.</li>
         </ol>
 
+        </div>
+        <div class="reveal">
         <h2 id="faq">Frequently asked questions</h2>
-        <div class="faq">
-          <details class="faq-item">
+        <div class="faq-list">
+          <details>
             <summary>Can I use Claude for financial advisor work today?</summary>
             <p>Yes. Claude works like any general AI chat tool out of the box, drafting emails, summarizing documents you paste in, and explaining planning or tax concepts. It has no special financial advisor mode and no access to your client files unless you connect something yourself.</p>
           </details>
-          <details class="faq-item">
+          <details>
             <summary>What can Claude do without any extra setup?</summary>
             <p>Draft client communication, summarize a document you paste in, check math, explain a concept in plain language, and help write compliance-reviewed marketing copy. All of this works inside a plain Claude account. None of it involves Claude reading anything from your computer or your CRM on its own.</p>
           </details>
-          <details class="faq-item">
+          <details>
             <summary>Can Claude see my client files automatically?</summary>
             <p>No. Claude does not browse your computer, your CRM, or your email on its own. Anything it knows about a client came from what someone gave it, whether pasted into a chat, carried forward by its memory feature from an earlier chat, or read through an approved connector.</p>
           </details>
-          <details class="faq-item">
+          <details>
             <summary>What is a Claude connector?</summary>
             <p>A Claude connector is a small program that lets Claude read and act on a firm's own systems and files, whether that's a calendar, a CRM, or a program running on your own computer. You don't need to understand how it works under the hood. What matters is where the other end of the connector lives, a vendor's server or your own machine.</p>
           </details>
-          <details class="faq-item">
+          <details>
             <summary>Is it safe to paste client information directly into Claude?</summary>
             <p>It depends on your plan. On Claude for Work, Enterprise, and API accounts, Anthropic's commercial terms bar training on customer content. A personal account trains on conversations unless you opt out in settings, and safety-flagged chats can be used even then. There's also a recordkeeping question, since what you paste may count as business correspondence under your firm's own rules, which is worth confirming with your compliance officer.</p>
           </details>
-          <details class="faq-item">
+          <details>
             <summary>What's the difference between Claude's built-in connectors and a vendor's own connector?</summary>
             <p>Claude's built-in connectors, like Google Drive or Gmail, route through Anthropic's own infrastructure to reach an app you already use. A vendor's own connector works differently, and it often means the vendor has copied your data onto their servers so there's something for Claude to read.</p>
           </details>
-          <details class="faq-item">
+          <details>
             <summary>Does Claude remember a client from one conversation to the next?</summary>
             <p>Partly. Claude's memory is on by default now and carries context between conversations, so a client you discussed last week can come up again. That memory lives in one person's account though, where the firm can't review it, correct it, or cite it, and nobody else on the team inherits it. Briefly writes what gets learned about a client back to files your firm owns, so every advisor's next conversation starts from the same record, with citations.</p>
           </details>
-          <details class="faq-item">
+          <details>
             <summary>How is Briefly different from just using Claude on its own?</summary>
             <p>Briefly is an AI knowledge base for financial advisors that runs inside Claude as a local connector. It reads and writes files in a folder on your computer instead of a vendor's cloud, so Claude works from your actual client records and Briefly never holds a copy of them.</p>
           </details>
         </div>
 
+        </div>
+        <div class="reveal">
         <p style="font-size:14px; color:var(--ink-muted); margin-top:28px;">This page describes products and regulatory background for information only. It is not legal or compliance advice. Talk with your compliance officer or counsel about your firm's own obligations.</p>
 
         <div class="author-bio">
@@ -499,6 +511,7 @@
             <h2>Want Claude reading your actual client files?</h2>
             <p>Briefly is the local option in the ranking above. One download, pick a folder, sign in, and Claude can work from what's already in your files instead of what you remembered to paste in.</p>
             <a class="btn" href="/download">See how it works</a>
+        </div>
         </div>
     </article>
 </main>

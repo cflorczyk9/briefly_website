@@ -29,10 +29,11 @@
   gtag('config', 'G-92NXKY9W1S', { 'send_page_view': true });
 </script>
 <link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/site.js"></script>
 <style>
-  /* ---------- Hero (white band, matches index.html chrome) ---------- */
-  .dl-hero { background: var(--paper); color: var(--ink); padding: clamp(112px, 13vw, 150px) 28px clamp(92px, 11vw, 120px); position:relative; overflow:hidden; border-bottom: 1px solid var(--rule); }
-  .dl-hero-inner { position:relative; max-width: 960px; margin: 0 auto; }
+  /* ---------- Hero (white band, matches index.html chrome; padding and h1 size
+     now come from site.css's shared .hero / .hero-wide scale) ---------- */
+  .dl-hero { background: var(--paper); color: var(--ink); position:relative; overflow:hidden; }
   .dl-hero p { margin-top:16px; max-width:600px; font-size:18px; line-height:1.6; color: var(--ink-soft); }
   .dl-cta-row { margin-top:24px; display:flex; align-items:center; gap:22px; flex-wrap:wrap; }
   .dl-btn .arr { font-size:18px; line-height:1; }
@@ -43,7 +44,7 @@
   /* ---------- Main ---------- */
   main { padding: 76px 28px 96px; background: var(--paper); }
   .dl-wrap { max-width: 960px; margin: 0 auto; }
-  .dl-note { background: var(--card); border:1px solid var(--rule); border-radius:var(--r-card); padding: 24px 26px; font-size:15px; line-height:1.6; color:var(--ink-soft); }
+  .dl-note { font-size:15px; line-height:1.6; color:var(--ink-soft); }
   .dl-note::before { content:"Access"; display:block; font-family:var(--sans); font-size:13px; font-weight:600; color:var(--blue-ink); margin-bottom:10px; }
   .dl-note strong { color: var(--ink); }
   .dl-note a:not(.btn) { color: var(--blue-ink); font-weight:700; text-decoration:none; }
@@ -53,7 +54,7 @@
   .req { margin-top:30px; font-size:13px; font-weight:600; color: var(--ink-soft); }
 
   /* ---------- Web app vs. connector explainer ---------- */
-  .dl-explainer { margin-top:20px; background: var(--card); border:1px solid var(--rule); border-radius:var(--r-card); padding: 22px 26px; font-size:15px; line-height:1.6; color:var(--ink-soft); }
+  .dl-explainer { margin-top:20px; font-size:15px; line-height:1.6; color:var(--ink-soft); }
   .dl-explainer::before { content:"Before you install"; display:block; font-family:var(--sans); font-size:13px; font-weight:600; color:var(--blue-ink); margin-bottom:10px; }
   .dl-explainer strong { color: var(--ink); }
   .dl-note .dl-lead, .dl-explainer .dl-lead, .dl-explainer .dl-alt { margin:0; }
@@ -62,13 +63,8 @@
   .dl-explainer .dl-alt { margin-top:12px; }
   .walkthrough-hint { margin-top:14px; font-size:13px; font-weight:600; color: var(--ink-soft); }
 
-  /* ---------- FAQ accordion, styled like index.html ---------- */
+  /* ---------- FAQ accordion: recipe now shared from site.css's .faq-list ---------- */
   .dl-faq { margin-top:88px; }
-  .faq-list { margin-top:28px; max-width: 780px; }
-  .faq-item { border-top: 1px solid var(--rule); padding: 16px 4px; }
-  .faq-item:last-child { border-bottom: 1px solid var(--rule); }
-  .faq-item summary { font-family: var(--display); font-size: 17px; font-weight: 600; letter-spacing: -0.01em; cursor: pointer; padding: 4px 0; }
-  .faq-item .faq-a { margin-top: 10px; max-width: 700px; font-size: 15px; line-height: 1.65; color: var(--ink-soft); }
   /* ---------- Pinned step player (lock to screen + advance) ---------- */
   .setup-pin { position:relative; height:520vh; margin-top:6px; }
   .setup-pin-inner { position:sticky; top:0; height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; overflow:hidden; }
@@ -104,7 +100,6 @@
   }
 
   @media (max-width:760px) {
-    .dl-hero { padding: 86px 18px 64px; }
     main { padding: 56px 18px 72px; }
     .dl-cta-row { gap:16px; }
   }
@@ -126,7 +121,7 @@
 
   /* ---------- Walkthrough scenes (v4: screenshot-fidelity pass, persistent app shells) ---------- */
 
-/* walkthrough v4a — scenes 1-2
+/* walkthrough v4a, scenes 1-2
    Rebuild of the Briefly download-page walkthrough, scenes 1 ("Get Claude")
    and 2 ("Download Briefly"). Namespace: root class "bwv4a-scene", ids
    bwv4a-scene-1 / bwv4a-scene-2. Every class and keyframe below is prefixed
@@ -135,7 +130,7 @@
    This file is self-contained for scenes 1 and 2: it includes the shared
    window-chrome / button / cursor / download-tray base classes those two
    scenes depend on, renamed into the bwv4a- namespace. It does NOT include
-   the generic card/modal/toast/check classes scene 3 uses — those are out
+   the generic card/modal/toast/check classes scene 3 uses. Those are out
    of scope for this pass.
    ========================================================================== */
 
@@ -350,7 +345,7 @@
 .bwv4a-scene .bwv4a-dlbubble-status { position: absolute; left: 0; top: 0; white-space: nowrap; font-size: var(--fs-xs); color: var(--bwv4a-text-faint); }
 
 /* ==========================================================================
-   Scene 1 — "Get Claude"  (14s loop)
+   Scene 1, "Get Claude" (14s loop)
 
    0.00s (0%)      browser page holds, cursor resting near "Download for macOS"
    1.80s (12.86%)  idle hold ends
@@ -578,7 +573,7 @@
 }
 
 /* ==========================================================================
-   Scene 2 — "Download Briefly"  (13s loop, matches screenshots 2.png/1.png)
+   Scene 2, "Download Briefly" (13s loop, matches screenshots 2.png/1.png)
 
    0.00s (0%)      Briefly's own hero holds, cursor resting on "Download Briefly"
    1.60s (12.3%)   idle hold ends
@@ -751,7 +746,7 @@
 }
 
 /* ============================================================================
-   FREEZE STATES — prefers-reduced-motion and small/mobile viewports both get
+   FREEZE STATES. Reduced motion and small/mobile viewports both get
    the loop frozen on its single most informative composed beat. Every element
    whose base/animated state is opacity:0 at that beat gets an explicit
    opacity:1 (or 0, if it should stay hidden) companion here. Nothing is left
@@ -790,7 +785,7 @@
 }
 
 /* ==========================================================================
-   walkthrough v4b — scene 3 ("Claude installs it")
+   walkthrough v4b, scene 3 ("Claude installs it")
 
    Rebuild of the download-page walkthrough scene 3, namespaced bwv4b- so it
    coexists safely next to any older (or other) scene system already on the
@@ -1264,7 +1259,7 @@
 }
 
 /* ============================================================================
-   walkthrough v4c — scenes 4-5
+   walkthrough v4c, scenes 4-5
 
    Namespace: root class .bwv4c-scene, ids #bwv4c-scene-4 / #bwv4c-scene-5.
    Every class + keyframe below is prefixed bwv4c-. Self-contained fragment,
@@ -1489,13 +1484,13 @@
 .bwv4c-btn--primary { background: var(--bwv4c-white); color: #171410; }
 
 /* ============================================================================
-   SHARED SHELL — the persistent Claude Desktop window: sidebar + main
+   SHARED SHELL. The persistent Claude Desktop window: sidebar + main
    (header strip / stage / composer). Used, verbatim, by both scenes; only
    per-scene .bwv4c-s4-* / .bwv4c-s5-* rules attach animations + positions.
    ============================================================================ */
 .bwv4c-shell { position: absolute; inset: 0; display: flex; background: var(--bwv4c-bg); }
 
-/* -- sidebar (the best-drawn moment on the page — kept, made legible) -- */
+/* -- sidebar (the best-drawn moment on the page, kept, made legible) -- */
 .bwv4c-sidebar {
   width: 24.5%; height: 100%; flex-shrink: 0;
   background: #1c1a17; border-right: 1px solid var(--bwv4c-panel-edge);
@@ -1569,7 +1564,7 @@
 }
 
 /* ============================================================================
-   SHARED FINDER CHROME — used by scene 5's full-size Finder.
+   SHARED FINDER CHROME, used by scene 5's full-size Finder.
    Structure faithfully mirrors screenshot (g): traffic lights,
    toolbar, Favorites sidebar, Name / Date Modified / Size / Kind columns,
    disclosure triangles, nested children. All identity is genericized
@@ -1649,18 +1644,18 @@
 .bwv4c-preview-line--short { width: 55%; }
 
 /* ============================================================================
-   SCENE 4 — "Sign in once"   14s loop.
+   SCENE 4, "Sign in once" 14s loop.
 
    Persistent shell present for the ENTIRE loop. .bwv4c-stage cross-fades
    between the home greeting and the chat/connect conversation; the
    composer bar (row1 text only) cross-fades between "typing the question"
-   and "idle, ready for the next message" — it never disappears.
+   and "idle, ready for the next message". It never disappears.
 
    Beat timeline (of the 14s loop):
      0%-12%     HOME idle. Composer shows placeholder "How can I help you today?"
      12%-13%    placeholder fades
      13%-26%    typewriter types "What do we have on file for the Johnsons?"
-                (finishes at 26%, well before any crossfade — fixes the v3b bug
+                (finishes at 26%, well before any crossfade, fixes the v3b bug
                 where the fade began at 25.5% while typing finished at 27%)
      26%-30%    HOLD on the fully-typed question sitting in the composer
      30%-32%    crossfade: home -> chat stage; composer's typed text fades out
@@ -1720,16 +1715,16 @@
 
 /* ----------------------------------------------------------------------------
    SCENE 4 click-target table (left%/top% are absolute, relative to the whole
-   .bwv4c-scene box — the cursor's positioning context):
+   .bwv4c-scene box, the cursor's positioning context):
 
      target element                          left%   top%
      ------------------------------------------------------
      (the connect chip is informational only:
       the browser sign-in page launches on its
-      own, no click — matching the real flow)
+      own, no click, matching the real flow)
      "Sign in" button, inside the auth card    50%     72%
        (card is centered left:50% top:52%,
-       button sits near the card's bottom) —
+       button sits near the card's bottom),
        measured against a rendered screenshot
      cursor idle/hidden (opacity:0 elsewhere)  23%     24%   (parked over empty
                                                              chat padding, never
@@ -1818,9 +1813,9 @@
 }
 
 /* ============================================================================
-   SCENE 5 — "File, then brief"   18s loop.
+   SCENE 5, "File, then brief" 18s loop.
 
-   Beat A (0%-27%): a standalone, full Finder window (screenshot g) — traffic
+   Beat A (0%-27%): a standalone, full Finder window (screenshot g), traffic
    lights, toolbar, Favorites sidebar, Name/Date Modified/Size/Kind columns,
    disclosure triangles, Briefly expanded with wiki > MAP.md nested, plus
    operating / originals / intake / sources. Two PDFs fly in and land in intake.
@@ -1828,7 +1823,7 @@
    Beat A -> shell transition (27%-32%): the Finder window shrinks/fades; the
    persistent Claude shell (sidebar + composer) fades in; a small docked
    "mini" Finder appears in the shell's header strip for the rest of the loop
-   (never fully gone — this is the freeze-state's secondary element).
+   (never fully gone, this is the freeze-state's secondary element).
 
    Beat B, filing chat (32%-58%), inside the shell's .bwv4c-stage:
      "File everything in my intake folder." types in -> tool chip -> four
@@ -2112,7 +2107,7 @@
 }
 
 /* ============================================================================
-   FREEZE STATES — reduced motion OR narrow viewport. Every element whose
+   FREEZE STATES, reduced motion OR narrow viewport. Every element whose
    base state is opacity:0 gets an explicit companion rule. Nothing is left
    invisible or mid-fade; each scene freezes on its most informative
    composed beat.
@@ -2120,7 +2115,7 @@
 @media (prefers-reduced-motion: reduce), (max-width: 860px) {
   .bwv4c-scene * { animation: none !important; transition: none !important; }
 
-  /* Scene 4 — frozen at the auth sign-in card over the shell, connect chip
+  /* Scene 4, frozen at the auth sign-in card over the shell, connect chip
      visible (not yet the connected checkmark) */
   #bwv4c-scene-4 .bwv4c-s4-fade { opacity: 1 !important; }
   #bwv4c-scene-4 .bwv4c-s4-homeview { opacity: 0 !important; }
@@ -2138,7 +2133,7 @@
   #bwv4c-scene-4 .bwv4c-s4-cursor { opacity: 1 !important; left: 50% !important; top: 72% !important; }
   #bwv4c-scene-4 .bwv4c-s4-cursor .bwv4c-cursor-ring { opacity: 0 !important; }
 
-  /* Scene 5 — frozen on the brief card, fully written, inside the shell.
+  /* Scene 5, frozen on the brief card, fully written, inside the shell.
      Finder beat A and the citation preview panel are hidden (fully, not
      mid-fade). */
   #bwv4c-scene-5 .bwv4c-s5-fade { opacity: 1 !important; }
@@ -2274,8 +2269,8 @@
   </div>
 </nav>
 
-<section class="dl-hero">
-  <div class="dl-hero-inner">
+<section class="dl-hero hero hero-wide">
+  <div class="dl-hero-inner container">
     <div id="signupCompleteNote" role="status" hidden style="margin:0 0 26px; padding:14px 18px; background:var(--blue-soft); border:1px solid var(--rule); border-radius:var(--r-control); font-size:15px; line-height:1.55; color:var(--ink);">
       <strong>Payment method saved.</strong> Your sign-in and download link are on their way to your email. You can also install below whenever you're ready.
     </div>
@@ -2291,7 +2286,7 @@
 
 <main id="main">
   <div class="dl-wrap">
-    <div class="dl-note">
+    <div class="dl-note card">
       <p class="dl-lead"><strong>Using Briefly starts with a login we set up for you.</strong></p>
       <ul class="dl-list">
         <li>Download first, then book a demo so we set up your firm's sign-in.</li>
@@ -2300,7 +2295,7 @@
       <a class="btn" href="#" onclick="openDemoModal();return false;">Request access</a>
     </div>
 
-    <div class="dl-explainer">
+    <div class="dl-explainer card">
       <p class="dl-lead"><strong>Not sure what you&rsquo;re about to open?</strong> This page installs the Briefly connector, which adds Briefly to Claude Desktop.</p>
       <ul class="dl-list">
         <li>One download, pick a folder on your computer, sign in, and you&rsquo;re set up.</li>
@@ -2309,7 +2304,7 @@
       <p class="dl-alt">If your firm would rather work from a browser with no install, Briefly also has a web app with its own sign-in.</p>
     </div>
 
-    <h2 class="steps-head">Five minutes, start to finish.</h2>
+    <h2 class="steps-head reveal">Five minutes, start to finish.</h2>
     <p class="walkthrough-hint">Five steps. Use the dots to jump ahead.</p>
     <div class="setup-pin" id="setupPin">
       <div class="setup-pin-inner">
@@ -2322,7 +2317,7 @@
         </div>
         <div class="setup-stack">
           <article class="setup-panel active">
-            <div class="p-head">
+            <div class="p-head reveal">
               <span class="s-num">Step 01</span>
               <h3>Get Claude</h3>
               <p class="cap">Free from <a href="https://claude.ai/download" target="_blank" rel="noopener">claude.ai</a>. Skip this step if you already have it.</p>
@@ -2398,7 +2393,7 @@
             <p class="sr-only">Illustration: downloading Claude Desktop from claude.ai and dragging it into Applications.</p>
           </article>
           <article class="setup-panel">
-            <div class="p-head">
+            <div class="p-head reveal">
               <span class="s-num">Step 02</span>
               <h3>Download Briefly</h3>
               <p class="cap">One click here, then open it from your browser&rsquo;s downloads.<span class="side">Shown in Chrome. In Safari, downloads live under the arrow next to the address bar.</span></p>
@@ -2472,7 +2467,7 @@
             <p class="sr-only">Illustration: clicking Download Briefly on this site and opening the downloaded file.</p>
           </article>
           <article class="setup-panel">
-            <div class="p-head">
+            <div class="p-head reveal">
               <span class="s-num">Step 03</span>
               <h3>Claude installs it</h3>
               <p class="cap">Click <b>Install</b>, then <b>Save</b>. Nothing to type.<span class="side">The settings screen is optional. Save and move on. The red Anthropic notice is standard for extensions installed outside its directory.</span></p>
@@ -2648,7 +2643,7 @@
             <p class="sr-only">Illustration: Claude Desktop installing the Briefly extension and confirming it meets its requirements.</p>
           </article>
           <article class="setup-panel">
-            <div class="p-head">
+            <div class="p-head reveal">
               <span class="s-num">Step 04</span>
               <h3>Sign in once</h3>
               <p class="cap">Your login is the whole setup.<span class="side">Use the login we set up for your firm, and Briefly knows you and your firm.</span></p>
@@ -2766,7 +2761,7 @@
             <p class="sr-only">Illustration: signing in to Briefly from inside a Claude chat.</p>
           </article>
           <article class="setup-panel">
-            <div class="p-head">
+            <div class="p-head reveal">
               <span class="s-num">Step 05</span>
               <h3>File, then brief</h3>
               <p class="cap">Save statements into <b>intake</b>, then ask.<span class="side">&ldquo;File everything in my intake folder.&rdquo; Then, &ldquo;Prepare a meeting brief.&rdquo;</span></p>
@@ -2996,41 +2991,41 @@
     <div class="setup-trust"><b>With the Briefly connector, your original files stay on your machine.</b> Briefly saves them in your folder, builds every brief locally, and never uploads your files. The finished brief is written by your own Claude, so its content follows your Claude plan and privacy settings. The web app works differently, since its files live in Briefly&rsquo;s hosted environment. <a href="/security">How we handle data</a></div>
     <p class="req">Works in Claude Desktop on macOS and Windows</p>
 
-    <section class="dl-faq" aria-labelledby="dl-faq-head">
+    <section class="dl-faq reveal" aria-labelledby="dl-faq-head">
       <h2 class="steps-head" id="dl-faq-head">Questions before you install.</h2>
       <div class="faq-list">
-        <details class="faq-item">
+        <details>
           <summary>Do I need Claude to use Briefly?</summary>
-          <p class="faq-a">Yes. Briefly is a connector you add to Claude Desktop. You need the free Claude Desktop app installed first, then Briefly plugs into it. If you already use Claude for chat or writing, it&rsquo;s the same app, and Briefly reads your client files from inside it.</p>
+          <p>Yes. Briefly is a connector you add to Claude Desktop. You need the free Claude Desktop app installed first, then Briefly plugs into it. If you already use Claude for chat or writing, it&rsquo;s the same app, and Briefly reads your client files from inside it.</p>
         </details>
-        <details class="faq-item">
+        <details>
           <summary>Will my Mac warn me when I open the download?</summary>
-          <p class="faq-a">It might. The connector isn&rsquo;t yet signed with an Apple developer certificate, so macOS may show an unidentified developer notice the first time you open the file. Right-click the file, choose Open, and confirm once. Claude Desktop then shows its own notice that the extension isn&rsquo;t verified by Anthropic, which is normal for any third-party connector. Neither notice means the file reached our servers. It installs locally either way.</p>
+          <p>It might. The connector isn&rsquo;t yet signed with an Apple developer certificate, so macOS may show an unidentified developer notice the first time you open the file. Right-click the file, choose Open, and confirm once. Claude Desktop then shows its own notice that the extension isn&rsquo;t verified by Anthropic, which is normal for any third-party connector. Neither notice means the file reached our servers. It installs locally either way.</p>
         </details>
-        <details class="faq-item">
+        <details>
           <summary>Where do my client files live?</summary>
-          <p class="faq-a">With the Briefly connector, client files live on your computer, in a folder you pick during setup. Briefly reads and writes files there directly, and nothing gets uploaded to a Briefly database or cloud storage account. The browser web app works differently. Its files live in Briefly&rsquo;s hosted environment instead.</p>
+          <p>With the Briefly connector, client files live on your computer, in a folder you pick during setup. Briefly reads and writes files there directly, and nothing gets uploaded to a Briefly database or cloud storage account. The browser web app works differently. Its files live in Briefly&rsquo;s hosted environment instead.</p>
         </details>
-        <details class="faq-item">
+        <details>
           <summary>Is this a web app?</summary>
-          <p class="faq-a">Briefly comes in two forms, and this page installs the Claude connector, where your team runs Briefly inside Claude reading folders on your own machines. With the web app, we connect your Salesforce and Outlook and build the client file for you, so there&rsquo;s nothing for your IT to install.</p>
+          <p>Briefly comes in two forms, and this page installs the Claude connector, where your team runs Briefly inside Claude reading folders on your own machines. With the web app, we connect your Salesforce and Outlook and build the client file for you, so there&rsquo;s nothing for your IT to install.</p>
         </details>
-        <details class="faq-item">
+        <details>
           <summary>What does Briefly&rsquo;s server see?</summary>
-          <p class="faq-a">With the Claude connector, our server sees your sign-in, a check that your seat is active, a de-identified layer of preference rules your firm builds over time, never tied to a client name, and a short usage record for each tool call. Client files never reach our servers. The web app differs, since its files live on our side instead.</p>
+          <p>With the Claude connector, our server sees your sign-in, a check that your seat is active, a de-identified layer of preference rules your firm builds over time, never tied to a client name, and a short usage record for each tool call. Client files never reach our servers. The web app differs, since its files live on our side instead.</p>
         </details>
-        <details class="faq-item">
+        <details>
           <summary>Does Briefly work on Windows and Mac?</summary>
-          <p class="faq-a">Yes, both. The same download and the same install steps work on macOS and Windows, so there&rsquo;s nothing OS-specific to pick before you start. Claude Desktop also has a Linux beta on Ubuntu and Debian, though we haven&rsquo;t certified Briefly there yet.</p>
+          <p>Yes, both. The same download and the same install steps work on macOS and Windows, so there&rsquo;s nothing OS-specific to pick before you start. Claude Desktop also has a Linux beta on Ubuntu and Debian, though we haven&rsquo;t certified Briefly there yet.</p>
         </details>
-        <details class="faq-item">
+        <details>
           <summary>How long does setup take?</summary>
-          <p class="faq-a">About five minutes if you already have Claude Desktop installed. Download Briefly, open the file, click Install in Claude, sign in, and point it at a folder on your computer. That&rsquo;s the whole process, a handful of clicks with no IT ticket and no server setup required.</p>
+          <p>About five minutes if you already have Claude Desktop installed. Download Briefly, open the file, click Install in Claude, sign in, and point it at a folder on your computer. That&rsquo;s the whole process, a handful of clicks with no IT ticket and no server setup required.</p>
         </details>
       </div>
     </section>
 
-    <section class="closer">
+    <section class="closer reveal">
       <h2>Ready when you are.</h2>
       <a class="btn dl-btn" id="dlRepeat" href="briefly-mcp.mcpb" download="briefly_wealth.mcpb">Download Briefly <span class="arr" aria-hidden="true">&darr;</span></a>
     </section>

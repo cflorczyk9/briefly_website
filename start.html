@@ -62,6 +62,7 @@
      mode "request" (no card, lead capture only). -->
 
 <link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/site.js"></script>
 <style>
   /* ---------- connector / web app switch, inside the checkout column ---------- */
   .start-toggle {
@@ -478,7 +479,7 @@
 // Both tabs share this wiring. The connector runs mode "stripe" (real checkout
 // against the billing API). The web app runs mode "request": same page, same
 // seat picker, but the button files an access request through Formspree and no
-// card is taken — the founder sets the firm up and invoices manually. Flip the
+// card is taken, and the founder sets the firm up and invoices manually. Flip the
 // web app to mode "stripe" only once the webapp plan exists server-side.
 var LEAD_FORM_URL = 'https://formspree.io/f/mjgygdyd'; // same inbox as the demo modal
 

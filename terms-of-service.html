@@ -31,17 +31,20 @@
 
 
 <link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/site.js"></script>
 <style>
   /* ================================================================
      LEGAL PAGE
      ================================================================ */
   main.legal {
-    padding: 80px 28px 96px;
+    padding: 0 28px 96px;
   }
   .legal-inner {
     max-width: 720px;
     margin: 0 auto;
   }
+  /* .legal-head carries hero hero-wide in the markup; site.css supplies its
+     padding, border, and h1 scale. Only the eyebrow and meta line stay local. */
   .legal-head .eyebrow {
     font-size: 13px;
     font-weight: 600;
@@ -55,16 +58,6 @@
     font-size: 13px;
     font-weight: 500;
     color: var(--ink-muted);
-  }
-  .legal-head {
-    border-bottom: 1px solid var(--rule);
-    padding-bottom: 0;
-    margin-bottom: 0;
-  }
-  .legal-head::after {
-    content: "";
-    display: block;
-    margin-top: 32px;
   }
 
   .legal-body {
@@ -178,12 +171,11 @@
 <style id="mobile-redux-terms">
   /* mobile-redux: long-form legal pages (privacy/terms/subprocessors) */
   @media (max-width: 820px) {
-    /* tighten page padding so body text has full width */
-    main.legal { padding: 40px 18px 64px; }
+    /* tighten page padding so body text has full width; top padding now
+       comes from the shared .hero scale on .legal-head, not this rule */
+    main.legal { padding: 0 18px 64px; }
     .legal-inner { max-width: 100%; }
 
-    /* hero typography */
-    .legal-head { padding-bottom: 24px; }
     .legal-head .meta { margin-top: 12px; }
 
     /* body rhythm */
@@ -238,12 +230,9 @@
       word-break: break-word;
     }
 
-    /* quick-take callout */
-    .legal-body .quick-take { padding: 16px 18px; margin-bottom: 28px; }
-    .legal-body .quick-take p { font-size: 15px; line-height: 1.55; }
   }
   @media (max-width: 480px) {
-    main.legal { padding: 32px 16px 56px; }
+    main.legal { padding: 0 16px 56px; }
     .legal-body p { font-size: 16px; }
   }
 </style>
@@ -302,20 +291,20 @@
 <main class="legal" id="main">
   <div class="legal-inner">
 
-    <header class="legal-head">
+    <header class="legal-head hero hero-wide">
       <div class="eyebrow">Legal · Terms of service</div>
       <h1>Terms of Service</h1>
       <div class="meta">Last updated August 3, 2026</div>
     </header>
 
-    <article class="legal-body">
+    <article class="legal-body reveal">
 
-      <section>
+      <section class="reveal">
         <p>These Terms of Service ("Terms") govern your access to and use of the Briefly platform provided by Briefly Wealth LLC ("Brieflywealth," "we," "us," or "our"), offered through two surfaces: a hosted, browser-based application (the "Web App") and a connector you install locally to use Briefly inside Anthropic's Claude application (the "Connector"), together the "Service." "Web App Customer" means a Customer using the Web App, and "Connector Customer" means a Customer using the Connector; a Customer may be both. By accessing or using the Service, you agree to be bound by these Terms. If you do not agree, do not use the Service.</p>
         <p>If you are using the Service on behalf of an organization, you represent and warrant that you have the authority to bind that organization to these Terms, and "you" refers to both you individually and the organization.</p>
       </section>
 
-      <section>
+      <section class="reveal">
         <div class="section-eyebrow">§ 01</div>
         <h2>Description of the Service</h2>
         <h3>Web App</h3>
@@ -325,13 +314,13 @@
         <p>The Service, in both forms, is intended as a productivity tool. Outputs are generated automatically and are not a substitute for professional judgment, financial advice, legal counsel, or compliance review. You are solely responsible for reviewing all Outputs and determining their accuracy and appropriateness before relying on them in any professional capacity.</p>
       </section>
 
-      <section>
+      <section class="reveal">
         <div class="section-eyebrow">§ 02</div>
         <h2>Eligibility and Account Registration</h2>
         <p>You must be at least 18 years of age and capable of forming a binding contract to use the Service. When creating an account, you agree to provide accurate and complete information, keep your credentials confidential, and promptly notify us of any unauthorized access or use of your account. You are responsible for all activity that occurs under your account.</p>
       </section>
 
-      <section>
+      <section class="reveal">
         <div class="section-eyebrow">§ 03</div>
         <h2>Acceptable Use</h2>
         <p>You agree to use the Service only for lawful purposes and in accordance with these Terms. You shall not:</p>
@@ -348,7 +337,7 @@
         </ul>
       </section>
 
-      <section>
+      <section class="reveal">
         <div class="section-eyebrow">§ 04</div>
         <h2>Client Data and Your Responsibilities</h2>
         <p>You retain all rights in and to your Client Data. The license you grant Brieflywealth in your Client Data, and what Brieflywealth actually receives, differs by surface.</p>
@@ -366,7 +355,7 @@
         <p><strong>AI sub-processor and no-training commitment (Web App).</strong> We route Web App Client Data only to AI sub-processors that contractually prohibit use of inputs and outputs for training general-purpose models. As of the date above, our sole AI sub-processor for the Web App is Anthropic, PBC, operating under its Commercial Terms (§ B.1). A current list of AI sub-processors, including the scope of each by surface, is maintained at <a href="/subprocessors">brieflywealth.com/subprocessors</a> and updated at least thirty (30) days before any material change. Anthropic is not a Brieflywealth sub-processor with respect to Connector Customers' Client Data; when a Connector Customer uses Claude, that processing occurs under the Connector Customer's own Anthropic plan. </p>
       </section>
 
-      <section>
+      <section class="reveal">
         <div class="section-eyebrow">§ 05</div>
         <h2>Outputs and Disclaimer</h2>
         <p>This Section applies to Outputs regardless of whether they are generated through the Web App or the Connector. Outputs are produced through automated artificial intelligence processing and are provided on an "as is" basis. While we strive for accuracy, Outputs may contain errors, omissions, or inaccuracies. You acknowledge that:</p>
@@ -382,14 +371,14 @@
         <p><strong>Customer-side algorithmic risk (Colorado AI Act).</strong> For the Web App, Brieflywealth is a developer of an AI system that may, when deployed by Customer, function as a high-risk system under Colo. Rev. Stat. § 6-1-1701 et seq. Brieflywealth will provide Customer, on request and no less than annually, (i) a statement of intended uses and known limitations, (ii) a summary of data types used in training and fine-tuning the system's components, and (iii) information reasonably necessary for Customer to complete an impact assessment. Customer is the "deployer" for purposes of the Act and is responsible for risk management, consumer notice, and impact assessment obligations applicable to deployers. </p>
       </section>
 
-      <section>
+      <section class="reveal">
         <div class="section-eyebrow">§ 06</div>
         <h2>Fees and Payment</h2>
         <p>Access to certain features of the Service may require payment of fees. All fees are described on our website or in a separate order form or subscription agreement. Unless otherwise stated, fees are quoted in U.S. dollars, are non-refundable, and are due in accordance with the billing terms specified at the time of purchase.</p>
         <p><strong>Fee changes and renewals.</strong> Briefly shall provide Customer not less than sixty (60) days' prior written notice of any fee increase, which shall take effect at the start of the next Renewal Term following such notice. Customer may terminate effective at the end of the then-current term by written notice within thirty (30) days of Briefly's price-change notice. For California subscribers, Briefly shall provide all notices, consents, and reminders required by Cal. Bus. &amp; Prof. Code § 17600 et seq. (the Automatic Renewal Law), including the annual renewal reminder and the means to cancel by the same method used to subscribe.</p>
       </section>
 
-      <section>
+      <section class="reveal">
         <div class="section-eyebrow">§ 07</div>
         <h2>Intellectual Property</h2>
         <p><strong>Briefly platform and pre-existing IP.</strong> Briefly retains all rights, title, and interest in and to the Service, including the software, models, prompts, workflow architecture, and any improvements thereto. Nothing in these Terms transfers ownership of the Service to Customer.</p>
@@ -398,7 +387,7 @@
         <p><strong>Feedback.</strong> If you provide Briefly with suggestions, ideas, or other feedback about the Service, you grant Briefly a non-exclusive, perpetual, irrevocable, worldwide, royalty-free, transferable, sub-licensable license to use that feedback for any purpose without restriction or compensation. Feedback does not include Client Data, and nothing in this paragraph grants Briefly any rights in Client Data.</p>
       </section>
 
-      <section>
+      <section class="reveal">
         <div class="section-eyebrow">§ 08</div>
         <h2>Confidentiality and Data Protection</h2>
         <p>We understand the sensitive nature of financial client data and the regulatory obligations that govern it. For the Web App, we treat all Client Data as confidential information and maintain safeguards consistent with the requirements of 15 U.S.C. § 6801(b) of the Gramm-Leach-Bliley Act, including administrative, technical, and physical measures designed to protect against unauthorized access to or use of such information. Brieflywealth does not receive Connector Customers' Client Data and therefore has no Client Data of Connector Customers to disclose, safeguard, or hold under this Section; Brieflywealth's confidentiality obligations to Connector Customers are limited to the account-layer data described in the Privacy Policy.</p>
@@ -408,7 +397,7 @@
         <p><strong>Service-provider oversight.</strong> Customer shall have the right, no more than once annually and on reasonable notice, to review Briefly's written information security program documentation, sub-processor list, and incident response plan. Briefly shall complete Customer's standard vendor due-diligence questionnaire upon request.</p>
       </section>
 
-      <section>
+      <section class="reveal">
         <div class="section-eyebrow">§ 09</div>
         <h2>Security Standards</h2>
         <p>Our information security program is informed by industry-recognized frameworks, including the SOC 2 Trust Services Criteria (security, availability, processing integrity, confidentiality, and privacy). Formal certification is on our enterprise roadmap, not yet in audit. In the interim, we apply commercially reasonable safeguards aligned with SOC 2 principles and evaluate our critical service providers based on their own security certifications and practices. Available artifacts include our written information security program documentation, sub-processor list, and incident response plan.</p>
@@ -416,7 +405,7 @@
         <p><strong>Incident notification.</strong> Briefly shall notify Customer in writing of any actual or reasonably suspected Security Incident involving Customer Data or Client Data no later than seventy-two (72) hours after discovery, and shall provide all information reasonably necessary for Customer to satisfy its obligations under SEC Regulation S-P (17 CFR § 248.30) and the FTC Safeguards Rule (16 CFR § 314.4(j)). Briefly will also comply with applicable state breach notification laws, including but not limited to 815 ILCS 530/10 and Cal. Civ. Code § 1798.82.</p>
       </section>
 
-      <section>
+      <section class="reveal">
         <div class="section-eyebrow">§ 10</div>
         <h2>Term and Termination</h2>
         <p>These Terms are effective from the date you first access or use the Service and continue until terminated. You may terminate your account at any time by contacting us or using the account management features within the Service.</p>
@@ -424,13 +413,13 @@
         <p><strong>Books-and-records support (Web App).</strong> Briefly shall make Web App Client Data and Outputs available for export in a machine-readable, archivable format (CSV, JSON, or PDF) throughout the term and for not less than ninety (90) days post-termination, and shall reasonably cooperate with Customer's obligations under 17 CFR § 275.204-2 (Investment Advisers Act Books and Records Rule). This commitment applies to the Web App only. Because Briefly does not hold Connector Customers' Client Data, Customer remains solely responsible for its own books-and-records retention of Client Data used through the Connector. </p>
       </section>
 
-      <section>
+      <section class="reveal">
         <div class="section-eyebrow">§ 11</div>
         <h2>Disclaimer of Warranties</h2>
         <p class="caps">THE SERVICE IS PROVIDED "AS IS" AND "AS AVAILABLE," WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, ACCURACY, AND NON-INFRINGEMENT. WE DO NOT WARRANT THAT THE SERVICE WILL BE UNINTERRUPTED, ERROR-FREE, OR COMPLETELY SECURE, OR THAT ANY OUTPUTS WILL BE ACCURATE, COMPLETE, OR RELIABLE. WE DO NOT WARRANT THAT THE SERVICE WILL SATISFY ANY SPECIFIC REGULATORY OR COMPLIANCE REQUIREMENTS APPLICABLE TO YOUR PRACTICE.</p>
       </section>
 
-      <section>
+      <section class="reveal">
         <div class="section-eyebrow">§ 12</div>
         <h2>Limitation of Liability</h2>
         <p>Subject to the carve-outs below, each party's aggregate liability arising out of or related to these Terms shall not exceed the greater of (a) the fees paid or payable by Customer in the twelve (12) months preceding the event giving rise to the claim or (b) fifty thousand dollars ($50,000).</p>
@@ -439,7 +428,7 @@
         <p>In no event shall either party be liable for indirect, incidental, consequential, special, punitive, or exemplary damages, including lost profits, lost data, or business interruption, even if advised of the possibility of such damages.</p>
       </section>
 
-      <section>
+      <section class="reveal">
         <div class="section-eyebrow">§ 13</div>
         <h2>Indemnification</h2>
         <p><strong>By Customer.</strong> Customer shall defend, indemnify, and hold harmless Briefly from any third-party claim arising out of (a) Customer Data or Client Data, including any claim that Customer lacked the rights or consents necessary to provide such data through either surface of the Service, (b) Customer's use of Outputs in violation of these Terms or applicable law, or (c) Customer's breach of these Terms.</p>
@@ -447,26 +436,26 @@
         <p><strong>Procedure.</strong> The indemnified party shall promptly notify the indemnifying party of any claim, give the indemnifying party sole control of the defense and settlement (provided that no settlement shall require the indemnified party to admit liability or pay any sum without its prior written consent), and reasonably cooperate at the indemnifying party's expense.</p>
       </section>
 
-      <section>
+      <section class="reveal">
         <div class="section-eyebrow">§ 14</div>
         <h2>Modifications to the Service and Terms</h2>
         <p>We reserve the right to modify, suspend, or discontinue the Service, or any part thereof, at any time with or without notice.</p>
         <p><strong>Modifications to these Terms.</strong> Briefly will provide at least thirty (30) days' advance notice of any material change to these Terms by email to Customer's administrative contact and by posting the updated Terms with a new "Last updated" date. If Customer objects in writing within that period, the prior Terms shall continue to apply through the end of the then-current Subscription Term, after which Customer may terminate without further obligation.</p>
       </section>
 
-      <section>
+      <section class="reveal">
         <div class="section-eyebrow">§ 15</div>
         <h2>Governing Law and Dispute Resolution</h2>
         <p>These Terms shall be governed by and construed in accordance with the laws of the State of Illinois, without regard to its conflict of law principles. Any dispute arising out of or relating to these Terms or the Service shall be resolved exclusively in the state or federal courts located in Cook County, Illinois, and you consent to the personal jurisdiction of such courts.</p>
       </section>
 
-      <section>
+      <section class="reveal">
         <div class="section-eyebrow">§ 16</div>
         <h2>General Provisions</h2>
         <p>These Terms, together with the <a href="/privacy-policy">Privacy Policy</a> and any other agreements referenced herein, constitute the entire agreement between you and Brieflywealth regarding the Service. If any provision of these Terms is found to be unenforceable, the remaining provisions will continue in full force and effect. Our failure to enforce any right or provision of these Terms shall not constitute a waiver of that right or provision. You may not assign or transfer your rights under these Terms without our prior written consent. We may assign our rights and obligations under these Terms without restriction.</p>
       </section>
 
-      <section>
+      <section class="reveal">
         <div class="section-eyebrow">§ 17</div>
         <h2>Contact Us</h2>
         <p>If you have any questions about these Terms, please contact us at:</p>

@@ -31,12 +31,11 @@
       gtag('config', 'G-92NXKY9W1S', { 'send_page_view': true });
     </script>
     <link rel="stylesheet" href="/assets/site.css">
+    <script src="/assets/site.js"></script>
 <style>
-        /* hero */
-        .hero { padding: 92px 0 88px; border-bottom: 1px solid var(--rule); }
+        /* hero: padding and h1 size now come from site.css's shared .hero / .hero-wide scale */
+        /* two-column hero (text beside the query mockup), so plain .hero not .hero-wide */
         .hero-inner { display: grid; grid-template-columns: 1fr 340px; gap: 48px; align-items: center; }
-        .hero h1 { font-size: clamp(38px, 4.4vw, 52px); line-height: 1.08; }
-        .hero .lede { font-size: 18px; }
         .byline { font-size: 13px; font-weight: 500; color: var(--ink-muted); margin: 4px 0 18px; }
 
         /* brief-card: the cross-client answer card, a product mockup styled on the .win recipe */
@@ -55,14 +54,14 @@
         .article ul { margin: 14px 0 26px 22px; color: var(--ink-soft); }
         .article li { margin-bottom: 10px; font-size: 17px; }
 
+        /* diagram cards and the closing cta: card look now comes from site.css's shared .card recipe */
         .diagram { margin: 42px 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-        .diagram-card { background: var(--card); border: 1px solid var(--rule); border-radius: var(--r-card); padding: 20px; }
         .diagram-card strong { display: block; font-family: var(--display); font-weight: 600; font-size: 17px; color: var(--ink); margin-bottom: 8px; }
         .diagram-card span { color: var(--ink-soft); font-size: 15px; }
 
         .quote { margin: 38px 0; padding: 26px 28px; border-left: 3px solid var(--blue); background: var(--paper-2); color: var(--ink); font-size: 21px; font-family: var(--display); font-weight: 600; border-radius: var(--r-card); }
 
-        .cta { margin-top: 56px; padding: 30px; border-radius: var(--r-card); background: var(--card); border: 1px solid var(--rule); }
+        .cta { margin-top: 56px; }
         .cta h2 { margin-top: 0; font-size: 30px; }
         .cta p { color: var(--ink-soft); }
         .cta a { margin-top: 8px; margin-right: 10px; }
@@ -79,7 +78,6 @@
         }
         @media (max-width: 480px) {
           .article { padding: 0 18px; }
-          .hero { padding: 56px 0 48px; }
           main { padding: 48px 0; }
           .quote { font-size: 18px; padding: 20px; }
           .cta { padding: 22px; }
@@ -156,17 +154,17 @@
     <article class="article">
         <p>Wealth firms already have plenty of data. Client facts live across CRM records, emails, meeting notes, custodial statements, financial plans, and spreadsheets, plus whatever an advisor happens to remember, and none of those systems share a model of the relationship.</p>
         <p>A knowledge base gives the firm that model. It connects people, households, entities, accounts, goals, concerns, events, tasks, and source citations, so every workflow starts from the same understanding of the client. Ask a question about one household or about every household in the book, and the answer comes from the same place.</p>
-        <div class="diagram">
-            <div class="diagram-card"><strong>Sources</strong><span>Emails, notes, meetings, PDFs, CRM records, portfolio data, and planning documents.</span></div>
-            <div class="diagram-card"><strong>Knowledge Base</strong><span>Resolved people, households, entities, relationships, tasks, goals, and evidence.</span></div>
-            <div class="diagram-card"><strong>Where It Shows Up</strong><span>Inside Claude, through the connector, or in the Briefly web app if we set it up for you.</span></div>
+        <div class="diagram reveal">
+            <div class="card diagram-card"><strong>Sources</strong><span>Emails, notes, meetings, PDFs, CRM records, portfolio data, and planning documents.</span></div>
+            <div class="card diagram-card"><strong>Knowledge Base</strong><span>Resolved people, households, entities, relationships, tasks, goals, and evidence.</span></div>
+            <div class="card diagram-card"><strong>Where It Shows Up</strong><span>Inside Claude, through the connector, or in the Briefly web app if we set it up for you.</span></div>
         </div>
         <h2>Ask across your whole book, not one client file.</h2>
         <p>Most tools answer a question about whatever client file happens to be open. Briefly checks every household in your book for the same question, then answers it the way it would answer about one client, with a name, a number, and the document behind it.</p>
-        <div class="diagram">
-            <div class="diagram-card"><strong>The question</strong><span>Which clients hold a concentrated position above $500K? One question, checked against every household in the book, not just the one open on screen.</span></div>
-            <div class="diagram-card"><strong>The answer</strong><span>Rivera holds $684,300 in employer stock, 31% of the account. Okafor holds $558,900 in a single legacy position, 24%. Lindqvist holds $511,000 in concentrated equity, 22%.</span></div>
-            <div class="diagram-card"><strong>Where it comes from</strong><span>Each figure links back to the document it came from. Rivera's Q2 statement, filed July 8. Okafor's Q2 statement, filed July 2. Lindqvist's Q1 statement, filed April 14.</span></div>
+        <div class="diagram reveal">
+            <div class="card diagram-card"><strong>The question</strong><span>Which clients hold a concentrated position above $500K? One question, checked against every household in the book, not just the one open on screen.</span></div>
+            <div class="card diagram-card"><strong>The answer</strong><span>Rivera holds $684,300 in employer stock, 31% of the account. Okafor holds $558,900 in a single legacy position, 24%. Lindqvist holds $511,000 in concentrated equity, 22%.</span></div>
+            <div class="card diagram-card"><strong>Where it comes from</strong><span>Each figure links back to the document it came from. Rivera's Q2 statement, filed July 8. Okafor's Q2 statement, filed July 2. Lindqvist's Q1 statement, filed April 14.</span></div>
         </div>
         <p>The same pattern holds for any cross-client question, whether it's about concentrated positions, upcoming distributions, or clients who mentioned selling a business. Briefly reads the statements, transcripts, and notes already filed for each household and answers from what's actually there, with the file it read linked under every claim.</p>
         <p>This works because every document lands in a household's own record first, then gets checked across the whole book whenever a question calls for it. Filing an email into the Rivera file doesn't just help the next Rivera question. It also becomes one of the records checked the next time someone asks about concentrated positions, upcoming distributions, or anything else that spans the book. A CRM field or a folder of PDFs can't do this on its own, because nothing connects the file you're looking at to the dozens of others you'd need to check by hand.</p>
@@ -183,7 +181,7 @@
         <p>Search helps when you already know what to look for. A knowledge base helps when you need the system to surface what matters before you ask.</p>
         <p>A CRM also only knows what someone typed into it. It doesn't read the email you forwarded, the PDF you saved to a folder, or the transcript from last week's call, not unless someone copies the details in by hand. Briefly reads those files directly, so the knowledge base grows every time a document gets filed, not every time someone remembers to update a record.</p>
         <p>Neither one learns from being corrected. If an advisor tells a CRM once that a client goes by a nickname, or that the firm calls it a planning conversation and never a sales meeting, someone has to remember to make the same fix again the next time it comes up. Briefly keeps a correction like that as a standing rule instead. One firm did exactly this with a single phrase, telling Briefly to say planning conversation instead of sales meeting, and every brief that firm has received since has followed it, for every advisor on the team.</p>
-        <div class="quote">Your brain does not have enough RAM for this job.</div>
+        <div class="quote reveal">Your brain does not have enough RAM for this job.</div>
         <h2>What a knowledge base should include.</h2>
         <p>The concentrated-position example above pulled from one category, portfolio positions. A full client file covers more ground than that.</p>
         <ul>
@@ -202,14 +200,14 @@
         <p>Each new document, an email forwarded from a client, a statement uploaded after it arrives, a note typed up after a call, gets filed into the household it belongs to and read into the knowledge base right away. Nothing has to be reformatted or copied into a separate system first. The file just gets bigger and more accurate, and the next question about that household, or about the whole book, draws on it.</p>
         <p>Briefly <a class="textlink" href="/compare">runs two ways</a>, inside Claude with the connector or as a web app Briefly sets up for you. Either way it's the same knowledge base underneath, built from the same files, with the same citations on every answer.</p>
         <p>The result is one base of firm memory. It gets better every time an advisor uses it, and it keeps working long after any single meeting ends.</p>
-        <div class="author-bio">
+        <div class="author-bio reveal">
           <img src="images/connor_florczyk.png" width="60" height="60" decoding="async" alt="Connor Florczyk, founder of Briefly">
           <div>
             <h3>Connor Florczyk</h3>
             <p>Founder of Briefly. Before Briefly, he worked as a private wealth analyst on a top-performing team at Morgan Stanley, where he saw firsthand how much advisor time gets lost hunting for a client's own files.</p>
           </div>
         </div>
-        <div class="cta">
+        <div class="card cta reveal">
             <h2>See it answer a question on your own files.</h2>
             <p>Start the connector and ask it something real about your book. Every answer comes back with the file it was pulled from, so you can check it before you use it with a client.</p>
             <a class="btn" href="/start">Start now</a>

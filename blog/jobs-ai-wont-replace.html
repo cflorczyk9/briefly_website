@@ -36,17 +36,14 @@
     </script>
 
     <link rel="stylesheet" href="/assets/site.css">
+    <script src="/assets/site.js"></script>
 <style>
         /* page-only extras: none. Tokens, reset, nav, buttons, and .container all come from site.css. */
 
         /* ================================================================
-           POST HEADER
+           POST HEADER: padding and h1 size now come from the shared
+           .hero / .hero-wide scale. The category label is the shared .pill.
            ================================================================ */
-        .post-header {
-            padding: 110px 32px 64px;
-            border-bottom: 1px solid var(--rule);
-            background: var(--paper);
-        }
         .post-header-inner {
             max-width: 720px;
             margin: 0 auto;
@@ -61,17 +58,9 @@
         }
         .post-back:hover { color: var(--blue); }
         .post-tag {
-            display: inline-block;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--blue-ink);
-            background: var(--blue-soft);
-            border-radius: 999px;
-            padding: 4px 12px;
             margin-bottom: 16px;
         }
         .post-title {
-            font-size: clamp(30px, 4.6vw, 52px);
             margin: 0 0 20px;
         }
         .post-meta {
@@ -125,7 +114,6 @@
            RESPONSIVE
            ================================================================ */
         @media (max-width: 880px) {
-            .post-header { padding: 52px 20px 40px; }
             .post-section { padding: 40px 20px 72px; }
             .post-content p, .post-content li { font-size: 16px; }
         }
@@ -190,10 +178,10 @@
 
 <main id="main">
 <!-- POST HEADER -->
-<section class="post-header">
+<section class="hero hero-wide">
     <div class="post-header-inner">
         <a class="post-back" href="/blog">&larr; Back to blog</a>
-        <p class="post-tag">AI and technology</p>
+        <p class="pill post-tag">AI and technology</p>
         <h1 class="post-title">The Jobs AI Won't Replace</h1>
         <p class="post-meta">By Connor Florczyk &middot; December 17, 2025 &middot; 2 min read</p>
     </div>
@@ -224,7 +212,7 @@
 
         <p class="post-meta" style="margin-top:40px;">Briefly builds cited client files from documents your firm already has. <a class="textlink" href="/sample-deliverables">See a sample brief.</a></p>
 
-        <div class="post-cta">
+        <div class="post-cta reveal">
             <a class="btn" href="/blog">Back to all posts</a>
         </div>
     </div>

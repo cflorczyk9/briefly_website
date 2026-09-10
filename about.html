@@ -34,11 +34,10 @@
 </script>
 
 <link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/site.js"></script>
 <style>
-  /* mission hero (this page's hero) */
-  .mission-hero { padding: 92px 0 88px; border-bottom: 1px solid var(--rule); }
-  .mission-hero h1 { font-size: clamp(40px, 4.6vw, 58px); line-height: 1.08; }
-  .mission-hero .lede { font-size: 18px; }
+  /* mission hero: padding and h1 size now come from site.css's shared
+     .hero / .hero-wide scale */
 
   /* founder bio */
   .founder-inner { display: grid; grid-template-columns: 220px 1fr; gap: 56px; align-items: start; }
@@ -54,14 +53,10 @@
   .founder-content p { margin-bottom: 18px; font-size: 17px; color: var(--ink-soft); }
   .founder-content p:last-child { margin-bottom: 0; }
 
-  /* why now / our values: card grid */
+  /* why now / our values: card grid (card look now shared from site.css) */
   .section-head { margin-bottom: 56px; }
   .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-  .info-card {
-    background: var(--card); border: 1px solid var(--rule); border-radius: var(--r-card); padding: 26px;
-  }
-  .info-card h3 { font-weight: 600; font-size: 20px; margin-bottom: 12px; }
-  .info-card p { font-size: 15px; color: var(--ink-soft); }
+  .cards-grid .card p { font-size: 15px; color: var(--ink-soft); }
 
   /* closer */
   .closer .eyebrow { color: var(--cream-soft); }
@@ -149,7 +144,7 @@
 <main id="main">
 
 <!-- ==================== MISSION HERO ==================== -->
-<section class="mission-hero">
+<section class="mission-hero hero hero-wide">
   <div class="container">
     <div class="eyebrow">Our mission</div>
     <h1>We exist to give advisors their time back.</h1>
@@ -159,7 +154,7 @@
 
 <!-- ==================== FOUNDER BIO ==================== -->
 <section class="pad band-paper2">
-  <div class="container founder-inner">
+  <div class="container founder-inner reveal">
     <div class="founder-photo">
       <img src="images/connor_florczyk.png" width="440" height="440" decoding="async" alt="Connor Florczyk, founder of Briefly">
     </div>
@@ -176,21 +171,21 @@
 
 <!-- ==================== WHY NOW ==================== -->
 <section class="pad band-white">
-  <div class="container">
+  <div class="container reveal">
     <div class="section-head">
       <div class="eyebrow">The moment</div>
       <h2>Why now?</h2>
     </div>
     <div class="cards-grid">
-      <div class="info-card">
+      <div class="card">
         <h3>Generational wealth transfer</h3>
         <p>Roughly $84T is set to move across generations by 2045. Advisors need systems that preserve personalization at scale.</p>
       </div>
-      <div class="info-card">
+      <div class="card">
         <h3>AI built for financial data</h3>
         <p>AI can finally read complex statements and filings accurately, and trace every figure back to the source it came from.</p>
       </div>
-      <div class="info-card">
+      <div class="card">
         <h3>RIAs are scaling faster than ever</h3>
         <p>As a book grows, the files pile up faster than any one advisor can track from memory.</p>
       </div>
@@ -200,21 +195,21 @@
 
 <!-- ==================== OUR VALUES ==================== -->
 <section class="pad band-paper2">
-  <div class="container">
+  <div class="container reveal">
     <div class="section-head">
       <div class="eyebrow">What we believe</div>
       <h2>Our values</h2>
     </div>
     <div class="cards-grid">
-      <div class="info-card">
+      <div class="card">
         <h3>Nothing unverified</h3>
         <p>Every claim carries its source. Open the document and check it yourself.</p>
       </div>
-      <div class="info-card">
+      <div class="card">
         <h3>The advisor approves</h3>
         <p>Briefly drafts and prepares the work, but never sends anything. Nothing reaches a client until you've reviewed and approved it.</p>
       </div>
-      <div class="info-card">
+      <div class="card">
         <h3>One client file instead of twelve tabs</h3>
         <p>Notes, emails, statements, meeting notes, and CRM data become one source-backed file, and Claude can read it and cite exactly where each answer comes from, no matter what the advisor asks that day.</p>
       </div>
@@ -224,7 +219,7 @@
 
 <!-- ==================== CLOSER ==================== -->
 <section class="closer">
-  <div class="container">
+  <div class="container reveal">
     <div class="eyebrow">Get started</div>
     <h2>See what Briefly does for your team.</h2>
     <p class="lede">Source-backed client files, built from the records you already have.</p>
