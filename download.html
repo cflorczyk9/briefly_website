@@ -30,171 +30,66 @@
 </script>
 <link rel="stylesheet" href="/assets/site.css">
 <style>
-  :root {
-    --paper: #FBFAF6;          /* warm white ground */
-    --paper-2: #F2EDE1;        /* second warm tone, for band alternation */
-    --card: #FFFFFF;
-    --ink: #16324F;            /* deep navy, all display type */
-    --ink-soft: #46627D;
-    --ink-muted: #5B6C80;   /* AA: 4.6+ on every light surface it labels */
-    --rule: #E6E1D5;           /* warm hairline */
-    --blue: #2F8CFF;           /* fills, icons, pins, chip fills. 3.32 on white: never small text */
-    --blue-ink: #1D4ED8;       /* 6.70 on white: small text, links, focus rings */
-    --blue-soft: #E9F2FF;      /* light chip background on paper grounds */
-    --cyan: #8cd8ff;           /* dark navy sections only */
-    --navy-band: #10263D;      /* closer + footer + custody */
-    --cream: #F4F1E9;
-    --cream-soft: #B9C4CF;
-    --serif: Charter, "Iowan Old Style", "Source Serif Pro", Georgia, serif;
-    --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
-    --mono: "SFMono-Regular", Menlo, Consolas, monospace;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { font-family: var(--sans); background: var(--paper); color: var(--ink); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing:antialiased; }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-  .container { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
-
-  /* ---------- nav (homepage system, §4) ---------- */
-  nav[aria-label="Primary"] { border-bottom: 1px solid var(--rule); background: var(--paper); position: relative; }
-  .nav-bar { min-height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 10px; padding-bottom: 10px; }
-  .brand { position: relative; display: inline-flex; align-items: center; padding-right: 14px; text-decoration: none; }
-  .brand-word {
-    font-family: var(--sans); font-weight: 900; font-size: 21px; line-height: .78;
-    letter-spacing: -.075em; text-transform: uppercase; color: var(--ink);
-    transform: scaleY(.88); transform-origin: left center;
-  }
-  .brand-pin {
-    position: absolute; top: 3px; right: 0; width: 6px; height: 6px; border-radius: 50%;
-    background: var(--blue); box-shadow: 0 0 0 2px rgba(47,140,255,.10);
-  }
-  .nav-right { display: flex; align-items: center; gap: 22px; }
-  .nav-panel { display: flex; align-items: center; gap: 26px; }
-  .nav-links { display: flex; gap: 24px; }
-  .nav-links a { font-size: 13px; font-weight: 600; color: var(--ink-soft); text-decoration: none; white-space: nowrap; }
-  .nav-links a:hover { color: var(--ink); }
-  .nav-actions { display: flex; align-items: center; gap: 16px; }
-  .nav-signin { font-size: 13px; font-weight: 600; color: var(--ink-soft); text-decoration: none; white-space: nowrap; }
-  .nav-signin:hover { color: var(--ink); }
-  .nav-bar .btn { padding: 9px 18px; font-size: 13px; white-space: nowrap; }
-  .nav-toggle {
-    display: none; width: 40px; height: 40px; flex-shrink: 0;
-    border: 1px solid var(--rule); border-radius: 6px; background: var(--card); cursor: pointer;
-    flex-direction: column; align-items: center; justify-content: center; gap: 4px;
-  }
-  .nav-toggle span { display: block; width: 18px; height: 2px; background: var(--ink); }
-  .nav-links a:focus-visible, .nav-signin:focus-visible, .btn:focus-visible, .nav-toggle:focus-visible, .hc-dot:focus-visible, .textlink:focus-visible {
-    outline: 2px solid var(--blue-ink); outline-offset: 2px;
-  }
-
-  @media (max-width: 860px) {
-    .nav-toggle { display: inline-flex; }
-    .nav-panel {
-      display: none;
-      position: absolute; top: 100%; left: 0; right: 0;
-      flex-direction: column; align-items: stretch; gap: 0;
-      background: var(--paper); border-bottom: 1px solid var(--rule);
-      padding: 6px 28px 20px; z-index: 40;
-    }
-    .nav-panel.open { display: flex; }
-    .nav-links { flex-direction: column; gap: 0; }
-    .nav-links a { padding: 12px 0; border-top: 1px solid var(--rule); }
-    .nav-actions { flex-direction: column; align-items: stretch; gap: 10px; margin-top: 6px; }
-    .nav-signin { padding: 8px 0; }
-    .nav-actions .btn.ghost { width: 100%; text-align: center; }
-  }
-
-  /* ---------- button system (§6) ---------- */
-  .btn {
-    display: inline-block; font-size: 14px; font-weight: 600; padding: 13px 26px;
-    border-radius: 4px; background: var(--ink); color: #fff; text-decoration: none;
-    border: 1px solid var(--ink); cursor: pointer;
-  }
-  .btn.ghost { background: transparent; color: var(--ink); }
-  .textlink { font-size: 14.5px; font-weight: 600; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
-
-  /* ---------- Hero (navy band, §8) ---------- */
-  .dl-hero { background: var(--navy-band); color: var(--cream); padding: clamp(112px, 13vw, 150px) 28px clamp(92px, 11vw, 120px); position:relative; overflow:hidden; }
-  .dl-hero::after { content:""; position:absolute; inset:0; background: radial-gradient(ellipse 900px 500px at 12% 0%, rgba(47,140,255,.10), transparent 60%); pointer-events:none; }
+  /* ---------- Hero (white band, matches index.html chrome) ---------- */
+  .dl-hero { background: var(--paper); color: var(--ink); padding: clamp(112px, 13vw, 150px) 28px clamp(92px, 11vw, 120px); position:relative; overflow:hidden; border-bottom: 1px solid var(--rule); }
   .dl-hero-inner { position:relative; max-width: 960px; margin: 0 auto; }
-  .dl-hero h1 { font-family: var(--serif); font-weight:400; font-size: clamp(40px, 4.6vw, 58px); line-height:1.08; letter-spacing:0; }
-  .dl-hero p { margin-top:16px; max-width:600px; font-size:18px; line-height:1.6; color: var(--cream-soft); }
+  .dl-hero p { margin-top:16px; max-width:600px; font-size:18px; line-height:1.6; color: var(--ink-soft); }
   .dl-cta-row { margin-top:24px; display:flex; align-items:center; gap:22px; flex-wrap:wrap; }
-  .dl-btn { display:inline-flex; align-items:center; gap:11px; background: var(--cream); color: var(--navy-band); font-family: var(--sans); font-size:14px; font-weight:600; letter-spacing:0; text-decoration:none; padding:13px 26px; border:1px solid var(--cream); border-radius:4px; transition: background .15s, color .15s; }
-  .dl-btn:hover { background:transparent; color: var(--cream); }
   .dl-btn .arr { font-size:18px; line-height:1; }
-  .dl-meta { font-family: var(--mono); font-size:12px; line-height:1.55; color: var(--cream-soft); }
-  .dl-eula { margin-top:14px; font-family: var(--mono); font-size:12px; line-height:1.55; color: var(--cream-soft); }
-  .dl-eula a { color: var(--cream); text-decoration:underline; }
-  .dl-eula a:hover { color: var(--cream); }
+  .dl-meta { font-size:15px; line-height:1.55; color: var(--ink-soft); }
+  .dl-eula { margin-top:14px; font-size:15px; line-height:1.55; color: var(--ink-soft); }
+  .dl-eula a { color: var(--blue-ink); text-decoration:underline; }
 
   /* ---------- Main ---------- */
   main { padding: 76px 28px 96px; background: var(--paper); }
   .dl-wrap { max-width: 960px; margin: 0 auto; }
-  .dl-note { background: var(--cream); border:1px solid var(--rule); border-radius:10px; box-shadow: 0 1px 2px rgba(22,50,79,.05), 0 14px 34px rgba(22,50,79,.08); padding: 24px 26px; font-size:15px; line-height:1.6; color:var(--ink-soft); }
-  .dl-note::before { content:"Access"; display:block; font-family:var(--mono); font-size:11px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:var(--blue-ink); margin-bottom:10px; }
+  .dl-note { background: var(--card); border:1px solid var(--rule); border-radius:var(--r-card); padding: 24px 26px; font-size:15px; line-height:1.6; color:var(--ink-soft); }
+  .dl-note::before { content:"Access"; display:block; font-family:var(--sans); font-size:13px; font-weight:600; color:var(--blue-ink); margin-bottom:10px; }
   .dl-note strong { color: var(--ink); }
-  .dl-note a { color: var(--blue-ink); font-weight:700; text-decoration:none; }
-  .dl-note a:hover { text-decoration:underline; }
-  .steps-head { margin-top:88px; font-family: var(--serif); font-weight:400; font-size: clamp(26px,3.4vw,40px); line-height:1.08; letter-spacing:0; color: var(--ink); }
-  .step { border:1px solid var(--rule); border-radius:10px; box-shadow: 0 1px 2px rgba(22,50,79,.05), 0 14px 34px rgba(22,50,79,.08); background: var(--card); padding: 24px 24px 26px; }
-  .step .sn { font-family: var(--mono); font-size:12px; font-weight:800; letter-spacing:.1em; color: var(--blue-ink); }
-  .step h3 { margin-top:10px; font-family: var(--serif); font-weight:400; font-size:21px; letter-spacing:0; color: var(--ink); }
-  .step p { margin-top:9px; font-size:14.5px; line-height:1.62; color:var(--ink-soft); }
-  .step p b { color: var(--ink); font-weight: 700; }
-  .step code { font-family: var(--mono); font-size:12.5px; background: rgba(22,50,79,.06); border:1px solid var(--rule); border-radius:4px; padding:1px 5px; color: var(--ink); }
-  .req { margin-top:30px; font-family: var(--mono); font-size:12px; color: var(--ink-muted); letter-spacing:.02em; }
-
-  /* ---------- Intuitiveness fixes ---------- */
-  .dl-meta a { color: var(--cream); font-weight:800; text-decoration:underline; }
-  .dl-note a.dl-note-btn { display:block; width:fit-content; margin-top:14px; background: var(--ink); color: var(--paper); font-family: var(--mono); font-size:12px; font-weight:800; letter-spacing:.05em; text-transform:uppercase; padding:10px 16px; border-radius:6px; text-decoration:none; }
-  .dl-note a.dl-note-btn:hover { background: var(--blue); color:#fff; }
+  .dl-note a:not(.btn) { color: var(--blue-ink); font-weight:700; text-decoration:none; }
+  .dl-note a:not(.btn):hover { text-decoration:underline; }
+  .dl-note .btn { margin-top: 14px; }
+  .steps-head { margin-top:88px; }
+  .req { margin-top:30px; font-size:13px; font-weight:600; color: var(--ink-soft); }
 
   /* ---------- Web app vs. connector explainer ---------- */
-  .dl-explainer { margin-top:20px; background: var(--card); border:1px solid var(--rule); border-radius:10px; box-shadow: 0 1px 2px rgba(22,50,79,.05), 0 14px 34px rgba(22,50,79,.08); padding: 22px 26px; font-size:15px; line-height:1.6; color:var(--ink-soft); }
-  .dl-explainer::before { content:"Before you install"; display:block; font-family:var(--mono); font-size:11px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:var(--blue-ink); margin-bottom:10px; }
+  .dl-explainer { margin-top:20px; background: var(--card); border:1px solid var(--rule); border-radius:var(--r-card); padding: 22px 26px; font-size:15px; line-height:1.6; color:var(--ink-soft); }
+  .dl-explainer::before { content:"Before you install"; display:block; font-family:var(--sans); font-size:13px; font-weight:600; color:var(--blue-ink); margin-bottom:10px; }
   .dl-explainer strong { color: var(--ink); }
   .dl-note .dl-lead, .dl-explainer .dl-lead, .dl-explainer .dl-alt { margin:0; }
   .dl-note .dl-list, .dl-explainer .dl-list { margin-top:10px; padding-left:20px; }
   .dl-note .dl-list li, .dl-explainer .dl-list li { margin-top:6px; }
   .dl-explainer .dl-alt { margin-top:12px; }
-  .walkthrough-hint { margin-top:14px; font-family: var(--mono); font-size:12px; color: var(--ink-muted); letter-spacing:.02em; }
+  .walkthrough-hint { margin-top:14px; font-size:13px; font-weight:600; color: var(--ink-soft); }
 
-  /* ---------- FAQ accordion (§3 summary pattern) ---------- */
+  /* ---------- FAQ accordion, styled like index.html ---------- */
   .dl-faq { margin-top:88px; }
-  .faq-list { margin-top:28px; display:flex; flex-direction:column; }
-  .faq-item { background:transparent; border-bottom:1px solid var(--rule); padding:22px 0; }
-  .faq-item summary { cursor:pointer; list-style:none; padding:0; font-family:var(--serif); font-weight:400; font-size:19px; letter-spacing:0; color:var(--ink); display:flex; align-items:baseline; justify-content:space-between; gap:18px; }
-  .faq-item summary::-webkit-details-marker { display:none; }
-  .faq-item summary::after { content:"+"; font-family:var(--mono); font-size:20px; font-weight:800; color:var(--blue-ink); flex-shrink:0; transition:transform .15s; }
-  .faq-item[open] summary::after { transform:rotate(45deg); }
-  .faq-item summary:hover { color:var(--blue); }
-  .faq-item summary:focus-visible { outline:2px solid var(--blue); outline-offset:-2px; }
-  .faq-item .faq-a { padding:14px 0 0; max-width:720px; font-size:15px; line-height:1.65; color:var(--ink-soft); }
-  .dl-repeat-cta { margin-top:88px; background: var(--navy-band); border-radius:14px; padding: 48px 28px; text-align:center; }
-  .dl-repeat-cta p { font-family: var(--serif); font-weight:400; font-size: clamp(24px, 3vw, 32px); letter-spacing:0; color: var(--cream); margin:0 0 22px; }
+  .faq-list { margin-top:28px; max-width: 780px; }
+  .faq-item { border-top: 1px solid var(--rule); padding: 16px 4px; }
+  .faq-item:last-child { border-bottom: 1px solid var(--rule); }
+  .faq-item summary { font-family: var(--display); font-size: 17px; font-weight: 600; letter-spacing: -0.01em; cursor: pointer; padding: 4px 0; }
+  .faq-item .faq-a { margin-top: 10px; max-width: 700px; font-size: 15px; line-height: 1.65; color: var(--ink-soft); }
   /* ---------- Pinned step player (lock to screen + advance) ---------- */
   .setup-pin { position:relative; height:520vh; margin-top:6px; }
   .setup-pin-inner { position:sticky; top:0; height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; overflow:hidden; }
   .setup-dots { position:absolute; top:90px; left:50%; transform:translateX(-50%); display:flex; gap:9px; z-index:4; }
-  .setup-dots button { width:30px; height:6px; border-radius:3px; border:0; padding:0; background:rgba(15,23,42,.16); cursor:pointer; transition:background .3s, width .3s; }
+  .setup-dots button { width:30px; height:6px; border-radius:999px; border:0; padding:0; background:rgba(15,23,42,.16); cursor:pointer; transition:background .3s, width .3s; }
   .setup-dots button:hover { background:rgba(15,23,42,.34); }
   .setup-dots button.on { background:var(--blue); width:50px; }
   .setup-stack { position:relative; width:100%; max-width:1100px; height:100%; }
   .setup-panel { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:22px; padding:92px 24px 36px; opacity:0; transform:translateY(18px); pointer-events:none; transition:opacity .5s ease, transform .5s cubic-bezier(.2,.8,.3,1); }
   .setup-panel.active { opacity:1; transform:none; pointer-events:auto; }
   .p-head { text-align:center; max-width:680px; }
-  .p-head .s-num { display:block; font-family:var(--mono); font-size:13px; font-weight:800; letter-spacing:.16em; color:var(--blue-ink); }
-  .p-head h3 { margin-top:9px; font-family:var(--serif); font-weight:400; font-size:clamp(27px,3.6vw,42px); line-height:1.04; letter-spacing:0; color:var(--ink); }
+  .p-head .s-num { display:block; font-family:var(--sans); font-size:13px; font-weight:600; color:var(--blue-ink); }
+  .p-head h3 { margin-top:9px; font-family:var(--display); font-weight:600; font-size:clamp(27px,3.6vw,42px); line-height:1.04; letter-spacing:-0.02em; color:var(--ink); }
   .p-head .cap { margin-top:11px; font-size:16px; line-height:1.5; color:var(--ink-soft); }
   .p-head .cap b { color:var(--ink); font-weight:700; }
   .p-head .cap a { color:var(--ink); font-weight:600; text-decoration:underline; text-underline-offset:3px; }
   .p-head .cap .side { display:block; margin-top:7px; font-size:13.5px; color:var(--ink-muted); }
-  .p-head .cap code { font-family:var(--mono); font-size:13px; background:rgba(22,50,79,.06); border:1px solid var(--rule); border-radius:4px; padding:2px 6px; color:var(--ink); white-space:nowrap; }
-  .setup-frame { height:54vh; aspect-ratio:16/9; max-width:92vw; border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,.07); background:#1a1a19; box-shadow:0 26px 72px -34px rgba(15,23,42,.6); flex-shrink:0; }
-  .setup-trust { margin-top:22px; background:var(--navy-band); color:var(--cream-soft); border-radius:10px; box-shadow: 0 1px 2px rgba(22,50,79,.05), 0 14px 34px rgba(22,50,79,.08); padding:22px 26px; font-size:14.5px; line-height:1.6; }
-  .setup-trust b { color:var(--cream); }
-  .setup-trust a { color:var(--cream); font-weight:700; text-decoration:underline; }
+  .setup-frame { height:54vh; aspect-ratio:16/9; max-width:92vw; border-radius:var(--r-panel); overflow:hidden; border:1px solid rgba(255,255,255,.07); background:#1a1a19; box-shadow:var(--shadow-float); flex-shrink:0; }
+  .setup-trust { margin-top:22px; background:var(--paper-2); color:var(--ink-soft); border:1px solid var(--rule); border-radius:var(--r-card); padding:22px 26px; font-size:14.5px; line-height:1.6; }
+  .setup-trust b { color:var(--ink); }
+  .setup-trust a { color:var(--blue-ink); font-weight:700; text-decoration:underline; }
   /* static fallback (reduced motion / mobile): stack the panels, no lock */
   .setup-pin.no-pin { height:auto; }
   .setup-pin.no-pin .setup-pin-inner { position:static; height:auto; display:block; overflow:visible; }
@@ -208,27 +103,6 @@
     .setup-pin.no-pin .setup-panel { gap:16px; padding:0 0 40px; }
   }
 
-  /* ---------- footer (homepage system, §5) ---------- */
-  footer { background: var(--navy-band); color: var(--cream-soft); padding: 56px 0 30px; }
-  footer .foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 36px; padding-bottom: 40px; border-bottom: 1px solid #24415E; }
-  footer .foot-brand .brand { padding-right: 18px; }
-  footer .foot-brand .brand-word { color: var(--cream); font-size: 32px; }
-  footer .foot-brand .brand-pin { top: 5px; width: 8px; height: 8px; box-shadow: 0 0 0 2.5px rgba(47,140,255,.12); }
-  footer .foot-brand p { margin-top: 14px; font-size: 13px; line-height: 1.6; max-width: 280px; color: var(--cream-soft); }
-  footer h4 { font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--cream); margin-bottom: 14px; }
-  footer a { display: block; color: var(--cream-soft); text-decoration: none; font-size: 13.5px; line-height: 2.1; }
-  footer a:hover { color: var(--cream); }
-  footer .foot-bottom { display: flex; justify-content: space-between; gap: 14px; padding-top: 22px; font-size: 12.5px; color: var(--cream-soft); flex-wrap: wrap; }
-
-  @media (max-width: 880px) {
-    footer .foot-grid { grid-template-columns: 1fr 1fr; }
-    footer .foot-brand { grid-column: 1 / -1; }
-  }
-
-  @media (max-width: 480px) {
-    .container { padding: 0 18px; }
-  }
-
   @media (max-width:760px) {
     .dl-hero { padding: 86px 18px 64px; }
     main { padding: 56px 18px 72px; }
@@ -239,17 +113,16 @@
   .dl-overlay { position: fixed; inset: 0; z-index: 200; display: flex; align-items: center; justify-content: center; padding: 24px; background: rgba(15,23,42,.74); backdrop-filter: blur(5px); animation: dlFade .18s ease; }
   .dl-overlay[hidden] { display: none; }
   @keyframes dlFade { from { opacity: 0; } to { opacity: 1; } }
-  .dl-card { max-width: 460px; width: 100%; background: var(--cream); border: 1px solid var(--rule); border-radius: 16px; box-shadow: 0 20px 40px rgba(22,50,79,.18); padding: 34px 32px 30px; text-align: center; }
+  .dl-card { max-width: 460px; width: 100%; background: var(--card); border: 1px solid var(--rule); border-radius: var(--r-panel); box-shadow: var(--shadow-modal); padding: 34px 32px 30px; text-align: center; }
   .dl-card .dl-arrow { font-size: 30px; line-height: 1; color: var(--blue); }
-  .dl-card .dl-badge { margin-top: 10px; font-family: var(--mono); font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--blue-ink); }
-  .dl-card h2 { margin: 8px 0 0; font-family: var(--serif); font-weight: 400; font-size: 30px; line-height: 1.08; color: var(--ink); }
+  .dl-card .dl-badge { margin-top: 10px; font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--blue-ink); }
+  .dl-card h2 { margin: 8px 0 0; font-family: var(--display); font-weight: 600; font-size: 28px; line-height: 1.1; letter-spacing: -0.02em; color: var(--ink); }
   .dl-card p { margin: 14px 0 0; font-size: 15.5px; line-height: 1.6; color: var(--ink-soft); }
   .dl-card p b { color: var(--ink); }
   .dl-card .dl-fallback { font-size: 13px; color: var(--ink-muted); margin-top: 14px; }
-  .dl-card code { font-family: var(--mono); font-size: 12px; background: rgba(22,50,79,.06); border: 1px solid var(--rule); border-radius: 4px; padding: 1px 5px; }
+  .dl-card code { font-family: var(--sans); font-weight: 600; font-size: 14.5px; background: rgba(22,50,79,.06); border: 1px solid var(--rule); border-radius: var(--r-control); padding: 1px 6px; }
   .dl-card .dl-fallback a { color: var(--blue-ink); text-decoration: none; font-weight: 700; }
-  .dl-ovbtn { margin-top: 22px; background: var(--ink); color: var(--cream); border: 1px solid var(--ink); border-radius: 6px; font-family: var(--mono); font-size: 12.5px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; padding: 12px 22px; cursor: pointer; }
-  .dl-ovbtn:hover { background: var(--blue); border-color: var(--blue); }
+  .dl-card .btn { margin-top: 22px; }
 
   /* ---------- Walkthrough scenes (v4: screenshot-fidelity pass, persistent app shells) ---------- */
 
@@ -2403,13 +2276,13 @@
 
 <section class="dl-hero">
   <div class="dl-hero-inner">
-    <div id="signupCompleteNote" role="status" hidden style="margin:0 0 26px; padding:14px 18px; background:rgba(140,216,255,.10); border:1px solid rgba(140,216,255,.35); border-radius:8px; font-size:15px; line-height:1.55; color:var(--cream);">
+    <div id="signupCompleteNote" role="status" hidden style="margin:0 0 26px; padding:14px 18px; background:var(--blue-soft); border:1px solid var(--rule); border-radius:var(--r-control); font-size:15px; line-height:1.55; color:var(--ink);">
       <strong>Payment method saved.</strong> Your sign-in and download link are on their way to your email. You can also install below whenever you're ready.
     </div>
     <h1>Add Briefly to Claude.</h1>
     <p>Your firm&rsquo;s knowledge base, from your own files.</p>
     <div class="dl-cta-row">
-      <a class="dl-btn" id="dl" href="briefly-mcp.mcpb" download="briefly_wealth.mcpb">Download Briefly <span class="arr" aria-hidden="true">&darr;</span></a>
+      <a class="btn dl-btn" id="dl" href="briefly-mcp.mcpb" download="briefly_wealth.mcpb">Download Briefly <span class="arr" aria-hidden="true">&darr;</span></a>
       <span class="dl-meta">Mac &amp; Windows &middot; Requires <a href="https://claude.ai/download" target="_blank" rel="noopener">Claude</a></span>
     </div>
     <p class="dl-eula">By downloading and installing the connector, you agree to the <a href="/eula">Connector EULA</a>.</p>
@@ -2424,7 +2297,7 @@
         <li>Download first, then book a demo so we set up your firm's sign-in.</li>
         <li>From there your whole team shares how your firm likes its briefs written.</li>
       </ul>
-      <a class="dl-note-btn" href="#" onclick="openDemoModal();return false;">Request access</a>
+      <a class="btn" href="#" onclick="openDemoModal();return false;">Request access</a>
     </div>
 
     <div class="dl-explainer">
@@ -2450,11 +2323,11 @@
         <div class="setup-stack">
           <article class="setup-panel active">
             <div class="p-head">
-              <span class="s-num">STEP 01</span>
+              <span class="s-num">Step 01</span>
               <h3>Get Claude</h3>
               <p class="cap">Free from <a href="https://claude.ai/download" target="_blank" rel="noopener">claude.ai</a>. Skip this step if you already have it.</p>
             </div>
-            <div class="setup-frame"><div class="bwv4a-scene" id="bwv4a-scene-1">
+            <div class="setup-frame"><div class="bwv4a-scene" id="bwv4a-scene-1" aria-hidden="true" data-mockup="">
 <!-- SCENE 1 -- "Get Claude" -- 14s loop -- see storyboard comment in lane-a.css -->
   <div class="bwv4a-act bwv4a-1-act--browser">
     <div class="bwv4a-window">
@@ -2522,14 +2395,15 @@
   </div>
 </div>
 </div>
+            <p class="sr-only">Illustration: downloading Claude Desktop from claude.ai and dragging it into Applications.</p>
           </article>
           <article class="setup-panel">
             <div class="p-head">
-              <span class="s-num">STEP 02</span>
+              <span class="s-num">Step 02</span>
               <h3>Download Briefly</h3>
               <p class="cap">One click here, then open it from your browser&rsquo;s downloads.<span class="side">Shown in Chrome. In Safari, downloads live under the arrow next to the address bar.</span></p>
             </div>
-            <div class="setup-frame"><div class="bwv4a-scene" id="bwv4a-scene-2">
+            <div class="setup-frame"><div class="bwv4a-scene" id="bwv4a-scene-2" aria-hidden="true" data-mockup="">
 <!-- SCENE 2 -- "Download Briefly" -- 13s loop -- see storyboard + click-target
      coordinate table in the CSS comment above the scene-2 rules in lane-a.css -->
   <div class="bwv4a-window bwv4a-2-window">
@@ -2572,7 +2446,7 @@
         <h3 class="bwv4a-2-card-title">Open the download to install</h3>
         <p class="bwv4a-2-card-body">Briefly saved to your computer. Open the downloaded <b>briefly_wealth.mcpb</b> file to launch Claude Desktop, then click <b>Install</b>.</p>
         <p class="bwv4a-2-card-fallback">Find it in your browser downloads (top of the window) or your Downloads folder.</p>
-        <button class="bwv4a-2-card-gotit" type="button">GOT IT</button>
+        <button class="bwv4a-2-card-gotit" type="button">Got it</button>
       </div>
     </div>
     <div class="bwv4a-dlbubble bwv4a-2-bubble">
@@ -2595,14 +2469,15 @@
   </span>
 </div>
 </div>
+            <p class="sr-only">Illustration: clicking Download Briefly on this site and opening the downloaded file.</p>
           </article>
           <article class="setup-panel">
             <div class="p-head">
-              <span class="s-num">STEP 03</span>
+              <span class="s-num">Step 03</span>
               <h3>Claude installs it</h3>
               <p class="cap">Click <b>Install</b>, then <b>Save</b>. Nothing to type.<span class="side">The settings screen is optional. Save and move on. The red Anthropic notice is standard for extensions installed outside its directory.</span></p>
             </div>
-            <div class="setup-frame"><div class="bwv4b-scene" id="bwv4b-scene-3">
+            <div class="setup-frame"><div class="bwv4b-scene" id="bwv4b-scene-3" aria-hidden="true" data-mockup="">
 <!-- SCENE 3 v4b -- "Claude installs it" -- 17s loop
   Rebuilt inside a Claude Desktop app shell (left nav sidebar + dimmed main
   pane) so the extension detail page reads as *inside* Claude, not floating
@@ -2770,14 +2645,15 @@
   </span>
 </div>
 </div>
+            <p class="sr-only">Illustration: Claude Desktop installing the Briefly extension and confirming it meets its requirements.</p>
           </article>
           <article class="setup-panel">
             <div class="p-head">
-              <span class="s-num">STEP 04</span>
+              <span class="s-num">Step 04</span>
               <h3>Sign in once</h3>
               <p class="cap">Your login is the whole setup.<span class="side">Use the login we set up for your firm, and Briefly knows you and your firm.</span></p>
             </div>
-            <div class="setup-frame"><div class="bwv4c-scene" id="bwv4c-scene-4">
+            <div class="setup-frame"><div class="bwv4c-scene" id="bwv4c-scene-4" aria-hidden="true" data-mockup="">
   <div class="bwv4c-s4-fade">
 
     <!-- PERSISTENT SHELL: sidebar + main (stage + composer). Never leaves
@@ -2887,14 +2763,15 @@
   </div>
 </div>
 </div>
+            <p class="sr-only">Illustration: signing in to Briefly from inside a Claude chat.</p>
           </article>
           <article class="setup-panel">
             <div class="p-head">
-              <span class="s-num">STEP 05</span>
+              <span class="s-num">Step 05</span>
               <h3>File, then brief</h3>
               <p class="cap">Save statements into <b>intake</b>, then ask.<span class="side">&ldquo;File everything in my intake folder.&rdquo; Then, &ldquo;Prepare a meeting brief.&rdquo;</span></p>
             </div>
-            <div class="setup-frame"><div class="bwv4c-scene" id="bwv4c-scene-5">
+            <div class="setup-frame"><div class="bwv4c-scene" id="bwv4c-scene-5" aria-hidden="true" data-mockup="">
   <div class="bwv4c-s5-fade">
 
     <!-- BEAT A: standalone Finder window, matches screenshot (g) -->
@@ -3111,6 +2988,7 @@
   </div>
 </div>
 </div>
+            <p class="sr-only">Illustration: saving client files into the intake folder, then asking Claude for a meeting brief.</p>
           </article>
         </div>
       </div>
@@ -3152,9 +3030,9 @@
       </div>
     </section>
 
-    <section class="dl-repeat-cta">
-      <p>Ready when you are.</p>
-      <a class="dl-btn" id="dlRepeat" href="briefly-mcp.mcpb" download="briefly_wealth.mcpb">Download Briefly <span class="arr" aria-hidden="true">&darr;</span></a>
+    <section class="closer">
+      <h2>Ready when you are.</h2>
+      <a class="btn dl-btn" id="dlRepeat" href="briefly-mcp.mcpb" download="briefly_wealth.mcpb">Download Briefly <span class="arr" aria-hidden="true">&darr;</span></a>
     </section>
   </div>
 </main>
@@ -3167,7 +3045,7 @@
     <p>Briefly saved to your computer. <b>Open the downloaded <code>briefly_wealth.mcpb</code> file</b> to launch Claude Desktop, then click <b>Install</b>.</p>
     <p class="dl-fallback">Find it in your browser downloads (top of the window) or your Downloads folder. <a href="briefly-mcp.mcpb" download="briefly_wealth.mcpb">Download again</a> if you need it.</p>
     <p class="dl-fallback">Opened it and nothing happened? You need the free <a href="https://claude.ai/download" target="_blank" rel="noopener">Claude desktop app</a> first, then open <code>briefly_wealth.mcpb</code> again.</p>
-    <button type="button" class="dl-ovbtn" id="dlOvClose">Got it</button>
+    <button type="button" class="btn" id="dlOvClose">Got it</button>
   </div>
 </div>
 
@@ -3283,118 +3161,7 @@
 </script>
 
 <!-- ==================== DEMO MODAL ==================== -->
-<style>
-  .demo-modal { position:fixed; inset:0; z-index:200; display:none; align-items:center; justify-content:center; padding:20px; }
-  .demo-modal.active { display:flex; }
-  .demo-modal-backdrop { position:absolute; inset:0; background:rgba(15,23,42,.56); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
-  .demo-modal-card {
-    position:relative; z-index:1; width:100%; max-width:440px;
-    background:var(--paper, #F7F8FA); border:1px solid var(--rule, #E2E8F0);
-    border-radius:16px;
-    padding:32px 28px 28px; box-shadow:0 20px 40px rgba(22,50,79,.18);
-    font-family:var(--sans, "DM Sans", system-ui, sans-serif);
-  }
-  .demo-modal-close {
-    position:absolute; top:10px; right:14px; background:transparent; border:0;
-    font-size:24px; color:var(--ink, #0F172A); cursor:pointer; line-height:1; padding:6px 8px;
-  }
-  .demo-modal-eyebrow {
-    font-family:var(--mono, monospace); font-size:11px; font-weight:700;
-    letter-spacing:.08em; text-transform:uppercase; color:var(--blue-ink);
-    margin:0 0 8px;
-  }
-  .demo-modal-title {
-    font-family:var(--serif); font-weight:400; font-size:32px; line-height:1.08; letter-spacing:0;
-    margin:0 0 18px; color:var(--ink, #0F172A);
-  }
-  .demo-modal-field { display:block; margin:0 0 14px; }
-  .demo-modal-field label {
-    display:block; font-family:var(--mono, monospace); font-size:11px; font-weight:700;
-    letter-spacing:.08em; text-transform:uppercase; color:rgba(15,23,42,.72); margin-bottom:6px;
-  }
-  .demo-modal-field input {
-    width:100%; padding:11px 12px; font-family:var(--sans, "DM Sans", system-ui, sans-serif);
-    font-size:15px; border:1px solid var(--ink, #0F172A); background:#fff; color:var(--ink, #0F172A);
-    border-radius:6px;
-  }
-  .demo-modal-field input:focus { outline:2px solid var(--blue, #2f8cff); outline-offset:1px; }
-  .demo-modal-submit {
-    width:100%; height:44px; border:1px solid var(--ink, #0F172A); background:var(--ink, #0F172A);
-    border-radius:6px;
-    color:var(--paper, #F7F8FA); font-family:var(--mono, monospace); font-size:12px; font-weight:800;
-    letter-spacing:.08em; text-transform:uppercase; cursor:pointer; margin-top:6px;
-    transition:background .15s ease, border-color .15s ease, color .15s ease;
-  }
-  .demo-modal-submit:hover { background:var(--blue, #2f8cff); border-color:var(--blue, #2f8cff); color:#fff; }
-  .demo-modal-submit:disabled { opacity:.6; cursor:wait; }
-  .demo-modal-error { display:none; margin-top:10px; padding:10px 12px; border:1px solid #dc2626; border-radius:10px; color:#dc2626; font-size:13px; }
-  .demo-modal-success {
-    display:none; padding:18px 0 4px; text-align:center;
-  }
-  .demo-modal-success.active { display:block; }
-  .demo-modal-success-title { font-family:var(--serif); font-weight:400; font-size:22px; letter-spacing:0; margin:0 0 6px; color:var(--ink, #0F172A); }
-  .demo-modal-success-body { font-size:14px; color:rgba(15,23,42,.72); line-height:1.5; margin:0 0 16px; }
-  @media (max-width:480px) {
-    .demo-modal { padding: 14px; }
-    .demo-modal-card { padding: 26px 22px 22px; }
-    .demo-modal-title { font-size: 26px; }
-  }
-</style>
-<style>
-  .demo-modal { position:fixed; inset:0; z-index:200; display:none; align-items:center; justify-content:center; padding:20px; }
-  .demo-modal.active { display:flex; }
-  .demo-modal-backdrop { position:absolute; inset:0; background:rgba(16,38,61,.56); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
-  .demo-modal-card {
-    position:relative; z-index:1; width:100%; max-width:440px;
-    background:var(--paper); border:1px solid var(--rule);
-    border-radius:10px;
-    padding:32px 28px 28px; box-shadow:0 20px 40px rgba(22,50,79,.18);
-    font-family:var(--sans);
-  }
-  .demo-modal-close {
-    position:absolute; top:10px; right:14px; background:transparent; border:0;
-    font-size:24px; color:var(--ink); cursor:pointer; line-height:1; padding:6px 8px;
-  }
-  .demo-modal-eyebrow {
-    font-family:var(--mono); font-size:11px; font-weight:700;
-    letter-spacing:.08em; text-transform:uppercase; color:var(--blue-ink);
-    margin:0 0 8px;
-  }
-  .demo-modal-title {
-    font-family:var(--serif); font-weight:400; font-size:30px; line-height:1.1; letter-spacing:0;
-    margin:0 0 18px; color:var(--ink);
-  }
-  .demo-modal-field { display:block; margin:0 0 14px; }
-  .demo-modal-field label {
-    display:block; font-family:var(--mono); font-size:11px; font-weight:700;
-    letter-spacing:.08em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px;
-  }
-  .demo-modal-field input {
-    width:100%; padding:11px 12px; font-family:var(--sans);
-    font-size:15px; border:1px solid var(--ink); background:#fff; color:var(--ink);
-    border-radius:4px;
-  }
-  .demo-modal-field input:focus { outline:2px solid var(--blue-ink); outline-offset:1px; }
-  .demo-modal-submit {
-    width:100%; height:44px; border:1px solid var(--ink); background:var(--ink);
-    border-radius:4px;
-    color:#fff; font-family:var(--mono); font-size:12px; font-weight:700;
-    letter-spacing:.08em; text-transform:uppercase; cursor:pointer; margin-top:6px;
-    transition:background .15s ease, border-color .15s ease, color .15s ease;
-  }
-  .demo-modal-submit:hover { background:var(--blue-ink); border-color:var(--blue-ink); color:#fff; }
-  .demo-modal-submit:disabled { opacity:.6; cursor:wait; }
-  .demo-modal-error { display:none; margin-top:10px; padding:10px 12px; border:1px solid #b3261e; border-radius:4px; color:#b3261e; font-size:13px; }
-  .demo-modal-success { display:none; padding:18px 0 4px; text-align:center; }
-  .demo-modal-success.active { display:block; }
-  .demo-modal-success-title { font-family:var(--serif); font-weight:400; font-size:22px; letter-spacing:0; margin:0 0 6px; color:var(--ink); }
-  .demo-modal-success-body { font-size:14px; color:var(--ink-soft); line-height:1.5; margin:0 0 16px; }
-  @media (max-width: 480px) {
-    .demo-modal { padding: 14px; }
-    .demo-modal-card { padding: 26px 22px 22px; }
-    .demo-modal-title { font-size: 26px; }
-  }
-</style>
+<!-- demo modal styled by site.css -->
 <div class="demo-modal" id="demoModal" role="dialog" aria-modal="true" aria-labelledby="demoModalTitle">
   <div class="demo-modal-backdrop" onclick="closeDemoModal()"></div>
   <div class="demo-modal-card">
@@ -3563,7 +3330,7 @@ async function handleDemoSubmit(e) {
     if (hero) {
       var note = document.createElement('p');
       note.setAttribute('role', 'status');
-      note.style.cssText = 'margin:0 0 18px;padding:12px 16px;border:1px solid rgba(255,255,255,.25);border-radius:8px;font-size:14.5px;line-height:1.5;';
+      note.style.cssText = 'margin:0 0 18px;padding:12px 16px;border:1px solid rgba(255,255,255,.25);border-radius:var(--r-control);font-size:14.5px;line-height:1.5;';
       note.textContent = token
         ? 'Payment confirmed. Your Briefly login is on its way to your inbox. Download below, and sign in with that login when Briefly asks.'
         : 'Payment confirmed. Your Briefly login is on its way to your inbox. The email also has your download link, set up for your firm.';

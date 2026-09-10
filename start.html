@@ -63,31 +63,6 @@
 
 <link rel="stylesheet" href="/assets/site.css">
 <style>
-  :root {
-    --paper: #FBFAF6;          /* warm white ground */
-    --paper-2: #F2EDE1;        /* second warm tone, for band alternation */
-    --card: #FFFFFF;
-    --ink: #16324F;            /* deep navy, all display type */
-    --ink-soft: #46627D;
-    --ink-muted: #5B6C80;   /* AA: 4.6+ on every light surface it labels */
-    --rule: #E6E1D5;           /* warm hairline */
-    --blue: #2F8CFF;           /* fills, icons, pins, chip fills. 3.32 on white: never small text */
-    --blue-ink: #1D4ED8;       /* 6.70 on white: small text, links, focus rings */
-    --blue-soft: #E9F2FF;      /* light chip background on paper grounds */
-    --cyan: #8cd8ff;           /* dark navy sections only */
-    --navy-band: #10263D;      /* closer + footer + custody */
-    --cream: #F4F1E9;
-    --cream-soft: #B9C4CF;
-    --serif: Charter, "Iowan Old Style", "Source Serif Pro", Georgia, serif;
-    --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
-    --mono: "SFMono-Regular", Menlo, Consolas, monospace;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { font-family: var(--sans); background: var(--paper); color: var(--ink); line-height: 1.6; overflow-x: hidden; }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-  .container { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
-
   /* ---------- connector / web app switch, inside the checkout column ---------- */
   .start-toggle {
     display: inline-flex; gap: 2px; margin-bottom: 26px;
@@ -130,7 +105,7 @@
      restyles a bare .brand-word to dark ink at 21px) can't paint this one
      navy-on-navy. Same pattern the footer brand override already uses. */
   .checkout-left .brand { position: relative; display: inline-flex; align-items: center; align-self: flex-start; padding-right: 18px; text-decoration: none; }
-  .checkout-left .brand:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; border-radius: 4px; }
+  .checkout-left .brand:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; border-radius: var(--r-control); }
   .checkout-left .brand-word {
     font-family: var(--sans); font-weight: 900; font-size: 32px; line-height: .78;
     letter-spacing: -.075em; text-transform: uppercase; color: var(--cream);
@@ -140,12 +115,12 @@
 
   /* The order summary sits in the LIGHT right column, so every color here is
      ink-on-paper. It used to live in the dark left aside and wore cream. */
-  .order-summary { margin-top: 32px; max-width: 420px; padding: 22px 24px; background: var(--paper-2); border: 1px solid var(--rule); border-radius: 12px; }
-  .order-eyebrow { font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 16px; }
+  .order-summary { margin-top: 32px; max-width: 420px; padding: 22px 24px; background: var(--paper-2); border: 1px solid var(--rule); border-radius: var(--r-card); }
+  .order-eyebrow { font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--ink-soft); margin-bottom: 16px; }
   .order-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
   .order-product { font-size: 16px; font-weight: 700; color: var(--ink); }
-  .order-qty { font-family: var(--mono); font-size: 13.5px; color: var(--ink-soft); white-space: nowrap; }
-  .order-unit { margin-top: 6px; font-family: var(--mono); font-size: 13px; color: var(--ink-soft); }
+  .order-qty { font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--ink-soft); white-space: nowrap; }
+  .order-unit { margin-top: 6px; font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--ink-soft); }
   .order-rule { border: 0; border-top: 1px solid var(--rule); margin: 18px 0; }
   .order-total-row { display: flex; justify-content: space-between; align-items: baseline; }
   .order-total-label { font-size: 14px; color: var(--ink-soft); }
@@ -168,15 +143,19 @@
   }
   .checkout-form-wrap { width: 100%; max-width: 420px; }
 
-  h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(26px, 3vw, 32px); line-height: 1.18; letter-spacing: 0; color: var(--ink); }
-  .lede { margin-top: 10px; font-size: 15.5px; line-height: 1.55; color: var(--ink-soft); }
+  /* Panel titles are h2 in the DOM (one h1 per page lives in the sr-only
+     page title), sized like h1 so the checkout still reads as a page lead. */
+  .checkout-form-wrap h2 {
+    font-family: var(--display); font-weight: 600; font-size: clamp(34px, 4.2vw, 48px);
+    line-height: 1.1; letter-spacing: -0.02em; color: var(--ink); max-width: none;
+  }
 
-  .field-label { display: block; font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 8px; }
+  .field-label { display: block; font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--ink-soft); margin-bottom: 8px; }
 
   .seat-block { margin-top: 32px; }
   .stepper { display: flex; align-items: center; gap: 10px; }
   .stepper-btn {
-    width: 38px; height: 38px; border-radius: 6px; border: 1px solid var(--rule);
+    width: 38px; height: 38px; border-radius: var(--r-control); border: 1px solid var(--rule);
     background: #fff; color: var(--ink); font-size: 18px; line-height: 1; cursor: pointer;
     transition: border-color .15s ease;
   }
@@ -185,27 +164,21 @@
   .stepper-btn:disabled { opacity: .35; cursor: not-allowed; }
   .stepper-input {
     width: 64px; height: 38px; text-align: center; border: 1px solid var(--rule);
-    border-radius: 6px; font-family: var(--mono); font-size: 15px; color: var(--ink); background: #fff;
+    border-radius: var(--r-control); font-family: var(--sans); font-size: 15px; color: var(--ink); background: #fff;
   }
   .stepper-input:focus { outline: 2px solid var(--blue-ink); outline-offset: 1px; }
+  @media (max-width: 480px) {
+    .stepper-btn, .stepper-input { width: 44px; height: 44px; }
+  }
 
   .checkout-form { margin-top: 28px; }
   .form-field { margin-bottom: 16px; }
   .form-field input {
-    width: 100%; padding: 12px 13px; font-family: var(--sans); font-size: 15px;
-    border: 1px solid var(--rule); border-radius: 6px; background: #fff; color: var(--ink);
+    width: 100%; min-height: 44px; padding: 12px 13px; font-family: var(--sans); font-size: 15px;
+    border: 1px solid var(--rule); border-radius: var(--r-control); background: #fff; color: var(--ink);
   }
   .form-field input:focus { outline: 2px solid var(--blue-ink); outline-offset: 1px; border-color: var(--blue-ink); }
   .hp-field { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-
-  .btn {
-    display: inline-block; font-size: 14px; font-weight: 600; padding: 13px 26px;
-    border-radius: 4px; background: var(--ink); color: #fff; text-decoration: none;
-    border: 1px solid var(--ink); cursor: pointer;
-  }
-  .btn.ghost { background: transparent; color: var(--ink); }
-  .btn:focus-visible, .textlink:focus-visible { outline: 2px solid var(--blue-ink); outline-offset: 2px; }
-  .textlink { font-size: 14.5px; font-weight: 600; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
 
   .btn-checkout {
     width: 100%; text-align: center; padding: 15px 26px; margin-top: 6px;
@@ -223,8 +196,8 @@
   .checkout-form-wrap.is-paying .secondary-path,
   .checkout-form-wrap.is-paying .webapp-row { display: none; }
   .checkout-fallback {
-    margin-top: 16px; border: 1px solid var(--rule); border-radius: 10px; background: var(--card);
-    box-shadow: 0 1px 2px rgba(22,50,79,.05), 0 14px 34px rgba(22,50,79,.08);
+    margin-top: 16px; border: 1px solid var(--rule); border-radius: var(--r-card); background: var(--card);
+    box-shadow: var(--shadow-float);
     padding: 18px 20px;
   }
   .checkout-fallback p { font-size: 14px; color: var(--ink-soft); margin-bottom: 12px; }
@@ -255,87 +228,6 @@
     * { transition: none !important; animation: none !important; }
   }
 </style>
-<style>
-/* canonical chrome (nav/footer/buttons), stamped 2026-08-05 */
-.container { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
-.btn {
-    display: inline-block; font-size: 14px; font-weight: 600; padding: 13px 26px;
-    border-radius: 4px; background: var(--ink); color: #fff; text-decoration: none;
-    border: 1px solid var(--ink); cursor: pointer;
-  }
-.btn.ghost { background: transparent; color: var(--ink); }
-.textlink { font-size: 14.5px; font-weight: 600; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
-/* nav */
-  nav[aria-label="Primary"] { border-bottom: 1px solid var(--rule); background: var(--paper); position: relative; }
-.nav-bar { min-height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 10px; padding-bottom: 10px; }
-.brand { position: relative; display: inline-flex; align-items: center; padding-right: 14px; text-decoration: none; }
-.brand-word {
-    font-family: var(--sans); font-weight: 900; font-size: 21px; line-height: .78;
-    letter-spacing: -.075em; text-transform: uppercase; color: var(--ink);
-    transform: scaleY(.88); transform-origin: left center;
-  }
-.brand-pin {
-    position: absolute; top: 3px; right: 0; width: 6px; height: 6px; border-radius: 50%;
-    background: var(--blue); box-shadow: 0 0 0 2px rgba(47,140,255,.10);
-  }
-.nav-right { display: flex; align-items: center; gap: 22px; }
-.nav-panel { display: flex; align-items: center; gap: 26px; }
-.nav-links { display: flex; gap: 24px; }
-.nav-links a { font-size: 13px; font-weight: 600; color: var(--ink-soft); text-decoration: none; white-space: nowrap; }
-.nav-links a:hover { color: var(--ink); }
-.nav-actions { display: flex; align-items: center; gap: 16px; }
-.nav-signin { font-size: 13px; font-weight: 600; color: var(--ink-soft); text-decoration: none; white-space: nowrap; }
-.nav-signin:hover { color: var(--ink); }
-.nav-bar .btn { padding: 9px 18px; font-size: 13px; white-space: nowrap; }
-.nav-toggle {
-    display: none; width: 40px; height: 40px; flex-shrink: 0;
-    border: 1px solid var(--rule); border-radius: 6px; background: var(--card); cursor: pointer;
-    flex-direction: column; align-items: center; justify-content: center; gap: 4px;
-  }
-.nav-toggle span { display: block; width: 18px; height: 2px; background: var(--ink); }
-.nav-links a:focus-visible, .nav-signin:focus-visible, .btn:focus-visible, .nav-toggle:focus-visible, .hc-dot:focus-visible, .textlink:focus-visible {
-    outline: 2px solid var(--blue-ink); outline-offset: 2px;
-  }
-@media (max-width: 860px) {
-  .nav-toggle { display: inline-flex; }
-  .nav-panel {
-      display: none;
-      position: absolute; top: 100%; left: 0; right: 0;
-      flex-direction: column; align-items: stretch; gap: 0;
-      background: var(--paper); border-bottom: 1px solid var(--rule);
-      padding: 6px 28px 20px; z-index: 40;
-    }
-  .nav-panel.open { display: flex; }
-  .nav-links { flex-direction: column; gap: 0; }
-  .nav-links a { padding: 12px 0; border-top: 1px solid var(--rule); }
-  .nav-actions { flex-direction: column; align-items: stretch; gap: 10px; margin-top: 6px; }
-  .nav-signin { padding: 8px 0; }
-  .nav-actions .btn.ghost { width: 100%; text-align: center; }
-}
-.dotbg > .container { position: relative; }
-.custody-links .textlink { color: var(--cyan); }
-.custody-links .textlink:focus-visible { outline-color: var(--cyan); }
-.closer .btn { background: var(--cream); color: var(--navy-band); border-color: var(--cream); }
-/* footer */
-  footer { background: var(--navy-band); color: var(--cream-soft); padding: 56px 0 30px; }
-footer .foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 36px; padding-bottom: 40px; border-bottom: 1px solid #24415E; }
-footer .foot-brand .brand { padding-right: 18px; }
-footer .foot-brand .brand-word { color: var(--cream); font-size: 32px; }
-footer .foot-brand .brand-pin { top: 5px; width: 8px; height: 8px; box-shadow: 0 0 0 2.5px rgba(47,140,255,.12); }
-footer .foot-brand p { margin-top: 14px; font-size: 13px; line-height: 1.6; max-width: 280px; color: var(--cream-soft); }
-footer h4 { font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--cream); margin-bottom: 14px; }
-footer a { display: block; color: var(--cream-soft); text-decoration: none; font-size: 13.5px; line-height: 2.1; }
-footer a:hover { color: var(--cream); }
-footer .foot-bottom { display: flex; justify-content: space-between; gap: 14px; padding-top: 22px; font-size: 12.5px; color: var(--cream-soft); flex-wrap: wrap; }
-@media (max-width: 880px) {
-  footer .foot-grid { grid-template-columns: 1fr 1fr; }
-  footer .foot-brand { grid-column: 1 / -1; }
-}
-@media (max-width: 480px) {
-  .container { padding: 0 18px; }
-  .hero-ctas .btn { text-align: center; }
-}
-</style>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -363,7 +255,8 @@ footer .foot-bottom { display: flex; justify-content: space-between; gap: 14px; 
   </div>
 </nav>
 
-
+<main id="main">
+<h1 class="sr-only">Start</h1>
 
 <div id="panelConnector" class="start-panel start-panel-connector" role="tabpanel" aria-labelledby="tabConnector" tabindex="0">
 <div class="checkout-shell">
@@ -383,13 +276,13 @@ footer .foot-bottom { display: flex; justify-content: space-between; gap: 14px; 
     </div>
   </aside>
 
-  <main class="checkout-right">
+  <section class="checkout-right">
     <div class="checkout-form-wrap">
       <div class="start-toggle" role="tablist" aria-label="Choose how to start">
         <button type="button" class="start-tab" id="tabConnector" role="tab" data-start-tab="connector" aria-selected="true" aria-controls="panelConnector" tabindex="0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>Claude connector</button>
         <button type="button" class="start-tab" id="tabWebapp" role="tab" data-start-tab="webapp" aria-selected="false" aria-controls="panelWebapp" tabindex="-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/></svg>Web app</button>
       </div>
-      <h1>Start with the Claude connector.</h1>
+      <h2>Start with the Claude connector.</h2>
       <p class="lede">Pick your seats and check out. Most teams are asking questions inside Claude the same day.</p>
 
       <div class="seat-block">
@@ -453,7 +346,7 @@ footer .foot-bottom { display: flex; justify-content: space-between; gap: 14px; 
 
       <p class="webapp-row">Want the web app instead? <a class="textlink" href="#webapp" onclick="document.getElementById('tabWebapp').click();return false;">Switch to the web app tab</a> or <a class="textlink" href="/compare">compare the two</a>.</p>
     </div>
-  </main>
+  </section>
 </div>
 </div>
 
@@ -475,13 +368,13 @@ footer .foot-bottom { display: flex; justify-content: space-between; gap: 14px; 
     </div>
   </aside>
 
-  <main class="checkout-right">
+  <section class="checkout-right">
     <div class="checkout-form-wrap">
       <div class="start-toggle" role="tablist" aria-label="Choose how to start">
         <button type="button" class="start-tab" id="tabConnectorWa" role="tab" data-start-tab="connector" aria-selected="false" aria-controls="panelConnector" tabindex="-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>Claude connector</button>
         <button type="button" class="start-tab" id="tabWebappWa" role="tab" data-start-tab="webapp" aria-selected="true" aria-controls="panelWebapp" tabindex="0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/></svg>Web app</button>
       </div>
-      <h1>Start with the Briefly web app.</h1>
+      <h2>Start with the Briefly web app.</h2>
       <p class="lede">Pick your seats and request access. Your team signs in from a browser, with nothing to install.</p>
 
       <div class="seat-block">
@@ -538,68 +431,13 @@ footer .foot-bottom { display: flex; justify-content: space-between; gap: 14px; 
 
       <p class="webapp-row">Already set up? <a class="textlink" href="https://demo.app.brieflywealth.com/">Web app sign in</a> or <a class="textlink" href="/compare">compare the two</a>.</p>
     </div>
-  </main>
+  </section>
 </div>
 </div>
 
-<!-- ==================== DEMO MODAL, ported from index.html so this page works standalone ==================== -->
-<style>
-  .demo-modal { position:fixed; inset:0; z-index:200; display:none; align-items:center; justify-content:center; padding:20px; }
-  .demo-modal.active { display:flex; }
-  .demo-modal-backdrop { position:absolute; inset:0; background:rgba(16,38,61,.56); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
-  .demo-modal-card {
-    position:relative; z-index:1; width:100%; max-width:440px;
-    background:var(--paper); border:1px solid var(--rule);
-    border-radius:10px;
-    padding:32px 28px 28px; box-shadow:0 20px 40px rgba(22,50,79,.18);
-    font-family:var(--sans);
-  }
-  .demo-modal-close {
-    position:absolute; top:10px; right:14px; background:transparent; border:0;
-    font-size:24px; color:var(--ink); cursor:pointer; line-height:1; padding:6px 8px;
-  }
-  .demo-modal-eyebrow {
-    font-family:var(--mono); font-size:11px; font-weight:700;
-    letter-spacing:.08em; text-transform:uppercase; color:var(--blue-ink);
-    margin:0 0 8px;
-  }
-  .demo-modal-title {
-    font-family:var(--serif); font-weight:400; font-size:30px; line-height:1.1; letter-spacing:0;
-    margin:0 0 18px; color:var(--ink);
-  }
-  .demo-modal-field { display:block; margin:0 0 14px; }
-  .demo-modal-field label {
-    display:block; font-family:var(--mono); font-size:11px; font-weight:700;
-    letter-spacing:.08em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px;
-  }
-  .demo-modal-field input {
-    width:100%; padding:11px 12px; font-family:var(--sans);
-    font-size:15px; border:1px solid var(--ink); background:#fff; color:var(--ink);
-    border-radius:4px;
-  }
-  .demo-modal-field input:focus { outline:2px solid var(--blue-ink); outline-offset:1px; }
-  .demo-modal-submit {
-    width:100%; height:44px; border:1px solid var(--ink); background:var(--ink);
-    border-radius:4px;
-    color:#fff; font-family:var(--mono); font-size:12px; font-weight:700;
-    letter-spacing:.08em; text-transform:uppercase; cursor:pointer; margin-top:6px;
-    transition:background .15s ease, border-color .15s ease, color .15s ease;
-  }
-  .demo-modal-submit:hover { background:var(--blue-ink); border-color:var(--blue-ink); color:#fff; }
-  .demo-modal-submit:disabled { opacity:.6; cursor:wait; }
-  .demo-modal-error { display:none; margin-top:10px; padding:10px 12px; border:1px solid #b3261e; border-radius:4px; color:#b3261e; font-size:13px; }
-  .demo-modal-success {
-    display:none; padding:18px 0 4px; text-align:center;
-  }
-  .demo-modal-success.active { display:block; }
-  .demo-modal-success-title { font-family:var(--serif); font-weight:400; font-size:22px; letter-spacing:0; margin:0 0 6px; color:var(--ink); }
-  .demo-modal-success-body { font-size:14px; color:var(--ink-soft); line-height:1.5; margin:0 0 16px; }
-  @media (max-width: 480px) {
-    .demo-modal { padding: 14px; }
-    .demo-modal-card { padding: 26px 22px 22px; }
-    .demo-modal-title { font-size: 26px; }
-  }
-</style>
+</main>
+
+<!-- ==================== DEMO MODAL (styled by site.css) ==================== -->
 <div class="demo-modal" id="demoModal" role="dialog" aria-modal="true" aria-labelledby="demoModalTitle">
   <div class="demo-modal-backdrop" onclick="closeDemoModal()"></div>
   <div class="demo-modal-card">
