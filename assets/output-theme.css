@@ -33,6 +33,8 @@
   --ot-green-soft: #EAF7EE;
   --ot-green-rule: #C9EAD3;
   --ot-amber: #B25000;
+  --ot-amber-soft: #FFF4E5;   /* app chip-amber fill */
+  --ot-amber-ink: #9A4500;    /* app chip-amber text, 6.1:1 on the fill */
   --ot-chart2: #7FB8FF;
   --ot-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
 }

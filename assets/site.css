@@ -13,7 +13,7 @@
   --ink-muted: #6E6E73;      /* app muted, 5.1:1 on white, 4.6:1 on the band; smallest text it may label is 12px */
   --rule: #D2D2D7;           /* hairline */
   --blue: #2F8CFF;           /* fills, icons, pins. 3.3:1 on white: never text under 18px */
-  --blue-ink: #0A6CE0;       /* app link blue, 4.9:1 on white: links, small text */
+  --blue-ink: #0A66D6;       /* app link blue, deepened a touch: 5.4:1 on white, 4.8:1 on --blue-soft */
   --blue-soft: #EAF3FF;
   --cyan: #6CB4FF;           /* blue text on the dark band only */
   --navy-band: #1D1D1F;      /* app brand fill: footer, closer, checkout panel */
