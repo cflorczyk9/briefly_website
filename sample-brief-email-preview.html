@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<html data-output-theme="" lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Sample Brief, Email Preview · Briefly</title>
 <meta name="description" content="Email-rendered preview of a Briefly Morning Brief. One-off render for layout review, not a canonical web page.">
 <meta name="author" content="Briefly Wealth LLC">
@@ -43,8 +43,8 @@
     font-family: var(--mono);
     font-size: 11px;
     font-weight: 700;
-    letter-spacing: .07em;
-    text-transform: uppercase;
+    letter-spacing:var(--ot-ls,.07em);
+    text-transform:var(--ot-case,uppercase);
   }
   nav.nav .brand { position: relative; display: inline-flex; align-items: center; padding-right: 14px; text-decoration: none; }
   nav.nav .brand-word {
@@ -53,7 +53,7 @@
     font-size: 26px;
     line-height: .78;
     letter-spacing: -.085em;
-    text-transform: uppercase;
+    text-transform:var(--ot-case,uppercase);
     color: var(--ink);
     transform: scaleY(.88);
     transform-origin: left center;
@@ -88,8 +88,8 @@
     font-family: var(--mono);
     font-size: 11px;
     font-weight: 700;
-    letter-spacing: .07em;
-    text-transform: uppercase;
+    letter-spacing:var(--ot-ls,.07em);
+    text-transform:var(--ot-case,uppercase);
   }
   nav.nav .nav-links a:last-child { border-right: 0; }
   nav.nav .nav-links a:hover { background: transparent; color: var(--blue); }
@@ -104,8 +104,8 @@
     font-family: var(--mono);
     font-size: 11px;
     font-weight: 700;
-    letter-spacing: .07em;
-    text-transform: uppercase;
+    letter-spacing:var(--ot-ls,.07em);
+    text-transform:var(--ot-case,uppercase);
     text-decoration: none;
     display: inline-flex;
     align-items: center;
@@ -122,8 +122,8 @@
     font-family: var(--mono);
     font-size: 11px;
     font-weight: 700;
-    letter-spacing: .07em;
-    text-transform: uppercase;
+    letter-spacing:var(--ot-ls,.07em);
+    text-transform:var(--ot-case,uppercase);
     text-decoration: none;
     display: inline-flex;
     align-items: center;
@@ -162,7 +162,7 @@
     .inner-table table[cellpadding="0"] td { padding-left: 3px !important; padding-right: 3px !important; }
     .inner-table table[cellpadding="0"] td[style*="font-size:13px"],
     .inner-table table[cellpadding="0"] td[style*="font-size:12.5px"] { font-size: 11.5px !important; }
-    .inner-table table[cellpadding="0"] td[style*="font-size: 11px"] { font-size: 11px !important; letter-spacing: 0.06em !important; }
+    .inner-table table[cellpadding="0"] td[style*="font-size: 11px"] { font-size: 11px !important; letter-spacing:var(--ot-ls,0.06em) !important; }
 
     /* Section padding inside the email frame */
     .inner-table td[style*="padding:24px 24px"] { padding: 20px 18px 0 !important; }
@@ -181,74 +181,75 @@
   gtag('config', 'G-92NXKY9W1S', { 'send_page_view': true });
 </script>
 
+<link rel="stylesheet" href="/assets/output-theme.css">
 </head>
-<body style="margin:0;padding:0;background:#d9d7cb;font-family:'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif;">
+<body style="margin:0;padding:0;background:var(--ot-rule,#d9d7cb);font-family:var(--ot-sans,'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif);">
 <main id="main">
-<div style="text-align:center;padding:9px 16px;font-size:12px;color:#5c5c5a;background:#e6e3d6;border-bottom:1px solid #bebcb3;font-family:'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif;">Sample deliverable. This is a produced sample of Briefly's Morning Brief daily email. Names, firms, and figures are fictionalized. &middot; <a href="/sample-deliverables" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">All samples</a> &middot; <a href="/" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">Briefly</a></div>
-<table width="100%" cellpadding="0" cellspacing="0" class="outer-table" style="background:#d9d7cb;padding:32px 16px;">
+<div style="text-align:center;padding:9px 16px;font-size:12px;color:var(--ot-muted,#5c5c5a);background:var(--ot-inset,#e6e3d6);border-bottom:1px solid var(--ot-faint,#bebcb3);font-family:var(--ot-sans,'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif);">Sample deliverable. This is a produced sample of Briefly's Morning Brief daily email. Names, firms, and figures are fictionalized. &middot; <a href="/sample-deliverables" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">All samples</a> &middot; <a href="/" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">Briefly</a></div>
+<table width="100%" cellpadding="0" cellspacing="0" class="outer-table" style="background:var(--ot-rule,#d9d7cb);padding:32px 16px;">
 <tr><td align="center">
 <!--[if mso]><table width="640" cellpadding="0" cellspacing="0"><tr><td><![endif]-->
-<table cellpadding="0" cellspacing="0" class="inner-table" style="background:#f1eee2;border:1px solid #1c1d1f;width:100%;max-width:640px;">
+<table cellpadding="0" cellspacing="0" class="inner-table" style="background:var(--ot-paper,#f1eee2);border:1px solid var(--ot-rule,#1c1d1f);width:100%;max-width:640px;">
 
 <!-- Header -->
-<tr><td style="background:#f1eee2;padding:32px 28px 0;text-align:center;">
-  <p style="font-family:'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;font-size:12px;color:#1D4ED8;margin:0 0 14px;letter-spacing:0.22em;text-transform:uppercase;font-weight:800;">Briefly Wealth</p>
-  <table width="100%" cellpadding="0" cellspacing="0"><tr><td style="border-top:2px solid #1c1d1f;height:0;font-size:0;line-height:0;"></td></tr></table>
-  <h1 class="brief-title" style="font-family:'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:34px;font-weight:900;color:#1c1d1f;margin:14px 0 12px;letter-spacing:-0.025em;line-height:1.05;">The Morning Brief</h1>
-  <table width="100%" cellpadding="0" cellspacing="0"><tr><td style="border-top:1px solid #1c1d1f;height:0;font-size:0;line-height:0;"></td></tr></table>
+<tr><td style="background:var(--ot-paper,#f1eee2);padding:32px 28px 0;text-align:center;">
+  <p style="font-family:var(--ot-sans,'JetBrains Mono',Menlo,Consolas,'Courier New',monospace);font-size:12px;color:var(--ot-link,#1D4ED8);margin:0 0 14px;letter-spacing:var(--ot-ls,0.22em);text-transform:var(--ot-case,uppercase);font-weight:800;">Briefly Wealth</p>
+  <table width="100%" cellpadding="0" cellspacing="0"><tr><td style="border-top:2px solid var(--ot-ink,#1c1d1f);height:0;font-size:0;line-height:0;"></td></tr></table>
+  <h1 class="brief-title" style="font-family:var(--ot-sans,'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif);font-size:34px;font-weight:900;color:var(--ot-ink,#1c1d1f);margin:14px 0 12px;letter-spacing:-0.025em;line-height:1.05;">The Morning Brief</h1>
+  <table width="100%" cellpadding="0" cellspacing="0"><tr><td style="border-top:1px solid var(--ot-ink,#1c1d1f);height:0;font-size:0;line-height:0;"></td></tr></table>
   <table width="100%" cellpadding="0" cellspacing="0" style="margin-top:12px;"><tr>
-    <td style="text-align:left;"><p style="font-family:'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;font-size: 11px;color:#5c5c5a;margin:0;letter-spacing:0.06em;text-transform:uppercase;font-weight:700;">Thursday, March 12, 2026</p></td>
-    <td style="text-align:right;"><p style="font-family:'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;font-size: 11px;color:#5c5c5a;margin:0;letter-spacing:0.06em;text-transform:uppercase;font-weight:700;">Pre-Market Edition</p></td>
+    <td style="text-align:left;"><p style="font-family:var(--ot-sans,'JetBrains Mono',Menlo,Consolas,'Courier New',monospace);font-size: 11px;color:var(--ot-muted,#5c5c5a);margin:0;letter-spacing:var(--ot-ls,0.06em);text-transform:var(--ot-case,uppercase);font-weight:700;">Thursday, March 12, 2026</p></td>
+    <td style="text-align:right;"><p style="font-family:var(--ot-sans,'JetBrains Mono',Menlo,Consolas,'Courier New',monospace);font-size: 11px;color:var(--ot-muted,#5c5c5a);margin:0;letter-spacing:var(--ot-ls,0.06em);text-transform:var(--ot-case,uppercase);font-weight:700;">Pre-Market Edition</p></td>
   </tr></table>
-  <table width="100%" cellpadding="0" cellspacing="0" style="margin-top:12px;"><tr><td style="border-top:1px solid #bebcb3;height:0;font-size:0;line-height:0;"></td></tr></table>
+  <table width="100%" cellpadding="0" cellspacing="0" style="margin-top:12px;"><tr><td style="border-top:1px solid var(--ot-faint,#bebcb3);height:0;font-size:0;line-height:0;"></td></tr></table>
 </td></tr>
 
 <!-- Body -->
-<tr><td style="padding:24px 24px 0;background:#f1eee2;">
-  <p style="font-family:'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;color:#2d2e2f;margin:0 0 22px 0;line-height:1.6;">Good morning. Private credit funds are freezing withdrawals.</p><div style="background:#e6e3d6;padding:28px 24px;border-bottom:1px solid #bebcb3;margin:0 -24px 0 -24px;">
-<p style="font-family:'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;font-size:12px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:#1D4ED8;margin:0 0 14px;">Markets</p>
+<tr><td style="padding:24px 24px 0;background:var(--ot-paper,#f1eee2);">
+  <p style="font-family:var(--ot-sans,'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif);font-size:15px;color:var(--ot-ink,#2d2e2f);margin:0 0 22px 0;line-height:1.6;">Good morning. Private credit funds are freezing withdrawals.</p><div style="background:var(--ot-inset,#e6e3d6);padding:28px 24px;border-bottom:1px solid var(--ot-faint,#bebcb3);margin:0 -24px 0 -24px;">
+<p style="font-family:var(--ot-sans,'JetBrains Mono',Menlo,Consolas,'Courier New',monospace);font-size:12px;font-weight:800;letter-spacing:var(--ot-ls,0.14em);text-transform:var(--ot-case,uppercase);color:var(--ot-link,#1D4ED8);margin:0 0 14px;">Markets</p>
 <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
 <tr>
-  <td style="font-family:'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;font-size: 11px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#5c5c5a;padding:0 6px 8px;text-align:left;width:30%;"></td>
-  <td style="font-family:'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;font-size: 11px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#5c5c5a;padding:0 6px 8px;text-align:right;width:23%;">Level</td>
-  <td style="font-family:'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;font-size: 11px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#5c5c5a;padding:0 6px 8px;text-align:right;width:23%;">YTD</td>
-  <td style="font-family:'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;font-size: 11px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#5c5c5a;padding:0 6px 8px;text-align:right;width:24%;">MTD</td>
+  <td style="font-family:var(--ot-sans,'JetBrains Mono',Menlo,Consolas,'Courier New',monospace);font-size: 11px;font-weight:800;letter-spacing:var(--ot-ls,0.1em);text-transform:var(--ot-case,uppercase);color:var(--ot-muted,#5c5c5a);padding:0 6px 8px;text-align:left;width:30%;"></td>
+  <td style="font-family:var(--ot-sans,'JetBrains Mono',Menlo,Consolas,'Courier New',monospace);font-size: 11px;font-weight:800;letter-spacing:var(--ot-ls,0.1em);text-transform:var(--ot-case,uppercase);color:var(--ot-muted,#5c5c5a);padding:0 6px 8px;text-align:right;width:23%;">Level</td>
+  <td style="font-family:var(--ot-sans,'JetBrains Mono',Menlo,Consolas,'Courier New',monospace);font-size: 11px;font-weight:800;letter-spacing:var(--ot-ls,0.1em);text-transform:var(--ot-case,uppercase);color:var(--ot-muted,#5c5c5a);padding:0 6px 8px;text-align:right;width:23%;">YTD</td>
+  <td style="font-family:var(--ot-sans,'JetBrains Mono',Menlo,Consolas,'Courier New',monospace);font-size: 11px;font-weight:800;letter-spacing:var(--ot-ls,0.1em);text-transform:var(--ot-case,uppercase);color:var(--ot-muted,#5c5c5a);padding:0 6px 8px;text-align:right;width:24%;">MTD</td>
 </tr>
-<tr style="border-bottom:1px solid #bebcb3;"><td style="font-family:'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;font-weight:700;color:#1c1d1f;padding:7px 6px;">S&amp;P 500</td><td style="font-family:'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:#1c1d1f;">6,775.80</td><td style="font-family:'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:#B3261E;">-1.2%</td><td style="font-family:'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:#B3261E;">-1.5%</td></tr>
-<tr style="border-bottom:1px solid #bebcb3;"><td style="font-family:'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;font-weight:700;color:#1c1d1f;padding:7px 6px;">Nasdaq</td><td style="font-family:'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:#1c1d1f;">22,716.13</td><td style="font-family:'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:#B3261E;">-2.2%</td><td style="font-family:'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:#B3261E;">-0.1%</td></tr>
-<tr style="border-bottom:1px solid #bebcb3;"><td style="font-family:'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;font-weight:700;color:#1c1d1f;padding:7px 6px;">Dow Jones</td><td style="font-family:'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:#1c1d1f;">47,417.27</td><td style="font-family:'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:#B3261E;">-2.0%</td><td style="font-family:'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:#B3261E;">-3.0%</td></tr>
-<tr style="border-bottom:1px solid #bebcb3;"><td style="font-family:'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;font-weight:700;color:#1c1d1f;padding:7px 6px;">10Y Yield</td><td style="font-family:'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:#1c1d1f;">4.21%</td><td style="font-family:'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:#176B42;">+2bp</td><td style="font-family:'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:#176B42;">+16bp</td></tr>
-<tr style="border-bottom:1px solid #bebcb3;"><td style="font-family:'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;font-weight:700;color:#1c1d1f;padding:7px 6px;">WTI Crude</td><td style="font-family:'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:#1c1d1f;">$87.25</td><td style="font-family:'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:#176B42;">+52.2%</td><td style="font-family:'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:#176B42;">+22.5%</td></tr>
-<tr style="border-bottom:1px solid #bebcb3;"><td style="font-family:'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;font-weight:700;color:#1c1d1f;padding:7px 6px;">Gold</td><td style="font-family:'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:#1c1d1f;">$5,167.40</td><td style="font-family:'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:#176B42;">+19.8%</td><td style="font-family:'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:#B3261E;">-2.4%</td></tr>
-<tr style=""><td style="font-family:'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;font-weight:700;color:#1c1d1f;padding:7px 6px;">Bitcoin</td><td style="font-family:'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:#1c1d1f;">$70,205</td><td style="font-family:'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:#B3261E;">-20.9%</td><td style="font-family:'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:#176B42;">+6.8%</td></tr>
+<tr style="border-bottom:1px solid var(--ot-faint,#bebcb3);"><td style="font-family:var(--ot-sans,'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif);font-size:13px;font-weight:700;color:var(--ot-ink,#1c1d1f);padding:7px 6px;">S&amp;P 500</td><td style="font-family:var(--ot-sans,'JetBrains Mono',Menlo,Consolas,'Courier New',monospace);font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:var(--ot-ink,#1c1d1f);">6,775.80</td><td style="font-family:var(--ot-sans,'JetBrains Mono',Menlo,Consolas,'Courier New',monospace);font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:var(--ot-red,#B3261E);">-1.2%</td><td style="font-family:var(--ot-sans,'JetBrains Mono',Menlo,Consolas,'Courier New',monospace);font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:var(--ot-red,#B3261E);">-1.5%</td></tr>
+<tr style="border-bottom:1px solid var(--ot-faint,#bebcb3);"><td style="font-family:var(--ot-sans,'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif);font-size:13px;font-weight:700;color:var(--ot-ink,#1c1d1f);padding:7px 6px;">Nasdaq</td><td style="font-family:var(--ot-sans,'JetBrains Mono',Menlo,Consolas,'Courier New',monospace);font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:var(--ot-ink,#1c1d1f);">22,716.13</td><td style="font-family:var(--ot-sans,'JetBrains Mono',Menlo,Consolas,'Courier New',monospace);font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:var(--ot-red,#B3261E);">-2.2%</td><td style="font-family:var(--ot-sans,'JetBrains Mono',Menlo,Consolas,'Courier New',monospace);font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:var(--ot-red,#B3261E);">-0.1%</td></tr>
+<tr style="border-bottom:1px solid var(--ot-faint,#bebcb3);"><td style="font-family:var(--ot-sans,'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif);font-size:13px;font-weight:700;color:var(--ot-ink,#1c1d1f);padding:7px 6px;">Dow Jones</td><td style="font-family:var(--ot-sans,'JetBrains Mono',Menlo,Consolas,'Courier New',monospace);font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:var(--ot-ink,#1c1d1f);">47,417.27</td><td style="font-family:var(--ot-sans,'JetBrains Mono',Menlo,Consolas,'Courier New',monospace);font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:var(--ot-red,#B3261E);">-2.0%</td><td style="font-family:var(--ot-sans,'JetBrains Mono',Menlo,Consolas,'Courier New',monospace);font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:var(--ot-red,#B3261E);">-3.0%</td></tr>
+<tr style="border-bottom:1px solid var(--ot-faint,#bebcb3);"><td style="font-family:var(--ot-sans,'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif);font-size:13px;font-weight:700;color:var(--ot-ink,#1c1d1f);padding:7px 6px;">10Y Yield</td><td style="font-family:var(--ot-sans,'JetBrains Mono',Menlo,Consolas,'Courier New',monospace);font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:var(--ot-ink,#1c1d1f);">4.21%</td><td style="font-family:var(--ot-sans,'JetBrains Mono',Menlo,Consolas,'Courier New',monospace);font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:var(--ot-green,#176B42);">+2bp</td><td style="font-family:var(--ot-sans,'JetBrains Mono',Menlo,Consolas,'Courier New',monospace);font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:var(--ot-green,#176B42);">+16bp</td></tr>
+<tr style="border-bottom:1px solid var(--ot-faint,#bebcb3);"><td style="font-family:var(--ot-sans,'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif);font-size:13px;font-weight:700;color:var(--ot-ink,#1c1d1f);padding:7px 6px;">WTI Crude</td><td style="font-family:var(--ot-sans,'JetBrains Mono',Menlo,Consolas,'Courier New',monospace);font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:var(--ot-ink,#1c1d1f);">$87.25</td><td style="font-family:var(--ot-sans,'JetBrains Mono',Menlo,Consolas,'Courier New',monospace);font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:var(--ot-green,#176B42);">+52.2%</td><td style="font-family:var(--ot-sans,'JetBrains Mono',Menlo,Consolas,'Courier New',monospace);font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:var(--ot-green,#176B42);">+22.5%</td></tr>
+<tr style="border-bottom:1px solid var(--ot-faint,#bebcb3);"><td style="font-family:var(--ot-sans,'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif);font-size:13px;font-weight:700;color:var(--ot-ink,#1c1d1f);padding:7px 6px;">Gold</td><td style="font-family:var(--ot-sans,'JetBrains Mono',Menlo,Consolas,'Courier New',monospace);font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:var(--ot-ink,#1c1d1f);">$5,167.40</td><td style="font-family:var(--ot-sans,'JetBrains Mono',Menlo,Consolas,'Courier New',monospace);font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:var(--ot-green,#176B42);">+19.8%</td><td style="font-family:var(--ot-sans,'JetBrains Mono',Menlo,Consolas,'Courier New',monospace);font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:var(--ot-red,#B3261E);">-2.4%</td></tr>
+<tr style=""><td style="font-family:var(--ot-sans,'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif);font-size:13px;font-weight:700;color:var(--ot-ink,#1c1d1f);padding:7px 6px;">Bitcoin</td><td style="font-family:var(--ot-sans,'JetBrains Mono',Menlo,Consolas,'Courier New',monospace);font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:var(--ot-ink,#1c1d1f);">$70,205</td><td style="font-family:var(--ot-sans,'JetBrains Mono',Menlo,Consolas,'Courier New',monospace);font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:var(--ot-red,#B3261E);">-20.9%</td><td style="font-family:var(--ot-sans,'JetBrains Mono',Menlo,Consolas,'Courier New',monospace);font-size:12.5px;padding:7px 6px;text-align:right;font-variant-numeric:tabular-nums;color:var(--ot-green,#176B42);">+6.8%</td></tr>
 </table>
-</div><p style="font-family:'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14.5px;line-height:1.65;color:#2d2e2f;margin:0;padding:24px 0 22px 0;border-bottom:1px solid #bebcb3;">The Dow is heading for its third losing week in a row, with S&P futures down <b>1.11%</b> and Nasdaq futures down <b>1.29%</b>. Oil is back above <b>$100 a barrel</b>. Morgan Stanley and Cliffwater have capped investor withdrawals from their private credit funds.</p><div style="background:#e6e3d6;padding:28px 24px;border-bottom:1px solid #bebcb3;margin:0 -24px;margin-bottom:0;">
-<h2 style="font-family:'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;font-size:12px;font-weight:800;color:#1D4ED8;margin:0 0 10px;letter-spacing:0.14em;text-transform:uppercase;">Advisor Talking Point</h2>
-<h3 style="font-family:'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:20px;font-weight:900;color:#1c1d1f;margin:0 0 14px;letter-spacing:-0.02em;line-height:1.2;">Your clients may own private credit without knowing it</h3>
-<p style="font-family:'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14.5px;line-height:1.65;color:#2d2e2f;margin:0 0 12px;">Deutsche Bank flagged $30 billion in exposure to the private credit sector.</p>
-<div style="background:#f1eee2;border:1px solid #bebcb3;padding:18px 20px;margin-top:16px;"><p style="font-family:'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;font-size: 11px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:#1c1d1f;margin:0 0 8px;">If a client asks</p><p style="font-family:'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;line-height:1.6;color:#2d2e2f;margin:0 0 8px;">We're reviewing your accounts today and will call if anything needs attention.</p></div>
+</div><p style="font-family:var(--ot-sans,'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif);font-size:14.5px;line-height:1.65;color:var(--ot-ink,#2d2e2f);margin:0;padding:24px 0 22px 0;border-bottom:1px solid var(--ot-faint,#bebcb3);">The Dow is heading for its third losing week in a row, with S&P futures down <b>1.11%</b> and Nasdaq futures down <b>1.29%</b>. Oil is back above <b>$100 a barrel</b>. Morgan Stanley and Cliffwater have capped investor withdrawals from their private credit funds.</p><div style="background:var(--ot-inset,#e6e3d6);padding:28px 24px;border-bottom:1px solid var(--ot-faint,#bebcb3);margin:0 -24px;margin-bottom:0;">
+<h2 style="font-family:var(--ot-sans,'JetBrains Mono',Menlo,Consolas,'Courier New',monospace);font-size:12px;font-weight:800;color:var(--ot-link,#1D4ED8);margin:0 0 10px;letter-spacing:var(--ot-ls,0.14em);text-transform:var(--ot-case,uppercase);">Advisor Talking Point</h2>
+<h3 style="font-family:var(--ot-sans,'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif);font-size:20px;font-weight:900;color:var(--ot-ink,#1c1d1f);margin:0 0 14px;letter-spacing:-0.02em;line-height:1.2;">Your clients may own private credit without knowing it</h3>
+<p style="font-family:var(--ot-sans,'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif);font-size:14.5px;line-height:1.65;color:var(--ot-ink,#2d2e2f);margin:0 0 12px;">Deutsche Bank flagged $30 billion in exposure to the private credit sector.</p>
+<div style="background:var(--ot-paper,#f1eee2);border:1px solid var(--ot-faint,#bebcb3);padding:18px 20px;margin-top:16px;"><p style="font-family:var(--ot-sans,'JetBrains Mono',Menlo,Consolas,'Courier New',monospace);font-size: 11px;font-weight:800;letter-spacing:var(--ot-ls,0.14em);text-transform:var(--ot-case,uppercase);color:var(--ot-ink,#1c1d1f);margin:0 0 8px;">If a client asks</p><p style="font-family:var(--ot-sans,'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif);font-size:14px;line-height:1.6;color:var(--ot-ink,#2d2e2f);margin:0 0 8px;">We're reviewing your accounts today and will call if anything needs attention.</p></div>
 </div>
-<div style="margin:0;padding:28px 0;border-bottom:none;"><h2 style="font-family:'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;font-size:12px;font-weight:800;color:#1D4ED8;margin:0 0 10px;letter-spacing:0.14em;text-transform:uppercase;">What to Watch</h2>
+<div style="margin:0;padding:28px 0;border-bottom:none;"><h2 style="font-family:var(--ot-sans,'JetBrains Mono',Menlo,Consolas,'Courier New',monospace);font-size:12px;font-weight:800;color:var(--ot-link,#1D4ED8);margin:0 0 10px;letter-spacing:var(--ot-ls,0.14em);text-transform:var(--ot-case,uppercase);">What to Watch</h2>
 <table style="width:100%;border-collapse:collapse;margin:4px 0 0;">
-<tr><td colspan="2" style="font-family:'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;font-size: 11px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#5c5c5a;padding:16px 0 6px;">Today, March 12</td></tr>
-<tr><td style="font-family:'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;font-size:12px;color:#1c1d1f;font-weight:700;width:110px;white-space:nowrap;padding:6px 12px 6px 0;vertical-align:top;font-variant-numeric:tabular-nums;">8:30 AM</td><td style="font-family:'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#2d2e2f;line-height:1.5;padding:6px 0;vertical-align:top;">Unemployment Claims</td></tr>
+<tr><td colspan="2" style="font-family:var(--ot-sans,'JetBrains Mono',Menlo,Consolas,'Courier New',monospace);font-size: 11px;font-weight:800;letter-spacing:var(--ot-ls,0.12em);text-transform:var(--ot-case,uppercase);color:var(--ot-muted,#5c5c5a);padding:16px 0 6px;">Today, March 12</td></tr>
+<tr><td style="font-family:var(--ot-sans,'JetBrains Mono',Menlo,Consolas,'Courier New',monospace);font-size:12px;color:var(--ot-ink,#1c1d1f);font-weight:700;width:110px;white-space:nowrap;padding:6px 12px 6px 0;vertical-align:top;font-variant-numeric:tabular-nums;">8:30 AM</td><td style="font-family:var(--ot-sans,'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif);font-size:14px;color:var(--ot-ink,#2d2e2f);line-height:1.5;padding:6px 0;vertical-align:top;">Unemployment Claims</td></tr>
 </table>
 </div>
-<div style="background:#e6e3d6;padding:28px 24px;margin:0 -24px;border-bottom:none;">
-<h2 style="font-family:'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;font-size:12px;font-weight:800;color:#1D4ED8;margin:0 0 10px;letter-spacing:0.14em;text-transform:uppercase;">Water Cooler</h2><h3 style="font-family:'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:20px;font-weight:900;color:#1c1d1f;margin:0 0 14px;letter-spacing:-0.02em;line-height:1.2;">DOGE staffers caught accessing data</h3><p style="font-family:'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14.5px;line-height:1.65;color:#2d2e2f;margin:0 0 12px;">Congress and the SSA Inspector General are investigating.</p></div>
+<div style="background:var(--ot-inset,#e6e3d6);padding:28px 24px;margin:0 -24px;border-bottom:none;">
+<h2 style="font-family:var(--ot-sans,'JetBrains Mono',Menlo,Consolas,'Courier New',monospace);font-size:12px;font-weight:800;color:var(--ot-link,#1D4ED8);margin:0 0 10px;letter-spacing:var(--ot-ls,0.14em);text-transform:var(--ot-case,uppercase);">Water Cooler</h2><h3 style="font-family:var(--ot-sans,'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif);font-size:20px;font-weight:900;color:var(--ot-ink,#1c1d1f);margin:0 0 14px;letter-spacing:-0.02em;line-height:1.2;">DOGE staffers caught accessing data</h3><p style="font-family:var(--ot-sans,'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif);font-size:14.5px;line-height:1.65;color:var(--ot-ink,#2d2e2f);margin:0 0 12px;">Congress and the SSA Inspector General are investigating.</p></div>
 </td></tr>
 
 <!-- Subscribe CTA -->
-<tr><td style="padding:28px 24px;border-top:1px solid #bebcb3;background:#f1eee2;text-align:center;">
-  <p style="font-family:'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#1c1d1f;font-weight:700;margin:0 0 14px;">Know an advisor who'd find this useful?</p>
-  <a href="https://brieflywealth.com/subscribe" style="display:inline-block;font-family:'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;font-size:11.5px;font-weight:800;color:#ffffff;background:#2f8cff;padding:13px 22px;text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;">Subscribe to the Morning Brief</a>
+<tr><td style="padding:28px 24px;border-top:1px solid var(--ot-faint,#bebcb3);background:var(--ot-paper,#f1eee2);text-align:center;">
+  <p style="font-family:var(--ot-sans,'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif);font-size:14px;color:var(--ot-ink,#1c1d1f);font-weight:700;margin:0 0 14px;">Know an advisor who'd find this useful?</p>
+  <a href="https://brieflywealth.com/subscribe" style="display:inline-block;font-family:var(--ot-sans,'JetBrains Mono',Menlo,Consolas,'Courier New',monospace);font-size:11.5px;font-weight:800;color:#ffffff;background:#2f8cff;padding:13px 22px;text-decoration:none;letter-spacing:var(--ot-ls,0.08em);text-transform:var(--ot-case,uppercase);">Subscribe to the Morning Brief</a>
 </td></tr>
 
 <!-- Footer -->
-<tr><td style="padding:18px 24px 22px;border-top:1px solid #bebcb3;background:#e6e3d6;">
-  <p style="font-family:'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;font-size: 11px;color:#5c5c5a;line-height:1.7;margin:0;text-align:center;letter-spacing:0.08em;text-transform:uppercase;font-weight:700;">
+<tr><td style="padding:18px 24px 22px;border-top:1px solid var(--ot-faint,#bebcb3);background:var(--ot-inset,#e6e3d6);">
+  <p style="font-family:var(--ot-sans,'JetBrains Mono',Menlo,Consolas,'Courier New',monospace);font-size: 11px;color:var(--ot-muted,#5c5c5a);line-height:1.7;margin:0;text-align:center;letter-spacing:var(--ot-ls,0.08em);text-transform:var(--ot-case,uppercase);font-weight:700;">
     <i style="font-style:italic;">AI-generated using live market data. Always verify independently. Not investment advice.</i><br>
-    Sent by Briefly Wealth &middot; <a href="https://brieflywealth.com/unsubscribe?token=preview" style="color:#0b5394;text-decoration:underline;">Unsubscribe</a>
+    Sent by Briefly Wealth &middot; <a href="https://brieflywealth.com/unsubscribe?token=preview" style="color:var(--ot-link,#0b5394);text-decoration:underline;">Unsubscribe</a>
   </p>
 </td></tr>
 </table>

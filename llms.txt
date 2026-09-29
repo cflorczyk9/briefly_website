@@ -4,6 +4,8 @@
 
 Briefly runs two ways. The Claude connector is the flagship path. It's a download that adds Briefly to Claude Desktop and reads from a folder on your own computer. With the Briefly connector, client files never reach Briefly's servers. Only your sign-in, a seat check, de-identified preference rules, and a short usage record for each tool call do, and Claude reads the files under your firm's own Claude plan. The web app is the second surface, a browser workspace for firms that would rather sign in than install anything, and its files live in Briefly's hosted environment instead.
 
+The web app also runs agents on a schedule and emails each finished report with a PDF attached. It includes a market brief agent, a firm view built from the firm's CIO notes, and the firm's logo and two colors on every agent output.
+
 Briefly is built by Briefly Wealth LLC, founded by Connor Florczyk.
 
 These files are intended to help LLMs and AI agents accurately ground answers about Briefly in primary source pages rather than third-party summaries. For a flat plain-text concatenation of the main marketing pages, see `/llms-full.txt`.
@@ -12,7 +14,7 @@ These files are intended to help LLMs and AI agents accurately ground answers ab
 
 - [Home](https://www.brieflywealth.com/): Briefly is an AI knowledge base for financial advisors that runs inside Claude. Ask across your firm's own files and get cited answers. With the connector, client files never reach our servers.
 - [Knowledge base](https://www.brieflywealth.com/knowledge-base): How Briefly builds an AI knowledge base for financial advisors from a firm's own documents, email, meeting notes, and portfolio data, with every fact traceable to its source.
-- [Compare](https://www.brieflywealth.com/compare): The Briefly connector and the web app side by side. Both read from the same client file, cited and correctable. With the connector, client files stay on the advisor's computer.
+- [Compare](https://www.brieflywealth.com/compare): The Briefly connector and the web app side by side, including scheduled runs with emailed reports, firm view, the market brief agent, and your brand on every agent output. Both read from the same client file, cited and correctable. With the connector, client files stay on the advisor's computer.
 - [Download](https://www.brieflywealth.com/download): Download the Briefly connector for Claude Desktop. Client files stay on your computer, and only sign-in and de-identified rules reach Briefly's server.
 - [Start](https://www.brieflywealth.com/start): Sign up for the Briefly connector without a call. Checkout runs on Stripe.
 

@@ -331,6 +331,58 @@
             </div>
         </section>
 
+        <section class="section reveal" id="hardening">
+            <h2 class="section-title">Security work in September 2026</h2>
+            <p class="section-lead">We ran a security review of the web app and its hosting in September and made the changes below in response. These changes apply to the hosted web app and the account layer. Connector firms keep client files on their own computers either way.</p>
+            <div class="grid">
+                <div class="card">
+                    <h3>AI actions wait for your approval</h3>
+                    <p>When a task is created from chat, it now waits in Action items until an advisor approves it. Nothing goes to Salesforce before that. The assistant also saves an advisor preference only when the advisor asks it to, and it can only run briefs for clients the advisor has access to.</p>
+                    <!-- confirm live -->
+                </div>
+                <div class="card">
+                    <h3>Client-data model calls use zero-retention routing</h3>
+                    <p>Every web app model call that carries client data asks for zero-data-retention endpoints only. Extraction has a fallback model on the same terms, so an outage at one provider does not push documents onto endpoints that keep data. A model missing from the zero-retention list is skipped.</p>
+                    <!-- confirm live -->
+                </div>
+                <div class="card">
+                    <h3>Secrets in AWS Secrets Manager</h3>
+                    <p>API keys and other credentials live in AWS Secrets Manager and are handed to the application when it starts. They are no longer set as plain environment values on the servers.</p>
+                    <!-- confirm live -->
+                </div>
+                <div class="card">
+                    <h3>Deploys use short-lived credentials</h3>
+                    <p>Our build pipeline now signs in to AWS through OpenID Connect and receives credentials that expire after each deploy. Once the switch is complete, no long-lived AWS keys remain stored in our code host.</p>
+                    <!-- confirm live -->
+                </div>
+                <div class="card">
+                    <h3>Web application firewall</h3>
+                    <p>A web application firewall now sits in front of the hosted app, with AWS managed rules and a per-address rate limit. We run both in monitoring mode first and turn on blocking after about a week of real traffic.</p>
+                    <!-- confirm live -->
+                </div>
+                <div class="card">
+                    <h3>Audit logging and threat detection</h3>
+                    <p>AWS CloudTrail records account activity, and GuardDuty watches for suspicious behavior. Load balancer access logs are kept for 90 days, and database logs are exported for review. Alarms email us on server errors, unhealthy hosts, and database strain.</p>
+                    <!-- confirm live -->
+                </div>
+                <div class="card">
+                    <h3>Stronger sign-in</h3>
+                    <p>Passwords now need at least 12 characters with symbols, and the browser sign-in uses the more secure SRP flow only. Multi-factor sign-in stays optional for now, and requiring it is a separate change we will roll out on its own. The internal admin console no longer accepts access tokens in web addresses.</p>
+                    <!-- confirm live -->
+                </div>
+                <div class="card">
+                    <h3>Encrypted document storage</h3>
+                    <p>New documents in the web app are stored with keys managed in AWS KMS. Older documents keep their existing encryption. The web app's front end is served over TLS 1.2 or newer.</p>
+                    <!-- confirm live -->
+                </div>
+                <div class="card">
+                    <h3>Dependencies brought up to date</h3>
+                    <p>We updated the libraries behind the API, the web app, and the connector server. A production audit now shows no critical or high-severity known vulnerabilities in any of them. A few low and moderate findings remain on our list.</p>
+                    <!-- confirm live -->
+                </div>
+            </div>
+        </section>
+
         <section class="section reveal" id="faq">
             <h2 class="section-title">Compliance officer FAQ</h2>
             <p class="section-lead">The questions we hear most from the people responsible for signing off on a vendor like Briefly.</p>

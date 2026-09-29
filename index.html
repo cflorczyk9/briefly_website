@@ -118,6 +118,7 @@
 </script>
 
 <link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/output-theme.css">
 <script src="/assets/site.js"></script>
 <style>
 
@@ -274,7 +275,7 @@
   .cdv-fig { display: block; width: 100%; max-width: 400px; height: auto; }
   .cdv-fig .ln { fill: none; stroke: var(--ink); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
   .cdv-fig .ln-soft { fill: none; stroke: rgba(0,0,0,.45); stroke-width: 1.2; }
-  .cdv-fig .fill-soft { fill: #fff; }
+  .cdv-fig .fill-soft { fill: var(--card); }
   .cdv-fig .fill-deep { fill: rgba(0,0,0,.08); }
   .cdv-door-kicker { font-size: 13px; font-weight: 600; color: var(--blue-ink); margin: 16px 0 6px; }
   .cdv-door h3 { font-size: 20px; }
@@ -348,6 +349,27 @@
   .pa-doc.play > .pa-step:nth-child(7) { transition-delay: 1.35s; }
   @media (prefers-reduced-motion: reduce) { .pa-step { opacity: 1; transform: none; transition: none; } }
 
+
+  /* workflow pills under the intake animation */
+  .flow-row { margin-top: 40px; }
+  .flow-row p { font-size: 15px; color: var(--ink-soft); margin-bottom: 12px; }
+  .flow-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  /* schedule section: rules on the left, the email that arrives on the right */
+  .sched-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-top: 44px; }
+  .sched-grid .way-list { margin-bottom: 16px; }
+  .sched-note { font-size: 15px; color: var(--ink-soft); }
+  .mail-meta { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; font-size: 13px; color: var(--ink-muted); padding-bottom: 12px; border-bottom: 1px solid var(--rule); margin-bottom: 14px; }
+  .mail-meta b { font-weight: 600; color: var(--ink); overflow-wrap: anywhere; }
+  .mail-body p { font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
+  .mail-body p + p { margin-top: 10px; }
+  .mail-attach { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--rule); }
+
+  /* firm-level row */
+  .firm-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 18px; }
+  .firm-row .card p { font-size: 15px; color: var(--ink-soft); }
+  .firm-row .card .pill { margin-bottom: 10px; }
+
   /* correction loop */
   .loop-clip { margin-top: 44px; }
   .loop-note { margin-top: 20px; max-width: 600px; font-size: 15px; line-height: 1.65; color: var(--ink-soft); }
@@ -364,6 +386,8 @@
     .day-row { grid-template-columns: 1fr; gap: 20px; }
     .day-lede-cols { grid-template-columns: 1fr; gap: 14px; }
     .pa-metrics { grid-template-columns: 1fr; }
+    .sched-grid { grid-template-columns: 1fr; gap: 28px; }
+    .firm-row { grid-template-columns: 1fr; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -512,6 +536,12 @@
         <div class="fc-row"><span>Umbrella policy renews in September</span><span class="cite">renewal notice</span></div>
       </div>
     </div>
+    <div class="flow-row">
+      <p>The same file feeds the rest of the workflow, so each of these starts from what your firm already knows.</p>
+      <div class="flow-pills">
+        <span class="pill">Briefs</span><span class="pill">Agendas</span><span class="pill">Client statuses</span><span class="pill">Follow-ups</span><span class="pill">Market briefs</span><span class="pill">Prospect analyses</span><span class="pill">Ask</span><span class="pill">Next steps into Salesforce</span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -620,6 +650,40 @@
   </div>
 </section>
 
+<!-- ==================== RUNS ON A SCHEDULE ==================== -->
+<section class="pad band-paper2" id="schedule" aria-label="Runs on a schedule">
+  <div class="container reveal">
+    <div class="eyebrow">Runs on a schedule</div>
+    <h2>Set the rules once. The finished report lands in your inbox.</h2>
+    <p class="lede">On the Agents tab you write a rule as a plain sentence and choose which clients it covers. Each time it runs, the report arrives by email with the PDF attached.</p>
+    <div class="sched-grid">
+      <div>
+        <ul class="way-list">
+          <li>Before every meeting</li>
+          <li>Every week, on the day and time you pick</li>
+          <li>Every month, on the day and time you pick</li>
+          <li>For all clients, only some, or all except a few</li>
+        </ul>
+        <p class="sched-note">If your calendar connection stops working, Schedules says so and shows every rule as paused until you reconnect it.</p>
+      </div>
+      <div class="win" data-mockup="">
+        <div class="win-bar"><span class="win-dot"></span><span>Inbox</span></div>
+        <div class="win-body">
+          <div class="mail-meta">
+            <span>From</span><b>Briefly &lt;no-reply@brieflywealth.com&gt;</b>
+            <span>Subject</span><b>Patel household brief</b>
+          </div>
+          <div class="mail-body">
+            <p>The sell-rate decision is the headline, the deferred-comp window opens 8/15, and the Q2 estimated tax is still due from Raj.</p>
+            <p>The full report follows below and is attached as a PDF.</p>
+          </div>
+          <div class="mail-attach"><span class="cite">Patel-brief.pdf</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ==================== THE LOOP: corrections become rules ==================== -->
 <section class="pad band-white" aria-label="Why Briefly keeps getting better">
   <div class="container reveal">
@@ -628,6 +692,22 @@
     <p class="lede">When an advisor fixes a name, a preference, or a way of phrasing things, Briefly keeps the fix as a standing rule. Next quarter's brief already follows it, for everyone.</p>
     <div class="loop-clip" data-mockup="" data-bpa-clip="7" aria-label="How a correction becomes a standing rule the whole team inherits"></div>
     <p class="loop-note">An advisor at one firm fixed a single phrase, "we call it a planning conversation, never a sales meeting." Every brief that firm has received since says it their way.</p>
+    <div class="eyebrow" style="margin-top:64px;">For the whole firm</div>
+    <div class="firm-row">
+      <div class="card">
+        <h3>Firm view</h3>
+        <p>Paste in your CIO's notes, or have them arrive by email. Briefly keeps a dated timeline and one shared summary, and adds a section to briefs and market briefs.</p>
+      </div>
+      <div class="card">
+        <h3>Your brand on every agent output</h3>
+        <p>Your logo and two colors appear on each agent's report on screen, in the PDF, and when you paste it into an email.</p>
+      </div>
+      <div class="card">
+        <span class="pill">Rolling out</span>
+        <h3>Orion data</h3>
+        <p>Orion values in the client header, held-away accounts, and a line that reconciles them with the statements. Turned on firm by firm.</p>
+      </div>
+    </div>
   </div>
 </section>
 

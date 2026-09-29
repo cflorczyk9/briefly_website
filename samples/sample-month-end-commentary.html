@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html data-output-theme="" lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -49,20 +49,20 @@
 </script>
 <style>
   :root {
-    --page-bg: #eceef1;
+    --page-bg: var(--ot-inset,#eceef1);
     --paper: #ffffff;
-    --navy: #1c3a5e;
-    --navy-deep: #142c48;
-    --gold: #c6992e;
-    --gold-soft: #d9b94a;
-    --ink: #1c2530;
-    --ink-soft: #384252;
-    --muted: #6b7280;
-    --rule: #e2e5e9;
-    --green: #2f7a4f;
-    --badge-bg: #dcae2c;
-    --badge-ink: #2c2100;
-    --link-navy: #2c5c86;
+    --navy: var(--ot-ink,#1c3a5e);
+    --navy-deep: var(--ot-ink,#142c48);
+    --gold: var(--ot-chart2,#c6992e);
+    --gold-soft: var(--ot-chart2,#d9b94a);
+    --ink: var(--ot-ink,#1c2530);
+    --ink-soft: var(--ot-ink-soft,#384252);
+    --muted: var(--ot-muted,#6b7280);
+    --rule: var(--ot-rule,#e2e5e9);
+    --green: var(--ot-green,#2f7a4f);
+    --badge-bg: var(--ot-chart2,#dcae2c);
+    --badge-ink: var(--ot-amber,#2c2100);
+    --link-navy: var(--ot-link,#2c5c86);
     --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
     --serif: Georgia, "Times New Roman", Times, serif;
   }
@@ -84,18 +84,18 @@
     gap: 10px;
     flex-wrap: wrap;
     padding: 10px 16px;
-    background: #f4f2ec;
-    border-bottom: 1px solid #ddd8c8;
+    background: var(--ot-inset,#f4f2ec);
+    border-bottom: 1px solid var(--ot-rule,#ddd8c8);
     font-family: var(--sans);
     font-size: 12px;
-    color: #6b6555;
+    color: var(--ot-muted,#6b6555);
     text-align: center;
   }
   .sample-banner .dot { opacity: .6; }
   .sample-banner .brief-mark {
     font-weight: 800;
     letter-spacing: -.02em;
-    color: #6b6555;
+    color: var(--ot-muted,#6b6555);
   }
 
   /* ---- page wrap / paper card ---- */
@@ -120,8 +120,8 @@
   .doc-eyebrow {
     font-size: 12px;
     font-weight: 700;
-    letter-spacing: .22em;
-    text-transform: uppercase;
+    letter-spacing:var(--ot-ls,.22em);
+    text-transform:var(--ot-case,uppercase);
     color: var(--gold-soft);
     margin: 0 0 14px;
   }
@@ -153,8 +153,8 @@
   .stat-label {
     font-size: 11px;
     font-weight: 700;
-    letter-spacing: .13em;
-    text-transform: uppercase;
+    letter-spacing:var(--ot-ls,.13em);
+    text-transform:var(--ot-case,uppercase);
     color: var(--muted);
     margin: 0 0 8px;
   }
@@ -179,8 +179,8 @@
     color: var(--badge-ink);
     font-size: 11px;
     font-weight: 800;
-    letter-spacing: .07em;
-    text-transform: uppercase;
+    letter-spacing:var(--ot-ls,.07em);
+    text-transform:var(--ot-case,uppercase);
   }
 
   /* ---- generic section ---- */
@@ -191,8 +191,8 @@
   .section-title {
     font-size: 12px;
     font-weight: 800;
-    letter-spacing: .12em;
-    text-transform: uppercase;
+    letter-spacing:var(--ot-ls,.12em);
+    text-transform:var(--ot-case,uppercase);
     color: var(--navy);
     margin: 0 0 16px;
   }
@@ -225,8 +225,8 @@
     text-align: right;
     font-size: 11px;
     font-weight: 800;
-    letter-spacing: .08em;
-    text-transform: uppercase;
+    letter-spacing:var(--ot-ls,.08em);
+    text-transform:var(--ot-case,uppercase);
     color: var(--muted);
     padding: 0 8px 10px;
     border-bottom: 1px solid var(--ink);
@@ -301,7 +301,7 @@
   .doc-footer .firm-line {
     font-size: 13px;
     font-weight: 700;
-    letter-spacing: .03em;
+    letter-spacing:var(--ot-ls,.03em);
     margin: 0 0 10px;
   }
   .doc-footer .firm-line .brand { color: var(--gold-soft); }
@@ -318,11 +318,11 @@
     margin: 18px auto 0;
     text-align: center;
     font-size: 12px;
-    color: #5f6673;
+    color: var(--ot-muted,#5f6673);
   }
   .doc-caption .brief-mark {
     font-weight: 800;
-    color: #5c6474;
+    color: var(--ot-muted,#5c6474);
     letter-spacing: -.02em;
   }
 
@@ -349,6 +349,7 @@
 
   .sample-banner a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 </style>
+<link rel="stylesheet" href="/assets/output-theme.css">
 </head>
 <body>
 
@@ -515,8 +516,8 @@
 
 <div class="sample-next" style="max-width:760px;margin:0 auto;padding:36px 20px 56px;text-align:center;font-family:'DM Sans',-apple-system,system-ui,sans-serif;">
   <p style="font-size:16px;margin:0 0 16px;color:#333;">See what Briefly builds from your firm's own files.</p>
-  <a href="/start" style="display:inline-block;padding:12px 22px;margin:0 6px 8px;background:#0b2545;color:#fff;border-radius:10px;text-decoration:none;font-weight:600;">Start now</a>
-  <a href="/download" style="display:inline-block;padding:12px 22px;margin:0 6px 8px;border:1.5px solid #0b2545;color:#0b2545;border-radius:10px;text-decoration:none;font-weight:600;">Download the connector</a>
+  <a href="/start" style="display:inline-block;padding:12px 22px;margin:0 6px 8px;background:var(--ot-ink,#0b2545);color:#fff;border-radius:10px;text-decoration:none;font-weight:600;">Start now</a>
+  <a href="/download" style="display:inline-block;padding:12px 22px;margin:0 6px 8px;border:1.5px solid var(--ot-ink,#0b2545);color:var(--ot-ink,#0b2545);border-radius:10px;text-decoration:none;font-weight:600;">Download the connector</a>
 </div>
 </main>
 

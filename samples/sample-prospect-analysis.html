@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html data-output-theme="" lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -49,22 +49,22 @@
 </script>
 <style>
   :root {
-    --page-bg: #e9e6da;
-    --navy: #1b2f4d;
-    --navy-2: #23406b;
+    --page-bg: var(--ot-rule,#e9e6da);
+    --navy: var(--ot-ink,#1b2f4d);
+    --navy-2: var(--ot-ink,#23406b);
     --navy-soft: rgba(255,255,255,.68);
-    --ink: #1b1e24;
-    --ink-soft: #454b56;
-    --ink-muted: #6b7280;
-    --rule: #d9d4c5;
-    --callout-bg: #eef1f6;
-    --callout-border: #1b2f4d;
-    --tile-bg: #f6f5ef;
-    --flag: #a8432c;
-    --ok: #2f7a52;
-    --c-stock: #1b2f4d;
-    --c-bond: #b98a2e;
-    --c-cash: #aab0ba;
+    --ink: var(--ot-ink,#1b1e24);
+    --ink-soft: var(--ot-ink-soft,#454b56);
+    --ink-muted: var(--ot-muted,#6b7280);
+    --rule: var(--ot-rule,#d9d4c5);
+    --callout-bg: var(--ot-inset,#eef1f6);
+    --callout-border: var(--ot-ink,#1b2f4d);
+    --tile-bg: var(--ot-inset,#f6f5ef);
+    --flag: var(--ot-red,#a8432c);
+    --ok: var(--ot-green,#2f7a52);
+    --c-stock: var(--ot-ink,#1b2f4d);
+    --c-bond: var(--ot-chart2,#b98a2e);
+    --c-cash: var(--ot-faint,#aab0ba);
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; }
@@ -82,7 +82,7 @@
     text-align: center;
     padding: 10px 16px;
     font-size: 12px;
-    color: #4f5f72;
+    color: var(--ot-muted,#4f5f72);
     background: var(--page-bg);
     border-bottom: 1px solid var(--rule);
   }
@@ -116,14 +116,14 @@
   .brand { display: flex; align-items: center; gap: 10px; }
   .brand-mark {
     width: 30px; height: 30px; flex: none; border-radius: 7px;
-    background: linear-gradient(150deg, #4d7bb5, #16304f);
+    background: linear-gradient(150deg, var(--ot-link,#4d7bb5), var(--ot-ink,#16304f));
     display: flex; align-items: center; justify-content: center;
     font-weight: 800; font-size: 15px; color: #fff;
   }
-  .brand-text .name { font-weight: 800; font-size: 17px; letter-spacing: .06em; text-transform: uppercase; line-height: 1.1; }
-  .brand-text .tagline { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--navy-soft); margin-top: 2px; }
+  .brand-text .name { font-weight: 800; font-size: 17px; letter-spacing:var(--ot-ls,.06em); text-transform:var(--ot-case,uppercase); line-height: 1.1; }
+  .brand-text .tagline { font-size: 11px; letter-spacing:var(--ot-ls,.12em); text-transform:var(--ot-case,uppercase); color: var(--navy-soft); margin-top: 2px; }
   .doc-meta { text-align: right; }
-  .doc-meta .doc-title { margin: 0; font-weight: 800; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; }
+  .doc-meta .doc-title { margin: 0; font-weight: 800; font-size: 14px; letter-spacing:var(--ot-ls,.08em); text-transform:var(--ot-case,uppercase); }
   .doc-meta .doc-sub { font-size: 11.5px; color: var(--navy-soft); margin-top: 4px; }
 
   .body-pad { padding: 26px 0.62in 30px; }
@@ -153,7 +153,7 @@
 
   .cols { margin-top: 4px; display: grid; grid-template-columns: 1fr 1fr; gap: 0 34px; }
   .cols.chart-left { grid-template-columns: .9fr 1.1fr; align-items: start; }
-  h3.section { font-size: 12px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; color: var(--navy); margin: 0 0 8px; padding-bottom: 6px; border-bottom: 1px solid var(--rule); }
+  h3.section { font-size: 12px; font-weight: 800; letter-spacing:var(--ot-ls,.07em); text-transform:var(--ot-case,uppercase); color: var(--navy); margin: 0 0 8px; padding-bottom: 6px; border-bottom: 1px solid var(--rule); }
   .cols section + section { margin-top: 20px; }
 
   dl.kv { margin: 0; }
@@ -172,10 +172,10 @@
   .chart-legend .sw { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 5px; vertical-align: middle; }
 
   table { width: 100%; border-collapse: collapse; font-size: 12px; }
-  thead th { background: var(--navy); color: #fff; text-align: left; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; font-weight: 700; padding: 8px 10px; white-space: nowrap; }
+  thead th { background: var(--navy); color: #fff; text-align: left; font-size: 11px; letter-spacing:var(--ot-ls,.06em); text-transform:var(--ot-case,uppercase); font-weight: 700; padding: 8px 10px; white-space: nowrap; }
   thead th.num { text-align: right; }
   tbody td { padding: 8px 10px; border-bottom: 1px solid var(--rule); color: var(--ink); vertical-align: top; }
-  tbody tr:nth-child(even) td { background: #faf9f5; }
+  tbody tr:nth-child(even) td { background: var(--ot-inset,#faf9f5); }
   td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
   td.muted { color: var(--ink-muted); }
   tr.total td { border-top: 1.5px solid var(--navy); font-weight: 800; background: var(--tile-bg) !important; }
@@ -183,17 +183,17 @@
   .table-wrap.wide table { min-width: 560px; }
   .note { font-size: 11.5px; color: var(--ink-muted); line-height: 1.6; margin-top: 10px; }
 
-  .tag { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; padding: 3px 8px; border-radius: 3px; white-space: nowrap; }
-  .tag-green { color: var(--ok); background: #e6f2ea; }
-  .tag-muted { color: var(--ink-muted); background: #eceae0; }
-  .tag-blue { color: #2c5c86; background: #e8eef4; }
-  .tag-rust { color: var(--flag); background: #f7e9e4; }
+  .tag { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing:var(--ot-ls,.04em); text-transform:var(--ot-case,uppercase); padding: 3px 8px; border-radius: 3px; white-space: nowrap; }
+  .tag-green { color: var(--ok); background: var(--ot-green-soft,#e6f2ea); }
+  .tag-muted { color: var(--ink-muted); background: var(--ot-inset,#eceae0); }
+  .tag-blue { color: var(--ot-link,#2c5c86); background: var(--ot-inset,#e8eef4); }
+  .tag-rust { color: var(--flag); background: var(--ot-red-soft,#f7e9e4); }
 
   .finding, .qitem { margin-bottom: 14px; padding: 14px 16px; border: 1px solid var(--rule); border-radius: 4px; }
   .finding:last-child, .qitem:last-child { margin-bottom: 0; }
   .finding p, .qitem p { margin: 0; font-size: 13px; line-height: 1.6; color: var(--ink); }
   .finding b, .qitem b { color: var(--navy); }
-  .qitem { border-left: 3px solid #2c5c86; }
+  .qitem { border-left: 3px solid var(--ot-link,#2c5c86); }
   .qitem.skip { border-left: 3px solid var(--ink-muted); }
   .qitem .tag { margin-bottom: 8px; }
   .ev { display: block; margin-top: 8px; font-size: 11px; font-style: italic; color: var(--ink-muted); }
@@ -211,7 +211,7 @@
   .doc-footer .firm-line { font-size: 11px; color: var(--ink-muted); text-align: right; }
   .doc-footer .firm-line .site { font-weight: 700; color: var(--navy); }
 
-  .credit-footer { max-width: 8.5in; margin: 0 auto 40px; padding: 0 16px; text-align: center; font-size: 12px; color: #4f5f72; }
+  .credit-footer { max-width: 8.5in; margin: 0 auto 40px; padding: 0 16px; text-align: center; font-size: 12px; color: var(--ot-muted,#4f5f72); }
   .credit-footer .briefly-word { font-weight: 800; color: var(--ink); }
 
   @media (max-width: 700px) {
@@ -239,6 +239,7 @@
 
   .banner a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 </style>
+<link rel="stylesheet" href="/assets/output-theme.css">
 </head>
 <body>
 
@@ -359,17 +360,17 @@
           <div class="chart-box">
             <svg viewBox="0 0 200 200" width="200" height="200">
               <g transform="rotate(-90 100 100)">
-                <circle cx="100" cy="100" r="80" fill="none" stroke="#1b2f4d" stroke-width="34" stroke-dasharray="436.30 66.35" stroke-dashoffset="0"/>
-                <circle cx="100" cy="100" r="80" fill="none" stroke="#b98a2e" stroke-width="34" stroke-dasharray="30.16 472.49" stroke-dashoffset="-436.30"/>
-                <circle cx="100" cy="100" r="80" fill="none" stroke="#aab0ba" stroke-width="34" stroke-dasharray="36.19 466.46" stroke-dashoffset="-466.46"/>
+                <circle cx="100" cy="100" r="80" fill="none" stroke="var(--ot-ink,#1b2f4d)" stroke-width="34" stroke-dasharray="436.30 66.35" stroke-dashoffset="0"/>
+                <circle cx="100" cy="100" r="80" fill="none" stroke="var(--ot-chart2,#b98a2e)" stroke-width="34" stroke-dasharray="30.16 472.49" stroke-dashoffset="-436.30"/>
+                <circle cx="100" cy="100" r="80" fill="none" stroke="var(--ot-faint,#aab0ba)" stroke-width="34" stroke-dasharray="36.19 466.46" stroke-dashoffset="-466.46"/>
               </g>
-              <text x="100" y="98" text-anchor="middle" class="donut-label" font-size="26" fill="#1b2f4d" font-family="Georgia,serif">86.8%</text>
-              <text x="100" y="116" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" letter-spacing="1" fill="#6b7280">STOCK</text>
+              <text x="100" y="98" text-anchor="middle" class="donut-label" font-size="26" fill="var(--ot-ink,#1b2f4d)" font-family="var(--ot-sans,Georgia,serif)">86.8%</text>
+              <text x="100" y="116" text-anchor="middle" font-family="ui-monospace,monospace" font-size="11" letter-spacing="1" fill="var(--ot-muted,#6b7280)">STOCK</text>
             </svg>
             <div class="chart-legend">
-              <span><span class="sw" style="background:#1b2f4d;"></span>Stock 86.8%</span>
-              <span><span class="sw" style="background:#b98a2e;"></span>Bond 6.0%</span>
-              <span><span class="sw" style="background:#aab0ba;"></span>Cash 7.2%</span>
+              <span><span class="sw" style="background:var(--ot-ink,#1b2f4d);"></span>Stock 86.8%</span>
+              <span><span class="sw" style="background:var(--ot-chart2,#b98a2e);"></span>Bond 6.0%</span>
+              <span><span class="sw" style="background:var(--ot-faint,#aab0ba);"></span>Cash 7.2%</span>
             </div>
           </div>
           <div>
@@ -498,8 +499,8 @@
 
 <div class="sample-next" style="max-width:760px;margin:0 auto;padding:36px 20px 56px;text-align:center;font-family:'DM Sans',-apple-system,system-ui,sans-serif;">
   <p style="font-size:16px;margin:0 0 16px;color:#333;">See what Briefly builds from your firm's own files.</p>
-  <a href="/start" style="display:inline-block;padding:12px 22px;margin:0 6px 8px;background:#0b2545;color:#fff;border-radius:10px;text-decoration:none;font-weight:600;">Start now</a>
-  <a href="/download" style="display:inline-block;padding:12px 22px;margin:0 6px 8px;border:1.5px solid #0b2545;color:#0b2545;border-radius:10px;text-decoration:none;font-weight:600;">Download the connector</a>
+  <a href="/start" style="display:inline-block;padding:12px 22px;margin:0 6px 8px;background:var(--ot-ink,#0b2545);color:#fff;border-radius:10px;text-decoration:none;font-weight:600;">Start now</a>
+  <a href="/download" style="display:inline-block;padding:12px 22px;margin:0 6px 8px;border:1.5px solid var(--ot-ink,#0b2545);color:var(--ot-ink,#0b2545);border-radius:10px;text-decoration:none;font-weight:600;">Download the connector</a>
 </div>
 </main>
 

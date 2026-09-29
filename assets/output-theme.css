@@ -1,0 +1,100 @@
+/* ============================================================================
+   output-theme.css: the product's new output look, applied to the website's mockups.
+
+   Connor's in-progress restyle of briefs, agendas, market briefs and PDFs lives,
+   uncommitted, in ~/Documents/code/briefly-worktrees/apple-colors under
+   briefly-client/src/apple-refine/doc/base.css. This file mirrors its values:
+   white paper, #F5F5F7 inset, hairline #E5E5EA, ink #1D1D1F / #424245 / #6E6E73,
+   system sans in place of serif and mono (headings 600), sentence-case labels,
+   tabular numbers, link blue #0A6CE0, no colored edge bars.
+
+   Colors and type only. No layout, text or data changes.
+
+   Scope: every element with [data-mockup] (index.html, download, subscribe,
+   knowledge-base and sample-brief), plus the clip runtime (.bpa). The sample
+   pages set html[data-output-theme] and read the --ot-* tokens below.
+
+   ROLLBACK: delete this file and its <link> tags. Sample pages keep their old
+   hex values as var() fallbacks, so they return to the warm-paper look too.
+   ============================================================================ */
+
+:root {
+  --ot-ink: #1D1D1F;
+  --ot-ink-soft: #424245;
+  --ot-muted: #6E6E73;
+  --ot-faint: #C7C7CC;
+  --ot-rule: #E5E5EA;
+  --ot-inset: #F5F5F7;
+  --ot-paper: #FFFFFF;
+  --ot-link: #0A6CE0;
+  --ot-red: #D70015;
+  --ot-red-soft: #FFF1F0;
+  --ot-green: #1E7F38;
+  --ot-green-soft: #EAF7EE;
+  --ot-green-rule: #C9EAD3;
+  --ot-amber: #B25000;
+  --ot-chart2: #7FB8FF;
+  --ot-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ---- site mockups: re-state the warm-paper and serif tokens ---- */
+[data-mockup] {
+  --doc-paper: #FFFFFF;
+  --doc-paper-2: #F5F5F7;
+  --doc-rule: #E5E5EA;
+  --serif: var(--ot-sans);
+  --mono: var(--ot-sans);
+  font-variant-numeric: tabular-nums;
+}
+/* headings that used serif at weight 400 */
+[data-mockup] .filecard h3,
+[data-mockup] .pa-tile b,
+[data-mockup] h1.title { font-weight: 600; letter-spacing: -0.015em; }
+[data-mockup] .pa-lead { font-style: normal; }
+/* mono eyebrows become sentence-case sans labels */
+[data-mockup] .ak-src b,
+[data-mockup] .pa-head,
+[data-mockup] .pa-tag { text-transform: none; letter-spacing: 0; }
+
+/* ---- clip runtime (.bpa): cool-slate becomes the app ladder ---- */
+.bpa {
+  --navy: #1D1D1F; --navy-2: #1D1D1F;
+  --fg: #1D1D1F; --fg-soft: #424245; --fg-muted: #6E6E73;
+  --rule: #E5E5EA; --rule-strong: #D2D2D7; --dz: #C7C7CC;
+  --bronze: #6E6E73;
+  --green: #1E7F38; --green-bg: #EAF7EE; --green-bd: #C9EAD3;
+  --amber-bg: #FFF4E5; --amber-fg: #B25000;
+  --soon-bg: #F5F5F7; --soon-fg: #424245;
+  --later-bg: #F5F5F7; --later-fg: #6E6E73;
+  --dest: #D70015;
+  --sans: var(--ot-sans); --serif: var(--ot-sans); --mono: var(--ot-sans);
+  font-variant-numeric: tabular-nums;
+}
+.bpa .bpa-stage { color: #1D1D1F; }
+.bpa .bpa-q-h1 { color: #1D1D1F; }
+.bpa .bpa-dv-t { font-weight: 600; letter-spacing: -0.015em; }
+.bpa .bpa-q-init { background: #F5F5F7; color: #424245; }
+/* uppercase micro-labels become sentence case */
+.bpa .bpa-q-fl b, .bpa .bpa-q-hd, .bpa .bpa-ag-pick b, .bpa .bpa-ovl-e,
+.bpa .bpa-mkrow .bpa-mkl, .bpa .bpa-dv-eb, .bpa .bpa-dv-h2, .bpa .bpa-up-assign b,
+.bpa .bpa-cutlabel, .bpa .bpa-nt-hd, .bpa .bpa-lp-step, .bpa .bpa-lp-pl,
+.bpa .bpa-lp-bt, .bpa .bpa-lp-tph { text-transform: none; letter-spacing: 0; }
+
+/* ---- sample pages ---- */
+html[data-output-theme] {
+  --serif: var(--ot-sans); --mono: var(--ot-sans); --sans: var(--ot-sans);
+  --doc-paper: #FFFFFF; --doc-paper-2: #F5F5F7; --doc-rule: #E5E5EA;
+  font-variant-numeric: tabular-nums;
+}
+html[data-output-theme] :is(h1, h2, h3, h4, .title, .stat-num, .donut-center-label) {
+  font-family: var(--ot-sans); font-weight: 600; letter-spacing: -0.015em;
+}
+html[data-output-theme] :is(.eyebrow, .kicker, thead th, dt, .label) { text-transform: none; letter-spacing: 0; }
+
+/* labels: sentence case, no tracking (read by the sample pages via var fallbacks) */
+html[data-output-theme] { --ot-case: none; --ot-ls: 0; }
+/* no colored left-edge bars: callouts become a hairline box */
+html[data-output-theme] :is(.callout, .callout.blue, .qitem, .qitem.skip) {
+  border-left: 1px solid var(--ot-rule); border: 1px solid var(--ot-rule); border-radius: 10px;
+}
+html[data-output-theme] .callout { background: var(--ot-inset); }

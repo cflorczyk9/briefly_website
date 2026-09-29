@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html data-output-theme="" lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -49,22 +49,22 @@
 </script>
 <style>
   :root{
-    --navy:#1b2a56;
-    --navy-deep:#141d3e;
-    --gold:#c69a2e;
-    --green:#2e7d4f;
-    --red:#a83c3c;
-    --gray-text:#5a6070;
-    --light-bg:#f3f4f7;
-    --border:#e1e3ea;
-    --purple:#7b83b8;
+    --navy:var(--ot-ink,#1b2a56);
+    --navy-deep:var(--ot-ink,#141d3e);
+    --gold:var(--ot-chart2,#c69a2e);
+    --green:var(--ot-green,#2e7d4f);
+    --red:var(--ot-red,#a83c3c);
+    --gray-text:var(--ot-muted,#5a6070);
+    --light-bg:var(--ot-inset,#f3f4f7);
+    --border:var(--ot-rule,#e1e3ea);
+    --purple:var(--ot-faint,#7b83b8);
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
   body{
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
-    background:#c9cbd3;
-    color:#20263b;
+    background:var(--ot-faint,#c9cbd3);
+    color:var(--ot-ink,#20263b);
     -webkit-font-smoothing:antialiased;
   }
 
@@ -74,9 +74,9 @@
     padding:9px 16px;
     font-size:12px;
     color:var(--gray-text);
-    background:#eef0f4;
-    border-bottom:1px solid #d7dae2;
-    letter-spacing:.01em;
+    background:var(--ot-inset,#eef0f4);
+    border-bottom:1px solid var(--ot-rule,#d7dae2);
+    letter-spacing:var(--ot-ls,.01em);
   }
 
   /* ---- document wrapper ---- */
@@ -109,13 +109,13 @@
   .brand-lockup{display:flex;align-items:center;gap:9px;}
   .brand-lockup .brand-text-nav{line-height:1.05;}
   .brand-lockup .brand-name{
-    font-size:16px;font-weight:700;color:var(--navy);letter-spacing:.06em;
+    font-size:16px;font-weight:700;color:var(--navy);letter-spacing:var(--ot-ls,.06em);
   }
   .brand-lockup .brand-sub{
-    font-size:11px;font-weight:600;color:var(--gray-text);letter-spacing:.18em;
+    font-size:11px;font-weight:600;color:var(--gray-text);letter-spacing:var(--ot-ls,.18em);
   }
   .section-label{
-    font-size:11px;font-weight:700;color:var(--navy);letter-spacing:.09em;
+    font-size:11px;font-weight:700;color:var(--navy);letter-spacing:var(--ot-ls,.09em);
   }
   .page-body{
     padding:26px 56px 30px;
@@ -129,7 +129,7 @@
     justify-content:space-between;
     padding:13px 56px;
     font-size:11px;
-    letter-spacing:.01em;
+    letter-spacing:var(--ot-ls,.01em);
   }
   .page-footer span{opacity:.92;}
 
@@ -157,12 +157,12 @@
     margin:0 0 26px;
   }
   .cover-client{font-size:19px;font-weight:400;margin:0 0 8px;}
-  .cover-period{font-size:13.5px;color:#b7bdd6;margin:0;}
+  .cover-period{font-size:13.5px;color:var(--ot-faint,#b7bdd6);margin:0;}
   .cover-bottom{margin-top:auto;}
   .cover-prepared{font-size:13px;font-weight:600;margin:0 0 6px;}
-  .cover-firm-line{font-size:11px;color:#b7bdd6;margin:0 0 3px;}
+  .cover-firm-line{font-size:11px;color:var(--ot-faint,#b7bdd6);margin:0 0 3px;}
   .cover-confidential{
-    font-size:11px;color:#a9b0d0;margin-top:16px;
+    font-size:11px;color:var(--ot-faint,#a9b0d0);margin-top:16px;
   }
 
   /* ---- logo marks ---- */
@@ -173,18 +173,18 @@
   .toc-list li{
     display:flex;align-items:baseline;gap:14px;
     padding:13px 0;border-bottom:1px solid var(--border);
-    font-size:14.5px;color:#242c46;
+    font-size:14.5px;color:var(--ot-ink,#242c46);
   }
-  .toc-num{color:#8a6a14;font-weight:700;width:14px;}
+  .toc-num{color:var(--ot-amber,#8a6a14);font-weight:700;width:14px;}
   .toc-title{flex:1;}
-  .toc-page{color:#242c46;}
+  .toc-page{color:var(--ot-ink,#242c46);}
   .toc-note{
     margin-top:24px;font-size:11.5px;color:var(--gray-text);line-height:1.6;
   }
 
   /* ---- generic page furniture ---- */
   .eyebrow{
-    font-size:11px;font-weight:700;color:#8a6a14;letter-spacing:.12em;margin:0 0 6px;
+    font-size:11px;font-weight:700;color:var(--ot-amber,#8a6a14);letter-spacing:var(--ot-ls,.12em);margin:0 0 6px;
   }
   h2.page-title{
     font-size:26px;font-weight:600;color:var(--navy);margin:0 0 18px;
@@ -193,7 +193,7 @@
     font-size:16px;font-weight:600;color:var(--navy);margin:26px 0 12px;
   }
   p.body-text{
-    font-size:12.5px;line-height:1.65;color:#333a4f;margin:0 0 12px;
+    font-size:12.5px;line-height:1.65;color:var(--ot-ink-soft,#333a4f);margin:0 0 12px;
   }
   .footnote{
     font-size:11px;line-height:1.55;color:var(--gray-text);margin:8px 0 0;
@@ -212,7 +212,7 @@
     margin-bottom:6px;
   }
   .stat-tile{
-    flex:1;padding:16px 18px;border-right:1px solid #e3e5ea;
+    flex:1;padding:16px 18px;border-right:1px solid var(--ot-rule,#e3e5ea);
   }
   .stat-tile:last-child{border-right:none;}
   .stat-value{font-size:23px;font-weight:700;color:var(--navy);}
@@ -225,12 +225,12 @@
   }
   table.doc-table thead th{
     background:var(--navy);color:#fff;text-align:left;
-    font-size:11px;font-weight:600;letter-spacing:.03em;
+    font-size:11px;font-weight:600;letter-spacing:var(--ot-ls,.03em);
     padding:9px 12px;
   }
   table.doc-table thead th.num{text-align:right;}
   table.doc-table tbody td{
-    padding:9px 12px;border-bottom:1px solid var(--border);color:#2c3350;
+    padding:9px 12px;border-bottom:1px solid var(--border);color:var(--ot-ink,#2c3350);
   }
   table.doc-table tbody td.num{text-align:right;font-variant-numeric:tabular-nums;}
   table.doc-table tbody tr.total-row td{
@@ -247,7 +247,7 @@
       var(--navy) 0deg 234.7deg,
       var(--purple) 234.7deg 291.6deg,
       var(--gold) 291.6deg 338.8deg,
-      #b7bac4 338.8deg 360deg
+      var(--ot-faint,#b7bac4) 338.8deg 360deg
     );
   }
   .donut::after{
@@ -261,22 +261,22 @@
   .donut-center .dv{font-size:19px;font-weight:700;color:var(--navy);}
   .donut-center .dl{font-size:11px;color:var(--gray-text);margin-top:2px;}
   .legend{list-style:none;margin:0;padding:0;font-size:12px;}
-  .legend li{display:flex;align-items:center;gap:9px;margin-bottom:11px;color:#2c3350;}
+  .legend li{display:flex;align-items:center;gap:9px;margin-bottom:11px;color:var(--ot-ink,#2c3350);}
   .legend .swatch{width:11px;height:11px;border-radius:2px;flex-shrink:0;}
 
   /* ---- horizontal bar charts ---- */
   .barchart{margin-top:16px;}
   .bar-row{display:flex;align-items:center;gap:10px;margin-bottom:9px;}
-  .bar-label{width:210px;flex-shrink:0;font-size:11px;color:#333a4f;text-align:right;}
+  .bar-label{width:210px;flex-shrink:0;font-size:11px;color:var(--ot-ink-soft,#333a4f);text-align:right;}
   .bar-track{flex:1;white-space:nowrap;}
   .bar-fill{display:inline-block;vertical-align:middle;height:15px;min-width:2px;border-radius:1px;background:var(--navy);}
   .bar-fill.alt{background:var(--gold);}
   .bar-fill.fixed{background:var(--purple);}
   .bar-fill.flag{background:var(--red);}
-  .bar-fill.pos{background:#3f8f63;}
+  .bar-fill.pos{background:var(--ot-green,#3f8f63);}
   .bar-value{
     display:inline-block;vertical-align:middle;margin-left:8px;font-size:11px;
-    color:#333a4f;white-space:nowrap;line-height:15px;
+    color:var(--ot-ink-soft,#333a4f);white-space:nowrap;line-height:15px;
   }
 
   .section-note{
@@ -301,6 +301,7 @@
 
   .sample-banner a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 </style>
+<link rel="stylesheet" href="/assets/output-theme.css">
 </head>
 <body>
 
@@ -314,9 +315,9 @@
     <div class="cover-white">
       <div class="brand-lockup">
         <svg class="mark" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="17" cy="17" r="15" stroke="#1b2a56" stroke-width="1.3"/>
-          <circle cx="12.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
-          <circle cx="21.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
+          <circle cx="17" cy="17" r="15" stroke="var(--ot-ink,#1b2a56)" stroke-width="1.3"/>
+          <circle cx="12.5" cy="17" r="8" stroke="var(--ot-ink,#1b2a56)" stroke-width="1.1"/>
+          <circle cx="21.5" cy="17" r="8" stroke="var(--ot-ink,#1b2a56)" stroke-width="1.1"/>
         </svg>
         <div class="brand-text-nav">
           <div class="brand-name">MERIDIAN</div>
@@ -343,9 +344,9 @@
     <div class="page-header">
       <div class="brand-lockup">
         <svg class="mark" width="26" height="26" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="17" cy="17" r="15" stroke="#1b2a56" stroke-width="1.3"/>
-          <circle cx="12.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
-          <circle cx="21.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
+          <circle cx="17" cy="17" r="15" stroke="var(--ot-ink,#1b2a56)" stroke-width="1.3"/>
+          <circle cx="12.5" cy="17" r="8" stroke="var(--ot-ink,#1b2a56)" stroke-width="1.1"/>
+          <circle cx="21.5" cy="17" r="8" stroke="var(--ot-ink,#1b2a56)" stroke-width="1.1"/>
         </svg>
         <div class="brand-text-nav">
           <div class="brand-name" style="font-size:13px;">MERIDIAN</div>
@@ -379,9 +380,9 @@
     <div class="page-header">
       <div class="brand-lockup">
         <svg class="mark" width="26" height="26" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="17" cy="17" r="15" stroke="#1b2a56" stroke-width="1.3"/>
-          <circle cx="12.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
-          <circle cx="21.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
+          <circle cx="17" cy="17" r="15" stroke="var(--ot-ink,#1b2a56)" stroke-width="1.3"/>
+          <circle cx="12.5" cy="17" r="8" stroke="var(--ot-ink,#1b2a56)" stroke-width="1.1"/>
+          <circle cx="21.5" cy="17" r="8" stroke="var(--ot-ink,#1b2a56)" stroke-width="1.1"/>
         </svg>
         <div class="brand-text-nav">
           <div class="brand-name" style="font-size:13px;">MERIDIAN</div>
@@ -440,7 +441,7 @@
           <li><span class="swatch" style="background:var(--navy);"></span>Public Equity&nbsp;&bull;&nbsp;$174.5M&nbsp;(65.2%)</li>
           <li><span class="swatch" style="background:var(--purple);"></span>Fixed Income&nbsp;&bull;&nbsp;$42.3M&nbsp;(15.8%)</li>
           <li><span class="swatch" style="background:var(--gold);"></span>Alternatives&nbsp;&bull;&nbsp;$35.1M&nbsp;(13.1%)</li>
-          <li><span class="swatch" style="background:#b7bac4;"></span>Cash &amp; Equivalents&nbsp;&bull;&nbsp;$15.7M&nbsp;(5.9%)</li>
+          <li><span class="swatch" style="background:var(--ot-faint,#b7bac4);"></span>Cash &amp; Equivalents&nbsp;&bull;&nbsp;$15.7M&nbsp;(5.9%)</li>
         </ul>
       </div>
       <p class="footnote">Classification is Meridian's: Bristlecone Capital Partners VII LP and Ridgeline Absolute Return Fund LP are grouped as alternatives; the Treasury bill ladder is grouped with fixed income.</p>
@@ -456,9 +457,9 @@
     <div class="page-header">
       <div class="brand-lockup">
         <svg class="mark" width="26" height="26" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="17" cy="17" r="15" stroke="#1b2a56" stroke-width="1.3"/>
-          <circle cx="12.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
-          <circle cx="21.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
+          <circle cx="17" cy="17" r="15" stroke="var(--ot-ink,#1b2a56)" stroke-width="1.3"/>
+          <circle cx="12.5" cy="17" r="8" stroke="var(--ot-ink,#1b2a56)" stroke-width="1.1"/>
+          <circle cx="21.5" cy="17" r="8" stroke="var(--ot-ink,#1b2a56)" stroke-width="1.1"/>
         </svg>
         <div class="brand-text-nav">
           <div class="brand-name" style="font-size:13px;">MERIDIAN</div>
@@ -496,9 +497,9 @@
     <div class="page-header">
       <div class="brand-lockup">
         <svg class="mark" width="26" height="26" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="17" cy="17" r="15" stroke="#1b2a56" stroke-width="1.3"/>
-          <circle cx="12.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
-          <circle cx="21.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
+          <circle cx="17" cy="17" r="15" stroke="var(--ot-ink,#1b2a56)" stroke-width="1.3"/>
+          <circle cx="12.5" cy="17" r="8" stroke="var(--ot-ink,#1b2a56)" stroke-width="1.1"/>
+          <circle cx="21.5" cy="17" r="8" stroke="var(--ot-ink,#1b2a56)" stroke-width="1.1"/>
         </svg>
         <div class="brand-text-nav">
           <div class="brand-name" style="font-size:13px;">MERIDIAN</div>
@@ -558,9 +559,9 @@
     <div class="page-header">
       <div class="brand-lockup">
         <svg class="mark" width="26" height="26" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="17" cy="17" r="15" stroke="#1b2a56" stroke-width="1.3"/>
-          <circle cx="12.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
-          <circle cx="21.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
+          <circle cx="17" cy="17" r="15" stroke="var(--ot-ink,#1b2a56)" stroke-width="1.3"/>
+          <circle cx="12.5" cy="17" r="8" stroke="var(--ot-ink,#1b2a56)" stroke-width="1.1"/>
+          <circle cx="21.5" cy="17" r="8" stroke="var(--ot-ink,#1b2a56)" stroke-width="1.1"/>
         </svg>
         <div class="brand-text-nav">
           <div class="brand-name" style="font-size:13px;">MERIDIAN</div>
@@ -612,9 +613,9 @@
     <div class="page-header">
       <div class="brand-lockup">
         <svg class="mark" width="26" height="26" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="17" cy="17" r="15" stroke="#1b2a56" stroke-width="1.3"/>
-          <circle cx="12.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
-          <circle cx="21.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
+          <circle cx="17" cy="17" r="15" stroke="var(--ot-ink,#1b2a56)" stroke-width="1.3"/>
+          <circle cx="12.5" cy="17" r="8" stroke="var(--ot-ink,#1b2a56)" stroke-width="1.1"/>
+          <circle cx="21.5" cy="17" r="8" stroke="var(--ot-ink,#1b2a56)" stroke-width="1.1"/>
         </svg>
         <div class="brand-text-nav">
           <div class="brand-name" style="font-size:13px;">MERIDIAN</div>
@@ -664,9 +665,9 @@
     <div class="page-header">
       <div class="brand-lockup">
         <svg class="mark" width="26" height="26" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="17" cy="17" r="15" stroke="#1b2a56" stroke-width="1.3"/>
-          <circle cx="12.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
-          <circle cx="21.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
+          <circle cx="17" cy="17" r="15" stroke="var(--ot-ink,#1b2a56)" stroke-width="1.3"/>
+          <circle cx="12.5" cy="17" r="8" stroke="var(--ot-ink,#1b2a56)" stroke-width="1.1"/>
+          <circle cx="21.5" cy="17" r="8" stroke="var(--ot-ink,#1b2a56)" stroke-width="1.1"/>
         </svg>
         <div class="brand-text-nav">
           <div class="brand-name" style="font-size:13px;">MERIDIAN</div>
@@ -702,9 +703,9 @@
     <div class="page-header">
       <div class="brand-lockup">
         <svg class="mark" width="26" height="26" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="17" cy="17" r="15" stroke="#1b2a56" stroke-width="1.3"/>
-          <circle cx="12.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
-          <circle cx="21.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
+          <circle cx="17" cy="17" r="15" stroke="var(--ot-ink,#1b2a56)" stroke-width="1.3"/>
+          <circle cx="12.5" cy="17" r="8" stroke="var(--ot-ink,#1b2a56)" stroke-width="1.1"/>
+          <circle cx="21.5" cy="17" r="8" stroke="var(--ot-ink,#1b2a56)" stroke-width="1.1"/>
         </svg>
         <div class="brand-text-nav">
           <div class="brand-name" style="font-size:13px;">MERIDIAN</div>
@@ -745,9 +746,9 @@
     <div class="page-header">
       <div class="brand-lockup">
         <svg class="mark" width="26" height="26" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="17" cy="17" r="15" stroke="#1b2a56" stroke-width="1.3"/>
-          <circle cx="12.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
-          <circle cx="21.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
+          <circle cx="17" cy="17" r="15" stroke="var(--ot-ink,#1b2a56)" stroke-width="1.3"/>
+          <circle cx="12.5" cy="17" r="8" stroke="var(--ot-ink,#1b2a56)" stroke-width="1.1"/>
+          <circle cx="21.5" cy="17" r="8" stroke="var(--ot-ink,#1b2a56)" stroke-width="1.1"/>
         </svg>
         <div class="brand-text-nav">
           <div class="brand-name" style="font-size:13px;">MERIDIAN</div>
@@ -783,9 +784,9 @@
     <div class="page-header">
       <div class="brand-lockup">
         <svg class="mark" width="26" height="26" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="17" cy="17" r="15" stroke="#1b2a56" stroke-width="1.3"/>
-          <circle cx="12.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
-          <circle cx="21.5" cy="17" r="8" stroke="#1b2a56" stroke-width="1.1"/>
+          <circle cx="17" cy="17" r="15" stroke="var(--ot-ink,#1b2a56)" stroke-width="1.3"/>
+          <circle cx="12.5" cy="17" r="8" stroke="var(--ot-ink,#1b2a56)" stroke-width="1.1"/>
+          <circle cx="21.5" cy="17" r="8" stroke="var(--ot-ink,#1b2a56)" stroke-width="1.1"/>
         </svg>
         <div class="brand-text-nav">
           <div class="brand-name" style="font-size:13px;">MERIDIAN</div>
@@ -815,8 +816,8 @@
 
 <div class="sample-next" style="max-width:760px;margin:0 auto;padding:36px 20px 56px;text-align:center;font-family:'DM Sans',-apple-system,system-ui,sans-serif;">
   <p style="font-size:16px;margin:0 0 16px;color:#333;">See what Briefly builds from your firm's own files.</p>
-  <a href="/start" style="display:inline-block;padding:12px 22px;margin:0 6px 8px;background:#0b2545;color:#fff;border-radius:10px;text-decoration:none;font-weight:600;">Start now</a>
-  <a href="/download" style="display:inline-block;padding:12px 22px;margin:0 6px 8px;border:1.5px solid #0b2545;color:#0b2545;border-radius:10px;text-decoration:none;font-weight:600;">Download the connector</a>
+  <a href="/start" style="display:inline-block;padding:12px 22px;margin:0 6px 8px;background:var(--ot-ink,#0b2545);color:#fff;border-radius:10px;text-decoration:none;font-weight:600;">Start now</a>
+  <a href="/download" style="display:inline-block;padding:12px 22px;margin:0 6px 8px;border:1.5px solid var(--ot-ink,#0b2545);color:var(--ot-ink,#0b2545);border-radius:10px;text-decoration:none;font-weight:600;">Download the connector</a>
 </div>
 </main>
 

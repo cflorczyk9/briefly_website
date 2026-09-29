@@ -317,6 +317,10 @@ Choose the connector if your team already works in Claude and wants files to sta
 - Who builds the client file. Connector: your team, working inside Claude. Web app: Briefly builds it from Salesforce and Outlook.
 - Where you ask. Connector: inside Claude, the app your team already has open. Web app: the Briefly web app, from any browser.
 - Salesforce routing. Connector: not connected, point Claude at the files you already have. Web app: connected during setup, along with Outlook.
+- Scheduled runs and emailed reports. Connector: not listed. Web app: rules on the Agents tab run before every meeting, every week, or every month, and each finished report is emailed with a PDF attached.
+- Firm view. Connector: not listed. Web app: your CIO's notes become a dated timeline and one shared summary for the firm, which also appears as a section in the briefs.
+- Market brief agent. Connector: not listed. Web app: web research with numbered sources, alongside outside house views and your firm's own.
+- Your brand on every agent output. Connector: not listed. Web app: your firm's logo and two colors on every agent output, on screen, in PDF, and on the clipboard.
 - Setup effort. Connector: download, sign in, point it at your folder. Web app: Briefly connects your systems and builds the file for you.
 - Best for. Connector: teams that already live in Claude. Web app: teams that want the file built for them.
 
@@ -330,7 +334,7 @@ Your team already works in Claude. One client file per household. Every answer c
 
 ### The Briefly web app
 
-You want it handled for you. One client file per household. Every answer cites the document it came from. Briefly connects Salesforce and Outlook and builds the file for you. A prepared brief before every meeting. You see only your own clients. Share a client, your colleague gets everything. Quarterly reviews and month-end commentary, one click.
+You want it handled for you. One client file per household. Every answer cites the document it came from. Briefly connects Salesforce and Outlook and builds the file for you. A prepared brief before every meeting. You see only your own clients. Share a client, your colleague gets everything. Quarterly reviews and month-end commentary, one click. Scheduled runs, with each finished report emailed with a PDF attached. Firm view and a market brief agent. Your firm's logo and two colors on every agent output.
 
 ## Move between them without starting over.
 
@@ -886,6 +890,8 @@ Start with pasting or a built-in connector for occasional use.
 If you want Claude reading your files regularly, decide between a vendor's own connector and a local connector based on where you're comfortable having that data sit.
 
 If a local connector is what you want, Briefly is one option, an AI knowledge base for financial advisors that runs inside Claude and reads from a folder on your computer. See how it works, or look at sample deliverables to see what a brief looks like before you install anything.
+
+Firms that would rather sign in than install anything can use the Briefly web app. Its agents can run on a schedule and email each finished report with a PDF attached, and it adds a market brief agent, a firm view built from your CIO's notes, and your firm's logo and two colors on every agent output. The compare page lists what each option includes.
 
 ## Frequently asked questions
 

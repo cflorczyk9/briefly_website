@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html data-output-theme="" lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,8 +36,8 @@
 <script src="/assets/site.js"></script>
 <style>
   :root {
-    --green: #1f7a4d;
-    --red: #b0402e;
+    --green: var(--ot-green,#1f7a4d);
+    --red: var(--ot-red,#b0402e);
   }
 
   /* fiction banner: the sample strip above the email, chrome */
@@ -59,20 +59,20 @@
   /* the email itself, matching the sent template */
   .brief { max-width: 640px; margin: 0 auto; background: var(--card); border: 1px solid var(--doc-rule); border-radius: var(--r-panel); overflow: hidden; }
   .head { text-align: center; padding: 36px 28px 0; }
-  .brand-eyebrow { font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 12px; }
+  .brand-eyebrow { font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing:var(--ot-ls,.2em); text-transform:var(--ot-case,uppercase); color: var(--ink-muted); margin-bottom: 12px; }
   .brand-eyebrow .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--blue); margin-right: 10px; vertical-align: 1px; }
   h1.title { font-family: var(--serif); font-weight: 400; font-size: 34px; letter-spacing: 0; color: var(--ink); margin: 0 0 16px; line-height: 1.1; }
   .rule-light { border: none; border-top: 1px solid var(--doc-rule); margin: 0; }
-  .datebar { font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-muted); display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; }
+  .datebar { font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing:var(--ot-ls,.12em); text-transform:var(--ot-case,uppercase); color: var(--ink-muted); display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; }
 
   .body { padding: 24px 24px 0; }
   .greeting { font-size: 15px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 22px; }
-  .label { font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-muted); margin: 0 0 12px; }
+  .label { font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing:var(--ot-ls,.14em); text-transform:var(--ot-case,uppercase); color: var(--ink-muted); margin: 0 0 12px; }
 
   /* Markets */
   .markets { background: var(--doc-paper); border: 1px solid var(--doc-rule); border-radius: 12px; padding: 20px 20px 14px; margin-bottom: 22px; }
   .markets table { width: 100%; border-collapse: collapse; }
-  .markets thead th { font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-muted); text-align: right; padding: 0 6px 8px; }
+  .markets thead th { font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing:var(--ot-ls,.1em); text-transform:var(--ot-case,uppercase); color: var(--ink-muted); text-align: right; padding: 0 6px 8px; }
   .markets thead th:first-child { text-align: left; }
   .markets tbody td { font-family: var(--mono); font-size: 12.5px; padding: 7px 6px; border-bottom: 1px solid var(--doc-rule); color: var(--ink); font-variant-numeric: tabular-nums; }
   .markets tbody tr:last-child td { border-bottom: none; }
@@ -89,19 +89,19 @@
   .talking h3, .cooler h3 { font-family: var(--serif); font-weight: 400; font-size: 21px; letter-spacing: 0; color: var(--ink); margin: 0 0 12px; line-height: 1.3; }
   .talking p, .cooler p { font-size: 14.5px; line-height: 1.65; color: var(--ink-soft); margin: 0 0 12px; }
   .talking p:last-of-type, .cooler p:last-of-type { margin-bottom: 0; }
-  .ifask { background: var(--card); border: 1px solid #D9E2EC; border-radius: var(--r-card); padding: 16px 18px; margin-top: 16px; }
-  .ifask .ifask-label { font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); margin: 0 0 8px; }
+  .ifask { background: var(--card); border: 1px solid var(--ot-rule,#D9E2EC); border-radius: var(--r-card); padding: 16px 18px; margin-top: 16px; }
+  .ifask .ifask-label { font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing:var(--ot-ls,.14em); text-transform:var(--ot-case,uppercase); color: var(--ink); margin: 0 0 8px; }
   .ifask p { font-size: 14px; line-height: 1.6; color: var(--ink-soft); margin: 0; }
 
   /* What to watch */
   .watch { padding: 26px 2px 0; }
   .watch table { width: 100%; border-collapse: collapse; margin-top: 4px; }
-  .watch .day { font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-muted); padding: 16px 0 6px; }
+  .watch .day { font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing:var(--ot-ls,.12em); text-transform:var(--ot-case,uppercase); color: var(--ink-muted); padding: 16px 0 6px; }
   .watch .time { font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--ink); width: 110px; white-space: nowrap; padding: 6px 12px 6px 0; vertical-align: top; font-variant-numeric: tabular-nums; }
   .watch .event { font-size: 14px; color: var(--ink-soft); line-height: 1.5; padding: 6px 0; vertical-align: top; }
 
   /* Water cooler */
-  .cooler { background: var(--blue-soft); border: 1px solid #D9E2EC; border-radius: 12px; padding: 24px 22px; margin: 26px 0 26px; }
+  .cooler { background: var(--blue-soft); border: 1px solid var(--ot-rule,#D9E2EC); border-radius: 12px; padding: 24px 22px; margin: 26px 0 26px; }
   .cooler p i { color: var(--ink-muted); }
 
   /* Subscribe CTA and note */
@@ -110,7 +110,7 @@
   .sub-cta a { display: inline-block; font-size: 13.5px; font-weight: 600; color: #fff; background: var(--blue-ink); padding: 12px 26px; text-decoration: none; border-radius: 999px; }
   .sub-cta a:hover { background: var(--ink); }
   .foot { padding: 18px 24px 24px; border-top: 1px solid var(--doc-rule); text-align: center; }
-  .foot p { font-size: 11px; color: var(--ink-muted); line-height: 1.7; margin: 0; letter-spacing: .02em; }
+  .foot p { font-size: 11px; color: var(--ink-muted); line-height: 1.7; margin: 0; letter-spacing:var(--ot-ls,.02em); }
 
 </style>
 <!-- mobile-redux -->
@@ -149,6 +149,7 @@
     "publisher": { "@id": "https://www.brieflywealth.com/#org" }
   }
   </script>
+<link rel="stylesheet" href="/assets/output-theme.css">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>

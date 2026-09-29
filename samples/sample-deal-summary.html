@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html data-output-theme="" lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -49,17 +49,17 @@
 </script>
 <style>
   :root {
-    --page-bg: #eceae0;
-    --navy: #10233f;
-    --navy-2: #16304f;
+    --page-bg: var(--ot-inset,#eceae0);
+    --navy: var(--ot-ink,#10233f);
+    --navy-2: var(--ot-ink,#16304f);
     --navy-soft: rgba(255,255,255,.68);
-    --ink: #1b1e24;
-    --ink-soft: #454b56;
-    --ink-muted: #6b7280;
-    --rule: #d7d3c6;
-    --callout-bg: #eef2f7;
-    --callout-border: #10233f;
-    --tile-bg: #f7f6f0;
+    --ink: var(--ot-ink,#1b1e24);
+    --ink-soft: var(--ot-ink-soft,#454b56);
+    --ink-muted: var(--ot-muted,#6b7280);
+    --rule: var(--ot-rule,#d7d3c6);
+    --callout-bg: var(--ot-inset,#eef2f7);
+    --callout-border: var(--ot-ink,#10233f);
+    --tile-bg: var(--ot-inset,#f7f6f0);
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; }
@@ -76,7 +76,7 @@
     text-align: center;
     padding: 10px 16px;
     font-size: 12px;
-    color: #4f5f72;
+    color: var(--ot-muted,#4f5f72);
     background: var(--page-bg);
     border-bottom: 1px solid var(--rule);
   }
@@ -117,7 +117,7 @@
     height: 30px;
     flex: none;
     border-radius: 7px;
-    background: linear-gradient(150deg, #4d7bb5, #16304f);
+    background: linear-gradient(150deg, var(--ot-link,#4d7bb5), var(--ot-ink,#16304f));
     display: flex;
     align-items: center;
     justify-content: center;
@@ -128,14 +128,14 @@
   .brand-text .name {
     font-weight: 800;
     font-size: 17px;
-    letter-spacing: .06em;
-    text-transform: uppercase;
+    letter-spacing:var(--ot-ls,.06em);
+    text-transform:var(--ot-case,uppercase);
     line-height: 1.1;
   }
   .brand-text .tagline {
     font-size: 11px;
-    letter-spacing: .12em;
-    text-transform: uppercase;
+    letter-spacing:var(--ot-ls,.12em);
+    text-transform:var(--ot-case,uppercase);
     color: var(--navy-soft);
     margin-top: 2px;
   }
@@ -144,8 +144,8 @@
     margin: 0;
     font-weight: 800;
     font-size: 14px;
-    letter-spacing: .08em;
-    text-transform: uppercase;
+    letter-spacing:var(--ot-ls,.08em);
+    text-transform:var(--ot-case,uppercase);
   }
   .doc-meta .doc-sub {
     font-size: 11.5px;
@@ -228,8 +228,8 @@
   h3.section {
     font-size: 12px;
     font-weight: 800;
-    letter-spacing: .07em;
-    text-transform: uppercase;
+    letter-spacing:var(--ot-ls,.07em);
+    text-transform:var(--ot-case,uppercase);
     color: var(--navy);
     margin: 0 0 8px;
     padding-bottom: 6px;
@@ -279,7 +279,7 @@
     padding: 0 16px;
     text-align: center;
     font-size: 12px;
-    color: #4f5f72;
+    color: var(--ot-muted,#4f5f72);
   }
   .credit-footer .briefly-word {
     font-weight: 800;
@@ -309,6 +309,7 @@
 
   .banner a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 </style>
+<link rel="stylesheet" href="/assets/output-theme.css">
 </head>
 <body>
 
@@ -414,8 +415,8 @@
 
 <div class="sample-next" style="max-width:760px;margin:0 auto;padding:36px 20px 56px;text-align:center;font-family:'DM Sans',-apple-system,system-ui,sans-serif;">
   <p style="font-size:16px;margin:0 0 16px;color:#333;">See what Briefly builds from your firm's own files.</p>
-  <a href="/start" style="display:inline-block;padding:12px 22px;margin:0 6px 8px;background:#0b2545;color:#fff;border-radius:10px;text-decoration:none;font-weight:600;">Start now</a>
-  <a href="/download" style="display:inline-block;padding:12px 22px;margin:0 6px 8px;border:1.5px solid #0b2545;color:#0b2545;border-radius:10px;text-decoration:none;font-weight:600;">Download the connector</a>
+  <a href="/start" style="display:inline-block;padding:12px 22px;margin:0 6px 8px;background:var(--ot-ink,#0b2545);color:#fff;border-radius:10px;text-decoration:none;font-weight:600;">Start now</a>
+  <a href="/download" style="display:inline-block;padding:12px 22px;margin:0 6px 8px;border:1.5px solid var(--ot-ink,#0b2545);color:var(--ot-ink,#0b2545);border-radius:10px;text-decoration:none;font-weight:600;">Download the connector</a>
 </div>
 </main>
 

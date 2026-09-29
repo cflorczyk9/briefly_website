@@ -69,8 +69,8 @@
   .setup-pin { position:relative; height:520vh; margin-top:6px; }
   .setup-pin-inner { position:sticky; top:0; height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; overflow:hidden; }
   .setup-dots { position:absolute; top:90px; left:50%; transform:translateX(-50%); display:flex; gap:9px; z-index:4; }
-  .setup-dots button { width:30px; height:6px; border-radius:999px; border:0; padding:0; background:rgba(15,23,42,.16); cursor:pointer; transition:background .3s, width .3s; }
-  .setup-dots button:hover { background:rgba(15,23,42,.34); }
+  .setup-dots button { width:30px; height:6px; border-radius:999px; border:0; padding:0; background:color-mix(in srgb, var(--ink) 16%, transparent); cursor:pointer; transition:background .3s, width .3s; }
+  .setup-dots button:hover { background:color-mix(in srgb, var(--ink) 34%, transparent); }
   .setup-dots button.on { background:var(--blue); width:50px; }
   .setup-stack { position:relative; width:100%; max-width:1100px; height:100%; }
   .setup-panel { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:22px; padding:92px 24px 36px; opacity:0; transform:translateY(18px); pointer-events:none; transition:opacity .5s ease, transform .5s cubic-bezier(.2,.8,.3,1); }
@@ -105,7 +105,7 @@
   }
 
   /* ---------- Download handoff overlay ---------- */
-  .dl-overlay { position: fixed; inset: 0; z-index: 200; display: flex; align-items: center; justify-content: center; padding: 24px; background: rgba(15,23,42,.74); backdrop-filter: blur(5px); animation: dlFade .18s ease; }
+  .dl-overlay { position: fixed; inset: 0; z-index: 200; display: flex; align-items: center; justify-content: center; padding: 24px; background: color-mix(in srgb, var(--ink) 74%, transparent); backdrop-filter: blur(5px); animation: dlFade .18s ease; }
   .dl-overlay[hidden] { display: none; }
   @keyframes dlFade { from { opacity: 0; } to { opacity: 1; } }
   .dl-card { max-width: 460px; width: 100%; background: var(--card); border: 1px solid var(--rule); border-radius: var(--r-panel); box-shadow: var(--shadow-modal); padding: 34px 32px 30px; text-align: center; }
@@ -2225,6 +2225,30 @@
       },
       {
         "@type": "Question",
+        "name": "What does the Briefly web app include?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Advisors keep schedule rules on the Agents tab. A rule can run before every meeting, every week on a day and time, or every month, for all clients, some clients, or all but a few. The finished report is emailed after every scheduled run, with the full text in the body and a PDF attached. If your calendar connection stops working, the Schedules tab says your schedules are paused until you reconnect it. You can also star the agents you use most."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What else does the web app do with your firm’s material?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Firm view turns your CIO’s notes into a dated timeline and one shared summary for the firm, and adds a section to the briefs. Every agent output carries your firm’s logo and two colors on screen, in the PDF, and when you copy it into an email. Ask keeps a searchable chat history with a client filter. You can pick Light, Dark, or System under Preferences."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does the market brief agent do?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The market brief reads the positions and balances on the statements already on file, then researches the web for the household’s top positions, covering industry news and what analysts are saying. It also shows statement activity and the banks’ published house views. Every web source is listed once in a numbered footer."
+        }
+      },
+      {
+        "@type": "Question",
         "name": "Does Briefly work on Windows and Mac?",
         "acceptedAnswer": {
           "@type": "Answer",
@@ -3013,6 +3037,18 @@
         <details>
           <summary>What does Briefly&rsquo;s server see?</summary>
           <p>With the Claude connector, our server sees your sign-in, a check that your seat is active, a de-identified layer of preference rules your firm builds over time, never tied to a client name, and a short usage record for each tool call. Client files never reach our servers. The web app differs, since its files live on our side instead.</p>
+        </details>
+        <details>
+          <summary>What does the Briefly web app include?</summary>
+          <p>Advisors keep schedule rules on the Agents tab. A rule can run before every meeting, every week on a day and time, or every month, for all clients, some clients, or all but a few. The finished report is emailed after every scheduled run, with the full text in the body and a PDF attached. If your calendar connection stops working, the Schedules tab says your schedules are paused until you reconnect it. You can also star the agents you use most.</p>
+        </details>
+        <details>
+          <summary>What else does the web app do with your firm&rsquo;s material?</summary>
+          <p>Firm view turns your CIO&rsquo;s notes into a dated timeline and one shared summary for the firm, and adds a section to the briefs. Every agent output carries your firm&rsquo;s logo and two colors on screen, in the PDF, and when you copy it into an email. Ask keeps a searchable chat history with a client filter. You can pick Light, Dark, or System under Preferences.</p>
+        </details>
+        <details>
+          <summary>What does the market brief agent do?</summary>
+          <p>The market brief reads the positions and balances on the statements already on file, then researches the web for the household&rsquo;s top positions, covering industry news and what analysts are saying. It also shows statement activity and the banks&rsquo; published house views. Every web source is listed once in a numbered footer.</p>
         </details>
         <details>
           <summary>Does Briefly work on Windows and Mac?</summary>

@@ -202,7 +202,7 @@
         /* Ranked access methods */
         .methods-list { list-style: none; margin: 26px 0 6px; padding: 0; counter-reset: method; }
         .method-card { position: relative; padding: 22px 22px 20px 68px; margin-bottom: 14px; background: var(--card); border: 1px solid var(--rule); border-radius: var(--r-card); }
-        .method-card::before { counter-increment: method; content: counter(method); position: absolute; left: 20px; top: 22px; width: 30px; height: 30px; border-radius: 50%; background: var(--ink); color: #fff; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; }
+        .method-card::before { counter-increment: method; content: counter(method); position: absolute; left: 20px; top: 22px; width: 30px; height: 30px; border-radius: 50%; background: var(--ink); color: var(--paper); font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; }
         .method-card p { margin: 0; color: var(--ink-soft); font-size: 16px; }
         .method-card p a { color: var(--blue-ink); }
         .method-card.local { border-color: var(--blue); background: var(--blue-soft); }
@@ -456,6 +456,7 @@
           <li>If you want Claude reading your files regularly, decide between a vendor's own connector and a local connector based on where you're comfortable having that data sit.</li>
           <li>If a local connector is what you want, Briefly is one option, an AI knowledge base for financial advisors that runs inside Claude and reads from a folder on your computer. <a href="/download">See how it works</a> before deciding anything, or look at <a href="/sample-deliverables">sample deliverables</a> to see what a brief looks like before you install anything.</li>
         </ol>
+        <p>Firms that would rather sign in than install anything can use the Briefly web app. Its agents can run on a schedule and email each finished report with a PDF attached, and it adds a market brief agent, a firm view built from your CIO's notes, and your firm's logo and two colors on every agent output. The <a href="/compare">compare page</a> lists what each option includes.</p>
 
         </div>
         <div class="reveal">
