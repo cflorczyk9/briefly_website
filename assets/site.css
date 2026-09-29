@@ -8,17 +8,17 @@
   --paper: #FFFFFF;          /* ground */
   --paper-2: #F5F5F7;        /* alternating band */
   --card: #FFFFFF;
-  --ink: #16324F;            /* navy ink, 13.1:1 on white */
-  --ink-soft: #46627D;       /* 6.5:1 on white, 5.8:1 on the band */
-  --ink-muted: #5B6C80;      /* 5.2:1 on white, 4.9:1 on the band; smallest text it may label is 12px */
+  --ink: #1D1D1F;            /* app ink, 16.8:1 on white */
+  --ink-soft: #424245;       /* app secondary text, 10.1:1 on white */
+  --ink-muted: #6E6E73;      /* app muted, 5.1:1 on white, 4.6:1 on the band; smallest text it may label is 12px */
   --rule: #D2D2D7;           /* hairline */
   --blue: #2F8CFF;           /* fills, icons, pins. 3.3:1 on white: never text under 18px */
-  --blue-ink: #1D4ED8;       /* 6.7:1 on white: links, small text, focus */
-  --blue-soft: #E9F2FF;
-  --cyan: #8cd8ff;           /* text on navy only */
-  --navy-band: #10263D;      /* footer, closer, checkout panel */
-  --cream: #F4F1E9;          /* text on navy */
-  --cream-soft: #B9C4CF;     /* secondary text on navy, 8.9:1 */
+  --blue-ink: #0A6CE0;       /* app link blue, 4.9:1 on white: links, small text */
+  --blue-soft: #EAF3FF;
+  --cyan: #6CB4FF;           /* blue text on the dark band only */
+  --navy-band: #1D1D1F;      /* app brand fill: footer, closer, checkout panel */
+  --cream: #F5F5F7;          /* text on the dark band */
+  --cream-soft: #A1A1A6;     /* secondary text on the dark band, 7.0:1 */
   --display: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", "Segoe UI", sans-serif;
   --sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", "Segoe UI", sans-serif;
   --serif: Charter, "Iowan Old Style", "Source Serif Pro", Georgia, serif;   /* mockups only */
@@ -29,8 +29,8 @@
   --r-control: 6px;
   --r-card: 12px;
   --r-panel: 18px;
-  --shadow-float: 0 1px 2px rgba(22,50,79,.05), 0 14px 34px rgba(22,50,79,.08);
-  --shadow-modal: 0 20px 40px rgba(22,50,79,.18);
+  --shadow-float: 0 1px 2px rgba(0,0,0,.05), 0 14px 34px rgba(0,0,0,.08);
+  --shadow-modal: 0 20px 40px rgba(0,0,0,.18);
   --ring: 0 0 0 2px rgba(47,140,255,.10);
 }
 
@@ -77,7 +77,7 @@ a { color: var(--blue-ink); }
   text-decoration: none; cursor: pointer;
   transition: background-color .15s ease, border-color .15s ease, color .15s ease;
 }
-.btn:hover { background: #0F2540; border-color: #0F2540; }
+.btn:hover { background: #3A3A3C; border-color: #3A3A3C; }
 .btn:active { transform: translateY(1px); }
 .btn.ghost { background: transparent; color: var(--ink); }
 .btn.ghost:hover { background: var(--paper-2); }
@@ -259,7 +259,7 @@ footer .foot-bottom { display: flex; justify-content: space-between; gap: 14px; 
   color: #fff; font-family: var(--sans); font-size: 15px; font-weight: 600; cursor: pointer; margin-top: 6px;
   transition: background .15s ease, border-color .15s ease, color .15s ease;
 }
-.demo-modal-submit:hover { background: #0F2540; border-color: #0F2540; }
+.demo-modal-submit:hover { background: #3A3A3C; border-color: #3A3A3C; }
 .demo-modal-submit:disabled { opacity: .6; cursor: wait; }
 .demo-modal-error { display: none; margin-top: 10px; padding: 10px 12px; border: 1px solid #B3261E; border-radius: var(--r-control); color: #B3261E; font-size: 14px; }
 .demo-modal-success { display: none; padding: 18px 0 4px; text-align: center; }
