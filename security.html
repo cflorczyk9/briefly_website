@@ -11,7 +11,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="images/briefly_logo_favicon.png?v=2">
     <meta property="og:title" content="Security | Briefly">
     <meta property="og:description" content="With the Briefly connector, client files stay on the advisor's computer. See exactly what reaches Briefly's servers and how Reg S-P applies.">
-    <meta property="og:image" content="https://www.brieflywealth.com/images/briefly-og-main.png?v=3">
+    <meta property="og:image" content="https://www.brieflywealth.com/images/briefly-og-main.png?v=4">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Briefly. Know every client like they're your only client.">
@@ -20,7 +20,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Security | Briefly">
     <meta name="twitter:description" content="With the Briefly connector, client files stay on the advisor's computer. See exactly what reaches Briefly's servers and how Reg S-P applies.">
-    <meta name="twitter:image" content="https://www.brieflywealth.com/images/briefly-og-main.png?v=3">
+    <meta name="twitter:image" content="https://www.brieflywealth.com/images/briefly-og-main.png?v=4">
     <meta name="author" content="Briefly Wealth LLC">
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-92NXKY9W1S"></script>
@@ -333,52 +333,31 @@
 
         <section class="section reveal" id="hardening">
             <h2 class="section-title">Security work in September 2026</h2>
-            <p class="section-lead">We ran a security review of the web app and its hosting in September and made the changes below in response. These changes apply to the hosted web app and the account layer. Connector firms keep client files on their own computers either way.</p>
+            <p class="section-lead">We reviewed the web app's code in September and shipped the changes below. They apply to the hosted web app. Connector firms keep client files on their own computers either way.</p>
             <div class="grid">
                 <div class="card">
                     <h3>AI actions wait for your approval</h3>
                     <p>When a task is created from chat, it now waits in Action items until an advisor approves it. Nothing goes to Salesforce before that. The assistant also saves an advisor preference only when the advisor asks it to, and it can only run briefs for clients the advisor has access to.</p>
-                    <!-- confirm live -->
                 </div>
                 <div class="card">
                     <h3>Client-data model calls use zero-retention routing</h3>
                     <p>Every web app model call that carries client data asks for zero-data-retention endpoints only. Extraction has a fallback model on the same terms, so an outage at one provider does not push documents onto endpoints that keep data. A model missing from the zero-retention list is skipped.</p>
-                    <!-- confirm live -->
                 </div>
                 <div class="card">
-                    <h3>Secrets in AWS Secrets Manager</h3>
-                    <p>API keys and other credentials live in AWS Secrets Manager and are handed to the application when it starts. They are no longer set as plain environment values on the servers.</p>
-                    <!-- confirm live -->
+                    <h3>Uploads are checked before anything reads them</h3>
+                    <p>Each upload is signed for its exact size and capped at 50 MB, and only PDF, Word, image, text, and email files are accepted. A file over the limit is deleted before the app opens it.</p>
                 </div>
                 <div class="card">
-                    <h3>Deploys use short-lived credentials</h3>
-                    <p>Our build pipeline now signs in to AWS through OpenID Connect and receives credentials that expire after each deploy. Once the switch is complete, no long-lived AWS keys remain stored in our code host.</p>
-                    <!-- confirm live -->
+                    <h3>Connected inboxes stay inside your firm</h3>
+                    <p>Briefly checks each mailbox with the email provider before saving the connection. It accepts your own address or a colleague&rsquo;s on your firm&rsquo;s domain, and refuses a mailbox on another domain or one that another firm has already connected.</p>
                 </div>
                 <div class="card">
-                    <h3>Web application firewall</h3>
-                    <p>A web application firewall now sits in front of the hosted app, with AWS managed rules and a per-address rate limit. We run both in monitoring mode first and turn on blocking after about a week of real traffic.</p>
-                    <!-- confirm live -->
-                </div>
-                <div class="card">
-                    <h3>Audit logging and threat detection</h3>
-                    <p>AWS CloudTrail records account activity, and GuardDuty watches for suspicious behavior. Load balancer access logs are kept for 90 days, and database logs are exported for review. Alarms email us on server errors, unhealthy hosts, and database strain.</p>
-                    <!-- confirm live -->
-                </div>
-                <div class="card">
-                    <h3>Stronger sign-in</h3>
-                    <p>Passwords now need at least 12 characters with symbols, and the browser sign-in uses the more secure SRP flow only. Multi-factor sign-in stays optional for now, and requiring it is a separate change we will roll out on its own. The internal admin console no longer accepts access tokens in web addresses.</p>
-                    <!-- confirm live -->
-                </div>
-                <div class="card">
-                    <h3>Encrypted document storage</h3>
-                    <p>New documents in the web app are stored with keys managed in AWS KMS. Older documents keep their existing encryption. The web app's front end is served over TLS 1.2 or newer.</p>
-                    <!-- confirm live -->
+                    <h3>Firmer request limits and cleaner error reports</h3>
+                    <p>Request limits now key on the address our load balancer sees, which a caller cannot fake. Error reports drop request bodies, cookies, and sign-in headers before they leave the server, and the admin console no longer accepts access tokens in web addresses.</p>
                 </div>
                 <div class="card">
                     <h3>Dependencies brought up to date</h3>
                     <p>We updated the libraries behind the API, the web app, and the connector server. A production audit now shows no critical or high-severity known vulnerabilities in any of them. A few low and moderate findings remain on our list.</p>
-                    <!-- confirm live -->
                 </div>
             </div>
         </section>
@@ -445,6 +424,7 @@
       <a href="/security">Security</a>
       <a href="/#platform">Platform</a>
       <a href="/compare">Compare</a>
+      <a href="/whats-new">What's new</a>
       <a href="/download">Download</a>
       <a href="/knowledge-base">Knowledge base</a>
       <a href="/ai-compliance-for-financial-advisors">AI compliance for advisors</a>

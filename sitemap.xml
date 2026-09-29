@@ -2,15 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.brieflywealth.com/</loc>
-    <lastmod>2026-08-03</lastmod>
+    <lastmod>2026-09-29</lastmod>
   </url>
   <url>
     <loc>https://www.brieflywealth.com/compare</loc>
-    <lastmod>2026-08-02</lastmod>
+    <lastmod>2026-09-29</lastmod>
   </url>
   <url>
     <loc>https://www.brieflywealth.com/download</loc>
-    <lastmod>2026-08-03</lastmod>
+    <lastmod>2026-09-29</lastmod>
   </url>
   <url>
     <loc>https://www.brieflywealth.com/start</loc>
@@ -26,11 +26,11 @@
   </url>
   <url>
     <loc>https://www.brieflywealth.com/claude-for-financial-advisors</loc>
-    <lastmod>2026-08-03</lastmod>
+    <lastmod>2026-09-29</lastmod>
   </url>
   <url>
     <loc>https://www.brieflywealth.com/security</loc>
-    <lastmod>2026-08-03</lastmod>
+    <lastmod>2026-09-29</lastmod>
   </url>
   <url>
     <loc>https://www.brieflywealth.com/blog</loc>
@@ -54,7 +54,7 @@
   </url>
   <url>
     <loc>https://www.brieflywealth.com/sample-deliverables</loc>
-    <lastmod>2026-08-03</lastmod>
+    <lastmod>2026-09-29</lastmod>
   </url>
   <url>
     <loc>https://www.brieflywealth.com/samples/sample-quarterly-review</loc>
@@ -82,7 +82,7 @@
   </url>
   <url>
     <loc>https://www.brieflywealth.com/sample-brief</loc>
-    <lastmod>2026-07-30</lastmod>
+    <lastmod>2026-09-29</lastmod>
   </url>
   <url>
     <loc>https://www.brieflywealth.com/subscribe</loc>
@@ -103,5 +103,9 @@
   <url>
     <loc>https://www.brieflywealth.com/subprocessors</loc>
     <lastmod>2026-08-03</lastmod>
+  </url>
+  <url>
+    <loc>https://www.brieflywealth.com/whats-new</loc>
+    <lastmod>2026-09-29</lastmod>
   </url>
 </urlset>

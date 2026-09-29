@@ -10,7 +10,7 @@
 <link rel="canonical" href="https://www.brieflywealth.com/whats-new" />
 <meta property="og:title" content="What's new | AI Knowledge Base for Financial Advisors">
 <meta property="og:description" content="What shipped in Briefly recently, newest first.">
-<meta property="og:image" content="https://www.brieflywealth.com/images/briefly-og-main.png?v=3">
+<meta property="og:image" content="https://www.brieflywealth.com/images/briefly-og-main.png?v=4">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Briefly. Know every client like they're your only client.">
@@ -19,7 +19,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="What's new | AI Knowledge Base for Financial Advisors">
 <meta name="twitter:description" content="What shipped in Briefly recently, newest first.">
-<meta name="twitter:image" content="https://www.brieflywealth.com/images/briefly-og-main.png?v=3">
+<meta name="twitter:image" content="https://www.brieflywealth.com/images/briefly-og-main.png?v=4">
 <link rel="icon" type="image/png" sizes="32x32" href="images/briefly_logo_favicon.png?v=2">
 <link rel="icon" type="image/png" sizes="16x16" href="images/briefly_logo_favicon.png?v=2">
 <link rel="apple-touch-icon" sizes="180x180" href="images/briefly_logo_favicon.png?v=2">
@@ -42,6 +42,7 @@
   .release p { font-size: 15px; color: var(--ink-soft); }
   .closer .ctas { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
   .closer .btn.ghost { background: transparent; color: var(--cream); border-color: var(--cream); }
+  .closer .eyebrow { color: var(--cream-soft); }
   @media (max-width: 480px) {
     .closer .ctas { flex-direction: column; align-items: stretch; }
     .closer .ctas .btn { text-align: center; }
@@ -100,7 +101,7 @@
       <article class="card release">
         <span class="pill">Security</span>
         <h3>Security hardening</h3>
-        <p>Tasks that Ask creates now wait for your approval before they reach Salesforce. Secrets moved into AWS Secrets Manager, deploys use short-lived credentials, and a web firewall and audit logging are in place. Sign-in rules are stricter and dependencies are updated.</p> <!-- confirm live -->
+        <p>Tasks that Ask creates now wait for your approval before they reach Salesforce. Uploads are checked for size and file type before the app opens them, connected inboxes must belong to your firm, and dependencies are updated. The full list is on the <a href="/security#hardening">security page</a>.</p>
       </article>
       <article class="card release">
         <span class="pill">Schedules</span>
@@ -161,7 +162,7 @@
       <article class="card release">
         <span class="pill">Security</span>
         <h3>Zero-retention routing for client data</h3>
-        <p>Every model call that carries client data is routed only to providers that keep nothing. Statement extraction also has a backup model if the first one is unavailable.</p> <!-- confirm live -->
+        <p>Every model call that carries client data is routed only to providers that keep nothing. Statement extraction also has a backup model if the first one is unavailable.</p>
       </article>
       </div>
     </div>
@@ -196,6 +197,7 @@
       <a href="/security">Security</a>
       <a href="/#platform">Platform</a>
       <a href="/compare">Compare</a>
+      <a href="/whats-new">What's new</a>
       <a href="/download">Download</a>
       <a href="/knowledge-base">Knowledge base</a>
       <a href="/ai-compliance-for-financial-advisors">AI compliance for advisors</a>
