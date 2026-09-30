@@ -71,7 +71,7 @@ Two things. The 401(k) rollover completed at $412,000, and their CPA flagged an 
 
 Q: Which clients hold a concentrated position above 20%?
 
-Three households. Rivera at 31% in employer stock, Okafor at 24%, and Lindqvist at 22%, each read from the latest statement on file, cited to their Q2 and Q1 statements.
+Three households. Patel at 31% in employer stock, Okafor at 24%, and Lindqvist at 22%, each read from the latest statement on file, cited to their Q2 and Q1 statements.
 
 Q: Who mentioned wanting to retire in the next three years?
 
@@ -131,7 +131,7 @@ By Connor Florczyk. Updated August 5, 2026.
 
 Client documents, email, and meeting notes already sit inside your firm. Briefly turns them into one knowledge base that Claude can read across every account in your book. Ask which clients hold a concentrated position over $500K and get an answer with a name, a number, and the statement it came from, the same way you'd get an answer about one household.
 
-A sample cross-client query, "Which clients hold a concentrated position over $500K?" Rivera, $684,300 in employer stock (31%), Q2 statement. Okafor, $558,900 in a single legacy position (24%), Q2 statement. Lindqvist, $511,000 in concentrated equity (22%), Q1 statement.
+A sample cross-client query, "Which clients hold a concentrated position over $500K?" Patel, $684,300 in employer stock (31%), Q2 statement. Okafor, $558,900 in a single legacy position (24%), Q2 statement. Lindqvist, $511,000 in concentrated equity (22%), Q1 statement.
 
 Wealth firms already have plenty of data. Client facts live across CRM records, emails, meeting notes, custodial statements, financial plans, and spreadsheets, plus whatever an advisor happens to remember, and none of those systems share a model of the relationship.
 
@@ -143,9 +143,9 @@ Sources, emails, notes, meetings, PDFs, CRM records, portfolio data, and plannin
 
 Most tools answer a question about whatever client file happens to be open. Briefly checks every household in your book for the same question, then answers it the way it would answer about one client, with a name, a number, and the document behind it.
 
-Asked once, "Which clients hold a concentrated position above $500K?", Briefly checks every household in the book, not just the one open on screen, and answers. Rivera holds $684,300 in employer stock, 31% of the account. Okafor holds $558,900 in a single legacy position, 24%. Lindqvist holds $511,000 in concentrated equity, 22%. Each figure links back to the document it came from, Rivera's Q2 statement filed July 8, Okafor's Q2 statement filed July 2, Lindqvist's Q1 statement filed April 14.
+Asked once, "Which clients hold a concentrated position above $500K?", Briefly checks every household in the book, not just the one open on screen, and answers. Patel holds $684,300 in employer stock, 31% of the account. Okafor holds $558,900 in a single legacy position, 24%. Lindqvist holds $511,000 in concentrated equity, 22%. Each figure links back to the document it came from, Patel's Q2 statement filed July 8, Okafor's Q2 statement filed July 2, Lindqvist's Q1 statement filed April 14.
 
-The same pattern holds for any cross-client question, whether it's about concentrated positions, upcoming distributions, or clients who mentioned selling a business. This works because every document lands in a household's own record first, then gets checked across the whole book whenever a question calls for it. Filing an email into the Rivera file also becomes one of the records checked the next time someone asks about concentrated positions or anything else that spans the book, something a CRM field or a folder of PDFs can't do on its own.
+The same pattern holds for any cross-client question, whether it's about concentrated positions, upcoming distributions, or clients who mentioned selling a business. This works because every document lands in a household's own record first, then gets checked across the whole book whenever a question calls for it. Filing an email into the Patel file also becomes one of the records checked the next time someone asks about concentrated positions or anything else that spans the book, something a CRM field or a folder of PDFs can't do on its own.
 
 ## Why this matters in wealth management.
 
