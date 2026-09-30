@@ -141,50 +141,54 @@
   @media (prefers-reduced-motion: reduce) { .msg-a .caret { animation: none; } }
 
   /* hero: the Ask Briefly web-app surface (clip 03's language, cleaner), cycling 5 questions */
-  .ak { padding: 16px 18px 12px; display: flex; flex-direction: column; align-items: flex-start; min-height: 470px; position: relative; }
-  .ak-h { font-size: 14px; font-weight: 700; color: var(--ink); display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
-  .ak-chip { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 999px; background: var(--blue-soft); color: var(--blue-ink); white-space: nowrap; }
-  .ak-q { align-self: flex-end; background: var(--ink); color: #fff; border-radius: 12px 12px 6px 12px; padding: 8px 13px; font-size: 13.5px; line-height: 1.5; max-width: 86%; opacity: 0; transform: translateY(4px); transition: opacity .4s ease, transform .4s ease; }
+  .ak-win { border: 1px solid #D2D2D7; border-radius: 14px; box-shadow: 0 18px 48px rgba(29, 29, 31, .10); }
+  .ak { padding: 0 20px 14px; display: flex; flex-direction: column; align-items: flex-start; min-height: 470px; position: relative; color: #1D1D1F; }
+  .ak-h { align-self: stretch; display: flex; align-items: center; justify-content: space-between; gap: 10px; height: 48px; margin: 0 -20px 16px; padding: 0 20px; border-bottom: 1px solid #E5E5EA; font-size: 14px; font-weight: 600; color: #1D1D1F; }
+  .ak-chip { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: 999px; background: #EAF3FF; color: #0A66D6; white-space: nowrap; }
+  .ak-q { align-self: flex-end; background: #1D1D1F; color: #fff; border-radius: 12px; padding: 8px 13px; font-size: 13px; line-height: 1.45; max-width: 86%; opacity: 0; transform: translateY(6px); transition: opacity .4s cubic-bezier(.2, .7, .2, 1), transform .4s cubic-bezier(.2, .7, .2, 1); }
   .ak-q.on { opacity: 1; transform: none; }
-  .ak-load { display: none; align-items: center; gap: 8px; background: var(--paper-2); border-radius: var(--r-control); padding: 7px 11px; margin-top: 12px; }
+  .ak-load { display: none; align-items: center; gap: 8px; background: #F5F5F7; border-radius: 8px; padding: 7px 11px; margin-top: 14px; }
   .ak-load.on { display: inline-flex; }
   .ak-dots { display: flex; gap: 3px; }
-  .ak-dots i { width: 5px; height: 5px; border-radius: 50%; background: var(--ink-muted); display: block; animation: ak-wave 1.1s ease-in-out infinite; }
+  .ak-dots i { width: 5px; height: 5px; border-radius: 50%; background: #6E6E73; display: block; animation: ak-wave 1.1s ease-in-out infinite; }
   .ak-dots i:nth-child(2) { animation-delay: .15s; }
   .ak-dots i:nth-child(3) { animation-delay: .3s; }
   @keyframes ak-wave { 0%, 60%, 100% { transform: translateY(0); opacity: .55; } 30% { transform: translateY(-3px); opacity: 1; } }
-  .ak-ph { font-size: 11px; color: var(--ink-soft); }
-  .ak-ans { align-self: stretch; background: var(--card); border: 1px solid var(--rule); border-radius: var(--r-card); padding: 12px 14px; margin-top: 12px; font-size: 13.5px; line-height: 1.6; color: var(--ink-soft); opacity: 0; transform: translateY(6px); transition: opacity .45s ease, transform .45s ease; }
+  .ak-ph { font-size: 12px; color: #424245; }
+  .ak-ans { align-self: stretch; margin-top: 14px; font-size: 13.5px; line-height: 1.6; opacity: 0; transform: translateY(6px); transition: opacity .45s cubic-bezier(.2, .7, .2, 1), transform .45s cubic-bezier(.2, .7, .2, 1); }
   .ak-ans.on { opacity: 1; transform: none; }
-  .ak-ans p { color: var(--ink-soft); }
-  .ak-src { margin-top: 10px; border-top: 1px solid var(--rule); padding-top: 8px; }
-  .ak-src b { display: block; font-family: var(--mono); font-size: 9.5px; font-weight: 400; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 4px; }
-  .ak-src ol { margin: 0 0 0 18px; }
-  .ak-src li { font-size: 12px; color: var(--blue-ink); padding: 1px 3px; border-radius: var(--r-control); transition: background .18s ease; }
-  .ak-src li.hit { background: var(--blue-soft); }
-  .ak-more { font-size: 11.5px; color: var(--ink-muted); margin: 3px 0 0 18px; }
-  .ak-cur { position: absolute; left: 0; top: 0; opacity: 0; z-index: 6; pointer-events: none; filter: drop-shadow(0 2px 4px rgba(0,0,0,.35)); transition: opacity .3s ease; will-change: transform; }
+  .ak-ans p { color: #1D1D1F; }
+  .ak-n { display: inline-flex; align-items: center; justify-content: center; min-width: 16px; height: 16px; margin-left: 4px; padding: 0 4px; border-radius: 5px; background: #EAF3FF; color: #0A66D6; font-size: 10px; font-weight: 600; line-height: 1; vertical-align: 2px; font-variant-numeric: tabular-nums; }
+  .ak-src { margin-top: 12px; border-top: 1px solid #E5E5EA; padding-top: 10px; }
+  .ak-src b { display: block; font-size: 11px; font-weight: 600; color: #6E6E73; margin-bottom: 6px; }
+  .ak-src ol { margin: 0; padding: 0; list-style: none; counter-reset: aksrc; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+  .ak-src li { counter-increment: aksrc; display: inline-flex; align-items: baseline; gap: 8px; font-size: 12px; line-height: 1.4; color: #0A66D6; background: #EAF3FF; padding: 3px 9px 3px 7px; border-radius: 6px; transition: background .18s ease, box-shadow .18s ease; }
+  .ak-src li::before { content: counter(aksrc); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .ak-src li.hit { background: #D6E8FF; box-shadow: inset 0 0 0 1px #9CC6FF; }
+  .ak-more { font-size: 12px; color: #6E6E73; margin: 6px 0 0 2px; }
+  .ak-cur { position: absolute; left: 0; top: 0; opacity: 0; z-index: 6; pointer-events: none; filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .25)); transition: opacity .3s ease; will-change: transform; }
   .ak-cur.on { opacity: 1; }
-  .ak-ring { position: absolute; left: 0; top: 0; width: 26px; height: 26px; margin: -13px 0 0 -13px; border: 2px solid var(--blue); border-radius: 50%; opacity: 0; z-index: 5; pointer-events: none; }
-  .ak-ring.pulse { animation: ak-pulse .55s ease-out; }
-  @keyframes ak-pulse { 0% { opacity: .85; transform: scale(.35); } 100% { opacity: 0; transform: scale(1.5); } }
+  .ak-ring { position: absolute; left: 0; top: 0; width: 24px; height: 24px; margin: -12px 0 0 -12px; border: 2px solid rgba(47, 140, 255, .55); border-radius: 50%; opacity: 0; z-index: 5; pointer-events: none; }
+  .ak-ring.pulse { animation: ak-pulse .45s ease-out; }
+  @keyframes ak-pulse { 0% { opacity: 1; transform: scale(.3); } 100% { opacity: 0; transform: scale(1.4); } }
   /* The receipt overlays the bottom of the stage instead of sitting in flow, so opening
      it never changes the stage height and the page below the hero never shifts. */
-  .ak-prov { position: absolute; left: 12px; right: 12px; bottom: 12px; z-index: 4; background: var(--card); border: 1px solid var(--rule); border-radius: var(--r-card); overflow: hidden; box-shadow: 0 10px 26px rgba(0,0,0,.16); opacity: 0; transform: translateY(8px); transition: opacity .45s ease, transform .45s ease; }
+  .ak-prov { position: absolute; left: 14px; right: 14px; bottom: 14px; z-index: 4; background: #fff; border: 1px solid #D2D2D7; border-radius: 12px; overflow: hidden; box-shadow: 0 12px 32px rgba(29, 29, 31, .14); opacity: 0; transform: translateY(8px); transition: opacity .45s cubic-bezier(.2, .7, .2, 1), transform .45s cubic-bezier(.2, .7, .2, 1); }
   .ak-prov.on { opacity: 1; transform: none; }
-  .ak-prov-hd { padding: 6px 11px; font-size: 11px; font-weight: 600; }
-  .ak-prov[data-kind="email"] .ak-prov-hd { background: #EAF2FB; color: #0B4A86; }
-  .ak-prov[data-kind="pdf"] .ak-prov-hd { background: #FBECEA; color: #93261C; }
-  .ak-prov[data-kind="transcript"] .ak-prov-hd { background: #F6EFDD; color: #6B5220; }
-  .ak-prov-b { padding: 8px 11px 10px; font-size: 12px; line-height: 1.55; color: var(--ink-soft); border-top: 1px solid var(--rule); }
+  .ak-prov-top { display: flex; align-items: center; gap: 8px; padding: 9px 12px; border-bottom: 1px solid #E5E5EA; }
+  .ak-prov-n { flex: none; display: inline-flex; align-items: center; justify-content: center; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 5px; background: #EAF3FF; color: #0A66D6; font-size: 11px; font-weight: 600; }
+  .ak-prov-hd { flex: 1; min-width: 0; font-size: 12px; font-weight: 600; color: #1D1D1F; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .ak-prov-open { flex: none; font-size: 12px; font-weight: 500; color: #0A66D6; }
+  .ak-prov-b { padding: 9px 12px 11px; font-size: 12px; line-height: 1.55; color: #424245; }
   .hl { background: #FFF3C4; box-shadow: 0 0 0 2px #FFF3C4; color: var(--ink); }
   .prov-tbl { display: grid; grid-template-columns: 1fr auto auto; gap: 3px 14px; font-variant-numeric: tabular-nums; }
-  .hc-dots { display: flex; gap: 1px; padding: 0 14px 10px; }
-  .hc-dot { position: relative; width: 20px; height: 20px; background: transparent; border: 0; padding: 0; cursor: pointer; }
-  .hc-dot::after { content: ""; position: absolute; top: 50%; left: 50%; width: 7px; height: 7px; margin: -3.5px 0 0 -3.5px; border-radius: 50%; background: var(--rule); }
-  .hc-dot.on::after { background: var(--ink); }
+  .hc-dots { display: flex; align-items: center; gap: 2px; padding: 0 16px 12px; }
+  .hc-dot { position: relative; height: 20px; min-width: 18px; background: transparent; border: 0; padding: 0 4px; cursor: pointer; }
+  .hc-dot::after { content: ""; display: block; width: 8px; height: 8px; border-radius: 999px; background: #D2D2D7; transition: width .35s cubic-bezier(.2, .7, .2, 1), background .35s; }
+  .hc-dot:hover::after { background: #A1A1A6; }
+  .hc-dot.on::after { width: 24px; background: #2F8CFF; }
   @media (prefers-reduced-motion: reduce) {
-    .ak-q, .ak-ans, .ak-prov { transition: none; }
+    .ak-q, .ak-ans, .ak-prov, .hc-dot::after { transition: none; }
     .ak-dots i { animation: none; }
     .ak-cur, .ak-ring { display: none; }
   }
@@ -391,21 +395,20 @@
       <p class="hero-trust">We set up the web app for your firm and connect it to your Salesforce and Outlook.</p>
     </div>
     <div>
-    <div class="win" data-mockup="" aria-label="Five advisor questions answered with cited sources in the Briefly web app, cycling">
-      <div class="win-bar"><span class="win-dot"></span><span>app.brieflywealth.com &middot; the Briefly web app</span></div>
+    <div class="win ak-win" data-mockup="" aria-label="Five advisor questions answered with cited sources in the Briefly web app, cycling">
       <div class="ak" aria-live="polite">
-        <div class="ak-h">Ask Briefly <span class="ak-chip" id="akChip">Smith, John &amp; Jane</span></div>
+        <div class="ak-h"><span>Ask Briefly</span><span class="ak-chip"><span id="akChip">Smith, John &amp; Jane</span><svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
         <div class="ak-q" id="akQ">What changed for the Smiths since our March review?</div>
         <div class="ak-load" id="akLoad" aria-hidden="true"><span class="ak-dots"><i></i><i></i><i></i></span><span class="ak-ph" id="akPh">Reading the client picture&hellip;</span></div>
         <div class="ak-ans" id="akAns">
-          <p id="akAnsText">Two things. The 401(k) rollover completed at $412,000, and their CPA flagged an open K-1 question in June. Both are filed and linked below.</p>
+          <p><span id="akAnsText">Two things. The 401(k) rollover completed at $412,000, and their CPA flagged an open K-1 question in June. Both are filed and linked below.</span><span id="akCites"></span></p>
           <div class="ak-src"><b>Sources</b><ol id="akSrcList"><li>Smith Q2 statement (filed 6/30/2026)</li><li>CPA email, M. Hill (filed 6/12/2026)</li></ol></div>
         </div>
         <div class="ak-prov" id="akProv" data-kind="email">
-          <div class="ak-prov-hd" id="akProvHd">Re: K-1 question &middot; M. Hill, CPA</div>
+          <div class="ak-prov-top"><span class="ak-prov-n" id="akProvN">2</span><span class="ak-prov-hd" id="akProvHd">Re: K-1 question &middot; M. Hill, CPA</span><span class="ak-prov-open">Open</span></div>
           <div class="ak-prov-b" id="akProvB">Still waiting on the K-1 from the Riverside partnership before I can close out their 2025 return. <span class="hl">Can you confirm the rollover check cleared before year end?</span></div>
         </div>
-        <svg class="ak-cur" id="akCur" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5.5 3.2 18.6 11l-5.6 1.2 3.1 5.6-2.4 1.3-3.1-5.7-4.2 3.9z" fill="#1D1D1F" stroke="#fff" stroke-width="1.3" stroke-linejoin="round"/></svg>
+        <svg class="ak-cur" id="akCur" viewBox="0 0 18 18" width="18" height="18" aria-hidden="true"><path d="M2 1.5v13.2l3.4-3.1 2.3 5.1 2.2-1-2.3-5h4.6z" fill="#1D1D1F" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg>
         <div class="ak-ring" id="akRing" aria-hidden="true"></div>
       </div>
       <div class="hc-dots" id="hcDots" aria-label="Question picker"></div>
@@ -442,7 +445,7 @@
         </div>
       </div>
     </div>
-    <p class="day-time" style="margin:10px 0 0;">Illustrative example, not real client data.</p>
+    <p class="day-time" style="margin:12px 0 0;">app.brieflywealth.com &middot; the Briefly web app. Illustrative example, not real client data.</p>
     </div>
   </div>
 </section>
@@ -1480,7 +1483,7 @@
   function easeInOutCubic(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
   function setCur(x, y, s) {
     // Offset so the pointer TIP (not the svg corner) sits on the target point.
-    curEl.style.transform = 'translate(' + (x - 4.6) + 'px,' + (y - 2.7) + 'px)' + (s ? ' scale(' + s + ')' : '');
+    curEl.style.transform = 'translate(' + (x - 2) + 'px,' + (y - 1.5) + 'px)' + (s ? ' scale(' + s + ')' : '');
   }
   function glide(x0, y0, x1, y1, dur, done) {
     var dx = x1 - x0, dy = y1 - y0;
@@ -1523,6 +1526,11 @@
     chipEl.textContent = item.chip;
     qEl.textContent = item.q;
     ansText.textContent = item.a;
+    var citesEl = document.getElementById('akCites');
+    if (citesEl) {
+      citesEl.innerHTML = '';
+      item.c.forEach(function (_, k) { var n = document.createElement('span'); n.className = 'ak-n'; n.textContent = String(k + 1); citesEl.appendChild(n); });
+    }
     srcList.innerHTML = '';
     item.c.forEach(function (t) {
       var li = document.createElement('li');
@@ -1539,6 +1547,8 @@
     }
     if (item.provHtml) {
       provEl.setAttribute('data-kind', item.provKind || '');
+      var provN = document.getElementById('akProvN');
+      if (provN) provN.textContent = String(item.click || 1);
       provHd.textContent = '';
       provHd.insertAdjacentHTML('afterbegin', item.provTitle || '');
       provB.innerHTML = item.provHtml;
