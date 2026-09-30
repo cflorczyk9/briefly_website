@@ -281,26 +281,9 @@
   .custody-links { margin-top: 20px; display: flex; gap: 26px; flex-wrap: wrap; }
 
   /* one day */
-  .day-carousel { margin-top: 44px; }
-  .day-ctrl { display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 26px; }
-  .day-stops { display: flex; gap: 8px; flex-wrap: wrap; }
-  .day-stop { position: relative; font-size: 14px; font-weight: 500; min-height: 36px; padding: 6px 16px; border: 1px solid var(--rule); border-radius: 999px; background: transparent; color: var(--ink-muted); cursor: pointer; transition: color .2s, background-color .2s, border-color .2s; }
-  .day-stop::after { content: ""; position: absolute; inset: -7px 0; }
-  .day-stop:hover { color: var(--ink); border-color: var(--ink-muted); }
-  .day-stop.is-active { background: var(--ink); border-color: var(--ink); color: #fff; }
-  .day-arrows { display: flex; gap: 8px; }
-  .day-arrow { position: relative; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--rule); background: var(--card); color: var(--ink); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: border-color .2s; }
-  .day-arrow::after { content: ""; position: absolute; inset: -5px; }
-  .day-arrow:hover { border-color: var(--ink-muted); }
-  .day-viewport { overflow: hidden; transition: height .35s ease; }
-  .day-track { display: flex; align-items: flex-start; transition: transform .45s cubic-bezier(.4, 0, .2, 1); }
-  .day-slide { flex: 0 0 100%; min-width: 0; width: 100%; visibility: visible; transition: visibility 0s linear 0s; }
   /* A parked slide's window shadow (34px) otherwise bleeds across the viewport edge into the
      active slide as a faint line. Hide it once it has finished sliding out; show incoming at once. */
-  .day-slide[aria-hidden="true"] { visibility: hidden; transition-delay: .45s; }
   .day-time { font-size: 13px; font-weight: 500; color: var(--ink-muted); margin-bottom: 10px; }
-  .day-txt .msg-q { font-size: 16px; }
-  .day-txt .msg-a { font-size: 15px; max-width: 420px; }
 
   /* Prospect-analysis slide: staged document reveal. Plain CSS transitions scoped to this
      file, deliberately outside the protected clips runtime. Steps use opacity/transform
@@ -336,14 +319,6 @@
   .flow-pills { display: flex; flex-wrap: wrap; gap: 8px; }
 
   /* schedule section: rules on the left, the email that arrives on the right */
-  .sched-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-top: 44px; }
-  .sched-grid .way-list { margin-bottom: 16px; }
-  .sched-note { font-size: 15px; color: var(--ink-soft); }
-  .mail-meta { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; font-size: 13px; color: var(--ink-muted); padding-bottom: 12px; border-bottom: 1px solid var(--rule); margin-bottom: 14px; }
-  .mail-meta b { font-weight: 600; color: var(--ink); overflow-wrap: anywhere; }
-  .mail-body p { font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
-  .mail-body p + p { margin-top: 10px; }
-  .mail-attach { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--rule); }
 
   /* firm-level row */
   .firm-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 18px; }
@@ -363,12 +338,7 @@
     .cdv-doors { grid-template-columns: 1fr; gap: 34px; }
     .cdv-divider { display: none; }
     .pa-metrics { grid-template-columns: 1fr; }
-    .sched-grid { grid-template-columns: 1fr; gap: 28px; }
     .firm-row { grid-template-columns: 1fr; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .day-track, .day-viewport { transition: none; }
   }
 
   @media (max-width: 480px) {
@@ -526,197 +496,133 @@
   </div>
 </section>
 
-<!-- ==================== ONE DAY ==================== -->
-<section class="pad" aria-label="What a day looks like">
+<!-- ==================== ON THE DAY ==================== -->
+<section class="pad" id="features" aria-label="What a day looks like">
+  <span id="schedule"></span>
   <style>
-  .strip-frame { position: relative; width: 100%; max-width: 1080px; aspect-ratio: 16 / 9; margin: 44px auto 0; background: #fff; border: 1px solid #D2D2D7; border-radius: 12px; box-shadow: 0 12px 40px rgba(29, 29, 31, .08); overflow: hidden; }
-  .strip-screen { position: absolute; inset: 0; opacity: 0; visibility: hidden; transition: opacity .6s ease, visibility 0s linear .6s; background: #fff; }
-  .strip-screen.is-on { opacity: 1; visibility: visible; transition: opacity .6s ease, visibility 0s; }
-  .strip-img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top left; }
-  .strip-center { display: flex; align-items: center; justify-content: center; padding: 24px 32px; background: #fff; }
-  .strip-card { width: 100%; max-width: 640px; color: #1D1D1F; font-size: 14px; line-height: 1.45; text-align: left; }
-  .strip-meta { display: grid; grid-template-columns: 64px 1fr; gap: 4px 10px; font-size: 13px; padding-bottom: 12px; border-bottom: 1px solid #D2D2D7; margin: 0 0 12px; }
-  .strip-meta dt { color: #6E6E73; margin: 0; }
-  .strip-meta dd { margin: 0; }
-  .strip-block { padding: 10px 0; border-top: 1px solid #D2D2D7; }
-  .strip-block:first-of-type { border-top: 0; padding-top: 0; }
-  .strip-bh { font-size: 13px; font-weight: 600; margin: 0 0 4px; }
-  .strip-li { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; font-size: 13px; padding: 3px 0; }
-  .strip-li .strip-d { color: #6E6E73; flex: 0 0 44px; }
-  .strip-chip { display: inline-block; font-size: 11px; line-height: 1; padding: 4px 8px; border: 1px solid #D2D2D7; border-radius: 999px; color: #6E6E73; background: #fff; white-space: nowrap; }
-  .strip-att { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; font-size: 12px; padding: 6px 10px; border: 1px solid #D2D2D7; border-radius: 8px; background: #F5F5F7; }
-  .strip-head { font-size: 16px; font-weight: 600; margin: 0; }
-  .strip-quote { margin: 12px 0 0; padding: 12px 14px; background: #F5F5F7; border-radius: 10px; font-size: 14px; }
-  .strip-split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
-  .strip-gray { background: #F5F5F7; border-right: 1px solid #D2D2D7; min-width: 0; }
-  .strip-gray .strip-img { object-fit: contain; object-position: center; }
-  .strip-fit { object-fit: contain; object-position: top left; }
-  .strip-side { display: flex; flex-direction: column; justify-content: center; padding: 0 48px; min-width: 0; }
-  .strip-side-t { font-size: 22px; font-weight: 600; line-height: 1.25; color: #1D1D1F; margin: 0 0 10px; }
-  .strip-side-l { font-size: 16px; line-height: 1.55; color: #424245; margin: 0; max-width: 420px; }
-  .strip-caps { display: grid; max-width: 1080px; margin: 22px auto 0; }
-  .strip-cap { grid-area: 1 / 1; margin: 0; font-size: 17px; line-height: 1.5; color: #1D1D1F; opacity: 0; visibility: hidden; transition: opacity .6s ease, visibility 0s linear .6s; }
-  .strip-cap.is-on { opacity: 1; visibility: visible; transition: opacity .6s ease, visibility 0s; }
-  .strip-dots { display: flex; gap: 0; justify-content: flex-start; max-width: 1080px; margin: 10px auto 0; }
-  .strip-dot { position: relative; width: 44px; height: 44px; padding: 0; border: 0; background: transparent; cursor: pointer; }
-  .strip-dot::before { content: ""; position: absolute; left: 50%; top: 50%; width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%; background: #D2D2D7; transition: background-color .2s, transform .2s; }
-  .strip-dot:hover::before { background: #6E6E73; }
-  .strip-dot.is-on::before { background: #1D1D1F; transform: scale(1.2); }
-  .strip-dot:focus-visible { outline: 2px solid #0A66D6; outline-offset: -4px; border-radius: 8px; }
-  .strip-note { max-width: 1080px; margin: 4px auto 0; font-size: 12px; color: #6E6E73; }
-  @media (max-width: 720px) {
-    .strip-frame { aspect-ratio: auto; height: 600px; margin-top: 32px; }
-    .strip-center { padding: 14px; align-items: flex-start; }
-    .strip-card { font-size: 13px; }
-    .strip-li .strip-d { flex: 0 0 100%; font-size: 12px; }
-    .strip-li { gap: 2px 8px; }
-    .strip-split { grid-template-columns: 1fr; grid-template-rows: minmax(0, 1fr) auto; }
-    .strip-gray { border-right: 0; border-bottom: 1px solid #D2D2D7; }
-    .strip-side { padding: 16px 18px; }
-    .strip-side-t { font-size: 18px; }
-    .strip-side-l { font-size: 14px; }
-    .strip-cap { font-size: 16px; }
-    .strip-caps { min-height: 0; }
+  .otd-eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--blue-ink); }
+  .otd-row { display: grid; grid-template-columns: minmax(0, 55fr) minmax(0, 45fr); gap: 56px; align-items: start; margin-top: 48px; }
+  .otd-stage { --otd-play: running; --otd-ah: 52px; --otd-bh: 94px; position: relative; width: 100%; max-width: 560px; height: 566px; }
+  html.js .otd-stage:not(.is-live) { --otd-play: paused; }
+  .otd-card { position: absolute; background: #fff; border: 1px solid #D2D2D7; border-radius: 12px; box-shadow: 0 12px 32px rgba(29, 29, 31, .10); color: #1D1D1F; font-size: 13px; line-height: 1.35; overflow: hidden; text-align: left; animation: otd-float 8s ease-in-out infinite; animation-play-state: var(--otd-play); }
+  .otd-a { left: 0; top: 0; width: 54%; z-index: 1; }
+  .otd-b { left: 7%; top: 228px; width: 70%; z-index: 2; animation-duration: 9s; animation-delay: -3s; }
+  .otd-c { left: 57%; top: 8px; width: 43%; z-index: 3; animation-duration: 7s; animation-delay: -1s; }
+  @keyframes otd-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+  .otd-ch { display: flex; align-items: center; justify-content: space-between; gap: 8px; height: 42px; padding: 0 14px; border-bottom: 1px solid #D2D2D7; font-size: 13px; font-weight: 600; }
+  .otd-ch span { font-size: 12px; font-weight: 500; color: #6E6E73; }
+  .otd-win { position: relative; overflow: hidden; }
+  .otd-a .otd-win { height: calc(var(--otd-ah) * 4); -webkit-mask-image: linear-gradient(#000 72%, transparent); mask-image: linear-gradient(#000 72%, transparent); }
+  .otd-b .otd-win { height: calc(var(--otd-bh) * 3); -webkit-mask-image: linear-gradient(#000 80%, transparent); mask-image: linear-gradient(#000 80%, transparent); }
+  .otd-atrack { transform: translateY(0); animation: otd-atrack 24s infinite; animation-play-state: var(--otd-play); }
+  .otd-btrack { animation: otd-btrack 40s infinite; animation-play-state: var(--otd-play); }
+  @keyframes otd-atrack {
+    0%, 14.1667% { transform: translateY(calc(var(--otd-ah) * -6)); }
+    16.6667%, 30.8334% { transform: translateY(calc(var(--otd-ah) * -5)); }
+    33.3333%, 47.5% { transform: translateY(calc(var(--otd-ah) * -4)); }
+    50%, 64.1667% { transform: translateY(calc(var(--otd-ah) * -3)); }
+    66.6667%, 80.8334% { transform: translateY(calc(var(--otd-ah) * -2)); }
+    83.3333%, 97.5% { transform: translateY(calc(var(--otd-ah) * -1)); }
+    100%% { transform: translateY(0); }
+  }
+  @keyframes otd-btrack {
+    0%, 3.75% { transform: translateY(calc(var(--otd-bh) * 0)); }
+    12.5%, 16.25% { transform: translateY(calc(var(--otd-bh) * -1)); }
+    25%, 28.75% { transform: translateY(calc(var(--otd-bh) * -2)); }
+    37.5%, 41.25% { transform: translateY(calc(var(--otd-bh) * -3)); }
+    50%, 53.75% { transform: translateY(calc(var(--otd-bh) * -4)); }
+    62.5%, 66.25% { transform: translateY(calc(var(--otd-bh) * -5)); }
+    75%, 78.75% { transform: translateY(calc(var(--otd-bh) * -6)); }
+    87.5%, 91.25% { transform: translateY(calc(var(--otd-bh) * -7)); }
+    100%% { transform: translateY(calc(var(--otd-bh) * -8)); }
+  }
+  .otd-arow { height: var(--otd-ah); padding: 8px 14px; border-bottom: 1px solid #E5E5EA; display: flex; flex-direction: column; justify-content: center; gap: 4px; }
+  .otd-ar1 { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+  .otd-ar1 b { font-weight: 600; }
+  .otd-ar1 span { font-size: 12px; color: #6E6E73; white-space: nowrap; }
+  .otd-amber { align-self: flex-start; font-size: 12px; line-height: 1; padding: 5px 9px; border-radius: 999px; background: #FFF4E5; color: #9A4500; white-space: nowrap; }
+  .otd-brow { position: relative; height: var(--otd-bh); padding: 10px 14px; border-bottom: 1px solid #E5E5EA; display: flex; flex-direction: column; justify-content: space-between; }
+  .otd-b1 { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .otd-b1 b { font-weight: 600; }
+  .otd-due { font-size: 12px; line-height: 1; padding: 4px 8px; border-radius: 999px; background: #EAF3FF; color: #0A66D6; white-space: nowrap; }
+  .otd-act { margin: 0; color: #424245; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .otd-b3 { position: relative; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .otd-sel { display: inline-flex; align-items: center; gap: 18px; height: 28px; padding: 0 9px; border: 1px solid #D2D2D7; border-radius: 8px; font-size: 12px; background: #fff; }
+  .otd-btns { display: inline-flex; align-items: center; gap: 8px; }
+  .otd-approve, .otd-reject { display: inline-flex; align-items: center; height: 28px; padding: 0 10px; border-radius: 8px; font-size: 12px; font-weight: 500; }
+  .otd-approve { background: #F0F0F2; }
+  .otd-reject { padding: 0 4px; }
+  .otd-sent { position: absolute; right: 0; top: 50%; margin-top: -12px; display: inline-flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 999px; background: #EAF7EE; color: #1E7F38; font-size: 12px; font-weight: 500; opacity: 0; white-space: nowrap; }
+  .otd-live .otd-approve { animation: otd-press 40s infinite; animation-delay: calc(var(--i) * 5s); animation-play-state: var(--otd-play); }
+  .otd-live .otd-btns { animation: otd-btnfade 40s infinite; animation-delay: calc(var(--i) * 5s); animation-play-state: var(--otd-play); }
+  .otd-live .otd-sent { animation: otd-sentin 40s infinite; animation-delay: calc(var(--i) * 5s); animation-play-state: var(--otd-play); }
+  @keyframes otd-press { 0%, .75% { transform: scale(1); background: #F0F0F2; } 1.25%, 1.75% { transform: scale(.92); background: #D2D2D7; } 15% { transform: scale(1); background: #D2D2D7; } 15.1%, 100% { transform: scale(1); background: #F0F0F2; } }
+  @keyframes otd-btnfade { 0%, 1.75% { opacity: 1; } 2.5%, 15% { opacity: 0; } 15.1%, 100% { opacity: 1; } }
+  @keyframes otd-sentin { 0%, 1.75% { opacity: 0; transform: scale(.9); } 2.5%, 14.9% { opacity: 1; transform: scale(1); } 15%, 100% { opacity: 0; transform: scale(1); } }
+  .otd-c .otd-inbox { position: relative; height: 204px; overflow: hidden; }
+  .otd-mail { position: absolute; inset: 0; padding: 12px 14px; background: #fff; opacity: 0; display: flex; flex-direction: column; gap: 3px; animation: otd-drop 18s infinite; animation-delay: calc(var(--m) * 6s); animation-play-state: var(--otd-play); }
+  .otd-mail[data-first] { opacity: 1; }
+  @keyframes otd-drop { 0% { opacity: 0; transform: translateY(-110%); } .5% { opacity: 1; } 3% { transform: translateY(8px); } 4.2% { transform: translateY(-3px); } 5.4%, 34.5% { opacity: 1; transform: translateY(0); } 34.6%, 100% { opacity: 0; transform: translateY(0); } }
+  .otd-subj { font-size: 14px; font-weight: 600; letter-spacing: -.005em; }
+  .otd-from { font-size: 12px; color: #6E6E73; overflow-wrap: anywhere; }
+  .otd-from span { color: #424245; font-weight: 500; }
+  .otd-when { font-size: 12px; color: #6E6E73; }
+  .otd-prev { margin: 8px 0 0; font-size: 13px; color: #424245; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .otd-pdf { margin-top: auto; align-self: flex-start; font-size: 12px; padding: 5px 9px; border: 1px solid #D2D2D7; border-radius: 8px; background: #F5F5F7; }
+  .otd-list { list-style: none; margin: 0; padding: 0; }
+  .otd-list li { display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 16px; padding: 18px 0; border-top: 1px solid var(--rule); }
+  .otd-list li:first-child { border-top: 0; padding-top: 0; }
+  .otd-list li:last-child { padding-bottom: 0; }
+  .otd-ic { width: 36px; height: 36px; border-radius: 50%; background: #EAF3FF; display: flex; align-items: center; justify-content: center; }
+  .otd-list h3 { font-size: 16px; font-weight: 600; line-height: 1.3; letter-spacing: -.005em; }
+  .otd-list p { margin: 4px 0 0; font-size: 15px; line-height: 1.5; color: var(--ink-soft); }
+  @media (max-width: 960px) {
+    .otd-row { grid-template-columns: 1fr; gap: 40px; }
+    .otd-stage { margin: 0 auto; }
+  }
+  @media (max-width: 620px) {
+    .otd-stage { height: auto; max-width: none; display: flex; flex-direction: column; gap: 16px; }
+    .otd-card { position: static; width: 100%; animation: none; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .strip-screen, .strip-cap { transition: none; }
+    .otd-stage *, .otd-card { animation: none !important; }
+    .otd-btrack, .otd-atrack { transform: none; }
   }
   </style>
   <div class="container">
-    <div class="eyebrow reveal">What a day looks like</div>
-    <h2 class="reveal">Your day's client work, done before you start.</h2>
-    <p class="lede reveal">The routine work runs in the background, so the reading and the paperwork are finished by the time you sit down.</p>
-    <div class="strip-frame" id="stripFrame" role="group" aria-label="Six screens from Briefly, changing every five seconds">
-      <div class="strip-screen strip-center is-on" data-strip="0">
-        <div class="strip-card" data-mockup="" aria-label="The Whitfield household brief as it arrives in the inbox">
-          <dl class="strip-meta"><dt>From</dt><dd>Briefly &lt;no-reply@brieflywealth.com&gt;</dd><dt>Subject</dt><dd><b>Whitfield household brief</b></dd></dl>
-          <div class="strip-block"><p class="strip-bh">What changed since the March review</p>
-            <div class="strip-li"><span class="strip-d">Jun 18</span><span>Dana emailed about $40,000 for a lake house down payment.</span><span class="strip-chip">Email</span></div>
-            <div class="strip-li"><span class="strip-d">Aug 6</span><span>Their daughter's wedding moved to next June.</span><span class="strip-chip">Meeting note</span></div>
-            <div class="strip-li"><span class="strip-d">Sep 22</span><span>Mailing address for two accounts changed to Wilmette.</span><span class="strip-chip">Call notes</span></div>
-          </div>
-          <div class="strip-block"><p class="strip-bh">What they care about</p>
-            <div class="strip-li"><span>Retiring at 62 with the lake house paid off.</span></div>
-            <div class="strip-li"><span>Keeping enough in cash to cover the wedding.</span></div>
-          </div>
-          <div class="strip-block"><p class="strip-bh">Portfolio since March</p>
-            <div class="strip-li"><span>Up 6.1% since the March 14 review, 0.8 points ahead of the 60/40 benchmark.</span><span class="strip-chip">Orion</span></div>
-          </div>
-          <span class="strip-att">Whitfield-brief.pdf</span>
+    <div class="reveal">
+      <div class="eyebrow otd-eyebrow">On the day</div>
+      <h2>Your day's client work, done before you start.</h2>
+    </div>
+    <div class="otd-row">
+      <div class="otd-stage" id="otdStage" role="img" aria-label="Three screens from Briefly. The All clients list flags idle cash and drift, the Action items queue holds tasks to approve, and a household brief arrives in an inbox. Illustrative examples, not real client data.">
+        <div class="otd-card otd-a" data-mockup="">
+          <div class="otd-ch">Needs attention<span>All clients</span></div>
+          <div class="otd-win"><div class="otd-atrack"><div class="otd-arow"><div class="otd-ar1"><b>Margaret Whitfield</b><span>Tue Oct 6</span></div><span class="otd-amber">$205,000 idle cash</span></div><div class="otd-arow"><div class="otd-ar1"><b>Raj Patel</b><span>Thu Oct 1</span></div><span class="otd-amber">U.S. Equity 7.7 points over target</span></div><div class="otd-arow"><div class="otd-ar1"><b>Tom Brennan</b><span>Wed Oct 7</span></div><span class="otd-amber">$2,915,000 idle cash</span></div><div class="otd-arow"><div class="otd-ar1"><b>Margaret Whitfield</b><span>Tue Oct 6</span></div><span class="otd-amber">$31,400 left on 2026 distribution</span></div><div class="otd-arow"><div class="otd-ar1"><b>Linda Choi</b><span>Mon Oct 5</span></div><span class="otd-amber">Intl Equity 5.2 points under target</span></div><div class="otd-arow"><div class="otd-ar1"><b>Sarah Coleman</b><span>Sun Oct 4</span></div><span class="otd-amber">$18,400 left on 2026 distribution</span></div><div class="otd-arow"><div class="otd-ar1"><b>Margaret Whitfield</b><span>Tue Oct 6</span></div><span class="otd-amber">$205,000 idle cash</span></div><div class="otd-arow"><div class="otd-ar1"><b>Raj Patel</b><span>Thu Oct 1</span></div><span class="otd-amber">U.S. Equity 7.7 points over target</span></div><div class="otd-arow"><div class="otd-ar1"><b>Tom Brennan</b><span>Wed Oct 7</span></div><span class="otd-amber">$2,915,000 idle cash</span></div><div class="otd-arow"><div class="otd-ar1"><b>Margaret Whitfield</b><span>Tue Oct 6</span></div><span class="otd-amber">$31,400 left on 2026 distribution</span></div><div class="otd-arow"><div class="otd-ar1"><b>Linda Choi</b><span>Mon Oct 5</span></div><span class="otd-amber">Intl Equity 5.2 points under target</span></div><div class="otd-arow"><div class="otd-ar1"><b>Sarah Coleman</b><span>Sun Oct 4</span></div><span class="otd-amber">$18,400 left on 2026 distribution</span></div></div></div>
+        </div>
+        <div class="otd-card otd-b" data-mockup="">
+          <div class="otd-ch">Action items to review</div>
+          <div class="otd-win"><div class="otd-btrack"><div class="otd-brow otd-live" style="--i:0"><div class="otd-b1"><b>Raj Patel</b><span class="otd-due">Due in 1 day</span></div><p class="otd-act">Execute NVDA tranche 1, sell 1,500 shares</p><div class="otd-b3"><span class="otd-sel">Me <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="otd-btns"><span class="otd-approve">Approve</span><span class="otd-reject">Reject</span></span><span class="otd-sent">Sent to Salesforce</span></div></div><div class="otd-brow otd-live" style="--i:1"><div class="otd-b1"><b>Margaret Whitfield</b><span class="otd-due">Due in 2 days</span></div><p class="otd-act">Confirm mailing address set to Wilmette only</p><div class="otd-b3"><span class="otd-sel">Me <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="otd-btns"><span class="otd-approve">Approve</span><span class="otd-reject">Reject</span></span><span class="otd-sent">Sent to Salesforce</span></div></div><div class="otd-brow otd-live" style="--i:2"><div class="otd-b1"><b>Tom Brennan</b><span class="otd-due">Due in 2 days</span></div><p class="otd-act">Send wire instructions for the condo deposit</p><div class="otd-b3"><span class="otd-sel">Me <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="otd-btns"><span class="otd-approve">Approve</span><span class="otd-reject">Reject</span></span><span class="otd-sent">Sent to Salesforce</span></div></div><div class="otd-brow otd-live" style="--i:3"><div class="otd-b1"><b>Sarah Coleman</b><span class="otd-due">Due in 3 days</span></div><p class="otd-act">Schedule the Q2 review for Sunday</p><div class="otd-b3"><span class="otd-sel">Me <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="otd-btns"><span class="otd-approve">Approve</span><span class="otd-reject">Reject</span></span><span class="otd-sent">Sent to Salesforce</span></div></div><div class="otd-brow otd-live" style="--i:4"><div class="otd-b1"><b>Linda Choi</b><span class="otd-due">Due in 4 days</span></div><p class="otd-act">Request the pension election form from HR</p><div class="otd-b3"><span class="otd-sel">Me <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="otd-btns"><span class="otd-approve">Approve</span><span class="otd-reject">Reject</span></span><span class="otd-sent">Sent to Salesforce</span></div></div><div class="otd-brow otd-live" style="--i:5"><div class="otd-b1"><b>Dana Whitfield</b><span class="otd-due">Due in 5 days</span></div><p class="otd-act">Collect the missing 401(k) statement</p><div class="otd-b3"><span class="otd-sel">Me <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="otd-btns"><span class="otd-approve">Approve</span><span class="otd-reject">Reject</span></span><span class="otd-sent">Sent to Salesforce</span></div></div><div class="otd-brow otd-live" style="--i:6"><div class="otd-b1"><b>Margaret Whitfield</b><span class="otd-due">Due in 6 days</span></div><p class="otd-act">Talk through options for $205,000 idle cash</p><div class="otd-b3"><span class="otd-sel">Me <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="otd-btns"><span class="otd-approve">Approve</span><span class="otd-reject">Reject</span></span><span class="otd-sent">Sent to Salesforce</span></div></div><div class="otd-brow otd-live" style="--i:7"><div class="otd-b1"><b>Raj Patel</b><span class="otd-due">Due in 7 days</span></div><p class="otd-act">Confirm the Q2 estimated tax payment</p><div class="otd-b3"><span class="otd-sel">Me <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="otd-btns"><span class="otd-approve">Approve</span><span class="otd-reject">Reject</span></span><span class="otd-sent">Sent to Salesforce</span></div></div><div class="otd-brow"><div class="otd-b1"><b>Raj Patel</b><span class="otd-due">Due in 1 day</span></div><p class="otd-act">Execute NVDA tranche 1, sell 1,500 shares</p><div class="otd-b3"><span class="otd-sel">Me <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="otd-btns"><span class="otd-approve">Approve</span><span class="otd-reject">Reject</span></span><span class="otd-sent">Sent to Salesforce</span></div></div><div class="otd-brow"><div class="otd-b1"><b>Margaret Whitfield</b><span class="otd-due">Due in 2 days</span></div><p class="otd-act">Confirm mailing address set to Wilmette only</p><div class="otd-b3"><span class="otd-sel">Me <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="otd-btns"><span class="otd-approve">Approve</span><span class="otd-reject">Reject</span></span><span class="otd-sent">Sent to Salesforce</span></div></div><div class="otd-brow"><div class="otd-b1"><b>Tom Brennan</b><span class="otd-due">Due in 2 days</span></div><p class="otd-act">Send wire instructions for the condo deposit</p><div class="otd-b3"><span class="otd-sel">Me <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="otd-btns"><span class="otd-approve">Approve</span><span class="otd-reject">Reject</span></span><span class="otd-sent">Sent to Salesforce</span></div></div><div class="otd-brow"><div class="otd-b1"><b>Sarah Coleman</b><span class="otd-due">Due in 3 days</span></div><p class="otd-act">Schedule the Q2 review for Sunday</p><div class="otd-b3"><span class="otd-sel">Me <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="otd-btns"><span class="otd-approve">Approve</span><span class="otd-reject">Reject</span></span><span class="otd-sent">Sent to Salesforce</span></div></div><div class="otd-brow"><div class="otd-b1"><b>Linda Choi</b><span class="otd-due">Due in 4 days</span></div><p class="otd-act">Request the pension election form from HR</p><div class="otd-b3"><span class="otd-sel">Me <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="otd-btns"><span class="otd-approve">Approve</span><span class="otd-reject">Reject</span></span><span class="otd-sent">Sent to Salesforce</span></div></div><div class="otd-brow"><div class="otd-b1"><b>Dana Whitfield</b><span class="otd-due">Due in 5 days</span></div><p class="otd-act">Collect the missing 401(k) statement</p><div class="otd-b3"><span class="otd-sel">Me <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="otd-btns"><span class="otd-approve">Approve</span><span class="otd-reject">Reject</span></span><span class="otd-sent">Sent to Salesforce</span></div></div><div class="otd-brow"><div class="otd-b1"><b>Margaret Whitfield</b><span class="otd-due">Due in 6 days</span></div><p class="otd-act">Talk through options for $205,000 idle cash</p><div class="otd-b3"><span class="otd-sel">Me <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="otd-btns"><span class="otd-approve">Approve</span><span class="otd-reject">Reject</span></span><span class="otd-sent">Sent to Salesforce</span></div></div><div class="otd-brow"><div class="otd-b1"><b>Raj Patel</b><span class="otd-due">Due in 7 days</span></div><p class="otd-act">Confirm the Q2 estimated tax payment</p><div class="otd-b3"><span class="otd-sel">Me <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="otd-btns"><span class="otd-approve">Approve</span><span class="otd-reject">Reject</span></span><span class="otd-sent">Sent to Salesforce</span></div></div></div></div>
+        </div>
+        <div class="otd-card otd-c" data-mockup="">
+          <div class="otd-ch">Inbox</div>
+          <div class="otd-inbox"><div class="otd-mail" data-first="" style="--m:0"><b class="otd-subj">Whitfield household brief</b><div class="otd-from"><span>From</span> Briefly &lt;no-reply@brieflywealth.com&gt;</div><div class="otd-when">Tuesday 6:00 AM</div><p class="otd-prev">The lake house down payment is the headline. The wedding moved to next June.</p><span class="otd-pdf">Whitfield-brief.pdf</span></div><div class="otd-mail" style="--m:1"><b class="otd-subj">Patel household brief</b><div class="otd-from"><span>From</span> Briefly &lt;no-reply@brieflywealth.com&gt;</div><div class="otd-when">Tuesday 6:00 AM</div><p class="otd-prev">The sell-rate decision is the headline. The Q2 estimated tax is still due.</p><span class="otd-pdf">Patel-brief.pdf</span></div><div class="otd-mail" style="--m:2"><b class="otd-subj">Coleman household brief</b><div class="otd-from"><span>From</span> Briefly &lt;no-reply@brieflywealth.com&gt;</div><div class="otd-when">Tuesday 6:00 AM</div><p class="otd-prev">The Q2 review is this Sunday. Two items are still open from the last meeting.</p><span class="otd-pdf">Coleman-brief.pdf</span></div></div>
         </div>
       </div>
-      <div class="strip-screen strip-split" data-strip="1">
-        <div class="strip-gray"><img class="strip-img" src="images/app/prospect.jpg" width="674" height="812" alt="A Briefly prospect analysis page for the Kessler household showing what they own and what it costs them" loading="eager" decoding="async"></div>
-        <div class="strip-side">
-          <p class="strip-side-t">Kessler household</p>
-          <p class="strip-side-l">What they own, what they pay, and the bank behind it.</p>
-        </div>
-      </div>
-      <div class="strip-screen" data-strip="2"><img class="strip-img strip-fit" src="images/app/action-items.jpg" width="1466" height="612" alt="The Briefly Action items page with proposed tasks waiting for approval" loading="lazy" decoding="async"></div>
-      <div class="strip-screen strip-center" data-strip="3">
-        <div class="strip-card" data-mockup="" aria-label="The firm view section of a brief">
-          <p class="strip-head">Firm view</p>
-          <p class="strip-quote">Michael Torres, Sep 24: trimming duration, holding short Treasuries until the Fed's path is clearer</p>
-          <p class="strip-bh" style="margin-top:16px">This household</p>
-          <p style="margin:0;font-size:14px">Bond sleeve at 6.8-year duration, 22% of the portfolio. Longer than the firm's stance.</p>
-          <p style="margin:10px 0 0"><span class="strip-chip">Orion holdings</span></p>
-        </div>
-      </div>
-      <div class="strip-screen" data-strip="4"><img class="strip-img" src="images/app/clients-flags.jpg" width="1252" height="812" alt="The Briefly All clients page with a Needs attention column listing idle cash, a remaining distribution and a portfolio over its target" loading="lazy" decoding="async"></div>
-      <div class="strip-screen" data-strip="5"><img class="strip-img" src="images/app/ask.jpg" width="1252" height="812" alt="Ask Briefly answering a question about Sarah Coleman with sources listed under the answer" loading="lazy" decoding="async"></div>
+      <ul class="otd-list"><li><span class="otd-ic"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#2F8CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><div><h3>The brief lands before every meeting</h3><p>It covers what changed since you last met, what they care about and how the portfolio did, and it is in your inbox that morning.</p></div></li><li><span class="otd-ic"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#2F8CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><h3>Runs on a schedule</h3><p>Briefly emails you the report with the PDF attached, the morning of every meeting or weekly or monthly.</p></div></li><li><span class="otd-ic"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#2F8CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg></span><div><h3>Prospects, before the first call</h3><p>It covers what they own, which bank holds it, what it costs them and how that bank builds portfolios.</p></div></li><li><span class="otd-ic"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#2F8CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span><div><h3>Tasks from emails and notes</h3><p>To-dos become tasks you approve or reject, and approved ones land in Salesforce for whoever owns them.</p></div></li><li><span class="otd-ic"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#2F8CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 20V10M12 20V4M18 20V13"/></svg></span><div><h3>Your CIO's view in every brief</h3><p>Each brief shows where a client's portfolio differs from the firm's latest stance.</p></div></li><li><span class="otd-ic"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#2F8CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4l9 15H3z"/><path d="M12 10v4M12 17h.01"/></svg></span><div><h3>Cash, RMDs and drift, across the book</h3><p>Orion data, rolling out firm by firm, shows who is sitting on idle cash, who has a required distribution due and whose portfolio is off target.</p></div></li><li><span class="otd-ic"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#2F8CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg></span><div><h3>Ask anything</h3><p>Ask one question across every client and get an answer with the sources under it.</p></div></li></ul>
     </div>
-    <div class="strip-caps" aria-live="off">
-      <p class="strip-cap is-on">The brief is in your inbox before every meeting, with what changed, what they care about and how the portfolio did.</p>
-      <p class="strip-cap">A prospect's call note, emails and statements tell you what they own, which bank holds it and roughly what it costs them.</p>
-      <p class="strip-cap">To-dos buried in emails and meeting notes become tasks you approve or reject, and approved ones land in Salesforce for whoever owns them.</p>
-      <p class="strip-cap">Your CIO's latest view sits inside every brief, next to where the client's portfolio differs from it.</p>
-      <p class="strip-cap">Across your whole book, Briefly flags idle cash, RMDs coming due and portfolios drifting off target.</p>
-      <p class="strip-cap">Ask anything about a client and get an answer with the sources under it.</p>
-    </div>
-    <div class="strip-dots" role="group" aria-label="Choose a screen">
-      <button type="button" class="strip-dot is-on" aria-label="Screen 1 of 6, the brief in your inbox" aria-current="true"></button>
-      <button type="button" class="strip-dot" aria-label="Screen 2 of 6, a prospect analysis"></button>
-      <button type="button" class="strip-dot" aria-label="Screen 3 of 6, action items"></button>
-      <button type="button" class="strip-dot" aria-label="Screen 4 of 6, your CIO's view"></button>
-      <button type="button" class="strip-dot" aria-label="Screen 5 of 6, alerts across your book"></button>
-      <button type="button" class="strip-dot" aria-label="Screen 6 of 6, Ask Briefly"></button>
-    </div>
-    <p class="strip-note">Screens 1 and 4 are illustrative examples, not real client data. Portfolio lines and alerts come from Orion, rolling out firm by firm.</p>
   </div>
   <script>
   (function () {
-    var frame = document.getElementById('stripFrame');
-    if (!frame) return;
-    var screens = [].slice.call(frame.querySelectorAll('.strip-screen'));
-    var sec = frame.closest('section');
-    var caps = [].slice.call(sec.querySelectorAll('.strip-cap'));
-    var dots = [].slice.call(sec.querySelectorAll('.strip-dot'));
-    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var idx = 0, timer = null, inView = false, hover = false, held = false;
-    [].slice.call(frame.querySelectorAll('img')).forEach(function (im) { var p = new Image(); p.src = im.getAttribute('src'); });
-    function show(i) {
-      idx = (i + screens.length) % screens.length;
-      screens.forEach(function (s, k) { s.classList.toggle('is-on', k === idx); s.setAttribute('aria-hidden', k === idx ? 'false' : 'true'); });
-      caps.forEach(function (c, k) { c.classList.toggle('is-on', k === idx); });
-      dots.forEach(function (d, k) {
-        d.classList.toggle('is-on', k === idx);
-        if (k === idx) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current');
-      });
-    }
-    function stop() { clearTimeout(timer); timer = null; }
-    function tick() { show(idx + 1); schedule(); }
-    function schedule() {
-      stop();
-      if (reduce || !inView || hover || held) return;
-      timer = setTimeout(tick, 5000);
-    }
-    show(0);
-    dots.forEach(function (d, k) { d.addEventListener('click', function () { show(k); schedule(); }); });
-    frame.addEventListener('mouseenter', function () { hover = true; stop(); });
-    frame.addEventListener('mouseleave', function () { hover = false; held = false; schedule(); });
-    frame.addEventListener('click', function () { held = !held; if (held) stop(); else schedule(); });
+    var stage = document.getElementById('otdStage');
+    if (!stage) return;
     if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (es) {
-        inView = es[0].isIntersecting;
-        if (inView) schedule(); else stop();
-      }, { threshold: 0.35 }).observe(frame);
-    } else { inView = true; schedule(); }
+      new IntersectionObserver(function (es, o) {
+        if (es[0].isIntersecting) { stage.classList.add('is-live'); o.disconnect(); }
+      }, { threshold: 0.25 }).observe(stage);
+    } else { stage.classList.add('is-live'); }
   })();
   </script>
-</section>
-
-<!-- ==================== RUNS ON A SCHEDULE ==================== -->
-<section class="pad band-paper2" id="schedule" aria-label="Runs on a schedule">
-  <div class="container reveal">
-    <div class="eyebrow">Runs on a schedule</div>
-    <h2>Set the rules once. The finished report lands in your inbox.</h2>
-    <p class="lede">On the Agents tab you write a rule as a plain sentence and choose which clients it covers. Each time it runs, the report arrives by email with the PDF attached.</p>
-    <div class="sched-grid">
-      <div>
-        <ul class="way-list">
-          <li>Before every meeting</li>
-          <li>Every week, on the day and time you pick</li>
-          <li>Every month, on the day and time you pick</li>
-          <li>For all clients, only some, or all except a few</li>
-        </ul>
-        <p class="sched-note">If your calendar connection stops working, Schedules says so and shows every rule as paused until you reconnect it.</p>
-      </div>
-      <div class="win" data-mockup="">
-        <div class="win-bar"><span class="win-dot"></span><span>Inbox</span></div>
-        <div class="win-body">
-          <div class="mail-meta">
-            <span>From</span><b>Briefly &lt;no-reply@brieflywealth.com&gt;</b>
-            <span>Subject</span><b>Patel household brief</b>
-          </div>
-          <div class="mail-body">
-            <p>The sell-rate decision is the headline, the deferred-comp window opens 8/15, and the Q2 estimated tax is still due from Raj.</p>
-            <p>The full report follows below and is attached as a PDF.</p>
-          </div>
-          <div class="mail-attach"><span class="cite">Patel-brief.pdf</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
 </section>
 
 
