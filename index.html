@@ -500,77 +500,450 @@
 <section class="pad" id="features" aria-label="What a day looks like">
   <span id="schedule"></span>
   <style>
+  /* card a */
+.ca-card{position:relative;--y:-222px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+.ca-bar{height:38px;flex:none;display:flex;align-items:center;gap:10px;padding:0 12px;background:#F5F5F7;border-bottom:1px solid #E5E5EA}
+.ca-grid{width:14px;height:14px;background:radial-gradient(circle,#6E6E73 1.3px,transparent 1.6px) 0 0/5px 5px}
+.ca-app{font-size:12px;font-weight:600;color:#424245}
+.ca-search{flex:1;max-width:210px;height:24px;border:1px solid #D2D2D7;border-radius:6px;background:#fff;font-size:11px;color:#6E6E73;padding:0 9px;display:flex;align-items:center;margin-left:8px}
+.ca-me{margin-left:auto;width:22px;height:22px;border-radius:50%;background:#D2D2D7;color:#424245;font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center}
+.ca-stage{position:relative;flex:1;min-height:0;overflow:hidden}
+.ca-inbox,.ca-read{position:absolute;inset:0;background:#fff}
+.ca-inbox{display:flex;flex-direction:column;opacity:0;visibility:hidden}
+.ca-tabs{height:30px;flex:none;display:flex;align-items:flex-end;gap:16px;padding:0 14px;border-bottom:1px solid #E5E5EA;font-size:12px;color:#6E6E73}
+.ca-tabs b{font-weight:600;color:#1D1D1F;padding-bottom:6px;border-bottom:2px solid #2F8CFF}
+.ca-tabs span{padding-bottom:8px}
+.ca-day{height:22px;flex:none;padding:5px 14px 0;font-size:11px;font-weight:600;color:#6E6E73}
+.ca-row{position:relative;height:54px;flex:none;padding:7px 14px 0 26px;border-bottom:1px solid #F0F0F2;display:flex;flex-direction:column;gap:1px}
+.ca-l1,.ca-l2,.ca-l3{display:flex;align-items:center;gap:6px;white-space:nowrap;overflow:hidden;line-height:15px}
+.ca-l1{font-size:12px;color:#424245}
+.ca-l1 i{margin-left:auto;font-style:normal;font-size:11px;color:#6E6E73;flex:none}
+.ca-l2{font-size:12px;color:#1D1D1F}
+.ca-l3{font-size:11px;color:#6E6E73}
+.ca-l2 span,.ca-l3 span{overflow:hidden;text-overflow:ellipsis}
+.ca-unread .ca-l1 em,.ca-unread .ca-l2 span{font-weight:700;color:#1D1D1F}
+.ca-unread .ca-l1 i{color:#0A66D6;font-weight:600}
+.ca-l1 em{font-style:normal}
+.ca-unread::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:#2F8CFF}
+.ca-clip{width:11px;height:11px;flex:none;margin-left:auto;color:#6E6E73}
+.ca-unread::after{content:"";position:absolute;left:11px;top:13px;width:6px;height:6px;border-radius:50%;background:#2F8CFF}
+.ca-hl{animation:none}
+.ca-ptr{position:absolute;left:50%;top:55%;width:18px;height:18px;opacity:0;z-index:5;pointer-events:none;transform-origin:0 0;filter:drop-shadow(0 1px 2px rgba(0,0,0,.25))}
+.ca-ring{position:absolute;left:50%;top:55%;width:24px;height:24px;margin:-12px 0 0 -12px;border-radius:50%;border:2px solid rgba(47,140,255,.55);opacity:0;z-index:4;pointer-events:none}
+.ca-read{display:flex;flex-direction:column;background:#fff}
+.ca-rh{flex:none;padding:8px 14px 9px;border-bottom:1px solid #E5E5EA;background:#fff}
+.ca-subj{font-size:13px;font-weight:600;line-height:17px;color:#1D1D1F;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ca-from{display:flex;align-items:center;gap:8px;margin-top:6px}
+.ca-av{width:26px;height:26px;border-radius:50%;background:#EAF3FF;color:#0A66D6;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none}
+.ca-fm{min-width:0;font-size:11px;line-height:14px;color:#6E6E73}
+.ca-fm b{color:#1D1D1F;font-weight:600;font-size:12px}
+.ca-t{margin-left:auto;font-size:11px;color:#6E6E73;flex:none}
+.ca-att{margin-top:7px;display:inline-flex;align-items:center;gap:6px;max-width:100%;height:24px;padding:0 9px;border:1px solid #D2D2D7;border-radius:6px;background:#F5F5F7;font-size:11px;color:#1D1D1F}
+.ca-att svg{flex:none}
+.ca-att span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ca-scroll{position:relative;flex:1;min-height:0;overflow:hidden;background:#F5F5F7}
+.ca-body{padding:10px 10px 0;transform:translateY(var(--y))}
+.ca-mail{background:#fff;border-radius:8px;padding:16px 20px 14px}
+.ca-brand{font-size:11px;font-weight:600;color:#0071e3}
+.ca-h1{margin:6px 0 2px;font-size:17px;line-height:1.25;font-weight:700;color:#1d1d1f}
+.ca-meet{font-size:11.5px;color:#6e6e73}
+.ca-btn{display:inline-block;margin:8px 0 4px;background:#0071e3;color:#fff;border-radius:6px;padding:7px 14px;font-size:12px;font-weight:600}
+.ca-kv{display:flex;border-bottom:1px solid #e5e5ea;padding:5px 0;font-size:11.5px;color:#1d1d1f}
+.ca-kv span{width:40%;color:#6e6e73}
+.ca-h2{margin:18px 0 5px;font-size:13.5px;line-height:1.3;font-weight:600;color:#1d1d1f}
+.ca-p{margin:0 0 8px;font-size:12px;line-height:1.5;color:#1d1d1f}
+.ca-li{display:flex;gap:7px;margin:0 0 6px;font-size:12px;line-height:1.5;color:#1d1d1f}
+.ca-li>s{text-decoration:none;color:#6e6e73;width:9px;flex:none}
+.ca-li b{font-weight:700}
+.ca-li sup,.ca-p sup{font-size:8.5px;color:#6e6e73}
+.ca-li u{text-decoration:none;color:#6e6e73}
+.ca-tail{height:60px}
+/* final frame at rest: read pane open, scrolled */
+.ca-card.is-live .ca-inbox{animation:ca-inbox 8s linear both}
+.ca-card.is-live .ca-read{animation:ca-read 8s linear both}
+.ca-card.is-live .ca-body{animation:ca-scroll 8s cubic-bezier(.45,.05,.3,1) both}
+.ca-card.is-live .ca-ptr{animation:ca-ptr 8s linear both}
+.ca-card.is-live .ca-ring{animation:ca-ring 8s linear both}
+.ca-card.is-live .ca-hl{animation:ca-hl 8s linear both}
+.ca-card.is-live .ca-hl::after{animation:ca-dot 8s linear both}
+.ca-card.is-live .ca-hl::before{animation:ca-dot 8s linear both}
+.ca-card.is-live .ca-hl .ca-l1 em,.ca-card.is-live .ca-hl .ca-l2 span{animation:ca-bold 8s linear both}
+.ca-card.is-live .ca-hl .ca-l1 i{animation:ca-time 8s linear both}
+@keyframes ca-inbox{0%,26%{opacity:1;visibility:visible}30.6%{opacity:0;visibility:visible}30.7%,100%{opacity:0;visibility:hidden}}
+@keyframes ca-read{0%,26%{opacity:0;transform:translateX(24px);animation-timing-function:cubic-bezier(.2,.7,.2,1)}30.6%,100%{opacity:1;transform:none}}
+@keyframes ca-scroll{0%,40%{transform:translateY(0)}82%,100%{transform:translateY(var(--y))}}
+@keyframes ca-ptr{0%{opacity:0;transform:translate(130px,90px) scale(1);animation-timing-function:cubic-bezier(.4,0,.2,1)}4%{opacity:1;transform:translate(130px,90px) scale(1);animation-timing-function:cubic-bezier(.4,0,.2,1)}14%{opacity:1;transform:translate(0,0) scale(1)}23.75%{opacity:1;transform:translate(0,0) scale(1)}24.6%{opacity:1;transform:translate(0,0) scale(.86)}25.3%{opacity:1;transform:translate(0,0) scale(1)}26.3%{opacity:1;transform:translate(0,0) scale(1);animation-timing-function:ease-out}30%,100%{opacity:0;transform:translate(10px,10px) scale(1)}}
+@keyframes ca-ring{0%,23.7%{opacity:0;transform:scale(.3)}23.75%{opacity:1;transform:scale(.3)}29.4%,100%{opacity:0;transform:scale(1.4)}}
+@keyframes ca-hl{0%,12.5%{background:#fff;box-shadow:inset 0 0 0 1px transparent}15%,23.7%{background:#EEF4FF;box-shadow:inset 0 0 0 1px #CFE2FF}23.75%,30.6%{background:#DDEAFF;box-shadow:inset 0 0 0 1px #B9D4FF}100%{background:#DDEAFF;box-shadow:inset 0 0 0 1px #B9D4FF}}
+@keyframes ca-dot{0%,23.7%{opacity:1}26.3%,100%{opacity:0}}
+@keyframes ca-bold{0%,23.7%{font-weight:700;color:#1D1D1F}23.8%,100%{font-weight:400;color:#424245}}
+@keyframes ca-time{0%,23.7%{color:#0A66D6;font-weight:600}23.8%,100%{color:#6E6E73;font-weight:400}}
+@media (max-width:620px){.ca-card{--y:-248px}.ca-mail{padding:14px 14px 12px}.ca-search{max-width:140px}.ca-att{font-size:10.5px}}
+@media (prefers-reduced-motion:reduce){.ca-card *{animation:none!important;transition:none!important}}
+  /* card b */
+.cb-card{padding:0 16px 0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif}
+.cb-head{display:flex;align-items:center;gap:10px;height:44px;margin-top:6px;flex:none;padding:0 8px}
+.cb-toggle{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#0A66D6;white-space:nowrap}
+.cb-count{font-size:12px;font-weight:400;color:#6E6E73;font-variant-numeric:tabular-nums}
+.cb-chev{width:7px;height:7px;border-right:1.5px solid #6E6E73;border-bottom:1.5px solid #6E6E73;transform:rotate(45deg);margin-top:-3px}
+.cb-spacer{flex:1}
+.cb-link{font-size:12px;font-weight:500;color:#0A66D6;white-space:nowrap;display:inline-grid;font-variant-numeric:tabular-nums}
+.cb-link>span{grid-area:1/1}
+.cb-src{font-size:11.5px;color:#6E6E73;white-space:nowrap}
+.cb-src b{font-weight:500;color:#0A66D6}
+.cb-today{padding:14px 8px 0;flex:none}
+.cb-today h1{margin:0;font-size:20px;line-height:24px;font-weight:600;letter-spacing:-.01em;color:#1D1D1F}
+.cb-today p{margin:2px 0 0;font-size:12.5px;line-height:16px;color:#6E6E73}
+.cb-list{display:flex;flex-direction:column}
+.cb-row{display:grid;grid-template-columns:minmax(0,1fr) auto 88px;align-items:start;column-gap:12px;padding:6px 8px;border-radius:8px}
+.cb-row:nth-child(even){background:#F7F7F9}
+.cb-sent{min-width:0;font-size:12.5px;line-height:1.45;overflow-wrap:anywhere}
+.cb-client{font-size:13px;font-weight:500;color:#1D1D1F}
+.cb-text{font-size:12.5px;font-weight:400;color:#424245}
+.cb-text b{font-weight:500;color:#1D1D1F;font-variant-numeric:tabular-nums}
+.cb-pill{justify-self:start;display:inline-flex;align-items:center;border-radius:999px;padding:1px 8px;font-size:11px;font-weight:500;line-height:17px;letter-spacing:.01em;white-space:nowrap;background:#EAF3FF;color:#0A66D6}
+@media (max-width:559px){
+.cb-card{padding:0 10px}
+.cb-head{flex-wrap:wrap;height:auto;min-height:48px;row-gap:2px;padding:8px 8px 6px;gap:4px 10px}
+.cb-spacer{display:none}
+.cb-src{margin-left:auto}
+.cb-today{padding:12px 8px 0}
+}
+
+.cb-row{position:relative}
+.cb-btns{display:flex;align-items:center;gap:6px;opacity:0}
+.cb-hot .cb-btns{opacity:1}
+.cb-bw{position:relative;display:inline-block}
+.cb-slot{display:inline-grid}
+.cb-slot>*{grid-area:1/1;justify-self:start}
+.cb-add,.cb-adding,.cb-done{font-size:11.5px;line-height:17px;padding:2px 9px;border-radius:7px;white-space:nowrap;border:1px solid transparent}
+.cb-add{color:#424245;background:#fff;border-color:#D2D2D7}
+.cb-hot .cb-add{opacity:0}
+.cb-adding{color:#6E6E73;background:#F0F0F2;border-color:#D2D2D7;opacity:0}
+.cb-done{color:#1E7F38;font-weight:500}
+.cb-ign{font-size:11.5px;line-height:17px;color:#6E6E73;padding:2px 9px;white-space:nowrap}
+.cb-ptr{position:absolute;left:50%;top:55%;width:18px;height:18px;opacity:0;pointer-events:none;transform-origin:0 0;z-index:3}
+.cb-ptr svg{display:block;margin:-1.5px 0 0 -2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.25))}
+.cb-ring{position:absolute;left:50%;top:55%;width:24px;height:24px;margin:-12px 0 0 -12px;border:2px solid rgba(47,140,255,.55);border-radius:50%;box-sizing:border-box;opacity:0;pointer-events:none;z-index:2}
+.cb-card{--sx:-190px;--sy:70px;--ex:-80px;--ey:-4px}
+.cb-link .cb-n4{opacity:0}
+@media (max-width:559px){
+.cb-card{--sx:70px;--sy:-70px;--ex:40px;--ey:-30px}
+.cb-row{grid-template-columns:minmax(0,1fr) auto;row-gap:4px}
+.cb-sent{grid-column:1/-1}
+.cb-btns{grid-column:1;grid-row:2;opacity:1;justify-self:start}
+.cb-pill{grid-column:2;grid-row:2;justify-self:end;align-self:center}
+.cb-row:nth-child(5){display:none}
+}
+/* animation: rows land, pointer enters row 1, row goes blue-soft, buttons reveal, pointer to button, hover, click, Adding, done */
+.cb-card.is-live .cb-row{animation:cb-land .45s cubic-bezier(.2,.7,.2,1) both}
+.cb-card.is-live .cb-row:nth-child(1){animation:cb-land .45s cubic-bezier(.2,.7,.2,1) .3s both,cb-tint 2.7s ease 2.9s both}
+.cb-card.is-live .cb-row:nth-child(2){animation-delay:.6s}
+.cb-card.is-live .cb-row:nth-child(3){animation-delay:.9s}
+.cb-card.is-live .cb-row:nth-child(4){animation-delay:1.2s}
+.cb-card.is-live .cb-row:nth-child(5){animation-delay:1.5s}
+.cb-card.is-live .cb-hot .cb-btns{animation:cb-reveal .22s ease-out 3.1s both}
+.cb-card.is-live .cb-hot .cb-add{animation:cb-press .92s linear 4.13s both}
+.cb-card.is-live .cb-adding{animation:cb-adding .74s linear 4.56s both}
+.cb-card.is-live .cb-done{animation:cb-in .25s ease 5.05s both}
+.cb-card.is-live .cb-ptr{animation:cb-move 4.1s linear 2.2s both}
+.cb-card.is-live .cb-ring{animation:cb-ring .45s ease-out 4.4s forwards}
+.cb-card.is-live .cb-n4{animation:cb-out .2s ease 5.05s both}
+.cb-card.is-live .cb-n3{animation:cb-in .2s ease 5.05s both}
+@keyframes cb-land{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes cb-tint{0%{background:rgba(238,244,255,0);box-shadow:inset 0 0 0 1px rgba(207,226,255,0)}6.7%,88.9%{background:#EEF4FF;box-shadow:inset 0 0 0 1px #CFE2FF}100%{background:rgba(238,244,255,0);box-shadow:inset 0 0 0 1px rgba(207,226,255,0)}}
+@keyframes cb-reveal{from{opacity:0;transform:translateX(6px)}to{opacity:1;transform:none}}
+@keyframes cb-press{0%{opacity:1;background:#fff;border-color:#D2D2D7;color:#424245;transform:none}20%,29%{opacity:1;background:#ECECEF;border-color:#B8B8BE;color:#1D1D1F;transform:none}30%,47%{opacity:1;background:#DCDCE0;border-color:#A9A9B0;color:#1D1D1F;transform:translateY(1px)}52%,100%{opacity:0;background:#DCDCE0;border-color:#A9A9B0;color:#1D1D1F;transform:translateY(1px)}}
+@keyframes cb-adding{0%{opacity:0}8%,66%{opacity:1}100%{opacity:0}}
+@keyframes cb-in{from{opacity:0}to{opacity:1}}
+@keyframes cb-out{from{opacity:1}to{opacity:0}}
+@keyframes cb-ring{from{opacity:.9;transform:scale(.3)}to{opacity:0;transform:scale(1.4)}}
+@keyframes cb-move{
+0%{opacity:0;transform:translate(var(--sx),var(--sy)) scale(1);animation-timing-function:cubic-bezier(.4,0,.2,1)}
+4.9%{opacity:1;animation-timing-function:cubic-bezier(.4,0,.2,1)}
+18%,30%{opacity:1;transform:translate(var(--ex),var(--ey)) scale(1);animation-timing-function:cubic-bezier(.4,0,.2,1)}
+47%,53.7%{opacity:1;transform:translate(0,0) scale(1);animation-timing-function:ease-out}
+56.6%{opacity:1;transform:translate(0,0) scale(.86);animation-timing-function:ease-out}
+59%,75.6%{opacity:1;transform:translate(0,0) scale(1);animation-timing-function:cubic-bezier(.4,0,.2,1)}
+82.9%,100%{opacity:0;transform:translate(16px,16px) scale(1)}}
+@media (prefers-reduced-motion:reduce){.cb-card *{animation:none!important;transition:none!important}}
+  /* card e */
+.ce-card{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter","Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+.ce-head{flex:none;height:48px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 20px;border-bottom:1px solid #E5E5EA}
+.ce-title{font-size:14px;font-weight:600;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ce-pill{flex:none;background:#EAF3FF;color:#0A66D6;font-size:12px;font-weight:500;border-radius:999px;padding:5px 10px;white-space:nowrap}
+.ce-body{padding:10px 20px 0}
+.ce-h2{font-size:13px;font-weight:600;color:#1D1D1F;margin:0 0 6px;letter-spacing:-.005em}
+.ce-stats{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid #E5E5EA;border-radius:10px;overflow:hidden;margin-bottom:8px}
+.ce-stat{padding:5px 8px;text-align:center;border-left:1px solid #E5E5EA}
+.ce-stat:first-child{border-left:0}
+.ce-sv{font-size:19px;font-weight:600;letter-spacing:-.015em;line-height:1.15}
+.ce-sl{font-size:11px;color:#6E6E73;line-height:1.3;margin-top:1px}
+.ce-find{padding:6px 0;border-top:1px solid #E5E5EA}
+.ce-find p{margin:0;font-size:12px;line-height:1.42;color:#424245}
+.ce-find b{display:block;font-size:12.5px;font-weight:600;color:#1D1D1F;margin-bottom:1px}
+.ce-find sup{font-size:9.5px;font-weight:600;color:#0A66D6;margin-left:1px}
+.ce-hl{background:#FFE9B8;color:#1D1D1F;font-weight:600;border-radius:3px;padding:0 2px}
+.ce-foot{flex:none;margin-top:auto;background:#F5F5F7;border-top:1px solid #E5E5EA;padding:7px 20px;font-size:10.5px;line-height:1.4;color:#6E6E73}
+.ce-foot strong{color:#1D1D1F;font-weight:600}
+@media (max-width:620px){.ce-head{padding:0 14px}.ce-body{padding:10px 14px 0}.ce-foot{padding:6px 14px}.ce-sv{font-size:17px}.ce-find{padding:5px 0}.ce-find p{font-size:11.5px;line-height:1.34}.ce-title{font-size:13px}.ce-hh,.ce-cur{display:none}.ce-pill{font-size:11px;padding:4px 8px}}
+@keyframes ce-land{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes ce-mark{from{background-color:transparent}to{background-color:#FFE9B8}}
+.ce-card.is-live .ce-find{animation:ce-land .55s cubic-bezier(.2,.7,.2,1) both}
+.ce-card.is-live .ce-f1{animation-delay:.5s}
+.ce-card.is-live .ce-f2{animation-delay:2.6s}
+.ce-card.is-live .ce-f3{animation-delay:4.7s}
+.ce-card.is-live .ce-find .ce-hl{animation:ce-mark .5s ease both}
+.ce-card.is-live .ce-f1 .ce-hl{animation-delay:1.2s}
+.ce-card.is-live .ce-f2 .ce-hl{animation-delay:3.3s}
+.ce-card.is-live .ce-f3 .ce-hl{animation-delay:5.4s}
+@media (prefers-reduced-motion:reduce){.ce-card *{animation:none !important;transition:none !important}}
+  /* card c */
+.cc-card{--e:cubic-bezier(.2,.7,.2,1);font-variant-numeric:tabular-nums}
+.cc-head{height:48px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 20px;border-bottom:1px solid #E5E5EA}
+.cc-title{white-space:nowrap;font-size:14px;font-weight:600}
+.cc-meta{white-space:nowrap;font-size:12px;color:#6E6E73}
+.cc-body{padding:12px 20px 0;display:flex;flex-direction:column;flex:none}
+.cc-sec{display:flex;align-items:center;gap:8px;height:22px;font-size:13px;font-weight:600}
+.cc-tag{font-size:11px;font-weight:500;color:#6E6E73;background:#F0F0F2;border-radius:999px;padding:1px 8px}
+.cc-mail{border:1px solid #E5E5EA;border-radius:10px;overflow:hidden;margin:4px 0 12px}
+.cc-mh{background:#F5F5F7;border-bottom:1px solid #E5E5EA;padding:7px 12px;font-size:12px;line-height:1.55;color:#424245}
+.cc-mh b{font-weight:500;color:#6E6E73;margin-right:4px}
+.cc-mb{padding:9px 12px 10px;font-size:12.5px;line-height:1.45;color:#1D1D1F}
+.cc-mb p{margin:0 0 4px}
+.cc-mb p:last-child{margin:0}
+.cc-tasks{margin-top:4px;border-top:1px solid #E5E5EA}
+.cc-row{display:flex;align-items:center;gap:10px;min-height:40px;border-bottom:1px solid #E5E5EA;padding:4px 0}
+.cc-txt{flex:1;min-width:0;font-size:12.5px;line-height:1.35}
+.cc-own{flex:none;font-size:12px;border:1px solid #D2D2D7;border-radius:7px;padding:3px 22px 3px 8px;position:relative;background:#fff;white-space:nowrap}
+.cc-own::after{content:"";position:absolute;right:8px;top:50%;width:4px;height:4px;border-right:1.3px solid #6E6E73;border-bottom:1.3px solid #6E6E73;transform:translateY(-70%) rotate(45deg)}
+.cc-due{flex:none;font-size:11px;font-weight:500;color:#0A66D6;background:#EAF3FF;border-radius:999px;padding:2px 8px;white-space:nowrap}
+.cc-act{flex:none;width:126px;height:28px;position:relative}
+.cc-btns{position:absolute;inset:0;display:flex;align-items:center;justify-content:flex-end;gap:6px}
+.cc-ap{height:28px;padding:0 10px;border-radius:8px;background:#F0F0F2;font-size:12px;font-weight:500;display:flex;align-items:center;position:relative}
+.cc-t1{position:relative;z-index:2}
+.cc-ptr{position:absolute;left:50%;top:55%;width:18px;height:18px;opacity:0;z-index:6;pointer-events:none;transform-origin:0 0;filter:drop-shadow(0 1px 2px rgba(0,0,0,.25))}
+.cc-ptr svg{display:block}
+.cc-ap::after{content:"";position:absolute;left:50%;top:55%;width:24px;height:24px;margin:-12px 0 0 -12px;border-radius:50%;border:2px solid rgba(47,140,255,.55);opacity:0;transform:scale(.3);pointer-events:none}
+.cc-rj{font-size:12px;font-weight:500;color:#424245;padding:0 4px}
+.cc-sent{position:absolute;inset:0;display:flex;align-items:center;justify-content:flex-end;opacity:0}
+.cc-sent span{font-size:11.5px;font-weight:500;color:#1E7F38;background:#EAF7EE;border-radius:999px;padding:4px 9px;white-space:nowrap}
+.cc-row.cc-done .cc-btns{opacity:0}
+.cc-row.cc-done .cc-sent{opacity:1}
+.cc-foot{margin-top:auto;background:#F5F5F7;border-top:1px solid #E5E5EA;padding:9px 20px;font-size:11.5px;color:#6E6E73;line-height:1.4}
+@media (max-width:620px){
+.cc-head{padding:0 14px}.cc-body{padding:8px 14px 0}.cc-mail{margin-bottom:8px}.cc-sec{height:20px}
+.cc-row{flex-wrap:wrap;gap:8px 8px;padding:3px 0;min-height:0;align-content:center;align-items:center}
+.cc-txt{flex:1 1 100%}
+.cc-act{position:static;width:auto;flex:1;height:28px;min-width:108px}
+.cc-act{margin-left:auto}
+.cc-act .cc-btns,.cc-act .cc-sent{justify-content:flex-end}
+.cc-own{padding-right:20px}
+}
+/* motion: 8s max, ends on finished frame */
+@keyframes cc-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+@keyframes cc-press{0%{background:#F0F0F2;transform:none}40%{background:#1D1D1F;color:#fff;transform:scale(.96)}100%{background:#1D1D1F;color:#fff;transform:none}}
+@keyframes cc-out{from{opacity:1}to{opacity:0}}
+@keyframes cc-show{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+.cc-card.is-live .cc-mh{animation:cc-in .5s var(--e) .3s both}
+.cc-card.is-live .cc-l1{animation:cc-in .5s var(--e) .9s both}
+.cc-card.is-live .cc-l2{animation:cc-in .5s var(--e) 1.5s both}
+.cc-card.is-live .cc-l3{animation:cc-in .5s var(--e) 2.1s both}
+.cc-card.is-live .cc-l4{animation:cc-in .5s var(--e) 2.7s both}
+.cc-card.is-live .cc-t2{animation:cc-in .5s var(--e) 3.7s both}
+.cc-card.is-live .cc-t3{animation:cc-in .5s var(--e) 3.9s both}
+.cc-card.is-live .cc-secb{animation:cc-in .5s var(--e) 3.3s both}
+@keyframes cc-ptr{0%{opacity:0;transform:translate(-200px,60px)}7%{opacity:1}22%{opacity:1;transform:translate(-120px,4px) scale(1)}28%{opacity:1;transform:translate(-120px,4px) scale(1);animation-timing-function:cubic-bezier(.4,0,.2,1)}49%{opacity:1;transform:translate(0,0) scale(1)}56%{opacity:1;transform:translate(0,0) scale(1)}59%{opacity:1;transform:translate(0,0) scale(.86)}65%{opacity:1;transform:translate(0,0) scale(1)}70%{opacity:1;transform:translate(0,0) scale(1);animation-timing-function:cubic-bezier(.4,0,.2,1)}83%{opacity:0;transform:translate(16px,16px) scale(1)}100%{opacity:0;transform:translate(16px,16px) scale(1)}}
+@keyframes cc-hov{0%,100%{background:transparent;box-shadow:none}10%,78%{background:#EEF4FF;box-shadow:inset 0 0 0 1px #CFE2FF}}
+@keyframes cc-ap{0%{background:#F0F0F2;transform:none}10%,55%{background:#DCDCE1;transform:none}60%,80%{background:#C4C4CA;transform:translateY(1px)}100%{background:#C4C4CA;transform:none}}
+@keyframes cc-ring{from{opacity:1;transform:scale(.3)}to{opacity:0;transform:scale(1.4)}}
+.cc-card.is-live .cc-t1{animation:cc-in .5s var(--e) 3.5s both,cc-hov 3.6s ease 4.5s both}
+.cc-card.is-live .cc-t1 .cc-ap{animation:cc-ap 3.6s ease 4.5s both}
+.cc-card.is-live .cc-t1 .cc-ap::after{animation:cc-ring .45s ease-out 6.5s both}
+.cc-card.is-live .cc-t1 .cc-ptr{animation:cc-ptr 3.6s cubic-bezier(.4,0,.2,1) 4.5s both}
+.cc-card.is-live .cc-t1 .cc-btns{animation:cc-out .3s var(--e) 6.6s both}
+.cc-card.is-live .cc-t1 .cc-sent{animation:cc-show .3s var(--e) 6.6s both}
+@media (prefers-reduced-motion:reduce){.cc-card *{animation:none!important;transition:none!important}}
+  /* card g */
+.cg-card{position:relative;padding:0 16px;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif}
+.cg-card *{box-sizing:border-box}
+.cg-today{padding:14px 8px 0;flex:none}
+.cg-today h1{margin:0;font-size:20px;line-height:24px;font-weight:600;letter-spacing:-.01em;color:#1D1D1F}
+.cg-today p{margin:2px 0 0;font-size:12.5px;line-height:16px;color:#6E6E73}
+.cg-panel{padding:10px 0 0;flex:none}
+.cg-phead{display:flex;align-items:center;gap:10px;margin:0 8px 8px;height:24px}
+.cg-toggle{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#0A66D6}
+.cg-count{font-size:12px;font-weight:400;color:#6E6E73}
+.cg-chev{width:7px;height:7px;border-right:1.5px solid #6E6E73;border-bottom:1.5px solid #6E6E73;transform:rotate(45deg);margin-top:-3px}
+.cg-spacer{flex:1}
+.cg-link{font-size:12px;font-weight:500;color:#0A66D6;white-space:nowrap;display:inline-grid;padding:2px;font-variant-numeric:tabular-nums}
+.cg-link>span{grid-area:1/1}
+.cg-src{font-size:11.5px;color:#6E6E73;white-space:nowrap}
+.cg-src b{font-weight:500;color:#0A66D6}
+.cg-list{display:flex;flex-direction:column}
+.cg-row{display:grid;grid-template-columns:minmax(0,1fr) auto 88px;align-items:start;column-gap:12px;padding:6px 8px;border-radius:8px}
+.cg-row:nth-child(even){background:#F7F7F9}
+.cg-sent{min-width:0;font-size:12.5px;line-height:1.45;overflow-wrap:anywhere}
+.cg-client{font-size:13px;font-weight:500;color:#1D1D1F}
+.cg-text{font-size:12.5px;font-weight:400;color:#424245}
+.cg-text b{font-weight:500;color:#1D1D1F;font-variant-numeric:tabular-nums}
+.cg-pill{grid-column:3;justify-self:start;display:inline-flex;align-items:center;border-radius:999px;padding:1px 8px;font-size:11px;font-weight:500;line-height:17px;letter-spacing:.01em;white-space:nowrap;background:#FFF4E5;color:#9A4500}
+@media (max-width:559px){
+.cg-card{padding:0 10px}
+.cg-today{padding:12px 8px 0}
+.cg-phead{flex-wrap:wrap;row-gap:2px;height:auto;min-height:24px}
+.cg-spacer{display:none}
+.cg-src{margin-left:auto}
+}
+
+.cg-row{position:relative}
+.cg-btns{display:flex;align-items:center;gap:6px;opacity:0}
+.cg-hot .cg-btns{opacity:1}
+.cg-bw{position:relative;display:inline-block}
+.cg-slot{display:inline-grid}
+.cg-slot>*{grid-area:1/1;justify-self:start}
+.cg-add,.cg-adding,.cg-done{font-size:11.5px;line-height:17px;padding:2px 9px;border-radius:7px;white-space:nowrap;border:1px solid transparent}
+.cg-add{color:#424245;background:#fff;border-color:#D2D2D7}
+.cg-hot .cg-add{opacity:0}
+.cg-adding{color:#6E6E73;background:#F0F0F2;border-color:#D2D2D7;opacity:0}
+.cg-done{color:#1E7F38;font-weight:500}
+.cg-ign{font-size:11.5px;line-height:17px;color:#6E6E73;padding:2px 9px;white-space:nowrap}
+.cg-ptr{position:absolute;left:50%;top:55%;width:18px;height:18px;opacity:0;pointer-events:none;transform-origin:0 0;z-index:3}
+.cg-ptr svg{display:block;margin:-1.5px 0 0 -2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.25))}
+.cg-ring{position:absolute;left:50%;top:55%;width:24px;height:24px;margin:-12px 0 0 -12px;border:2px solid rgba(47,140,255,.55);border-radius:50%;box-sizing:border-box;opacity:0;pointer-events:none;z-index:2}
+.cg-card{--sx:-190px;--sy:70px;--ex:-80px;--ey:-4px}
+.cg-link .cg-n4{opacity:0}
+@media (max-width:559px){
+.cg-card{--sx:70px;--sy:-70px;--ex:40px;--ey:-30px}
+.cg-row{grid-template-columns:minmax(0,1fr) auto;row-gap:4px}
+.cg-sent{grid-column:1/-1}
+.cg-btns{grid-column:1;grid-row:2;opacity:1;justify-self:start}
+.cg-pill{grid-column:2;grid-row:2;justify-self:end;align-self:center}
+.cg-row:nth-child(5){display:none}
+}
+/* animation: rows land, pointer enters row 1, row goes blue-soft, buttons reveal, pointer to button, hover, click, Adding, done */
+.cg-card.is-live .cg-row{animation:cg-land .45s cubic-bezier(.2,.7,.2,1) both}
+.cg-card.is-live .cg-row:nth-child(1){animation:cg-land .45s cubic-bezier(.2,.7,.2,1) .3s both,cg-tint 2.7s ease 2.9s both}
+.cg-card.is-live .cg-row:nth-child(2){animation-delay:.6s}
+.cg-card.is-live .cg-row:nth-child(3){animation-delay:.9s}
+.cg-card.is-live .cg-row:nth-child(4){animation-delay:1.2s}
+.cg-card.is-live .cg-row:nth-child(5){animation-delay:1.5s}
+.cg-card.is-live .cg-hot .cg-btns{animation:cg-reveal .22s ease-out 3.1s both}
+.cg-card.is-live .cg-hot .cg-add{animation:cg-press .92s linear 4.13s both}
+.cg-card.is-live .cg-adding{animation:cg-adding .74s linear 4.56s both}
+.cg-card.is-live .cg-done{animation:cg-in .25s ease 5.05s both}
+.cg-card.is-live .cg-ptr{animation:cg-move 4.1s linear 2.2s both}
+.cg-card.is-live .cg-ring{animation:cg-ring .45s ease-out 4.4s forwards}
+.cg-card.is-live .cg-n4{animation:cg-out .2s ease 5.05s both}
+.cg-card.is-live .cg-n3{animation:cg-in .2s ease 5.05s both}
+@keyframes cg-land{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes cg-tint{0%{background:rgba(238,244,255,0);box-shadow:inset 0 0 0 1px rgba(207,226,255,0)}6.7%,88.9%{background:#EEF4FF;box-shadow:inset 0 0 0 1px #CFE2FF}100%{background:rgba(238,244,255,0);box-shadow:inset 0 0 0 1px rgba(207,226,255,0)}}
+@keyframes cg-reveal{from{opacity:0;transform:translateX(6px)}to{opacity:1;transform:none}}
+@keyframes cg-press{0%{opacity:1;background:#fff;border-color:#D2D2D7;color:#424245;transform:none}20%,29%{opacity:1;background:#ECECEF;border-color:#B8B8BE;color:#1D1D1F;transform:none}30%,47%{opacity:1;background:#DCDCE0;border-color:#A9A9B0;color:#1D1D1F;transform:translateY(1px)}52%,100%{opacity:0;background:#DCDCE0;border-color:#A9A9B0;color:#1D1D1F;transform:translateY(1px)}}
+@keyframes cg-adding{0%{opacity:0}8%,66%{opacity:1}100%{opacity:0}}
+@keyframes cg-in{from{opacity:0}to{opacity:1}}
+@keyframes cg-out{from{opacity:1}to{opacity:0}}
+@keyframes cg-ring{from{opacity:.9;transform:scale(.3)}to{opacity:0;transform:scale(1.4)}}
+@keyframes cg-move{
+0%{opacity:0;transform:translate(var(--sx),var(--sy)) scale(1);animation-timing-function:cubic-bezier(.4,0,.2,1)}
+4.9%{opacity:1;animation-timing-function:cubic-bezier(.4,0,.2,1)}
+18%,30%{opacity:1;transform:translate(var(--ex),var(--ey)) scale(1);animation-timing-function:cubic-bezier(.4,0,.2,1)}
+47%,53.7%{opacity:1;transform:translate(0,0) scale(1);animation-timing-function:ease-out}
+56.6%{opacity:1;transform:translate(0,0) scale(.86);animation-timing-function:ease-out}
+59%,75.6%{opacity:1;transform:translate(0,0) scale(1);animation-timing-function:cubic-bezier(.4,0,.2,1)}
+82.9%,100%{opacity:0;transform:translate(16px,16px) scale(1)}}
+@media (prefers-reduced-motion:reduce){.cg-card *{animation:none!important;transition:none!important}}
+  /* card f */
+.cf-card *{box-sizing:border-box;font-variant-numeric:tabular-nums}
+.cf-card{--cf-ease:cubic-bezier(.2,.7,.2,1)}
+.cf-head{height:48px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 20px;border-bottom:1px solid #E5E5EA;gap:10px}
+.cf-title{font-size:14px;font-weight:600;white-space:nowrap}
+.cf-title span{color:#6E6E73;font-weight:400}
+.cf-meta{font-size:12px;color:#6E6E73;white-space:nowrap}
+.cf-body{padding:0 20px}
+.cf-metrics{display:grid;grid-template-columns:1.2fr 1fr 1fr;margin-top:12px;border:1px solid #E5E5EA;border-radius:10px;overflow:hidden}
+.cf-m{padding:7px 10px;border-left:1px solid #E5E5EA;min-width:0}
+.cf-m:first-child{border-left:0}
+.cf-mv{font-size:20px;font-weight:600;letter-spacing:-.015em;line-height:1.15}
+.cf-ml{font-size:11px;color:#6E6E73;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cf-sec{font-size:13px;font-weight:600;color:#1D1D1F;margin:10px 0 2px;line-height:1.3;display:flex;justify-content:space-between;gap:8px}
+.cf-sec span{font-weight:400;font-size:12px;color:#6E6E73;white-space:nowrap}
+.cf-sec b{font-weight:600}
+.cf-h{margin-top:10px !important;font-size:15.5px;line-height:1.4;font-weight:400;letter-spacing:-.01em;margin:0}
+.cf-h strong{font-weight:600}
+.cf-hl{background:linear-gradient(#FFF3C4,#FFF3C4) 0 100%/100% 100% no-repeat;border-radius:3px;padding:1px 0;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.cf-row{display:flex;justify-content:space-between;gap:12px;padding:5px 0;border-top:1px solid #E5E5EA;font-size:12.5px;line-height:1.35}
+.cf-rows .cf-row:first-child{border-top:0}
+.cf-row i{font-style:normal;color:#6E6E73;font-size:11px;white-space:nowrap;flex:none;padding-top:1px}
+.cf-row b{font-weight:600;color:#1D1D1F}
+.cf-call{margin-top:12px;background:#F5F5F7;border:1px solid #E5E5EA;border-radius:10px;padding:8px 12px;font-size:12.5px;line-height:1.4}
+.cf-call b{display:block;font-size:12px;font-weight:600;margin-bottom:2px}
+.cf-foot{margin-top:auto;flex:none;background:#F5F5F7;border-top:1px solid #E5E5EA;padding:8px 20px;font-size:11px;color:#6E6E73;line-height:1.35}
+@media (max-width:620px){
+.cf-head{padding:0 14px}.cf-body{padding:0 14px}.cf-foot{padding:8px 14px}
+.cf-row i{display:none}.cf-h{font-size:15px}
+.cf-mv{font-size:18px}.cf-m{padding:6px 8px}
+.cf-sec span{display:none}
+}
+/* animation: headline lands, positions follow, then the "If they ask" note */
+@keyframes cf-rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes cf-mark{from{background-size:0 100%}to{background-size:100% 100%}}
+@keyframes cf-pop{0%{opacity:0;transform:scale(.92)}100%{opacity:1;transform:none}}
+.cf-card.is-live .cf-m{animation:cf-rise .5s var(--cf-ease) both}
+.cf-card.is-live .cf-m:nth-child(1){animation-delay:.2s}
+.cf-card.is-live .cf-m:nth-child(2){animation-delay:.35s}
+.cf-card.is-live .cf-m:nth-child(3){animation-delay:.5s}
+.cf-card.is-live .cf-h{animation:cf-rise .6s var(--cf-ease) 1s both}
+.cf-card.is-live .cf-hl{animation:cf-mark .9s var(--cf-ease) 1.7s both}
+.cf-card.is-live .cf-s1{animation:cf-rise .55s var(--cf-ease) 3s both}
+.cf-card.is-live .cf-r1{animation:cf-rise .55s var(--cf-ease) 3.4s both}
+.cf-card.is-live .cf-r2{animation:cf-rise .55s var(--cf-ease) 3.8s both}
+.cf-card.is-live .cf-s2{animation:cf-rise .55s var(--cf-ease) 4.6s both}
+.cf-card.is-live .cf-r3{animation:cf-rise .55s var(--cf-ease) 5s both}
+.cf-card.is-live .cf-r4{animation:cf-rise .55s var(--cf-ease) 5.4s both}
+.cf-card.is-live .cf-call{animation:cf-rise .6s var(--cf-ease) 6.3s both}
+.cf-card.is-live .cf-foot{animation:cf-rise .5s var(--cf-ease) 7s both}
+@media (prefers-reduced-motion: reduce){.cf-card *{animation:none !important;transition:none !important}}
   .otd-eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--blue-ink); }
-  .otd-row { display: grid; grid-template-columns: minmax(0, 57fr) minmax(0, 43fr); gap: 88px; align-items: center; margin-top: 56px; }
-  .otd-stage { position: relative; width: 100%; max-width: 560px; height: 530px; }
-  .otd-card { position: absolute; left: 0; right: 0; bottom: 0; height: 440px; display: flex; flex-direction: column; background: #fff; border: 1px solid #D2D2D7; border-radius: 14px; color: #1D1D1F; font-size: 13px; line-height: 1.4; overflow: hidden; text-align: left; transform-origin: 50% 100%; transition: transform .7s cubic-bezier(.4, 0, .2, 1), filter .7s cubic-bezier(.4, 0, .2, 1), opacity .7s cubic-bezier(.4, 0, .2, 1), box-shadow .7s; will-change: transform, filter, opacity; }
+  .otd-row { display: grid; grid-template-columns: minmax(0, 574px) minmax(0, 1fr); gap: 72px; align-items: center; margin-top: 56px; }
+  .otd-stage { position: relative; width: 100%; max-width: 540px; height: 520px; }
+  .r6-card, .r6-card *, .r6-card *::before, .r6-card *::after { box-sizing: border-box; }
+  .otd-card { position: absolute; left: 0; right: 0; bottom: 0; height: 420px; display: flex; flex-direction: column; background: #fff; border: 1px solid #D2D2D7; border-radius: 14px; color: #1D1D1F; font: 13px/1.4 system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", "Segoe UI", sans-serif; letter-spacing: 0; overflow: hidden; text-align: left; transform-origin: 50% 100%; transition: transform .7s cubic-bezier(.4, 0, .2, 1), filter .7s cubic-bezier(.4, 0, .2, 1), opacity .7s cubic-bezier(.4, 0, .2, 1), box-shadow .7s; will-change: transform, filter, opacity; }
   .otd-card[data-pos="0"] { transform: none; filter: none; opacity: 1; z-index: 3; box-shadow: 0 18px 48px rgba(29, 29, 31, .10); }
   .otd-card[data-pos="1"] { transform: translate(0, -78px) scale(.92); filter: blur(3px); opacity: .55; z-index: 2; box-shadow: none; }
   .otd-card[data-pos="2"] { transform: translate(0, -150px) scale(.86); filter: blur(5px); opacity: .35; z-index: 1; box-shadow: none; }
+  .otd-card[data-pos="3"], .otd-card[data-pos="4"], .otd-card[data-pos="5"] { transform: translate(0, -150px) scale(.86); filter: blur(5px); opacity: 0; z-index: 0; box-shadow: none; pointer-events: none; }
   .otd-card[data-pos="out"] { transform: translateY(56px); filter: none; opacity: 0; z-index: 4; box-shadow: none; }
   .otd-card.otd-jump { transition: none; }
-  .otd-ch { flex: none; display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 48px; padding: 10px 20px; border-bottom: 1px solid #E5E5EA; font-size: 14px; font-weight: 600; }
-  .otd-ch span { font-size: 12px; font-weight: 500; color: #6E6E73; }
-  .otd-ch .otd-pill { flex: none; padding: 5px 10px; border-radius: 999px; background: #EAF3FF; color: #0A66D6; font-weight: 500; white-space: nowrap; }
-  .otd-body { flex: 1; min-height: 0; display: flex; flex-direction: column; }
-  .otd-brief { padding: 18px 20px 0; gap: 14px; }
-  .otd-brief h4 { margin: 0 0 6px; font-size: 12px; font-weight: 600; letter-spacing: .02em; color: #6E6E73; }
-  .otd-brief ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
-  .otd-brief li { color: #1D1D1F; font-size: 13.5px; line-height: 1.45; }
-  .otd-brief li b { font-weight: 600; }
-  .otd-brief sup { margin-left: 2px; font-size: 10px; font-weight: 600; line-height: 0; color: #0A66D6; }
-  .otd-src { margin-top: auto; margin-left: -20px; margin-right: -20px; padding: 12px 20px 14px; border-top: 1px solid #E5E5EA; background: #F5F5F7; font-size: 12px; line-height: 1.6; color: #6E6E73; }
-  .otd-src b { color: #0A66D6; font-weight: 600; }
-  .otd-src i { font-style: normal; white-space: nowrap; }
-  .otd-arow { flex: 1; padding: 0 20px; border-bottom: 1px solid #E5E5EA; display: flex; flex-direction: column; justify-content: center; gap: 6px; }
-  .otd-arow:last-child, .otd-brow:last-child { border-bottom: 0; }
-  .otd-ar1 { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
-  .otd-ar1 b { font-weight: 600; font-size: 14px; }
-  .otd-ar1 span { font-size: 12px; color: #6E6E73; white-space: nowrap; }
-  .otd-amber { align-self: flex-start; font-size: 12px; line-height: 1; padding: 5px 9px; border-radius: 999px; background: #FFF4E5; color: #9A4500; white-space: nowrap; }
-  .otd-brow { flex: 1; padding: 0 20px; border-bottom: 1px solid #E5E5EA; display: flex; flex-direction: column; justify-content: center; gap: 8px; }
-  .otd-b1 { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
-  .otd-b1 b { font-weight: 600; font-size: 14px; }
-  .otd-due { font-size: 12px; line-height: 1; padding: 4px 8px; border-radius: 999px; background: #EAF3FF; color: #0A66D6; white-space: nowrap; }
-  .otd-act { margin: 0; color: #424245; }
-  .otd-b3 { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
-  .otd-sel { display: inline-flex; align-items: center; gap: 18px; height: 28px; padding: 0 9px; border: 1px solid #D2D2D7; border-radius: 8px; font-size: 12px; background: #fff; }
-  .otd-btns { display: inline-flex; align-items: center; gap: 8px; }
-  .otd-approve, .otd-reject { display: inline-flex; align-items: center; height: 28px; padding: 0 10px; border-radius: 8px; font-size: 12px; font-weight: 500; }
-  .otd-approve { background: #F0F0F2; }
-  .otd-reject { padding: 0 4px; }
-  .otd-sent { display: inline-flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 999px; background: #EAF7EE; color: #1E7F38; font-size: 12px; font-weight: 500; white-space: nowrap; }
   .otd-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 18px; }
   .otd-list li { display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 16px; }
   .otd-ic { width: 36px; height: 36px; border-radius: 50%; background: #EAF3FF; display: flex; align-items: center; justify-content: center; }
   .otd-list h3 { font-size: 16px; font-weight: 600; line-height: 1.3; letter-spacing: -.005em; }
   .otd-list p { margin: 4px 0 0; font-size: 15px; line-height: 1.5; color: var(--ink-soft); }
   .otd-list p.otd-note { margin-top: 2px; font-size: 13px; color: #6E6E73; }
-  .otd-viz { display: grid; grid-template-columns: 12px minmax(0, 1fr); gap: 22px; align-items: end; max-width: 594px; }
-  .otd-dots { height: 440px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 10px; }
+  .otd-viz { display: grid; grid-template-columns: 12px minmax(0, 1fr); gap: 22px; align-items: end; max-width: 574px; }
+  .otd-dots { height: 420px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 10px; }
   .otd-dot { width: 10px; height: 10px; padding: 0; border: 0; border-radius: 999px; background: #D2D2D7; cursor: pointer; position: relative; transition: height .35s cubic-bezier(.2, .7, .2, 1), background .35s; }
   .otd-dot::after { content: ""; position: absolute; inset: -8px; }
   .otd-dot:hover { background: #A1A1A6; }
   .otd-dot[aria-current="true"] { height: 28px; background: #2F8CFF; }
   .otd-dot:focus-visible { outline: 2px solid #2F8CFF; outline-offset: 3px; }
-  @media (max-width: 1100px) { .otd-row { gap: 56px; } }
-  @media (max-width: 960px) {
+  @media (max-width: 1100px) {
     .otd-row { grid-template-columns: 1fr; gap: 48px; align-items: start; }
     .otd-viz { margin: 0 auto; width: 100%; }
   }
   @media (max-width: 620px) {
-    .otd-stage { height: 530px; max-width: none; }
-    .otd-card { height: 468px; }
+    .otd-stage { height: 520px; max-width: none; }
+    .otd-card { height: 460px; }
     .otd-viz { grid-template-columns: minmax(0, 1fr); gap: 18px; }
     .otd-dots { order: 2; height: auto; flex-direction: row; }
     .otd-dot[aria-current="true"] { height: 10px; width: 28px; }
     .otd-card[data-pos="1"] { transform: translate(0, -60px) scale(.94); }
     .otd-card[data-pos="2"] { transform: translate(0, -108px) scale(.88); }
-    .otd-ch { padding: 10px 14px; }
-    .otd-brief { padding: 14px 14px 0; gap: 10px; }
-    .otd-brief li { font-size: 12.5px; line-height: 1.4; }
-    .otd-src { margin-left: -14px; margin-right: -14px; padding: 10px 14px 12px; }
-    .otd-arow, .otd-brow { padding: 0 14px; }
+  }
+  @media (max-width: 380px) {
+    .otd-stage { height: 580px; }
+    .otd-card { height: 520px; }
   }
   @media (prefers-reduced-motion: reduce) {
     .otd-card, .otd-dot { transition: none; }
@@ -584,46 +957,183 @@
     <div class="otd-row">
       <div class="otd-viz">
       <div class="otd-dots" role="group" aria-label="Choose a screen">
-        <button class="otd-dot" type="button" aria-label="Show the pre-meeting brief" aria-current="true"></button>
-        <button class="otd-dot" type="button" aria-label="Show clients that need attention"></button>
-        <button class="otd-dot" type="button" aria-label="Show action items"></button>
+        <button class="otd-dot" type="button" aria-label="Show the pre-meeting brief email" aria-current="true"></button>
+        <button class="otd-dot" type="button" aria-label="Show idle cash alerts"></button>
+        <button class="otd-dot" type="button" aria-label="Show the prospect analysis"></button>
+        <button class="otd-dot" type="button" aria-label="Show the meeting follow-up"></button>
+        <button class="otd-dot" type="button" aria-label="Show portfolios off target"></button>
+        <button class="otd-dot" type="button" aria-label="Show the market brief"></button>
       </div>
-      <div class="otd-stage" id="otdStage" role="img" aria-label="Three screens from Briefly that take turns in front. A pre-meeting brief with a numbered source under every line, the All clients list flagging idle cash, distributions and drift, and the Action items queue with tasks to approve. Illustrative examples, not real client data.">
-        <div class="otd-card" data-pos="0" data-mockup="">
-          <div class="otd-ch">Pre-meeting brief · Whitfield household<span class="otd-pill">In your inbox, 6:00 AM</span></div>
-          <div class="otd-body otd-brief">
-            <div><h4>What changed since the March review</h4><ul>
-              <li><b>Jun 18.</b> Margaret wrote that the lake house down payment moves up to this fall.<sup>1</sup></li>
-              <li><b>Aug 6.</b> The wedding moved to next June.<sup>2</sup></li>
-              <li><b>Sep 22.</b> The $205,000 in cash is set aside for the down payment.<sup>3</sup></li>
-            </ul></div>
-            <div><h4>What they care about</h4><ul>
-              <li>Paying for the lake house without selling the bond ladder.<sup>4</sup></li>
-              <li>Helping Dana with wedding costs and leaving the college fund alone.<sup>5</sup></li>
-            </ul></div>
-            <div><h4>Portfolio since March</h4><ul>
-              <li>Up 4.1% against a 3.8% benchmark, with U.S. Large Cap 4.2 points over target.<sup>6</sup></li>
-            </ul></div>
-            <div class="otd-src"><b>Sources</b> &nbsp;<b>1</b> <i>Email, Jun 18</i> · <b>2</b> <i>Meeting note, Aug 6</i> · <b>3</b> <i>Call notes, Sep 22</i> · <b>4</b> <i>Plan review</i> · <b>5</b> <i>Transcript, May 22</i> · <b>6</b> <i>Orion</i></div>
-          </div>
-        </div>
-        <div class="otd-card" data-pos="1" data-mockup="">
-          <div class="otd-ch">Needs attention<span>All clients</span></div>
-          <div class="otd-body">
-            <div class="otd-arow"><div class="otd-ar1"><b>Margaret Whitfield</b><span>Tue Oct 6</span></div><span class="otd-amber">$205,000 idle cash</span></div>
-            <div class="otd-arow"><div class="otd-ar1"><b>Raj Patel</b><span>Thu Oct 1</span></div><span class="otd-amber">U.S. Equity 7.7 points over target</span></div>
-            <div class="otd-arow"><div class="otd-ar1"><b>Tom Brennan</b><span>Wed Oct 7</span></div><span class="otd-amber">$2,915,000 idle cash</span></div>
-            <div class="otd-arow"><div class="otd-ar1"><b>Sarah Coleman</b><span>Sun Oct 4</span></div><span class="otd-amber">$18,400 left on 2026 distribution</span></div>
-          </div>
-        </div>
-        <div class="otd-card" data-pos="2" data-mockup="">
-          <div class="otd-ch">Action items to review</div>
-          <div class="otd-body">
-            <div class="otd-brow"><div class="otd-b1"><b>Raj Patel</b><span class="otd-due">Due in 1 day</span></div><p class="otd-act">Execute NVDA tranche 1, sell 1,500 shares</p><div class="otd-b3"><span class="otd-sel">Me <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="otd-sent">Sent to Salesforce</span></div></div>
-            <div class="otd-brow"><div class="otd-b1"><b>Margaret Whitfield</b><span class="otd-due">Due in 2 days</span></div><p class="otd-act">Confirm mailing address set to Wilmette only</p><div class="otd-b3"><span class="otd-sel">Me <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="otd-btns"><span class="otd-approve">Approve</span><span class="otd-reject">Reject</span></span></div></div>
-            <div class="otd-brow"><div class="otd-b1"><b>Tom Brennan</b><span class="otd-due">Due in 2 days</span></div><p class="otd-act">Send wire instructions for the condo deposit</p><div class="otd-b3"><span class="otd-sel">Me <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="otd-btns"><span class="otd-approve">Approve</span><span class="otd-reject">Reject</span></span></div></div>
-          </div>
-        </div>
+      <div class="otd-stage" id="otdStage" aria-label="Six screens from Briefly that take turns in front. Illustrative examples, not real client data.">
+        <div class="r6-card ca-card otd-card" data-pos="0" data-read="3500" data-mockup="" role="img" aria-label="A mock inbox where the unread Briefly pre-meeting brief for Margaret Whitfield is selected, opens, and scrolls to the talking points about her completed $1.2M account transfer. Illustrative example, not real client data.">
+  <div class="ca-bar"><span class="ca-grid"></span><span class="ca-app">Mail</span><span class="ca-search">Search</span><span class="ca-me">JS</span></div>
+  <div class="ca-stage">
+    <div class="ca-inbox">
+      <div class="ca-tabs"><b>Focused</b><span>Other</span></div>
+      <div class="ca-day">Today</div>
+      <div class="ca-row ca-unread ca-hl"><div class="ca-l1"><em>Briefly</em><i>6:00 AM</i></div><div class="ca-l2"><span>Pre-meeting brief: Margaret Whitfield, Tue, Oct 6, 10:00 AM</span><svg class="ca-clip" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M11 5.5 6 10.5a1.6 1.6 0 0 0 2.3 2.3l5-5a3 3 0 0 0-4.2-4.2l-5 5a4.4 4.4 0 0 0 6.2 6.2l4-4"/></svg></div><div class="ca-l3"><span>Pre-meeting brief for Margaret Whitfield · Meeting Tuesday, October 6 at 10:00 AM</span></div><svg class="ca-ptr" width="18" height="18" viewBox="0 0 18 18"><path d="M2 1.5v13.2l3.4-3.1 2.3 5.1 2.2-1-2.3-5h4.6z" fill="#1D1D1F" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg><span class="ca-ring"></span></div>
+      <div class="ca-day">Yesterday</div>
+      <div class="ca-row"><div class="ca-l1"><em>Raj Patel</em><i>Mon</i></div><div class="ca-l2"><span>Re: Thursday at 2:00 PM</span></div><div class="ca-l3"><span>That works for me. I will bring the updated statements.</span></div></div>
+      <div class="ca-row"><div class="ca-l1"><em>Custodian Alerts</em><i>Mon</i></div><div class="ca-l2"><span>Quarter-end statements are ready</span></div><div class="ca-l3"><span>Statements for 14 of your households are now available.</span></div></div>
+      <div class="ca-row"><div class="ca-l1"><em>Calendar</em><i>Mon</i></div><div class="ca-l2"><span>Accepted: Tom Brennan, Wed, Oct 7</span></div><div class="ca-l3"><span>Tom Brennan accepted your invitation.</span></div></div>
+    </div>
+    <div class="ca-read">
+      <div class="ca-rh">
+        <div class="ca-subj">Pre-meeting brief: Margaret Whitfield, Tue, Oct 6, 10:00 AM</div>
+        <div class="ca-from"><span class="ca-av">B</span><div class="ca-fm"><b>Briefly</b> &lt;no-reply@brieflywealth.com&gt;<br>To: Jane Smith</div><span class="ca-t">6:00 AM</span></div>
+        <div class="ca-att"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="#C4281C" stroke-width="1.4"><path d="M3.5 1.5h6l3 3v10h-9z"/><path d="M9.5 1.5v3h3"/></svg><span>Pre-meeting brief - Margaret Whitfield - 2026-10-06.pdf</span></div>
+      </div>
+      <div class="ca-scroll"><div class="ca-body"><div class="ca-mail">
+        <div class="ca-brand">Briefly</div>
+        <div class="ca-h1">Pre-meeting brief for Margaret Whitfield</div>
+        <div class="ca-meet">Meeting Tuesday, October 6 at 10:00 AM</div>
+        <div class="ca-btn">Open in Briefly</div>
+        <div class="ca-kv"><span>Advisor</span>Jane Smith</div><div class="ca-kv"><span>Sources reviewed</span>6</div><div class="ca-kv"><span>Household AUM</span>$4.3M</div>
+        <div class="ca-h2">Headline</div>
+        <p class="ca-p">Margaret's $1.2M Fidelity account finished moving over on Sep 24 with every position transferred in kind and nothing sold. Now there is a decision on where it goes.</p>
+        <div class="ca-h2">Talking points</div>
+        <div class="ca-li"><s>&bull;</s><div><b>Transfer complete.</b> The $1.2M account landed on Sep 24 with no positions sold and no taxes triggered. Ask which model she wants it invested in.<sup>1</sup></div></div>
+        <div class="ca-li"><s>&bull;</s><div><b>Lake house down payment.</b> Margaret moved the lake house purchase up to this fall in her Jun 18 email. Ask how much she needs and whether it should come out of the transferred account.<sup>2</sup></div></div>
+        <div class="ca-li"><s>&bull;</s><div><b>IPS still not sent.</b> The updated IPS was promised on Aug 12 and has not gone out.<sup>3</sup></div></div>
+        <div class="ca-h2">Firm view</div>
+        <p class="ca-p">As of the Sep 1 note</p>
+        <div class="ca-li"><s>&bull;</s><div>The firm's model raised bonds to 35% after the August CIO note. <u>Sep 1</u></div></div>
+        <div class="ca-li"><s>&bull;</s><div>Transfers over $1M get a written allocation plan within 30 days. <u>Sep 1</u></div></div>
+        <p class="ca-p">Where this household differs. This household is at 22% bonds against the firm's 35% target.</p>
+        <div class="ca-tail"></div>
+      </div></div></div>
+    </div>
+  </div>
+</div>
+        <div class="r6-card cb-card otd-card" data-pos="1" data-read="1500" data-mockup="" role="img" aria-label="The Portfolio alerts list on the Briefly Today page, from Orion. Five households are flagged for idle cash, such as Tom Brennan with $2,915,000 sitting in cash, 6.2% of the portfolio, and one row has been added to Salesforce. Illustrative example, not real client data.">
+  <div class="cb-today"><h1>Today</h1><p>Wednesday, September 30 · 4 meetings this week</p></div>
+  <div class="cb-head">
+    <span class="cb-toggle">Portfolio alerts <span class="cb-count">5</span><span class="cb-chev"></span></span>
+    <span class="cb-spacer"></span>
+    <span class="cb-link"><span class="cb-n4">Add all 5 to Salesforce</span><span class="cb-n3">Add all 4 to Salesforce</span></span>
+    <span class="cb-src">From <b>Orion</b> · as of Sep 29</span>
+  </div>
+  <div class="cb-list">
+    <div class="cb-row cb-hot">
+      <span class="cb-sent"><span class="cb-client">Tom Brennan</span> <span class="cb-text">has <b>$2,915,000</b> sitting in cash, 6.2% of the portfolio.</span></span>
+      <span class="cb-btns"><span class="cb-bw"><span class="cb-slot"><span class="cb-add">Add to Salesforce</span><span class="cb-adding">Adding…</span><span class="cb-done">✓ Task in Salesforce</span></span><span class="cb-ring"></span><span class="cb-ptr"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 1.5v13.2l3.4-3.1 2.3 5.1 2.2-1-2.3-5h4.6z" fill="#1D1D1F" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg></span></span><span class="cb-ign">Ignore</span></span>
+      <span class="cb-pill">Idle cash</span>
+    </div>
+    <div class="cb-row">
+      <span class="cb-sent"><span class="cb-client">Raj Patel</span> <span class="cb-text">has <b>$312,000</b> sitting in cash, 5.8% of the portfolio.</span></span>
+      <span class="cb-btns"><span class="cb-bw"><span class="cb-slot"><span class="cb-add">Add to Salesforce</span></span></span><span class="cb-ign">Ignore</span></span>
+      <span class="cb-pill">Idle cash</span>
+    </div>
+    <div class="cb-row">
+      <span class="cb-sent"><span class="cb-client">Linda Choi</span> <span class="cb-text">has <b>$241,000</b> sitting in cash, 7.2% of the portfolio.</span></span>
+      <span class="cb-btns"><span class="cb-bw"><span class="cb-slot"><span class="cb-add">Add to Salesforce</span></span></span><span class="cb-ign">Ignore</span></span>
+      <span class="cb-pill">Idle cash</span>
+    </div>
+    <div class="cb-row">
+      <span class="cb-sent"><span class="cb-client">Margaret Whitfield</span> <span class="cb-text">has <b>$225,000</b> sitting in cash, 5.2% of the portfolio.</span></span>
+      <span class="cb-btns"><span class="cb-bw"><span class="cb-slot"><span class="cb-add">Add to Salesforce</span></span></span><span class="cb-ign">Ignore</span></span>
+      <span class="cb-pill">Idle cash</span>
+    </div>
+    <div class="cb-row">
+      <span class="cb-sent"><span class="cb-client">David Okafor</span> <span class="cb-text">has <b>$186,500</b> sitting in cash, 6.5% of the portfolio.</span></span>
+      <span class="cb-btns"><span class="cb-bw"><span class="cb-slot"><span class="cb-add">Add to Salesforce</span></span></span><span class="cb-ign">Ignore</span></span>
+      <span class="cb-pill">Idle cash</span>
+    </div>
+  </div>
+</div>
+        <div class="r6-card ce-card otd-card" data-pos="2" data-read="4500" data-mockup="" role="img" aria-label="A prospect analysis for the Hargrove household, currently at J.P. Morgan, with three findings: a stated preference for safer investments against 20% of net worth in one tech stock, about 1.8% in all-in annual cost, and municipal bonds held inside an IRA. Illustrative example, not real client data.">
+  <div class="ce-head"><div class="ce-title">Prospect analysis · Hargrove<span class="ce-hh"> household</span></div><div class="ce-pill"><span class="ce-cur">Currently at </span>J.P. Morgan</div></div>
+  <div class="ce-body">
+    <div class="ce-h2">At a glance</div>
+    <div class="ce-stats">
+      <div class="ce-stat"><div class="ce-sv">$1.62M</div><div class="ce-sl">At J.P. Morgan</div></div>
+      <div class="ce-stat"><div class="ce-sv">20.0%</div><div class="ce-sl">In one stock</div></div>
+      <div class="ce-stat"><div class="ce-sv">~1.8%</div><div class="ce-sl">All-in cost</div></div>
+    </div>
+    <div class="ce-h2">Findings</div>
+    <div class="ce-find ce-f1"><p><b>1. They asked for safer investments, but 20% sits in one stock.</b>On the intro call they said they want less risk. Their J.P. Morgan statement shows <span class="ce-hl">$324,000 in Microsoft</span>, a fifth of their $1.62M.<sup>1,2</sup></p></div>
+    <div class="ce-find ce-f2"><p><b>2. Two layers of fees.</b>Mutual funds carry a weighted <span class="ce-hl">0.78%</span> expense ratio, on top of an estimated J.P. Morgan advisory fee of about 1.0%. All-in is about <span class="ce-hl">1.8%, or $28,800 a year</span>.<sup>2,3</sup></p></div>
+    <div class="ce-find ce-f3"><p><b>3. Municipal bonds sit in their IRA.</b>The IRA holds <span class="ce-hl">$186,000</span> of municipal bonds. Their interest is tax-exempt, and inside an IRA that exemption gives no extra benefit.<sup>2</sup></p></div>
+  </div>
+  <div class="ce-foot"><strong>Nothing here is a recommendation.</strong> Sources: 1 Intro call notes, 2 J.P. Morgan statement, 3 Intake</div>
+</div>
+        <div class="r6-card cc-card otd-card" data-pos="3" data-read="2000" data-mockup="" role="img" aria-label="After the Whitfield Q2 review, Briefly has drafted the recap email to Margaret and three action items, and one approved task shows as sent to Salesforce. Illustrative example, not real client data.">
+  <div class="cc-head"><span class="cc-title">Meeting follow-up</span><span class="cc-meta">Whitfield household · today</span></div>
+  <div class="cc-body">
+    <div class="cc-sec">Recap email <span class="cc-tag">Draft</span></div>
+    <div class="cc-mail">
+      <div class="cc-mh"><div><b>To</b>Margaret Whitfield</div><div><b>Subject</b>Notes from today's meeting</div></div>
+      <div class="cc-mb">
+        <p class="cc-l1">Hi Margaret,</p>
+        <p class="cc-l2">We're converting $40,000 to the Roth this year.</p>
+        <p class="cc-l3">The 529 for Nora opens this week, $500 a month.</p>
+        <p class="cc-l4">I'll send the updated IPS by Friday.</p>
+      </div>
+    </div>
+    <div class="cc-sec cc-secb">Action items</div>
+    <div class="cc-tasks">
+      <div class="cc-row cc-t1 cc-done"><span class="cc-txt">Submit the $40,000 Roth conversion</span><span class="cc-own">Me</span><span class="cc-due">Due in 3 days</span><span class="cc-act"><span class="cc-btns"><span class="cc-ap">Approve<span class="cc-ptr" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 18 18"><path d="M2 1.5v13.2l3.4-3.1 2.3 5.1 2.2-1-2.3-5h4.6z" fill="#1D1D1F" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg></span></span><span class="cc-rj">Reject</span></span><span class="cc-sent"><span>Sent to Salesforce</span></span></span></div>
+      <div class="cc-row cc-t2"><span class="cc-txt">Open the 529 for Nora, $500 monthly</span><span class="cc-own">Operations</span><span class="cc-due">Due in 5 days</span><span class="cc-act"><span class="cc-btns"><span class="cc-ap">Approve</span><span class="cc-rj">Reject</span></span></span></div>
+      <div class="cc-row cc-t3"><span class="cc-txt">Send the updated IPS</span><span class="cc-own">Me</span><span class="cc-due">Due in 3 days</span><span class="cc-act"><span class="cc-btns"><span class="cc-ap">Approve</span><span class="cc-rj">Reject</span></span></span></div>
+    </div>
+  </div>
+</div>
+        <div class="r6-card cg-card otd-card" data-pos="4" data-read="1500" data-mockup="" role="img" aria-label="The Today page Portfolio alerts list in Briefly, showing five households outside their model target from Orion, with Add to Salesforce on the first row confirmed as a task in Salesforce. Illustrative example, not real client data.">
+  <div class="cg-today"><h1>Today</h1><p>Wednesday, September 30 · 4 meetings this week</p></div>
+  <div class="cg-panel">
+    <div class="cg-phead">
+      <span class="cg-toggle">Portfolio alerts<span class="cg-count">5</span><span class="cg-chev"></span></span>
+      <span class="cg-spacer"></span>
+      <span class="cg-link"><span class="cg-n4">Add all 5 to Salesforce</span><span class="cg-n3">Add all 4 to Salesforce</span></span>
+      <span class="cg-src">From <b>Orion</b> · as of Sep 29</span>
+    </div>
+    <div class="cg-list">
+      <div class="cg-row cg-hot">
+        <span class="cg-sent"><span class="cg-client">Raj Patel</span> <span class="cg-text">is <b>7.7 points over</b> the U.S. Equity target, outside tolerance</span></span>
+        <span class="cg-btns"><span class="cg-bw"><span class="cg-slot"><span class="cg-add">Add to Salesforce</span><span class="cg-adding">Adding…</span><span class="cg-done">✓ Task in Salesforce</span></span><span class="cg-ring"></span><span class="cg-ptr"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 1.5v13.2l3.4-3.1 2.3 5.1 2.2-1-2.3-5h4.6z" fill="#1D1D1F" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg></span></span><span class="cg-ign">Ignore</span></span>
+        <span class="cg-pill">Drift</span>
+      </div>
+      <div class="cg-row">
+        <span class="cg-sent"><span class="cg-client">Sarah Coleman</span> <span class="cg-text">is <b>6.2 points under</b> the Fixed Income target, outside tolerance</span></span>
+        <span class="cg-btns"><span class="cg-bw"><span class="cg-slot"><span class="cg-add">Add to Salesforce</span></span></span><span class="cg-ign">Ignore</span></span>
+        <span class="cg-pill">Drift</span>
+      </div>
+      <div class="cg-row">
+        <span class="cg-sent"><span class="cg-client">Linda Choi</span> <span class="cg-text">is <b>5.4 points over</b> the International Equity target, outside tolerance</span></span>
+        <span class="cg-btns"><span class="cg-bw"><span class="cg-slot"><span class="cg-add">Add to Salesforce</span></span></span><span class="cg-ign">Ignore</span></span>
+        <span class="cg-pill">Drift</span>
+      </div>
+      <div class="cg-row">
+        <span class="cg-sent"><span class="cg-client">David Okafor</span> <span class="cg-text">is <b>4.3 points under</b> the Alternatives target, outside tolerance</span></span>
+        <span class="cg-btns"><span class="cg-bw"><span class="cg-slot"><span class="cg-add">Add to Salesforce</span></span></span><span class="cg-ign">Ignore</span></span>
+        <span class="cg-pill">Drift</span>
+      </div>
+      <div class="cg-row">
+        <span class="cg-sent"><span class="cg-client">Tom Brennan</span> <span class="cg-text">is <b>5.8 points over</b> the Cash target, outside tolerance</span></span>
+        <span class="cg-btns"><span class="cg-bw"><span class="cg-slot"><span class="cg-add">Add to Salesforce</span></span></span><span class="cg-ign">Ignore</span></span>
+        <span class="cg-pill">Drift</span>
+      </div>
+    </div>
+  </div>
+</div>
+        <div class="r6-card cf-card otd-card" data-pos="5" data-read="3000" data-mockup="" role="img" aria-label="A market brief for Margaret Whitfield dated Tue Oct 6. It opens with a headline, then lists what happened in the industry behind her two largest positions and what analysts said, each dated. Illustrative example, not real client data.">
+  <div class="cf-head"><div class="cf-title">Market brief <span>· Margaret Whitfield</span></div><div class="cf-meta">Tue Oct 6</div></div>
+  <div class="cf-body">
+    <div class="cf-sec" style="margin-top:12px"><b>Headline</b></div>
+    <p class="cf-h" style="margin-top:0 !important"><span class="cf-hl">Delacor Industries is the largest position at <strong>18.4%</strong> of the household, and industrial output data for September came in softer</span></p>
+    <div class="cf-sec cf-s1"><b>Delacor Industries (DLCR)</b><span>18.4% of household</span></div>
+    <div class="cf-rows">
+      <div class="cf-row cf-r1"><span>September industrial output came in softer than August</span><i>Trade publication, Oct 2</i></div>
+      <div class="cf-row cf-r2"><span><b>Order outlook.</b> A brokerage note dated Oct 5 said it expects order growth to slow into year end.</span><i>Research note</i></div>
+    </div>
+    <div class="cf-sec cf-s2"><b>Halvorsen Semiconductor (HLVS)</b><span>11.2% of household</span></div>
+    <div class="cf-rows">
+      <div class="cf-row cf-r3"><span>Chip export licensing rules were updated by regulators this week</span><i>Trade publication, Oct 5</i></div>
+      <div class="cf-row cf-r4"><span><b>Price target.</b> An analyst note dated Oct 5 said it raised its price target on the shares.</span><i>Analyst note</i></div>
+    </div>
+  </div>
+  <div class="cf-foot">Internal only. Nothing above is a recommendation. Analyst views are dated.</div>
+</div>
       </div>
       </div>
       <ul class="otd-list">
@@ -643,12 +1153,28 @@
     var dots = Array.prototype.slice.call(document.querySelectorAll('#features .otd-dot'));
     var n = cards.length, active = 0, pinned = false, inView = false, hover = false, timer = null;
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function play(c) { c.classList.remove('is-live'); void c.offsetWidth; c.classList.add('is-live'); }
+    // How long the front card's own animation runs, so it can finish before the flip.
+    function animEnd(c) {
+      var end = 0;
+      try {
+        c.getAnimations({ subtree: true }).forEach(function (a) {
+          var t = a.effect && a.effect.getComputedTiming();
+          if (t && isFinite(t.endTime)) end = Math.max(end, t.endTime);
+        });
+      } catch (e) { end = 6000; }
+      return end;
+    }
+    function dwell() {
+      var c = cards[active];
+      return Math.max(animEnd(c), 1500) + (parseInt(c.getAttribute('data-read'), 10) || 1500);
+    }
     function paint(skip) {
       cards.forEach(function (c, i) {
         if (c === skip) return;
         var pos = (i - active + n) % n;
         c.setAttribute('data-pos', String(pos));
-        c.classList.toggle('is-live', pos === 0);
+        if (pos === 0) { if (!c.classList.contains('is-live')) play(c); } else c.classList.remove('is-live');
         c.setAttribute('aria-hidden', pos === 0 ? 'false' : 'true');
       });
       dots.forEach(function (d, i) { d.setAttribute('aria-current', i === active ? 'true' : 'false'); });
@@ -667,25 +1193,31 @@
         old.classList.remove('otd-jump');
       }, 720);
     }
-    dots.forEach(function (d, i) {
-      d.addEventListener('click', function () { pinned = true; if (i !== active) go(i, false); });
-    });
-    function tick() {
-      timer = null;
-      if (inView && !hover && !pinned) go(active + 1, true);
-      schedule();
+    function schedule(ms) {
+      clearTimeout(timer);
+      if (reduce || pinned) return;
+      timer = setTimeout(tick, ms);
     }
-    function schedule() { if (timer === null && !reduce) timer = setTimeout(tick, 6000); }
+    function tick() {
+      if (!inView || hover) { schedule(1000); return; }
+      go(active + 1, true);
+      schedule(dwell());
+    }
+    dots.forEach(function (d, i) {
+      d.addEventListener('click', function () {
+        pinned = true; clearTimeout(timer);
+        if (i !== active) go(i, false); else play(cards[i]);
+      });
+    });
     stage.addEventListener('mouseenter', function () { hover = true; });
     stage.addEventListener('mouseleave', function () { hover = false; });
+    paint();
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (es) {
         var was = inView; inView = es[0].isIntersecting;
-        if (inView && !was) { var f = cards[active]; f.classList.remove('is-live'); void f.offsetWidth; f.classList.add('is-live'); }
+        if (inView && !was) { play(cards[active]); schedule(dwell()); }
       }, { threshold: 0.25 }).observe(stage);
-    } else { inView = true; }
-    paint();
-    schedule();
+    } else { inView = true; schedule(dwell()); }
   })();
   </script>
 </section>
