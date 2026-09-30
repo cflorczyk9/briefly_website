@@ -207,7 +207,7 @@
   .proof-static { font-size: clamp(26px, 3vw, 34px); color: var(--ink); line-height: 1.25; }
   .proof-fill { font-size: clamp(26px, 3vw, 34px); color: var(--ink); margin-top: 6px; line-height: 1.25; }
   .proof-cycle { display: inline-grid; text-align: left; }
-  .proof-cycle .pc { grid-area: 1 / 1; align-self: center; white-space: nowrap; color: var(--ink); opacity: 0; filter: blur(7px); transition: opacity .9s ease, filter .9s ease; }
+  .proof-cycle .pc { grid-area: 1 / 1; align-self: center; white-space: nowrap; color: var(--blue-ink); opacity: 0; filter: blur(7px); transition: opacity .9s ease, filter .9s ease; }
   .proof-cycle .pc.is-on { opacity: 1; filter: blur(0); }
   @media (max-width: 700px) {
     .proofline { padding: 72px 0; }
@@ -413,7 +413,7 @@
     <div>
       <div class="eyebrow">AI software for wealth advisors</div>
       <h1>Know every client like they're your only client.</h1>
-      <p class="lede">Briefly reads everything your firm learns about a client as it comes in, down to the phone note your assistant typed this morning. You get one current picture of each client that shows what they care about and what has changed, and every line links to its source.</p>
+      <p class="lede">Briefly reads everything your firm learns about a client as it comes in, down to the email that landed an hour ago. You get one current picture of each client that shows what they care about and what has changed, and every line links to its source.</p>
       <div class="hero-ctas">
         <a class="btn" href="#" onclick="openDemoModal();return false;">Book a demo</a>
         <a class="btn ghost" href="/start">Start now</a>
@@ -530,164 +530,160 @@
 <!-- ==================== ONE DAY ==================== -->
 <section class="pad" aria-label="What a day looks like">
   <style>
-  .dm-row { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 48px; align-items: center; }
-  .dm-time { font-size: 13px; font-weight: 500; color: var(--ink-muted); margin-bottom: 10px; }
-  .dm-title { font-size: 22px; font-weight: 600; line-height: 1.25; color: var(--ink); margin: 0 0 12px; }
-  .dm-line { font-size: 16px; line-height: 1.55; color: var(--ink-soft); max-width: 440px; margin: 0; }
-  .dm-card { background: #fff; border: 1px solid #D2D2D7; border-radius: 14px; padding: 20px 22px; color: #1D1D1F; font-size: 14px; line-height: 1.45; text-align: left; }
-  .dm-head { font-size: 16px; font-weight: 600; margin: 0; }
-  .dm-sub { font-size: 13px; color: #6E6E73; margin: 4px 0 0; }
-  .dm-muted { color: #6E6E73; }
-  .dm-note { font-size: 12px; color: #6E6E73; margin: 12px 0 0; }
-  .dm-meta { display: grid; grid-template-columns: 64px 1fr; gap: 4px 10px; font-size: 13px; padding-bottom: 14px; border-bottom: 1px solid #D2D2D7; margin-bottom: 14px; }
-  .dm-meta dt { color: #6E6E73; margin: 0; }
-  .dm-meta dd { margin: 0; }
-  .dm-block { padding: 12px 0; border-top: 1px solid #D2D2D7; }
-  .dm-block:first-of-type { border-top: 0; padding-top: 0; }
-  .dm-bh { font-size: 13px; font-weight: 600; margin: 0 0 6px; }
-  .dm-li { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; font-size: 13px; padding: 3px 0; }
-  .dm-li .dm-d { color: #6E6E73; flex: 0 0 44px; }
-  .dm-chip { display: inline-block; font-size: 11px; line-height: 1; padding: 4px 8px; border: 1px solid #D2D2D7; border-radius: 999px; color: #6E6E73; background: #fff; white-space: nowrap; }
-  .dm-att { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; font-size: 12px; padding: 6px 10px; border: 1px solid #D2D2D7; border-radius: 8px; background: #F5F5F7; }
-  .dm-pill { display: inline-block; font-size: 12px; font-weight: 500; line-height: 1; padding: 5px 10px; border-radius: 999px; background: #EAF3FF; color: #0A66D6; white-space: nowrap; }
-  .dm-btn { font: inherit; font-size: 12px; font-weight: 500; padding: 6px 12px; border-radius: 8px; border: 1px solid #1D1D1F; background: #1D1D1F; color: #fff; white-space: nowrap; }
-  .dm-btn-o { background: #fff; color: #1D1D1F; border-color: #D2D2D7; }
-  .dm-tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 14px 0; }
-  .dm-tile { border: 1px solid #D2D2D7; border-radius: 10px; padding: 10px 12px; font-size: 13px; font-weight: 500; }
-  .dm-find { display: grid; grid-template-columns: 70px 1fr; gap: 10px; padding: 10px 0; border-top: 1px solid #D2D2D7; font-size: 13px; }
-  .dm-find b { font-weight: 600; }
-  .dm-foot { font-size: 12px; color: #6E6E73; margin: 10px 0 0; padding-top: 10px; border-top: 1px solid #D2D2D7; }
-  .dm-tbl { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 13px; }
-  .dm-tbl th { text-align: left; font-weight: 500; font-size: 12px; color: #6E6E73; padding: 8px 8px 8px 0; border-bottom: 1px solid #D2D2D7; }
-  .dm-tbl td { padding: 12px 8px 12px 0; border-bottom: 1px solid #D2D2D7; vertical-align: top; }
-  .dm-tbl tr:last-child td { border-bottom: 0; }
-  .dm-src { display: block; margin-top: 6px; }
-  .dm-sel { display: inline-block; border: 1px solid #D2D2D7; border-radius: 8px; padding: 5px 24px 5px 9px; font-size: 12px; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%236E6E73' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 8px center; white-space: nowrap; }
-  .dm-acts { display: flex; gap: 6px; flex-wrap: wrap; }
-  .dm-quote { margin: 12px 0 0; padding: 12px 14px; background: #F5F5F7; border-radius: 10px; font-size: 14px; }
-  .dm-grp { padding: 12px 0; border-top: 1px solid #D2D2D7; display: flex; gap: 14px; justify-content: space-between; align-items: center; }
-  .dm-grp div { min-width: 0; font-size: 13px; }
-  .dm-grp b { display: block; font-weight: 600; margin-bottom: 2px; }
-  .dm-ph { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
-  @media (max-width: 860px) {
-    .dm-row { grid-template-columns: minmax(0, 1fr); gap: 24px; }
-    .dm-tiles { grid-template-columns: 1fr; }
-    .dm-find { grid-template-columns: 1fr; gap: 2px; }
-    .dm-tbl, .dm-tbl tbody, .dm-tbl tr, .dm-tbl td { display: block; }
-    .dm-tbl thead { display: none; }
-    .dm-tbl td { border-bottom: 0; padding: 4px 0; }
-    .dm-tbl tr { border-bottom: 1px solid #D2D2D7; padding: 10px 0; }
-    .dm-grp { flex-direction: column; align-items: flex-start; }
+  .strip-frame { position: relative; width: 100%; max-width: 1080px; aspect-ratio: 16 / 9; margin: 44px auto 0; background: #fff; border: 1px solid #D2D2D7; border-radius: 12px; box-shadow: 0 12px 40px rgba(29, 29, 31, .08); overflow: hidden; }
+  .strip-screen { position: absolute; inset: 0; opacity: 0; visibility: hidden; transition: opacity .6s ease, visibility 0s linear .6s; background: #fff; }
+  .strip-screen.is-on { opacity: 1; visibility: visible; transition: opacity .6s ease, visibility 0s; }
+  .strip-img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+  .strip-center { display: flex; align-items: center; justify-content: center; padding: 24px 32px; background: #fff; }
+  .strip-card { width: 100%; max-width: 640px; color: #1D1D1F; font-size: 14px; line-height: 1.45; text-align: left; }
+  .strip-meta { display: grid; grid-template-columns: 64px 1fr; gap: 4px 10px; font-size: 13px; padding-bottom: 12px; border-bottom: 1px solid #D2D2D7; margin: 0 0 12px; }
+  .strip-meta dt { color: #6E6E73; margin: 0; }
+  .strip-meta dd { margin: 0; }
+  .strip-block { padding: 10px 0; border-top: 1px solid #D2D2D7; }
+  .strip-block:first-of-type { border-top: 0; padding-top: 0; }
+  .strip-bh { font-size: 13px; font-weight: 600; margin: 0 0 4px; }
+  .strip-li { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; font-size: 13px; padding: 3px 0; }
+  .strip-li .strip-d { color: #6E6E73; flex: 0 0 44px; }
+  .strip-chip { display: inline-block; font-size: 11px; line-height: 1; padding: 4px 8px; border: 1px solid #D2D2D7; border-radius: 999px; color: #6E6E73; background: #fff; white-space: nowrap; }
+  .strip-att { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; font-size: 12px; padding: 6px 10px; border: 1px solid #D2D2D7; border-radius: 8px; background: #F5F5F7; }
+  .strip-head { font-size: 16px; font-weight: 600; margin: 0; }
+  .strip-quote { margin: 12px 0 0; padding: 12px 14px; background: #F5F5F7; border-radius: 10px; font-size: 14px; }
+  .strip-split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+  .strip-gray { background: #F5F5F7; border-right: 1px solid #D2D2D7; min-width: 0; }
+  .strip-gray .strip-img { object-fit: contain; object-position: center; }
+  .strip-fit { object-fit: contain; object-position: top left; }
+  .strip-side { display: flex; flex-direction: column; justify-content: center; padding: 0 48px; min-width: 0; }
+  .strip-side-t { font-size: 22px; font-weight: 600; line-height: 1.25; color: #1D1D1F; margin: 0 0 10px; }
+  .strip-side-l { font-size: 16px; line-height: 1.55; color: #424245; margin: 0; max-width: 420px; }
+  .strip-caps { display: grid; max-width: 1080px; margin: 22px auto 0; }
+  .strip-cap { grid-area: 1 / 1; margin: 0; font-size: 17px; line-height: 1.5; color: #1D1D1F; opacity: 0; visibility: hidden; transition: opacity .6s ease, visibility 0s linear .6s; }
+  .strip-cap.is-on { opacity: 1; visibility: visible; transition: opacity .6s ease, visibility 0s; }
+  .strip-dots { display: flex; gap: 0; justify-content: flex-start; max-width: 1080px; margin: 10px auto 0; }
+  .strip-dot { position: relative; width: 44px; height: 44px; padding: 0; border: 0; background: transparent; cursor: pointer; }
+  .strip-dot::before { content: ""; position: absolute; left: 50%; top: 50%; width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%; background: #D2D2D7; transition: background-color .2s, transform .2s; }
+  .strip-dot:hover::before { background: #6E6E73; }
+  .strip-dot.is-on::before { background: #1D1D1F; transform: scale(1.2); }
+  .strip-dot:focus-visible { outline: 2px solid #0A66D6; outline-offset: -4px; border-radius: 8px; }
+  .strip-note { max-width: 1080px; margin: 4px auto 0; font-size: 12px; color: #6E6E73; }
+  @media (max-width: 720px) {
+    .strip-frame { aspect-ratio: auto; height: 600px; margin-top: 32px; }
+    .strip-center { padding: 14px; align-items: flex-start; }
+    .strip-card { font-size: 13px; }
+    .strip-li .strip-d { flex: 0 0 100%; font-size: 12px; }
+    .strip-li { gap: 2px 8px; }
+    .strip-split { grid-template-columns: 1fr; grid-template-rows: minmax(0, 1fr) auto; }
+    .strip-gray { border-right: 0; border-bottom: 1px solid #D2D2D7; }
+    .strip-side { padding: 16px 18px; }
+    .strip-side-t { font-size: 18px; }
+    .strip-side-l { font-size: 14px; }
+    .strip-cap { font-size: 16px; }
+    .strip-caps { min-height: 0; }
   }
-</style>
+  @media (prefers-reduced-motion: reduce) {
+    .strip-screen, .strip-cap { transition: none; }
+  }
+  </style>
   <div class="container">
     <div class="eyebrow reveal">What a day looks like</div>
-    <h2 class="reveal">Briefly does the reading so your day can go to clients.</h2>
-    <p class="lede reveal">Each of these runs in the background, so the reading and the paperwork are finished by the time you need them.</p>
-    <div class="day-carousel">
-      <div class="day-ctrl">
-        <div class="day-stops" role="tablist" aria-label="Five moments in the day">
-          <button type="button" role="tab" class="day-stop is-active" aria-selected="true" data-day-stop="0">7:30 am</button>
-          <button type="button" role="tab" class="day-stop" aria-selected="false" data-day-stop="1">11:00 am</button>
-          <button type="button" role="tab" class="day-stop" aria-selected="false" data-day-stop="2">1:30 pm</button>
-          <button type="button" role="tab" class="day-stop" aria-selected="false" data-day-stop="3">2:45 pm</button>
-          <button type="button" role="tab" class="day-stop" aria-selected="false" data-day-stop="4">4:30 pm</button>
-        </div>
-        <div class="day-arrows">
-          <button type="button" class="day-arrow" data-day-arrow="-1" aria-label="Previous moment"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
-          <button type="button" class="day-arrow" data-day-arrow="1" aria-label="Next moment"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
-        </div>
-      </div>
-      <div class="day-viewport" id="dayViewport">
-        <div class="day-track" id="dayTrack">
-      <div class="day-slide dm-row">
-        <div class="dm-txt">
-          <div class="dm-time">7:30 am</div>
-          <p class="dm-title">Today's brief is in your inbox</p>
-          <p class="dm-line">You walk into the 10:00 already knowing what changed since you last met and how their portfolio has done, along with the goals they keep coming back to.</p>
-        </div>
-        <div class="dm-card" data-mockup="" aria-label="The Whitfield household brief as it arrives in the inbox">
-          <dl class="dm-meta"><dt>From</dt><dd>Briefly &lt;no-reply@brieflywealth.com&gt;</dd><dt>Subject</dt><dd><b>Whitfield household brief</b></dd></dl>
-          <div class="dm-block"><p class="dm-bh">What changed since the March review</p>
-            <div class="dm-li"><span class="dm-d">Jun 18</span><span>Dana emailed about $40,000 for a lake house down payment.</span><span class="dm-chip">Email</span></div>
-            <div class="dm-li"><span class="dm-d">Aug 6</span><span>Their daughter's wedding moved to next June.</span><span class="dm-chip">Meeting note</span></div>
-            <div class="dm-li"><span class="dm-d">Sep 22</span><span>Mailing address for two accounts changed to Wilmette.</span><span class="dm-chip">Phone note</span></div>
+    <h2 class="reveal">Your day's client work, done before you start.</h2>
+    <p class="lede reveal">The routine work runs in the background, so the reading and the paperwork are finished by the time you sit down.</p>
+    <div class="strip-frame" id="stripFrame" role="group" aria-label="Six screens from Briefly, changing every five seconds">
+      <div class="strip-screen strip-center is-on" data-strip="0">
+        <div class="strip-card" data-mockup="" aria-label="The Whitfield household brief as it arrives in the inbox">
+          <dl class="strip-meta"><dt>From</dt><dd>Briefly &lt;no-reply@brieflywealth.com&gt;</dd><dt>Subject</dt><dd><b>Whitfield household brief</b></dd></dl>
+          <div class="strip-block"><p class="strip-bh">What changed since the March review</p>
+            <div class="strip-li"><span class="strip-d">Jun 18</span><span>Dana emailed about $40,000 for a lake house down payment.</span><span class="strip-chip">Email</span></div>
+            <div class="strip-li"><span class="strip-d">Aug 6</span><span>Their daughter's wedding moved to next June.</span><span class="strip-chip">Meeting note</span></div>
+            <div class="strip-li"><span class="strip-d">Sep 22</span><span>Mailing address for two accounts changed to Wilmette.</span><span class="strip-chip">Phone note</span></div>
           </div>
-          <div class="dm-block"><p class="dm-bh">What they care about</p>
-            <div class="dm-li"><span>Retiring at 62 with the lake house paid off.</span></div>
-            <div class="dm-li"><span>Keeping enough in cash to cover the wedding.</span></div>
+          <div class="strip-block"><p class="strip-bh">What they care about</p>
+            <div class="strip-li"><span>Retiring at 62 with the lake house paid off.</span></div>
+            <div class="strip-li"><span>Keeping enough in cash to cover the wedding.</span></div>
           </div>
-          <div class="dm-block"><p class="dm-bh">Portfolio since March</p>
-            <div class="dm-li"><span>Up 6.1% since the March 14 review, 0.8 points ahead of the 60/40 benchmark.</span><span class="dm-chip">Orion</span></div>
+          <div class="strip-block"><p class="strip-bh">Portfolio since March</p>
+            <div class="strip-li"><span>Up 6.1% since the March 14 review, 0.8 points ahead of the 60/40 benchmark.</span><span class="strip-chip">Orion</span></div>
           </div>
-          <span class="dm-att">Whitfield-brief.pdf</span>
-          <p class="dm-note">Portfolio lines come from Orion, rolling out firm by firm.</p>
+          <span class="strip-att">Whitfield-brief.pdf</span>
         </div>
       </div>
-      <div class="day-slide dm-row">
-        <div class="dm-txt">
-          <div class="dm-time">11:00 am</div>
-          <p class="dm-title">Know the prospect before you call</p>
-          <p class="dm-line">A call note and a few emails tell you which bank they use and roughly what it charges them.</p>
-        </div>
-        <div class="dm-card" data-mockup="" aria-label="A prospect analysis for the Kessler household">
-          <p class="dm-head">Kessler household</p>
-          <p class="dm-sub">From the call note, 3 emails and 2 statements</p>
-          <div class="dm-tiles"><div class="dm-tile">$810,568 across 2 accounts</div><div class="dm-tile">Held at JPMorgan</div><div class="dm-tile">1.14% all-in fund cost</div></div>
-          <div class="dm-find"><b>Finding</b><span>Built like a JPMorgan model portfolio, twelve mutual funds across the same sleeves.</span></div>
-          <div class="dm-find"><b>Finding</b><span>Fund fees run about $9,240 a year on $810,568, before any advisory fee.</span></div>
-          <div class="dm-find"><b>Question</b><span>A 401(k) and a SEP IRA came up on the call. Neither is on file.</span></div>
-          <p class="dm-foot">Ends with Questions to ask &middot; What we could not verify &middot; Nothing here is a recommendation</p>
+      <div class="strip-screen strip-split" data-strip="1">
+        <div class="strip-gray"><img class="strip-img" src="images/app/prospect.jpg" width="674" height="812" alt="A Briefly prospect analysis page for the Kessler household showing what they own and what it costs them" loading="eager" decoding="async"></div>
+        <div class="strip-side">
+          <p class="strip-side-t">Kessler household</p>
+          <p class="strip-side-l">What they own, what they pay, and the bank behind it.</p>
         </div>
       </div>
-      <div class="day-slide dm-row">
-        <div class="dm-txt">
-          <div class="dm-time">1:30 pm</div>
-          <p class="dm-title">Follow-ups turn into tasks</p>
-          <p class="dm-line">The to-dos buried in emails and meeting notes show up as tasks you approve or reject, and approved ones land in Salesforce for whoever on your team owns them.</p>
-        </div>
-        <div class="dm-card" data-mockup="" aria-label="Action items waiting for approval">
-          <p class="dm-head">Action items to review</p>
-          <p class="dm-sub">Approve to send a task to Salesforce. Reject to drop it.</p>
-          <table class="dm-tbl"><thead><tr><th>Client</th><th>Proposed action</th><th>Owner</th><th>Due</th><th>Review</th></tr></thead><tbody>
-            <tr><td><b>Margaret Whitfield</b></td><td>Confirm Vanguard and PNC mailing address set to Wilmette only<span class="dm-src"><span class="dm-chip">From an email</span></span></td><td><span class="dm-sel">Priya Shah</span></td><td><span class="dm-pill">Due in 2 days</span></td><td><div class="dm-acts"><span class="dm-btn">Approve</span><span class="dm-btn dm-btn-o">Reject</span></div></td></tr>
-            <tr><td><b>Raj Patel</b></td><td>Land NVDA sell-rate at the Thursday review<span class="dm-src"><span class="dm-chip">From a meeting note</span></span></td><td><span class="dm-sel">Marcus Lee</span></td><td><span class="dm-pill">Due in 1 day</span></td><td><div class="dm-acts"><span class="dm-btn">Approve</span><span class="dm-btn dm-btn-o">Reject</span></div></td></tr>
-            <tr><td><b>Dana Kessler</b></td><td>Request the SEP IRA statement<span class="dm-src"><span class="dm-chip">From a phone note</span></span></td><td><span class="dm-sel">Elena Ruiz</span></td><td><span class="dm-pill">Due in 5 days</span></td><td><div class="dm-acts"><span class="dm-btn">Approve</span><span class="dm-btn dm-btn-o">Reject</span></div></td></tr>
-          </tbody></table>
-        </div>
-      </div>
-      <div class="day-slide dm-row">
-        <div class="dm-txt">
-          <div class="dm-time">2:45 pm</div>
-          <p class="dm-title">Your CIO's view, in every brief</p>
-          <p class="dm-line">You see where a client's portfolio differs from your CIO's latest view before you sit down with them.</p>
-        </div>
-        <div class="dm-card" data-mockup="" aria-label="The firm view section of a brief">
-          <p class="dm-head">Firm view</p>
-          <p class="dm-quote">Michael Torres, Sep 24: trimming duration, holding short Treasuries until the Fed's path is clearer</p>
-          <p class="dm-bh" style="margin-top:16px">This household</p>
+      <div class="strip-screen" data-strip="2"><img class="strip-img strip-fit" src="images/app/action-items.jpg" width="1466" height="612" alt="The Briefly Action items page with proposed tasks waiting for approval" loading="lazy" decoding="async"></div>
+      <div class="strip-screen strip-center" data-strip="3">
+        <div class="strip-card" data-mockup="" aria-label="The firm view section of a brief">
+          <p class="strip-head">Firm view</p>
+          <p class="strip-quote">Michael Torres, Sep 24: trimming duration, holding short Treasuries until the Fed's path is clearer</p>
+          <p class="strip-bh" style="margin-top:16px">This household</p>
           <p style="margin:0;font-size:14px">Bond sleeve at 6.8-year duration, 22% of the portfolio. Longer than the firm's stance.</p>
-          <p style="margin:10px 0 0"><span class="dm-chip">Orion holdings</span></p>
+          <p style="margin:10px 0 0"><span class="strip-chip">Orion holdings</span></p>
         </div>
       </div>
-      <div class="day-slide dm-row">
-        <div class="dm-txt">
-          <div class="dm-time">4:30 pm</div>
-          <p class="dm-title">Alerts across your whole book</p>
-          <p class="dm-line">Briefly tells you when any client has idle cash, an RMD coming due or a portfolio drifting off target.</p>
-        </div>
-        <div class="dm-card" data-mockup="" aria-label="The Portfolio alerts panel on the Today page">
-          <div class="dm-ph"><p class="dm-head">Portfolio alerts</p><span class="dm-pill">From Orion &middot; as of Oct 5</span></div>
-          <div class="dm-grp"><div><b>Idle cash</b>Cash sitting idle, $412,000 in cash across the accounts, 8.3% of the portfolio</div><span class="dm-btn">Add to Salesforce</span></div>
-          <div class="dm-grp"><div><b>Drift</b>Over target, US Large Cap is 4.2 points over its model target, outside tolerance</div><span class="dm-btn">Add to Salesforce</span></div>
-          <div class="dm-grp"><div><b>Distributions</b>Required distribution, $18,400 of this year's required distributions is still to be taken</div><span class="dm-btn">Add to Salesforce</span></div>
-          <p class="dm-note">Rolling out firm by firm.</p>
-        </div>
-      </div>
-        </div>
-      </div>
+      <div class="strip-screen" data-strip="4"><img class="strip-img" src="images/app/clients-flags.jpg" width="1252" height="812" alt="The Briefly All clients page with a Needs attention column listing idle cash, a remaining distribution and a portfolio over its target" loading="lazy" decoding="async"></div>
+      <div class="strip-screen" data-strip="5"><img class="strip-img" src="images/app/ask.jpg" width="1252" height="812" alt="Ask Briefly answering a question about Sarah Coleman with sources listed under the answer" loading="lazy" decoding="async"></div>
     </div>
+    <div class="strip-caps" aria-live="off">
+      <p class="strip-cap is-on">The brief is in your inbox before every meeting, with what changed, what they care about and how the portfolio did.</p>
+      <p class="strip-cap">A prospect's call note, emails and statements tell you what they own, which bank holds it and roughly what it costs them.</p>
+      <p class="strip-cap">To-dos buried in emails and meeting notes become tasks you approve or reject, and approved ones land in Salesforce for whoever owns them.</p>
+      <p class="strip-cap">Your CIO's latest view sits inside every brief, next to where the client's portfolio differs from it.</p>
+      <p class="strip-cap">Across your whole book, Briefly flags idle cash, RMDs coming due and portfolios drifting off target.</p>
+      <p class="strip-cap">Ask anything about a client and get an answer with the sources under it.</p>
+    </div>
+    <div class="strip-dots" role="group" aria-label="Choose a screen">
+      <button type="button" class="strip-dot is-on" aria-label="Screen 1 of 6, the brief in your inbox" aria-current="true"></button>
+      <button type="button" class="strip-dot" aria-label="Screen 2 of 6, a prospect analysis"></button>
+      <button type="button" class="strip-dot" aria-label="Screen 3 of 6, action items"></button>
+      <button type="button" class="strip-dot" aria-label="Screen 4 of 6, your CIO's view"></button>
+      <button type="button" class="strip-dot" aria-label="Screen 5 of 6, alerts across your book"></button>
+      <button type="button" class="strip-dot" aria-label="Screen 6 of 6, Ask Briefly"></button>
+    </div>
+    <p class="strip-note">Screens 1 and 4 are illustrative examples, not real client data. Portfolio lines and alerts come from Orion, rolling out firm by firm.</p>
   </div>
+  <script>
+  (function () {
+    var frame = document.getElementById('stripFrame');
+    if (!frame) return;
+    var screens = [].slice.call(frame.querySelectorAll('.strip-screen'));
+    var sec = frame.closest('section');
+    var caps = [].slice.call(sec.querySelectorAll('.strip-cap'));
+    var dots = [].slice.call(sec.querySelectorAll('.strip-dot'));
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var idx = 0, timer = null, inView = false, hover = false, held = false;
+    [].slice.call(frame.querySelectorAll('img')).forEach(function (im) { var p = new Image(); p.src = im.getAttribute('src'); });
+    function show(i) {
+      idx = (i + screens.length) % screens.length;
+      screens.forEach(function (s, k) { s.classList.toggle('is-on', k === idx); s.setAttribute('aria-hidden', k === idx ? 'false' : 'true'); });
+      caps.forEach(function (c, k) { c.classList.toggle('is-on', k === idx); });
+      dots.forEach(function (d, k) {
+        d.classList.toggle('is-on', k === idx);
+        if (k === idx) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current');
+      });
+    }
+    function stop() { clearTimeout(timer); timer = null; }
+    function tick() { show(idx + 1); schedule(); }
+    function schedule() {
+      stop();
+      if (reduce || !inView || hover || held) return;
+      timer = setTimeout(tick, 5000);
+    }
+    show(0);
+    dots.forEach(function (d, k) { d.addEventListener('click', function () { show(k); schedule(); }); });
+    frame.addEventListener('mouseenter', function () { hover = true; stop(); });
+    frame.addEventListener('mouseleave', function () { hover = false; held = false; schedule(); });
+    frame.addEventListener('click', function () { held = !held; if (held) stop(); else schedule(); });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) {
+        inView = es[0].isIntersecting;
+        if (inView) schedule(); else stop();
+      }, { threshold: 0.35 }).observe(frame);
+    } else { inView = true; schedule(); }
+  })();
+  </script>
 </section>
 
 <!-- ==================== RUNS ON A SCHEDULE ==================== -->
@@ -977,52 +973,6 @@
 
 <!-- ==================== SCRIPTS ==================== -->
 <script>
-(function () {
-  /* Day carousel: one moment on screen at a time. The clips runtime only
-     ticks a clip while it intersects the viewport, so off-screen slides
-     pause on their own and resume where they left off. */
-  var track = document.getElementById('dayTrack');
-  var viewport = document.getElementById('dayViewport');
-  if (!track || !viewport) return;
-  var slides = [].slice.call(track.children);
-  var stops = [].slice.call(document.querySelectorAll('[data-day-stop]'));
-  var idx = 0, hTimer, x0 = null;
-  function setHeight() { viewport.style.height = slides[idx].offsetHeight + 'px'; }
-  function go(i) {
-    idx = (i + slides.length) % slides.length;
-    track.style.transform = 'translateX(-' + idx * 100 + '%)';
-    slides.forEach(function (s, k) { s.setAttribute('aria-hidden', k === idx ? 'false' : 'true'); });
-    /* Start the prospect document reveal the moment its slide is chosen, rather than
-       waiting for the slide transition to finish and the observer to notice. */
-    var pa = slides[idx].querySelector('#paDoc');
-    if (pa && !pa.classList.contains('play')) { pa.classList.add('play'); }
-    stops.forEach(function (b, k) {
-      b.classList.toggle('is-active', k === idx);
-      b.setAttribute('aria-selected', k === idx ? 'true' : 'false');
-    });
-    setHeight();
-  }
-  stops.forEach(function (b) {
-    b.addEventListener('click', function () { go(parseInt(b.getAttribute('data-day-stop'), 10)); });
-  });
-  [].slice.call(document.querySelectorAll('[data-day-arrow]')).forEach(function (b) {
-    b.addEventListener('click', function () { go(idx + parseInt(b.getAttribute('data-day-arrow'), 10)); });
-  });
-  viewport.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
-  viewport.addEventListener('touchend', function (e) {
-    if (x0 === null) return;
-    var dx = e.changedTouches[0].clientX - x0;
-    if (Math.abs(dx) > 48) go(idx + (dx < 0 ? 1 : -1));
-    x0 = null;
-  }, { passive: true });
-  go(0);
-  window.addEventListener('load', setHeight);
-  window.addEventListener('resize', function () {
-    clearTimeout(hTimer);
-    hTimer = setTimeout(setHeight, 200);
-  });
-})();
-
 (function () {
   /* Prospect slide: replay the document reveal each time the slide comes into view.
      Same visibility-gating idiom as the clips runtime, none of its code. */
