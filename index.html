@@ -8,7 +8,6 @@
 <meta name="author" content="Briefly Wealth LLC">
 
 <link rel="canonical" href="https://www.brieflywealth.com/">
-<link rel="stylesheet" href="assets/briefly-clips.css">
 <link rel="icon" type="image/png" sizes="32x32" href="images/briefly_logo_favicon.png?v=2">
 <link rel="icon" type="image/png" sizes="16x16" href="images/briefly_logo_favicon.png?v=2">
 <link rel="apple-touch-icon" sizes="180x180" href="images/briefly_logo_favicon.png?v=2">
@@ -81,37 +80,32 @@
     {
       "@type": "Question",
       "name": "Is my client data safe?",
-      "acceptedAnswer": { "@type": "Answer", "text": "With the connector, client files never reach Briefly's servers. They stay in a folder on your own computer, and only your sign-in, a seat check, de-identified preference rules, and a short usage record for each tool call reach us instead. Firms on the web app keep files in an environment we secure and control, and the firm decides who signs in. Our security page breaks down the full data path if you want more detail." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Your firm's data lives in an environment we secure and control, hosted on AWS with access scoped to your firm, and the firm decides who signs in. Every model call that carries client data uses zero-retention routing, and nothing reaches Salesforce until an advisor approves it. With the Claude connector, files stay on the advisor's computer. Our security page breaks down the full data path if you want more detail." }
     },
     {
       "@type": "Question",
       "name": "Do you train AI models on my client data?",
-      "acceptedAnswer": { "@type": "Answer", "text": "We don't use client data to train AI models, and any pattern-level learning runs through a de-identified layer with no client name or account number attached. Claude reads the file under your firm's own Claude plan when it answers a question, and for Claude for Work, Claude Enterprise, and the API, Anthropic's commercial terms bar training on customer content. We recommend running Briefly on a business Claude plan for that reason, and our security page covers the difference in full." }
+      "acceptedAnswer": { "@type": "Answer", "text": "We don't use client data to train AI models, and any pattern-level learning runs through a de-identified layer with no client name or account number attached. Model calls that carry client data use zero-retention routing, with a fallback model on the same terms. Our security page covers the details." }
     },
     {
       "@type": "Question",
-      "name": "Does Anthropic see my client files when Briefly runs inside Claude?",
-      "acceptedAnswer": { "@type": "Answer", "text": "When you ask a question, Claude reads the file under your firm's own Claude plan to answer it, and Briefly never stores what Claude reads. On business plans, Anthropic's commercial terms bar training on customer content, and that commitment sits in a contract your compliance officer can review. Our security page lays out the full data path, including how personal Claude plans work differently." }
+      "name": "Do model providers see my client files?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Briefly sends client data to a model only to answer a question or write a report, and every such call uses zero-retention routing. On the Claude connector, Claude reads the file under your firm's own Claude plan, and on business plans Anthropic's commercial terms bar training on customer content. Our security page lays out the full data path." }
     },
     {
       "@type": "Question",
       "name": "Can I put client data into ChatGPT or Claude directly?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Pasting client details into a personal AI chat window sends them to the vendor's servers under consumer terms your firm never reviewed. The SEC's amended Reg S-P rule requires firms to oversee the service providers that handle customer information, which is why compliance teams are asking about AI chat tools. With the Briefly connector, client files stay in your firm's own folders and Claude reads them under the Claude plan your firm chose and can review like any other vendor." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Pasting client details into a personal AI chat window sends them to the vendor's servers under consumer terms your firm never reviewed. The SEC's amended Reg S-P rule requires firms to oversee the service providers that handle customer information, which is why compliance teams are asking about AI chat tools. Briefly runs as a web app your firm signs into, with zero-retention routing on every model call that carries client data, so your firm has one vendor to review." }
     },
     {
       "@type": "Question",
       "name": "Why not just use Claude or ChatGPT on their own?",
-      "acceptedAnswer": { "@type": "Answer", "text": "AI models change every few months, and what a chat window learned about your firm doesn't carry over. Briefly organizes your firm's knowledge into plain files you own, so the context you build keeps working as models improve or get swapped out. Answers draw on your whole book, corrections hold, and every claim carries a citation you can open." }
-    },
-    {
-      "@type": "Question",
-      "name": "Which one should I pick?",
-      "acceptedAnswer": { "@type": "Answer", "text": "If your team already works in Claude, start with the connector. It reads folders on your own machines and answers where you already work, usually the same day you install it. If you want the file built for you, take the web app instead. We connect Salesforce and Outlook and build the client file, which takes longer on our side, and your team signs in from a browser. A seat can move between them without rebuilding anything." }
+      "acceptedAnswer": { "@type": "Answer", "text": "AI models change every few months, and what a chat window learned about your firm doesn't carry over. Briefly keeps one current picture of each client, built from your firm's email, notes, transcripts and statements, so the context you build keeps working as models improve or get swapped out. Answers draw on your whole book, corrections hold, and every claim carries a citation you can open." }
     },
     {
       "@type": "Question",
       "name": "What happens if I leave?",
-      "acceptedAnswer": { "@type": "Answer", "text": "With the connector there is nothing to migrate, because the files were always in your own folders. Removing it just stops Claude from reading them. On the web app, your firm has ninety days after leaving to export its files in a standard format, and after that window we delete them." }
+      "acceptedAnswer": { "@type": "Answer", "text": "On the web app, your firm has ninety days after leaving to export its files in a standard format, and after that window we delete them. With the Claude connector there is nothing to migrate, because the files were always in your own folders." }
     }
   ]
 }
@@ -304,23 +298,9 @@
   /* A parked slide's window shadow (34px) otherwise bleeds across the viewport edge into the
      active slide as a faint line. Hide it once it has finished sliding out; show incoming at once. */
   .day-slide[aria-hidden="true"] { visibility: hidden; transition-delay: .45s; }
-  .day-row { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 48px; align-items: center; }
   .day-time { font-size: 13px; font-weight: 500; color: var(--ink-muted); margin-bottom: 10px; }
   .day-txt .msg-q { font-size: 16px; }
   .day-txt .msg-a { font-size: 15px; max-width: 420px; }
-  .day-row .win-body { padding: 12px; }
-  .day-row .day-clip { display: flex; justify-content: center; }
-  .day-clip { margin-bottom: 16px; }
-  .day-full { display: flex; flex-direction: column; gap: 22px; }
-  .day-full .win-body { padding: 12px; }
-  .day-full .day-clip { display: flex; justify-content: center; }
-  .day-lede-cols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: start; margin-top: 12px; }
-  .day-lede-cols .msg-q { font-size: 16px; }
-  .day-lede-cols .msg-a { font-size: 15px; max-width: none; }
-  .clip-fit { width: 100%; margin: 0 auto; overflow: hidden; }
-  .clip-fit > .day-clip { transform-origin: top left; margin-bottom: 0; }
-  .day-full .day-clip { justify-content: flex-start; }
-  .day-full .win-fit { max-width: 806px; margin: 0 auto; width: 100%; }
 
   /* Prospect-analysis slide: staged document reveal. Plain CSS transitions scoped to this
      file, deliberately outside the protected clips runtime. Steps use opacity/transform
@@ -371,7 +351,6 @@
   .firm-row .card .pill { margin-bottom: 10px; }
 
   /* correction loop */
-  .loop-clip { margin-top: 44px; }
   .loop-note { margin-top: 20px; max-width: 600px; font-size: 15px; line-height: 1.65; color: var(--ink-soft); }
 
   /* faq: recipe now shared from site.css's .faq-list */
@@ -383,8 +362,6 @@
     .ways-grid { grid-template-columns: 1fr; }
     .cdv-doors { grid-template-columns: 1fr; gap: 34px; }
     .cdv-divider { display: none; }
-    .day-row { grid-template-columns: 1fr; gap: 20px; }
-    .day-lede-cols { grid-template-columns: 1fr; gap: 14px; }
     .pa-metrics { grid-template-columns: 1fr; }
     .sched-grid { grid-template-columns: 1fr; gap: 28px; }
     .firm-row { grid-template-columns: 1fr; }
@@ -434,14 +411,14 @@
 <section class="hero" aria-label="Know every client like they're your only client">
   <div class="container hero-grid">
     <div>
-      <div class="eyebrow">AI knowledge base for RIAs and advisor teams</div>
+      <div class="eyebrow">AI software for wealth advisors</div>
       <h1>Know every client like they're your only client.</h1>
-      <p class="lede">Briefly turns the statements, emails, and meeting notes your firm already has into one knowledge base. Ask inside Claude or in the Briefly web app, and every answer comes back cited. Fix something once, and it holds for the whole team from then on.</p>
+      <p class="lede">Briefly reads everything your firm learns about a client as it comes in, down to the phone note your assistant typed this morning. You get one current picture of each client that shows what they care about and what has changed, and every line links to its source.</p>
       <div class="hero-ctas">
         <a class="btn" href="#" onclick="openDemoModal();return false;">Book a demo</a>
         <a class="btn ghost" href="/start">Start now</a>
       </div>
-      <p class="hero-trust"><b>Run the connector and client files never reach our servers.</b> Or have us set up the web app, connected to your Salesforce and Outlook.</p>
+      <p class="hero-trust">We set up the web app for your firm and connect it to your Salesforce and Outlook.</p>
     </div>
     <div>
     <div class="win" data-mockup="" aria-label="Five advisor questions answered with cited sources in the Briefly web app, cycling">
@@ -449,7 +426,7 @@
       <div class="ak" aria-live="polite">
         <div class="ak-h">Ask Briefly <span class="ak-chip" id="akChip">Smith, John &amp; Jane</span></div>
         <div class="ak-q" id="akQ">What changed for the Smiths since our March review?</div>
-        <div class="ak-load" id="akLoad" aria-hidden="true"><span class="ak-dots"><i></i><i></i><i></i></span><span class="ak-ph" id="akPh">Reading the file&hellip;</span></div>
+        <div class="ak-load" id="akLoad" aria-hidden="true"><span class="ak-dots"><i></i><i></i><i></i></span><span class="ak-ph" id="akPh">Reading the client picture&hellip;</span></div>
         <div class="ak-ans" id="akAns">
           <p id="akAnsText">Two things. The 401(k) rollover completed at $412,000, and their CPA flagged an open K-1 question in June. Both are filed and linked below.</p>
           <div class="ak-src"><b>Sources</b><ol id="akSrcList"><li>Smith Q2 statement (filed 6/30/2026)</li><li>CPA email, M. Hill (filed 6/12/2026)</li></ol></div>
@@ -463,31 +440,31 @@
       </div>
       <div class="hc-dots" id="hcDots" aria-label="Question picker"></div>
       <div class="sr-only" id="hcAll">
-        <div class="hc-item" data-chip="Smith, John &amp; Jane" data-ph="Reading the file&hellip;|Checking the Q2 statement&hellip;" data-click="2">
+        <div class="hc-item" data-chip="Smith, John &amp; Jane" data-ph="Reading the client picture&hellip;|Checking the Q2 statement&hellip;" data-click="2">
           <p class="hc-q">What changed for the Smiths since our March review?</p>
           <p class="hc-ans">Two things. The 401(k) rollover completed at $412,000, and their CPA flagged an open K-1 question in June. Both are filed and linked below.</p>
           <p class="hc-src">Smith Q2 statement (filed 6/30/2026) | CPA email, M. Hill (filed 6/12/2026)</p>
           <div class="hc-prov" data-kind="email" data-title="Re: K-1 question &middot; M. Hill, CPA">Still waiting on the K-1 from the Riverside partnership before I can close out their 2025 return. <span class="hl">Can you confirm the rollover check cleared before year end?</span></div>
         </div>
-        <div class="hc-item" data-chip="Whole book" data-ph="Reading the file&hellip;|Scanning 84 statements&hellip;" data-click="1">
+        <div class="hc-item" data-chip="Whole book" data-ph="Reading the client picture&hellip;|Scanning every statement&hellip;" data-click="1">
           <p class="hc-q">Which clients hold a concentrated position above 20%?</p>
           <p class="hc-ans">Three households. Rivera at 31% in employer stock, Okafor at 24%, and Lindqvist at 22%, each read from the latest statement on file.</p>
           <p class="hc-src">Rivera Q2 statement (filed 7/8/2026) | Okafor Q2 statement (filed 7/2/2026) | Lindqvist Q1 statement (filed 4/14/2026)</p>
           <div class="hc-prov" data-kind="pdf" data-title="Rivera Taxable &middot; Q2 2026"><div class="prov-tbl"><span class="hl"><b>Employer stock</b></span><span class="hl">$684,300</span><span class="hl"><b>31%</b></span><span>VTI</span><span>$1,204,000</span><span>55%</span><span>Cash</span><span>$306,000</span><span>14%</span></div></div>
         </div>
-        <div class="hc-item" data-chip="Whole book" data-ph="Reading the file&hellip;|Searching meeting transcripts&hellip;">
+        <div class="hc-item" data-chip="Whole book" data-ph="Reading the client picture&hellip;|Searching meeting transcripts&hellip;">
           <p class="hc-q">Who mentioned wanting to retire in the next three years?</p>
           <p class="hc-ans">Four clients, each tied to the conversation where they said it. Two of them also asked about pension timing, which is noted in their files.</p>
           <p class="hc-src">Meeting transcript, Doyle (filed 5/22/2026) | Meeting transcript, Chen (filed 6/9/2026) | + 2 more conversations</p>
           <div class="hc-prov" data-kind="transcript" data-title="Meeting transcript &middot; Doyle household &middot; 5/22/2026">Margaret: <span class="hl">If the numbers hold, I want to be done working within three years.</span> Can we look at what the pension bridge would take?</div>
         </div>
-        <div class="hc-item" data-chip="Whole book" data-ph="Reading the file&hellip;|Collecting open items&hellip;">
+        <div class="hc-item" data-chip="Whole book" data-ph="Reading the client picture&hellip;|Collecting open items&hellip;">
           <p class="hc-q">What's still open from last week's client meetings?</p>
           <p class="hc-ans">Five follow-ups across four households, from a missing insurance rider to the Whitfield trust question. Each one names the meeting it came from.</p>
           <p class="hc-src">Whitfield transcript (filed 7/24/2026) | + 4 more items</p>
           <div class="hc-prov" data-kind="transcript" data-title="Meeting transcript &middot; Whitfield &middot; 7/24/2026">Tom: <span class="hl">Before anything moves, I want the trust language checked against the new beneficiary setup.</span> We said we'd get their attorney an answer this week.</div>
         </div>
-        <div class="hc-item" data-chip="Alvarez, Maria &amp; Luis" data-ph="Reading the file&hellip;|Preparing the brief&hellip;">
+        <div class="hc-item" data-chip="Alvarez, Maria &amp; Luis" data-ph="Reading the client picture&hellip;|Preparing the brief&hellip;">
           <p class="hc-q">Anything I should know before the Alvarez call at 2:00?</p>
           <p class="hc-ans">Their daughter's tuition starts this fall, the 529 is short of the plan, and Maria sounded frustrated about paperwork last visit. The prepared brief covers all three.</p>
           <p class="hc-src">529 plan review (filed 6/3/2026) | Call notes (filed 7/17/2026) | Alvarez pre-call brief (prepared today)</p>
@@ -511,53 +488,110 @@
 <!-- ==================== WHAT IT DOES: mess to memory ==================== -->
 <span id="see-it" aria-hidden="true"></span>
 <section class="pad band-paper2" id="how" aria-label="What Briefly does">
+  <style>
+    #how .chip { display: inline-flex; align-items: center; gap: 7px; padding-left: 8px; }
+    #how .chip .cm { flex: none; }
+    #how .fc-sub { text-transform: none; font-family: var(--sans, inherit); font-size: 12.5px; letter-spacing: 0; }
+    #how .fc-row .fc-src { color: var(--ink-muted); font-size: 12.5px; text-align: right; flex: none; max-width: 45%; }
+    #how .fc-row span:first-child { min-width: 0; }
+    @media (max-width: 480px) { #how .fc-row { flex-direction: column; gap: 2px; } #how .fc-row .fc-src { text-align: left; max-width: none; } }
+  </style>
   <div class="container reveal">
     <div class="eyebrow">What Briefly does</div>
-    <h2>Ten years of files, one knowledge base.</h2>
-    <p class="lede">Briefly is an AI knowledge base for financial advisors that runs inside Claude. The answers your firm needs are already sitting in folders, inboxes, and old plans. Briefly files each document into the right client's knowledge base as it arrives, and every fact keeps a link back to the page it came from. The more you add, the better every answer gets.</p>
+    <h2>Everything that comes in lands with the right client.</h2>
+    <p class="lede">Briefly connects to the systems your firm already uses and sorts everything that comes through them by client. It keeps one personalized picture of each client, including the lake house the Smiths hope to buy by 2028 and the K-1 question their CPA raised in June. When you ask Briefly a question, the answer cites the email, transcript or statement it came from.</p>
     <div class="mess-grid">
       <div class="chip-field" id="chipField" aria-hidden="true">
-        <span class="chip" style="left:6%;  top:8%;  --dur:8.5s; --del:0s;    --dx:22px;  --dy:14px;  --r0:-2deg;   --r1:1.5deg;">Q2_statement_final.pdf</span>
-        <span class="chip" style="left:52%; top:4%;  --dur:9.5s; --del:-2s;   --dx:-18px; --dy:18px;  --r0:1.5deg;  --r1:-2deg;">RE: K-1 question</span>
-        <span class="chip" style="left:20%; top:26%; --dur:7.5s; --del:-4s;   --dx:26px;  --dy:-12px; --r0:-1deg;   --r1:2deg;">meeting_transcript_0614</span>
-        <span class="chip" style="left:58%; top:34%; --dur:10s;  --del:-1s;   --dx:-24px; --dy:-16px; --r0:2deg;    --r1:-1.5deg;">401k rollover form</span>
-        <span class="chip" style="left:4%;  top:46%; --dur:8s;   --del:-3s;   --dx:18px;  --dy:20px;  --r0:-1.5deg; --r1:1deg;">insurance renewal</span>
-        <span class="chip" style="left:36%; top:54%; --dur:9s;   --del:-5s;   --dx:-20px; --dy:12px;  --r0:1deg;    --r1:-2.5deg;">notes from call (v3)</span>
-        <span class="chip" style="left:58%; top:66%; --dur:8.8s; --del:-2.5s; --dx:-16px; --dy:-18px; --r0:-2.5deg; --r1:1deg;">estate attorney email</span>
-        <span class="chip" style="left:12%; top:70%; --dur:9.8s; --del:-.8s;  --dx:24px;  --dy:-14px; --r0:2deg;    --r1:-1deg;">salesforce activity log</span>
-        <span class="chip" style="left:36%; top:86%; --dur:7.8s; --del:-3.6s; --dx:-22px; --dy:-10px; --r0:-1deg;   --r1:2.5deg;">2019 financial plan</span>
+        <span class="chip" style="left:6%;  top:8%;  --dur:8.5s; --del:0s;    --dx:22px;  --dy:14px;  --r0:-2deg;   --r1:1.5deg;"><svg class="cm" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><rect x="1" y="2" width="14" height="12" rx="2.5" fill="#0A64C8"/><path d="M3 5.2 8 9l5-3.8" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Outlook email</span>
+        <span class="chip" style="left:52%; top:4%;  --dur:9.5s; --del:-2s;   --dx:-18px; --dy:18px;  --r0:1.5deg;  --r1:-2deg;"><svg class="cm" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M4.6 12.6a2.9 2.9 0 0 1-.4-5.7 3.3 3.3 0 0 1 6-.6 2.6 2.6 0 0 1 1.9 4.8 2.3 2.3 0 0 1-1.6 1.5z" fill="#00A1E0"/></svg>Salesforce activity</span>
+        <span class="chip" style="left:20%; top:26%; --dur:7.5s; --del:-4s;   --dx:26px;  --dy:-12px; --r0:-1deg;   --r1:2deg;"><svg class="cm" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><rect x="6" y="1.5" width="4" height="8" rx="2" fill="#1D1D1F"/><path d="M3.8 7.6a4.2 4.2 0 0 0 8.4 0M8 11.8v2.7" fill="none" stroke="#1D1D1F" stroke-width="1.4" stroke-linecap="round"/></svg>Meeting transcript</span>
+        <span class="chip" style="left:58%; top:34%; --dur:10s;  --del:-1s;   --dx:-24px; --dy:-16px; --r0:2deg;    --r1:-1.5deg;"><svg class="cm" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M3.2 2.2h2.6l1 3-1.5 1a7.4 7.4 0 0 0 3.5 3.5l1-1.5 3 1v2.6a1.5 1.5 0 0 1-1.6 1.5A10.6 10.6 0 0 1 1.7 3.8 1.5 1.5 0 0 1 3.2 2.2z" fill="#34A853"/></svg>Phone note</span>
+        <span class="chip" style="left:4%;  top:46%; --dur:8s;   --del:-3s;   --dx:18px;  --dy:20px;  --r0:-1.5deg; --r1:1deg;"><svg class="cm" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><rect x="1.5" y="2.5" width="13" height="12" rx="2" fill="#fff" stroke="#1A73E8" stroke-width="1.5"/><rect x="1.5" y="2.5" width="13" height="4" rx="1.5" fill="#1A73E8"/><text x="8" y="12.6" font-size="6.4" font-weight="700" text-anchor="middle" fill="#1A73E8" font-family="Arial,sans-serif">31</text></svg>Calendar invite</span>
+        <span class="chip" style="left:36%; top:54%; --dur:9s;   --del:-5s;   --dx:-20px; --dy:12px;  --r0:1deg;    --r1:-2.5deg;"><svg class="cm" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><rect x="3" y="1.5" width="10" height="13" rx="1.6" fill="#fff" stroke="#1D1D1F" stroke-width="1.3"/><rect x="3" y="4" width="10" height="2.6" fill="#2F8CFF"/><path d="M5.2 9.3h5.6M5.2 11.6h3.6" stroke="#1D1D1F" stroke-width="1.1" stroke-linecap="round"/></svg>CIO note</span>
+        <span class="chip" style="left:58%; top:66%; --dur:8.8s; --del:-2.5s; --dx:-16px; --dy:-18px; --r0:-2.5deg; --r1:1deg;"><svg class="cm" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><rect x="2" y="8" width="3" height="6" rx=".6" fill="#1B365D"/><rect x="6.5" y="4.5" width="3" height="9.5" rx=".6" fill="#1B365D"/><rect x="11" y="1.8" width="3" height="12.2" rx=".6" fill="#1B365D"/></svg>Orion holdings</span>
+        <span class="chip" style="left:12%; top:70%; --dur:9.8s; --del:-.8s;  --dx:24px;  --dy:-14px; --r0:2deg;    --r1:-1deg;"><svg class="cm" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M3 1.5h6.5L13 5v9a.8.8 0 0 1-.8.8H3.8A.8.8 0 0 1 3 14z" fill="#D93025"/><path d="M9.5 1.5V5H13" fill="#F4A6A0"/><text x="8" y="12.4" font-size="4.6" font-weight="700" text-anchor="middle" fill="#fff" font-family="Arial,sans-serif">PDF</text></svg>Q2 statement</span>
+        <span class="chip" style="left:36%; top:86%; --dur:7.8s; --del:-3.6s; --dx:-22px; --dy:-10px; --r0:-1deg;   --r1:2.5deg;"><svg class="cm" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M3 1.5h6.5L13 5v9a.8.8 0 0 1-.8.8H3.8A.8.8 0 0 1 3 14z" fill="#2F8CFF"/><path d="M9.5 1.5V5H13" fill="#A9D0FF"/><path d="M5.2 8.4h5.6M5.2 10.4h5.6M5.2 12.4h3.4" stroke="#fff" stroke-width="1.1" stroke-linecap="round"/></svg>Financial plan</span>
       </div>
       <div class="filecard" id="fileCard" data-mockup="">
         <h3>Smith, John &amp; Jane</h3>
-        <div class="fc-sub">CLIENT KNOWLEDGE BASE &middot; <span id="docCount">84</span> documents &middot; updated today</div>
-        <div class="fc-row"><span>401(k) rollover completed, $412,000</span><span class="cite">Q2 statement</span></div>
-        <div class="fc-row"><span>Open K-1 question with CPA</span><span class="cite">email, 6/12</span></div>
-        <div class="fc-row"><span>Wants to fund the lake house by 2028</span><span class="cite">transcript, 6/14</span></div>
-        <div class="fc-row"><span>Umbrella policy renews in September</span><span class="cite">renewal notice</span></div>
+        <div class="fc-sub">Client picture &middot; updated today</div>
+        <div class="fc-row"><span>401(k) rollover completed, $412,000</span><span class="fc-src">Q2 statement</span></div>
+        <div class="fc-row"><span>Open K-1 question with their CPA</span><span class="fc-src">Outlook email, 6/12</span></div>
+        <div class="fc-row"><span>Wants to buy a lake house by 2028</span><span class="fc-src">Meeting transcript, 6/14</span></div>
+        <div class="fc-row"><span>Prefers a call before any trade</span><span class="fc-src">Phone note, 7/17</span></div>
       </div>
     </div>
     <div class="flow-row">
-      <p>The same file feeds the rest of the workflow, so each of these starts from what your firm already knows.</p>
-      <div class="flow-pills">
-        <span class="pill">Briefs</span><span class="pill">Agendas</span><span class="pill">Client statuses</span><span class="pill">Follow-ups</span><span class="pill">Market briefs</span><span class="pill">Prospect analyses</span><span class="pill">Ask</span><span class="pill">Next steps into Salesforce</span>
-      </div>
+      <p>The same picture feeds every brief, agenda, status update, follow-up and answer.</p>
     </div>
   </div>
 </section>
 
 <!-- ==================== ONE DAY ==================== -->
 <section class="pad" aria-label="What a day looks like">
+  <style>
+  .dm-row { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 48px; align-items: center; }
+  .dm-time { font-size: 13px; font-weight: 500; color: var(--ink-muted); margin-bottom: 10px; }
+  .dm-title { font-size: 22px; font-weight: 600; line-height: 1.25; color: var(--ink); margin: 0 0 12px; }
+  .dm-line { font-size: 16px; line-height: 1.55; color: var(--ink-soft); max-width: 440px; margin: 0; }
+  .dm-card { background: #fff; border: 1px solid #D2D2D7; border-radius: 14px; padding: 20px 22px; color: #1D1D1F; font-size: 14px; line-height: 1.45; text-align: left; }
+  .dm-head { font-size: 16px; font-weight: 600; margin: 0; }
+  .dm-sub { font-size: 13px; color: #6E6E73; margin: 4px 0 0; }
+  .dm-muted { color: #6E6E73; }
+  .dm-note { font-size: 12px; color: #6E6E73; margin: 12px 0 0; }
+  .dm-meta { display: grid; grid-template-columns: 64px 1fr; gap: 4px 10px; font-size: 13px; padding-bottom: 14px; border-bottom: 1px solid #D2D2D7; margin-bottom: 14px; }
+  .dm-meta dt { color: #6E6E73; margin: 0; }
+  .dm-meta dd { margin: 0; }
+  .dm-block { padding: 12px 0; border-top: 1px solid #D2D2D7; }
+  .dm-block:first-of-type { border-top: 0; padding-top: 0; }
+  .dm-bh { font-size: 13px; font-weight: 600; margin: 0 0 6px; }
+  .dm-li { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; font-size: 13px; padding: 3px 0; }
+  .dm-li .dm-d { color: #6E6E73; flex: 0 0 44px; }
+  .dm-chip { display: inline-block; font-size: 11px; line-height: 1; padding: 4px 8px; border: 1px solid #D2D2D7; border-radius: 999px; color: #6E6E73; background: #fff; white-space: nowrap; }
+  .dm-att { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; font-size: 12px; padding: 6px 10px; border: 1px solid #D2D2D7; border-radius: 8px; background: #F5F5F7; }
+  .dm-pill { display: inline-block; font-size: 12px; font-weight: 500; line-height: 1; padding: 5px 10px; border-radius: 999px; background: #EAF3FF; color: #0A66D6; white-space: nowrap; }
+  .dm-btn { font: inherit; font-size: 12px; font-weight: 500; padding: 6px 12px; border-radius: 8px; border: 1px solid #1D1D1F; background: #1D1D1F; color: #fff; white-space: nowrap; }
+  .dm-btn-o { background: #fff; color: #1D1D1F; border-color: #D2D2D7; }
+  .dm-tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 14px 0; }
+  .dm-tile { border: 1px solid #D2D2D7; border-radius: 10px; padding: 10px 12px; font-size: 13px; font-weight: 500; }
+  .dm-find { display: grid; grid-template-columns: 70px 1fr; gap: 10px; padding: 10px 0; border-top: 1px solid #D2D2D7; font-size: 13px; }
+  .dm-find b { font-weight: 600; }
+  .dm-foot { font-size: 12px; color: #6E6E73; margin: 10px 0 0; padding-top: 10px; border-top: 1px solid #D2D2D7; }
+  .dm-tbl { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 13px; }
+  .dm-tbl th { text-align: left; font-weight: 500; font-size: 12px; color: #6E6E73; padding: 8px 8px 8px 0; border-bottom: 1px solid #D2D2D7; }
+  .dm-tbl td { padding: 12px 8px 12px 0; border-bottom: 1px solid #D2D2D7; vertical-align: top; }
+  .dm-tbl tr:last-child td { border-bottom: 0; }
+  .dm-src { display: block; margin-top: 6px; }
+  .dm-sel { display: inline-block; border: 1px solid #D2D2D7; border-radius: 8px; padding: 5px 24px 5px 9px; font-size: 12px; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%236E6E73' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 8px center; white-space: nowrap; }
+  .dm-acts { display: flex; gap: 6px; flex-wrap: wrap; }
+  .dm-quote { margin: 12px 0 0; padding: 12px 14px; background: #F5F5F7; border-radius: 10px; font-size: 14px; }
+  .dm-grp { padding: 12px 0; border-top: 1px solid #D2D2D7; display: flex; gap: 14px; justify-content: space-between; align-items: center; }
+  .dm-grp div { min-width: 0; font-size: 13px; }
+  .dm-grp b { display: block; font-weight: 600; margin-bottom: 2px; }
+  .dm-ph { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
+  @media (max-width: 860px) {
+    .dm-row { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+    .dm-tiles { grid-template-columns: 1fr; }
+    .dm-find { grid-template-columns: 1fr; gap: 2px; }
+    .dm-tbl, .dm-tbl tbody, .dm-tbl tr, .dm-tbl td { display: block; }
+    .dm-tbl thead { display: none; }
+    .dm-tbl td { border-bottom: 0; padding: 4px 0; }
+    .dm-tbl tr { border-bottom: 1px solid #D2D2D7; padding: 10px 0; }
+    .dm-grp { flex-direction: column; align-items: flex-start; }
+  }
+</style>
   <div class="container">
     <div class="eyebrow reveal">What a day looks like</div>
-    <h2 class="reveal">One day with the file open.</h2>
-    <p class="lede reveal">Briefly isn't a new place to work. Your team keeps asking questions where they already are, and the firm's own records do the answering.</p>
+    <h2 class="reveal">Briefly does the reading so your day can go to clients.</h2>
+    <p class="lede reveal">Each of these runs in the background, so the reading and the paperwork are finished by the time you need them.</p>
     <div class="day-carousel">
       <div class="day-ctrl">
-        <div class="day-stops" role="tablist" aria-label="Four moments in the day">
-          <button type="button" role="tab" class="day-stop is-active" aria-selected="true" data-day-stop="0">8:55 am</button>
-          <button type="button" role="tab" class="day-stop" aria-selected="false" data-day-stop="1">11:40 am</button>
-          <button type="button" role="tab" class="day-stop" aria-selected="false" data-day-stop="2">2:30 pm</button>
-          <button type="button" role="tab" class="day-stop" aria-selected="false" data-day-stop="3">4:15 pm</button>
+        <div class="day-stops" role="tablist" aria-label="Five moments in the day">
+          <button type="button" role="tab" class="day-stop is-active" aria-selected="true" data-day-stop="0">7:30 am</button>
+          <button type="button" role="tab" class="day-stop" aria-selected="false" data-day-stop="1">11:00 am</button>
+          <button type="button" role="tab" class="day-stop" aria-selected="false" data-day-stop="2">1:30 pm</button>
+          <button type="button" role="tab" class="day-stop" aria-selected="false" data-day-stop="3">2:45 pm</button>
+          <button type="button" role="tab" class="day-stop" aria-selected="false" data-day-stop="4">4:30 pm</button>
         </div>
         <div class="day-arrows">
           <button type="button" class="day-arrow" data-day-arrow="-1" aria-label="Previous moment"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
@@ -566,82 +600,88 @@
       </div>
       <div class="day-viewport" id="dayViewport">
         <div class="day-track" id="dayTrack">
-      <div class="day-slide day-row">
-        <div class="day-txt">
-          <div class="day-time">8:55 am &middot; in Claude, before the review</div>
-          <p class="msg-q"><b>Advisor</b>Give me the Patel file before the 9:00.</p>
-          <div class="msg-a">
-            <p>Brief's ready. The sell-rate decision is the headline, the deferred-comp window opens 8/15, and the Q2 estimated tax is still due from Raj. Six sources, all linked.</p>
-            <p style="margin-top:10px;"><span class="cite">Patel brief &middot; 6 sources</span></p>
-          </div>
+      <div class="day-slide dm-row">
+        <div class="dm-txt">
+          <div class="dm-time">7:30 am</div>
+          <p class="dm-title">Today's brief is in your inbox</p>
+          <p class="dm-line">You walk into the 10:00 already knowing what changed since you last met and how their portfolio has done, along with the goals they keep coming back to.</p>
         </div>
-        <div class="win" data-mockup="">
-          <div class="win-bar"><span class="win-dot"></span><span>Running the pre-meeting brief</span></div>
-          <div class="win-body"><div class="day-clip" data-bpa-clip="2" aria-label="Running the pre-meeting brief agent for the Patel household"></div></div>
-        </div>
-      </div>
-      <div class="day-slide day-full">
-        <div class="day-lede-cols">
-          <div>
-            <div class="day-time">11:40 am &middot; in the web app, a client calls</div>
-            <p class="msg-q"><b>Operations</b>Sarah Coleman called. Hold the last AAPL tranche until after the Roth window.</p>
+        <div class="dm-card" data-mockup="" aria-label="The Whitfield household brief as it arrives in the inbox">
+          <dl class="dm-meta"><dt>From</dt><dd>Briefly &lt;no-reply@brieflywealth.com&gt;</dd><dt>Subject</dt><dd><b>Whitfield household brief</b></dd></dl>
+          <div class="dm-block"><p class="dm-bh">What changed since the March review</p>
+            <div class="dm-li"><span class="dm-d">Jun 18</span><span>Dana emailed about $40,000 for a lake house down payment.</span><span class="dm-chip">Email</span></div>
+            <div class="dm-li"><span class="dm-d">Aug 6</span><span>Their daughter's wedding moved to next June.</span><span class="dm-chip">Meeting note</span></div>
+            <div class="dm-li"><span class="dm-d">Sep 22</span><span>Mailing address for two accounts changed to Wilmette.</span><span class="dm-chip">Phone note</span></div>
           </div>
-          <div class="msg-a">
-            <p>Saved as a note in the Coleman file, indexed next to the April statement and the Roth conversion email. The next brief picks it up.</p>
-            <p style="margin-top:10px;"><span class="cite">Coleman note (filed today) &middot; 5 sources on file</span></p>
+          <div class="dm-block"><p class="dm-bh">What they care about</p>
+            <div class="dm-li"><span>Retiring at 62 with the lake house paid off.</span></div>
+            <div class="dm-li"><span>Keeping enough in cash to cover the wedding.</span></div>
           </div>
-        </div>
-        <div class="win win-fit" data-mockup="">
-          <div class="win-bar"><span class="win-dot"></span><span>A phone note, filed and indexed</span></div>
-          <div class="win-body"><div class="clip-fit" data-natural="780"><div class="day-clip" data-bpa-clip="5" aria-label="Checking a household's filed sources in the web app"></div></div></div>
+          <div class="dm-block"><p class="dm-bh">Portfolio since March</p>
+            <div class="dm-li"><span>Up 6.1% since the March 14 review, 0.8 points ahead of the 60/40 benchmark.</span><span class="dm-chip">Orion</span></div>
+          </div>
+          <span class="dm-att">Whitfield-brief.pdf</span>
+          <p class="dm-note">Portfolio lines come from Orion, rolling out firm by firm.</p>
         </div>
       </div>
-      <div class="day-slide day-full">
-        <div class="day-lede-cols">
-          <div>
-            <div class="day-time">2:30 pm &middot; in the web app, after a referral call</div>
-            <p class="msg-q"><b>Advisor</b>What should I know about the Kesslers before Thursday?</p>
-          </div>
-          <div class="msg-a">
-            <p>Their analysis is ready. Four findings backed by the statements they sent, six questions worth asking, and two accounts mentioned on the call that haven't come in yet.</p>
-            <p style="margin-top:10px;"><a class="cite" href="/samples/sample-prospect-analysis">Kessler prospect analysis &middot; 2 statements + the intake</a></p>
-          </div>
+      <div class="day-slide dm-row">
+        <div class="dm-txt">
+          <div class="dm-time">11:00 am</div>
+          <p class="dm-title">Know the prospect before you call</p>
+          <p class="dm-line">A call note and a few emails tell you which bank they use and roughly what it charges them.</p>
         </div>
-        <div class="win win-fit" data-mockup="">
-          <div class="win-bar"><span class="win-dot"></span><span>Nine checks, run against what's on file</span></div>
-          <div class="win-body">
-            <!-- Copy below mirrors the product's finding-vs-question rule: a FINDING is proven by a
-                 document, everything else stays a QUESTION. Never phrase a row as advice. -->
-            <div class="pa-doc" id="paDoc" data-mockup="">
-              <div class="pa-head pa-step"><span>Prospect analysis &middot; Kessler household</span><span>From the intake and 2 statements</span></div>
-              <div class="pa-metrics">
-                <div class="pa-tile pa-step"><b>$810,568</b>On file across 2 accounts</div>
-                <div class="pa-tile pa-step"><b>86.8%</b>In equities, 3-year timeline</div>
-                <div class="pa-tile pa-step"><b>18.2%</b>In a single stock</div>
-              </div>
-              <p class="pa-lead pa-step">The acquirer stock in their brokerage account is where this conversation should start.</p>
-              <div class="pa-row pa-step"><span class="pa-tag">Finding</span><span>The 18.2% position is stock in the company behind his September retention decision.</span></div>
-              <div class="pa-row pa-step"><span class="pa-tag">Finding</span><span>All-in fund cost is 0.62%, about $5,050 a year, with no advisor engaged.</span></div>
-              <div class="pa-row pa-step"><span class="pa-tag pa-tag-q">Question</span><span>A 401(k) and a SEP IRA came up on the call. Neither is on file.</span></div>
-              <div class="pa-foot pa-step">Ends with Questions to ask &middot; What we could not verify &middot; Nothing here is a recommendation</div>
-            </div>
-          </div>
+        <div class="dm-card" data-mockup="" aria-label="A prospect analysis for the Kessler household">
+          <p class="dm-head">Kessler household</p>
+          <p class="dm-sub">From the call note, 3 emails and 2 statements</p>
+          <div class="dm-tiles"><div class="dm-tile">$810,568 across 2 accounts</div><div class="dm-tile">Held at JPMorgan</div><div class="dm-tile">1.14% all-in fund cost</div></div>
+          <div class="dm-find"><b>Finding</b><span>Built like a JPMorgan model portfolio, twelve mutual funds across the same sleeves.</span></div>
+          <div class="dm-find"><b>Finding</b><span>Fund fees run about $9,240 a year on $810,568, before any advisory fee.</span></div>
+          <div class="dm-find"><b>Question</b><span>A 401(k) and a SEP IRA came up on the call. Neither is on file.</span></div>
+          <p class="dm-foot">Ends with Questions to ask &middot; What we could not verify &middot; Nothing here is a recommendation</p>
         </div>
       </div>
-      <div class="day-slide day-full">
-        <div class="day-lede-cols">
-          <div>
-            <div class="day-time">4:15 pm &middot; in the web app, across the book</div>
-            <p class="msg-q"><b>Advisor</b>What did today's meetings and uploads leave on my plate?</p>
-          </div>
-          <div class="msg-a">
-            <p>Five proposed next steps across five households, each tied to the conversation it came from. Approve one and it lands in Salesforce as a task.</p>
-            <p style="margin-top:10px;"><span class="cite">5 items &middot; 5 households &middot; 2 sources each</span></p>
-          </div>
+      <div class="day-slide dm-row">
+        <div class="dm-txt">
+          <div class="dm-time">1:30 pm</div>
+          <p class="dm-title">Follow-ups turn into tasks</p>
+          <p class="dm-line">The to-dos buried in emails and meeting notes show up as tasks you approve or reject, and approved ones land in Salesforce for whoever on your team owns them.</p>
         </div>
-        <div class="win" data-mockup="">
-          <div class="win-bar"><span class="win-dot"></span><span>One queue across every household</span></div>
-          <div class="win-body"><div class="clip-fit" data-natural="1000"><div class="day-clip" data-bpa-clip="1" aria-label="Working the action-item queue across households"></div></div></div>
+        <div class="dm-card" data-mockup="" aria-label="Action items waiting for approval">
+          <p class="dm-head">Action items to review</p>
+          <p class="dm-sub">Approve to send a task to Salesforce. Reject to drop it.</p>
+          <table class="dm-tbl"><thead><tr><th>Client</th><th>Proposed action</th><th>Owner</th><th>Due</th><th>Review</th></tr></thead><tbody>
+            <tr><td><b>Margaret Whitfield</b></td><td>Confirm Vanguard and PNC mailing address set to Wilmette only<span class="dm-src"><span class="dm-chip">From an email</span></span></td><td><span class="dm-sel">Priya Shah</span></td><td><span class="dm-pill">Due in 2 days</span></td><td><div class="dm-acts"><span class="dm-btn">Approve</span><span class="dm-btn dm-btn-o">Reject</span></div></td></tr>
+            <tr><td><b>Raj Patel</b></td><td>Land NVDA sell-rate at the Thursday review<span class="dm-src"><span class="dm-chip">From a meeting note</span></span></td><td><span class="dm-sel">Marcus Lee</span></td><td><span class="dm-pill">Due in 1 day</span></td><td><div class="dm-acts"><span class="dm-btn">Approve</span><span class="dm-btn dm-btn-o">Reject</span></div></td></tr>
+            <tr><td><b>Dana Kessler</b></td><td>Request the SEP IRA statement<span class="dm-src"><span class="dm-chip">From a phone note</span></span></td><td><span class="dm-sel">Elena Ruiz</span></td><td><span class="dm-pill">Due in 5 days</span></td><td><div class="dm-acts"><span class="dm-btn">Approve</span><span class="dm-btn dm-btn-o">Reject</span></div></td></tr>
+          </tbody></table>
+        </div>
+      </div>
+      <div class="day-slide dm-row">
+        <div class="dm-txt">
+          <div class="dm-time">2:45 pm</div>
+          <p class="dm-title">Your CIO's view, in every brief</p>
+          <p class="dm-line">You see where a client's portfolio differs from your CIO's latest view before you sit down with them.</p>
+        </div>
+        <div class="dm-card" data-mockup="" aria-label="The firm view section of a brief">
+          <p class="dm-head">Firm view</p>
+          <p class="dm-quote">Michael Torres, Sep 24: trimming duration, holding short Treasuries until the Fed's path is clearer</p>
+          <p class="dm-bh" style="margin-top:16px">This household</p>
+          <p style="margin:0;font-size:14px">Bond sleeve at 6.8-year duration, 22% of the portfolio. Longer than the firm's stance.</p>
+          <p style="margin:10px 0 0"><span class="dm-chip">Orion holdings</span></p>
+        </div>
+      </div>
+      <div class="day-slide dm-row">
+        <div class="dm-txt">
+          <div class="dm-time">4:30 pm</div>
+          <p class="dm-title">Alerts across your whole book</p>
+          <p class="dm-line">Briefly tells you when any client has idle cash, an RMD coming due or a portfolio drifting off target.</p>
+        </div>
+        <div class="dm-card" data-mockup="" aria-label="The Portfolio alerts panel on the Today page">
+          <div class="dm-ph"><p class="dm-head">Portfolio alerts</p><span class="dm-pill">From Orion &middot; as of Oct 5</span></div>
+          <div class="dm-grp"><div><b>Idle cash</b>Cash sitting idle, $412,000 in cash across the accounts, 8.3% of the portfolio</div><span class="dm-btn">Add to Salesforce</span></div>
+          <div class="dm-grp"><div><b>Drift</b>Over target, US Large Cap is 4.2 points over its model target, outside tolerance</div><span class="dm-btn">Add to Salesforce</span></div>
+          <div class="dm-grp"><div><b>Distributions</b>Required distribution, $18,400 of this year's required distributions is still to be taken</div><span class="dm-btn">Add to Salesforce</span></div>
+          <p class="dm-note">Rolling out firm by firm.</p>
         </div>
       </div>
         </div>
@@ -687,10 +727,46 @@
 <!-- ==================== THE LOOP: corrections become rules ==================== -->
 <section class="pad band-white" aria-label="Why Briefly keeps getting better">
   <div class="container reveal">
+    <style>
+    .loop2-row { display: grid; grid-template-columns: minmax(0,1fr) 28px minmax(0,1fr) 28px minmax(0,1fr); gap: 10px; align-items: stretch; margin-top: 44px; }
+    .loop2-card { background: #fff; border: 1px solid var(--rule); border-radius: var(--r-card); padding: 20px; display: flex; flex-direction: column; gap: 10px; }
+    .loop2-step { font-size: 13px; font-weight: 600; color: var(--ink-muted); }
+    .loop2-line { font-size: 15px; line-height: 1.55; color: var(--ink); }
+    .loop2-line s { color: var(--ink-muted); text-decoration: line-through; }
+    .loop2-new { color: var(--blue-ink); font-weight: 600; }
+    .loop2-pill { align-self: flex-start; font-size: 12px; font-weight: 600; color: var(--blue-ink); background: var(--blue-soft); border: 1px solid var(--rule); border-radius: 999px; padding: 3px 10px; }
+    .loop2-rule { font-size: 15px; line-height: 1.5; font-weight: 600; color: var(--ink); }
+    .loop2-muted { font-size: 13px; line-height: 1.5; color: var(--ink-muted); }
+    .loop2-arrow { display: flex; align-items: center; justify-content: center; color: var(--ink-muted); }
+    .loop2-arrow svg { width: 22px; height: 22px; }
+    @media (max-width: 820px) {
+      .loop2-row { grid-template-columns: minmax(0,1fr); gap: 6px; }
+      .loop2-arrow { min-height: 24px; }
+      .loop2-arrow svg { transform: rotate(90deg); }
+    }
+  </style>
     <div class="eyebrow">Why it keeps getting better</div>
     <h2>Correct it once. The whole team inherits it.</h2>
     <p class="lede">When an advisor fixes a name, a preference, or a way of phrasing things, Briefly keeps the fix as a standing rule. Next quarter's brief already follows it, for everyone.</p>
-    <div class="loop-clip" data-mockup="" data-bpa-clip="7" aria-label="How a correction becomes a standing rule the whole team inherits"></div>
+    <div class="loop2-row" data-mockup="" role="group" aria-label="How a correction becomes a standing rule the whole team inherits">
+      <div class="loop2-card">
+        <div class="loop2-step">1. An advisor edits one line</div>
+        <div class="loop2-line">Open items before our next <s>sales meeting</s> <span class="loop2-new">planning conversation</span> with the Riveras.</div>
+      </div>
+      <div class="loop2-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="loop2-card">
+        <div class="loop2-step">2. Briefly saves it as a standing rule</div>
+        <span class="loop2-pill">Preference saved</span>
+        <div class="loop2-rule">Call it a planning conversation, never a sales meeting.</div>
+        <div class="loop2-muted">Applies to every agent &middot; whole firm &middot; no client name attached</div>
+      </div>
+      <div class="loop2-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="loop2-card">
+        <div class="loop2-step">3. A colleague's later brief already says it</div>
+        <div class="loop2-line">Open items from the last <span class="loop2-new">planning conversation</span> with the Riveras.</div>
+        <div class="loop2-muted">Rivera brief &middot; run by a different advisor</div>
+      </div>
+    </div>
     <p class="loop-note">An advisor at one firm fixed a single phrase, "we call it a planning conversation, never a sales meeting." Every brief that firm has received since says it their way.</p>
     <div class="eyebrow" style="margin-top:64px;">For the whole firm</div>
     <div class="firm-row">
@@ -705,7 +781,7 @@
       <div class="card">
         <span class="pill">Rolling out</span>
         <h3>Orion data</h3>
-        <p>Orion values in the client header, held-away accounts, and a line that reconciles them with the statements. Turned on firm by firm.</p>
+        <p>Orion values in the client header, held-away accounts, and portfolio alerts on the Today page for idle cash, drift, and required distributions. Turned on firm by firm.</p>
       </div>
     </div>
   </div>
@@ -714,66 +790,48 @@
 <!-- ==================== WHERE THE DATA LIVES ==================== -->
 <span id="platform" aria-hidden="true"></span>
 <section class="pad custody" id="custody" aria-label="Where your client data lives">
+  <style>
+    .cu-cards { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 18px; margin-top: 36px; }
+    .cu-card { background: #fff; border: 1px solid var(--rule); border-radius: var(--r-card); padding: 20px 24px; }
+    .cu-card h3 { font-size: 17px; margin-bottom: 6px; }
+    .cu-card p { font-size: 15px; line-height: 1.55; color: var(--ink-soft); margin: 0; }
+    .cu-line { margin-top: 26px; font-size: 15px; color: var(--ink-soft); }
+    .cu-link { margin-top: 14px; }
+    @media (max-width: 820px) { .cu-cards { grid-template-columns: minmax(0,1fr); } }
+  </style>
   <div class="container reveal">
-    <div class="eyebrow">Where your client data lives</div>
-    <h2>You choose where your files live, and they stay yours either way.</h2>
-    <p class="lede">Most AI tools for advisors upload your client data to their servers and promise to protect it. The two ways to run it below are also the two ways your files can live, and both put the choice in your hands.</p>
-    <div class="cdv-doors">
-      <div class="cdv-door">
-        <svg class="cdv-fig" viewBox="0 0 400 260" role="img" aria-label="A desktop computer in your office">
-          <rect class="fill-soft ln" x="115" y="58" width="170" height="112" rx="10"/>
-          <rect class="fill-deep ln-soft" x="127" y="70" width="146" height="88" rx="5"/>
-          <circle cx="200" cy="164" r="2.5" fill="var(--blue)"/>
-          <path class="fill-soft ln" d="M191,170 h18 l5,22 h-28 z"/>
-          <rect class="fill-soft ln" x="152" y="192" width="96" height="9" rx="4.5"/>
-        </svg>
-        <div class="cdv-door-kicker">The Claude connector</div>
-        <h3>Files stay on your machines.</h3>
-        <p>Briefly builds the knowledge base in your firm's own folders and Claude reads it right there, on your plan. Only your sign-in, a seat check, de-identified preferences, and a short usage record for each tool call ever reach Briefly.</p>
+    <div class="eyebrow">Your data</div>
+    <h2>Your firm's data stays in your firm's scope.</h2>
+    <div class="cu-cards">
+      <div class="cu-card">
+        <h3>Hosted on AWS</h3>
+        <p>Access is scoped to your firm, and your firm decides who signs in.</p>
       </div>
-      <div class="cdv-divider" aria-hidden="true"><span>or</span></div>
-      <div class="cdv-door">
-        <svg class="cdv-fig" viewBox="0 0 400 260" role="img" aria-label="A cloud secured with a padlock">
-          <path class="fill-soft ln" d="M132,174 C104,174 94,144 118,132 C112,104 146,88 172,100 C182,74 226,74 240,98 C270,86 298,108 288,132 C312,140 306,174 276,174 Z"/>
-          <path class="ln" d="M189,128 v-9 a11,11 0 0 1 22,0 v9"/>
-          <rect class="fill-soft ln" x="181" y="128" width="38" height="30" rx="6"/>
-          <circle cx="200" cy="140" r="3" fill="var(--blue)"/>
-          <path d="M200,143 v6" stroke="var(--blue)" stroke-width="1.6" stroke-linecap="round" fill="none"/>
-        </svg>
-        <div class="cdv-door-kicker">The web app</div>
-        <h3>Files live with us, locked down.</h3>
-        <p>We build the client file for you in an environment we secure and control. Your team signs in from a browser, and your firm decides who gets a seat.</p>
+      <div class="cu-card">
+        <h3>Zero-retention routing</h3>
+        <p>Every model call that carries client data uses zero-retention routing.</p>
+      </div>
+      <div class="cu-card">
+        <h3>Approval before Salesforce</h3>
+        <p>Nothing reaches Salesforce before an advisor approves it.</p>
       </div>
     </div>
-    <p class="custody-carveout">Either way, we don't use client data to train AI models, and a seat can move between the two without rebuilding anything.</p>
-
-    <div class="custody-links">
-      <a class="textlink" href="/security">Read the security page</a>
-      <a class="textlink" href="#ways">Two ways to run it</a>
-    </div>
+    <p class="cu-line">We do not train on client data.</p>
+    <p class="cu-link"><a class="textlink" href="/security">Read the security page</a></p>
   </div>
 </section>
 
 <!-- ==================== TWO WAYS TO RUN IT ==================== -->
-<section class="pad band-white" id="ways" aria-label="Two ways to run it">
+<section class="pad band-white" id="ways" aria-label="Pricing">
+  <style>
+    .ways2-one { display: grid; grid-template-columns: minmax(0, 520px); justify-content: center; margin-top: 44px; }
+    .ways2-aside { margin-top: 24px; text-align: center; font-size: 15px; color: var(--ink-soft); }
+  </style>
   <div class="container reveal">
-    <div class="eyebrow">Two ways to run it</div>
-    <h2>In Claude, or in a web app we set up for you.</h2>
-    <p class="lede">Same knowledge base, same citations. What changes is who does the setup and where your team asks.</p>
-    <div class="ways-grid">
-      <div class="way">
-        <div class="way-head"><h3>The Claude connector</h3><span class="price-pill">$100 per seat per month</span></div>
-        <ul class="way-list">
-          <li>Runs inside the Claude your team already uses</li>
-          <li>Client files never reach our servers</li>
-          <li>Every answer cites its source document</li>
-          <li>Learns your firm's corrections as standing rules</li>
-          <li>Ask across your whole book, not one chat</li>
-          <li>Set up in a day, no IT ticket</li>
-        </ul>
-        <a class="btn" href="/start">Start now</a>
-        <p class="way-fine">Checkout takes a card but charges nothing for 30 days. Cancel from the billing portal any time.</p>
-      </div>
+    <div class="eyebrow">Pricing</div>
+    <h2>One app, set up for your firm.</h2>
+    <p class="lede">We set up the web app, connect your Salesforce and Outlook, and your team signs in from a browser.</p>
+    <div class="ways-grid ways2-one">
       <div class="way">
         <div class="way-head"><h3>The web app</h3><span class="price-pill">$150 per seat per month</span></div>
         <ul class="way-list">
@@ -786,8 +844,7 @@
         <a class="btn ghost" href="#" onclick="openDemoModal();return false;">Book a demo</a>
       </div>
     </div>
-    <p class="ways-note">Run both and a seat moves between them without rebuilding anything, since it is one client file either way. <a class="textlink" href="/compare">Compare the two in detail</a>.</p>
-    <p class="signup-line">Pick your seats, check out, and download the connector. The first charge lands on day 31, and you can cancel any time before that. Payments run on Stripe, so we never see your card.</p>
+    <p class="ways2-aside">If your team would rather work inside Claude, <a class="textlink" href="/compare">there is a connector for that too</a>.</p>
   </div>
 </section>
 
@@ -799,35 +856,31 @@
     <div class="faq-list">
       <details open>
         <summary>Is my client data safe?</summary>
-        <p>With the connector, client files never reach Briefly's servers. They stay in a folder on your own computer, and only your sign-in, a seat check, de-identified preference rules, and a short usage record for each tool call reach us instead. Firms on the web app keep files in an environment we secure and control, and the firm decides who signs in. Our <a class="textlink" href="/security">security page</a> breaks down the full data path if you want more detail.</p>
+        <p>Your firm's data lives in an environment we secure and control, hosted on AWS with access scoped to your firm, and the firm decides who signs in. Every model call that carries client data uses zero-retention routing, and nothing reaches Salesforce until an advisor approves it. With the Claude connector, files stay on the advisor's computer. Our <a class="textlink" href="/security">security page</a> breaks down the full data path if you want more detail.</p>
       </details>
       <details>
         <summary>Do you train AI models on my client data?</summary>
-        <p>We don't use client data to train AI models, and any pattern-level learning runs through a de-identified layer with no client name or account number attached. Claude reads the file under your firm's own Claude plan when it answers a question, and for Claude for Work, Claude Enterprise, and the API, Anthropic's commercial terms bar training on customer content. We recommend running Briefly on a business Claude plan for that reason, and our <a class="textlink" href="/security">security page</a> covers the difference in full.</p>
+        <p>We don't use client data to train AI models, and any pattern-level learning runs through a de-identified layer with no client name or account number attached. Model calls that carry client data use zero-retention routing, with a fallback model on the same terms. Our <a class="textlink" href="/security">security page</a> covers the details.</p>
       </details>
       <details>
-        <summary>Does Anthropic see my client files when Briefly runs inside Claude?</summary>
-        <p>When you ask a question, Claude reads the file under your firm's own Claude plan to answer it, and Briefly never stores what Claude reads. On business plans, Anthropic's commercial terms bar training on customer content, and that commitment sits in a contract your compliance officer can review. Our <a class="textlink" href="/security">security page</a> lays out the full data path, including how personal Claude plans work differently.</p>
+        <summary>Do model providers see my client files?</summary>
+        <p>Briefly sends client data to a model only to answer a question or write a report, and every such call uses zero-retention routing. On the Claude connector, Claude reads the file under your firm's own Claude plan, and on business plans Anthropic's commercial terms bar training on customer content. Our <a class="textlink" href="/security">security page</a> lays out the full data path.</p>
       </details>
       <details>
         <summary>Can I put client data into ChatGPT or Claude directly?</summary>
-        <p>Pasting client details into a personal AI chat window sends them to the vendor's servers under consumer terms your firm never reviewed. The SEC's amended Reg S-P rule requires firms to oversee the service providers that handle customer information, which is why compliance teams are asking about AI chat tools. With the Briefly connector, client files stay in your firm's own folders and Claude reads them under the Claude plan your firm chose and can review like any other vendor.</p>
+        <p>Pasting client details into a personal AI chat window sends them to the vendor's servers under consumer terms your firm never reviewed. The SEC's amended Reg S-P rule requires firms to oversee the service providers that handle customer information, which is why compliance teams are asking about AI chat tools. Briefly runs as a web app your firm signs into, with zero-retention routing on every model call that carries client data, so your firm has one vendor to review.</p>
       </details>
       <details>
         <summary>Why not just use Claude or ChatGPT on their own?</summary>
-        <p>AI models change every few months, and what a chat window learned about your firm doesn't carry over. Briefly organizes your firm's knowledge into plain files you own, so the context you build keeps working as models improve or get swapped out. Answers draw on your whole book, corrections hold, and every claim carries a citation you can open.</p>
+        <p>AI models change every few months, and what a chat window learned about your firm doesn't carry over. Briefly keeps one current picture of each client, built from your firm's email, notes, transcripts and statements, so the context you build keeps working as models improve or get swapped out. Answers draw on your whole book, corrections hold, and every claim carries a citation you can open.</p>
       </details>
       <details>
         <summary>Can Briefly analyze a prospect before they sign on?</summary>
         <p>Yes, and you supply everything it works from. Answer five questions about their goals and situation, then attach whatever statements they've shared. Briefly runs up to nine checks against what's actually in those documents, the allocation, the all-in fee, and concentration among them, and hands back findings it can prove alongside questions worth asking at the next meeting. It doesn't make recommendations, and every analysis ends with a plain list of what it could not verify. <a class="textlink" href="/samples/sample-prospect-analysis">Read a full sample</a>.</p>
       </details>
       <details>
-        <summary>Which one should I pick?</summary>
-        <p>If your team already works in Claude, start with the connector. It reads folders on your own machines and answers where you already work, usually the same day you install it. If you want the file built for you, take the web app instead. We connect Salesforce and Outlook and build the client file, which takes longer on our side, and your team signs in from a browser. A seat can move between them without rebuilding anything.</p>
-      </details>
-      <details>
         <summary>What happens if I leave?</summary>
-        <p>With the connector there is nothing to migrate, because the files were always in your own folders. Removing it just stops Claude from reading them. On the web app, your firm has ninety days after leaving to export its files in a standard format, and after that window we delete them.</p>
+        <p>On the web app, your firm has ninety days after leaving to export its files in a standard format, and after that window we delete them. With the Claude connector there is nothing to migrate, because the files were always in your own folders.</p>
       </details>
     </div>
   </div>
@@ -839,7 +892,7 @@
     <h2>See it answer on your firm's own records.</h2>
     <p class="lede">Twenty minutes, with the advisor in the room. Tell us a bit about your firm and we'll set up a time to run it live.</p>
     <a class="btn" href="#" onclick="openDemoModal();return false;">Book a demo</a>
-    <p class="closer-alt">Prefer to start on your own? <a href="/start">Start now</a> with the connector.</p>
+    <p class="closer-alt">Prefer to work inside Claude? <a href="/compare">There is a connector for that too.</a></p>
     <p class="closer-alt">Already in touch with us? Write to <a href="mailto:contact@brieflywealth.com">contact@brieflywealth.com</a> and skip the form.</p>
     <p class="closer-alt">Not ready? <a href="/subscribe">Get the Morning Brief</a>, our daily market email for advisors.</p>
   </div>
@@ -923,34 +976,7 @@
 </div>
 
 <!-- ==================== SCRIPTS ==================== -->
-<script src="assets/briefly-clips.js"></script>
 <script>
-BrieflyClips.mountAll();
-
-(function () {
-  /* Wide clips (queue, sources) are authored at a fixed natural width and
-     crop rather than reflow, so mount them at that width and scale the
-     whole frame to the space available. */
-  var fitTimer;
-  function fitClips() {
-    [].slice.call(document.querySelectorAll('.clip-fit')).forEach(function (wrap) {
-      var clip = wrap.firstElementChild;
-      var natural = parseFloat(wrap.getAttribute('data-natural'));
-      if (!clip || !natural) return;
-      clip.style.width = natural + 'px';
-      var scale = Math.min(1, wrap.clientWidth / natural);
-      clip.style.transform = scale < 1 ? 'scale(' + scale + ')' : '';
-      wrap.style.height = scale < 1 ? (clip.offsetHeight * scale) + 'px' : '';
-    });
-  }
-  fitClips();
-  window.addEventListener('load', fitClips);
-  window.addEventListener('resize', function () {
-    clearTimeout(fitTimer);
-    fitTimer = setTimeout(fitClips, 150);
-  });
-})();
-
 (function () {
   /* Day carousel: one moment on screen at a time. The clips runtime only
      ticks a clip while it intersects the viewport, so off-screen slides
@@ -1270,13 +1296,11 @@ BrieflyClips.mountAll();
 (function () {
   var field = document.getElementById('chipField');
   var card = document.getElementById('fileCard');
-  var count = document.getElementById('docCount');
-  if (!field || !card || !count) return;
+  if (!field || !card) return;
 
   var chips = [].slice.call(field.querySelectorAll('.chip'));
   var rows = [].slice.call(card.querySelectorAll('.fc-row'));
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var BASE = 84 - chips.length;
 
   chips.forEach(function (c) { c.classList.add('swirl'); });
   if (reduced) return;
@@ -1286,7 +1310,6 @@ BrieflyClips.mountAll();
 
   function resetCycle() {
     rows.forEach(function (r) { r.classList.add('hid'); });
-    count.textContent = String(BASE);
     chips.forEach(function (c) {
       c.classList.remove('fly');
       c.style.transform = '';
@@ -1316,7 +1339,6 @@ BrieflyClips.mountAll();
         later(function () {
           fly(c);
           later(function () {
-            count.textContent = String(BASE + i + 1);
             var th = [1, 3, 5, 7].indexOf(i);
             if (th > -1 && rows[th]) rows[th].classList.remove('hid');
             if (i === chips.length - 1) {
