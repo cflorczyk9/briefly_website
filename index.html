@@ -501,92 +501,69 @@
   <span id="schedule"></span>
   <style>
   .otd-eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--blue-ink); }
-  .otd-row { display: grid; grid-template-columns: minmax(0, 55fr) minmax(0, 45fr); gap: 56px; align-items: start; margin-top: 48px; }
-  .otd-stage { --otd-play: running; --otd-ah: 52px; --otd-bh: 94px; position: relative; width: 100%; max-width: 560px; height: 566px; }
-  html.js .otd-stage:not(.is-live) { --otd-play: paused; }
-  .otd-card { position: absolute; background: #fff; border: 1px solid #D2D2D7; border-radius: 12px; box-shadow: 0 12px 32px rgba(29, 29, 31, .10); color: #1D1D1F; font-size: 13px; line-height: 1.35; overflow: hidden; text-align: left; animation: otd-float 8s ease-in-out infinite; animation-play-state: var(--otd-play); }
-  .otd-a { left: 0; top: 0; width: 54%; z-index: 1; }
-  .otd-b { left: 7%; top: 228px; width: 70%; z-index: 2; animation-duration: 9s; animation-delay: -3s; }
-  .otd-c { left: 57%; top: 8px; width: 43%; z-index: 3; animation-duration: 7s; animation-delay: -1s; }
-  @keyframes otd-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
-  .otd-ch { display: flex; align-items: center; justify-content: space-between; gap: 8px; height: 42px; padding: 0 14px; border-bottom: 1px solid #D2D2D7; font-size: 13px; font-weight: 600; }
+  .otd-row { display: grid; grid-template-columns: minmax(0, 57fr) minmax(0, 43fr); gap: 88px; align-items: center; margin-top: 56px; }
+  .otd-stage { position: relative; width: 100%; max-width: 560px; height: 530px; }
+  .otd-card { position: absolute; left: 0; right: 0; bottom: 0; height: 440px; display: flex; flex-direction: column; background: #fff; border: 1px solid #D2D2D7; border-radius: 14px; color: #1D1D1F; font-size: 13px; line-height: 1.4; overflow: hidden; text-align: left; transform-origin: 50% 100%; transition: transform .7s cubic-bezier(.4, 0, .2, 1), filter .7s cubic-bezier(.4, 0, .2, 1), opacity .7s cubic-bezier(.4, 0, .2, 1), box-shadow .7s; will-change: transform, filter, opacity; }
+  .otd-card[data-pos="0"] { transform: none; filter: none; opacity: 1; z-index: 3; box-shadow: 0 18px 48px rgba(29, 29, 31, .10); }
+  .otd-card[data-pos="1"] { transform: translate(0, -78px) scale(.92); filter: blur(3px); opacity: .55; z-index: 2; box-shadow: none; }
+  .otd-card[data-pos="2"] { transform: translate(0, -150px) scale(.86); filter: blur(5px); opacity: .35; z-index: 1; box-shadow: none; }
+  .otd-card[data-pos="out"] { transform: translateY(56px); filter: none; opacity: 0; z-index: 4; box-shadow: none; }
+  .otd-card.otd-jump { transition: none; }
+  .otd-ch { flex: none; display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 48px; padding: 10px 20px; border-bottom: 1px solid #E5E5EA; font-size: 14px; font-weight: 600; }
   .otd-ch span { font-size: 12px; font-weight: 500; color: #6E6E73; }
-  .otd-win { position: relative; overflow: hidden; }
-  .otd-a .otd-win { height: calc(var(--otd-ah) * 4); -webkit-mask-image: linear-gradient(#000 72%, transparent); mask-image: linear-gradient(#000 72%, transparent); }
-  .otd-b .otd-win { height: calc(var(--otd-bh) * 3); -webkit-mask-image: linear-gradient(#000 80%, transparent); mask-image: linear-gradient(#000 80%, transparent); }
-  .otd-atrack { transform: translateY(0); animation: otd-atrack 24s infinite; animation-play-state: var(--otd-play); }
-  .otd-btrack { animation: otd-btrack 40s infinite; animation-play-state: var(--otd-play); }
-  @keyframes otd-atrack {
-    0%, 14.1667% { transform: translateY(calc(var(--otd-ah) * -6)); }
-    16.6667%, 30.8334% { transform: translateY(calc(var(--otd-ah) * -5)); }
-    33.3333%, 47.5% { transform: translateY(calc(var(--otd-ah) * -4)); }
-    50%, 64.1667% { transform: translateY(calc(var(--otd-ah) * -3)); }
-    66.6667%, 80.8334% { transform: translateY(calc(var(--otd-ah) * -2)); }
-    83.3333%, 97.5% { transform: translateY(calc(var(--otd-ah) * -1)); }
-    100%% { transform: translateY(0); }
-  }
-  @keyframes otd-btrack {
-    0%, 3.75% { transform: translateY(calc(var(--otd-bh) * 0)); }
-    12.5%, 16.25% { transform: translateY(calc(var(--otd-bh) * -1)); }
-    25%, 28.75% { transform: translateY(calc(var(--otd-bh) * -2)); }
-    37.5%, 41.25% { transform: translateY(calc(var(--otd-bh) * -3)); }
-    50%, 53.75% { transform: translateY(calc(var(--otd-bh) * -4)); }
-    62.5%, 66.25% { transform: translateY(calc(var(--otd-bh) * -5)); }
-    75%, 78.75% { transform: translateY(calc(var(--otd-bh) * -6)); }
-    87.5%, 91.25% { transform: translateY(calc(var(--otd-bh) * -7)); }
-    100%% { transform: translateY(calc(var(--otd-bh) * -8)); }
-  }
-  .otd-arow { height: var(--otd-ah); padding: 8px 14px; border-bottom: 1px solid #E5E5EA; display: flex; flex-direction: column; justify-content: center; gap: 4px; }
+  .otd-ch .otd-pill { flex: none; padding: 5px 10px; border-radius: 999px; background: #EAF3FF; color: #0A66D6; font-weight: 500; white-space: nowrap; }
+  .otd-body { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+  .otd-brief { padding: 18px 20px 0; gap: 14px; }
+  .otd-brief h4 { margin: 0 0 6px; font-size: 12px; font-weight: 600; letter-spacing: .02em; color: #6E6E73; }
+  .otd-brief ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+  .otd-brief li { color: #1D1D1F; font-size: 13.5px; line-height: 1.45; }
+  .otd-brief li b { font-weight: 600; }
+  .otd-brief sup { margin-left: 2px; font-size: 10px; font-weight: 600; line-height: 0; color: #0A66D6; }
+  .otd-src { margin-top: auto; margin-left: -20px; margin-right: -20px; padding: 12px 20px 14px; border-top: 1px solid #E5E5EA; background: #F5F5F7; font-size: 12px; line-height: 1.6; color: #6E6E73; }
+  .otd-src b { color: #0A66D6; font-weight: 600; }
+  .otd-src i { font-style: normal; white-space: nowrap; }
+  .otd-arow { flex: 1; padding: 0 20px; border-bottom: 1px solid #E5E5EA; display: flex; flex-direction: column; justify-content: center; gap: 6px; }
+  .otd-arow:last-child, .otd-brow:last-child { border-bottom: 0; }
   .otd-ar1 { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
-  .otd-ar1 b { font-weight: 600; }
+  .otd-ar1 b { font-weight: 600; font-size: 14px; }
   .otd-ar1 span { font-size: 12px; color: #6E6E73; white-space: nowrap; }
   .otd-amber { align-self: flex-start; font-size: 12px; line-height: 1; padding: 5px 9px; border-radius: 999px; background: #FFF4E5; color: #9A4500; white-space: nowrap; }
-  .otd-brow { position: relative; height: var(--otd-bh); padding: 10px 14px; border-bottom: 1px solid #E5E5EA; display: flex; flex-direction: column; justify-content: space-between; }
+  .otd-brow { flex: 1; padding: 0 20px; border-bottom: 1px solid #E5E5EA; display: flex; flex-direction: column; justify-content: center; gap: 8px; }
   .otd-b1 { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
-  .otd-b1 b { font-weight: 600; }
+  .otd-b1 b { font-weight: 600; font-size: 14px; }
   .otd-due { font-size: 12px; line-height: 1; padding: 4px 8px; border-radius: 999px; background: #EAF3FF; color: #0A66D6; white-space: nowrap; }
-  .otd-act { margin: 0; color: #424245; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .otd-b3 { position: relative; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .otd-act { margin: 0; color: #424245; }
+  .otd-b3 { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
   .otd-sel { display: inline-flex; align-items: center; gap: 18px; height: 28px; padding: 0 9px; border: 1px solid #D2D2D7; border-radius: 8px; font-size: 12px; background: #fff; }
   .otd-btns { display: inline-flex; align-items: center; gap: 8px; }
   .otd-approve, .otd-reject { display: inline-flex; align-items: center; height: 28px; padding: 0 10px; border-radius: 8px; font-size: 12px; font-weight: 500; }
   .otd-approve { background: #F0F0F2; }
   .otd-reject { padding: 0 4px; }
-  .otd-sent { position: absolute; right: 0; top: 50%; margin-top: -12px; display: inline-flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 999px; background: #EAF7EE; color: #1E7F38; font-size: 12px; font-weight: 500; opacity: 0; white-space: nowrap; }
-  .otd-live .otd-approve { animation: otd-press 40s infinite; animation-delay: calc(var(--i) * 5s); animation-play-state: var(--otd-play); }
-  .otd-live .otd-btns { animation: otd-btnfade 40s infinite; animation-delay: calc(var(--i) * 5s); animation-play-state: var(--otd-play); }
-  .otd-live .otd-sent { animation: otd-sentin 40s infinite; animation-delay: calc(var(--i) * 5s); animation-play-state: var(--otd-play); }
-  @keyframes otd-press { 0%, .75% { transform: scale(1); background: #F0F0F2; } 1.25%, 1.75% { transform: scale(.92); background: #D2D2D7; } 15% { transform: scale(1); background: #D2D2D7; } 15.1%, 100% { transform: scale(1); background: #F0F0F2; } }
-  @keyframes otd-btnfade { 0%, 1.75% { opacity: 1; } 2.5%, 15% { opacity: 0; } 15.1%, 100% { opacity: 1; } }
-  @keyframes otd-sentin { 0%, 1.75% { opacity: 0; transform: scale(.9); } 2.5%, 14.9% { opacity: 1; transform: scale(1); } 15%, 100% { opacity: 0; transform: scale(1); } }
-  .otd-c .otd-inbox { position: relative; height: 204px; overflow: hidden; }
-  .otd-mail { position: absolute; inset: 0; padding: 12px 14px; background: #fff; opacity: 0; display: flex; flex-direction: column; gap: 3px; animation: otd-drop 18s infinite; animation-delay: calc(var(--m) * 6s); animation-play-state: var(--otd-play); }
-  .otd-mail[data-first] { opacity: 1; }
-  @keyframes otd-drop { 0% { opacity: 0; transform: translateY(-110%); } .5% { opacity: 1; } 3% { transform: translateY(8px); } 4.2% { transform: translateY(-3px); } 5.4%, 34.5% { opacity: 1; transform: translateY(0); } 34.6%, 100% { opacity: 0; transform: translateY(0); } }
-  .otd-subj { font-size: 14px; font-weight: 600; letter-spacing: -.005em; }
-  .otd-from { font-size: 12px; color: #6E6E73; overflow-wrap: anywhere; }
-  .otd-from span { color: #424245; font-weight: 500; }
-  .otd-when { font-size: 12px; color: #6E6E73; }
-  .otd-prev { margin: 8px 0 0; font-size: 13px; color: #424245; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-  .otd-pdf { margin-top: auto; align-self: flex-start; font-size: 12px; padding: 5px 9px; border: 1px solid #D2D2D7; border-radius: 8px; background: #F5F5F7; }
-  .otd-list { list-style: none; margin: 0; padding: 0; }
-  .otd-list li { display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 16px; padding: 18px 0; border-top: 1px solid var(--rule); }
-  .otd-list li:first-child { border-top: 0; padding-top: 0; }
-  .otd-list li:last-child { padding-bottom: 0; }
+  .otd-sent { display: inline-flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 999px; background: #EAF7EE; color: #1E7F38; font-size: 12px; font-weight: 500; white-space: nowrap; }
+  .otd-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 18px; }
+  .otd-list li { display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 16px; }
   .otd-ic { width: 36px; height: 36px; border-radius: 50%; background: #EAF3FF; display: flex; align-items: center; justify-content: center; }
   .otd-list h3 { font-size: 16px; font-weight: 600; line-height: 1.3; letter-spacing: -.005em; }
   .otd-list p { margin: 4px 0 0; font-size: 15px; line-height: 1.5; color: var(--ink-soft); }
+  .otd-list p.otd-note { margin-top: 2px; font-size: 13px; color: #6E6E73; }
+  @media (max-width: 1100px) { .otd-row { gap: 56px; } }
   @media (max-width: 960px) {
-    .otd-row { grid-template-columns: 1fr; gap: 40px; }
+    .otd-row { grid-template-columns: 1fr; gap: 48px; align-items: start; }
     .otd-stage { margin: 0 auto; }
   }
   @media (max-width: 620px) {
-    .otd-stage { height: auto; max-width: none; display: flex; flex-direction: column; gap: 16px; }
-    .otd-card { position: static; width: 100%; animation: none; }
+    .otd-stage { height: 530px; max-width: none; }
+    .otd-card { height: 468px; }
+    .otd-card[data-pos="1"] { transform: translate(0, -60px) scale(.94); }
+    .otd-card[data-pos="2"] { transform: translate(0, -108px) scale(.88); }
+    .otd-ch { padding: 10px 14px; }
+    .otd-brief { padding: 14px 14px 0; gap: 10px; }
+    .otd-brief li { font-size: 12.5px; line-height: 1.4; }
+    .otd-src { margin-left: -14px; margin-right: -14px; padding: 10px 14px 12px; }
+    .otd-arow, .otd-brow { padding: 0 14px; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .otd-stage *, .otd-card { animation: none !important; }
-    .otd-btrack, .otd-atrack { transform: none; }
+    .otd-card { transition: none; }
   }
   </style>
   <div class="container">
@@ -595,32 +572,89 @@
       <h2>Your day's client work, done before you start.</h2>
     </div>
     <div class="otd-row">
-      <div class="otd-stage" id="otdStage" role="img" aria-label="Three screens from Briefly. The All clients list flags idle cash and drift, the Action items queue holds tasks to approve, and a household brief arrives in an inbox. Illustrative examples, not real client data.">
-        <div class="otd-card otd-a" data-mockup="">
+      <div class="otd-stage" id="otdStage" role="img" aria-label="Three screens from Briefly that take turns in front. A pre-meeting brief with a numbered source under every line, the All clients list flagging idle cash, distributions and drift, and the Action items queue with tasks to approve. Illustrative examples, not real client data.">
+        <div class="otd-card" data-pos="0" data-mockup="">
+          <div class="otd-ch">Pre-meeting brief · Whitfield household<span class="otd-pill">In your inbox, 6:00 AM</span></div>
+          <div class="otd-body otd-brief">
+            <div><h4>What changed since the March review</h4><ul>
+              <li><b>Jun 18.</b> Margaret wrote that the lake house down payment moves up to this fall.<sup>1</sup></li>
+              <li><b>Aug 6.</b> The wedding moved to next June.<sup>2</sup></li>
+              <li><b>Sep 22.</b> The $205,000 in cash is set aside for the down payment.<sup>3</sup></li>
+            </ul></div>
+            <div><h4>What they care about</h4><ul>
+              <li>Paying for the lake house without selling the bond ladder.<sup>4</sup></li>
+              <li>Helping Dana with wedding costs and leaving the college fund alone.<sup>5</sup></li>
+            </ul></div>
+            <div><h4>Portfolio since March</h4><ul>
+              <li>Up 4.1% against a 3.8% benchmark, with U.S. Large Cap 4.2 points over target.<sup>6</sup></li>
+            </ul></div>
+            <div class="otd-src"><b>Sources</b> &nbsp;<b>1</b> <i>Email, Jun 18</i> · <b>2</b> <i>Meeting note, Aug 6</i> · <b>3</b> <i>Call notes, Sep 22</i> · <b>4</b> <i>Plan review</i> · <b>5</b> <i>Transcript, May 22</i> · <b>6</b> <i>Orion</i></div>
+          </div>
+        </div>
+        <div class="otd-card" data-pos="1" data-mockup="">
           <div class="otd-ch">Needs attention<span>All clients</span></div>
-          <div class="otd-win"><div class="otd-atrack"><div class="otd-arow"><div class="otd-ar1"><b>Margaret Whitfield</b><span>Tue Oct 6</span></div><span class="otd-amber">$205,000 idle cash</span></div><div class="otd-arow"><div class="otd-ar1"><b>Raj Patel</b><span>Thu Oct 1</span></div><span class="otd-amber">U.S. Equity 7.7 points over target</span></div><div class="otd-arow"><div class="otd-ar1"><b>Tom Brennan</b><span>Wed Oct 7</span></div><span class="otd-amber">$2,915,000 idle cash</span></div><div class="otd-arow"><div class="otd-ar1"><b>Margaret Whitfield</b><span>Tue Oct 6</span></div><span class="otd-amber">$31,400 left on 2026 distribution</span></div><div class="otd-arow"><div class="otd-ar1"><b>Linda Choi</b><span>Mon Oct 5</span></div><span class="otd-amber">Intl Equity 5.2 points under target</span></div><div class="otd-arow"><div class="otd-ar1"><b>Sarah Coleman</b><span>Sun Oct 4</span></div><span class="otd-amber">$18,400 left on 2026 distribution</span></div><div class="otd-arow"><div class="otd-ar1"><b>Margaret Whitfield</b><span>Tue Oct 6</span></div><span class="otd-amber">$205,000 idle cash</span></div><div class="otd-arow"><div class="otd-ar1"><b>Raj Patel</b><span>Thu Oct 1</span></div><span class="otd-amber">U.S. Equity 7.7 points over target</span></div><div class="otd-arow"><div class="otd-ar1"><b>Tom Brennan</b><span>Wed Oct 7</span></div><span class="otd-amber">$2,915,000 idle cash</span></div><div class="otd-arow"><div class="otd-ar1"><b>Margaret Whitfield</b><span>Tue Oct 6</span></div><span class="otd-amber">$31,400 left on 2026 distribution</span></div><div class="otd-arow"><div class="otd-ar1"><b>Linda Choi</b><span>Mon Oct 5</span></div><span class="otd-amber">Intl Equity 5.2 points under target</span></div><div class="otd-arow"><div class="otd-ar1"><b>Sarah Coleman</b><span>Sun Oct 4</span></div><span class="otd-amber">$18,400 left on 2026 distribution</span></div></div></div>
+          <div class="otd-body">
+            <div class="otd-arow"><div class="otd-ar1"><b>Margaret Whitfield</b><span>Tue Oct 6</span></div><span class="otd-amber">$205,000 idle cash</span></div>
+            <div class="otd-arow"><div class="otd-ar1"><b>Raj Patel</b><span>Thu Oct 1</span></div><span class="otd-amber">U.S. Equity 7.7 points over target</span></div>
+            <div class="otd-arow"><div class="otd-ar1"><b>Tom Brennan</b><span>Wed Oct 7</span></div><span class="otd-amber">$2,915,000 idle cash</span></div>
+            <div class="otd-arow"><div class="otd-ar1"><b>Sarah Coleman</b><span>Sun Oct 4</span></div><span class="otd-amber">$18,400 left on 2026 distribution</span></div>
+          </div>
         </div>
-        <div class="otd-card otd-b" data-mockup="">
+        <div class="otd-card" data-pos="2" data-mockup="">
           <div class="otd-ch">Action items to review</div>
-          <div class="otd-win"><div class="otd-btrack"><div class="otd-brow otd-live" style="--i:0"><div class="otd-b1"><b>Raj Patel</b><span class="otd-due">Due in 1 day</span></div><p class="otd-act">Execute NVDA tranche 1, sell 1,500 shares</p><div class="otd-b3"><span class="otd-sel">Me <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="otd-btns"><span class="otd-approve">Approve</span><span class="otd-reject">Reject</span></span><span class="otd-sent">Sent to Salesforce</span></div></div><div class="otd-brow otd-live" style="--i:1"><div class="otd-b1"><b>Margaret Whitfield</b><span class="otd-due">Due in 2 days</span></div><p class="otd-act">Confirm mailing address set to Wilmette only</p><div class="otd-b3"><span class="otd-sel">Me <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="otd-btns"><span class="otd-approve">Approve</span><span class="otd-reject">Reject</span></span><span class="otd-sent">Sent to Salesforce</span></div></div><div class="otd-brow otd-live" style="--i:2"><div class="otd-b1"><b>Tom Brennan</b><span class="otd-due">Due in 2 days</span></div><p class="otd-act">Send wire instructions for the condo deposit</p><div class="otd-b3"><span class="otd-sel">Me <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="otd-btns"><span class="otd-approve">Approve</span><span class="otd-reject">Reject</span></span><span class="otd-sent">Sent to Salesforce</span></div></div><div class="otd-brow otd-live" style="--i:3"><div class="otd-b1"><b>Sarah Coleman</b><span class="otd-due">Due in 3 days</span></div><p class="otd-act">Schedule the Q2 review for Sunday</p><div class="otd-b3"><span class="otd-sel">Me <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="otd-btns"><span class="otd-approve">Approve</span><span class="otd-reject">Reject</span></span><span class="otd-sent">Sent to Salesforce</span></div></div><div class="otd-brow otd-live" style="--i:4"><div class="otd-b1"><b>Linda Choi</b><span class="otd-due">Due in 4 days</span></div><p class="otd-act">Request the pension election form from HR</p><div class="otd-b3"><span class="otd-sel">Me <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="otd-btns"><span class="otd-approve">Approve</span><span class="otd-reject">Reject</span></span><span class="otd-sent">Sent to Salesforce</span></div></div><div class="otd-brow otd-live" style="--i:5"><div class="otd-b1"><b>Dana Whitfield</b><span class="otd-due">Due in 5 days</span></div><p class="otd-act">Collect the missing 401(k) statement</p><div class="otd-b3"><span class="otd-sel">Me <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="otd-btns"><span class="otd-approve">Approve</span><span class="otd-reject">Reject</span></span><span class="otd-sent">Sent to Salesforce</span></div></div><div class="otd-brow otd-live" style="--i:6"><div class="otd-b1"><b>Margaret Whitfield</b><span class="otd-due">Due in 6 days</span></div><p class="otd-act">Talk through options for $205,000 idle cash</p><div class="otd-b3"><span class="otd-sel">Me <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="otd-btns"><span class="otd-approve">Approve</span><span class="otd-reject">Reject</span></span><span class="otd-sent">Sent to Salesforce</span></div></div><div class="otd-brow otd-live" style="--i:7"><div class="otd-b1"><b>Raj Patel</b><span class="otd-due">Due in 7 days</span></div><p class="otd-act">Confirm the Q2 estimated tax payment</p><div class="otd-b3"><span class="otd-sel">Me <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="otd-btns"><span class="otd-approve">Approve</span><span class="otd-reject">Reject</span></span><span class="otd-sent">Sent to Salesforce</span></div></div><div class="otd-brow"><div class="otd-b1"><b>Raj Patel</b><span class="otd-due">Due in 1 day</span></div><p class="otd-act">Execute NVDA tranche 1, sell 1,500 shares</p><div class="otd-b3"><span class="otd-sel">Me <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="otd-btns"><span class="otd-approve">Approve</span><span class="otd-reject">Reject</span></span><span class="otd-sent">Sent to Salesforce</span></div></div><div class="otd-brow"><div class="otd-b1"><b>Margaret Whitfield</b><span class="otd-due">Due in 2 days</span></div><p class="otd-act">Confirm mailing address set to Wilmette only</p><div class="otd-b3"><span class="otd-sel">Me <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="otd-btns"><span class="otd-approve">Approve</span><span class="otd-reject">Reject</span></span><span class="otd-sent">Sent to Salesforce</span></div></div><div class="otd-brow"><div class="otd-b1"><b>Tom Brennan</b><span class="otd-due">Due in 2 days</span></div><p class="otd-act">Send wire instructions for the condo deposit</p><div class="otd-b3"><span class="otd-sel">Me <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="otd-btns"><span class="otd-approve">Approve</span><span class="otd-reject">Reject</span></span><span class="otd-sent">Sent to Salesforce</span></div></div><div class="otd-brow"><div class="otd-b1"><b>Sarah Coleman</b><span class="otd-due">Due in 3 days</span></div><p class="otd-act">Schedule the Q2 review for Sunday</p><div class="otd-b3"><span class="otd-sel">Me <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="otd-btns"><span class="otd-approve">Approve</span><span class="otd-reject">Reject</span></span><span class="otd-sent">Sent to Salesforce</span></div></div><div class="otd-brow"><div class="otd-b1"><b>Linda Choi</b><span class="otd-due">Due in 4 days</span></div><p class="otd-act">Request the pension election form from HR</p><div class="otd-b3"><span class="otd-sel">Me <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="otd-btns"><span class="otd-approve">Approve</span><span class="otd-reject">Reject</span></span><span class="otd-sent">Sent to Salesforce</span></div></div><div class="otd-brow"><div class="otd-b1"><b>Dana Whitfield</b><span class="otd-due">Due in 5 days</span></div><p class="otd-act">Collect the missing 401(k) statement</p><div class="otd-b3"><span class="otd-sel">Me <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="otd-btns"><span class="otd-approve">Approve</span><span class="otd-reject">Reject</span></span><span class="otd-sent">Sent to Salesforce</span></div></div><div class="otd-brow"><div class="otd-b1"><b>Margaret Whitfield</b><span class="otd-due">Due in 6 days</span></div><p class="otd-act">Talk through options for $205,000 idle cash</p><div class="otd-b3"><span class="otd-sel">Me <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="otd-btns"><span class="otd-approve">Approve</span><span class="otd-reject">Reject</span></span><span class="otd-sent">Sent to Salesforce</span></div></div><div class="otd-brow"><div class="otd-b1"><b>Raj Patel</b><span class="otd-due">Due in 7 days</span></div><p class="otd-act">Confirm the Q2 estimated tax payment</p><div class="otd-b3"><span class="otd-sel">Me <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="otd-btns"><span class="otd-approve">Approve</span><span class="otd-reject">Reject</span></span><span class="otd-sent">Sent to Salesforce</span></div></div></div></div>
-        </div>
-        <div class="otd-card otd-c" data-mockup="">
-          <div class="otd-ch">Inbox</div>
-          <div class="otd-inbox"><div class="otd-mail" data-first="" style="--m:0"><b class="otd-subj">Whitfield household brief</b><div class="otd-from"><span>From</span> Briefly &lt;no-reply@brieflywealth.com&gt;</div><div class="otd-when">Tuesday 6:00 AM</div><p class="otd-prev">The lake house down payment is the headline. The wedding moved to next June.</p><span class="otd-pdf">Whitfield-brief.pdf</span></div><div class="otd-mail" style="--m:1"><b class="otd-subj">Patel household brief</b><div class="otd-from"><span>From</span> Briefly &lt;no-reply@brieflywealth.com&gt;</div><div class="otd-when">Tuesday 6:00 AM</div><p class="otd-prev">The sell-rate decision is the headline. The Q2 estimated tax is still due.</p><span class="otd-pdf">Patel-brief.pdf</span></div><div class="otd-mail" style="--m:2"><b class="otd-subj">Coleman household brief</b><div class="otd-from"><span>From</span> Briefly &lt;no-reply@brieflywealth.com&gt;</div><div class="otd-when">Tuesday 6:00 AM</div><p class="otd-prev">The Q2 review is this Sunday. Two items are still open from the last meeting.</p><span class="otd-pdf">Coleman-brief.pdf</span></div></div>
+          <div class="otd-body">
+            <div class="otd-brow"><div class="otd-b1"><b>Raj Patel</b><span class="otd-due">Due in 1 day</span></div><p class="otd-act">Execute NVDA tranche 1, sell 1,500 shares</p><div class="otd-b3"><span class="otd-sel">Me <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="otd-sent">Sent to Salesforce</span></div></div>
+            <div class="otd-brow"><div class="otd-b1"><b>Margaret Whitfield</b><span class="otd-due">Due in 2 days</span></div><p class="otd-act">Confirm mailing address set to Wilmette only</p><div class="otd-b3"><span class="otd-sel">Me <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="otd-btns"><span class="otd-approve">Approve</span><span class="otd-reject">Reject</span></span></div></div>
+            <div class="otd-brow"><div class="otd-b1"><b>Tom Brennan</b><span class="otd-due">Due in 2 days</span></div><p class="otd-act">Send wire instructions for the condo deposit</p><div class="otd-b3"><span class="otd-sel">Me <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="otd-btns"><span class="otd-approve">Approve</span><span class="otd-reject">Reject</span></span></div></div>
+          </div>
         </div>
       </div>
-      <ul class="otd-list"><li><span class="otd-ic"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#2F8CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><div><h3>The brief lands before every meeting</h3><p>It covers what changed since you last met, what they care about and how the portfolio did, and it is in your inbox that morning.</p></div></li><li><span class="otd-ic"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#2F8CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><h3>Runs on a schedule</h3><p>Briefly emails you the report with the PDF attached, the morning of every meeting or weekly or monthly.</p></div></li><li><span class="otd-ic"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#2F8CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg></span><div><h3>Prospects, before the first call</h3><p>It covers what they own, which bank holds it, what it costs them and how that bank builds portfolios.</p></div></li><li><span class="otd-ic"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#2F8CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span><div><h3>Tasks from emails and notes</h3><p>To-dos become tasks you approve or reject, and approved ones land in Salesforce for whoever owns them.</p></div></li><li><span class="otd-ic"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#2F8CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 20V10M12 20V4M18 20V13"/></svg></span><div><h3>Your CIO's view in every brief</h3><p>Each brief shows where a client's portfolio differs from the firm's latest stance.</p></div></li><li><span class="otd-ic"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#2F8CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4l9 15H3z"/><path d="M12 10v4M12 17h.01"/></svg></span><div><h3>Cash, RMDs and drift, across the book</h3><p>Orion data, rolling out firm by firm, shows who is sitting on idle cash, who has a required distribution due and whose portfolio is off target.</p></div></li><li><span class="otd-ic"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#2F8CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg></span><div><h3>Ask anything</h3><p>Ask one question across every client and get an answer with the sources under it.</p></div></li></ul>
+      <ul class="otd-list">
+        <li><span class="otd-ic"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#2F8CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><div><h3>The brief lands before every meeting</h3><p>What changed, what they care about and how the portfolio did, emailed that morning or on your schedule.</p></div></li>
+        <li><span class="otd-ic"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#2F8CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1 1"/><path d="M14 11a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1-1"/></svg></span><div><h3>Answers you can check</h3><p>Every line in a brief or an answer links to the email, statement or note it came from.</p></div></li>
+        <li><span class="otd-ic"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#2F8CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4l9 15H3z"/><path d="M12 10v4M12 17h.01"/></svg></span><div><h3>Cash, RMDs and drift, across the book</h3><p>Who is sitting on idle cash, who has a distribution due and whose portfolio is off target.</p><p class="otd-note">Rolling out firm by firm.</p></div></li>
+        <li><span class="otd-ic"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#2F8CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span><div><h3>Tasks from emails and notes</h3><p>Approve or reject them, and approved ones land in Salesforce for whoever owns them.</p></div></li>
+        <li><span class="otd-ic"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#2F8CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg></span><div><h3>Prospects, before the first call</h3><p>What they own, which bank holds it and what it costs them.</p></div></li>
+      </ul>
     </div>
   </div>
   <script>
   (function () {
     var stage = document.getElementById('otdStage');
     if (!stage) return;
+    var cards = Array.prototype.slice.call(stage.querySelectorAll('.otd-card'));
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) return;
+    var inView = false, hover = false, timer = null;
+    function advance() {
+      var front = null;
+      cards.forEach(function (c) {
+        var p = c.getAttribute('data-pos');
+        if (p === '0') front = c;
+        else if (p === '1') c.setAttribute('data-pos', '0');
+        else if (p === '2') c.setAttribute('data-pos', '1');
+      });
+      if (!front) return;
+      front.setAttribute('data-pos', 'out');
+      setTimeout(function () {
+        front.classList.add('otd-jump');
+        front.setAttribute('data-pos', '2');
+        void front.offsetWidth;
+        front.classList.remove('otd-jump');
+      }, 720);
+    }
+    function tick() {
+      timer = null;
+      if (inView && !hover) advance();
+      schedule();
+    }
+    function schedule() { if (timer === null) timer = setTimeout(tick, 6000); }
+    stage.addEventListener('mouseenter', function () { hover = true; });
+    stage.addEventListener('mouseleave', function () { hover = false; });
     if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (es, o) {
-        if (es[0].isIntersecting) { stage.classList.add('is-live'); o.disconnect(); }
-      }, { threshold: 0.25 }).observe(stage);
-    } else { stage.classList.add('is-live'); }
+      new IntersectionObserver(function (es) { inView = es[0].isIntersecting; }, { threshold: 0.25 }).observe(stage);
+    } else { inView = true; }
+    schedule();
   })();
   </script>
 </section>
