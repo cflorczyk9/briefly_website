@@ -129,7 +129,7 @@
           "name": "Does Claude remember a client from one conversation to the next?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Partly. Claude's memory is on by default now and carries context between conversations, so a client you discussed last week can come up again. That memory lives in one person's account though, where the firm can't review it, correct it, or cite it, and nobody else on the team inherits it. Briefly writes what gets learned about a client back to files your firm owns, so every advisor's next conversation starts from the same record, with citations."
+            "text": "Partly. Claude's memory is on by default now and carries context between conversations, so a client you discussed last week can come up again. That memory lives in one person's account though, where the firm can't review it, correct it, or cite it, and nobody else on the team inherits it. Briefly keeps what gets learned about a client in a record your firm owns, so every advisor's next conversation starts from the same place, with citations."
           }
         },
         {
@@ -137,7 +137,7 @@
           "name": "How is Briefly different from just using Claude on its own?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Briefly is an AI knowledge base for financial advisors that runs inside Claude as a local connector. It reads and writes files in a folder on your computer instead of a vendor's cloud, so Claude works from your actual client records and Briefly never holds a copy of them."
+            "text": "Briefly is AI software for wealth advisors. Your firm signs into a web app, we connect Salesforce and Outlook, and it keeps a current picture of each client with every line linked back to its source. It writes the brief before each meeting and the follow-up after. Briefly also comes as a connector for Claude."
           }
         }
       ]
@@ -280,7 +280,7 @@
 
         <div class="reveal">
         <div class="card disclosure">
-          <p>A disclosure before we get into it. Briefly is the local connector we built, so we're not a neutral party on this topic. Everything below is written to hold up whether or not you ever install it, and the comparison further down scores our own product the same way it scores everyone else's.</p>
+          <p>A disclosure before we get into it. Briefly is AI software for wealth advisors, and it also comes as a connector for Claude, so we're not a neutral party on this topic. Everything below is written to hold up whether or not you ever use Briefly, and the comparison further down scores our own product the same way it scores everyone else's.</p>
         </div>
 
         <nav class="card toc" aria-label="On this page">
@@ -290,7 +290,7 @@
             <li><a href="#what-claude-can-do">What Claude can already do for an advisor</a></li>
             <li><a href="#what-claude-cant-see">What Claude can't see</a></li>
             <li><a href="#claude-connectors">Claude connectors, in plain English</a></li>
-            <li><a href="#comparison">Claude, with and without a local connector</a></li>
+            <li><a href="#comparison">Claude on its own and next to Briefly</a></li>
             <li><a href="#access-methods">Four ways to give Claude access</a></li>
             <li><a href="#practical-workflows">What Claude handles well once it can see your files</a></li>
             <li><a href="#getting-started">Getting started</a></li>
@@ -345,12 +345,12 @@
         </div>
         <div class="reveal">
         <h2 id="claude-connectors">Claude connectors, in plain English</h2>
-        <p>Claude can read from and act on other pieces of software through something called a connector, a small program that tells Claude how to talk to a particular system, whether that's Google Drive, a CRM, or a program running on your own computer. Most connectors, including the one Briefly runs, are built on the same open standard for how a model talks to outside tools and data. You don't need to understand that standard any more than you need to understand how the postal system routes mail to use your mailbox. What matters is where the other end of the connector lives, on a vendor's server somewhere, or on your own machine.</p>
+        <p>Claude can read from and act on other pieces of software through something called a connector, a small program that tells Claude how to talk to a particular system, whether that's Google Drive, a CRM, or a program running on your own computer. Most connectors, including the one Briefly offers, are built on the same open standard for how a model talks to outside tools and data. You don't need to understand that standard any more than you need to understand how the postal system routes mail to use your mailbox. What matters is where the other end of the connector lives, on a vendor's server somewhere, or on your own machine.</p>
 
         </div>
         <div class="reveal">
-        <h2 id="comparison">Claude, with and without a local connector</h2>
-        <p>Here's what that looks like in practice. ChatGPT and Claude as they ship, next to Claude with the Briefly connector added.</p>
+        <h2 id="comparison">Claude on its own and next to Briefly</h2>
+        <p>Here's what that looks like in practice. ChatGPT and Claude as they ship, next to the Briefly web app.</p>
         <div class="compare-wrap">
           <table class="comparison-table">
             <thead>
@@ -358,7 +358,7 @@
                 <th scope="col">&nbsp;</th>
                 <th scope="col">ChatGPT out of the box</th>
                 <th scope="col">Claude out of the box</th>
-                <th scope="col">Claude + Briefly connector</th>
+                <th scope="col">Briefly web app</th>
               </tr>
             </thead>
             <tbody>
@@ -366,31 +366,31 @@
                 <th scope="row">Data access</th>
                 <td>Whatever you paste into the chat, plus files you upload for that one session.</td>
                 <td>Whatever you paste into the chat, plus any connected apps you've approved, like Drive or Gmail.</td>
-                <td class="win">Documents and notes in the folder you point Briefly at, read straight from your computer.</td>
+                <td class="win">Your firm's Salesforce and Outlook, which we connect during setup, plus the documents the firm adds. Every line links back to its source.</td>
               </tr>
               <tr>
                 <th scope="row">Remembers the client between sessions</th>
                 <td>Partly. ChatGPT's memory can carry details between chats, but it lives in one person's account, with nothing your firm can review or cite.</td>
                 <td>Partly. Claude's memory is on by default and carries context between chats, but it sits in one person's account, and the firm can't review or correct it.</td>
-                <td class="win">Yes. Briefly writes what it learns back to files on your computer, so the next conversation can pick up where the last one left off.</td>
+                <td class="win">Yes. Briefly keeps a current picture of each client that the whole firm works from, so the next conversation starts from the same record.</td>
               </tr>
               <tr>
                 <th scope="row">Where files live</th>
                 <td>On OpenAI's servers for that conversation, and potentially longer depending on your plan and settings.</td>
                 <td>With whichever vendor hosts the connector, Google or Microsoft in most cases, plus Anthropic's infrastructure while it's serving the connection.</td>
-                <td class="win">With the Briefly connector, files stay on your computer, in the folder you chose. Only your sign-in, a check that your seat is active, de-identified preference rules, and a short usage record for each tool call reach Briefly's server. Claude still processes what it reads through Anthropic's infrastructure to answer, under your firm's own Claude plan.</td>
+                <td class="win">Your client data stays in a private environment for your firm on AWS. The AI models that read it run on zero-retention terms and never train on it.</td>
               </tr>
               <tr>
                 <th scope="row">Compliance posture</th>
                 <td>You're relying on OpenAI's data policies and your own recordkeeping. No features built for advisor compliance.</td>
                 <td>You're relying on Anthropic's data policies. Business plans are barred from training on your content by contract, and the recordkeeping question is still yours to answer.</td>
-                <td class="win">With the Briefly connector, client files never reach Briefly's servers, so there's no client data on our end to govern, and Claude reads the files under the same firm plan named in the middle column. See our <a href="/ai-compliance-for-financial-advisors">compliance page</a> for the full accounting.</td>
+                <td class="win">Nothing goes into Salesforce until an advisor approves it. Briefly makes suggestions for the advisor to review, and the advisor makes every decision and every recommendation. Your firm has ninety days after leaving to export its files in a standard format, and after that window we delete them. See our <a href="/ai-compliance-for-financial-advisors">compliance page</a> for the full accounting.</td>
               </tr>
               <tr>
                 <th scope="row">Setup effort</th>
                 <td>None. Sign up and start typing.</td>
                 <td>Low. Sign up, connect an app or two if you want to.</td>
-                <td class="win">One download, pick a folder, sign in. A few minutes.</td>
+                <td class="win">We set it up for the firm and connect Salesforce and Outlook. Advisors sign in from a browser.</td>
               </tr>
             </tbody>
           </table>
@@ -418,14 +418,14 @@
           </li>
           <li class="method-card local">
             <h3>A local connector that reads files from your machine</h3>
-            <p>The connector runs on your own computer and reads files from a folder you choose. Claude asks it a question, the connector reads the answer off your machine's disk, and Anthropic processes what Claude reads under your firm's own Claude plan, the same model call every method on this list involves. The difference is storage, since this is the only one of the four where client files never end up copied onto a vendor's infrastructure, and it's the approach we built the Briefly connector around. Client files never reach Briefly's servers. Only your sign-in, a check that your seat is active, de-identified preference rules, and a short usage record for each tool call do.</p>
+            <p>The connector runs on your own computer and reads files from a folder you choose. Claude asks it a question, the connector reads the answer off your machine's disk, and Anthropic processes what Claude reads under your firm's own Claude plan, the same model call every method on this list involves. The difference is storage, since client files never end up copied onto a vendor's infrastructure. The limit is that Claude only sees what sits in that folder, and the firm has no shared record of what it learned. Briefly also comes as a connector for Claude, and the <a href="/compare">compare page</a> lists how it differs from the web app.</p>
           </li>
         </ol>
 
         </div>
         <div class="reveal">
         <h2 id="practical-workflows">What Claude handles well once it can see your files</h2>
-        <p>The five examples below show up every week once Claude can read a client's files instead of relying on whatever an advisor remembered to type in. Each one assumes a local connector like Briefly's, which reads whatever sits in the folder you point it at and cites the specific file behind every number, rather than a generic answer about what a typical client's situation looks like. Ask Claude for a client's current allocation and it can either guess from general knowledge of how portfolios tend to look, or read the actual statement in front of it and say which document the number came from. Everything below assumes the second version.</p>
+        <p>The five examples below show up every week once an AI tool can read a client's files instead of relying on whatever an advisor remembered to type in. Each one assumes the tool cites the specific document behind every number, rather than giving a generic answer about what a typical client's situation looks like. Ask Claude for a client's current allocation and it can either guess from general knowledge of how portfolios tend to look, or read the actual statement in front of it and say which document the number came from. Everything below assumes the second version.</p>
 
         <h3>Meeting prep from a folder of statements</h3>
         <p>Drop the last two or three custodian statements for a client into an intake folder and ask for a meeting brief. Claude reads each PDF, pulls the account values, contribution or withdrawal activity, and anything that changed since the last statement, then writes a short brief with every number cited back to the specific statement it came from. The advisor still reads it over before the meeting and fixes anything that looks off. An advisor meeting a client Tuesday can drop Friday's statements in over the weekend and have a brief waiting Monday morning. A brief that used to mean opening the CRM plus three or four PDF tabs turns into a file drop and one question.</p>
@@ -442,7 +442,7 @@
         <h3>Quarterly review notes</h3>
         <p>Ahead of a quarterly review, ask Claude to pull performance numbers, the notes from the last meeting, and any open follow-ups into one outline. It reads what's already sitting in the folder instead of the advisor reconstructing the quarter from memory or old email threads, so the advisor walks into the review already knowing what changed and why. Every figure in the outline traces back to the statement or note it came from.</p>
 
-        <p>The mechanism is the same in every example above. The connector hands Claude the actual file, and every answer points back to the line the number came from, instead of a fluent-sounding paragraph nobody can trace to anything.</p>
+        <p>The mechanism is the same in every example above. The tool reads the actual document, and every answer points back to the line the number came from, instead of a fluent-sounding paragraph nobody can trace to anything. Briefly's web app does this across the firm's records. It also writes the follow-up after each meeting, reviews a prospect's statements before the first call, and flags idle cash and drift across the book once the custodian or portfolio management system is linked.</p>
 
         </div>
         <div class="reveal">
@@ -452,9 +452,9 @@
           <li>Pick a Claude plan that matches how you'll use it. Anthropic's commercial terms bar training on customer content for Work, Enterprise, and API accounts, while personal plans train on conversations unless you opt out. Many firms keep client work on a business plan for that reason, and your compliance officer can weigh in on the right setup for yours.</li>
           <li>Start with pasting or a built-in connector for occasional use, methods one or two above.</li>
           <li>If you want Claude reading your files regularly, decide between a vendor's own connector and a local connector based on where you're comfortable having that data sit.</li>
-          <li>If a local connector is what you want, Briefly is one option, an AI knowledge base for financial advisors that runs inside Claude and reads from a folder on your computer. <a href="/download">See how it works</a> before deciding anything, or look at <a href="/sample-deliverables">sample deliverables</a> to see what a brief looks like before you install anything.</li>
+          <li>If you would rather not assemble this yourself, Briefly is AI software for wealth advisors that your firm signs into from a browser. We set it up and connect Salesforce and Outlook. Look at <a href="/sample-deliverables">sample deliverables</a> to see what a brief looks like before deciding anything.</li>
         </ol>
-        <p>Firms that would rather sign in than install anything can use the Briefly web app. Its agents can run on a schedule and email each finished report with a PDF attached, and it adds a market brief agent, a firm view built from your CIO's notes, and your firm's logo and two colors on every agent output. The <a href="/compare">compare page</a> lists what each option includes.</p>
+        <p>Briefly also comes as a connector for Claude, for firms that want to work in Claude Desktop. The <a href="/compare">compare page</a> lists what each option includes. The web app's agents can run on a schedule and email each finished report with a PDF attached, and it adds a market brief agent, a firm view built from your CIO's notes, and your firm's logo and two colors on every agent output.</p>
 
         </div>
         <div class="reveal">
@@ -486,11 +486,11 @@
           </details>
           <details>
             <summary>Does Claude remember a client from one conversation to the next?</summary>
-            <p>Partly. Claude's memory is on by default now and carries context between conversations, so a client you discussed last week can come up again. That memory lives in one person's account though, where the firm can't review it, correct it, or cite it, and nobody else on the team inherits it. Briefly writes what gets learned about a client back to files your firm owns, so every advisor's next conversation starts from the same record, with citations.</p>
+            <p>Partly. Claude's memory is on by default now and carries context between conversations, so a client you discussed last week can come up again. That memory lives in one person's account though, where the firm can't review it, correct it, or cite it, and nobody else on the team inherits it. Briefly keeps what gets learned about a client in a record your firm owns, so every advisor's next conversation starts from the same place, with citations.</p>
           </details>
           <details>
             <summary>How is Briefly different from just using Claude on its own?</summary>
-            <p>Briefly is an AI knowledge base for financial advisors that runs inside Claude as a local connector. It reads and writes files in a folder on your computer instead of a vendor's cloud, so Claude works from your actual client records and Briefly never holds a copy of them.</p>
+            <p>Briefly is AI software for wealth advisors. Your firm signs into a web app, we connect Salesforce and Outlook, and it keeps a current picture of each client with every line linked back to its source. It writes the brief before each meeting and the follow-up after. Briefly also comes as a connector for Claude.</p>
           </details>
         </div>
 
@@ -507,9 +507,9 @@
         </div>
 
         <div class="cta">
-            <h2>Want Claude reading your actual client files?</h2>
-            <p>Briefly is the local option in the ranking above. One download, pick a folder, sign in, and Claude can work from what's already in your files instead of what you remembered to paste in.</p>
-            <a class="btn" href="/download">See how it works</a>
+            <h2>Want AI that works from your actual client records?</h2>
+            <p>Briefly is AI software for wealth advisors. Your firm signs in from a browser, we connect Salesforce and Outlook, and every line links back to its source.</p>
+            <a class="btn" href="/#contact">Book a demo</a>
         </div>
         </div>
     </article>
@@ -522,14 +522,13 @@
     </div>
     <div>
       <h4>Product</h4>
-      <a href="/start">Start now</a>
+      <a href="/#contact">Book a demo</a>
       <a href="/#how">How it works</a>
       <a href="/sample-deliverables">Sample deliverables</a>
       <a href="/security">Security</a>
       <a href="/#platform">Platform</a>
       <a href="/compare">Compare</a>
       <a href="/whats-new">What's new</a>
-      <a href="/download">Download</a>
       <a href="/knowledge-base">Knowledge base</a>
       <a href="/ai-compliance-for-financial-advisors">AI compliance for advisors</a>
       <a href="/claude-for-financial-advisors">Claude for financial advisors</a>

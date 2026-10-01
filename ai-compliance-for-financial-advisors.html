@@ -129,7 +129,7 @@
       "name": "What's the safest way for advisors to use AI with client information?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "One structure keeps client files in the firm's own storage and has the AI read them there, under an agreement the firm has already reviewed. Briefly, an AI knowledge base for financial advisors, is built that way. Its connector runs inside Claude Desktop, client files never reach Briefly's servers, and only your sign-in, a seat check, de-identified preference rules, and a short usage record for each tool call do. Claude reads the files under your firm's own Claude plan, and whether the whole setup fits your compliance program is your compliance officer's call."
+        "text": "Use one vendor your firm has reviewed instead of a personal chat window, with the data path written down. Briefly, AI software for wealth advisors, works that way. Your client data stays in a private environment for your firm on AWS, the AI models that read it run on zero-retention terms and never train on it, and nothing goes into Salesforce until an advisor approves it. The advisor makes every decision and every recommendation, and whether the setup fits your compliance program is your compliance officer's call."
       }
     }
   ]
@@ -336,13 +336,13 @@
         </div>
         <div class="reveal">
         <h2 id="what-advisors-use-instead">What advisors use instead</h2>
-        <p>Advisors who want the research and drafting benefit of a large language model without creating a new compliance exposure are moving toward a different structure. Instead of sending client files to an AI vendor, the AI reads the files where they already live, on the advisor's own computer, and only a narrow slice of nonclient information travels anywhere else.</p>
-        <p>Broadly, advisors evaluating AI tools are choosing between three structures. The first is a consumer AI tool used directly, the path on the left below. The second is a hosted private AI platform, where a vendor still runs servers full of client data, just servers with the firm's name on the contract instead of the public tool. That structure still leaves the same vendor-oversight and breach-notification questions in place, just with better paperwork behind them. The third keeps client files out of any new vendor's storage and has the AI read them locally instead, under the Claude plan the firm already holds. The diagram below compares the first structure with the third, since that's the comparison advisors ask about most.</p>
+        <p>Advisors who want the research and drafting benefit of a large language model without a new compliance exposure are moving toward one vendor their firm has reviewed, in place of a personal chat window each advisor opened on their own. The model underneath can be similar. What changes is who signed the agreement, where the client data sits, and whether a compliance officer can see the data path written down.</p>
+        <p>Broadly, advisors evaluating AI tools are choosing between three structures. The first is a consumer AI tool used directly, the path on the left below. The second is a general business AI plan the firm licenses, which settles the training question but leaves client documents in whatever chats and folders advisors paste them into. The third is a purpose-built advisor platform from a single vendor the firm reviews once, with client data held in a private environment set up for that firm. The diagram compares the first structure with the third, since that is the comparison advisors ask about most.</p>
 
         <div class="flow-wrap">
           <div class="flow-col risk">
             <span class="flow-tag">The common path</span>
-            <h3 class="flow-title">Cloud AI tools</h3>
+            <h3 class="flow-title">Personal chat window</h3>
             <ol class="flow-steps">
               <li>You paste a file, or type client details, into the chat</li>
               <li>The text travels to the vendor's servers</li>
@@ -352,20 +352,20 @@
           </div>
           <div class="flow-col safe">
             <span class="flow-tag">What Briefly does instead</span>
-            <h3 class="flow-title">Briefly inside Claude</h3>
+            <h3 class="flow-title">One vendor your firm reviewed</h3>
             <ol class="flow-steps">
-              <li>You ask a question inside Claude</li>
-              <li>Briefly reads the relevant file on your own computer</li>
-              <li>Claude reads the file and Anthropic processes it, under your firm's own Claude plan</li>
-              <li>Briefly's server sees your sign-in, a check that your seat is active, de-identified preference rules, and a short usage record for each tool call, never the file</li>
+              <li>Your firm signs in to Briefly in a browser, and we connect Salesforce and Outlook for you</li>
+              <li>Client data stays in a private environment for your firm on AWS</li>
+              <li>The AI models that read it run on zero-retention terms and never train on it</li>
+              <li>Nothing goes into Salesforce until an advisor approves it, and the advisor makes every decision</li>
             </ol>
           </div>
         </div>
-        <p class="flow-caption">The left side is what happens with a consumer AI tool used directly. The right side is what happens when the same question runs through an AI knowledge base for financial advisors built to sit inside Claude instead of alongside it.</p>
+        <p class="flow-caption">The left side is what happens with a consumer AI tool used directly. The right side is the same kind of work run through a single vendor the firm has reviewed, with the data path written down.</p>
 
-        <p>Briefly is built around the right-hand path. It's a connector that runs inside Claude Desktop, the local option this page is about, and it fits a team that already works inside Claude day to day. Briefly also runs as a browser workspace for firms that would rather have Briefly handle the setup. An advisor using the connector points it at a folder of client documents, emails, and notes already stored on their computer. When they ask a question in Claude, whether that's prepping for tomorrow's meeting or answering something specific about a client's account, Briefly reads the relevant files locally and writes the answer with <a href="/sample-deliverables">the source cited</a>. With the Briefly connector, client files never reach Briefly's servers. Only your sign-in, a check that your seat is active, de-identified preference rules, and a short usage record for each tool call do, and Claude reads the files under your firm's own Claude plan. Briefly is advisory-workflow software only. It reads files and never touches accounts, trading, or custody.</p>
-        <p>That's why the Reg S-P questions from earlier in this page narrow. Briefly never receives the client file, so there's nothing of your clients' on our servers to safeguard or disclose in a breach notice. Anthropic still processes what Claude reads, under the firm's own Claude plan, so that plan stays in your vendor file the way it already does today. What Briefly avoids adding is a second, unreviewed vendor holding client data.</p>
-        <p>This page covers the two most common paths. For a full comparison of what Claude can and can't see out of the box, and how advisors are giving it secure access to client files beyond Briefly, see <a href="/claude-for-financial-advisors">Claude for financial advisors</a>.</p>
+        <p>Briefly is built around the right-hand path. It's AI software that a firm signs into from a browser. We set it up for the firm, connect Salesforce and Outlook, and keep a current picture of each client, with <a href="/sample-deliverables">every line linked back to its source</a>. Advisors use it for the brief before a meeting, the follow-up after, and a review of a prospect's statements before the first call. Briefly makes suggestions for the advisor to review, and the advisor makes every decision and every recommendation. Briefly is advisory-workflow software only and never touches accounts, trading, or custody.</p>
+        <p>That's why the Reg S-P questions from earlier on this page get shorter. Your compliance officer reviews one vendor, and the <a href="/security">security page</a> lays out the data path. Client data stays in a private environment for your firm on AWS, the AI models that read it run on zero-retention terms and never train on it, and nothing goes into Salesforce until an advisor approves it. Your firm has ninety days after leaving to export its files in a standard format, and after that window we delete them. Whether the whole setup fits your compliance program is still your compliance officer's call.</p>
+        <p>Teams that already work in Claude Desktop can also use Briefly as a connector for Claude, and the <a href="/compare">compare page</a> explains how the options differ. For a fuller look at what Claude can and can't see out of the box, see <a href="/claude-for-financial-advisors">Claude for financial advisors</a>.</p>
 
         </div>
         <div class="reveal">
@@ -401,7 +401,7 @@
           </details>
           <details>
             <summary>What's the safest way for advisors to use AI with client information?</summary>
-            <p>One structure keeps client files in the firm's own storage and has the AI read them there, under an agreement the firm has already reviewed. Briefly, an AI knowledge base for financial advisors, is built that way. Its connector runs inside Claude Desktop, client files never reach Briefly's servers, and only your sign-in, a seat check, de-identified preference rules, and a short usage record for each tool call do. Claude reads the files under your firm's own Claude plan, and whether the whole setup fits your compliance program is your compliance officer's call.</p>
+            <p>Use one vendor your firm has reviewed instead of a personal chat window, with the data path written down. Briefly, AI software for wealth advisors, works that way. Your client data stays in a private environment for your firm on AWS, the AI models that read it run on zero-retention terms and never train on it, and nothing goes into Salesforce until an advisor approves it. The advisor makes every decision and every recommendation, and whether the setup fits your compliance program is your compliance officer's call.</p>
           </details>
         </div>
 
@@ -433,10 +433,10 @@
         </div>
 
         <div class="cta">
-            <h2>See how Briefly keeps client files on your computer.</h2>
-            <p>Briefly runs inside Claude Desktop and reads your firm's own files locally, so client data never has to leave your machine to get an answer.</p>
-            <a href="/start" class="btn">Start now</a>
-            <a href="/#contact" class="textlink">Or book a demo</a>
+            <h2>See how Briefly handles client data.</h2>
+            <p>Briefly is a web app your firm signs into. Client data stays in a private environment for your firm, and an advisor approves everything before it reaches Salesforce.</p>
+            <a href="/#contact" class="btn">Book a demo</a>
+            <a href="/security" class="textlink">Or read the security page</a>
         </div>
         </div>
     </article>
@@ -449,14 +449,13 @@
     </div>
     <div>
       <h4>Product</h4>
-      <a href="/start">Start now</a>
+      <a href="/#contact">Book a demo</a>
       <a href="/#how">How it works</a>
       <a href="/sample-deliverables">Sample deliverables</a>
       <a href="/security">Security</a>
       <a href="/#platform">Platform</a>
       <a href="/compare">Compare</a>
       <a href="/whats-new">What's new</a>
-      <a href="/download">Download</a>
       <a href="/knowledge-base">Knowledge base</a>
       <a href="/ai-compliance-for-financial-advisors">AI compliance for advisors</a>
       <a href="/claude-for-financial-advisors">Claude for financial advisors</a>

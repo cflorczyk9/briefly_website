@@ -210,7 +210,7 @@
   .proofline p { font-family: var(--display); font-weight: 600; letter-spacing: -0.02em; }
   .proof-static { font-size: clamp(26px, 3vw, 34px); color: var(--ink); line-height: 1.25; }
   .proof-fill { font-size: clamp(26px, 3vw, 34px); color: var(--ink); margin-top: 6px; line-height: 1.25; }
-  .proof-cycle { display: inline-grid; text-align: left; }
+  .proof-cycle { display: grid; justify-items: center; text-align: center; margin-top: 4px; }
   .proof-cycle .pc { grid-area: 1 / 1; align-self: center; white-space: nowrap; color: var(--blue-ink); opacity: 0; filter: blur(7px); transition: opacity .9s ease, filter .9s ease; }
   .proof-cycle .pc.is-on { opacity: 1; filter: blur(0); }
   @media (max-width: 700px) {
@@ -391,7 +391,7 @@
     <div>
       <div class="eyebrow">AI software for wealth advisors</div>
       <h1>Know every client like they're your only client.</h1>
-      <p class="lede">Briefly reads everything your firm learns about a client as it comes in, down to the email that landed an hour ago.<span class="lede-more"> You get one current picture of each client that shows what they care about and what has changed, and every line links to its source.</span></p>
+      <p class="lede">Briefly keeps a current picture of each client from your email, CRM, notes and statements, and every line links to its source.<span class="lede-more"> It writes the brief before each meeting and the follow-up after, flags idle cash and drift across your book, and reviews a prospect's statements before the first call.</span></p>
       <div class="hero-ctas">
         <a class="btn" href="#" onclick="openDemoModal();return false;">Book a demo</a>
       </div>
@@ -456,8 +456,7 @@
 <!-- ==================== PROOF LINE ==================== -->
 <section class="proofline band-paper2" aria-label="Proof">
   <div class="container reveal">
-    <p class="proof-static">Used by advisors at a $1B independent RIA</p>
-    <p class="proof-fill">to <span class="proof-cycle" id="proofCycle"><span class="pc is-on">remember a client's thoughts on NVIDIA.</span><span class="pc">compare their fee to a prospective client's.</span><span class="pc">create quarterly reports.</span><span class="pc">find every household that mentioned selling a business.</span><span class="pc">remember how a client feels about the oil industry.</span><span class="pc">build the brief before a client review.</span><span class="pc">read a prospect's statements before the first meeting.</span><span class="pc">find the beneficiary form from last March.</span><span class="pc">draft month-end commentary in the firm's voice.</span><span class="pc">remember who asked about Roth conversions.</span></span></p>
+    <p class="proof-fill">Advisors use Briefly to <span class="proof-cycle" id="proofCycle"><span class="pc is-on">remember a client's thoughts on NVIDIA.</span><span class="pc">compare their fee to a prospective client's.</span><span class="pc">create quarterly reports.</span><span class="pc">find every household that mentioned selling a business.</span><span class="pc">remember how a client feels about the oil industry.</span><span class="pc">build the brief before a client review.</span><span class="pc">read a prospect's statements before the first meeting.</span><span class="pc">find the beneficiary form from last March.</span><span class="pc">draft month-end commentary in the firm's voice.</span><span class="pc">remember who asked about Roth conversions.</span></span></p>
   </div>
 </section>
 
@@ -1415,14 +1414,13 @@
     </div>
     <div>
       <h4>Product</h4>
-      <a href="/start">Start now</a>
+      <a href="/#contact">Book a demo</a>
       <a href="/#how">How it works</a>
       <a href="/sample-deliverables">Sample deliverables</a>
       <a href="/security">Security</a>
       <a href="/#platform">Platform</a>
       <a href="/compare">Compare</a>
       <a href="/whats-new">What's new</a>
-      <a href="/download">Download</a>
       <a href="/knowledge-base">Knowledge base</a>
       <a href="/ai-compliance-for-financial-advisors">AI compliance for advisors</a>
       <a href="/claude-for-financial-advisors">Claude for financial advisors</a>
@@ -1832,7 +1830,7 @@
   var started = false;
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
-      if (e.isIntersecting && !started) { started = true; runCycle(); io.disconnect(); }
+      if (e.isIntersecting && !started) { started = true; later(runCycle, 3500); io.disconnect(); }
     });
   }, { threshold: 0.35 });
   io.observe(field);

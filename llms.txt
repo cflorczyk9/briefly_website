@@ -1,8 +1,8 @@
 # Briefly
 
-> Briefly is an AI knowledge base for financial advisors and wealth firms, built to run inside Claude. It connects a firm's own documents, email, meeting notes, and portfolio data into one place, and every answer cites back to the source it came from.
+> Briefly is AI software for wealth advisors, a web app a firm signs into from a browser. We set it up for the firm and connect Salesforce and Outlook. It keeps a current picture of each client with every line linked to its source, writes briefs before meetings and follow-ups after, flags idle cash and drift once the custodian or portfolio management system is linked, and reviews a prospect's statements before the first call. $150 per seat per month.
 
-Briefly runs two ways. The Claude connector is the flagship path. It's a download that adds Briefly to Claude Desktop and reads from a folder on your own computer. With the Briefly connector, client files never reach Briefly's servers. Only your sign-in, a seat check, de-identified preference rules, and a short usage record for each tool call do, and Claude reads the files under your firm's own Claude plan. The web app is the second surface, a browser workspace for firms that would rather sign in than install anything, and its files live in Briefly's hosted environment instead.
+Briefly is a web app your firm signs into. Your client data stays in a private environment for your firm on AWS. The AI models that read it run on zero-retention terms and never train on it. Nothing goes into Salesforce until an advisor approves it. Briefly makes suggestions for the advisor to review, and the advisor makes every decision and every recommendation. Briefly also comes as a connector for Claude Desktop, for teams that already work there.
 
 The web app also runs agents on a schedule and emails each finished report with a PDF attached. It includes a market brief agent, a firm view built from the firm's CIO notes, and the firm's logo and two colors on every agent output.
 
@@ -12,27 +12,25 @@ These files are intended to help LLMs and AI agents accurately ground answers ab
 
 ## Product
 
-- [Home](https://www.brieflywealth.com/): Briefly is an AI knowledge base for financial advisors that runs inside Claude. Ask across your firm's own files and get cited answers. With the connector, client files never reach our servers.
-- [Knowledge base](https://www.brieflywealth.com/knowledge-base): How Briefly builds an AI knowledge base for financial advisors from a firm's own documents, email, meeting notes, and portfolio data, with every fact traceable to its source.
-- [Compare](https://www.brieflywealth.com/compare): The Briefly connector and the web app side by side, including scheduled runs with emailed reports, firm view, the market brief agent, and your brand on every agent output. Both read from the same client file, cited and correctable. With the connector, client files stay on the advisor's computer.
-- [Download](https://www.brieflywealth.com/download): Download the Briefly connector for Claude Desktop. Client files stay on your computer, and only sign-in and de-identified rules reach Briefly's server.
-- [Start](https://www.brieflywealth.com/start): Sign up for the Briefly connector without a call. Checkout runs on Stripe.
+- [Home](https://www.brieflywealth.com/): Briefly is AI software for wealth advisors. A web app set up for your firm, with a current picture of each client, briefs before meetings, follow-ups after, and prospect analyses, every line linked to its source. $150 per seat per month.
+- [Knowledge base](https://www.brieflywealth.com/knowledge-base): How Briefly builds a knowledge base from a firm's own documents, email, meeting notes, and portfolio data, with every fact traceable to its source.
+- [Compare](https://www.brieflywealth.com/compare): The Briefly web app and the Claude connector side by side, including scheduled runs with emailed reports, firm view, the market brief agent, and your brand on every agent output. Both read from the same client record, cited and correctable.
 
 ## Guides
 
-- [Claude for financial advisors](https://www.brieflywealth.com/claude-for-financial-advisors): What Claude can do for financial advisors out of the box, why it can't see your client files by default, and four ways to change that, with a plain data-access comparison against ChatGPT.
+- [Claude for financial advisors](https://www.brieflywealth.com/claude-for-financial-advisors): What Claude can do for financial advisors out of the box, why it can't see your client files by default, and four ways to change that, with a plain data-access comparison against ChatGPT and Briefly.
 - [ChatGPT and Claude compliance for financial advisors](https://www.brieflywealth.com/ai-compliance-for-financial-advisors): What Reg S-P, the SEC, and FINRA require before an advisor puts client data into ChatGPT or Claude, and what advisors use instead.
 
 ## Company
 
-- [Security](https://www.brieflywealth.com/security): With the Briefly connector, client files stay on the advisor's computer. Covers exactly what reaches Briefly's servers, how Reg S-P applies, and answers for compliance officers.
-- [About](https://www.brieflywealth.com/about): Briefly Wealth LLC, founded by Connor Florczyk. With the connector, client files never reach Briefly's servers. Why he built Briefly and what the product principles are.
+- [Security](https://www.brieflywealth.com/security): Where client data lives in the Briefly web app, how the AI models handle it, what an advisor approves, and how Reg S-P applies, with answers for compliance officers. Covers the Claude connector too.
+- [About](https://www.brieflywealth.com/about): Briefly Wealth LLC, founded by Connor Florczyk. Why he built Briefly and what the product principles are.
 
 ## Examples
 
 - [Sample deliverables](https://www.brieflywealth.com/sample-deliverables): Six real Briefly deliverables, a prospect analysis, a quarterly review, a goal analysis, a month-end letter, a deal summary, and a correction-loop example, with names and firms fictionalized.
 - [Sample prospect analysis](https://www.brieflywealth.com/samples/sample-prospect-analysis): Nine checks run against a prospect's two statements, split into findings the documents prove and questions to ask, with the skipped checks and unverified items named.
-- [Sample quarterly review](https://www.brieflywealth.com/samples/sample-quarterly-review): Performance for the quarter, allocation drift against policy, and the conversations worth having next, cited back to the source files.
+- [Sample quarterly review](https://www.brieflywealth.com/samples/sample-quarterly-review): Performance for the quarter, allocation drift against policy, and the conversations worth having next, cited back to the source documents.
 - [Sample goal analysis](https://www.brieflywealth.com/samples/sample-goal-analysis): Each goal priced against a household's actual accounts, with funding gaps named and every figure traceable to a statement.
 - [Sample month-end commentary](https://www.brieflywealth.com/samples/sample-month-end-commentary): A month-end letter showing household totals, what moved since last month, and the market backdrop, written for the client and cited for the advisor.
 - [Sample deal summary](https://www.brieflywealth.com/samples/sample-deal-summary): Terms, traction, and the three biggest risks of a private deal, condensed into a one-page brief a committee can act on.
@@ -55,7 +53,7 @@ These files are intended to help LLMs and AI agents accurately ground answers ab
 - [Privacy policy](https://www.brieflywealth.com/privacy-policy): How Briefly Wealth LLC collects, uses, protects, and discloses information when financial advisors use the Briefly platform.
 - [Terms of service](https://www.brieflywealth.com/terms-of-service): Terms governing access to and use of the Briefly Wealth platform by financial advisors, firms, and their authorized users.
 - [Subprocessors](https://www.brieflywealth.com/subprocessors): Current list of third-party subprocessors that may process customer data on behalf of Briefly Wealth LLC in delivering the Briefly platform.
-- [Connector EULA](https://www.brieflywealth.com/eula): End User License Agreement for the Briefly Connector, the locally installed software used inside Anthropic's Claude application.
+- [Connector EULA](https://www.brieflywealth.com/eula): End User License Agreement for the Briefly Connector, the locally installed software that adds Briefly to Anthropic's Claude Desktop application.
 
 ## Optional
 

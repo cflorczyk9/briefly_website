@@ -1,61 +1,59 @@
 ---
-# Briefly | AI Knowledge Base for Financial Advisors
+# Briefly | AI Software for Wealth Advisors
 Source: https://www.brieflywealth.com/
 ---
 
-**AI knowledge base for RIAs and advisor teams**
+**AI software for wealth advisors**
 
 # Know every client like they're your only client.
 
-Briefly turns the statements, emails, and meeting notes your firm already has into one knowledge base. Ask inside Claude or in the Briefly web app, and every answer comes back cited. Fix something once, and it holds for the whole team from then on.
+Briefly is a web app your firm signs into from a browser. We set it up for your firm and connect your Salesforce and Outlook. It keeps a current picture of each client, writes the brief before each meeting and the follow-up after, flags idle cash and drift across the book, and reviews a prospect's statements before the first call. Every line links back to the document it came from. Fix something once, and it holds for the whole team from then on.
 
-Run the connector and client files never reach our servers. Or have us set up the web app, connected to your Salesforce and Outlook.
+$150 per seat per month. Briefly also comes as a connector for Claude, for teams that already work there.
 
 Used by advisors managing billions in AUM.
 
-## Ten years of files, one working memory.
+## A current picture of every client, with the source behind every line.
 
-Briefly is an AI knowledge base for financial advisors that runs inside Claude. The answers your firm needs are already sitting in folders, inboxes, and old plans. Briefly files each document into the right client's knowledge base as it arrives, and every fact keeps a link back to the page it came from. The more you add, the better every answer gets.
+The answers your firm needs are already sitting in statements, inboxes, meeting notes, and old plans. Briefly files each document into the right client's record as it arrives, and every fact keeps a link back to the page it came from. The more you add, the better every answer gets.
 
-A Smith, John & Jane client file shows what that looks like once documents are filed. 84 documents, updated today. The 401(k) rollover completed at $412,000, cited to the Q2 statement. An open K-1 question with the CPA, cited to a June 12 email. A goal to fund the lake house by 2028, cited to a June 14 transcript. An umbrella policy renewing in September, cited to the renewal notice.
+A Smith, John & Jane client record shows what that looks like once documents are filed. 84 documents, updated today. The 401(k) rollover completed at $412,000, cited to the Q2 statement. An open K-1 question with the CPA, cited to a June 12 email. A goal to fund the lake house by 2028, cited to a June 14 transcript. An umbrella policy renewing in September, cited to the renewal notice.
 
-## In Claude, or in a web app we set up for you.
+## What Briefly does across your firm.
 
-Same knowledge base, same citations. What changes is who does the setup and where your team asks.
+### A current picture of each client
 
-### The Claude connector
+Salesforce and Outlook are connected during setup, and documents the firm already has feed the same record. Ask about one household or the whole book and get an answer with numbered sources.
 
-Runs inside the Claude your team already uses. Client files never reach our servers. Every answer cites its source document. Learns your firm's corrections as standing rules. Ask across your whole book, not one chat. Sign up today, no call needed. Checkout takes a card but charges nothing for 30 days, and you can cancel from the billing portal any time.
+### Briefs before meetings, follow-ups after
 
-### The web app
+A prepared brief is ready before every meeting. Afterward, Briefly drafts the follow-up and the next steps. Nothing goes into Salesforce until an advisor approves it.
 
-We build the client file for you. Connects your Salesforce and Outlook. Approved next steps route back into Salesforce. Sign in from a browser, nothing for IT to install.
+### Idle cash and drift alerts
 
-Run both and a seat moves between them without rebuilding anything, since it is one client file either way. You can sign up for the connector without talking to anyone. Pick your seats, check out, and download the connector. The first charge lands on day 31, and you can cancel any time before that. Payments run on Stripe, so Briefly never sees your card.
+Briefly flags idle cash and allocation drift across the book. These alerts turn on once your custodian or portfolio management system is linked.
 
-## You choose where your files live, and they stay yours either way.
+### Prospect analyses
 
-Most AI tools for advisors upload your client data to their servers and promise to protect it. The two ways to run it above are also the two ways your files can live, and both put the choice in your hands.
+Briefly reviews a prospect's statements before the first call and returns what the documents prove and what is worth asking about.
 
-### The Claude connector: files stay on your machines.
+### Scheduled runs and firm view
 
-Briefly builds the knowledge base in your firm's own folders and Claude reads it right there, on your plan. Only your sign-in, a seat check, de-identified preference rules, and a short usage record for each tool call ever reach Briefly.
+Rules on the Agents tab run before every meeting, every week, or every month, and each finished report is emailed with a PDF attached. A market brief agent, a firm view built from the firm's CIO notes, and the firm's logo and two colors on every agent output come with it.
 
-### The web app: files live with us, locked down.
+## We set it up for your firm.
 
-We build the client file for you in an environment we secure and control. Your team signs in from a browser, and your firm decides who gets a seat.
+Your team signs in from a browser, and there is nothing for IT to install. We connect Salesforce and Outlook and build each client's record. Your firm decides who gets a seat. The price is $150 per seat per month. Book a demo and we will show it working on your firm's own records.
 
-Either way, Briefly doesn't use client data to train AI models, and a seat can move between the two without rebuilding anything.
+## One day with Briefly open.
 
-## One day with the file open.
+Briefly isn't a new place to work. Your team asks questions in one place, and the firm's own records do the answering.
 
-Briefly isn't a new place to work. Your team keeps asking questions where they already are, and the firm's own records do the answering.
+**8:55 am, before the review.** The advisor asks, "Give me the Patel file before the 9:00." Briefly returns a prepared brief, three open items, one sentiment shift since April, and the rollover question still waiting on their HR paperwork, cited to six sources.
 
-**8:55 am, in Claude, before the review.** The advisor asks, "Give me the Patel file before the 9:00." Briefly returns a prepared brief, three open items, one sentiment shift since April, and the rollover question still waiting on their HR paperwork, cited to six sources.
+**11:40 am, a client calls.** Operations asks, "Did we ever get the updated beneficiary form from the Kims?" Briefly answers yes, signed copy filed in March, primary changed to their daughter, cited to the beneficiary form filed March 19, 2026.
 
-**11:40 am, in the web app, a client calls.** Operations asks, "Did we ever get the updated beneficiary form from the Kims?" Briefly answers yes, signed copy filed in March, primary changed to their daughter, cited to the beneficiary form filed March 19, 2026.
-
-**4:15 pm, in Claude, across the book.** The advisor asks, "Which households have mentioned selling a business?" Briefly finds four households, each with the conversation it came from, cited to four sources across four files. Two mentioned a timeline inside three years.
+**4:15 pm, across the book.** The advisor asks, "Which households have mentioned selling a business?" Briefly finds four households, each with the conversation it came from, cited to four sources across four files. Two mentioned a timeline inside three years.
 
 ## Correct it once. The whole team inherits it.
 
@@ -89,33 +87,37 @@ Their daughter's tuition starts this fall, the 529 is short of the plan, and Mar
 
 Q: Is my client data safe?
 
-With the connector, client files never reach Briefly's servers. They stay in a folder on your own computer, and only your sign-in, a seat check, de-identified preference rules, and a short usage record for each tool call reach us instead. Firms on the hosted version keep files in an environment we secure and control, and the firm decides who signs in. Our security page breaks down the full data path if you want more detail.
+Your client data stays in a private environment for your firm on AWS. The AI models that read it run on zero-retention terms and never train on it. Nothing goes into Salesforce until an advisor approves it. Our security page breaks down the full data path if you want more detail.
 
 Q: Do you train AI models on my client data?
 
-We don't use client data to train AI models, and any pattern-level learning runs through a de-identified layer with no client name or account number attached. Claude reads the file under your firm's own Claude plan when it answers a question, and for Claude for Work, Claude Enterprise, and the API, Anthropic's commercial terms bar training on customer content. We recommend running Briefly on a business Claude plan for that reason, and our security page covers the difference in full.
+No. The AI models that read your client data run on zero-retention terms and never train on it. Any pattern-level learning runs through a de-identified layer with no client name or account number attached.
 
-Q: Does Anthropic see my client files when Briefly runs inside Claude?
+Q: Can the AI make decisions for my advisors?
 
-When you ask a question, Claude reads the file under your firm's own Claude plan to answer it, and Briefly never stores what Claude reads. On business plans, Anthropic's commercial terms bar training on customer content, and that commitment sits in a contract your compliance officer can review. Our security page lays out the full data path, including how personal Claude plans work differently.
+No. Briefly makes suggestions for the advisor to review. The advisor makes every decision and every recommendation.
 
 Q: Can I put client data into ChatGPT or Claude directly?
 
-Pasting client details into a personal AI chat window sends them to the vendor's servers under consumer terms your firm never reviewed. The SEC's amended Reg S-P rule requires firms to oversee the service providers that handle customer information, which is why compliance teams are asking about AI chat tools. With the Briefly connector, client files stay in your firm's own folders and Claude reads them under the Claude plan your firm chose and can review like any other vendor.
+Pasting client details into a personal AI chat window sends them to the vendor's servers under consumer terms your firm never reviewed. The SEC's amended Reg S-P rule requires firms to oversee the service providers that handle customer information, which is why compliance teams are asking about AI chat tools. Briefly is a vendor your firm can review like any other, with the data path written down on the security page.
 
 Q: Why not just use Claude or ChatGPT on their own?
 
-AI models change every few months, and what a chat window learned about your firm doesn't carry over. Briefly organizes your firm's knowledge into plain files you own, so the context you build keeps working as models improve or get swapped out. Answers draw on your whole book, corrections hold, and every claim carries a citation you can open.
+AI models change every few months, and what a chat window learned about your firm doesn't carry over. Briefly keeps a current picture of each client in a record your firm owns, so the context you build keeps working as models improve or get swapped out. Answers draw on your whole book, corrections hold, and every claim carries a citation you can open.
 
-Q: Which one should I pick?
+Q: Does Briefly come as a connector for Claude?
 
-If your team already works in Claude, start with the connector. It reads folders on your own machines and answers where you already work, usually the same day you install it. If you want the file built for you, take the web app instead. We connect Salesforce and Outlook and build the client file, which takes longer on our side, and your team signs in from a browser. A seat can move between them without rebuilding anything.
+Yes. Briefly also comes as a connector for Claude Desktop, for teams that already work there. The compare page lists what each option includes.
+
+Q: How much does it cost?
+
+$150 per seat per month. Your firm decides who gets a seat.
 
 Q: What happens if I leave?
 
-With the connector there is nothing to migrate, because the files were always in your own folders. Removing it just stops Claude from reading them. On the hosted version, your firm has ninety days after leaving to export its files in a standard format, and after that window we delete them.
+Your firm has ninety days after leaving to export its files in a standard format, and after that window we delete them.
 
-See it answer on your firm's own records. Twenty minutes, with the advisor in the room. No call needed for the connector, start now and you're asking questions today. Not ready? Get the Morning Brief, a daily market email for advisors.
+See it on your firm's own records. Twenty minutes, with the advisor in the room. Book a demo. Not ready? Get the Morning Brief, a daily market email for advisors.
 
 
 ---
@@ -125,11 +127,11 @@ Source: https://www.brieflywealth.com/knowledge-base
 
 **Knowledge Base**
 
-# An AI knowledge base for financial advisors that runs inside Claude.
+# An AI knowledge base for financial advisors, built from your firm's own records.
 
 By Connor Florczyk. Updated August 5, 2026.
 
-Client documents, email, and meeting notes already sit inside your firm. Briefly turns them into one knowledge base that Claude can read across every account in your book. Ask which clients hold a concentrated position over $500K and get an answer with a name, a number, and the statement it came from, the same way you'd get an answer about one household.
+Client documents, email, and meeting notes already sit inside your firm. Briefly turns them into one knowledge base that covers every account in your book. Ask which clients hold a concentrated position over $500K and get an answer with a name, a number, and the statement it came from, the same way you'd get an answer about one household.
 
 A sample cross-client query, "Which clients hold a concentrated position over $500K?" Patel, $684,300 in employer stock (31%), Q2 statement. Okafor, $558,900 in a single legacy position (24%), Q2 statement. Lindqvist, $511,000 in concentrated equity (22%), Q1 statement.
 
@@ -137,7 +139,7 @@ Wealth firms already have plenty of data. Client facts live across CRM records, 
 
 A knowledge base gives the firm that model. It connects people, households, entities, accounts, goals, concerns, events, tasks, and source citations, so every workflow starts from the same understanding of the client. Ask a question about one household or about every household in the book, and the answer comes from the same place.
 
-Sources, emails, notes, meetings, PDFs, CRM records, portfolio data, and planning documents, resolve into the knowledge base, resolved people, households, entities, relationships, tasks, goals, and evidence, which shows up wherever the advisor is working, inside Claude through the connector, or in the Briefly web app if Briefly sets it up.
+Emails, notes, meeting transcripts, PDFs, CRM records, portfolio data, and planning documents resolve into one record of people, households, entities, relationships, tasks, goals, and evidence. It shows up in the Briefly web app, and through the connector in Claude for teams that work there.
 
 ## Ask across your whole book, not one client file.
 
@@ -157,7 +159,7 @@ What advisors know about a client often stays in individual memory instead of fi
 
 Generic AI summaries are risky unless they are traceable to source material.
 
-Briefly is built to answer inside that reality without asking a firm to change how it works. It runs inside Claude, where many advisor teams are already working, and reads the files that are already there. If a firm runs the connector, those files stay on the advisor's own computer, and the only things that reach Briefly's servers are your sign-in, a seat check, de-identified preference rules, and a short usage record for each tool call, never the client file itself. That's true whether the question comes up during meeting prep the morning of, or mid-call about a household nobody on the call remembers well.
+Briefly is built to answer inside that reality without asking a firm to change how it works. It is a web app the firm signs into, set up with Salesforce and Outlook connected, so the records the firm already has feed it. Your client data stays in a private environment for your firm on AWS. The AI models that read it run on zero-retention terms and never train on it. That holds whether the question comes up before a meeting or mid-call about a household nobody on the call remembers well.
 
 ## Why CRMs are not enough.
 
@@ -165,7 +167,7 @@ CRMs are important systems of record, but they are not built to reconstruct a re
 
 Search helps when you already know what to look for. A knowledge base helps when you need the system to surface what matters before you ask.
 
-A CRM also only knows what someone typed into it. It doesn't read the email you forwarded, the PDF you saved to a folder, or the transcript from last week's call, not unless someone copies the details in by hand. Briefly reads those files directly, so the knowledge base grows every time a document gets filed, not every time someone remembers to update a record.
+A CRM also only knows what someone typed into it. It doesn't read the email you forwarded, the PDF you saved to a folder, or the transcript from last week's call, not unless someone copies the details in by hand. Briefly reads those documents directly, so the knowledge base grows every time a document arrives, not every time someone remembers to update a record.
 
 Neither one learns from being corrected. If an advisor tells a CRM once that a client goes by a nickname, or that the firm calls it a planning conversation and never a sales meeting, someone has to remember to make the same fix again the next time it comes up. Briefly keeps a correction like that as a standing rule instead. One firm did exactly this with a single phrase, telling Briefly to say planning conversation instead of sales meeting, and every brief that firm has received since has followed it, for every advisor on the team.
 
@@ -197,7 +199,7 @@ Briefly turns fragmented advisor files into a living knowledge base. It keeps ev
 
 Each new document, an email forwarded from a client, a statement uploaded after it arrives, a note typed up after a call, gets filed into the household it belongs to and read into the knowledge base right away. Nothing has to be reformatted or copied into a separate system first.
 
-Briefly runs two ways, inside Claude with the connector or as a web app Briefly sets up. Either way it's the same knowledge base underneath, built from the same files, with the same citations on every answer. The result is one base of firm memory. It gets better every time an advisor uses it, and it keeps working long after any single meeting ends.
+Briefly is a web app your firm signs into, set up for you with Salesforce and Outlook connected. It also comes as a connector for Claude, for teams that already work there. Either way it is the same knowledge base underneath, with the same citations on every answer. The result is one base of firm memory. It gets better every time an advisor uses it, and it keeps working long after any single meeting ends.
 
 ### Connor Florczyk
 
@@ -205,140 +207,44 @@ Founder of Briefly. Before Briefly, he worked as a private wealth analyst on a t
 
 
 ---
-# Download Briefly | AI Knowledge Base for Financial Advisors
-Source: https://www.brieflywealth.com/download
----
-
-# Add Briefly to Claude.
-
-Your firm's memory, from your own files.
-
-Download Briefly. Mac & Windows. Requires Claude. By downloading and installing the connector, you agree to the Connector EULA.
-
-Using Briefly starts with a login Briefly sets up for you. Download first, then book a demo so Briefly sets up your firm's sign-in. From there your whole team shares how your firm likes its briefs written.
-
-Not sure what you're about to open? This page installs the Briefly connector, which adds Briefly to Claude Desktop. One download, pick a folder on your computer, sign in, and you're set up. Client files stay in that folder. Briefly's servers only see your sign-in, a seat check, de-identified preference rules, and a short usage record for each tool call, never a client file. If your firm would rather work from a browser with no install, Briefly also has a web app with its own sign-in.
-
-## Five minutes, start to finish.
-
-Five steps, use the dots to jump ahead.
-
-### Step 1: Get Claude
-
-Free from claude.ai. Skip this step if you already have it. The walkthrough shows the Claude download page, the download completing, and the installer dragging Claude into Applications.
-
-### Step 2: Download Briefly
-
-One click on brieflywealth.com/download, then open it from your browser's downloads. Shown in Chrome, in Safari downloads live under the arrow next to the address bar. The walkthrough shows the download completing (briefly_wealth.mcpb) and a card reading, "Briefly saved to your computer. Open the downloaded briefly_wealth.mcpb file to launch Claude Desktop, then click Install."
-
-### Step 3: Claude installs it
-
-Click Install, then Save. Nothing to type. The settings screen is optional, save and move on. The red Anthropic notice is standard for extensions installed outside its directory. The walkthrough shows the Briefly extension detail page inside Claude Desktop. Description, "A source-backed knowledge base for financial advisors. Reads the firm's files and answers with citations. The Claude work runs on the firm's own plan." A banner warns that installing grants the extension access to everything on the computer. 37 tools are listed, including briefly_ask, briefly_get_recent_activity, briefly_prepare_meeting_brief, briefly_resolve_citation, briefly_get_advisor_learning_profile, briefly_ingest_source, briefly_update_entity, and briefly_capture. A native "Do you want to install Briefly?" confirmation dialog appears, then a Configure screen with two optional fields, "Your firm's folder" and "Inbox folder." Saving raises a toast, "Briefly added to Claude."
-
-### Step 4: Sign in once
-
-Your login is the whole setup. Use the login set up for your firm, and Briefly knows you and your firm. The walkthrough shows a Claude conversation, "What do we have on file for the Johnsons?", triggering a sign-in page at auth.brieflywealth.com.
-
-### Step 5: File, then brief
-
-Save statements into the intake folder, then ask, "File everything in my intake folder." Then, "Prepare a meeting brief." The walkthrough shows a Finder window with a Briefly folder (wiki, operating, originals, intake, sources) receiving two filed PDF statements, then a Claude conversation where Briefly confirms it filed both for the Johnson family, with originals routed to originals/johnson-family/, a Schwab balance of $1,284,306.22 and a Vanguard IRA balance of $612,940.18, each cited, followed by a prepared meeting brief giving a household net worth of $1,897,246.40 and a largest position of AAPL at 11.2% of the brokerage account, sourced to the Schwab and Vanguard statements.
-
-With the Briefly connector, your original files stay on your machine. Briefly saves them in your folder, builds every brief locally, and never uploads your files. The finished brief is written by your own Claude, so its content follows your Claude plan and privacy settings. The web app works differently, since its files live in Briefly's hosted environment.
-
-Works in Claude Desktop on macOS and Windows.
-
-## Questions before you install.
-
-Q: Do I need Claude to use Briefly?
-
-Yes. Briefly is a connector you add to Claude Desktop. You need the free Claude Desktop app installed first, then Briefly plugs into it. If you already use Claude for chat or writing, it's the same app, and Briefly reads your client files from inside it.
-
-Q: Where do my client files live?
-
-With the Briefly connector, client files live on your computer, in a folder you pick during setup. Briefly reads and writes files there directly, and nothing gets uploaded to a Briefly database or cloud storage account. The browser web app works differently. Its files live in Briefly's hosted environment instead.
-
-Q: Is this a web app?
-
-Briefly comes in two forms, and this page installs the Claude connector, where your team runs Briefly inside Claude reading folders on your own machines. With the web app, Briefly connects your Salesforce and Outlook and builds the client file for you, so there's nothing for your IT to install.
-
-Q: What does Briefly's server see?
-
-With the Claude connector, our server sees your sign-in, a seat check, de-identified preference rules your firm builds over time, never tied to a client name, and a short usage record for each tool call. Client files never reach our servers. The web app differs, since its files live on our side instead.
-
-Q: Does Briefly work on Windows and Mac?
-
-Yes, both. The same download and the same install steps work on macOS and Windows. Claude Desktop also has a Linux beta on Ubuntu and Debian, though we haven't certified Briefly there yet.
-
-Q: How long does setup take?
-
-About five minutes if you already have Claude Desktop installed. Download Briefly, open the file, click Install in Claude, sign in, and point it at a folder on your computer. That's the whole process, a handful of clicks with no IT ticket and no server setup required.
-
-## Open the download to install
-
-Briefly saved to your computer. Open the downloaded briefly_wealth.mcpb file to launch Claude Desktop, then click Install. Find it in your browser downloads or your Downloads folder. Opened it and nothing happened? You need the free Claude desktop app first, then open briefly_wealth.mcpb again.
-
-Ready when you are. Download Briefly.
-
-
----
-# Start with Briefly | Claude connector signup
-Source: https://www.brieflywealth.com/start
----
-
-# Start with the Claude connector.
-
-Pick your seats and check out. Most teams are asking questions inside Claude the same day.
-
-Choose your seat count, one per advisor who will use it. Teammates claim the remaining seats by installing Briefly and signing in with an email at the firm's domain, so the buyer has nothing to send them. More than 25 seats routes to booking a demo instead, so Briefly can set your firm up directly.
-
-The signup form asks for a work email and a firm name. The connector reads files on your own computer, and client files never reach Briefly's servers.
-
-After checkout, you download the connector and point it at your folders. By continuing to checkout, you agree to the Terms of Service, Privacy Policy, and Connector EULA.
-
-Checkout takes a card but charges nothing for 30 days. Cancel from the billing portal any time. Checkout runs on Stripe, so Briefly never sees your card.
-
-Prefer to see it first? Book a demo. Want the web app instead? Briefly sets it up with you, book a demo or compare the two.
-
-
----
-# Compare the connector and the web app | Briefly
+# Compare the web app and the Claude connector | Briefly
 Source: https://www.brieflywealth.com/compare
 ---
 
-# The connector and the web app, side by side.
+# The web app and the Claude connector, side by side.
 
-Both read from the same client file, cited and correctable. What changes is where the file lives, who builds it, and where you ask.
+Both read from the same client record, cited and correctable. What changes is where the data lives, who builds it, and where you ask.
 
-Choose the connector if your team already works in Claude and wants files to stay on your own machines. Choose the web app if you want the client file built for you from Salesforce and Outlook. A seat can move from one to the other without rebuilding anything.
+Choose the web app if you want the record built for you from Salesforce and Outlook. It is the main way firms use Briefly, at $150 per seat per month. Choose the connector if your team already works in Claude and wants files to stay on your own machines. A seat can move from one to the other without rebuilding anything.
 
 ## What you're comparing, row by row
 
-- Where your files live. Connector: in a folder on your own machines. Web app: in Briefly's hosted environment.
-- Who builds the client file. Connector: your team, working inside Claude. Web app: Briefly builds it from Salesforce and Outlook.
-- Where you ask. Connector: inside Claude, the app your team already has open. Web app: the Briefly web app, from any browser.
-- Salesforce routing. Connector: not connected, point Claude at the files you already have. Web app: connected during setup, along with Outlook.
-- Scheduled runs and emailed reports. Connector: not listed. Web app: rules on the Agents tab run before every meeting, every week, or every month, and each finished report is emailed with a PDF attached.
-- Firm view. Connector: not listed. Web app: your CIO's notes become a dated timeline and one shared summary for the firm, which also appears as a section in the briefs.
-- Market brief agent. Connector: not listed. Web app: web research with numbered sources, alongside outside house views and your firm's own.
-- Your brand on every agent output. Connector: not listed. Web app: your firm's logo and two colors on every agent output, on screen, in PDF, and on the clipboard.
-- Setup effort. Connector: download, sign in, point it at your folder. Web app: Briefly connects your systems and builds the file for you.
-- Best for. Connector: teams that already live in Claude. Web app: teams that want the file built for them.
+- Where your data lives. On the web app, in a private environment for your firm on AWS. On the connector, in a folder on your own machines.
+- Who builds the client record. On the web app, Briefly builds it from Salesforce and Outlook. On the connector, your team, working in Claude.
+- Where you ask. On the web app, any browser. On the connector, in Claude, the app your team already has open.
+- Salesforce routing. On the web app, connected during setup, along with Outlook. Nothing goes into Salesforce until an advisor approves it. On the connector, not connected, point Claude at the files you already have.
+- Scheduled runs and emailed reports. On the web app, rules on the Agents tab run before every meeting, every week, or every month, and each finished report is emailed with a PDF attached. On the connector, not listed.
+- Firm view. On the web app, your CIO's notes become a dated timeline and one shared summary for the firm, which also appears as a section in the briefs. On the connector, not listed.
+- Market brief agent. On the web app, web research with numbered sources, alongside outside house views and your firm's own. On the connector, not listed.
+- Your brand on every agent output. On the web app, your firm's logo and two colors on every agent output, on screen, in PDF, and on the clipboard. On the connector, not listed.
+- Setup effort. On the web app, Briefly connects your systems and builds the record for you. On the connector, download, sign in, point it at your folder.
+- Best for. On the web app, firms that want the work set up for them. On the connector, teams that already live in Claude.
 
-## Everything each plan includes.
+## Everything each option includes.
 
-Both plans read and write the same client file. A correction made in one shows up in the other.
-
-### The Claude connector
-
-Your team already works in Claude. One client file per household. Every answer cites the document it came from. Files stay in folders on your own machines. Works inside the Claude your team already opens. Nothing new for advisors to learn. Ask about the 529 they mentioned once. Only your sign-in, a seat check, de-identified preference rules, and a short usage record for each tool call reach Briefly's servers. Share a client like any other file.
+Both read and write the same client record. A correction made in one shows up in the other.
 
 ### The Briefly web app
 
-You want it handled for you. One client file per household. Every answer cites the document it came from. Briefly connects Salesforce and Outlook and builds the file for you. A prepared brief before every meeting. You see only your own clients. Share a client, your colleague gets everything. Quarterly reviews and month-end commentary, one click. Scheduled runs, with each finished report emailed with a PDF attached. Firm view and a market brief agent. Your firm's logo and two colors on every agent output.
+You want it handled for you. One client record per household. Every answer cites the document it came from. Briefly connects Salesforce and Outlook and builds the record for you. A prepared brief before every meeting and a follow-up after. Idle cash and drift alerts once your custodian or portfolio management system is linked. Prospect analyses. You see only your own clients. Share a client, your colleague gets everything. Quarterly reviews and month-end commentary, one click. Scheduled runs, with each finished report emailed with a PDF attached. Firm view and a market brief agent. Your firm's logo and two colors on every agent output.
+
+### The Claude connector
+
+Your team already works in Claude. One client record per household. Every answer cites the document it came from. Files stay in folders on your own machines. Works inside the Claude your team already opens. Nothing new for advisors to learn. Ask about the 529 they mentioned once. Only your sign-in, a seat check, de-identified preference rules, and a short usage record for each tool call reach Briefly's servers.
 
 ## Move between them without starting over.
 
-Every plan reads from the same knowledge base, and a seat can move from one to the other without rebuilding anything.
+Both options read from the same knowledge base, and a seat can move from one to the other without rebuilding anything.
 
 
 ---
@@ -348,137 +254,97 @@ Source: https://www.brieflywealth.com/security
 
 **Security**
 
-# With the Briefly connector, client files stay on the advisor's computer.
+# Your client data stays in a private environment for your firm.
 
-Briefly is an AI knowledge base for financial advisors. It runs two ways, a connector inside Claude Desktop and a hosted web app you sign into through your browser. This page lays out where your client files live on each surface, what reaches our servers, and what changes under the new SEC rules for AI vendors.
+Briefly is AI software for wealth advisors. Your firm signs into a web app we set up for it, with Salesforce and Outlook connected. This page lays out where your client data lives, what the AI models do with it, what an advisor has to approve, and what changes under the SEC rules for AI vendors. Briefly also comes as a connector for Claude Desktop, and the connector section further down covers how that path differs.
 
-Briefly's flagship product is a connector you add to Claude Desktop. One download, pick a folder on your computer, sign in, and you're set up. From there, your client files stay in that folder, not on a server somewhere. When you ask Briefly a question, it reads those files on your machine, writes the answer, and saves the draft back to the same folder. The only things that reach our servers are your sign-in, a seat check, de-identified preference rules that never carry a client's name, and a short usage record for each tool call, which carries no client file content.
+Your client data stays in a private environment for your firm on AWS, with access controls scoped to your firm. The AI models that read it run on zero-retention terms and never train on it. Nothing goes into Salesforce until an advisor approves it. Briefly makes suggestions for the advisor to review. The advisor makes every decision and every recommendation.
 
-Some firms run Briefly a second way, through the web app you sign into instead of installing the connector. It's priced and sold separately from the connector. For firms on the web app, client files live in Briefly's hosted environment on AWS, protected by per-firm access controls, and sign-in runs through the same account layer either way.
+## How the web app handles your client data
 
-## Where your client files live on the connector
+### A private environment for your firm
 
-For firms running the connector, there's no upload step in Briefly. You point it at a folder once, during setup, and everything after that happens on your own machine.
-
-### You choose the folder
-
-During setup, you pick where on your computer Briefly reads and writes. It's a folder your firm already uses, not a location Briefly assigns.
-
-### Nothing to upload
-
-Briefly runs inside Claude Desktop and works with files already on your machine. There's no button or portal that sends a client file anywhere.
-
-### No client-file database for connector firms
-
-Briefly doesn't operate a database of client files for firms on the connector. If someone got into Briefly's servers, there's no trove of those firms' client documents there for them to find.
-
-## What reaches Briefly's server, when you run the connector
-
-Four things reach our servers when you run the connector, and none of them is a client file. The web app works differently, covered below.
+Your firm's files live in a private environment on AWS. Per-firm access controls scope each firm to its own data, and an advisor sees only the clients they have access to.
 
 ### Sign-in
 
-Briefly checks who you are through Amazon Cognito, the identity system a large share of the software industry runs on. This confirms it's you, not anything about a client.
+Access runs through Amazon Cognito, the identity system a large share of the software industry runs on. Every session ties back to your individual login and your firm's account, not a shared password.
 
-### Seat and entitlement checks
+### Models on zero-retention terms
 
-Briefly checks that your firm's account is active and your seat is licensed before it does any work. It's a subscription check, the kind any paid software runs.
+Every web app model call that carries client data asks for zero-data-retention endpoints only. Extraction has a fallback model on the same terms, so an outage at one provider does not push documents onto endpoints that keep data. A model missing from the zero-retention list is skipped. These models never train on your data.
 
-### De-identified preference rules
+### AI actions wait for your approval
 
-Briefly learns patterns in how your firm likes its work done. Those patterns are tokenized before they leave your computer, so no client name or account number is attached to them.
+When a task is created from chat, it waits in Action items until an advisor approves it, and nothing goes to Salesforce before that. The assistant saves an advisor preference only when the advisor asks it to, and it can only run briefs for clients the advisor has access to.
 
-### A usage record for each tool call
+### Uploads are checked before anything reads them
 
-Each time you run a Briefly tool, Briefly logs a short record of that call, the tool, the outcome, and a timestamp, tied to your seat and firm. It carries no content from your client files.
+Each upload is signed for its exact size and capped at 50 MB, and only PDF, Word, image, text, and email files are accepted. A file over the limit is deleted before the app opens it.
 
-On the connector, client files never reach Briefly's servers. Only your sign-in, a seat check, de-identified preference rules, and a short usage record for each tool call reach Briefly's server, and none of it carries anything about a specific client. Firms on the web app work under a different model, laid out below.
+### Connected inboxes stay inside your firm
 
-## What Claude sees, and what Anthropic does with it
+Briefly checks each mailbox with the email provider before saving the connection. It accepts your own address or a colleague's on your firm's domain, and refuses a mailbox on another domain or one that another firm has already connected.
 
-Briefly runs inside Claude, so a careful vendor review should ask about Anthropic too. Here is the full path, with nothing left out.
+### Leaving
 
-When an advisor asks a question, Claude reads the parts of the client file it needs to answer, straight from the folder on the advisor's computer. Anthropic processes that content to generate the answer, under your firm's own Claude agreement. Briefly never stores it, and it never touches Briefly's servers.
-
-This is why the Claude plan matters. On Claude for Work, Claude Enterprise, and the API, Anthropic's commercial terms prohibit training models on customer content. That is a contract term, and it comes with a data processing agreement your vendor-oversight file can hold. Deleted conversations purge from Anthropic's systems within 30 days. The exception is content flagged by Anthropic's safety systems, which it can hold for up to two years. Briefly recommends firms run Briefly on a business Claude plan.
-
-Personal Claude plans work differently, and the difference is worth writing down. Conversations on a Free, Pro, or Max account train Anthropic's models unless training is turned off in privacy settings, and content used for training is kept for up to five years. Anthropic's July 2026 policy update also allows conversations flagged by its safety systems to be used for model improvement even after a user opts out, with flagged content held for up to two years. An advisor can run Briefly this way, and a compliance officer will reasonably prefer the business plan's written terms.
-
-One more fact a thorough vendor review will surface. Since June 2026, even Anthropic's zero-retention API arrangements carry a 30-day retention window on its newest models for safety monitoring. No tool built on a frontier model can honestly promise that nothing is ever retained, so the questions worth asking a vendor are where files are stored, whose agreement governs the processing, and what the vendor itself holds.
-
-The short version for a vendor file. Client files are stored only in your folder. Processing happens under your firm's own Claude agreement, and on a business plan Anthropic may not train on your content by contract. Briefly's servers only ever see your sign-in, a seat check, de-identified preference rules, and a short usage record for each tool call.
+Your firm has ninety days after leaving to export its files in a standard format, and after that window we delete them.
 
 ## Three ways advisor AI tools handle your data
 
-Every AI tool that touches client files falls into one of three custody models, and Briefly's two surfaces land in two different ones.
+Every AI tool that touches client files falls into one of three custody models.
 
 **Cloud AI tools.** Files get uploaded to the vendor's servers. From there, the vendor's privacy policy decides what happens next, including how long files sit there and who can review them. You're trusting a policy, not an architecture.
 
-**Briefly web app.** Your firm signs in through a browser, and files live in Briefly's hosted environment on AWS, with access controls scoped to your firm. It's server-side custody, the same category as a hosted private AI tool, except Briefly is the one running it.
+**Briefly web app.** Your firm signs in through a browser, and your data lives in a private environment on AWS, with access controls scoped to your firm and models on zero-retention terms. It's server-side custody, the same category as a hosted private AI tool, with the data path written down for your vendor file.
 
-**Briefly connector.** Client files stay in a folder on the advisor's own computer. There's no upload and no server-side client-file store, so there's nothing of yours on our servers for a breach to reach.
+**Briefly connector.** Client files stay in a folder on the advisor's own computer. There's no upload and no server-side client-file store for connector firms.
 
 ## What this means under Reg S-P
 
-SEC privacy and safeguards rules, Reg S-P among them, put the duty on advisory firms to know how their vendors handle customer information, and firms are treating AI tools as part of that vendor review. That oversight duty sits with your firm, not just with Briefly.
+SEC privacy and safeguards rules, Reg S-P among them, put the duty on advisory firms to know how their vendors handle customer information, and firms are treating AI tools as part of that vendor review. That oversight duty sits with your firm, not just with Briefly. Briefly is a service provider that holds client information for your firm, so it gets reviewed the way any hosted vendor does, covering the AWS environment, the access controls, the zero-retention model terms, and the ninety-day export window.
 
 Both the SEC and FINRA have said publicly that they are watching how firms use and supervise AI. The practical effect is that the vendor relationship gets reviewed, not only the advisor's own desk.
 
 No agency certifies an AI tool as SEC-approved. That label doesn't exist. What a firm can document is how a specific tool actually handles client data, which is what the rest of this page lays out.
 
-## How we secure the account layer
+## Security work in September 2026
 
-For connector firms, client files aren't on our servers, so what Briefly secures there is narrower, the sign-in and entitlement system that confirms who you are and what your firm has access to. Web-app firms have files in our hosted environment too, secured the way the custody section above describes.
+We reviewed the web app's code in September and shipped changes to approvals, model routing, uploads, and connected inboxes, described above. Request limits now key on the address our load balancer sees, which a caller cannot fake. Error reports drop request bodies, cookies, and sign-in headers before they leave the server, and the admin console no longer accepts access tokens in web addresses. We updated the libraries behind the API, the web app, and the connector server. A production audit now shows no critical or high-severity known vulnerabilities in any of them. A few low and moderate findings remain on our list.
 
-### Sign-in
+## The Claude connector, a second way to run Briefly
 
-Access runs through Amazon Cognito, the identity system described above, on both surfaces. Every session ties back to your individual login and your firm's account, not a shared password.
+Some teams already work in Claude Desktop and want client files to stay on their own computers. For them Briefly offers a connector. During setup you pick a folder on your computer, sign in, and Claude reads those files on your machine. There's no upload step, and Briefly doesn't operate a database of client files for connector firms.
 
-### No client-file database to isolate on the connector
+Four things reach our servers when you run the connector, and none of them is a client file. Sign-in goes through Amazon Cognito. A seat check confirms your firm's account is active and your seat is licensed. De-identified preference rules are tokenized before they leave your computer, so no client name or account number is attached. A short usage record for each tool call logs the tool, the outcome, and a timestamp, with no content from your client files.
 
-For connector firms, there's no per-firm client-file database on our servers to isolate, because those files never reach our servers in the first place. For web-app firms, per-firm access controls scope each firm to its own data. Sign-in and preference records are isolated at the application level for every firm.
-
-### Encrypted transport and vendor review
-
-Sign-in and entitlement traffic between your computer and our servers runs over encrypted connections. Briefly reviews the vendors behind that layer, including AWS and Cognito, the way it would want a vendor it depends on reviewed.
-
-### SOC 2 aligned controls
-
-Briefly's security program is built around the SOC 2 Trust Services Criteria, applied to the systems Briefly actually runs, sign-in and entitlement. Formal certification is on the roadmap, not yet in audit.
+When an advisor asks a question, Claude reads the parts of the client file it needs, and Anthropic processes that content under your firm's own Claude agreement. Briefly never stores it. On Claude for Work, Claude Enterprise, and the API, Anthropic's commercial terms prohibit training models on customer content, and deleted conversations purge within 30 days, except content flagged by Anthropic's safety systems. Personal Claude plans work differently, since Free, Pro, and Max conversations train Anthropic's models unless training is turned off in privacy settings. Briefly recommends firms run the connector on a business Claude plan.
 
 ## Compliance officer FAQ
 
 Q: Where exactly do client files live?
 
-It depends on which surface your firm runs. On the connector, files stay in a folder on the advisor's own computer that Briefly reads from and writes back to. On the web app, files live in Briefly's hosted environment on AWS, with access scoped to your firm's account.
+On the web app, files live in a private environment for your firm on AWS, with access scoped to your firm's account. On the connector, files stay in a folder on the advisor's own computer.
 
-Q: Does Anthropic see client files when Briefly runs inside Claude?
+Q: Do the AI models see client data, and do they train on it?
 
-When an advisor asks a question, Claude reads what it needs from the client file, and Anthropic processes that content under your firm's own Claude plan. On business plans, Anthropic's commercial terms prohibit training on customer content, and deleted conversations purge within 30 days, except content flagged by Anthropic's safety systems. Briefly never stores what Claude reads.
+The AI models that read client data in the web app run on zero-retention terms and never train on it. Any pattern-level learning Briefly does runs through a de-identified, tokenized layer with no client name or account number attached.
 
-Q: What does Briefly's server actually receive?
+Q: What does an advisor have to approve?
 
-It depends on the surface. From the connector, Briefly's server receives your sign-in through Amazon Cognito, a seat-active check, de-identified preference rules, and a short usage record for each tool call, which carries no client file content. From the web app, your firm's files also reach our hosted environment, because that's how the product runs on that surface.
+Nothing goes into Salesforce until an advisor approves it. Tasks created from chat wait in Action items for approval. Briefly makes suggestions for the advisor to review, and the advisor makes every decision and every recommendation.
 
-Q: Does Briefly train AI models on client data?
+Q: What happens if we leave?
 
-No, on either surface. Client data is used to run the product for your firm, not to train general-purpose AI models, and any pattern-level learning Briefly does runs through a de-identified, tokenized layer with no client name or account number attached.
-
-Q: Is Briefly a web app my staff logs into?
-
-Both exist. The connector runs inside Claude Desktop and works with files already on the advisor's computer, without an upload step, just a one-time sign-in. The web app is a separate, browser-based product your staff can sign into instead, priced separately, with files hosted in Briefly's own environment rather than on your machine.
-
-Q: What happens if Briefly's servers are breached?
-
-For connector firms, a breach exposes sign-in records, seat-check records, de-identified preference rules, and usage records, not client files, since those never reach our servers. For web-app firms, Briefly's hosted environment does hold firm data, protected by encryption and per-firm access controls, so the exposure model is different for that surface.
+Your firm has ninety days after leaving to export its files in a standard format, and after that window we delete them.
 
 Q: How does this change our Reg S-P vendor due diligence?
 
-Firms generally review Briefly as a service provider under Reg S-P, the same as any vendor. For connector firms, client files never reach our servers, so what our side holds for that review is sign-in, seat entitlement, the preference layer, and usage records, with no client-data store. The model call runs under your firm's own Claude plan, laid out earlier on this page. For web-app firms, the review also takes in Briefly's AWS hosting and per-firm access controls, the way any hosted vendor gets reviewed.
+Firms generally review Briefly as a service provider under Reg S-P, the same as any vendor. For web app firms, the review takes in the AWS environment, the per-firm access controls, and the zero-retention terms on model calls. For connector firms, client files never reach our servers, so what our side holds is sign-in, seat entitlement, the preference layer, and usage records, and the model call runs under your firm's own Claude plan.
 
 Q: Is Briefly SEC-approved or certified compliant?
 
-No certification like that exists, and no agency approves an AI tool as compliant. What Briefly can show you is exactly how its architecture, on either the connector or the web app, handles client data, which is the purpose of this page.
+No certification like that exists, and no agency approves an AI tool as compliant. What Briefly can show you is exactly how its architecture handles client data, which is the purpose of this page.
 
 This page describes Briefly's architecture and general regulatory background for information only. It is not legal or compliance advice. Review any AI tool with your own counsel or compliance officer.
 
@@ -536,7 +402,7 @@ Briefly drafts, surfaces, and prepares the work. It never sends. Nothing reaches
 
 ### One Client File, Not Twelve Tabs
 
-Notes, emails, statements, meeting notes, and CRM data become one source-backed file, and Claude can read it and cite exactly where each answer comes from, no matter what the advisor asks that day.
+Notes, emails, statements, meeting notes, and CRM data become one source-backed client record, and every answer cites exactly where it came from, no matter what the advisor asks that day.
 
 **Get started**
 
@@ -635,9 +501,7 @@ A solo advisor paying for Claude Pro out of pocket is on exactly the plan that t
 
 ## What advisors use instead
 
-Advisors who want the research and drafting benefit of a large language model without creating a new compliance exposure are moving toward a different structure. Instead of sending client files to an AI vendor, the AI reads the files where they already live, on the advisor's own computer, and only a narrow slice of nonclient information travels anywhere else.
-
-Broadly, advisors evaluating AI tools are choosing between three structures. The first is a consumer AI tool used directly. The second is a hosted private AI platform, where a vendor still runs servers full of client data, just servers with the firm's name on the contract instead of the public tool, a structure that still leaves the same vendor-oversight and breach-notification questions in place, just with better paperwork behind them. The third keeps client files out of any new vendor's storage and has the AI read them locally instead, under the Claude plan the firm already holds.
+Advisors who want the research and drafting benefit of a large language model without creating a new compliance exposure are moving toward a structure with a vendor review behind it. Broadly, advisors evaluating AI tools are choosing between three structures. The first is a consumer AI tool used directly. The second is a hosted private AI platform, where the vendor runs the environment under a contract the firm has reviewed, so the same vendor-oversight and breach-notification questions apply, with better paperwork behind them. The third keeps client files on the advisor's own computer and has the AI read them there.
 
 **The common path.**
 
@@ -653,23 +517,23 @@ From a regulator's view, it's now an undocumented service provider holding your 
 
 **What Briefly does instead.**
 
-### Briefly inside Claude
+### The Briefly web app
 
-You ask a question inside Claude.
+Your firm signs in from a browser.
 
-Briefly reads the relevant file on your own computer.
+Your client data stays in a private environment for your firm on AWS.
 
-Claude reads the file and Anthropic processes it, under your firm's own Claude plan.
+The AI models that read it run on zero-retention terms and never train on it.
 
-Briefly's server sees your sign-in, a seat check, de-identified preference rules, and a short usage record for each tool call, never the file.
+Nothing goes into Salesforce until an advisor approves it.
 
-The left side is what happens with a consumer AI tool used directly. The right side is what happens when the same question runs through an AI knowledge base for financial advisors built to sit inside Claude instead of alongside it.
+The left side is what happens with a consumer AI tool used directly. The right side is what happens with AI software for wealth advisors that your firm has reviewed as a vendor.
 
-Briefly is built around the local path. It's a connector that runs inside Claude Desktop and fits a team that already works inside Claude day to day. Briefly also runs as a browser workspace for firms that would rather have Briefly handle the setup. An advisor using the connector points it at a folder of client documents, emails, and notes already stored on their computer. When they ask a question in Claude, Briefly reads the relevant files locally and writes the answer with the source cited. With the Briefly connector, client files never reach Briefly's servers. Only your sign-in, a seat check, de-identified preference rules, and a short usage record for each tool call do, and Claude reads the files under your firm's own Claude plan. Briefly is advisory-workflow software only, it reads files and never touches accounts, trading, or custody.
+Briefly is a web app the firm signs into, set up for the firm with Salesforce and Outlook connected. It makes suggestions for the advisor to review, and the advisor makes every decision and every recommendation. Briefly is advisory-workflow software only, and it never touches accounts, trading, or custody. For teams that already work in Claude Desktop, Briefly also comes as a connector where client files stay in a folder on the advisor's computer.
 
-That's why the Reg S-P questions from earlier in this page narrow. Briefly never receives the client file, so there's nothing of your clients' on our servers to safeguard or disclose in a breach notice. Anthropic still processes what Claude reads, under the firm's own Claude plan, so that plan stays in your vendor file the way it already does today. What Briefly avoids adding is a second, unreviewed vendor holding client data.
+That's why the Reg S-P questions from earlier in this page narrow to a vendor review your firm can document. Briefly is a service provider that holds client information for your firm, so your firm reviews it like any other, and the security page lays out the environment, the model terms, and the ninety-day export window. Your firm also has ninety days after leaving to export its files in a standard format, and after that window we delete them.
 
-This page covers the two most common paths. For a full comparison of what Claude can and can't see out of the box, and how advisors are giving it secure access to client files beyond Briefly, see Claude for financial advisors.
+This page covers the most common paths. For a full comparison of what Claude can and can't see out of the box, and how advisors are giving it secure access to client files, see Claude for financial advisors.
 
 ## Frequently asked questions
 
@@ -703,7 +567,7 @@ No, and no vendor can honestly claim that certification exists. The SEC fined tw
 
 Q: What's the safest way for advisors to use AI with client information?
 
-One structure keeps client files in the firm's own storage and has the AI read them there, under an agreement the firm has already reviewed. Briefly, an AI knowledge base for financial advisors, is built that way. Its connector runs inside Claude Desktop, client files never reach Briefly's servers, and only your sign-in, a seat check, de-identified preference rules, and a short usage record for each tool call do.
+Use a vendor your firm has reviewed under written terms, with client data kept in a private environment and models that never train on it. Briefly, AI software for wealth advisors, is built that way. Your client data stays in a private environment for your firm on AWS, the AI models that read it run on zero-retention terms, and nothing goes into Salesforce until an advisor approves it. The advisor makes every decision and every recommendation.
 
 ## Sources
 
@@ -727,9 +591,9 @@ None of this is legal advice. Regulations change, and your firm's specific oblig
 
 Founder of Briefly. Before Briefly, he worked as a private wealth analyst on a top-performing team at Morgan Stanley, where he saw firsthand how much advisor time gets lost hunting for a client's own files.
 
-## See how Briefly keeps client files on your computer.
+## See how Briefly handles client data.
 
-Briefly runs inside Claude Desktop and reads your firm's own files locally, so client data never has to leave your machine to get an answer.
+Briefly is a web app set up for your firm, with client data in a private environment and AI models on zero-retention terms. Book a demo to see it.
 
 
 ---
@@ -745,7 +609,7 @@ By Connor Florczyk. Published July 23, 2026. Last verified August 5, 2026.
 
 A plain look at what Claude handles out of the box, why your client files aren't part of that by default, and four ways to close the gap, ranked by where your data actually ends up.
 
-A disclosure before this gets into it. Briefly is the local connector Briefly built, so this page isn't a neutral party on this topic. Everything below is written to hold up whether or not you ever install it, and the comparison further down scores Briefly's own product the same way it scores everyone else's.
+A disclosure before this gets into it. Briefly makes AI software for wealth advisors and also offers a connector for Claude, so this page isn't a neutral party on this topic. Everything below is written to hold up whether or not you ever use Briefly, and the comparison further down scores Briefly's own product the same way it scores everyone else's.
 
 ## Why this question keeps coming up
 
@@ -787,11 +651,11 @@ Most articles that compare Claude to other AI tools stop at capability, what it 
 
 ## Claude connectors, in plain English
 
-Claude can read from and act on other pieces of software through something called a connector, a small program that tells Claude how to talk to a particular system, whether that's Google Drive, a CRM, or a program running on your own computer. Most connectors, including the one Briefly runs, are built on the same open standard for how a model talks to outside tools and data. What matters is where the other end of the connector lives, on a vendor's server somewhere, or on your own machine.
+Claude can read from and act on other pieces of software through something called a connector, a small program that tells Claude how to talk to a particular system, whether that's Google Drive, a CRM, or a program running on your own computer. Most connectors, including the one Briefly offers, are built on the same open standard for how a model talks to outside tools and data. What matters is where the other end of the connector lives, on a vendor's server somewhere, or on your own machine.
 
-## Claude, with and without a local connector
+## ChatGPT, Claude, and Briefly
 
-Here's what that looks like in practice. ChatGPT and Claude as they ship, next to Claude with the Briefly connector added.
+Here's what that looks like in practice. ChatGPT and Claude as they ship, next to Briefly, the web app set up for your firm. Briefly also comes as a connector for Claude Desktop, noted where it differs.
 
 Data access
 
@@ -799,7 +663,7 @@ Whatever you paste into the chat, plus files you upload for that one session, on
 
 Whatever you paste into the chat, plus any connected apps you've approved, like Drive or Gmail, on Claude.
 
-With the Briefly connector, documents and notes in the folder you point Briefly at, read straight from your computer.
+With Briefly, Salesforce and Outlook connected during setup, plus the documents your firm already has. With the connector, the folder you point Briefly at on your computer.
 
 Remembers the client between sessions
 
@@ -807,15 +671,15 @@ Partly, on ChatGPT. Its memory can carry details between chats, but it lives in 
 
 No, not on its own, on Claude. You'd need to paste the background in again or keep a connector active.
 
-Yes, with the Briefly connector. Briefly writes what it learns back to files on your computer, so the next conversation can pick up where the last one left off.
+Yes, with Briefly. It keeps a current picture of each client with every line linked to its source, so the next brief or follow-up starts from the same record for every advisor.
 
-Where files live
+Where data lives
 
 On OpenAI's servers for that conversation, and potentially longer depending on your plan and settings, on ChatGPT.
 
 With whichever vendor hosts the connector, Google or Microsoft in most cases, plus Anthropic's infrastructure while it's serving the connection, on Claude.
 
-With the Briefly connector, files stay on your computer, in the folder you chose. Only your sign-in, a seat check, de-identified preference rules, and a short usage record for each tool call reach Briefly's server.
+With Briefly, in a private environment for your firm on AWS, read by AI models on zero-retention terms that never train on it. With the connector, in the folder you chose on your computer.
 
 Compliance posture
 
@@ -823,7 +687,7 @@ You're relying on OpenAI's data policies and your own recordkeeping on ChatGPT. 
 
 You're relying on Anthropic's data policies on Claude. Business plans are barred from training on your content by contract, and the recordkeeping question is still yours to answer.
 
-With the Briefly connector, client files never reach Briefly's servers, so there's no client data on Briefly's end to govern, and Claude reads the files under the firm's own Claude plan. See the compliance page for the full accounting.
+With Briefly, nothing goes into Salesforce until an advisor approves it, and the advisor makes every decision and every recommendation. See the security page for the full accounting.
 
 Setup effort
 
@@ -831,9 +695,9 @@ None on ChatGPT. Sign up and start typing.
 
 Low on Claude. Sign up, connect an app or two if you want to.
 
-With the Briefly connector, one download, pick a folder, sign in. A few minutes.
+With Briefly, we set it up for your firm. With the connector, one download, pick a folder, sign in.
 
-ChatGPT still wins in a few places worth naming honestly. It plugs into more outside tools today, its Code Interpreter is genuinely useful for one-off spreadsheet math, and most staff have already used it at home, so training time is close to zero. If those three things matter more to your firm than where client files end up, that's a reasonable call.
+ChatGPT still wins in a few places worth naming honestly. It plugs into more outside tools today, its Code Interpreter is genuinely useful for one-off spreadsheet math, and most staff have already used it at home, so training time is close to zero. If those three things matter more to your firm than where client data ends up, that's a reasonable call.
 
 ## How to give Claude access to client files securely
 
@@ -857,7 +721,7 @@ The connector runs on your own computer and reads files from a folder you choose
 
 ## What Claude handles well once it can see your files
 
-The five examples below show up every week once Claude can read a client's files instead of relying on whatever an advisor remembered to type in. Each one assumes a local connector like Briefly's, which reads whatever sits in the folder you point it at and cites the specific file behind every number.
+The five examples below show up every week once Claude can read a client's files instead of relying on whatever an advisor remembered to type in. Each one assumes a local connector that reads whatever sits in the folder you point it at and cites the specific file behind every number.
 
 ### Meeting prep from a folder of statements
 
@@ -889,9 +753,9 @@ Start with pasting or a built-in connector for occasional use.
 
 If you want Claude reading your files regularly, decide between a vendor's own connector and a local connector based on where you're comfortable having that data sit.
 
-If a local connector is what you want, Briefly is one option, an AI knowledge base for financial advisors that runs inside Claude and reads from a folder on your computer. See how it works, or look at sample deliverables to see what a brief looks like before you install anything.
+If a local connector is what you want, Briefly offers one for Claude Desktop that reads from a folder on your computer. Most firms will want more than a connector. Briefly's main product is a web app your firm signs into, set up with Salesforce and Outlook connected, with a current picture of each client, briefs before meetings, follow-ups after, and prospect analyses, at $150 per seat per month.
 
-Firms that would rather sign in than install anything can use the Briefly web app. Its agents can run on a schedule and email each finished report with a PDF attached, and it adds a market brief agent, a firm view built from your CIO's notes, and your firm's logo and two colors on every agent output. The compare page lists what each option includes.
+Its agents can run on a schedule and email each finished report with a PDF attached, and it adds a market brief agent, a firm view built from your CIO's notes, and your firm's logo and two colors on every agent output. The compare page lists what each option includes.
 
 ## Frequently asked questions
 
@@ -921,19 +785,19 @@ Claude's built-in connectors, like Google Drive or Gmail, route through Anthropi
 
 Q: Does Claude remember a client from one conversation to the next?
 
-Partly. Claude's memory is on by default now and carries context between conversations, so a client you discussed last week can come up again. That memory lives in one person's account though, where the firm can't review it, correct it, or cite it, and nobody else on the team inherits it. Briefly writes what gets learned about a client back to files your firm owns, so every advisor's next conversation starts from the same record, with citations.
+Partly. Claude's memory is on by default now and carries context between conversations, so a client you discussed last week can come up again. That memory lives in one person's account though, where the firm can't review it, correct it, or cite it, and nobody else on the team inherits it. Briefly keeps what gets learned about a client in a record your firm owns, so every advisor's next conversation starts from the same picture, with citations.
 
 Q: How is Briefly different from just using Claude on its own?
 
-Briefly is an AI knowledge base for financial advisors that runs inside Claude as a local connector. It reads and writes files in a folder on your computer instead of a vendor's cloud, so Claude works from your actual client records and Briefly never holds a copy of them.
+Claude on its own starts every conversation with nothing about your clients. Briefly is AI software for wealth advisors, a web app your firm signs into, set up with Salesforce and Outlook connected. It keeps a current picture of each client with every line linked to its source, and it writes briefs and follow-ups from that record. Briefly also comes as a connector for Claude Desktop.
 
 ### Connor Florczyk
 
 Founder of Briefly. Before Briefly, he worked as a private wealth analyst on a top-performing team at Morgan Stanley, where he saw firsthand how much advisor time gets lost hunting for a client's own files.
 
-## Want Claude reading your actual client files?
+## Want a current picture of every client?
 
-Briefly is the local option in the ranking above. One download, pick a folder, sign in, and Claude can work from what's already in your files instead of what you remembered to paste in.
+Briefly is AI software for wealth advisors, set up for your firm. Book a demo to see it on your firm's own records.
 
 
 ---
@@ -947,9 +811,9 @@ Every sample below is a produced deliverable. Names, firms, and identifying deta
 
 Six real deliverables, generated by Briefly from a firm's own files. Names, firms, and identifying details are fictionalized. The layout, the numbers, and the citations are what an advisor receives.
 
-Ask a question in Claude, and documents like these come back with the sources attached.
+Ask Briefly for a document and one like these comes back with the sources attached.
 
-With the Briefly connector, client files stay on your computer and Briefly's servers never store them. Only your sign-in, a seat check, de-identified preference rules, and a short usage record for each tool call reach Briefly's servers.
+Your client data stays in a private environment for your firm on AWS. The AI models that read it run on zero-retention terms and never train on it. Nothing goes into Salesforce until an advisor approves it.
 
 **Prospect analysis**
 
