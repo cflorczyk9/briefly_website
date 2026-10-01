@@ -34,4 +34,12 @@ document.addEventListener('DOMContentLoaded', function () {
   }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
 
   rest.forEach(function (el) { io.observe(el); });
+
+  // fail open: never leave content hidden for bots or screenshots that do not scroll
+  function showAll() {
+    rest.forEach(function (el) { el.classList.add('is-in'); });
+    io.disconnect();
+  }
+  setTimeout(showAll, 1500);
+  window.addEventListener('beforeprint', showAll);
 });
