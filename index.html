@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Briefly | AI Knowledge Base for Financial Advisors</title>
-<meta name="description" content="Briefly is an AI knowledge base for financial advisors that runs inside Claude. Ask across your firm's files and get cited answers.">
+<meta name="description" content="Briefly is AI software for wealth advisors. It writes the brief before each meeting and the follow-up after, flags idle cash across your book, and links every line to its source.">
 <meta name="author" content="Briefly Wealth LLC">
 
 <link rel="canonical" href="https://www.brieflywealth.com/">
@@ -13,7 +13,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="images/briefly_logo_favicon.png?v=2">
 
 <meta property="og:title" content="Briefly | AI Knowledge Base for Financial Advisors">
-<meta property="og:description" content="Briefly is an AI knowledge base for financial advisors that runs inside Claude. Ask across your firm's own files and get cited answers. With the connector, client files never reach our servers.">
+<meta property="og:description" content="Briefly is AI software for wealth advisors. It writes the brief before each meeting and the follow-up after, flags idle cash across your book, and links every line to its source.">
 <meta property="og:image" content="https://www.brieflywealth.com/images/briefly-og-main.png?v=5">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -22,7 +22,7 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Briefly | AI Knowledge Base for Financial Advisors">
-<meta name="twitter:description" content="Briefly is an AI knowledge base for financial advisors that runs inside Claude. Ask across your firm's own files and get cited answers. With the connector, client files never reach our servers.">
+<meta name="twitter:description" content="Briefly is AI software for wealth advisors. It writes the brief before each meeting and the follow-up after, flags idle cash across your book, and links every line to its source.">
 <meta name="twitter:image" content="https://www.brieflywealth.com/images/briefly-og-main.png?v=5">
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-92NXKY9W1S"></script>
@@ -42,7 +42,7 @@
   "legalName": "Briefly Wealth LLC",
   "url": "https://www.brieflywealth.com/",
   "logo": "https://www.brieflywealth.com/images/briefly_logo_favicon.png",
-  "description": "Briefly is an AI knowledge base for financial advisors and wealth firms, built to run inside Claude.",
+  "description": "Briefly is AI software for wealth advisors. It keeps a current picture of each client, and every line links back to its source.",
   "founder": {
     "@type": "Person",
     "name": "Connor Florczyk",
@@ -64,7 +64,7 @@
   "@id": "https://www.brieflywealth.com/#website",
   "name": "Briefly",
   "url": "https://www.brieflywealth.com/",
-  "description": "Briefly is an AI knowledge base for financial advisors and wealth firms, built to run inside Claude.",
+  "description": "Briefly is AI software for wealth advisors. It keeps a current picture of each client, and every line links back to its source.",
   "publisher": { "@id": "https://www.brieflywealth.com/#org" },
   "inLanguage": "en"
 }
@@ -80,7 +80,7 @@
     {
       "@type": "Question",
       "name": "Is my client data safe?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Your firm's data lives in an environment we secure and control, hosted on AWS with access scoped to your firm, and the firm decides who signs in. Every model call that carries client data uses zero-retention routing, and nothing reaches Salesforce until an advisor approves it. With the Claude connector, files stay on the advisor's computer. Our security page breaks down the full data path if you want more detail." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Your firm's data lives in an environment we secure and control, hosted on AWS with access scoped to your firm, and the firm decides who signs in. Every model call that carries client data uses zero-retention routing, and nothing reaches Salesforce until an advisor approves it. Our security page breaks down the full data path if you want more detail." }
     },
     {
       "@type": "Question",
@@ -90,7 +90,7 @@
     {
       "@type": "Question",
       "name": "Do model providers see my client files?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Briefly sends client data to a model only to answer a question or write a report, and every such call uses zero-retention routing. On the Claude connector, Claude reads the file under your firm's own Claude plan, and on business plans Anthropic's commercial terms bar training on customer content. Our security page lays out the full data path." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Briefly sends client data to a model only to answer a question or write a report. Every one of those calls runs on zero-retention terms, and the model providers never train on it. Our security page lays out the full data path." }
     },
     {
       "@type": "Question",
@@ -105,7 +105,7 @@
     {
       "@type": "Question",
       "name": "What happens if I leave?",
-      "acceptedAnswer": { "@type": "Answer", "text": "On the web app, your firm has ninety days after leaving to export its files in a standard format, and after that window we delete them. With the Claude connector there is nothing to migrate, because the files were always in your own folders." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Your firm has ninety days after leaving to export its files in a standard format, and after that window we delete them." }
     }
   ]
 }
@@ -371,7 +371,6 @@
           <a href="#how">How it works</a>
           <a href="/sample-deliverables">Samples</a>
           <a href="/security">Security</a>
-          <a href="/download">Download</a>
           <a href="/about">About</a>
         </div>
         <div class="nav-actions">
@@ -457,7 +456,7 @@
 <!-- ==================== PROOF LINE ==================== -->
 <section class="proofline band-paper2" aria-label="Proof">
   <div class="container reveal">
-    <p class="proof-static">Used by advisors managing billions in AUM</p>
+    <p class="proof-static">Used by advisors at a $1B independent RIA</p>
     <p class="proof-fill">to <span class="proof-cycle" id="proofCycle"><span class="pc is-on">remember a client's thoughts on NVIDIA.</span><span class="pc">compare their fee to a prospective client's.</span><span class="pc">create quarterly reports.</span><span class="pc">find every household that mentioned selling a business.</span><span class="pc">remember how a client feels about the oil industry.</span><span class="pc">build the brief before a client review.</span><span class="pc">read a prospect's statements before the first meeting.</span><span class="pc">find the beneficiary form from last March.</span><span class="pc">draft month-end commentary in the firm's voice.</span><span class="pc">remember who asked about Roth conversions.</span></span></p>
   </div>
 </section>
@@ -1130,7 +1129,7 @@
       </div>
       <ul class="otd-list">
         <li data-card="0" class="is-on"><span class="otd-ic"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><div><h3>The brief lands before every meeting</h3><p>What changed, what they care about and how the portfolio did, in your inbox that morning with a source on every line.</p></div></li>
-        <li data-card="1"><span class="otd-ic"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6.5 9.5v5M17.5 9.5v5"/></svg></span><div><h3>Idle cash across your book</h3><p>Every household with cash sitting idle, and one click turns it into a Salesforce task.</p><p class="otd-note">Cash and drift alerts come from Orion and are rolling out firm by firm.</p></div></li>
+        <li data-card="1"><span class="otd-ic"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6.5 9.5v5M17.5 9.5v5"/></svg></span><div><h3>Idle cash across your book</h3><p>Every household with cash sitting idle, and one click turns it into a Salesforce task.</p></div></li>
         <li data-card="2"><span class="otd-ic"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg></span><div><h3>Prospects, before the first call</h3><p>What they own, what their current firm charges them and what to ask about.</p></div></li>
         <li data-card="3"><span class="otd-ic"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span><div><h3>The follow-up is written when the meeting ends</h3><p>A recap email for the client and the to-dos from the meeting, ready for you to approve.</p></div></li>
         <li data-card="4"><span class="otd-ic"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r=".5"/></svg></span><div><h3>Portfolios off target</h3><p>Which clients have drifted outside their model, and by how many points.</p></div></li>
@@ -1344,35 +1343,35 @@
         <ul class="pr-list">
           <li><span class="pr-ck" aria-hidden="true"><svg viewBox="0 0 12 12" width="11" height="11"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="#2F8CFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>We set it up for your firm and connect Salesforce and Outlook</span></li>
           <li><span class="pr-ck" aria-hidden="true"><svg viewBox="0 0 12 12" width="11" height="11"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="#2F8CFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>A brief in your inbox before every meeting</span></li>
-          <li><span class="pr-ck" aria-hidden="true"><svg viewBox="0 0 12 12" width="11" height="11"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="#2F8CFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Idle cash and drift alerts across your book <span class="pr-muted">(rolling out firm by firm)</span></span></li>
+          <li><span class="pr-ck" aria-hidden="true"><svg viewBox="0 0 12 12" width="11" height="11"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="#2F8CFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Idle cash and drift alerts across your book <span class="pr-muted">(turned on once your custodian or portfolio management system is linked)</span></span></li>
           <li><span class="pr-ck" aria-hidden="true"><svg viewBox="0 0 12 12" width="11" height="11"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="#2F8CFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Prospect analyses before the first call</span></li>
           <li><span class="pr-ck" aria-hidden="true"><svg viewBox="0 0 12 12" width="11" height="11"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="#2F8CFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Follow-ups and tasks that go to Salesforce once you approve them</span></li>
           <li><span class="pr-ck" aria-hidden="true"><svg viewBox="0 0 12 12" width="11" height="11"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="#2F8CFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Sign in from a browser, nothing for IT to install</span></li>
         </ul>
       </div>
     </div>
-    <p class="ways2-aside ways2-trust">Hosted on AWS with access scoped to your firm, and every model call that carries client data runs on zero-retention routing. Nothing reaches Salesforce until an advisor approves it. <a class="textlink" href="/security">Security</a></p>
-    <p class="ways2-aside">If your team would rather work inside Claude, <a class="textlink" href="/compare">there is a connector for that too</a>.</p>
+    <p class="ways2-aside ways2-trust">Your client data stays in a private environment for your firm on AWS. The AI models that read it run on zero-retention terms and never train on it. Nothing goes into Salesforce until an advisor approves it. Briefly makes suggestions for the advisor to review. The advisor makes every decision and every recommendation. <a class="textlink" href="/security">Security</a></p>
+    <p class="ways2-aside">Briefly also comes as a <a class="textlink" href="/compare">connector for Claude</a>.</p>
   </div>
 </section>
 
 <!-- ==================== FAQ ==================== -->
 <section class="pad band-paper2" id="faq" aria-label="Frequently asked questions">
   <div class="container reveal">
-    <div class="eyebrow">Before you install anything</div>
+    <div class="eyebrow">Common questions</div>
     <h2>What advisors ask us first.</h2>
     <div class="faq-list">
       <details open>
         <summary>Is my client data safe?</summary>
-        <p>Your firm's data lives in an environment we secure and control, hosted on AWS with access scoped to your firm, and the firm decides who signs in. Every model call that carries client data uses zero-retention routing, and nothing reaches Salesforce until an advisor approves it. With the Claude connector, files stay on the advisor's computer. Our <a class="textlink" href="/security">security page</a> breaks down the full data path if you want more detail.</p>
+        <p>Your firm's data lives in an environment we secure and control, hosted on AWS with access scoped to your firm, and the firm decides who signs in. Every model call that carries client data uses zero-retention routing, and nothing reaches Salesforce until an advisor approves it. Our <a class="textlink" href="/security">security page</a> breaks down the full data path if you want more detail.</p>
       </details>
-      <details>
+      <details open>
         <summary>Do you train AI models on my client data?</summary>
         <p>We don't use client data to train AI models, and any pattern-level learning runs through a de-identified layer with no client name or account number attached. Model calls that carry client data use zero-retention routing, with a fallback model on the same terms. Our <a class="textlink" href="/security">security page</a> covers the details.</p>
       </details>
       <details>
         <summary>Do model providers see my client files?</summary>
-        <p>Briefly sends client data to a model only to answer a question or write a report, and every such call uses zero-retention routing. On the Claude connector, Claude reads the file under your firm's own Claude plan, and on business plans Anthropic's commercial terms bar training on customer content. Our <a class="textlink" href="/security">security page</a> lays out the full data path.</p>
+        <p>Briefly sends client data to a model only to answer a question or write a report. Every one of those calls runs on zero-retention terms, and the model providers never train on it. Our <a class="textlink" href="/security">security page</a> lays out the full data path.</p>
       </details>
       <details>
         <summary>Can I put client data into ChatGPT or Claude directly?</summary>
@@ -1388,7 +1387,7 @@
       </details>
       <details>
         <summary>What happens if I leave?</summary>
-        <p>On the web app, your firm has ninety days after leaving to export its files in a standard format, and after that window we delete them. With the Claude connector there is nothing to migrate, because the files were always in your own folders.</p>
+        <p>Your firm has ninety days after leaving to export its files in a standard format, and after that window we delete them.</p>
       </details>
     </div>
   </div>
@@ -1400,7 +1399,6 @@
     <h2>See it answer on your firm's own records.</h2>
     <p class="lede">Twenty minutes, with the advisor in the room. Tell us a bit about your firm and we'll set up a time to run it live.</p>
     <a class="btn" href="#" onclick="openDemoModal();return false;">Book a demo</a>
-    <p class="closer-alt">Prefer to work inside Claude? <a href="/compare">There is a connector for that too.</a></p>
     <p class="closer-alt">Already in touch with us? Write to <a href="mailto:contact@brieflywealth.com">contact@brieflywealth.com</a> and skip the form.</p>
     <p class="closer-alt">Not ready? <a href="/subscribe">Get the Morning Brief</a>, our daily market email for advisors.</p>
   </div>
@@ -1413,7 +1411,7 @@
   <div class="container foot-grid">
     <div class="foot-brand">
       <a class="brand" href="/"><span class="brand-word">Briefly</span><span class="brand-pin" aria-hidden="true"></span></a>
-      <p>Briefly is an AI knowledge base for financial advisors and wealth firms, built to run inside Claude.</p>
+      <p>Briefly is AI software for wealth advisors. It keeps a current picture of each client, and every line links back to its source.</p>
     </div>
     <div>
       <h4>Product</h4>
