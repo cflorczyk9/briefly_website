@@ -141,9 +141,9 @@
   @media (prefers-reduced-motion: reduce) { .msg-a .caret { animation: none; } }
 
   /* hero: the Ask Briefly web-app surface (clip 03's language, cleaner), cycling 5 questions */
-  .ak-win { border: 1px solid #D2D2D7; border-radius: 14px; box-shadow: 0 18px 48px rgba(29, 29, 31, .10); }
+  .ak-win { border: var(--card-border); border-radius: var(--card-radius); box-shadow: var(--card-shadow); }
   .ak { padding: 0 20px 14px; display: flex; flex-direction: column; align-items: flex-start; min-height: 470px; position: relative; color: #1D1D1F; }
-  .ak-h { align-self: stretch; display: flex; align-items: center; justify-content: space-between; gap: 10px; height: 48px; margin: 0 -20px 16px; padding: 0 20px; border-bottom: 1px solid #E5E5EA; font-size: 14px; font-weight: 600; color: #1D1D1F; }
+  .ak-h { align-self: stretch; display: flex; align-items: center; justify-content: space-between; gap: 10px; height: 48px; margin: 0 -20px 16px; padding: 0 20px; border-bottom: 1px solid var(--hairline); font-size: 14px; font-weight: 600; color: #1D1D1F; }
   .ak-chip { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: 999px; background: #EAF3FF; color: #0A66D6; white-space: nowrap; }
   .ak-q { align-self: flex-end; background: #1D1D1F; color: #fff; border-radius: 12px; padding: 8px 13px; font-size: 13px; line-height: 1.45; max-width: 86%; opacity: 0; transform: translateY(6px); transition: opacity .4s cubic-bezier(.2, .7, .2, 1), transform .4s cubic-bezier(.2, .7, .2, 1); }
   .ak-q.on { opacity: 1; transform: none; }
@@ -159,7 +159,7 @@
   .ak-ans.on { opacity: 1; transform: none; }
   .ak-ans p { color: #1D1D1F; }
   .ak-n { display: inline-flex; align-items: center; justify-content: center; min-width: 16px; height: 16px; margin-left: 4px; padding: 0 4px; border-radius: 5px; background: #EAF3FF; color: #0A66D6; font-size: 10px; font-weight: 600; line-height: 1; vertical-align: 2px; font-variant-numeric: tabular-nums; }
-  .ak-src { margin-top: 12px; border-top: 1px solid #E5E5EA; padding-top: 10px; }
+  .ak-src { margin-top: 12px; border-top: 1px solid var(--hairline); padding-top: 10px; }
   .ak-src b { display: block; font-size: 11px; font-weight: 600; color: #6E6E73; margin-bottom: 6px; }
   .ak-src ol { margin: 0; padding: 0; list-style: none; counter-reset: aksrc; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
   .ak-src li { counter-increment: aksrc; display: inline-flex; align-items: baseline; gap: 8px; font-size: 12px; line-height: 1.4; color: #0A66D6; background: #EAF3FF; padding: 3px 9px 3px 7px; border-radius: 6px; transition: background .18s ease, box-shadow .18s ease; }
@@ -175,7 +175,7 @@
      it never changes the stage height and the page below the hero never shifts. */
   .ak-prov { position: absolute; left: 14px; right: 14px; bottom: 14px; z-index: 4; background: #fff; border: 1px solid #D2D2D7; border-radius: 12px; overflow: hidden; box-shadow: 0 12px 32px rgba(29, 29, 31, .14); opacity: 0; transform: translateY(8px); transition: opacity .45s cubic-bezier(.2, .7, .2, 1), transform .45s cubic-bezier(.2, .7, .2, 1); }
   .ak-prov.on { opacity: 1; transform: none; }
-  .ak-prov-top { display: flex; align-items: center; gap: 8px; padding: 9px 12px; border-bottom: 1px solid #E5E5EA; }
+  .ak-prov-top { display: flex; align-items: center; gap: 8px; padding: 9px 12px; border-bottom: 1px solid var(--hairline); }
   .ak-prov-n { flex: none; display: inline-flex; align-items: center; justify-content: center; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 5px; background: #EAF3FF; color: #0A66D6; font-size: 11px; font-weight: 600; }
   .ak-prov-hd { flex: 1; min-width: 0; font-size: 12px; font-weight: 600; color: #1D1D1F; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .ak-prov-open { flex: none; font-size: 12px; font-weight: 500; color: #0A66D6; }
@@ -345,6 +345,12 @@
     .firm-row { grid-template-columns: 1fr; }
   }
 
+  @media (max-width: 620px) {
+    .hero .lede-more { display: none; }
+    .hero-ctas { flex-direction: column; align-items: stretch; }
+    .hero-ctas .btn { text-align: center; }
+  }
+
   @media (max-width: 480px) {
     .hero-ctas { flex-direction: column; align-items: stretch; }
     .hero-ctas .btn { text-align: center; }
@@ -370,7 +376,6 @@
         </div>
         <div class="nav-actions">
           <a class="nav-signin" href="https://demo.app.brieflywealth.com/">Web app sign in</a>
-          <a class="nav-start" href="/start">Start now</a>
         </div>
       </div>
       <a class="btn" href="#" onclick="openDemoModal();return false;">Book a demo</a>
@@ -387,10 +392,9 @@
     <div>
       <div class="eyebrow">AI software for wealth advisors</div>
       <h1>Know every client like they're your only client.</h1>
-      <p class="lede">Briefly reads everything your firm learns about a client as it comes in, down to the email that landed an hour ago. You get one current picture of each client that shows what they care about and what has changed, and every line links to its source.</p>
+      <p class="lede">Briefly reads everything your firm learns about a client as it comes in, down to the email that landed an hour ago.<span class="lede-more"> You get one current picture of each client that shows what they care about and what has changed, and every line links to its source.</span></p>
       <div class="hero-ctas">
         <a class="btn" href="#" onclick="openDemoModal();return false;">Book a demo</a>
-        <a class="btn ghost" href="/start">Start now</a>
       </div>
       <p class="hero-trust">We set up the web app for your firm and connect it to your Salesforce and Outlook.</p>
     </div>
@@ -872,8 +876,8 @@
   .otd-row { display: grid; grid-template-columns: minmax(0, 574px) minmax(0, 1fr); gap: 72px; align-items: center; margin-top: 56px; }
   .otd-stage { position: relative; width: 100%; max-width: 540px; height: 520px; }
   .r6-card, .r6-card *, .r6-card *::before, .r6-card *::after { box-sizing: border-box; }
-  .otd-card { position: absolute; left: 0; right: 0; bottom: 0; height: 420px; display: flex; flex-direction: column; background: #fff; border: 1px solid #D2D2D7; border-radius: 14px; color: #1D1D1F; font: 13px/1.4 system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", "Segoe UI", sans-serif; letter-spacing: 0; overflow: hidden; text-align: left; transform-origin: 50% 100%; transition: transform .7s cubic-bezier(.4, 0, .2, 1), filter .7s cubic-bezier(.4, 0, .2, 1), opacity .7s cubic-bezier(.4, 0, .2, 1), box-shadow .7s; will-change: transform, filter, opacity; }
-  .otd-card[data-pos="0"] { transform: none; filter: none; opacity: 1; z-index: 3; box-shadow: 0 18px 48px rgba(29, 29, 31, .10); }
+  .otd-card { position: absolute; left: 0; right: 0; bottom: 0; height: 420px; display: flex; flex-direction: column; background: #fff; border: var(--card-border); border-radius: var(--card-radius); color: #1D1D1F; font: 13px/1.4 system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", "Segoe UI", sans-serif; letter-spacing: 0; overflow: hidden; text-align: left; transform-origin: 50% 100%; transition: transform .7s cubic-bezier(.4, 0, .2, 1), filter .7s cubic-bezier(.4, 0, .2, 1), opacity .7s cubic-bezier(.4, 0, .2, 1), box-shadow .7s; will-change: transform, filter, opacity; }
+  .otd-card[data-pos="0"] { transform: none; filter: none; opacity: 1; z-index: 3; box-shadow: var(--card-shadow); }
   .otd-card[data-pos="1"] { transform: translate(0, -78px) scale(.92); filter: blur(3px); opacity: .55; z-index: 2; box-shadow: none; }
   .otd-card[data-pos="2"] { transform: translate(0, -150px) scale(.86); filter: blur(5px); opacity: .35; z-index: 1; box-shadow: none; }
   .otd-card[data-pos="3"], .otd-card[data-pos="4"], .otd-card[data-pos="5"] { transform: translate(0, -150px) scale(.86); filter: blur(5px); opacity: 0; z-index: 0; box-shadow: none; pointer-events: none; }
@@ -881,7 +885,17 @@
   .otd-card.otd-jump { transition: none; }
   .otd-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 16px; }
   .otd-list li { display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 16px; }
-  .otd-list li { cursor: pointer; }
+  .otd-list li { cursor: pointer; position: relative; }
+  .otd-pick { appearance: none; background: none; border: 0; padding: 0; margin: 0; font: inherit; color: inherit; letter-spacing: inherit; text-align: left; cursor: pointer; }
+  .otd-pick::after { content: ""; position: absolute; inset: -6px -8px; border-radius: 10px; }
+  .otd-pick:focus { outline: none; }
+  .otd-pick:focus-visible::after { outline: 2px solid #2F8CFF; outline-offset: 3px; }
+  .otd-pause { grid-column: 2; justify-self: start; margin-top: 4px; min-height: 44px; padding: 0 4px; background: none; border: 0; font: 500 13px/1 system-ui, -apple-system, "SF Pro Text", "Helvetica Neue", sans-serif; color: #6E6E73; cursor: pointer; visibility: hidden; }
+  .otd-pause.is-shown { visibility: visible; }
+  .otd-pause b { font-weight: 600; color: #0A66D6; }
+  .otd-pause:hover b { text-decoration: underline; }
+  .otd-pause:focus-visible { outline: 2px solid #2F8CFF; outline-offset: 3px; border-radius: 6px; }
+  .otd-cap { display: none; }
   .otd-ic { width: 36px; height: 36px; border-radius: 50%; background: #EAF3FF; color: #2F8CFF; display: flex; align-items: center; justify-content: center; transition: background .35s ease, color .35s ease; }
   .otd-list h3 { transition: color .35s ease; }
   .otd-list li.is-on .otd-ic { background: #2F8CFF; color: #fff; }
@@ -890,11 +904,11 @@
   .otd-list p { margin: 4px 0 0; font-size: 15px; line-height: 1.5; color: var(--ink-soft); }
   .otd-list p.otd-note { margin-top: 2px; font-size: 13px; color: #6E6E73; }
   .otd-viz { display: grid; grid-template-columns: 12px minmax(0, 1fr); gap: 22px; align-items: end; max-width: 574px; }
-  .otd-dots { height: 420px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 10px; }
-  .otd-dot { width: 10px; height: 10px; padding: 0; border: 0; border-radius: 999px; background: #D2D2D7; cursor: pointer; position: relative; transition: height .35s cubic-bezier(.2, .7, .2, 1), background .35s; }
-  .otd-dot::after { content: ""; position: absolute; inset: -8px; }
-  .otd-dot:hover { background: #A1A1A6; }
-  .otd-dot[aria-current="true"] { height: 28px; background: #2F8CFF; }
+  .otd-dots { height: 420px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 0; }
+  .otd-dot { flex: none; width: 44px; height: 44px; margin: -6px; padding: 0; border: 0; background: transparent; cursor: pointer; position: relative; display: flex; align-items: center; justify-content: center; }
+  .otd-dot::before { content: ""; width: 10px; height: 10px; border-radius: 999px; background: #D2D2D7; transition: height .35s cubic-bezier(.2, .7, .2, 1), width .35s cubic-bezier(.2, .7, .2, 1), background .35s; }
+  .otd-dot:hover::before { background: #A1A1A6; }
+  .otd-dot[aria-current="true"]::before { height: 28px; background: #2F8CFF; }
   .otd-dot:focus-visible { outline: 2px solid #2F8CFF; outline-offset: 3px; }
   @media (max-width: 1100px) {
     .otd-row { grid-template-columns: 1fr; gap: 48px; align-items: start; }
@@ -905,16 +919,24 @@
     .otd-card { height: 460px; }
     .otd-viz { grid-template-columns: minmax(0, 1fr); gap: 18px; }
     .otd-dots { order: 2; height: auto; flex-direction: row; }
-    .otd-dot[aria-current="true"] { height: 10px; width: 28px; }
+    .otd-dot[aria-current="true"]::before { height: 10px; width: 28px; }
     .otd-card[data-pos="1"] { transform: translate(0, -60px) scale(.94); }
     .otd-card[data-pos="2"] { transform: translate(0, -108px) scale(.88); }
+    .otd-list { display: none; }
+    .otd-pause { grid-column: 1; order: 3; justify-self: center; margin-top: -8px; }
+    .otd-viz { gap: 0; }
+    .otd-stage { margin-bottom: 8px; }
+    .otd-cap { display: block; order: 4; text-align: left; min-height: 96px; margin-top: 4px; }
+    .otd-cap h3 { font-size: 16px; font-weight: 600; line-height: 1.3; letter-spacing: -.005em; margin: 0; }
+    .otd-cap p { margin: 4px 0 0; font-size: 15px; line-height: 1.5; color: var(--ink-soft); }
+    .otd-cap p.otd-note { margin-top: 2px; font-size: 13px; color: #6E6E73; }
   }
   @media (max-width: 380px) {
     .otd-stage { height: 580px; }
     .otd-card { height: 520px; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .otd-card, .otd-dot { transition: none; }
+    .otd-card, .otd-dot::before { transition: none; }
   }
   </style>
   <div class="container">
@@ -1103,6 +1125,8 @@
   <div class="cf-foot">Internal only. Nothing above is a recommendation. Analyst views are dated.</div>
 </div>
       </div>
+      <button class="otd-pause" id="otdPause" type="button" aria-label="Resume the automatic rotation" tabindex="-1">Paused &middot; <b>Resume</b></button>
+      <div class="otd-cap" id="otdCap" aria-live="polite"></div>
       </div>
       <ul class="otd-list">
         <li data-card="0" class="is-on"><span class="otd-ic"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><div><h3>The brief lands before every meeting</h3><p>What changed, what they care about and how the portfolio did, in your inbox that morning with a source on every line.</p></div></li>
@@ -1121,6 +1145,22 @@
     var cards = Array.prototype.slice.call(stage.querySelectorAll('.otd-card'));
     var dots = Array.prototype.slice.call(document.querySelectorAll('#features .otd-dot'));
     var items = Array.prototype.slice.call(document.querySelectorAll('#features .otd-list li'));
+    var pauseBtn = document.getElementById('otdPause');
+    var cap = document.getElementById('otdCap');
+    var picks = [], caps = [];
+    items.forEach(function (li) {
+      var h = li.querySelector('h3'), p = li.querySelectorAll('p');
+      var title = h.textContent;
+      caps.push({ t: title, d: p[0] ? p[0].textContent : '', note: p[1] ? p[1].textContent : '' });
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'otd-pick'; b.textContent = title;
+      h.textContent = ''; h.appendChild(b); picks.push(b);
+    });
+    function showPause(on) {
+      pauseBtn.classList.toggle('is-shown', on);
+      pauseBtn.tabIndex = on ? 0 : -1;
+    }
+    function pin() { pinned = true; clearTimeout(timer); showPause(true); }
     var n = cards.length, active = 0, pinned = false, inView = false, hover = false, timer = null;
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     function play(c) { c.classList.remove('is-live'); void c.offsetWidth; c.classList.add('is-live'); }
@@ -1149,6 +1189,15 @@
       });
       dots.forEach(function (d, i) { d.setAttribute('aria-current', i === active ? 'true' : 'false'); });
       items.forEach(function (li, i) { li.classList.toggle('is-on', i === active); });
+      picks.forEach(function (b, i) {
+        b.setAttribute('aria-pressed', i === active ? 'true' : 'false');
+        if (i === active) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current');
+      });
+      var c = caps[active];
+      cap.textContent = '';
+      var h = document.createElement('h3'); h.textContent = c.t; cap.appendChild(h);
+      var p = document.createElement('p'); p.textContent = c.d; cap.appendChild(p);
+      if (c.note) { var q = document.createElement('p'); q.className = 'otd-note'; q.textContent = c.note; cap.appendChild(q); }
     }
     function go(next, animateOut) {
       var old = cards[active];
@@ -1176,15 +1225,19 @@
     }
     dots.forEach(function (d, i) {
       d.addEventListener('click', function () {
-        pinned = true; clearTimeout(timer);
+        pin();
         if (i !== active) go(i, false); else play(cards[i]);
       });
     });
     items.forEach(function (li, i) {
       li.addEventListener('click', function () {
-        pinned = true; clearTimeout(timer);
+        pin();
         if (i !== active) go(i, false); else play(cards[i]);
       });
+    });
+    pauseBtn.addEventListener('click', function () {
+      pinned = false; showPause(false);
+      schedule(dwell());
     });
     stage.addEventListener('mouseenter', function () { hover = true; });
     stage.addEventListener('mouseleave', function () { hover = false; });
@@ -1203,6 +1256,8 @@
   <style>
     #how .chip { display: inline-flex; align-items: center; gap: 7px; padding-left: 8px; }
     #how .chip .cm { flex: none; }
+    #how .filecard { border: var(--card-border); border-radius: var(--card-radius); box-shadow: var(--card-shadow); }
+    #how .fc-row { border-top-color: var(--hairline); }
     #how .fc-sub { text-transform: none; font-family: var(--sans, inherit); font-size: 12.5px; letter-spacing: 0; }
     #how .fc-row .fc-src { color: var(--ink-muted); font-size: 12.5px; text-align: right; flex: none; max-width: 45%; }
     #how .fc-row span:first-child { min-width: 0; }
@@ -1210,8 +1265,8 @@
   </style>
   <div class="container reveal">
     <div class="eyebrow">What Briefly does</div>
-    <h2>Everything that comes in lands with the right client.</h2>
-    <p class="lede">Briefly connects to the systems your firm already uses and sorts everything that comes through them by client. It keeps one personalized picture of each client, including the lake house the Smiths hope to buy by 2028 and the K-1 question their CPA raised in June. When you ask Briefly a question, the answer cites the email, transcript or statement it came from.</p>
+    <h2>Every line traces back to where it came from.</h2>
+    <p class="lede">Briefly reads your Outlook, Salesforce, transcripts, call notes, statements, Orion data and plans, and sorts each one to the right client. Every line in a brief or an answer links to the source it came from, so you can check it in a click.</p>
     <div class="mess-grid">
       <div class="chip-field" id="chipField" aria-hidden="true">
         <span class="chip" style="left:6%;  top:8%;  --dur:8.5s; --del:0s;    --dx:22px;  --dy:14px;  --r0:-2deg;   --r1:1.5deg;"><svg class="cm" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><rect x="1" y="2" width="14" height="12" rx="2.5" fill="#0A64C8"/><path d="M3 5.2 8 9l5-3.8" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Outlook email</span>
@@ -1230,7 +1285,7 @@
         <div class="fc-row"><span>401(k) rollover completed, $412,000</span><span class="fc-src">Q2 statement</span></div>
         <div class="fc-row"><span>Open K-1 question with their CPA</span><span class="fc-src">Outlook email, 6/12</span></div>
         <div class="fc-row"><span>Wants to buy a lake house by 2028</span><span class="fc-src">Meeting transcript, 6/14</span></div>
-        <div class="fc-row"><span>Prefers a call before any trade</span><span class="fc-src">Phone note, 7/17</span></div>
+        <div class="fc-row"><span>Prefers a call before any trade</span><span class="fc-src">Call notes, 7/17</span></div>
       </div>
     </div>
     <div class="flow-row">
@@ -1247,7 +1302,7 @@
 <!-- ==================== TWO WAYS TO RUN IT ==================== -->
 <section class="pad band-white" id="ways" aria-label="Pricing">
   <style>
-    .pr-card { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); max-width: 880px; margin: 44px auto 0; background: #fff; border: 1px solid #D2D2D7; border-radius: 14px; box-shadow: 0 18px 48px rgba(29, 29, 31, .08); overflow: hidden; text-align: left; }
+    .pr-card { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); max-width: 880px; margin: 44px auto 0; background: #fff; border: var(--card-border); border-radius: var(--card-radius); box-shadow: var(--card-shadow); overflow: hidden; text-align: left; }
     .pr-left { padding: 32px; border-right: 1px solid #E5E5EA; display: flex; flex-direction: column; align-items: flex-start; }
     .pr-name { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; color: #1D1D1F; }
     .pr-pill { font-size: 12px; font-weight: 500; padding: 4px 10px; border-radius: 999px; background: #EAF3FF; color: #0A66D6; }
@@ -1264,6 +1319,8 @@
     .pr-ck { width: 22px; height: 22px; border-radius: 50%; background: #EAF3FF; display: flex; align-items: center; justify-content: center; }
     .pr-muted { color: #6E6E73; }
     .ways2-aside { margin-top: 24px; text-align: center; font-size: 15px; color: var(--ink-soft); }
+    .ways2-trust { max-width: 640px; margin-left: auto; margin-right: auto; color: var(--ink-muted); line-height: 1.5; }
+    .ways2-trust + .ways2-aside { margin-top: 12px; }
     @media (max-width: 760px) {
       .pr-card { grid-template-columns: 1fr; }
       .pr-left { border-right: 0; border-bottom: 1px solid #E5E5EA; padding: 24px; }
@@ -1294,6 +1351,7 @@
         </ul>
       </div>
     </div>
+    <p class="ways2-aside ways2-trust">Hosted on AWS with access scoped to your firm, and every model call that carries client data runs on zero-retention routing. Nothing reaches Salesforce until an advisor approves it. <a class="textlink" href="/security">Security</a></p>
     <p class="ways2-aside">If your team would rather work inside Claude, <a class="textlink" href="/compare">there is a connector for that too</a>.</p>
   </div>
 </section>
