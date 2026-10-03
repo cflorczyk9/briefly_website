@@ -222,6 +222,57 @@
   }
 
 
+  /* hero: the Today page, work already done before the advisor asks */
+  .td-win { border: var(--card-border); border-radius: var(--card-radius); box-shadow: var(--card-shadow); background: #fff; overflow: hidden; }
+  .td { padding: 0 18px 16px; color: #1D1D1F; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif; }
+  .td-top { padding: 16px 2px 0; }
+  .td-top .t-h { font-size: 20px; line-height: 24px; font-weight: 600; letter-spacing: -.01em; }
+  .td-top p { margin: 2px 0 0; font-size: 12.5px; line-height: 16px; color: #6E6E73; }
+  .td-glance { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 14px; border: 1px solid var(--hairline); border-radius: 10px; }
+  .td-cell { padding: 9px 12px; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .td-cell + .td-cell { border-left: 1px solid var(--hairline); }
+  .td-cell .k { font-size: 11px; color: #6E6E73; white-space: nowrap; }
+  .td-cell .v { font-size: 15px; font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .td-sec { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin: 18px 2px 6px; }
+  .td-sh { font-size: 13px; font-weight: 600; }
+  .td-count { font-weight: 400; color: #6E6E73; margin-left: 4px; font-variant-numeric: tabular-nums; }
+  .td-src { font-size: 11.5px; color: #6E6E73; white-space: nowrap; }
+  .td-list { display: flex; flex-direction: column; }
+  .td-row { display: flex; align-items: baseline; gap: 10px; padding: 6px 8px; border-radius: 8px; font-size: 12.5px; line-height: 1.45; color: #424245; }
+  .td-row:nth-child(even) { background: #F7F7F9; }
+  .td-sent { flex: 1; min-width: 0; }
+  .td-sent b { font-weight: 500; color: #1D1D1F; font-size: 13px; }
+  .td-pill { flex: none; width: 82px; display: inline-flex; justify-content: center; border-radius: 999px; padding: 1px 0; font-size: 11px; font-weight: 500; line-height: 17px; background: #FFF1E0; color: #B25E00; }
+  .td-when { flex: none; width: 64px; white-space: nowrap; font-size: 12px; color: #6E6E73; font-variant-numeric: tabular-nums; }
+  .td-ok { flex: none; font-size: 11px; font-weight: 500; line-height: 17px; padding: 1px 8px; border-radius: 999px; background: #E6F4EA; color: #1E7F38; white-space: nowrap; }
+  html.js .td-row { animation: td-land .45s cubic-bezier(.2, .7, .2, 1) both; }
+  html.js .td-alerts .td-row:nth-child(1) { animation-delay: .35s; }
+  html.js .td-alerts .td-row:nth-child(2) { animation-delay: .55s; }
+  html.js .td-alerts .td-row:nth-child(3) { animation-delay: .75s; }
+  html.js .td-alerts .td-row:nth-child(4) { animation-delay: .95s; }
+  html.js .td-meets .td-row:nth-child(1) { animation-delay: 1.25s; }
+  html.js .td-meets .td-row:nth-child(2) { animation-delay: 1.45s; }
+  html.js .td-meets .td-row:nth-child(3) { animation-delay: 1.65s; }
+  html.js .td-meets .td-row:nth-child(4) { animation-delay: 1.85s; }
+  html.js .td-ok { animation: td-pop .35s cubic-bezier(.2, .7, .2, 1) both; }
+  html.js .td-meets .td-row:nth-child(1) .td-ok { animation-delay: 2.3s; }
+  html.js .td-meets .td-row:nth-child(2) .td-ok { animation-delay: 2.6s; }
+  html.js .td-meets .td-row:nth-child(3) .td-ok { animation-delay: 2.9s; }
+  html.js .td-meets .td-row:nth-child(4) .td-ok { animation-delay: 3.2s; }
+  @keyframes td-land { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  @keyframes td-pop { from { opacity: 0; transform: scale(.85); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { html.js .td-row, html.js .td-ok { animation: none; } }
+  @media (max-width: 480px) {
+    .td { padding: 0 12px 14px; }
+    .td-cell { padding: 8px 9px; }
+    .td-cell .v { font-size: 14px; }
+    .td-src { display: none; }
+    .td-pill { width: 74px; }
+    .td-when { width: 60px; font-size: 11.5px; }
+  }
+  /* chat (moved from the hero into #how): pulses as the source chips land */
+  .ak-win.pulse { animation: card-pulse .7s ease; }
+
   /* hero: padding and h1 size now come from site.css's shared .hero scale */
   .hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 60px; align-items: center; }
   .hero-trust { margin-top: 22px; font-size: 15px; color: var(--ink-soft); }
@@ -423,53 +474,27 @@
       <p class="hero-trust">We set up the web app for you and connect it to your Salesforce and Outlook.</p>
     </div>
     <div>
-    <div class="win ak-win" data-mockup="" aria-label="Five advisor questions answered with cited sources in the Briefly web app, cycling">
-      <div class="ak" aria-live="polite">
-        <div class="ak-h"><span>Ask Briefly</span><span class="ak-chip"><span id="akChip">Smith, John &amp; Jane</span><svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-        <div class="ak-q" id="akQ">What changed for the Smiths since our March review?</div>
-        <div class="ak-load" id="akLoad" aria-hidden="true"><span class="ak-dots"><i></i><i></i><i></i></span><span class="ak-ph" id="akPh">Reading the client picture&hellip;</span></div>
-        <div class="ak-ans" id="akAns">
-          <p><span id="akAnsText">Two things. The 401(k) rollover completed at $412,000, and their CPA flagged an open K-1 question in June. Both are filed and linked below.</span><span id="akCites"></span></p>
-          <div class="ak-src"><b>Sources</b><ol id="akSrcList"><li>Smith Q2 statement (filed 6/30/2026)</li><li>CPA email, M. Hill (filed 6/12/2026)</li></ol></div>
+    <div class="win td-win" data-mockup="" role="img" aria-label="The Today page in the Briefly web app. All 14 meetings this week have a brief ready. Portfolio alerts across the whole book flag idle cash for Raj Patel, drift for Linda Choi, a required distribution for Tom Brennan and a maturing CD for David Okafor. Illustrative example, not real client data.">
+      <div class="td">
+        <div class="td-top"><div class="t-h">Today</div><p>Wednesday, September 30 &middot; Calendar connected</p></div>
+        <div class="td-glance">
+          <div class="td-cell"><span class="k">This week</span><span class="v">14 meetings</span></div>
+          <div class="td-cell"><span class="k">Briefs ready</span><span class="v">14</span></div>
+          <div class="td-cell"><span class="k">Facts to review</span><span class="v">9 items</span></div>
         </div>
-        <div class="ak-prov" id="akProv" data-kind="email">
-          <div class="ak-prov-top"><span class="ak-prov-n" id="akProvN">2</span><span class="ak-prov-hd" id="akProvHd">Re: K-1 question &middot; M. Hill, CPA</span><span class="ak-prov-open">Open</span></div>
-          <div class="ak-prov-b" id="akProvB">Still waiting on the K-1 from the Riverside partnership before I can close out their 2025 return. <span class="hl">Can you confirm the rollover check cleared before year end?</span></div>
+        <div class="td-sec"><span class="td-sh">Portfolio alerts <span class="td-count">4</span></span><span class="td-src">Whole book &middot; as of 6:00 AM</span></div>
+        <div class="td-list td-alerts">
+          <div class="td-row"><span class="td-pill">Idle cash</span><span class="td-sent"><b>Raj Patel</b> has $312,000 sitting in cash.</span></div>
+          <div class="td-row"><span class="td-pill">Drift</span><span class="td-sent"><b>Linda Choi</b> is 7.7 points over on equities.</span></div>
+          <div class="td-row"><span class="td-pill">Distribution</span><span class="td-sent"><b>Tom Brennan</b> still needs $48,200 for this year's RMD.</span></div>
+          <div class="td-row"><span class="td-pill">Maturity</span><span class="td-sent"><b>David Okafor</b> has a $250,000 CD maturing Oct 14.</span></div>
         </div>
-        <svg class="ak-cur" id="akCur" viewBox="0 0 18 18" width="18" height="18" aria-hidden="true"><path d="M2 1.5v13.2l3.4-3.1 2.3 5.1 2.2-1-2.3-5h4.6z" fill="#1D1D1F" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg>
-        <div class="ak-ring" id="akRing" aria-hidden="true"></div>
-      </div>
-      <div class="hc-dots" id="hcDots" aria-label="Question picker"></div>
-      <div class="sr-only" id="hcAll">
-        <div class="hc-item" data-chip="Smith, John &amp; Jane" data-ph="Reading the client picture&hellip;|Checking the Q2 statement&hellip;" data-click="2">
-          <p class="hc-q">What changed for the Smiths since our March review?</p>
-          <p class="hc-ans">Two things. The 401(k) rollover completed at $412,000, and their CPA flagged an open K-1 question in June. Both are filed and linked below.</p>
-          <p class="hc-src">Smith Q2 statement (filed 6/30/2026) | CPA email, M. Hill (filed 6/12/2026)</p>
-          <div class="hc-prov" data-kind="email" data-title="Re: K-1 question &middot; M. Hill, CPA">Still waiting on the K-1 from the Riverside partnership before I can close out their 2025 return. <span class="hl">Can you confirm the rollover check cleared before year end?</span></div>
-        </div>
-        <div class="hc-item" data-chip="Whole book" data-ph="Reading the client picture&hellip;|Scanning every statement&hellip;" data-click="1">
-          <p class="hc-q">Which clients hold a concentrated position above 20%?</p>
-          <p class="hc-ans">Three households. Patel at 31% in employer stock, Okafor at 24%, and Lindqvist at 22%, each read from the latest statement on file.</p>
-          <p class="hc-src">Patel Q2 statement (filed 7/8/2026) | Okafor Q2 statement (filed 7/2/2026) | Lindqvist Q1 statement (filed 4/14/2026)</p>
-          <div class="hc-prov" data-kind="pdf" data-title="Patel Taxable &middot; Q2 2026"><div class="prov-tbl"><span class="hl"><b>Employer stock</b></span><span class="hl">$684,300</span><span class="hl"><b>31%</b></span><span>VTI</span><span>$1,204,000</span><span>55%</span><span>Cash</span><span>$306,000</span><span>14%</span></div></div>
-        </div>
-        <div class="hc-item" data-chip="Whole book" data-ph="Reading the client picture&hellip;|Searching meeting transcripts&hellip;">
-          <p class="hc-q">Who mentioned wanting to retire in the next three years?</p>
-          <p class="hc-ans">Four clients, each tied to the conversation where they said it. Two of them also asked about pension timing, which is noted in their files.</p>
-          <p class="hc-src">Meeting transcript, Doyle (filed 5/22/2026) | Meeting transcript, Chen (filed 6/9/2026) | + 2 more conversations</p>
-          <div class="hc-prov" data-kind="transcript" data-title="Meeting transcript &middot; Doyle household &middot; 5/22/2026">Margaret: <span class="hl">If the numbers hold, I want to be done working within three years.</span> Can we look at what the pension bridge would take?</div>
-        </div>
-        <div class="hc-item" data-chip="Whole book" data-ph="Reading the client picture&hellip;|Collecting open items&hellip;">
-          <p class="hc-q">What's still open from last week's client meetings?</p>
-          <p class="hc-ans">Five follow-ups across four households, from a missing insurance rider to the Whitfield trust question. Each one names the meeting it came from.</p>
-          <p class="hc-src">Whitfield transcript (filed 7/24/2026) | + 4 more items</p>
-          <div class="hc-prov" data-kind="transcript" data-title="Meeting transcript &middot; Whitfield &middot; 7/24/2026">Tom: <span class="hl">Before anything moves, I want the trust language checked against the new beneficiary setup.</span> We said we'd get their attorney an answer this week.</div>
-        </div>
-        <div class="hc-item" data-chip="Alvarez, Maria &amp; Luis" data-ph="Reading the client picture&hellip;|Preparing the brief&hellip;">
-          <p class="hc-q">Anything I should know before the Alvarez call at 2:00?</p>
-          <p class="hc-ans">Their daughter's tuition starts this fall, the 529 is short of the plan, and Maria sounded frustrated about paperwork last visit. The prepared brief covers all three.</p>
-          <p class="hc-src">529 plan review (filed 6/3/2026) | Call notes (filed 7/17/2026) | Alvarez pre-call brief (prepared today)</p>
-          <div class="hc-prov" data-kind="pdf" data-title="529 plan review &middot; filed 6/3/2026"><span class="hl">Projected tuition need, fall 2026: $38,400. Current 529 balance: $27,900.</span> Gap at the start of the term is $10,500.</div>
+        <div class="td-sec"><span class="td-sh">Meetings this week</span></div>
+        <div class="td-list td-meets">
+          <div class="td-row"><span class="td-when">Wed 10:00</span><span class="td-sent"><b>Margaret Whitfield</b> &middot; Q2 review</span><span class="td-ok">Brief ready</span></div>
+          <div class="td-row"><span class="td-when">Wed 2:00</span><span class="td-sent"><b>Maria &amp; Luis Alvarez</b> &middot; 529 check-in</span><span class="td-ok">Brief ready</span></div>
+          <div class="td-row"><span class="td-when">Thu 9:30</span><span class="td-sent"><b>John &amp; Jane Smith</b> &middot; Annual review</span><span class="td-ok">Brief ready</span></div>
+          <div class="td-row"><span class="td-when">Thu 1:00</span><span class="td-sent"><b>Raj Patel</b> &middot; Cash plan</span><span class="td-ok">Brief ready</span></div>
         </div>
       </div>
     </div>
@@ -1289,7 +1314,7 @@
   <div class="container reveal">
     <div class="eyebrow">What Briefly does</div>
     <h2>Every line traces back to where it came from.</h2>
-    <p class="lede">Briefly reads your Outlook, Salesforce, transcripts, call notes, statements, Orion data and plans, and sorts each one to the right client. Every line in a brief or an answer links to the source it came from, so you can check it in a click.</p>
+    <p class="lede">Briefly reads your Outlook, Salesforce, transcripts, call notes, statements, Orion data and plans, and files each one under the right client. Ask about one client or the whole book, and every answer comes with its sources, so you can check it in a click.</p>
     <div class="mess-grid">
       <div class="chip-field" id="chipField" aria-hidden="true">
         <span class="chip" style="left:6%;  top:8%;  --dur:8.5s; --del:0s;    --dx:22px;  --dy:14px;  --r0:-2deg;   --r1:1.5deg;"><svg class="cm" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><rect x="1" y="2" width="14" height="12" rx="2.5" fill="#0A64C8"/><path d="M3 5.2 8 9l5-3.8" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Outlook email</span>
@@ -1302,13 +1327,58 @@
         <span class="chip" style="left:12%; top:70%; --dur:9.8s; --del:-.8s;  --dx:24px;  --dy:-14px; --r0:2deg;    --r1:-1deg;"><svg class="cm" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M3 1.5h6.5L13 5v9a.8.8 0 0 1-.8.8H3.8A.8.8 0 0 1 3 14z" fill="#D93025"/><path d="M9.5 1.5V5H13" fill="#F4A6A0"/><text x="8" y="12.4" font-size="4.6" font-weight="700" text-anchor="middle" fill="#fff" font-family="Arial,sans-serif">PDF</text></svg>Q2 statement</span>
         <span class="chip" style="left:36%; top:86%; --dur:7.8s; --del:-3.6s; --dx:-22px; --dy:-10px; --r0:-1deg;   --r1:2.5deg;"><svg class="cm" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M3 1.5h6.5L13 5v9a.8.8 0 0 1-.8.8H3.8A.8.8 0 0 1 3 14z" fill="#2F8CFF"/><path d="M9.5 1.5V5H13" fill="#A9D0FF"/><path d="M5.2 8.4h5.6M5.2 10.4h5.6M5.2 12.4h3.4" stroke="#fff" stroke-width="1.1" stroke-linecap="round"/></svg>Financial plan</span>
       </div>
-      <div class="filecard" id="fileCard" data-mockup="">
-        <h3>Smith, John &amp; Jane</h3>
-        <div class="fc-sub">Client picture &middot; updated today</div>
-        <div class="fc-row"><span>401(k) rollover completed, $412,000</span><span class="fc-src">Q2 statement</span></div>
-        <div class="fc-row"><span>Open K-1 question with their CPA</span><span class="fc-src">Outlook email, 6/12</span></div>
-        <div class="fc-row"><span>Wants to buy a lake house by 2028</span><span class="fc-src">Meeting transcript, 6/14</span></div>
-        <div class="fc-row"><span>Prefers a call before any trade</span><span class="fc-src">Call notes, 7/17</span></div>
+      <div>
+    <div class="win ak-win" id="fileCard" data-mockup="" aria-label="Five advisor questions answered with cited sources in the Briefly web app, cycling">
+      <div class="ak" aria-live="polite">
+        <div class="ak-h"><span>Ask Briefly</span><span class="ak-chip"><span id="akChip">Smith, John &amp; Jane</span><svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+        <div class="ak-q" id="akQ">What changed for the Smiths since our March review?</div>
+        <div class="ak-load" id="akLoad" aria-hidden="true"><span class="ak-dots"><i></i><i></i><i></i></span><span class="ak-ph" id="akPh">Reading the client picture&hellip;</span></div>
+        <div class="ak-ans" id="akAns">
+          <p><span id="akAnsText">Two things. The 401(k) rollover completed at $412,000, and their CPA flagged an open K-1 question in June. Both are filed and linked below.</span><span id="akCites"></span></p>
+          <div class="ak-src"><b>Sources</b><ol id="akSrcList"><li>Smith Q2 statement (filed 6/30/2026)</li><li>CPA email, M. Hill (filed 6/12/2026)</li></ol></div>
+        </div>
+        <div class="ak-prov" id="akProv" data-kind="email">
+          <div class="ak-prov-top"><span class="ak-prov-n" id="akProvN">2</span><span class="ak-prov-hd" id="akProvHd">Re: K-1 question &middot; M. Hill, CPA</span><span class="ak-prov-open">Open</span></div>
+          <div class="ak-prov-b" id="akProvB">Still waiting on the K-1 from the Riverside partnership before I can close out their 2025 return. <span class="hl">Can you confirm the rollover check cleared before year end?</span></div>
+        </div>
+        <svg class="ak-cur" id="akCur" viewBox="0 0 18 18" width="18" height="18" aria-hidden="true"><path d="M2 1.5v13.2l3.4-3.1 2.3 5.1 2.2-1-2.3-5h4.6z" fill="#1D1D1F" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg>
+        <div class="ak-ring" id="akRing" aria-hidden="true"></div>
+      </div>
+      <div class="hc-dots" id="hcDots" aria-label="Question picker"></div>
+      <div class="sr-only" id="hcAll">
+        <div class="hc-item" data-chip="Smith, John &amp; Jane" data-ph="Reading the client picture&hellip;|Checking the Q2 statement&hellip;" data-click="2">
+          <p class="hc-q">What changed for the Smiths since our March review?</p>
+          <p class="hc-ans">Two things. The 401(k) rollover completed at $412,000, and their CPA flagged an open K-1 question in June. Both are filed and linked below.</p>
+          <p class="hc-src">Smith Q2 statement (filed 6/30/2026) | CPA email, M. Hill (filed 6/12/2026)</p>
+          <div class="hc-prov" data-kind="email" data-title="Re: K-1 question &middot; M. Hill, CPA">Still waiting on the K-1 from the Riverside partnership before I can close out their 2025 return. <span class="hl">Can you confirm the rollover check cleared before year end?</span></div>
+        </div>
+        <div class="hc-item" data-chip="Whole book" data-ph="Reading the client picture&hellip;|Scanning every statement&hellip;" data-click="1">
+          <p class="hc-q">Which clients hold a concentrated position above 20%?</p>
+          <p class="hc-ans">Three households. Patel at 31% in employer stock, Okafor at 24%, and Lindqvist at 22%, each read from the latest statement on file.</p>
+          <p class="hc-src">Patel Q2 statement (filed 7/8/2026) | Okafor Q2 statement (filed 7/2/2026) | Lindqvist Q1 statement (filed 4/14/2026)</p>
+          <div class="hc-prov" data-kind="pdf" data-title="Patel Taxable &middot; Q2 2026"><div class="prov-tbl"><span class="hl"><b>Employer stock</b></span><span class="hl">$684,300</span><span class="hl"><b>31%</b></span><span>VTI</span><span>$1,204,000</span><span>55%</span><span>Cash</span><span>$306,000</span><span>14%</span></div></div>
+        </div>
+        <div class="hc-item" data-chip="Whole book" data-ph="Reading the client picture&hellip;|Searching meeting transcripts&hellip;">
+          <p class="hc-q">Who mentioned wanting to retire in the next three years?</p>
+          <p class="hc-ans">Four clients, each tied to the conversation where they said it. Two of them also asked about pension timing, which is noted in their files.</p>
+          <p class="hc-src">Meeting transcript, Doyle (filed 5/22/2026) | Meeting transcript, Chen (filed 6/9/2026) | + 2 more conversations</p>
+          <div class="hc-prov" data-kind="transcript" data-title="Meeting transcript &middot; Doyle household &middot; 5/22/2026">Margaret: <span class="hl">If the numbers hold, I want to be done working within three years.</span> Can we look at what the pension bridge would take?</div>
+        </div>
+        <div class="hc-item" data-chip="Whole book" data-ph="Reading the client picture&hellip;|Collecting open items&hellip;">
+          <p class="hc-q">What's still open from last week's client meetings?</p>
+          <p class="hc-ans">Five follow-ups across four households, from a missing insurance rider to the Whitfield trust question. Each one names the meeting it came from.</p>
+          <p class="hc-src">Whitfield transcript (filed 7/24/2026) | + 4 more items</p>
+          <div class="hc-prov" data-kind="transcript" data-title="Meeting transcript &middot; Whitfield &middot; 7/24/2026">Tom: <span class="hl">Before anything moves, I want the trust language checked against the new beneficiary setup.</span> We said we'd get their attorney an answer this week.</div>
+        </div>
+        <div class="hc-item" data-chip="Alvarez, Maria &amp; Luis" data-ph="Reading the client picture&hellip;|Preparing the brief&hellip;">
+          <p class="hc-q">Anything I should know before the Alvarez call at 2:00?</p>
+          <p class="hc-ans">Their daughter's tuition starts this fall, the 529 is short of the plan, and Maria sounded frustrated about paperwork last visit. The prepared brief covers all three.</p>
+          <p class="hc-src">529 plan review (filed 6/3/2026) | Call notes (filed 7/17/2026) | Alvarez pre-call brief (prepared today)</p>
+          <div class="hc-prov" data-kind="pdf" data-title="529 plan review &middot; filed 6/3/2026"><span class="hl">Projected tuition need, fall 2026: $38,400. Current 529 balance: $27,900.</span> Gap at the start of the term is $10,500.</div>
+        </div>
+      </div>
+    </div>
+      <p class="day-time" style="margin:12px 0 0;">Illustrative example, not real client data.</p>
       </div>
     </div>
     <div class="flow-row">
