@@ -607,12 +607,12 @@
     <div class="win td-win ap-win" id="tdWin" data-mockup="" role="region" aria-label="Interactive example of the Briefly web app. The Today page shows portfolio alerts across the whole book and a brief ready for every meeting this week. Choose an alert or a meeting to see what Briefly found. Illustrative example, not real client data.">
       <div class="ap-main">
         <div class="td">
-          <div class="td-top"><div class="t-h">Today</div><p>Wednesday, September 30 &middot; 14 meetings this week, every brief ready</p></div>
+          <div class="td-top"><div class="t-h">Today</div><p>Wednesday, September 30 &middot; 14 meetings this week, 14 briefs ready to review</p></div>
           <div class="ap-card">
             <div class="td-sec"><span class="td-sh">Portfolio alerts</span><span class="td-src">Whole book</span></div>
             <div class="td-list td-alerts">
           <button type="button" class="td-row" data-i="0"><span class="td-pill">Idle cash</span><span class="td-sent"><b>Raj Patel</b> has $312,000 sitting in cash.</span><span class="td-chev" aria-hidden="true"></span></button>
-          <button type="button" class="td-row" data-i="1"><span class="td-pill">Drift</span><span class="td-sent"><b>Linda Choi</b> is 7.7 points over on equities.</span><span class="td-chev" aria-hidden="true"></span></button>
+          <button type="button" class="td-row" data-i="1"><span class="td-pill">RMD</span><span class="td-sent"><b>Dorothy Kim</b> still has $12,200 of her RMD to take.</span><span class="td-chev" aria-hidden="true"></span></button>
           <button type="button" class="td-row" data-i="2"><span class="td-pill">Maturity</span><span class="td-sent"><b>David Okafor</b> has a CD maturing Oct 14.</span><span class="td-chev" aria-hidden="true"></span></button>
         </div>
           </div>
@@ -1189,7 +1189,7 @@
   </div>
   <div class="ce-foot"><strong>Nothing here is a recommendation.</strong> Sources: 1 Intro call notes, 2 J.P. Morgan statement, 3 Intake</div>
 </div>
-        <div class="r6-card cc-card otd-card" data-pos="2" data-read="2000" data-mockup="" role="img" aria-label="After the Whitfield Q2 review, Briefly has drafted the recap email to Margaret and three action items, and one approved task shows as sent to Salesforce. Illustrative example, not real client data.">
+        <div class="r6-card cc-card otd-card" data-pos="2" data-read="2000" data-mockup="" role="img" aria-label="After the Whitfield Q3 review, Briefly has drafted the recap email to Margaret and three action items, and one approved task shows as sent to Salesforce. Illustrative example, not real client data.">
   <div class="cc-head"><span class="cc-title">Meeting follow-up</span><span class="cc-meta">Whitfield household · today</span></div>
   <div class="cc-body">
     <div class="cc-sec">Recap email <span class="cc-tag">Draft</span></div>
@@ -1921,32 +1921,32 @@
   var MAIL = '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><rect x="1" y="2.5" width="14" height="11" rx="2.2" fill="#0A64C8"/><path d="M3 5.4 8 9l5-3.6" fill="none" stroke="#fff" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   var DOC = '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M3.5 1.5h6l3 3v9.2a.8.8 0 0 1-.8.8H3.5a.8.8 0 0 1-.8-.8V2.3a.8.8 0 0 1 .8-.8z" fill="#fff" stroke="#6B7280" stroke-width="1.2"/><path d="M5 8h6M5 10.5h4" stroke="#6B7280" stroke-width="1.1" stroke-linecap="round"/></svg>';
   var TALK = '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><rect x="5.5" y="1.5" width="5" height="8" rx="2.5" fill="#1D1D1F"/><path d="M3.5 7.5a4.5 4.5 0 0 0 9 0M8 12v2.5" fill="none" stroke="#1D1D1F" stroke-width="1.3" stroke-linecap="round"/></svg>';
-  var RAJ_MAIL = { icon: MAIL, hd: 'Email from Raj Patel · Sep 28, 4:12 PM', bd: 'Just moved $312K over from Chase. <span class="hl">Please leave it in cash for now. I want to buy Apple on the 1st.</span>' };
+  var RAJ_MAIL = { icon: MAIL, hd: 'Email from Raj Patel · Sep 23, 4:12 PM', bd: 'Just moved $312K over from Chase. <span class="hl">Please leave it in cash for now. I want to buy Apple on the 1st.</span>' };
 
   var D = [
-    { name: 'Raj Patel', pill: 'Idle cash', head: '$312,000 has been sitting in cash for two days.',
-      ev: ['Sep 28', 'Deposit from Chase', '$312,000', RAJ_MAIL],
-      task: ['Buy Apple for Raj with the $312,000', 'Due Oct 1'] },
-    { name: 'Linda Choi', pill: 'Drift', head: 'Equities are at 67.7% against a 60% target.',
-      ev: ['Aug 21', 'Email from Linda', '', { icon: MAIL, hd: 'Email from Linda Choi · Aug 21, 9:05 AM', bd: 'Whatever we do with the account this year, <span class="hl">please keep the tax bill as low as you can.</span>' }],
-      task: ['Rebalance Linda inside her IRA so no gains are taxed', 'From the Sep 29 holdings report'] },
-    { name: 'David Okafor', pill: 'Maturity', head: 'His $250,000 CD matures Oct 14 and renews on its own.',
+    { name: 'Raj Patel', pill: 'Idle cash', head: '$312,000 has been sitting in cash for a week.',
+      ev: ['Sep 23', 'Wire from Chase', '$312,000', RAJ_MAIL],
+      task: ['Confirm the Apple order with Raj, then place it Oct 1', 'Unsolicited · his Sep 23 email is on file'] },
+    { name: 'Dorothy Kim', pill: 'RMD', head: '$12,200 of her $34,200 RMD still has to come out by Dec 31.',
+      ev: ['Mar 4', 'Email from Dorothy', '', { icon: MAIL, hd: 'Email from Dorothy Kim · Mar 4, 10:20 AM', bd: 'For the rest of this year\'s distribution, <span class="hl">please send it straight to St. Mark\'s like last year.</span>' }],
+      task: ['Send Dorothy\'s remaining $12,200 to St. Mark\'s as a QCD', 'Due Dec 31 · from her Mar 4 email'] },
+    { name: 'David Okafor', pill: 'Maturity', head: 'His $250,000 CD matures Oct 14 and pays out to cash.',
       ev: ['Jun 18', 'Meeting with David', '', { icon: TALK, hd: 'Meeting transcript · Jun 18', bd: 'David said <span class="hl">he will need about $100,000 for a kitchen renovation next spring.</span>' }],
-      task: ['Call David about his CD before it renews', 'Due Oct 10'] },
-    { name: 'Margaret Whitfield', sub: 'Wed 10:00 · Q2 review', since: 'May 14', up: 'Up $1.32M since May 14',
+      task: ['Call David. Hold $100,000 for the kitchen and reinvest the rest', 'Due Oct 9 · before the CD matures'] },
+    { name: 'Margaret Whitfield', sub: 'Wed 10:00 · Q3 review', since: 'May 14', up: 'Up $1.31M since May 14',
       perf: ['+4.8%', '+4.1%'],
-      rows: [['Added from Fidelity', 1200000, { icon: DOC, hd: 'Transfer confirmation · Sep 24', bd: '14 positions received from Fidelity. <span class="hl">Transferred in kind, nothing sold.</span> Market value $1,200,000.' }],
-        ['Markets, after fees', 145000], ['Monthly withdrawals', -24000]],
-      raise: [['Where the $1.2M from Fidelity should go', { icon: TALK, hd: 'Meeting transcript · May 14', bd: 'Margaret said <span class="hl">once the Fidelity money is here, she wants to talk about whether it should all stay in stocks.</span>' }],
+      rows: [['Transfer from Fidelity', 1184620, { icon: DOC, hd: 'Fidelity transfer · Sep 24', bd: 'Transfer complete. 14 positions received in kind, market value $1,184,620. <span class="hl">Cost basis received for all 14, with $310,400 in unrealized gains.</span>' }],
+        ['Markets, after fees', 146310], ['Withdrawals, 4 monthly', -24000]],
+      raise: [['The Fidelity shares carry $310,400 in gains, so where they go is a tax question', { icon: TALK, hd: 'Meeting transcript · May 14', bd: 'Margaret said <span class="hl">once the Fidelity money is here, she wants to talk about whether it should all stay in stocks.</span>' }],
         ['Gifts of $19,000 to each of her four grandchildren']] },
-    { name: 'Raj Patel', sub: 'Thu 1:00 · Quarterly review', since: 'July 16', up: 'Up $410,000 since July 16',
+    { name: 'Raj Patel', sub: 'Thu 1:00 · Quarterly review', since: 'July 16', up: 'Up $409,325 since July 16',
       perf: ['+2.3%', '+2.1%'],
-      rows: [['Added from Chase', 312000, RAJ_MAIL], ['Markets, after fees', 110000], ['Tuition deposit', -12000]],
-      raise: [['Check that the Apple trade went in on Oct 1'], ['His daughter starts college next fall']] },
-    { name: 'Maria & Luis Alvarez', sub: 'Wed 2:00 · 529 check-in', since: 'June 2', up: 'Up $70,000 since June 2',
+      rows: [['Wire from Chase', 312000, RAJ_MAIL], ['Markets, after fees', 109740], ['Fall tuition', -12415]],
+      raise: [['His Apple buy goes in today, about 6% of his account'], ['His daughter\'s spring tuition is due in January']] },
+    { name: 'Maria & Luis Alvarez', sub: 'Wed 2:00 · 529 check-in', since: 'June 2', up: 'Up $69,560 since June 2',
       perf: ['+4.2%', '+4.5%'],
-      rows: [['Markets, after fees', 77000], ['529 contributions', 8000], ['Roof repair', -15000]],
-      raise: [['The 529 is about $18,000 short of the plan for year one'], ["Luis's December bonus could go toward school"]] }
+      rows: [['Markets, after fees', 76420], ['Monthly deposits', 8000], ['Roof repair', -14860]],
+      raise: [['Their 529 is $18,000 behind the college plan for Sofia\'s first year'], ["Luis's December bonus could close that gap"]] }
   ];
 
   var notes = [];
@@ -1966,7 +1966,7 @@
     return top(d, '<span class="td-ok">Brief ready</span>') +
       '<div class="ap-p-card ap-since"><div class="ap-ch">Since we last met</div>' +
       '<div class="ap-up">' + esc(d.up) + '</div>' +
-      '<div class="ap-perf">Return <b>' + d.perf[0] + '</b> &middot; benchmark ' + d.perf[1] + '</div>' +
+      '<div class="ap-perf">Return after fees <b>' + d.perf[0] + '</b> &middot; 60/40 benchmark ' + d.perf[1] + '</div>' +
       '<div class="ap-rows">' + d.rows.map(function (r) {
         return '<div class="ap-r' + x(r[2]) + '"><span>' + esc(r[0]) + '</span><span class="amt' + (r[1] > 0 ? ' pos' : '') + '">' + usd(r[1]) + '</span></div>' + noteHtml(r[2]);
       }).join('') + '</div></div>' +
