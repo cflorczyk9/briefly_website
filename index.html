@@ -307,11 +307,8 @@
   .chip.gone { opacity: 0; }
   .chip.fade-in { transition: opacity 1.4s ease; }
   /* hero app frame: matches the Briefly web app (navy rail, warm page, white cards, attention and good pills) */
-  .ap-win { display: grid; grid-template-columns: 52px minmax(0, 1fr); background: #F4F3F0; }
-  .ap-rail { background: #0B2545; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 12px 0; }
-  .ap-mark { width: 32px; height: 32px; border-radius: 8px; background: rgba(255, 255, 255, .12); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-family: "DM Serif Display", Georgia, serif; font-size: 19px; margin-bottom: 10px; }
-  .ap-ic { width: 34px; height: 34px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; color: rgba(255, 255, 255, .55); }
-  .ap-ic.on { background: rgba(255, 255, 255, .14); color: #fff; }
+  .ap-win { background: #F4F3F0; min-width: 0; max-width: 100%; }
+  .hero-grid > div { min-width: 0; }
   .ap-main { position: relative; min-width: 0; }
   .ap-win .td { padding: 0 16px 16px; }
   .ap-win .td-glance { background: #fff; border-color: #E5E7EB; }
@@ -320,6 +317,9 @@
   .ap-win .td-pill { background: #FBEFE4; color: #B4641E; }
   .ap-win .td-ok { background: #E7F1EC; color: #2D6A4F; }
   .ap-win .td-panel { top: 0; background: #F4F3F0; padding: 2px 16px 16px; }
+  .ap-win .td-panel { scrollbar-width: thin; scrollbar-color: #D2D2D7 transparent; }
+  .ap-win .td-panel::-webkit-scrollbar { width: 6px; }
+  .ap-win .td-panel::-webkit-scrollbar-thumb { background: #D2D2D7; border-radius: 3px; }
   .ap-win .td-p-top { margin: 14px 0 8px; }
   .ap-win .td-back { color: #0B2545; }
   .ap-win .td-p-src span { background: #EEF1F5; color: #0B2545; }
@@ -350,13 +350,26 @@
   .ap-moves .dot { width: 7px; height: 7px; border-radius: 50%; align-self: center; }
   .ap-moves b { font-weight: 600; color: #1D1D1F; }
   .ap-moves .amt { font-weight: 500; font-variant-numeric: tabular-nums; color: #1D1D1F; white-space: nowrap; }
+  .ap-x { cursor: pointer; border-radius: 6px; transition: background .25s ease, box-shadow .25s ease; }
+  .ap-x:hover, .ap-x.is-hover { background: #F5F7FA; }
+  .ap-x.open { background: #FFF6DD; box-shadow: 0 0 0 4px #FFF6DD; }
+  .ap-x:focus-visible { outline: 2px solid #2F8CFF; outline-offset: 2px; }
+  .ap-note { display: none; margin: 6px 0 8px; border: 1px solid #E5E7EB; border-radius: 8px; background: #fff; box-shadow: 0 6px 18px rgba(29, 29, 31, .08); overflow: hidden; }
+  .ap-note.on { display: block; animation: td-land .35s cubic-bezier(.2, .7, .2, 1) both; }
+  .ap-note .hd { display: flex; align-items: center; gap: 7px; padding: 7px 10px; border-bottom: 1px solid #F0F0F2; font-size: 11.5px; font-weight: 600; color: #1D1D1F; }
+  .ap-note .hd svg { flex: none; }
+  .ap-note .bd { padding: 8px 10px 9px; font-size: 12px; line-height: 1.55; color: #424245; }
+  .ap-tip { font-size: 11px; color: #6B7280; margin-top: 6px; }
+  .ap-task { border: 1px solid #E5E7EB; border-radius: 8px; padding: 9px 11px; margin-top: 8px; }
+  .ap-task .k { font-size: 11px; color: #6B7280; }
+  .ap-task .t { font-size: 13px; font-weight: 600; color: #1D1D1F; margin-top: 1px; }
+  .ap-task .d { font-size: 11.5px; color: #6B7280; margin-top: 1px; }
+  .ap-task .td-act { margin-top: 9px; }
   .ap-p-card .td-p-h { margin-top: 12px; }
   .ap-win .td-meets .td-sent { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .ap-br .amt { white-space: nowrap; }
   .ap-p-card .td-p-lines { margin-top: 6px; }
   @media (max-width: 480px) {
-    .ap-win { grid-template-columns: minmax(0, 1fr); }
-    .ap-rail { display: none; }
     .ap-win .td, .ap-win .td-panel { padding-left: 10px; padding-right: 10px; }
     .ap-br { grid-template-columns: minmax(0, 1fr) 40px 80px; gap: 8px; }
   }
@@ -561,17 +574,10 @@
       <div class="hero-ctas">
         <a class="btn" href="#" onclick="openDemoModal();return false;">Book a demo</a>
       </div>
-      <p class="hero-trust">Sign in from your browser and link Salesforce and Outlook with a few clicks.</p>
+      <p class="hero-trust">Sign in from your browser and link Salesforce and Outlook in a few minutes.</p>
     </div>
     <div>
     <div class="win td-win ap-win" id="tdWin" data-mockup="" role="region" aria-label="Interactive example of the Briefly web app. The Today page shows portfolio alerts across the whole book and a brief ready for every meeting this week. Choose an alert or a meeting to see what Briefly found. Illustrative example, not real client data.">
-      <div class="ap-rail" aria-hidden="true">
-        <span class="ap-mark">B</span>
-        <span class="ap-ic on"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5 12 5l8 6.5V19a1 1 0 0 1-1 1h-4.5v-5h-5v5H5a1 1 0 0 1-1-1z"/></svg></span>
-        <span class="ap-ic"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8.5" r="3.2"/><path d="M3.5 19c.6-3 2.8-4.6 5.5-4.6s4.9 1.6 5.5 4.6"/><path d="M15.5 5.6a3.2 3.2 0 0 1 0 5.9M17.5 14.6c1.6.6 2.6 2 3 4.4"/></svg></span>
-        <span class="ap-ic"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5"/></svg></span>
-        <span class="ap-ic"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17.5V6.5A1.5 1.5 0 0 1 6.5 5h11A1.5 1.5 0 0 1 19 6.5v8a1.5 1.5 0 0 1-1.5 1.5H9z"/></svg></span>
-      </div>
       <div class="ap-main">
         <div class="td">
           <div class="td-top"><div class="t-h">Today</div><p>Wednesday, September 30 &middot; Calendar connected</p></div>
@@ -595,7 +601,7 @@
           <button type="button" class="td-row" data-i="4"><span class="td-when">Wed 10:00</span><span class="td-sent"><b>Margaret Whitfield</b> &middot; Q2 review</span><span class="td-ok">Brief ready</span><span class="td-chev" aria-hidden="true"></span></button>
           <button type="button" class="td-row" data-i="5"><span class="td-when">Wed 2:00</span><span class="td-sent"><b>Maria &amp; Luis Alvarez</b> &middot; 529 check-in</span><span class="td-ok">Brief ready</span><span class="td-chev" aria-hidden="true"></span></button>
           <button type="button" class="td-row" data-i="6"><span class="td-when">Thu 9:30</span><span class="td-sent"><b>John &amp; Jane Smith</b> &middot; Annual review</span><span class="td-ok">Brief ready</span><span class="td-chev" aria-hidden="true"></span></button>
-          <button type="button" class="td-row" data-i="7"><span class="td-when">Thu 1:00</span><span class="td-sent"><b>Raj Patel</b> &middot; Cash plan</span><span class="td-ok">Brief ready</span><span class="td-chev" aria-hidden="true"></span></button>
+          <button type="button" class="td-row" data-i="7"><span class="td-when">Thu 1:00</span><span class="td-sent"><b>Raj Patel</b> &middot; Quarterly review</span><span class="td-ok">Brief ready</span><span class="td-chev" aria-hidden="true"></span></button>
         </div>
           </div>
         </div>
@@ -1463,7 +1469,7 @@
       <div class="pr-right">
         <div class="pr-label">What's included</div>
         <ul class="pr-list">
-          <li><span class="pr-ck" aria-hidden="true"><svg viewBox="0 0 12 12" width="11" height="11"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="#2F8CFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Link Salesforce and Outlook yourself in a few clicks</span></li>
+          <li><span class="pr-ck" aria-hidden="true"><svg viewBox="0 0 12 12" width="11" height="11"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="#2F8CFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Link Salesforce and Outlook in a few minutes</span></li>
           <li><span class="pr-ck" aria-hidden="true"><svg viewBox="0 0 12 12" width="11" height="11"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="#2F8CFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Every meeting prepped before anyone asks</span></li>
           <li><span class="pr-ck" aria-hidden="true"><svg viewBox="0 0 12 12" width="11" height="11"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="#2F8CFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Idle cash and drift alerts across your book <span class="pr-muted">(turned on once your custodian or portfolio management system is linked)</span></span></li>
           <li><span class="pr-ck" aria-hidden="true"><svg viewBox="0 0 12 12" width="11" height="11"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="#2F8CFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Prospect analyses before the first call</span></li>
@@ -1881,8 +1887,9 @@
   show(0);
 })();
 
-/* hero: the Today page. Alerts and meetings open what Briefly found; a demo
-   cursor clicks around until the visitor points at the mockup or clicks it. */
+/* hero: the Today page. Alerts and meetings open what Briefly found. A demo
+   cursor plays two short stories until the visitor points at the mockup or
+   clicks it: idle cash that turns out to be on purpose, then a meeting. */
 (function () {
   var win = document.getElementById('tdWin');
   var panel = document.getElementById('tdPanel');
@@ -1891,29 +1898,39 @@
   var ring = document.getElementById('tdRing');
   var rows = [].slice.call(win.querySelectorAll('button.td-row'));
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var TASK = '✓ Task in Salesforce';
+  var MAIL = '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><rect x="1" y="2.5" width="14" height="11" rx="2.2" fill="#0A64C8"/><path d="M3 5.4 8 9l5-3.6" fill="none" stroke="#fff" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var DOC = '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M3.5 1.5h6l3 3v9.2a.8.8 0 0 1-.8.8H3.5a.8.8 0 0 1-.8-.8V2.3a.8.8 0 0 1 .8-.8z" fill="#fff" stroke="#6B7280" stroke-width="1.2"/><path d="M5 8h6M5 10.5h4" stroke="#6B7280" stroke-width="1.1" stroke-linecap="round"/></svg>';
+  var TALK = '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><rect x="5.5" y="1.5" width="5" height="8" rx="2.5" fill="#1D1D1F"/><path d="M3.5 7.5a4.5 4.5 0 0 0 9 0M8 12v2.5" fill="none" stroke="#1D1D1F" stroke-width="1.3" stroke-linecap="round"/></svg>';
+  var RAJ_MAIL = { icon: MAIL, hd: 'Email from Raj Patel · Sep 28, 4:12 PM', bd: 'Just moved $312K over from Chase. <span class="hl">Please leave it in cash for now. I want to buy Apple on the 1st.</span>' };
 
   var D = [
-    { name: 'Raj Patel', pill: 'Idle cash', head: '$312,000 has been sitting in cash since June 3.',
-      lines: [['It came from his RSU sale and never got invested.', 1], ["In July he said he wants this money working before his daughter's tuition starts next fall.", 2], ["You meet Thursday at 1:00, and it's at the top of his brief.", 0]],
-      src: ['Schwab statement, Sep 29', 'Meeting transcript, Jul 16'] },
+    { name: 'Raj Patel', pill: 'Idle cash', head: '$312,000 has been sitting in cash for two days.',
+      lines: [['He moved it over from Chase on Sep 28 and asked to keep it in cash.', 1], ['He wants to buy Apple with it on October 1.', 1]],
+      moves: [['Sep 28', 'Deposit', 'from Chase checking', '$312,000', '#2D6A4F', RAJ_MAIL], ['Aug 28', 'Withdrawal', 'tuition deposit', '$12,000', '#B4641E']],
+      task: ['Buy Apple for Raj Patel with the $312,000', 'Due Oct 1 · from his Sep 28 email'],
+      src: ['Email from Raj, Sep 28', 'Schwab activity, Sep 28'] },
     { name: 'Linda Choi', pill: 'Drift', head: 'Equities are at 67.7% against a 60% target.',
       lines: [['Her tech holdings did most of it. NVDA alone is now 9% of the account.', 1], ["She asked in August to keep this year's tax bill down.", 2], ['Her IRA holds enough equities to rebalance there without realizing gains.', 1]],
+      task: ['Rebalance Linda Choi inside her IRA', 'From the Sep 29 holdings report'],
       src: ['Holdings report, Sep 29', 'Email from Linda, Aug 21'] },
     { name: 'Tom Brennan', pill: 'Distribution', head: '$48,200 of his $80,000 RMD is still to come out.',
       lines: [['He has taken $31,800 so far this year, and the deadline is December 31.', 1], ['In March he asked to take the rest in December, after his Medicare premium review.', 2]],
+      task: ['Schedule the rest of Tom Brennan\'s RMD for December', 'Due Dec 31'],
       src: ['Distributions, year to date', 'Call notes, Mar 12'] },
     { name: 'David Okafor', pill: 'Maturity', head: 'His $250,000 CD matures October 14.',
       lines: [['It renews on its own unless someone acts before then.', 1], ['In June he mentioned needing about $100,000 for a kitchen renovation next spring.', 2]],
+      task: ['Call David Okafor about his CD before Oct 14', 'Due Oct 10'],
       src: ['Holdings report, Sep 29', 'Meeting transcript, Jun 18'] },
     { name: 'Margaret Whitfield', sub: 'Wed 10:00 · Q2 review', since: 'May 14',
       head: 'Up $1.32M since May 14. Most of that is her Fidelity account moving over, and markets added another $145,000 after fees.',
       tiles: [['Since May 14', '+4.8%', '+4.1%'], ['Year to date', '+9.6%', '+8.8%']],
       start: '$2,980,000', end: '$4,301,000',
-      bridge: [['Added', 1200000, 'Fidelity account, moved in kind Sep 24'], ['Withdrawn', -24000, 'Monthly distributions'], ['Dividends and interest', 21500, ''], ['Market change', 132500, ''], ['Fees', -9000, '']],
+      bridge: [['Added', 1200000, 'Fidelity account, moved in kind Sep 24', { icon: DOC, hd: 'Transfer confirmation · Sep 24', bd: '14 positions received from Fidelity brokerage. <span class="hl">Transferred in kind, nothing sold.</span> Market value $1,200,000.' }],
+        ['Withdrawn', -24000, 'Monthly distributions'], ['Dividends and interest', 21500, ''], ['Market change', 132500, ''], ['Fees', -9000, '']],
       drove: [['US stocks did most of it. Her total market fund is up 8.1% since May.', 1], ['Her bond funds were close to flat.', 1]],
       moves: [['Sep 24', 'Transfer in', 'Fidelity brokerage, in kind', '$1,200,000', '#2D6A4F'], ['Jun to Sep', 'Withdrawal', 'monthly distribution, 4 payments', '$24,000', '#B4641E']],
-      raise: [['Nothing was sold in the transfer, so where that $1.2M goes is the open decision.', 2], ['She asked last time about gifting $19,000 to each of her four grandchildren this year.', 3], ['Her attorney confirmed on Sep 22 that the new trust documents are signed.', 4]],
+      raise: [['Nothing was sold in the transfer, so where that $1.2M goes is the open decision.', 3, { icon: TALK, hd: 'Meeting transcript · May 14', bd: 'Margaret: <span class="hl">Once the Fidelity money is here, I want to talk about whether it should all stay in stocks.</span>' }],
+        ['She asked last time about gifting $19,000 to each of her four grandchildren this year.', 3], ['Her attorney confirmed on Sep 22 that the new trust documents are signed.', 4]],
       src: ['Performance report, Sep 29', 'Transfer confirmation, Sep 24', 'Meeting transcript, May 14', 'Email from R. Klein, attorney'] },
     { name: 'Maria & Luis Alvarez', sub: 'Wed 2:00 · 529 check-in', since: 'June 2',
       head: 'Up $70,000 since June 2, almost all from markets. They took $15,000 out in July for a roof repair.',
@@ -1933,25 +1950,34 @@
       moves: [['Jun 27', 'Transfer in', '401(k) rollover', '$412,000', '#2D6A4F'], ['Apr to Sep', 'Withdrawal', 'estimated taxes, 3 payments', '$18,000', '#B4641E']],
       raise: [['Their CPA is still waiting on a K-1 to close the 2025 return.', 2], ['They want to buy a lake house by 2028 and asked what it would take.', 3]],
       src: ['Performance report, Sep 29', 'Email from M. Hill, CPA', 'Meeting transcript, Mar 18'] },
-    { name: 'Raj Patel', sub: 'Thu 1:00 · Cash plan', since: 'July 16',
-      head: 'Up $130,000 since July 16, a little behind his benchmark. Most of the gap is the $312,000 still sitting in cash.',
-      tiles: [['Since July 16', '+2.3%', '+2.6%'], ['Year to date', '+6.1%', '+7.4%']],
-      start: '$5,180,000', end: '$5,310,000',
-      bridge: [['Added', 40000, 'RSU vest, Aug 15'], ['Withdrawn', -12000, 'Tuition deposit, Aug 28'], ['Dividends and interest', 14800, ''], ['Market change', 96500, ''], ['Fees', -9300, '']],
-      drove: [['His stock funds kept pace. The cash earned only sweep interest.', 1]],
-      moves: [['Aug 15', 'Deposit', 'RSU vest proceeds', '$40,000', '#2D6A4F'], ['Aug 28', 'Withdrawal', 'tuition deposit', '$12,000', '#B4641E']],
-      raise: [['His daughter was accepted early, so tuition starts next fall.', 2], ['He asked for two or three options for the cash, with part of it kept liquid for tuition.', 3]],
-      src: ['Performance report, Sep 29', 'Email from Raj, Sep 8', 'Meeting transcript, Jul 16'] }
+    { name: 'Raj Patel', sub: 'Thu 1:00 · Quarterly review', since: 'July 16',
+      head: 'Up $410,000 since July 16. $312,000 of that is the cash he moved over on Sep 28, and markets added $110,000 after fees.',
+      tiles: [['Since July 16', '+2.3%', '+2.1%'], ['Year to date', '+7.6%', '+7.4%']],
+      start: '$4,850,000', end: '$5,260,000',
+      bridge: [['Added', 312000, 'Deposit from Chase, Sep 28', RAJ_MAIL], ['Withdrawn', -12000, 'Tuition deposit, Aug 28'], ['Dividends and interest', 13800, ''], ['Market change', 105500, ''], ['Fees', -9300, '']],
+      drove: [['His stock funds did most of it.', 1]],
+      moves: [['Sep 28', 'Deposit', 'from Chase checking', '$312,000', '#2D6A4F', RAJ_MAIL], ['Aug 28', 'Withdrawal', 'tuition deposit', '$12,000', '#B4641E']],
+      raise: [['He wants the $312,000 in Apple on October 1. Check that the trade went in.', 2], ['His daughter starts college next fall, and the first tuition deposit went out Aug 28.', 3]],
+      src: ['Performance report, Sep 29', 'Email from Raj, Sep 28', 'Meeting transcript, Jul 16'] }
   ];
 
+  var notes = [];
   function esc(t) { return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
-  function usd(v, sign) {
-    var a = Math.abs(v).toLocaleString('en-US');
-    return (sign ? (v < 0 ? '−' : '+') : '') + '$' + a;
+  function usd(v) { return (v < 0 ? '−' : '+') + '$' + Math.abs(v).toLocaleString('en-US'); }
+  function noteHtml(n) {
+    if (!n) return '';
+    notes.push(n);
+    return '<div class="ap-note" data-n="' + (notes.length - 1) + '"><div class="hd">' + n.icon + esc(n.hd) + '</div><div class="bd">' + n.bd + '</div></div>';
   }
-  function list(ls) {
-    return '<ul class="td-p-lines">' + ls.map(function (l) {
-      return '<li>' + esc(l[0]) + (l[1] ? '<span class="ak-n">' + l[1] + '</span>' : '') + '</li>';
+  function x(n) { return n ? ' ap-x" role="button" tabindex="0" aria-expanded="false' : ''; }
+  function list(ls, cls) {
+    return '<ul class="td-p-lines' + (cls ? ' ' + cls : '') + '">' + ls.map(function (l) {
+      return '<li class="' + x(l[2]) + '">' + esc(l[0]) + (l[1] ? '<span class="ak-n">' + l[1] + '</span>' : '') + '</li>' + noteHtml(l[2]);
+    }).join('') + '</ul>';
+  }
+  function moves(ms) {
+    return '<ul class="ap-moves">' + ms.map(function (m) {
+      return '<li class="' + x(m[5]) + '"><span class="d">' + esc(m[0]) + '</span><span class="dot" style="background:' + m[4] + '"></span><span><b>' + esc(m[1]) + '</b> · ' + esc(m[2]) + '</span><span class="amt">' + m[3] + '</span></li>' + noteHtml(m[5]);
     }).join('') + '</ul>';
   }
   function srcs(d) {
@@ -1962,36 +1988,35 @@
     var br = '<div class="ap-bridge"><div class="ap-br strong"><span>' + esc(d.since) + ' value</span><span></span><span class="amt">' + d.start + '</span></div>' +
       d.bridge.map(function (r) {
         var w = Math.max(3, Math.abs(r[1]) / max * 100).toFixed(1);
-        return '<div class="ap-br"><span>' + esc(r[0]) + (r[2] ? '<small>' + esc(r[2]) + '</small>' : '') + '</span>' +
+        return '<div class="ap-br' + x(r[3]) + '"><span>' + esc(r[0]) + (r[2] ? '<small>' + esc(r[2]) + '</small>' : '') + '</span>' +
           '<span class="bar"><i class="' + (r[1] < 0 ? 'neg' : '') + '" style="width:' + w + '%"></i></span>' +
-          '<span class="amt' + (r[1] > 0 ? ' pos' : '') + '">' + usd(r[1], true) + '</span></div>';
+          '<span class="amt' + (r[1] > 0 ? ' pos' : '') + '">' + usd(r[1]) + '</span></div>' + noteHtml(r[3]);
       }).join('') +
       '<div class="ap-br strong top"><span>Today</span><span></span><span class="amt">' + d.end + '</span></div></div>';
     var tiles = '<div class="ap-tiles">' + d.tiles.map(function (t) {
       return '<div class="ap-tile"><div class="k">' + esc(t[0]) + '</div><div class="v">' + t[1] + '</div><div class="b">Benchmark ' + t[2] + '</div></div>';
     }).join('') + '</div>';
-    var moves = '<ul class="ap-moves">' + d.moves.map(function (m) {
-      return '<li><span class="d">' + esc(m[0]) + '</span><span class="dot" style="background:' + m[4] + '"></span><span><b>' + esc(m[1]) + '</b> · ' + esc(m[2]) + '</span><span class="amt">' + m[3] + '</span></li>';
-    }).join('') + '</ul>';
     return '<div class="td-p-top"><button type="button" class="td-back">Today</button><span class="td-ok">Brief ready</span></div>' +
       '<div class="td-p-name">' + esc(d.name) + '</div><div class="td-p-sub">' + esc(d.sub) + '</div>' +
       '<div class="ap-p-card ap-since"><div class="ap-ch">Since we last met<span>' + esc(d.since) + '</span></div>' +
       '<p class="ap-head">' + esc(d.head) + '</p>' + tiles + br +
       '<div class="td-p-h">What drove it</div>' + list(d.drove) + '</div>' +
-      '<div class="ap-p-card ap-money"><div class="ap-ch">Money movement<span>since ' + esc(d.since) + '</span></div>' + moves + '</div>' +
+      '<div class="ap-p-card ap-money"><div class="ap-ch">Money movement<span>since ' + esc(d.since) + '</span></div>' + moves(d.moves) + '</div>' +
       '<div class="ap-p-card ap-raise"><div class="ap-ch">Worth raising</div>' + list(d.raise) + '</div>' + srcs(d);
   }
   function alertView(d) {
     return '<div class="td-p-top"><button type="button" class="td-back">Today</button><span class="td-pill">' + esc(d.pill) + '</span></div>' +
       '<div class="td-p-name">' + esc(d.name) + '</div>' +
       '<div class="ap-p-card"><p class="ap-head" style="margin-top:0">' + esc(d.head) + '</p>' +
-      '<div class="td-p-h" style="margin-top:4px">What Briefly found</div>' + list(d.lines) +
-      '<button type="button" class="td-act">Add to Salesforce</button></div>' + srcs(d);
+      '<div class="td-p-h" style="margin-top:4px">What Briefly found</div>' + list(d.lines) + '</div>' +
+      (d.moves ? '<div class="ap-p-card ap-money"><div class="ap-ch">Money movement<span>last 30 days</span></div>' + moves(d.moves) + '<div class="ap-tip">Click a row to see where it came from.</div></div>' : '') +
+      '<div class="ap-p-card ap-taskcard"><div class="ap-ch">Next step</div><div class="ap-task"><div class="k">Salesforce task</div><div class="t">' + esc(d.task[0]) + '</div><div class="d">' + esc(d.task[1]) + '</div>' +
+      '<button type="button" class="td-act">Add to Salesforce</button></div></div>' + srcs(d);
   }
 
   var openI = -1;
   function open(i) {
-    openI = i;
+    openI = i; notes = [];
     panel.innerHTML = D[i].bridge ? meeting(D[i]) : alertView(D[i]);
     panel.scrollTop = 0;
     panel.classList.add('on');
@@ -1999,80 +2024,105 @@
   function close() { panel.classList.remove('on'); openI = -1; }
   function act(btn) {
     if (btn.classList.contains('done')) return;
-    btn.textContent = TASK; btn.classList.add('done');
+    btn.textContent = '✓ Task in Salesforce'; btn.classList.add('done');
+  }
+  function toggle(el, on) {
+    var n = el.nextElementSibling;
+    if (!n || !n.classList.contains('ap-note')) return;
+    var show = on == null ? !el.classList.contains('open') : on;
+    el.classList.toggle('open', show); n.classList.toggle('on', show);
+    el.setAttribute('aria-expanded', show ? 'true' : 'false');
   }
 
   rows.forEach(function (r) {
     r.addEventListener('click', function () { open(+r.getAttribute('data-i')); });
   });
   panel.addEventListener('click', function (e) {
-    var t = e.target.closest('button');
+    var t = e.target.closest('button, .ap-x');
     if (!t) return;
     if (t.classList.contains('td-back')) { var back = rows[openI]; close(); if (e.isTrusted && back) back.focus({ preventScroll: true }); }
     else if (t.classList.contains('td-act')) act(t);
+    else if (t.classList.contains('ap-x')) toggle(t);
+  });
+  panel.addEventListener('keydown', function (e) {
+    var t = e.target;
+    if ((e.key === 'Enter' || e.key === ' ') && t.classList && t.classList.contains('ap-x')) { e.preventDefault(); toggle(t); }
   });
 
   if (reduced || !cur || !ring) return;
 
-  /* demo cursor */
-  var timers = [], stopped = false, paused = false, visible = false, running = false, step = 0;
-  var ORDER = [4, 0, 5, 1, 6, 2, 7, 3];
+  /* demo cursor: a short script of steps per story */
+  var timers = [], raf = 0, stopped = false, paused = false, visible = false, running = false, story = 0;
   function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
-  function clear() { timers.forEach(clearTimeout); timers = []; }
+  function clear() { timers.forEach(clearTimeout); timers = []; cancelAnimationFrame(raf); }
   function pos(el) {
     var r = el.getBoundingClientRect(), w = win.getBoundingClientRect();
-    return { x: r.left - w.left + Math.min(r.width * 0.5, 120), y: r.top - w.top + Math.min(r.height * 0.55, 14) };
+    return { x: r.left - w.left + Math.min(r.width * 0.42, 110), y: r.top - w.top + Math.min(r.height * 0.55, 13) };
   }
-  function moveTo(el) { var p = pos(el); cur.style.transform = 'translate(' + p.x + 'px,' + p.y + 'px)'; }
-  function click(el, fn) {
-    var p = pos(el);
-    el.classList.add('is-hover');
-    later(function () {
-      ring.style.left = p.x + 'px'; ring.style.top = p.y + 'px';
-      ring.classList.remove('pulse'); void ring.offsetWidth; ring.classList.add('pulse');
-      el.classList.remove('is-hover');
-      fn();
-    }, 260);
+  function slowScroll(target, ms) {
+    var from = panel.scrollTop, to = Math.max(0, Math.min(target, panel.scrollHeight - panel.clientHeight)), t0 = 0;
+    cancelAnimationFrame(raf);
+    function f(ts) {
+      if (!t0) t0 = ts;
+      var k = Math.min(1, (ts - t0) / ms), e = k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+      panel.scrollTop = from + (to - from) * e;
+      if (k < 1) raf = requestAnimationFrame(f);
+    }
+    raf = requestAnimationFrame(f);
   }
-  function scrollPanelTo(sel) {
-    var el = panel.querySelector(sel); if (!el) return;
-    panel.scrollTo({ top: Math.max(0, el.offsetTop - 12), behavior: 'smooth' });
-  }
+  function q(sel) { return sel === 'row' ? null : panel.querySelector(sel) || win.querySelector(sel); }
+  /* step kinds: [ 'move', sel ], [ 'click', sel ], [ 'scroll', sel ], [ 'top' ], [ 'wait', ms ] */
+  var STORIES = [
+    [['click', 'button.td-row[data-i="0"]'], ['wait', 2600],
+     ['scroll', '.ap-money'], ['wait', 1300],
+     ['click', '.ap-money .ap-x'], ['wait', 3600],
+     ['scroll', '.ap-taskcard'], ['wait', 900],
+     ['click', '.ap-taskcard .td-act'], ['wait', 2200],
+     ['top'], ['wait', 900], ['click', '.td-back'], ['wait', 1400]],
+    [['click', 'button.td-row[data-i="4"]'], ['wait', 3400],
+     ['scroll', '.ap-bridge'], ['wait', 1200],
+     ['click', '.ap-bridge .ap-x'], ['wait', 3400],
+     ['scroll', '.ap-raise'], ['wait', 1200],
+     ['click', '.ap-raise .ap-x'], ['wait', 3600],
+     ['top'], ['wait', 900], ['click', '.td-back'], ['wait', 1400]]
+  ];
   function hold() { return !stopped && !paused && visible && !document.hidden; }
-  function goBack() {
-    panel.scrollTo({ top: 0, behavior: 'smooth' });
-    later(function () {
-      var back = panel.querySelector('.td-back'); if (!back) return;
-      moveTo(back);
-      later(function () { click(back, close); later(run, 900); }, 950);
-    }, 500);
-  }
-  function run() {
-    clear();
+  function play(steps, k) {
     if (!hold()) { running = false; return; }
-    running = true;
-    var i = ORDER[step % ORDER.length]; step++;
-    var row = rows[i];
+    if (k >= steps.length) { story = (story + 1) % STORIES.length; later(function () { play(STORIES[story], 0); }, 400); return; }
+    var st = steps[k], next = function (ms) { later(function () { play(steps, k + 1); }, ms); };
+    if (st[0] === 'wait') return next(st[1]);
+    if (st[0] === 'top') { slowScroll(0, 1100); return next(1100); }
+    var el = q(st[1]);
+    if (!el) return next(200);
+    if (st[0] === 'scroll') {
+      var target = el.getBoundingClientRect().top - panel.getBoundingClientRect().top + panel.scrollTop - 14;
+      slowScroll(target, 1800); return next(1900);
+    }
+    /* click: glide over, hover, press */
+    var p = pos(el);
     cur.classList.add('on');
-    moveTo(row);
+    cur.style.transform = 'translate(' + p.x + 'px,' + p.y + 'px)';
     later(function () {
-      click(row, function () { open(i); });
-      if (D[i].bridge) {
-        later(function () { scrollPanelTo('.ap-money'); }, 4200);
-        later(function () { scrollPanelTo('.ap-raise'); }, 7000);
-        later(goBack, 10500);
-      } else {
-        later(function () {
-          var b = panel.querySelector('.td-act'); if (!b) return;
-          moveTo(b);
-          later(function () { click(b, function () { act(b); }); }, 950);
-        }, 1600);
-        later(goBack, 5600);
-      }
-    }, 1000);
+      el.classList.add('is-hover');
+      later(function () {
+        ring.style.left = p.x + 'px'; ring.style.top = p.y + 'px';
+        ring.classList.remove('pulse'); void ring.offsetWidth; ring.classList.add('pulse');
+        el.classList.remove('is-hover');
+        if (el.classList.contains('td-row')) open(+el.getAttribute('data-i'));
+        else if (el.classList.contains('td-back')) close();
+        else if (el.classList.contains('td-act')) act(el);
+        else if (el.classList.contains('ap-x')) toggle(el, true);
+        next(200);
+      }, 320);
+    }, 950);
   }
   function halt() { clear(); running = false; cur.classList.remove('on'); }
-  function start() { if (hold() && !running) { running = true; close(); later(run, 400); } }
+  function start() {
+    if (!hold() || running) return;
+    running = true; close();
+    later(function () { play(STORIES[story], 0); }, 400);
+  }
 
   win.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') { paused = true; halt(); } });
   win.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse' && !stopped) { paused = false; setTimeout(start, 2500); } });
@@ -2083,7 +2133,7 @@
   new IntersectionObserver(function (es) {
     es.forEach(function (e) {
       var was = visible; visible = e.isIntersecting;
-      if (visible && !was) setTimeout(start, step ? 600 : 3800);
+      if (visible && !was) setTimeout(start, 3800);
       else if (!visible) halt();
     });
   }, { threshold: 0.5 }).observe(win);

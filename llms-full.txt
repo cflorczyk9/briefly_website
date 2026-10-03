@@ -7,7 +7,7 @@ Source: https://www.brieflywealth.com/
 
 # Know every client like they're your only client.
 
-Briefly is a web app advisors sign into from a browser, and each advisor links Salesforce and Outlook in a few clicks. It keeps a current picture of each client, drafts briefs, agendas, follow-ups, market briefs and prospect analyses, flags idle cash and drift across the book, and reviews a prospect's statements before the first call. Every line links back to the document it came from. Fix something once, and it holds for the whole team from then on.
+Briefly is a web app advisors sign into from a browser, and each advisor links Salesforce and Outlook in a few minutes. It keeps a current picture of each client, drafts briefs, agendas, follow-ups, market briefs and prospect analyses, flags idle cash and drift across the book, and reviews a prospect's statements before the first call. Every line links back to the document it came from. Fix something once, and it holds for the whole team from then on.
 
 $150 per seat per month. Briefly also comes as a connector for Claude, for teams that already work there.
 
@@ -199,7 +199,7 @@ Briefly is AI software for wealth advisors. It turns scattered advisor documents
 
 Each new document, an email forwarded from a client, a statement uploaded after it arrives, a note typed up after a call, gets filed into the household it belongs to and read into the client picture right away. Nothing has to be reformatted or copied into a separate system first.
 
-Briefly is a web app advisors sign into, with Salesforce and Outlook linked in a few clicks. It also comes as a connector for Claude, for teams that already work there. Either way it is the same client picture underneath, with the same citations on every answer. The result is one base of firm memory. It gets better every time an advisor uses it, and it keeps working long after any single meeting ends.
+Briefly is a web app advisors sign into, with Salesforce and Outlook linked in a few minutes. It also comes as a connector for Claude, for teams that already work there. Either way it is the same client picture underneath, with the same citations on every answer. The result is one base of firm memory. It gets better every time an advisor uses it, and it keeps working long after any single meeting ends.
 
 ### Connor Florczyk
 
@@ -256,7 +256,7 @@ Source: https://www.brieflywealth.com/security
 
 # Your client data stays in a private environment for your firm.
 
-Briefly is AI software for wealth advisors. Advisors sign into a web app and link Salesforce and Outlook themselves. This page lays out where your client data lives, what the AI models do with it, what an advisor has to approve, and what changes under the SEC rules for AI vendors. Briefly also comes as a connector for Claude Desktop, and the connector section further down covers how that path differs.
+Briefly is AI software for wealth advisors. Advisors sign into a web app and link Salesforce and Outlook in a few minutes. This page lays out where your client data lives, what the AI models do with it, what an advisor has to approve, and what changes under the SEC rules for AI vendors. Briefly also comes as a connector for Claude Desktop, and the connector section further down covers how that path differs.
 
 Your client data stays in a private environment for your firm on AWS, with access controls scoped to your firm. The AI models that read it run on zero-retention terms and never train on it. Nothing goes into Salesforce until an advisor approves it. Briefly makes suggestions for the advisor to review. The advisor makes every decision and every recommendation.
 
@@ -529,7 +529,7 @@ Nothing goes into Salesforce until an advisor approves it.
 
 The left side is what happens with a consumer AI tool used directly. The right side is what happens with AI software for wealth advisors that your firm has reviewed as a vendor.
 
-Briefly is a web app advisors sign into, with Salesforce and Outlook linked in a few clicks. It makes suggestions for the advisor to review, and the advisor makes every decision and every recommendation. Briefly is advisory-workflow software only, and it never touches accounts, trading, or custody. For teams that already work in Claude Desktop, Briefly also comes as a connector where client files stay in a folder on the advisor's computer.
+Briefly is a web app advisors sign into, with Salesforce and Outlook linked in a few minutes. It makes suggestions for the advisor to review, and the advisor makes every decision and every recommendation. Briefly is advisory-workflow software only, and it never touches accounts, trading, or custody. For teams that already work in Claude Desktop, Briefly also comes as a connector where client files stay in a folder on the advisor's computer.
 
 That's why the Reg S-P questions from earlier in this page narrow to a vendor review your firm can document. Briefly is a service provider that holds client information for your firm, so your firm reviews it like any other, and the security page lays out the environment, the model terms, and the ninety-day export window. Your firm also has ninety days after leaving to export its files in a standard format, and after that window we delete them.
 
