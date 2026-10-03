@@ -306,6 +306,60 @@
   /* source chips fade back in after they land in the chat, instead of popping back */
   .chip.gone { opacity: 0; }
   .chip.fade-in { transition: opacity 1.4s ease; }
+  /* hero app frame: matches the Briefly web app (navy rail, warm page, white cards, attention and good pills) */
+  .ap-win { display: grid; grid-template-columns: 52px minmax(0, 1fr); background: #F4F3F0; }
+  .ap-rail { background: #0B2545; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 12px 0; }
+  .ap-mark { width: 32px; height: 32px; border-radius: 8px; background: rgba(255, 255, 255, .12); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-family: "DM Serif Display", Georgia, serif; font-size: 19px; margin-bottom: 10px; }
+  .ap-ic { width: 34px; height: 34px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; color: rgba(255, 255, 255, .55); }
+  .ap-ic.on { background: rgba(255, 255, 255, .14); color: #fff; }
+  .ap-main { position: relative; min-width: 0; }
+  .ap-win .td { padding: 0 16px 16px; }
+  .ap-win .td-glance { background: #fff; border-color: #E5E7EB; }
+  .ap-card { background: #fff; border: 1px solid #E5E7EB; border-radius: 10px; padding: 2px 8px 6px; margin-top: 12px; }
+  .ap-card .td-sec { margin: 10px 4px 6px; }
+  .ap-win .td-pill { background: #FBEFE4; color: #B4641E; }
+  .ap-win .td-ok { background: #E7F1EC; color: #2D6A4F; }
+  .ap-win .td-panel { top: 0; background: #F4F3F0; padding: 2px 16px 16px; }
+  .ap-win .td-p-top { margin: 14px 0 8px; }
+  .ap-win .td-back { color: #0B2545; }
+  .ap-win .td-p-src span { background: #EEF1F5; color: #0B2545; }
+  .ap-p-card { background: #fff; border: 1px solid #E5E7EB; border-radius: 10px; padding: 12px 14px; margin-top: 10px; }
+  .ap-ch { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-size: 12.5px; font-weight: 600; color: #1D1D1F; }
+  .ap-ch span { font-weight: 400; color: #6B7280; }
+  .ap-head { margin: 8px 0 10px; font-size: 13.5px; line-height: 1.5; font-weight: 500; color: #1D1D1F; }
+  .ap-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .ap-tile { border: 1px solid #E5E7EB; border-radius: 8px; padding: 7px 10px; }
+  .ap-tile .k { font-size: 11px; color: #6B7280; }
+  .ap-tile .v { font-size: 17px; font-weight: 600; font-variant-numeric: tabular-nums; color: #2D6A4F; }
+  .ap-tile .v.neg { color: #B42318; }
+  .ap-tile .b { font-size: 11px; color: #6B7280; font-variant-numeric: tabular-nums; }
+  .ap-bridge { margin-top: 10px; display: grid; gap: 1px; font-size: 12.5px; }
+  .ap-br { display: grid; grid-template-columns: minmax(0, 1fr) 64px 86px; gap: 10px; align-items: center; padding: 3px 0; color: #424245; }
+  .ap-br small { display: block; font-size: 11px; color: #6B7280; line-height: 1.3; }
+  .ap-br .bar { height: 7px; position: relative; }
+  .ap-br .bar i { position: absolute; left: 0; top: 0; height: 7px; border-radius: 6px; background: #2D6A4F; opacity: .85; }
+  .ap-br .bar i.neg { background: #6B7280; opacity: .45; }
+  .ap-br .amt { text-align: right; font-variant-numeric: tabular-nums; }
+  .ap-br .amt.pos { color: #2D6A4F; }
+  .ap-br.strong { font-weight: 600; color: #1D1D1F; }
+  .ap-br.top { border-top: 1px solid #E5E7EB; margin-top: 3px; padding-top: 6px; }
+  .ap-moves { list-style: none; margin: 6px 0 0; padding: 0; }
+  .ap-moves li { display: grid; grid-template-columns: 64px 8px minmax(0, 1fr) auto; gap: 8px; align-items: baseline; padding: 7px 0; border-bottom: 1px solid #F0F0F2; font-size: 12.5px; color: #424245; }
+  .ap-moves li:last-child { border-bottom: 0; }
+  .ap-moves .d { font-size: 11.5px; color: #6B7280; white-space: nowrap; }
+  .ap-moves .dot { width: 7px; height: 7px; border-radius: 50%; align-self: center; }
+  .ap-moves b { font-weight: 600; color: #1D1D1F; }
+  .ap-moves .amt { font-weight: 500; font-variant-numeric: tabular-nums; color: #1D1D1F; white-space: nowrap; }
+  .ap-p-card .td-p-h { margin-top: 12px; }
+  .ap-win .td-meets .td-sent { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .ap-br .amt { white-space: nowrap; }
+  .ap-p-card .td-p-lines { margin-top: 6px; }
+  @media (max-width: 480px) {
+    .ap-win { grid-template-columns: minmax(0, 1fr); }
+    .ap-rail { display: none; }
+    .ap-win .td, .ap-win .td-panel { padding-left: 10px; padding-right: 10px; }
+    .ap-br { grid-template-columns: minmax(0, 1fr) 40px 80px; gap: 8px; }
+  }
   /* chat (moved from the hero into #how): pulses as the source chips land */
   .ak-win.pulse { animation: card-pulse .7s ease; }
 
@@ -510,27 +564,40 @@
       <p class="hero-trust">Sign in from your browser and link Salesforce and Outlook with a few clicks.</p>
     </div>
     <div>
-    <div class="win td-win" id="tdWin" data-mockup="" role="region" aria-label="Interactive example of the Today page in the Briefly web app. Choose an alert or a meeting to see what Briefly found. Illustrative example, not real client data.">
-      <div class="td">
-        <div class="td-top"><div class="t-h">Today</div><p>Wednesday, September 30 &middot; Calendar connected</p></div>
-        <div class="td-glance">
-          <div class="td-cell"><span class="k">This week</span><span class="v">14 meetings</span></div>
-          <div class="td-cell"><span class="k">Briefs ready</span><span class="v">14</span></div>
-          <div class="td-cell"><span class="k">Facts to review</span><span class="v">9 items</span></div>
-        </div>
-        <div class="td-sec"><span class="td-sh">Portfolio alerts <span class="td-count">4</span></span><span class="td-src">Whole book &middot; as of 6:00 AM</span></div>
-        <div class="td-list td-alerts">
+    <div class="win td-win ap-win" id="tdWin" data-mockup="" role="region" aria-label="Interactive example of the Briefly web app. The Today page shows portfolio alerts across the whole book and a brief ready for every meeting this week. Choose an alert or a meeting to see what Briefly found. Illustrative example, not real client data.">
+      <div class="ap-rail" aria-hidden="true">
+        <span class="ap-mark">B</span>
+        <span class="ap-ic on"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5 12 5l8 6.5V19a1 1 0 0 1-1 1h-4.5v-5h-5v5H5a1 1 0 0 1-1-1z"/></svg></span>
+        <span class="ap-ic"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8.5" r="3.2"/><path d="M3.5 19c.6-3 2.8-4.6 5.5-4.6s4.9 1.6 5.5 4.6"/><path d="M15.5 5.6a3.2 3.2 0 0 1 0 5.9M17.5 14.6c1.6.6 2.6 2 3 4.4"/></svg></span>
+        <span class="ap-ic"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5"/></svg></span>
+        <span class="ap-ic"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17.5V6.5A1.5 1.5 0 0 1 6.5 5h11A1.5 1.5 0 0 1 19 6.5v8a1.5 1.5 0 0 1-1.5 1.5H9z"/></svg></span>
+      </div>
+      <div class="ap-main">
+        <div class="td">
+          <div class="td-top"><div class="t-h">Today</div><p>Wednesday, September 30 &middot; Calendar connected</p></div>
+          <div class="td-glance">
+            <div class="td-cell"><span class="k">This week</span><span class="v">14 meetings</span></div>
+            <div class="td-cell"><span class="k">Briefs ready</span><span class="v">14</span></div>
+            <div class="td-cell"><span class="k">Facts to review</span><span class="v">9 items</span></div>
+          </div>
+          <div class="ap-card">
+            <div class="td-sec"><span class="td-sh">Portfolio alerts <span class="td-count">4</span></span><span class="td-src">Whole book &middot; as of 6:00 AM</span></div>
+            <div class="td-list td-alerts">
           <button type="button" class="td-row" data-i="0"><span class="td-pill">Idle cash</span><span class="td-sent"><b>Raj Patel</b> has $312,000 sitting in cash.</span><span class="td-chev" aria-hidden="true"></span></button>
           <button type="button" class="td-row" data-i="1"><span class="td-pill">Drift</span><span class="td-sent"><b>Linda Choi</b> is 7.7 points over on equities.</span><span class="td-chev" aria-hidden="true"></span></button>
           <button type="button" class="td-row" data-i="2"><span class="td-pill">Distribution</span><span class="td-sent"><b>Tom Brennan</b> still needs $48,200 for this year's RMD.</span><span class="td-chev" aria-hidden="true"></span></button>
           <button type="button" class="td-row" data-i="3"><span class="td-pill">Maturity</span><span class="td-sent"><b>David Okafor</b> has a $250,000 CD maturing Oct 14.</span><span class="td-chev" aria-hidden="true"></span></button>
         </div>
-        <div class="td-sec"><span class="td-sh">Meetings this week</span></div>
-        <div class="td-list td-meets">
+          </div>
+          <div class="ap-card">
+            <div class="td-sec"><span class="td-sh">Meetings this week</span></div>
+            <div class="td-list td-meets">
           <button type="button" class="td-row" data-i="4"><span class="td-when">Wed 10:00</span><span class="td-sent"><b>Margaret Whitfield</b> &middot; Q2 review</span><span class="td-ok">Brief ready</span><span class="td-chev" aria-hidden="true"></span></button>
           <button type="button" class="td-row" data-i="5"><span class="td-when">Wed 2:00</span><span class="td-sent"><b>Maria &amp; Luis Alvarez</b> &middot; 529 check-in</span><span class="td-ok">Brief ready</span><span class="td-chev" aria-hidden="true"></span></button>
           <button type="button" class="td-row" data-i="6"><span class="td-when">Thu 9:30</span><span class="td-sent"><b>John &amp; Jane Smith</b> &middot; Annual review</span><span class="td-ok">Brief ready</span><span class="td-chev" aria-hidden="true"></span></button>
           <button type="button" class="td-row" data-i="7"><span class="td-when">Thu 1:00</span><span class="td-sent"><b>Raj Patel</b> &middot; Cash plan</span><span class="td-ok">Brief ready</span><span class="td-chev" aria-hidden="true"></span></button>
+        </div>
+          </div>
         </div>
         <div class="td-panel" id="tdPanel" aria-live="polite"></div>
       </div>
@@ -1814,8 +1881,8 @@
   show(0);
 })();
 
-/* hero: the Today page. Rows open what Briefly found; a demo cursor clicks
-   around until the visitor points at the mockup or clicks it. */
+/* hero: the Today page. Alerts and meetings open what Briefly found; a demo
+   cursor clicks around until the visitor points at the mockup or clicks it. */
 (function () {
   var win = document.getElementById('tdWin');
   var panel = document.getElementById('tdPanel');
@@ -1824,64 +1891,115 @@
   var ring = document.getElementById('tdRing');
   var rows = [].slice.call(win.querySelectorAll('button.td-row'));
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var TASK = '✓ Task in Salesforce';
 
   var D = [
-    { name: 'Raj Patel', pill: 'Idle cash', head: '$312,000 has been sitting in cash since June 3.', h: 'What Briefly found',
+    { name: 'Raj Patel', pill: 'Idle cash', head: '$312,000 has been sitting in cash since June 3.',
       lines: [['It came from his RSU sale and never got invested.', 1], ["In July he said he wants this money working before his daughter's tuition starts next fall.", 2], ["You meet Thursday at 1:00, and it's at the top of his brief.", 0]],
-      src: ['Schwab statement, Sep 29', 'Meeting transcript, Jul 16'], act: 'Add to Salesforce', done: '✓ Task in Salesforce' },
-    { name: 'Linda Choi', pill: 'Drift', head: 'Equities are at 67.7% against a 60% target.', h: 'What Briefly found',
+      src: ['Schwab statement, Sep 29', 'Meeting transcript, Jul 16'] },
+    { name: 'Linda Choi', pill: 'Drift', head: 'Equities are at 67.7% against a 60% target.',
       lines: [['Her tech holdings did most of it. NVDA alone is now 9% of the account.', 1], ["She asked in August to keep this year's tax bill down.", 2], ['Her IRA holds enough equities to rebalance there without realizing gains.', 1]],
-      src: ['Holdings report, Sep 29', 'Email from Linda, Aug 21'], act: 'Add to Salesforce', done: '✓ Task in Salesforce' },
-    { name: 'Tom Brennan', pill: 'Distribution', head: '$48,200 of his $80,000 RMD is still to come out.', h: 'What Briefly found',
+      src: ['Holdings report, Sep 29', 'Email from Linda, Aug 21'] },
+    { name: 'Tom Brennan', pill: 'Distribution', head: '$48,200 of his $80,000 RMD is still to come out.',
       lines: [['He has taken $31,800 so far this year, and the deadline is December 31.', 1], ['In March he asked to take the rest in December, after his Medicare premium review.', 2]],
-      src: ['Distributions, year to date', 'Call notes, Mar 12'], act: 'Add to Salesforce', done: '✓ Task in Salesforce' },
-    { name: 'David Okafor', pill: 'Maturity', head: 'His $250,000 CD matures October 14.', h: 'What Briefly found',
+      src: ['Distributions, year to date', 'Call notes, Mar 12'] },
+    { name: 'David Okafor', pill: 'Maturity', head: 'His $250,000 CD matures October 14.',
       lines: [['It renews on its own unless someone acts before then.', 1], ['In June he mentioned needing about $100,000 for a kitchen renovation next spring.', 2]],
-      src: ['Holdings report, Sep 29', 'Meeting transcript, Jun 18'], act: 'Add to Salesforce', done: '✓ Task in Salesforce' },
-    { name: 'Margaret Whitfield', sub: 'Wed 10:00 · Q2 review', meet: true, h: 'Since you last met on May 14',
-      lines: [['Her portfolio is up 4.2%, a little behind her benchmark.', 1], ['Her attorney confirmed on Sep 22 that the new trust documents are signed.', 2]],
-      h2: 'Worth raising', lines2: [['Last time she asked about gifting $19,000 to each of her four grandchildren this year.', 3]],
-      src: ['Performance report, Sep 29', 'Email from R. Klein, attorney', 'Meeting transcript, May 14'] },
-    { name: 'Maria & Luis Alvarez', sub: 'Wed 2:00 · 529 check-in', meet: true, h: 'Since you last met on June 2',
-      lines: [['The 529 is at $61,400, about $18,000 short of the plan for her first year.', 1], ['Maria mentioned the financial aid paperwork was wearing on her.', 2]],
-      h2: 'Worth raising', lines2: [["Luis's bonus lands in December, and they said they'd consider putting part of it toward school.", 2]],
-      src: ['529 statement, Sep 30', 'Meeting transcript, Jun 2'] },
-    { name: 'John & Jane Smith', sub: 'Thu 9:30 · Annual review', meet: true, h: 'Since you last met on March 18',
-      lines: [['The 401(k) rollover completed at $412,000.', 1], ['Their CPA is still waiting on a K-1 to close the 2025 return.', 2]],
-      h2: 'Worth raising', lines2: [['They want to buy a lake house by 2028 and asked what it would take.', 3]],
-      src: ['Q2 statement, Jun 30', 'Email from M. Hill, CPA', 'Meeting transcript, Mar 18'] },
-    { name: 'Raj Patel', sub: 'Thu 1:00 · Cash plan', meet: true, h: 'Since you last met on July 16',
-      lines: [['$312,000 from his RSU sale is still in cash.', 1], ['His daughter was accepted early, so tuition starts next fall.', 2]],
-      h2: 'Worth raising', lines2: [['He asked for two or three options for the cash, with part of it kept liquid for tuition.', 3]],
-      src: ['Schwab statement, Sep 29', 'Email from Raj, Sep 8', 'Meeting transcript, Jul 16'] }
+      src: ['Holdings report, Sep 29', 'Meeting transcript, Jun 18'] },
+    { name: 'Margaret Whitfield', sub: 'Wed 10:00 · Q2 review', since: 'May 14',
+      head: 'Up $1.32M since May 14. Most of that is her Fidelity account moving over, and markets added another $145,000 after fees.',
+      tiles: [['Since May 14', '+4.8%', '+4.1%'], ['Year to date', '+9.6%', '+8.8%']],
+      start: '$2,980,000', end: '$4,301,000',
+      bridge: [['Added', 1200000, 'Fidelity account, moved in kind Sep 24'], ['Withdrawn', -24000, 'Monthly distributions'], ['Dividends and interest', 21500, ''], ['Market change', 132500, ''], ['Fees', -9000, '']],
+      drove: [['US stocks did most of it. Her total market fund is up 8.1% since May.', 1], ['Her bond funds were close to flat.', 1]],
+      moves: [['Sep 24', 'Transfer in', 'Fidelity brokerage, in kind', '$1,200,000', '#2D6A4F'], ['Jun to Sep', 'Withdrawal', 'monthly distribution, 4 payments', '$24,000', '#B4641E']],
+      raise: [['Nothing was sold in the transfer, so where that $1.2M goes is the open decision.', 2], ['She asked last time about gifting $19,000 to each of her four grandchildren this year.', 3], ['Her attorney confirmed on Sep 22 that the new trust documents are signed.', 4]],
+      src: ['Performance report, Sep 29', 'Transfer confirmation, Sep 24', 'Meeting transcript, May 14', 'Email from R. Klein, attorney'] },
+    { name: 'Maria & Luis Alvarez', sub: 'Wed 2:00 · 529 check-in', since: 'June 2',
+      head: 'Up $70,000 since June 2, almost all from markets. They took $15,000 out in July for a roof repair.',
+      tiles: [['Since June 2', '+4.2%', '+4.5%'], ['Year to date', '+7.9%', '+8.6%']],
+      start: '$1,790,000', end: '$1,860,000',
+      bridge: [['Added', 8000, '529 contributions'], ['Withdrawn', -15000, 'Roof repair, Jul 21'], ['Dividends and interest', 9800, ''], ['Market change', 71400, ''], ['Fees', -4200, '']],
+      drove: [['They hold more bonds than most clients their age, which kept them a little behind the benchmark.', 1]],
+      moves: [['Jul 21', 'Withdrawal', 'roof repair', '$15,000', '#B4641E'], ['Jun to Sep', 'Deposit', '529 contributions, 4 payments', '$8,000', '#2D6A4F']],
+      raise: [['The 529 is at $61,400, about $18,000 short of the plan for her first year.', 2], ["Luis's bonus lands in December, and they said they'd consider putting part of it toward school.", 3]],
+      src: ['Performance report, Sep 29', '529 statement, Sep 30', 'Meeting transcript, Jun 2'] },
+    { name: 'John & Jane Smith', sub: 'Thu 9:30 · Annual review', since: 'March 18',
+      head: 'Up $550,000 since March 18. The 401(k) rollover brought in $412,000, and markets added $156,000 after fees.',
+      tiles: [['Since March 18', '+6.3%', '+5.9%'], ['Year to date', '+8.4%', '+8.8%']],
+      start: '$2,410,000', end: '$2,960,000',
+      bridge: [['Added', 412000, '401(k) rollover, Jun 27'], ['Withdrawn', -18000, 'Estimated taxes'], ['Dividends and interest', 24600, ''], ['Market change', 139400, ''], ['Fees', -8000, '']],
+      drove: [['Their large-cap growth fund led, up 11% since March.', 1]],
+      moves: [['Jun 27', 'Transfer in', '401(k) rollover', '$412,000', '#2D6A4F'], ['Apr to Sep', 'Withdrawal', 'estimated taxes, 3 payments', '$18,000', '#B4641E']],
+      raise: [['Their CPA is still waiting on a K-1 to close the 2025 return.', 2], ['They want to buy a lake house by 2028 and asked what it would take.', 3]],
+      src: ['Performance report, Sep 29', 'Email from M. Hill, CPA', 'Meeting transcript, Mar 18'] },
+    { name: 'Raj Patel', sub: 'Thu 1:00 · Cash plan', since: 'July 16',
+      head: 'Up $130,000 since July 16, a little behind his benchmark. Most of the gap is the $312,000 still sitting in cash.',
+      tiles: [['Since July 16', '+2.3%', '+2.6%'], ['Year to date', '+6.1%', '+7.4%']],
+      start: '$5,180,000', end: '$5,310,000',
+      bridge: [['Added', 40000, 'RSU vest, Aug 15'], ['Withdrawn', -12000, 'Tuition deposit, Aug 28'], ['Dividends and interest', 14800, ''], ['Market change', 96500, ''], ['Fees', -9300, '']],
+      drove: [['His stock funds kept pace. The cash earned only sweep interest.', 1]],
+      moves: [['Aug 15', 'Deposit', 'RSU vest proceeds', '$40,000', '#2D6A4F'], ['Aug 28', 'Withdrawal', 'tuition deposit', '$12,000', '#B4641E']],
+      raise: [['His daughter was accepted early, so tuition starts next fall.', 2], ['He asked for two or three options for the cash, with part of it kept liquid for tuition.', 3]],
+      src: ['Performance report, Sep 29', 'Email from Raj, Sep 8', 'Meeting transcript, Jul 16'] }
   ];
 
-  function esc(t) { return t.replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+  function esc(t) { return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+  function usd(v, sign) {
+    var a = Math.abs(v).toLocaleString('en-US');
+    return (sign ? (v < 0 ? '−' : '+') : '') + '$' + a;
+  }
   function list(ls) {
     return '<ul class="td-p-lines">' + ls.map(function (l) {
       return '<li>' + esc(l[0]) + (l[1] ? '<span class="ak-n">' + l[1] + '</span>' : '') + '</li>';
     }).join('') + '</ul>';
   }
+  function srcs(d) {
+    return '<div class="td-p-src">' + d.src.map(function (t, k) { return '<span><b>' + (k + 1) + '</b>' + esc(t) + '</span>'; }).join('') + '</div>';
+  }
+  function meeting(d) {
+    var max = Math.max.apply(null, d.bridge.map(function (r) { return Math.abs(r[1]); }));
+    var br = '<div class="ap-bridge"><div class="ap-br strong"><span>' + esc(d.since) + ' value</span><span></span><span class="amt">' + d.start + '</span></div>' +
+      d.bridge.map(function (r) {
+        var w = Math.max(3, Math.abs(r[1]) / max * 100).toFixed(1);
+        return '<div class="ap-br"><span>' + esc(r[0]) + (r[2] ? '<small>' + esc(r[2]) + '</small>' : '') + '</span>' +
+          '<span class="bar"><i class="' + (r[1] < 0 ? 'neg' : '') + '" style="width:' + w + '%"></i></span>' +
+          '<span class="amt' + (r[1] > 0 ? ' pos' : '') + '">' + usd(r[1], true) + '</span></div>';
+      }).join('') +
+      '<div class="ap-br strong top"><span>Today</span><span></span><span class="amt">' + d.end + '</span></div></div>';
+    var tiles = '<div class="ap-tiles">' + d.tiles.map(function (t) {
+      return '<div class="ap-tile"><div class="k">' + esc(t[0]) + '</div><div class="v">' + t[1] + '</div><div class="b">Benchmark ' + t[2] + '</div></div>';
+    }).join('') + '</div>';
+    var moves = '<ul class="ap-moves">' + d.moves.map(function (m) {
+      return '<li><span class="d">' + esc(m[0]) + '</span><span class="dot" style="background:' + m[4] + '"></span><span><b>' + esc(m[1]) + '</b> · ' + esc(m[2]) + '</span><span class="amt">' + m[3] + '</span></li>';
+    }).join('') + '</ul>';
+    return '<div class="td-p-top"><button type="button" class="td-back">Today</button><span class="td-ok">Brief ready</span></div>' +
+      '<div class="td-p-name">' + esc(d.name) + '</div><div class="td-p-sub">' + esc(d.sub) + '</div>' +
+      '<div class="ap-p-card ap-since"><div class="ap-ch">Since we last met<span>' + esc(d.since) + '</span></div>' +
+      '<p class="ap-head">' + esc(d.head) + '</p>' + tiles + br +
+      '<div class="td-p-h">What drove it</div>' + list(d.drove) + '</div>' +
+      '<div class="ap-p-card ap-money"><div class="ap-ch">Money movement<span>since ' + esc(d.since) + '</span></div>' + moves + '</div>' +
+      '<div class="ap-p-card ap-raise"><div class="ap-ch">Worth raising</div>' + list(d.raise) + '</div>' + srcs(d);
+  }
+  function alertView(d) {
+    return '<div class="td-p-top"><button type="button" class="td-back">Today</button><span class="td-pill">' + esc(d.pill) + '</span></div>' +
+      '<div class="td-p-name">' + esc(d.name) + '</div>' +
+      '<div class="ap-p-card"><p class="ap-head" style="margin-top:0">' + esc(d.head) + '</p>' +
+      '<div class="td-p-h" style="margin-top:4px">What Briefly found</div>' + list(d.lines) +
+      '<button type="button" class="td-act">Add to Salesforce</button></div>' + srcs(d);
+  }
+
   var openI = -1;
   function open(i) {
-    var d = D[i]; openI = i;
-    var h = '<div class="td-p-top"><button type="button" class="td-back">Today</button>' +
-      (d.meet ? '<span class="td-ok">Brief ready</span>' : '<span class="td-pill">' + esc(d.pill) + '</span>') + '</div>' +
-      '<div class="td-p-name">' + esc(d.name) + '</div>' +
-      (d.sub ? '<div class="td-p-sub">' + esc(d.sub) + '</div>' : '') +
-      (d.head ? '<div class="td-p-head">' + esc(d.head) + '</div>' : '') +
-      '<div class="td-p-h">' + esc(d.h) + '</div>' + list(d.lines) +
-      (d.lines2 ? '<div class="td-p-h">' + esc(d.h2) + '</div>' + list(d.lines2) : '') +
-      '<div class="td-p-src">' + d.src.map(function (t, k) { return '<span><b>' + (k + 1) + '</b>' + esc(t) + '</span>'; }).join('') + '</div>' +
-      (d.act ? '<button type="button" class="td-act">' + esc(d.act) + '</button>' : '');
-    panel.innerHTML = h;
+    openI = i;
+    panel.innerHTML = D[i].bridge ? meeting(D[i]) : alertView(D[i]);
     panel.scrollTop = 0;
     panel.classList.add('on');
   }
   function close() { panel.classList.remove('on'); openI = -1; }
   function act(btn) {
-    var d = D[openI]; if (!d || btn.classList.contains('done')) return;
-    btn.textContent = d.done; btn.classList.add('done');
+    if (btn.classList.contains('done')) return;
+    btn.textContent = TASK; btn.classList.add('done');
   }
 
   rows.forEach(function (r) {
@@ -1898,14 +2016,14 @@
 
   /* demo cursor */
   var timers = [], stopped = false, paused = false, visible = false, running = false, step = 0;
-  var ORDER = [0, 4, 1, 5, 2, 6, 3, 7];
+  var ORDER = [4, 0, 5, 1, 6, 2, 7, 3];
   function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
   function clear() { timers.forEach(clearTimeout); timers = []; }
   function pos(el) {
     var r = el.getBoundingClientRect(), w = win.getBoundingClientRect();
-    return { x: r.left - w.left + Math.min(r.width * 0.5, 120), y: r.top - w.top + r.height * 0.55 };
+    return { x: r.left - w.left + Math.min(r.width * 0.5, 120), y: r.top - w.top + Math.min(r.height * 0.55, 14) };
   }
-  function moveTo(el) { var p = pos(el); cur.style.transform = 'translate(' + p.x + 'px,' + p.y + 'px)'; return p; }
+  function moveTo(el) { var p = pos(el); cur.style.transform = 'translate(' + p.x + 'px,' + p.y + 'px)'; }
   function click(el, fn) {
     var p = pos(el);
     el.classList.add('is-hover');
@@ -1916,7 +2034,19 @@
       fn();
     }, 260);
   }
+  function scrollPanelTo(sel) {
+    var el = panel.querySelector(sel); if (!el) return;
+    panel.scrollTo({ top: Math.max(0, el.offsetTop - 12), behavior: 'smooth' });
+  }
   function hold() { return !stopped && !paused && visible && !document.hidden; }
+  function goBack() {
+    panel.scrollTo({ top: 0, behavior: 'smooth' });
+    later(function () {
+      var back = panel.querySelector('.td-back'); if (!back) return;
+      moveTo(back);
+      later(function () { click(back, close); later(run, 900); }, 950);
+    }, 500);
+  }
   function run() {
     clear();
     if (!hold()) { running = false; return; }
@@ -1927,20 +2057,18 @@
     moveTo(row);
     later(function () {
       click(row, function () { open(i); });
-      var t = 1200;
-      if (D[i].act) {
+      if (D[i].bridge) {
+        later(function () { scrollPanelTo('.ap-money'); }, 4200);
+        later(function () { scrollPanelTo('.ap-raise'); }, 7000);
+        later(goBack, 10500);
+      } else {
         later(function () {
           var b = panel.querySelector('.td-act'); if (!b) return;
           moveTo(b);
           later(function () { click(b, function () { act(b); }); }, 950);
-        }, t);
-        t += 2300;
+        }, 1600);
+        later(goBack, 5600);
       }
-      later(function () {
-        var back = panel.querySelector('.td-back'); if (!back) return;
-        moveTo(back);
-        later(function () { click(back, close); later(run, 900); }, 950);
-      }, t + 3600);
     }, 1000);
   }
   function halt() { clear(); running = false; cur.classList.remove('on'); }
@@ -1949,7 +2077,8 @@
   win.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') { paused = true; halt(); } });
   win.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse' && !stopped) { paused = false; setTimeout(start, 2500); } });
   win.addEventListener('pointerdown', function (e) { if (e.isTrusted) { stopped = true; halt(); } });
-  win.addEventListener('focusin', function () { if (win.matches(':focus-visible, :focus-within')) { stopped = true; halt(); } });
+  win.addEventListener('wheel', function () { stopped = true; halt(); }, { passive: true });
+  win.addEventListener('focusin', function () { stopped = true; halt(); });
   document.addEventListener('visibilitychange', function () { if (document.hidden) halt(); else setTimeout(start, 600); });
   new IntersectionObserver(function (es) {
     es.forEach(function (e) {
