@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Jump vs Zocks vs Zeplyn vs Briefly: AI Assistants for Advisors</title>
-<meta name="description" content="Compare Jump, Zocks, Zeplyn and Briefly side by side. See what each AI assistant for financial advisors does, how it states its security, and what it costs.">
+<title>Briefly vs Jump, Zocks and Claude for Financial Advisors</title>
+<meta name="description" content="Compare Briefly, Jump, Zocks and Claude for financial advisors. See what each does, where client data goes and what it costs, with a source for every claim.">
 <meta name="author" content="Briefly Wealth LLC">
 
 <link rel="canonical" href="https://www.brieflywealth.com/ai-assistants-for-financial-advisors">
@@ -12,8 +12,8 @@
 <link rel="icon" type="image/png" sizes="16x16" href="images/briefly_logo_favicon.png?v=2">
 <link rel="apple-touch-icon" sizes="180x180" href="images/briefly_logo_favicon.png?v=2">
 
-<meta property="og:title" content="Jump vs Zocks vs Zeplyn vs Briefly: AI Assistants for Advisors">
-<meta property="og:description" content="Compare Jump, Zocks, Zeplyn and Briefly side by side. See what each AI assistant for financial advisors does, how it states its security, and what it costs.">
+<meta property="og:title" content="Briefly vs Jump, Zocks and Claude for Financial Advisors">
+<meta property="og:description" content="Compare Briefly, Jump, Zocks and Claude for financial advisors. See what each does, where client data goes and what it costs, with a source for every claim.">
 <meta property="og:image" content="https://www.brieflywealth.com/images/briefly-og-main.png?v=5">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -21,8 +21,8 @@
 <meta property="og:url" content="https://www.brieflywealth.com/ai-assistants-for-financial-advisors">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Jump vs Zocks vs Zeplyn vs Briefly: AI Assistants for Advisors">
-<meta name="twitter:description" content="Compare Jump, Zocks, Zeplyn and Briefly side by side. See what each AI assistant for financial advisors does, how it states its security, and what it costs.">
+<meta name="twitter:title" content="Briefly vs Jump, Zocks and Claude for Financial Advisors">
+<meta name="twitter:description" content="Compare Briefly, Jump, Zocks and Claude for financial advisors. See what each does, where client data goes and what it costs, with a source for every claim.">
 <meta name="twitter:image" content="https://www.brieflywealth.com/images/briefly-og-main.png?v=5">
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-92NXKY9W1S"></script>
@@ -40,9 +40,9 @@
     {
       "@type": "WebPage",
       "@id": "https://www.brieflywealth.com/ai-assistants-for-financial-advisors#webpage",
-      "name": "Jump vs Zocks vs Zeplyn vs Briefly: AI Assistants for Advisors",
+      "name": "Briefly vs Jump, Zocks and Claude for Financial Advisors",
       "url": "https://www.brieflywealth.com/ai-assistants-for-financial-advisors",
-      "description": "Compare Jump, Zocks, Zeplyn and Briefly side by side. See what each AI assistant for financial advisors does, how it states its security, and what it costs.",
+      "description": "Compare Briefly, Jump, Zocks and Claude for financial advisors. See what each does, where client data goes and what it costs, with a source for every claim.",
       "dateModified": "2026-10-02",
       "isPartOf": { "@id": "https://www.brieflywealth.com/#website" },
       "publisher": { "@id": "https://www.brieflywealth.com/#org" },
@@ -104,6 +104,9 @@
   .section-pad { padding: 88px 0; }
   .section-pad h2 { margin: 0 0 28px; max-width: 720px; }
   .tool-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; align-items: stretch; }
+  .tool-grid .card-lead { grid-column: 1 / -1; }
+  .tool-grid .card p + p { margin-top: 14px; }
+  .tool-grid .card p a { color: var(--blue-ink); }
   .tool-grid .card p { margin: 0; color: var(--ink-soft); font-size: 15px; line-height: 1.6; }
   .prose { max-width: 720px; }
   .prose p { margin: 0 0 18px; color: var(--ink-soft); font-size: 17px; line-height: 1.6; }
@@ -128,6 +131,9 @@
     .section-pad { padding: 64px 0; }
     .compare-closer { padding: 64px 0; }
   }
+  /* Briefly column: a little wider and tinted so it reads first */
+  .compare-table th:nth-child(2), .compare-table td:nth-child(2) { background: var(--blue-soft); width: 24%; }
+  .compare-table thead th:nth-child(2) { color: var(--blue-ink); font-weight: 600; }
 </style>
 </head>
 <body>
@@ -161,118 +167,125 @@
 <section class="hero hero-wide" aria-label="Overview">
   <div class="container">
     <span class="eyebrow">Compare</span>
-    <h1>Best AI assistants for financial advisors, compared.</h1>
-    <p class="lede">Jump suits firms that want one platform for meetings, account opening and a long integration list. Zocks suits advisors who want published tiers and notes without audio recordings. Zeplyn suits firms that want agent-style automation and will ask for a quote. Briefly suits firms on Salesforce and Outlook that want briefs, market briefs and prospect analyses with every line linked to its source.</p>
+    <h1>Briefly vs Jump, Zocks and Claude for financial advisors</h1>
+    <p class="lede">Briefly works from a firm's whole client record, including statements, inboxes, meeting notes, old plans, Salesforce and Outlook, and writes briefs, follow-ups, market briefs and prospect analyses around each client with a source on every line. This page sets it beside Jump, Zocks and Claude, using only what each company says on its own site.</p>
   </div>
 </section>
 
 <!-- ==================== COMPARISON TABLE ==================== -->
 <section class="compare-table-section" aria-label="Side-by-side comparison">
   <div class="container reveal">
-    <p class="compare-table-intro">Last checked October 2, 2026. Every competitor fact comes from that company's own public site, and the small number beside each claim links to the page we read. Companies change their pages and plans, so confirm anything that matters with each vendor. Briefly's facts come from this site.</p>
+    <p class="compare-table-intro">Last checked October 2, 2026. Every competitor fact comes from that company's own public site, and the small number beside each claim links to the page we read. A cell that says not found means we did not see it on those pages. Companies change their pages and plans, so confirm anything that matters with each vendor. Briefly's facts come from this site.</p>
     <div class="compare-table-wrap">
       <table class="compare-table">
-        <caption class="sr-only">A row by row comparison of Jump, Zocks, Zeplyn and Briefly</caption>
+        <caption class="sr-only">A row by row comparison of Briefly, Jump, Zocks and Claude</caption>
         <thead>
           <tr>
             <th scope="col"><span class="sr-only">What you're comparing</span></th>
+            <th scope="col">Briefly</th>
             <th scope="col">Jump</th>
             <th scope="col">Zocks</th>
-            <th scope="col">Zeplyn</th>
-            <th scope="col">Briefly</th>
+            <th scope="col">Claude</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <th scope="row">What it is, in their words</th>
-            <td>&ldquo;enterprise-grade AI platform purpose-built for financial professionals&rdquo;<sup><a href="#src-1">1</a></sup></td>
-            <td>&ldquo;The AI Assistant for financial advisors&rdquo;<sup><a href="#src-8">8</a></sup></td>
-            <td>&ldquo;Wealth management AI that does the work&rdquo;<sup><a href="#src-16">16</a></sup></td>
-            <td>&ldquo;AI software for wealth advisors&rdquo;</td>
+            <td>AI software for wealth advisors.</td>
+            <td>"enterprise-grade AI platform purpose-built for financial professionals"<sup><a href="#src-1">1</a></sup></td>
+            <td>"The AI Assistant for financial advisors"<sup><a href="#src-8">8</a></sup></td>
+            <td>"a suite of connectors and workflow skills designed to help with research, prep, and documentation tasks"<sup><a href="#src-16">16</a></sup></td>
           </tr>
           <tr>
             <th scope="row">Works from</th>
+            <td>The firm's whole client record. Statements, inboxes, meeting notes, old plans, Salesforce and Outlook are filed to the right client.</td>
             <td>Meetings, plus CRM, email, planning tools and documents through its AI Associate. Recording is optional.<sup><a href="#src-2">2</a>, <a href="#src-6">6</a></sup></td>
             <td>Meeting conversations, plus CRM, email, calendar, planning tools, custodian data and uploaded documents.<sup><a href="#src-11">11</a>, <a href="#src-13">13</a>, <a href="#src-15">15</a></sup></td>
-            <td>Notes from meetings, calls and dictation, plus connected CRM, planning, custodian, email and document sources.<sup><a href="#src-17">17</a></sup></td>
-            <td>Email, CRM, transcripts, call notes, statements, Orion data and plans, sorted to each client. Orion data is rolling out firm by firm.</td>
+            <td>Partner systems the advisor connects. The advisor plugin works with BlackRock, Charles Schwab, Addepar, Envestnet, iCapital, Orion, Wealthbox, Wealth.com and Zocks, and Salesforce and Microsoft 365 are listed among connectors already available.<sup><a href="#src-16">16</a></sup></td>
           </tr>
           <tr>
-            <th scope="row">Meeting notes</th>
-            <td>AI notetaker for virtual, in-person and phone meetings.<sup><a href="#src-1">1</a></sup></td>
-            <td>Note-taking is listed among its meeting workflows.<sup><a href="#src-8">8</a></sup></td>
-            <td>Recording-free notes for virtual and in-person meetings, calls and dictation.<sup><a href="#src-17">17</a></sup></td>
-            <td>Reads meeting transcripts and call notes. Live meeting capture is not stated on Briefly's site.</td>
+            <th scope="row">A source on every line</th>
+            <td>Every fact keeps a link to the page it came from.</td>
+            <td>Describes its pre-meeting briefing as cited.<sup><a href="#src-7">7</a></sup></td>
+            <td>Prep shows the source of the client data it pulls, citing the system or linking the meeting.<sup><a href="#src-13">13</a></sup></td>
+            <td>Anthropic's financial services page says every output is source-attributed, without naming the advisor plugin.<sup><a href="#src-17">17</a></sup> Line-by-line citations in the advisor plugin were not found on the pages we read.</td>
           </tr>
           <tr>
-            <th scope="row">Follow-up emails</th>
-            <td>Follow-up emails and action items generated automatically for advisor approval.<sup><a href="#src-2">2</a></sup><sup><a href="#src-4">4</a></sup></td>
-            <td>Drafts from real-time and historical data, including CRM, email history and the connected planning system. Zocks says advisors edit drafts before sending or syncing them to the mailbox.<sup><a href="#src-14">14</a></sup></td>
-            <td>Drafts personalized recap emails, proposal packages and advisor-voice updates.<sup><a href="#src-17">17</a></sup></td>
-            <td>Drafts the recap email and to-dos after a meeting, ready for the advisor to approve.</td>
+            <th scope="row">Corrections for the whole team</th>
+            <td>Correct it once and the whole team inherits it. A fix becomes a standing rule, and next quarter's brief follows it for everyone.</td>
+            <td>Not found on the pages we read.</td>
+            <td>Not found on the pages we read.</td>
+            <td>Not found on the pages we read.</td>
           </tr>
           <tr>
-            <th scope="row">CRM updates</th>
-            <td>Drafts CRM updates and sends structured data to the CRM once an advisor approves.<sup><a href="#src-2">2</a></sup><sup><a href="#src-4">4</a></sup></td>
-            <td>CRM updates are listed among its workflows, and it syncs fields to planning tools such as eMoney and RightCapital.<sup><a href="#src-8">8</a>, <a href="#src-12">12</a></sup></td>
-            <td>Creates and assigns CRM tasks after every meeting and syncs data both ways.<sup><a href="#src-17">17</a></sup></td>
-            <td>Tasks go to Salesforce once an advisor approves them.</td>
-          </tr>
-          <tr>
-            <th scope="row">Document and statement reading</th>
-            <td>Document Intelligence parses statements, tax returns and estate documents.<sup><a href="#src-1">1</a></sup></td>
-            <td>Reads brokerage statements, estate plans and intake forms, up to 10 files per batch. Listed on its Ultimate tier.<sup><a href="#src-9">9</a>, <a href="#src-11">11</a></sup></td>
-            <td>Turns statements, tax forms, estate documents and brokerage paperwork into structured data, including in bulk.<sup><a href="#src-17">17</a></sup></td>
-            <td>Reads client and prospect statements, plans and notes. Prospect analyses run up to nine checks on the documents.</td>
-          </tr>
-          <tr>
-            <th scope="row">Onboarding and account opening</th>
-            <td>An Onboard add-on with AI-assisted account opening and form completion.<sup><a href="#src-3">3</a></sup></td>
-            <td>Automatic form completion, fact finders and account applications are listed.<sup><a href="#src-8">8</a></sup></td>
-            <td>Finds the custodian form, fills it from client data and returns a draft for advisor review.<sup><a href="#src-17">17</a></sup></td>
-            <td>Not stated on site.</td>
+            <th scope="row">Ask across the whole book</th>
+            <td>Ask about one household or the whole book and get numbered sources, for example "Which households have mentioned selling a business?"</td>
+            <td>The AI Associate queries the CRM, financial plans, portfolio positions, custody records and meeting transcripts. Every action requires advisor approval.<sup><a href="#src-6">6</a></sup></td>
+            <td>Searches CRM records, planning tools, custodian data, meeting notes and archived emails. "Ask a question. Get a client list."<sup><a href="#src-15">15</a></sup></td>
+            <td>Connectors let Claude access custodians, asset managers and wealth technology providers.<sup><a href="#src-16">16</a></sup> A book-wide client query feature was not found on the pages we read.</td>
           </tr>
           <tr>
             <th scope="row">Market briefs</th>
-            <td>Not found on the pages we read.</td>
-            <td>Not found on the pages we read.</td>
-            <td>Not found on the pages we read.</td>
             <td>A market brief agent does web research with numbered sources, next to outside house views and the firm's own.</td>
+            <td>Not found on the pages we read.</td>
+            <td>Not found on the pages we read.</td>
+            <td>The eight skills include an alternative investments brief and an estate and tax brief.<sup><a href="#src-16">16</a></sup> A market brief skill was not found on the pages we read.</td>
           </tr>
           <tr>
-            <th scope="row">Prospect analysis</th>
-            <td>Not found on the pages we read.</td>
-            <td>Not found on the pages we read.</td>
-            <td>Not found on the pages we read.</td>
+            <th scope="row">Prospect analyses</th>
             <td>Five intake answers plus the prospect's statements produce up to nine checks, and the analysis ends with what it could not verify.</td>
+            <td>Not found on the pages we read.</td>
+            <td>Not found on the pages we read.</td>
+            <td>Prospect intake is one of the eight skills in the advisor plugin.<sup><a href="#src-16">16</a></sup></td>
           </tr>
           <tr>
-            <th scope="row">Source citations</th>
-            <td>Describes the pre-meeting briefing as cited. Other outputs not stated on site.<sup><a href="#src-7">7</a></sup></td>
-            <td>Prep shows the source of client data it pulls, citing the system or linking the meeting.<sup><a href="#src-13">13</a></sup></td>
-            <td>Describes Ask Zeplyn answers as sourced.<sup><a href="#src-17">17</a></sup></td>
-            <td>Every line in a brief or answer links to its source.</td>
+            <th scope="row">Firm view from CIO notes</th>
+            <td>The CIO's notes become a dated timeline and one shared summary that appears in the briefs.</td>
+            <td>Not found on the pages we read.</td>
+            <td>Not found on the pages we read.</td>
+            <td>Not found on the pages we read.</td>
           </tr>
           <tr>
-            <th scope="row">Integrations, headline</th>
-            <td>&ldquo;40+ two-way integrations,&rdquo; including Salesforce, Wealthbox, Redtail and HubSpot, with Schwab, Orion and Black Diamond on the custodian side.<sup><a href="#src-1">1</a>, <a href="#src-2">2</a>, <a href="#src-5">5</a></sup></td>
-            <td>Salesforce, Redtail, Wealthbox and HubSpot among the CRMs, eMoney and RightCapital for planning, Orion and Black Diamond for portfolios.<sup><a href="#src-12">12</a></sup></td>
-            <td>&ldquo;30+ deep integrations&rdquo; across CRM, planning, portfolio, custodial, email, calendar and meeting tools. Schwab is named.<sup><a href="#src-16">16</a>, <a href="#src-20">20</a></sup></td>
-            <td>Salesforce and Outlook, connected during setup. Orion data and alerts are rolling out firm by firm.</td>
+            <th scope="row">Scheduled reports</th>
+            <td>Agents run on a schedule and email each finished report with a PDF attached.</td>
+            <td>Delivers its pre-meeting briefing to the advisor's inbox before a meeting.<sup><a href="#src-7">7</a></sup></td>
+            <td>Lets advisors schedule recurring client queries, such as annual reviews and RMD checks, so results are ready ahead of time.<sup><a href="#src-15">15</a></sup> Emailed reports were not found on the pages we read.</td>
+            <td>Anthropic's pricing page lists "Hand off and schedule tasks" on the Pro plan.<sup><a href="#src-18">18</a></sup> Scheduled advisor reports in the plugin were not found on the pages we read.</td>
           </tr>
           <tr>
-            <th scope="row">Security, as each states it</th>
+            <th scope="row">Firm branding on outputs</th>
+            <td>The firm's logo and two colors go on every agent output.</td>
+            <td>Not found on the pages we read.</td>
+            <td>Not found on the pages we read.</td>
+            <td>Firms can adapt the skills to their own workflows, service model and house style.<sup><a href="#src-16">16</a></sup></td>
+          </tr>
+          <tr>
+            <th scope="row">CRM updates with advisor approval</th>
+            <td>Nothing goes into Salesforce until an advisor approves it.</td>
+            <td>Drafts CRM updates and sends structured data to the CRM once an advisor approves.<sup><a href="#src-2">2</a>, <a href="#src-4">4</a></sup></td>
+            <td>CRM updates are listed among its workflows, and it syncs fields to planning tools such as eMoney and RightCapital.<sup><a href="#src-8">8</a>, <a href="#src-12">12</a></sup></td>
+            <td>Stages CRM updates and draft client communications for the advisor's review and approval.<sup><a href="#src-16">16</a></sup></td>
+          </tr>
+          <tr>
+            <th scope="row">Getting started</th>
+            <td>We set it up for your firm. Nothing for IT to install, because we connect Salesforce and Outlook and build each client's record.</td>
+            <td>Meet has a free trial. Onboard and Grow are by demo.<sup><a href="#src-3">3</a></sup></td>
+            <td>A 14-day free trial is listed on the homepage.<sup><a href="#src-8">8</a></sup></td>
+            <td>With an Enterprise license, install the plugin from the plugin browser and follow the guided setup. Without one, you request a license and an Anthropic team member reaches out.<sup><a href="#src-16">16</a></sup></td>
+          </tr>
+          <tr>
+            <th scope="row">Where client data goes</th>
+            <td>A private environment for your firm on AWS. Model calls run on zero-retention terms and are never used for training.</td>
             <td>SOC 2 Type II, encryption at rest and in transit, no training on customer data, SSO and SCIM.<sup><a href="#src-4">4</a></sup></td>
-            <td>SOC 2 Type 2 certification from early November 2023. No audio is recorded, transcripts and summaries are stored with retention controls, and data is never used for model training.<sup><a href="#src-10">10</a></sup></td>
-            <td>SOC 2 Type II, no meeting audio stored, zero data retention agreements with its AI providers, SSO and MFA.<sup><a href="#src-18">18</a></sup></td>
-            <td>A private environment for each firm on AWS. Model calls run on zero-retention terms and never train on client data. Nothing goes into Salesforce until an advisor approves it. The security page lists no SOC 2 report or similar certification.</td>
+            <td>SOC 2 Type 2 certification from early November 2023. Zocks says client conversations are never recorded. Transcripts and summaries are stored with retention controls that let them be deleted on demand or on a schedule, and data is never used for model training.<sup><a href="#src-10">10</a></sup></td>
+            <td>By default Anthropic does not train on inputs or outputs from its commercial products, and it lists SOC 2 Type I and II, ISO 27001 and ISO 42001.<sup><a href="#src-19">19</a>, <a href="#src-20">20</a></sup> Enterprise includes audit logs and custom data retention.<sup><a href="#src-18">18</a></sup></td>
           </tr>
           <tr>
-            <th scope="row">Public pricing</th>
+            <th scope="row">Published price</th>
+            <td>$150 per seat per month, set up for your firm.</td>
             <td>Meet is listed at $100 per advisor per month, and the page says annual payment saves up to 20%. Onboard and Grow are listed at $50 per advisor per month as add-ons. Enterprise is contact sales.<sup><a href="#src-3">3</a></sup></td>
             <td>Annual plans are $67, $117 and $184 per user per month. Monthly plans are $80, $140 and $220.<sup><a href="#src-9">9</a></sup></td>
-            <td>Not stated on site. It points buyers to a demo.<sup><a href="#src-16">16</a></sup></td>
-            <td>Web app $150 per seat per month. Claude connector $100 per seat per month.</td>
+            <td>Anthropic recommends Enterprise for the advisor plugin, listed at $20 per seat per month plus usage billed at API rates.<sup><a href="#src-16">16</a>, <a href="#src-18">18</a></sup> Whether other plans can run the plugin was not found on the pages we read.</td>
           </tr>
         </tbody>
       </table>
@@ -284,38 +297,39 @@
 <section class="section-pad band-white" aria-label="Each tool">
   <div class="container reveal">
     <span class="eyebrow">One at a time</span>
-    <h2>What each tool does well and who it fits.</h2>
+    <h2>What each tool does and who it fits.</h2>
     <div class="tool-grid">
+        <article class="card card-lead">
+          <h3>Briefly</h3>
+          <p>Briefly works from the firm's whole client record. Statements, inboxes, meeting notes, old plans, Salesforce and Outlook are filed to the right client, and every fact keeps a link to the page it came from. An advisor can ask about one household or the whole book and get numbered sources back. A question like "Which households have mentioned selling a business?" returns the households and the conversations behind them.</p>
+          <p>It drafts client briefs, agendas, follow-ups, market briefs and prospect analyses. A prospect analysis takes five intake answers plus the prospect's statements, runs up to nine checks, and ends with what it could not verify. Quarterly reviews and month-end commentary are on the <a href="/sample-deliverables">sample deliverables</a> page.</p>
+          <p>Corrections reach the whole team. One firm fixed a single phrase, "we call it a planning conversation, never a sales meeting," and every brief that firm has received since says it their way. We set Briefly up for your firm, so there is nothing for IT to install, and the web app is $150 per seat per month.</p>
+        </article>
         <article class="card">
           <h3>Jump</h3>
-          <p>Jump says it is used by 45,000+ advisors across 11,500+ firms, and it names LPL, Osaic and Cetera as customers.<sup><a href="#src-1">1</a>, <a href="#src-2">2</a></sup> The notetaker, pre-meeting prep, follow-up and CRM sync sit in the Meet plan, listed at $100 per advisor per month, with Onboard and Grow as $50 add-ons.<sup><a href="#src-3">3</a></sup> Its integration list is broad, with Redtail embedded, Schwab, Orion and Black Diamond on the custodian side, and 40+ integrations in all.<sup><a href="#src-1">1</a>, <a href="#src-2">2</a>, <a href="#src-5">5</a></sup> It states SOC 2 Type II, and says nothing reaches a client or a system of record until an advisor approves it.<sup><a href="#src-4">4</a></sup> Jump fits firms that run meeting-heavy workflows and want account opening, CRM sync and notes in the same tool. We did not find a market brief or prospect analysis feature on its site.</p>
+          <p>Jump says 45,000+ advisors across 11,500+ firms use it, and it names LPL, Osaic and Cetera as customers.<sup><a href="#src-1">1</a>, <a href="#src-2">2</a></sup> Its Meet plan covers the notetaker, pre-meeting prep, follow-up and CRM sync, and the Onboard add-on handles AI-assisted account opening.<sup><a href="#src-3">3</a></sup> The AI Associate answers questions across the CRM, plans, portfolio positions and transcripts, the pre-meeting briefing is cited, and Redtail is embedded in a list of 40+ integrations.<sup><a href="#src-2">2</a>, <a href="#src-5">5</a>, <a href="#src-6">6</a>, <a href="#src-7">7</a></sup> Jump states SOC 2 Type II, and nothing reaches a client or a CRM until an advisor approves it.<sup><a href="#src-4">4</a></sup> It fits firms that want meeting capture and account opening on one platform.</p>
         </article>
         <article class="card">
           <h3>Zocks</h3>
-          <p>Zocks shows three tiers and their prices on the site. Annual plans run $67, $117 and $184 per user per month, and every plan includes unlimited meetings.<sup><a href="#src-9">9</a></sup> It describes itself as a no-recording notetaker. Transcripts and summaries are kept and can be deleted on a schedule you set.<sup><a href="#src-10">10</a></sup> Its document tool reads brokerage statements, estate plans and intake forms and syncs to eMoney, RightCapital, PreciseFP and Holistiplan, and it sits on the Ultimate tier.<sup><a href="#src-9">9</a>, <a href="#src-11">11</a></sup> An advisor can also ask a question across the book and get a client list back.<sup><a href="#src-15">15</a></sup> Zocks states SOC 2 Type 2 certification from early November 2023.<sup><a href="#src-10">10</a></sup> It fits advisors and teams that want planning-tool field sync and a stated price.</p>
+          <p>Zocks publishes its prices. Annual plans are $67, $117 and $184 per user per month, with unlimited meetings on all three.<sup><a href="#src-9">9</a></sup> It says client conversations are never recorded, and it keeps transcripts and summaries that can be deleted on a schedule.<sup><a href="#src-10">10</a></sup> Client email drafts can be edited before sending or syncing to the mailbox.<sup><a href="#src-14">14</a></sup> On the Ultimate tier, a document tool reads brokerage statements, estate plans and intake forms and syncs to planning tools such as eMoney and RightCapital.<sup><a href="#src-9">9</a>, <a href="#src-11">11</a></sup> Zocks states SOC 2 Type 2 certification from early November 2023.<sup><a href="#src-10">10</a></sup> It works for advisors who want a published price and planning-tool sync.</p>
         </article>
-        <article class="card">
-          <h3>Zeplyn</h3>
-          <p>Zeplyn calls itself an agentic operating system for wealth management and says it coordinates 50+ specialized agents from one control layer.<sup><a href="#src-19">19</a></sup> Its product page covers recording-free notes, prep, follow-up drafts, document extraction, and account opening that fills the custodian form for advisor review. It also surfaces signals such as RMDs, idle cash and Roth candidates.<sup><a href="#src-17">17</a></sup> It states SOC 2 Type II, SSO and MFA, and zero data retention agreements with its AI providers.<sup><a href="#src-18">18</a></sup> Zeplyn lists no price and asks buyers to book a 30-minute demo.<sup><a href="#src-16">16</a></sup> It fits firms that want automation beyond the meeting and enterprise options such as single tenancy, and that are fine getting a quote first.<sup><a href="#src-19">19</a></sup></p>
-        </article>
-        <article class="card">
-          <h3>Briefly</h3>
-          <p>Briefly keeps a current picture of each client from email, CRM, notes and statements, and every line links to its source. It drafts client briefs, agendas, follow-ups, market briefs and prospect analyses, and sends approved updates to Salesforce. The web app is set up for your firm with Salesforce and Outlook connected, and it costs $150 per seat per month. Client data stays in a private environment for your firm on AWS, and model calls run on zero-retention terms. It fits firms on Salesforce and Outlook that want briefs, market briefs and prospect analyses tied back to their own documents.</p>
+        <article class="card card-lead">
+          <h3>Claude</h3>
+          <p>Claude for Financial Advisors, released September 14, 2026, adds eight skills, among them pre-meeting prep, post-meeting notes and follow-up, and prospect intake.<sup><a href="#src-16">16</a></sup> Anthropic recommends Enterprise plans for registered investment advisers because they include audit logs.<sup><a href="#src-16">16</a></sup> CRM updates and draft client communications are staged for the advisor to approve.<sup><a href="#src-16">16</a></sup> Anthropic names SOC 2 and ISO 27001 certifications.<sup><a href="#src-20">20</a></sup> Firms that want custodian and planning connectors inside Claude are its audience. Firms already on Claude can add Briefly as a connector at $100 per seat per month.</p>
         </article>
     </div>
   </div>
 </section>
 
-<!-- ==================== WHERE BRIEFLY IS DIFFERENT ==================== -->
-<section class="section-pad band-paper2" aria-label="Where Briefly is different">
+<!-- ==================== WHY FIRMS PICK BRIEFLY ==================== -->
+<section class="section-pad band-paper2" aria-label="Why firms pick Briefly">
   <div class="container reveal">
     <span class="eyebrow">Briefly</span>
-    <h2>Where Briefly is different.</h2>
+    <h2>Why firms pick Briefly.</h2>
     <div class="prose">
-      <p>Every line in a Briefly brief or answer links to the email, statement or transcript it came from. Jump describes a cited briefing, Zocks shows the source behind its prep data, and Zeplyn describes sourced answers.</p>
-      <p>Briefly also writes market briefs and prospect analyses. The market brief agent does web research with numbered sources, next to outside house views and your firm's own. A prospect analysis takes five intake answers and the statements a prospect shares, runs up to nine checks, and ends with a list of what it could not verify. We did not find either feature on the competitor pages we read.</p>
-      <p>Firm view turns your CIO's notes into a dated timeline and one shared summary that shows up in the briefs. Scheduled runs on the Agents tab email each finished report with a PDF attached, and your firm's logo and two colors go on every agent output.</p>
-      <p>Briefly costs more per seat than the published entry plans. The web app is $150 per seat per month, against Jump's $100 Meet plan and the Zocks annual tiers of $67 to $184. The plans cover different things, so compare scope along with price. Briefly's security page lists no SOC 2 report, which Jump, Zocks and Zeplyn each state. Its site also does not state live meeting capture, account opening or form filling. Its integrations are Salesforce and Outlook, with Orion data and alerts rolling out firm by firm.</p>
+      <p>Every document goes into the right client's record, and each line in a brief, answer or prospect analysis links to the page it came from, so a reviewer can check any claim against the original.</p>
+      <p>A correction an advisor makes once becomes a standing rule. Share a client and the colleague gets everything on that client. Firm view turns the CIO's notes into one summary that shows up in the briefs, and scheduled runs email each finished report as a PDF with the firm's logo and two colors on it.</p>
+      <p>We do the setup. Each firm gets a private environment on AWS. Model calls run on zero-retention terms and are never used for training, and nothing goes into Salesforce until an advisor approves it. Idle cash and drift alerts turn on once the custodian or portfolio system is linked, rolling out firm by firm.</p>
     </div>
   </div>
 </section>
@@ -326,10 +340,9 @@
     <span class="eyebrow">Choosing</span>
     <h2>How to choose.</h2>
     <ol class="rules">
-      <li>If you want every client meeting captured and written up, start with Jump, Zocks or Zeplyn. Their sites describe it, and Briefly's does not.</li>
-      <li>If your compliance reviewer needs a SOC 2 report this quarter, the three competitors each state one. Briefly's security page lists none and lays out its hosting, access and model terms for your vendor file.</li>
-      <li>If you want account opening and form filling in the same tool, look at Jump, Zocks or Zeplyn, which each describe it.</li>
-      <li>If most of your time goes to briefs, market briefs and prospect analyses on Salesforce and Outlook, with a source on every line, look at Briefly. If you need a public price before a call, Jump and Zocks publish one and Zeplyn sends you to a demo.</li>
+      <li>If you mainly want a notetaker in the meeting, look at Jump or Zocks.<sup><a href="#src-1">1</a>, <a href="#src-10">10</a></sup></li>
+      <li>If you want briefs, follow-ups, market briefs and prospect analyses written from your whole client record, with a source on every line, look at Briefly.</li>
+      <li>Firms that want one correction to reach every advisor, with the setup handled for them, also end up on Briefly. If your firm already works in Claude, Briefly also comes as a Claude connector.</li>
     </ol>
   </div>
 </section>
@@ -366,13 +379,13 @@
       <li id="src-13"><a href="https://www.zocks.io/features/meeting-preparation" rel="noopener">zocks.io/features/meeting-preparation</a></li>
       <li id="src-14"><a href="https://www.zocks.io/features/client-email" rel="noopener">zocks.io/features/client-email</a></li>
       <li id="src-15"><a href="https://www.zocks.io/features/client-queries" rel="noopener">zocks.io/features/client-queries</a></li>
-      <li id="src-16"><a href="https://www.zeplyn.ai/" rel="noopener">zeplyn.ai</a></li>
-      <li id="src-17"><a href="https://www.zeplyn.ai/product" rel="noopener">zeplyn.ai/product</a></li>
-      <li id="src-18"><a href="https://www.zeplyn.ai/security" rel="noopener">zeplyn.ai/security</a></li>
-      <li id="src-19"><a href="https://www.zeplyn.ai/platform" rel="noopener">zeplyn.ai/platform</a></li>
-      <li id="src-20"><a href="https://www.zeplyn.ai/blogs/zeplyn-charles-schwab" rel="noopener">zeplyn.ai/blogs/zeplyn-charles-schwab</a></li>
+      <li id="src-16"><a href="https://claude.com/blog/claude-for-financial-advisors" rel="noopener">claude.com/blog/claude-for-financial-advisors</a></li>
+      <li id="src-17"><a href="https://claude.com/solutions/financial-services" rel="noopener">claude.com/solutions/financial-services</a></li>
+      <li id="src-18"><a href="https://claude.com/pricing" rel="noopener">claude.com/pricing</a></li>
+      <li id="src-19"><a href="https://privacy.claude.com/en/articles/7996868-is-my-data-used-for-model-training" rel="noopener">privacy.claude.com, is my data used for model training</a></li>
+      <li id="src-20"><a href="https://privacy.claude.com/en/articles/10015870-what-certifications-has-anthropic-obtained" rel="noopener">privacy.claude.com, what certifications has Anthropic obtained</a></li>
     </ol>
-    <p class="sources-note">All competitor pages fetched October 2, 2026. Briefly facts come from brieflywealth.com home, compare, security and sample deliverables pages.</p>
+    <p class="sources-note">All competitor and Anthropic pages fetched October 2, 2026. Briefly facts come from brieflywealth.com home, compare, security and sample deliverables pages. The Claude connector price is on the compare page.</p>
   </div>
 </section>
 

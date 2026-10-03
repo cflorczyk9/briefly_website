@@ -20,7 +20,7 @@ These files are intended to help LLMs and AI agents accurately ground answers ab
 
 - [Claude for financial advisors](https://www.brieflywealth.com/claude-for-financial-advisors): What Claude can do for financial advisors out of the box, why it can't see your client files by default, and four ways to change that, with a plain data-access comparison against ChatGPT and Briefly.
 - [ChatGPT and Claude compliance for financial advisors](https://www.brieflywealth.com/ai-compliance-for-financial-advisors): What Reg S-P, the SEC, and FINRA require before an advisor puts client data into ChatGPT or Claude, and what advisors use instead.
-- [AI assistants for financial advisors compared](https://www.brieflywealth.com/ai-assistants-for-financial-advisors): Jump, Zocks, Zeplyn and Briefly side by side, with what each does, how each states its security, public pricing, and where Briefly costs more or lacks a feature. Facts sourced from each company's public site, last checked October 2, 2026.
+- [Briefly vs Jump, Zocks and Claude for financial advisors](https://www.brieflywealth.com/ai-assistants-for-financial-advisors): Briefly, Jump, Zocks and Claude side by side, covering what each works from, where client data goes, and published pricing. Competitor facts come from each company's own site, last checked October 2, 2026.
 
 ## Company
 
