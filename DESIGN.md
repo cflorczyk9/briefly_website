@@ -103,7 +103,7 @@ Used by the cards with a clicking beat (idle cash, follow-up, off target, hero c
 - Never say "file" or "files" as the product's identity. Say "client picture".
 - Citations are small blue numbers (`sup`, 8.5 to 9.5px, #0A66D6 or muted) with a gray "Sources" footer, as in the app.
 - Every mockup carries "Illustrative example, not real client data." in its `aria-label` or caption.
-- Orion portfolio alerts (idle cash, drift, RMD) say "rolling out firm by firm" next to them.
+- Orion portfolio alerts (idle cash, drift, required distributions, maturities) are live. Say they come from Orion or turn on once Orion is linked, never "rolling out" or "in progress" (Connor, 2026-10-02).
 - Idle cash flags only when cash is above the larger of $25,000 or 5% of the portfolio, so any % shown must exceed 5.0 and match the dollars.
 - Prospect analysis ends with "Nothing here is a recommendation."
 - The Claude connector gets one reference line at most on the homepage (the aside under pricing). No pitch.
