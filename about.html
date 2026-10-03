@@ -34,7 +34,8 @@
 </script>
 
 <link rel="stylesheet" href="/assets/site.css">
-<script src="/assets/site.js"></script>
+<script>document.documentElement.classList.add('js')</script>
+<script src="/assets/site.js" defer></script>
 <style>
   /* mission hero: padding and h1 size now come from site.css's shared
      .hero / .hero-wide scale */
@@ -79,12 +80,21 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://www.brieflywealth.com/#website",
+  "name": "Briefly",
+  "url": "https://www.brieflywealth.com/"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "AboutPage",
       "name": "About Briefly",
       "url": "https://www.brieflywealth.com/about",
-      "description": "Briefly is AI software for wealth advisors. It drafts client briefs, agendas, follow-ups, market briefs and prospect analyses, pushes updates to your CRM, and links every line to its source.",
+      "description": "Briefly works like an analyst for every advisor at your firm. It reviews the whole book, flags idle cash and money movement from Orion, and has each client's brief ready before the meeting without anyone asking. It also drafts agendas, follow-ups, market briefs and prospect analyses, with a source on every line.",
       "isPartOf": { "@id": "https://www.brieflywealth.com/#website" },
       "breadcrumb": {
         "@type": "BreadcrumbList",
@@ -102,7 +112,7 @@
       "legalName": "Briefly Wealth LLC",
       "url": "https://www.brieflywealth.com/",
       "logo": "https://www.brieflywealth.com/images/briefly_logo_favicon.png",
-      "description": "Briefly is AI software for wealth advisors. It drafts client briefs, agendas, follow-ups, market briefs and prospect analyses, pushes updates to your CRM, and links every line to its source.",
+      "description": "Briefly works like an analyst for every advisor at your firm. It reviews the whole book, flags idle cash and money movement from Orion, and has each client's brief ready before the meeting without anyone asking. It also drafts agendas, follow-ups, market briefs and prospect analyses, with a source on every line.",
       "founder": { "@id": "https://www.brieflywealth.com/#founder" },
       "contactPoint": {
         "@type": "ContactPoint",
@@ -163,7 +173,7 @@
 <section class="pad band-paper2">
   <div class="container founder-inner reveal">
     <div class="founder-photo">
-      <img src="images/connor_florczyk.png" width="440" height="440" decoding="async" alt="Connor Florczyk, founder of Briefly">
+      <img src="images/connor_florczyk-440.webp" width="440" height="440" decoding="async" alt="Connor Florczyk, founder of Briefly">
     </div>
     <div class="founder-content">
       <div class="eyebrow">Our founder</div>
@@ -244,7 +254,7 @@
   <div class="container foot-grid">
     <div class="foot-brand">
       <a class="brand" href="/"><span class="brand-word">Briefly</span><span class="brand-pin" aria-hidden="true"></span></a>
-      <p>Briefly is AI software for wealth advisors. It keeps a current picture of each client, and every line links back to its source.</p>
+      <p>Briefly works like an analyst for every advisor at your firm, with a source on every line it writes.</p>
     </div>
     <div>
       <h4>Product</h4>
@@ -258,6 +268,7 @@
       <a href="/knowledge-base">Knowledge base</a>
       <a href="/ai-compliance-for-financial-advisors">AI compliance for advisors</a>
       <a href="/claude-for-financial-advisors">Claude for financial advisors</a>
+      <a href="/ai-assistants-for-financial-advisors">Briefly vs Jump, Zocks and Claude</a>
     </div>
     <div>
       <h4>Company</h4>

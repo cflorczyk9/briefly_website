@@ -38,6 +38,15 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://www.brieflywealth.com/#website",
+  "name": "Briefly",
+  "url": "https://www.brieflywealth.com/"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Start with Briefly | Connector checkout and web app access",
   "url": "https://www.brieflywealth.com/start",
@@ -63,7 +72,8 @@
      mode "request" (no card, lead capture only). -->
 
 <link rel="stylesheet" href="/assets/site.css">
-<script src="/assets/site.js"></script>
+<script>document.documentElement.classList.add('js')</script>
+<script src="/assets/site.js" defer></script>
 <style>
   /* ---------- connector / web app switch, inside the checkout column ---------- */
   .start-toggle {
@@ -753,7 +763,7 @@ wireCheckout({
   <div class="container foot-grid">
     <div class="foot-brand">
       <a class="brand" href="/"><span class="brand-word">Briefly</span><span class="brand-pin" aria-hidden="true"></span></a>
-      <p>Briefly is AI software for wealth advisors. It keeps a current picture of each client, and every line links back to its source.</p>
+      <p>Briefly works like an analyst for every advisor at your firm, with a source on every line it writes.</p>
     </div>
     <div>
       <h4>Product</h4>
@@ -767,6 +777,7 @@ wireCheckout({
       <a href="/knowledge-base">Knowledge base</a>
       <a href="/ai-compliance-for-financial-advisors">AI compliance for advisors</a>
       <a href="/claude-for-financial-advisors">Claude for financial advisors</a>
+      <a href="/ai-assistants-for-financial-advisors">Briefly vs Jump, Zocks and Claude</a>
     </div>
     <div>
       <h4>Company</h4>

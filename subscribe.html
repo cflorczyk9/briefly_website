@@ -34,7 +34,8 @@
 
 <link rel="stylesheet" href="/assets/site.css">
 <link rel="stylesheet" href="/assets/output-theme.css">
-<script src="/assets/site.js"></script>
+<script>document.documentElement.classList.add('js')</script>
+<script src="/assets/site.js" defer></script>
 <style>
   /* hero: copy + form on the left, the email in a window frame on the right.
      padding and h1 size now come from site.css's shared .hero scale (two-column,
@@ -120,6 +121,15 @@
     .mb-markets td:first-child { font-size: 12px; }
   }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://www.brieflywealth.com/#website",
+  "name": "Briefly",
+  "url": "https://www.brieflywealth.com/"
+}
+</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -257,7 +267,7 @@
     <p class="lede">Free for advisors, weekdays only, and it takes ten seconds to sign up.</p>
     <a class="btn" href="#formSection">Subscribe</a>
     <p class="closer-alt">Want to read one first? <a href="/sample-brief">See a full edition</a>.</p>
-    <p class="closer-alt">The Morning Brief comes from Briefly, an AI knowledge base for financial advisors. <a href="/">See how it works</a>.</p>
+    <p class="closer-alt">The Morning Brief comes from Briefly, which works like an analyst for every advisor at a firm. <a href="/">See how it works</a>.</p>
   </div>
 </section>
 </main>
@@ -266,7 +276,7 @@
   <div class="container foot-grid">
     <div class="foot-brand">
       <a class="brand" href="/"><span class="brand-word">Briefly</span><span class="brand-pin" aria-hidden="true"></span></a>
-      <p>Briefly is AI software for wealth advisors. It keeps a current picture of each client, and every line links back to its source.</p>
+      <p>Briefly works like an analyst for every advisor at your firm, with a source on every line it writes.</p>
     </div>
     <div>
       <h4>Product</h4>
@@ -280,6 +290,7 @@
       <a href="/knowledge-base">Knowledge base</a>
       <a href="/ai-compliance-for-financial-advisors">AI compliance for advisors</a>
       <a href="/claude-for-financial-advisors">Claude for financial advisors</a>
+      <a href="/ai-assistants-for-financial-advisors">Briefly vs Jump, Zocks and Claude</a>
     </div>
     <div>
       <h4>Company</h4>

@@ -1,6 +1,6 @@
 # Briefly
 
-> Briefly is AI software for wealth advisors. It drafts client briefs, agendas, follow-ups, market briefs and prospect analyses, pushes updates to your CRM, and links every line to its source. It is a web app a firm signs into from a browser, set up for the firm with Salesforce and Outlook connected. $150 per seat per month.
+> Briefly works like an analyst for every advisor at your firm. It reviews the whole book, flags idle cash and money movement from Orion, and has each client's brief ready before the meeting without anyone asking. It also drafts agendas, follow-ups, market briefs and prospect analyses, with a source on every line. It is a web app a firm signs into from a browser, set up for the firm with Salesforce and Outlook connected. $150 per seat per month.
 
 Briefly is a web app your firm signs into. Your client data stays in a private environment for your firm on AWS. The AI models that read it run on zero-retention terms and never train on it. Nothing goes into Salesforce until an advisor approves it. Briefly makes suggestions for the advisor to review, and the advisor makes every decision and every recommendation. Briefly also comes as a connector for Claude Desktop, for teams that already work there.
 
@@ -37,13 +37,6 @@ These files are intended to help LLMs and AI agents accurately ground answers ab
 - [Sample deal summary](https://www.brieflywealth.com/samples/sample-deal-summary): Terms, traction, and the three biggest risks of a private deal, condensed into a one-page brief a committee can act on.
 - [Sample correction loop](https://www.brieflywealth.com/samples/sample-correction-loop): How one detail from a meeting note becomes a standing rule Briefly applies to every brief after. Names and firms are fictionalized.
 - [Sample Morning Brief](https://www.brieflywealth.com/sample-brief): A sample edition of Briefly's Morning Brief email, with a pre-market table, an advisor talking point, and what to watch that week. Illustrative, not real client data.
-
-## Blog
-
-- [Blog](https://www.brieflywealth.com/blog): Writing on advisor workflows, portfolio prep, and client communication from the Briefly team.
-- [The Jobs AI Won't Replace](https://www.brieflywealth.com/blog/jobs-ai-wont-replace): Advisors, lawyers, and doctors stay hard to replace because the value in the work is trust, judgment, and accountability, not information processing. Published December 17, 2025.
-- [Your Brain Doesn't Have Enough RAM](https://www.brieflywealth.com/blog/your-brain-doesnt-have-enough-ram): Advisors hit a real memory limit managing 100-plus households, and the fix is surfacing the right context at the right time instead of trying to remember everything. Published January 3, 2026.
-- [The Great Wealth Transfer Trap](https://www.brieflywealth.com/blog/great-wealth-transfer-trap): As wealth splits across heirs, an advisor's assets under management can stay flat while the number of relationships to manage multiplies, straining the economics of the book. Published November 5, 2025.
 
 ## Newsletter
 

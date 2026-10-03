@@ -8,3 +8,10 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
   Content-Security-Policy: frame-ancestors 'none'
+
+# Browser caching. CSS and JS file names are not versioned, so they get one
+# hour. Images change rarely, so they get a week.
+/assets/*
+  Cache-Control: public, max-age=3600
+/images/*
+  Cache-Control: public, max-age=604800

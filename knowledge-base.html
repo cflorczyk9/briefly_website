@@ -32,7 +32,8 @@
     </script>
     <link rel="stylesheet" href="/assets/site.css">
 <link rel="stylesheet" href="/assets/output-theme.css">
-    <script src="/assets/site.js"></script>
+    <script>document.documentElement.classList.add('js')</script>
+<script src="/assets/site.js" defer></script>
 <style>
         /* hero: padding and h1 size now come from site.css's shared .hero / .hero-wide scale */
         /* two-column hero (text beside the query mockup), so plain .hero not .hero-wide */
@@ -89,14 +90,23 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://www.brieflywealth.com/#website",
+  "name": "Briefly",
+  "url": "https://www.brieflywealth.com/"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "AI Knowledge Base for Financial Advisors",
   "url": "https://www.brieflywealth.com/knowledge-base",
-  "description": "Briefly is AI software for wealth advisors. It drafts client briefs, agendas, follow-ups, market briefs and prospect analyses, pushes updates to your CRM, and links every line to its source.",
+  "description": "Briefly works like an analyst for every advisor at your firm. It reviews the whole book, flags idle cash and money movement from Orion, and has each client's brief ready before the meeting without anyone asking. It also drafts agendas, follow-ups, market briefs and prospect analyses, with a source on every line.",
   "dateModified": "2026-09-30",
   "isPartOf": { "@id": "https://www.brieflywealth.com/#website" },
   "about": { "@type": "SoftwareApplication", "@id": "https://www.brieflywealth.com/#app", "name": "Briefly", "url": "https://www.brieflywealth.com/", "applicationCategory": "BusinessApplication", "operatingSystem": "Web" },
-  "publisher": { "@type": "Organization", "@id": "https://www.brieflywealth.com/#org", "name": "Briefly", "url": "https://www.brieflywealth.com/", "description": "Briefly is AI software for wealth advisors. It keeps a current picture of each client, and every line links back to its source." },
+  "publisher": { "@type": "Organization", "@id": "https://www.brieflywealth.com/#org", "name": "Briefly", "url": "https://www.brieflywealth.com/", "description": "Briefly works like an analyst for every advisor at your firm, with a source on every line it writes." },
   "breadcrumb": {
     "@type": "BreadcrumbList",
     "itemListElement": [
@@ -200,7 +210,7 @@
         <p>Briefly is a web app your firm signs into, set up for you, at $150 per seat per month. Nothing goes into Salesforce until an advisor approves it. Briefly makes suggestions for the advisor to review, and the advisor makes every decision and every recommendation. Briefly also comes as <a class="textlink" href="/compare">a connector for Claude</a>, built on the same client picture with the same citations on every answer.</p>
         <p>The result is one base of firm memory. It gets better every time an advisor uses it, and it keeps working long after any single meeting ends.</p>
         <div class="author-bio reveal">
-          <img src="images/connor_florczyk.png" width="60" height="60" decoding="async" alt="Connor Florczyk, founder of Briefly">
+          <img src="images/connor_florczyk-120.webp" width="60" height="60" decoding="async" alt="Connor Florczyk, founder of Briefly">
           <div>
             <h3>Connor Florczyk</h3>
             <p>Founder of Briefly. Before Briefly, he worked as a private wealth analyst on a top-performing team at Morgan Stanley, where he saw firsthand how much advisor time gets lost hunting for a client's own files.</p>
@@ -218,7 +228,7 @@
   <div class="container foot-grid">
     <div class="foot-brand">
       <a class="brand" href="/"><span class="brand-word">Briefly</span><span class="brand-pin" aria-hidden="true"></span></a>
-      <p>Briefly is AI software for wealth advisors. It keeps a current picture of each client, and every line links back to its source.</p>
+      <p>Briefly works like an analyst for every advisor at your firm, with a source on every line it writes.</p>
     </div>
     <div>
       <h4>Product</h4>
@@ -232,6 +242,7 @@
       <a href="/knowledge-base">Knowledge base</a>
       <a href="/ai-compliance-for-financial-advisors">AI compliance for advisors</a>
       <a href="/claude-for-financial-advisors">Claude for financial advisors</a>
+      <a href="/ai-assistants-for-financial-advisors">Briefly vs Jump, Zocks and Claude</a>
     </div>
     <div>
       <h4>Company</h4>
