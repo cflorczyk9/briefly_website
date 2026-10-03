@@ -270,6 +270,42 @@
     .td-pill { width: 74px; }
     .td-when { width: 60px; font-size: 11.5px; }
   }
+  /* hero interactivity: rows open a detail panel; a demo cursor clicks around until the visitor takes over */
+  .td-win { position: relative; }
+  .td { position: relative; }
+  button.td-row { width: 100%; border: 0; background: transparent; font-family: inherit; font-size: 12.5px; line-height: 1.45; color: #424245; text-align: left; cursor: pointer; transition: background .18s ease, box-shadow .18s ease; }
+  .td-list button.td-row:nth-child(even) { background: #F7F7F9; }
+  button.td-row:hover, button.td-row.is-hover { background: #EAF3FF; }
+  button.td-row:focus-visible { outline: 2px solid #2F8CFF; outline-offset: 1px; }
+  .td-chev { flex: none; align-self: center; width: 6px; height: 6px; margin-left: 2px; border-right: 1.5px solid #A1A1A6; border-top: 1.5px solid #A1A1A6; transform: rotate(45deg); }
+  .td-panel { position: absolute; left: 0; right: 0; top: 58px; bottom: 0; z-index: 4; background: #fff; padding: 2px 18px 16px; overflow: auto; opacity: 0; visibility: hidden; transform: translateX(14px); transition: opacity .3s cubic-bezier(.2, .7, .2, 1), transform .3s cubic-bezier(.2, .7, .2, 1), visibility 0s linear .3s; }
+  .td-panel.on { opacity: 1; visibility: visible; transform: none; transition: opacity .3s cubic-bezier(.2, .7, .2, 1), transform .3s cubic-bezier(.2, .7, .2, 1), visibility 0s; }
+  .td-p-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 12px 0 10px; }
+  .td-back { border: 0; background: transparent; font-family: inherit; font-size: 13px; font-weight: 500; color: #0A66D6; padding: 4px 6px 4px 0; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+  .td-back::before { content: ""; width: 6px; height: 6px; border-left: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg); }
+  .td-back.is-hover { text-decoration: underline; }
+  .td-p-name { font-size: 17px; font-weight: 600; letter-spacing: -.01em; color: #1D1D1F; }
+  .td-p-sub { font-size: 12.5px; color: #6E6E73; margin-top: 1px; }
+  .td-p-head { font-size: 14px; line-height: 1.45; color: #1D1D1F; margin-top: 10px; font-weight: 500; }
+  .td-p-h { font-size: 11px; font-weight: 600; color: #6E6E73; margin: 14px 0 6px; }
+  .td-p-lines { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
+  .td-p-lines li { font-size: 13px; line-height: 1.5; color: #424245; padding-left: 12px; position: relative; }
+  .td-p-lines li::before { content: ""; position: absolute; left: 0; top: .62em; width: 4px; height: 4px; border-radius: 50%; background: #A1A1A6; }
+  .td-p-src { margin-top: 14px; border-top: 1px solid var(--hairline); padding-top: 10px; display: flex; flex-wrap: wrap; gap: 5px; }
+  .td-p-src span { font-size: 11.5px; line-height: 1.4; color: #0A66D6; background: #EAF3FF; padding: 2px 8px 2px 6px; border-radius: 6px; }
+  .td-p-src span b { font-weight: 600; margin-right: 5px; }
+  .td-act { margin-top: 14px; border: 1px solid #D2D2D7; background: #fff; border-radius: 8px; padding: 6px 12px; font-family: inherit; font-size: 12.5px; font-weight: 500; color: #1D1D1F; cursor: pointer; transition: background .18s ease; }
+  .td-act:hover, .td-act.is-hover { background: #F5F5F7; }
+  .td-act.done { border-color: transparent; background: transparent; color: #1E7F38; padding-left: 0; cursor: default; }
+  .td-cur { position: absolute; left: 0; top: 0; z-index: 6; opacity: 0; pointer-events: none; filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .25)); transition: transform .9s cubic-bezier(.45, 0, .25, 1), opacity .3s ease; will-change: transform; }
+  .td-cur.on { opacity: 1; }
+  .td-ring { position: absolute; left: 0; top: 0; width: 24px; height: 24px; margin: -12px 0 0 -12px; border: 2px solid rgba(47, 140, 255, .55); border-radius: 50%; opacity: 0; z-index: 5; pointer-events: none; }
+  .td-ring.pulse { animation: ak-pulse .45s ease-out; }
+  @media (prefers-reduced-motion: reduce) { .td-panel, .td-panel.on { transition: none; } .td-cur, .td-ring { display: none; } }
+  @media (max-width: 480px) { .td-panel { padding: 2px 12px 14px; } }
+  /* source chips fade back in after they land in the chat, instead of popping back */
+  .chip.gone { opacity: 0; }
+  .chip.fade-in { transition: opacity 1.4s ease; }
   /* chat (moved from the hero into #how): pulses as the source chips land */
   .ak-win.pulse { animation: card-pulse .7s ease; }
 
@@ -474,7 +510,7 @@
       <p class="hero-trust">We set up the web app for you and connect it to your Salesforce and Outlook.</p>
     </div>
     <div>
-    <div class="win td-win" data-mockup="" role="img" aria-label="The Today page in the Briefly web app. All 14 meetings this week have a brief ready. Portfolio alerts across the whole book flag idle cash for Raj Patel, drift for Linda Choi, a required distribution for Tom Brennan and a maturing CD for David Okafor. Illustrative example, not real client data.">
+    <div class="win td-win" id="tdWin" data-mockup="" role="region" aria-label="Interactive example of the Today page in the Briefly web app. Choose an alert or a meeting to see what Briefly found. Illustrative example, not real client data.">
       <div class="td">
         <div class="td-top"><div class="t-h">Today</div><p>Wednesday, September 30 &middot; Calendar connected</p></div>
         <div class="td-glance">
@@ -484,21 +520,24 @@
         </div>
         <div class="td-sec"><span class="td-sh">Portfolio alerts <span class="td-count">4</span></span><span class="td-src">Whole book &middot; as of 6:00 AM</span></div>
         <div class="td-list td-alerts">
-          <div class="td-row"><span class="td-pill">Idle cash</span><span class="td-sent"><b>Raj Patel</b> has $312,000 sitting in cash.</span></div>
-          <div class="td-row"><span class="td-pill">Drift</span><span class="td-sent"><b>Linda Choi</b> is 7.7 points over on equities.</span></div>
-          <div class="td-row"><span class="td-pill">Distribution</span><span class="td-sent"><b>Tom Brennan</b> still needs $48,200 for this year's RMD.</span></div>
-          <div class="td-row"><span class="td-pill">Maturity</span><span class="td-sent"><b>David Okafor</b> has a $250,000 CD maturing Oct 14.</span></div>
+          <button type="button" class="td-row" data-i="0"><span class="td-pill">Idle cash</span><span class="td-sent"><b>Raj Patel</b> has $312,000 sitting in cash.</span><span class="td-chev" aria-hidden="true"></span></button>
+          <button type="button" class="td-row" data-i="1"><span class="td-pill">Drift</span><span class="td-sent"><b>Linda Choi</b> is 7.7 points over on equities.</span><span class="td-chev" aria-hidden="true"></span></button>
+          <button type="button" class="td-row" data-i="2"><span class="td-pill">Distribution</span><span class="td-sent"><b>Tom Brennan</b> still needs $48,200 for this year's RMD.</span><span class="td-chev" aria-hidden="true"></span></button>
+          <button type="button" class="td-row" data-i="3"><span class="td-pill">Maturity</span><span class="td-sent"><b>David Okafor</b> has a $250,000 CD maturing Oct 14.</span><span class="td-chev" aria-hidden="true"></span></button>
         </div>
         <div class="td-sec"><span class="td-sh">Meetings this week</span></div>
         <div class="td-list td-meets">
-          <div class="td-row"><span class="td-when">Wed 10:00</span><span class="td-sent"><b>Margaret Whitfield</b> &middot; Q2 review</span><span class="td-ok">Brief ready</span></div>
-          <div class="td-row"><span class="td-when">Wed 2:00</span><span class="td-sent"><b>Maria &amp; Luis Alvarez</b> &middot; 529 check-in</span><span class="td-ok">Brief ready</span></div>
-          <div class="td-row"><span class="td-when">Thu 9:30</span><span class="td-sent"><b>John &amp; Jane Smith</b> &middot; Annual review</span><span class="td-ok">Brief ready</span></div>
-          <div class="td-row"><span class="td-when">Thu 1:00</span><span class="td-sent"><b>Raj Patel</b> &middot; Cash plan</span><span class="td-ok">Brief ready</span></div>
+          <button type="button" class="td-row" data-i="4"><span class="td-when">Wed 10:00</span><span class="td-sent"><b>Margaret Whitfield</b> &middot; Q2 review</span><span class="td-ok">Brief ready</span><span class="td-chev" aria-hidden="true"></span></button>
+          <button type="button" class="td-row" data-i="5"><span class="td-when">Wed 2:00</span><span class="td-sent"><b>Maria &amp; Luis Alvarez</b> &middot; 529 check-in</span><span class="td-ok">Brief ready</span><span class="td-chev" aria-hidden="true"></span></button>
+          <button type="button" class="td-row" data-i="6"><span class="td-when">Thu 9:30</span><span class="td-sent"><b>John &amp; Jane Smith</b> &middot; Annual review</span><span class="td-ok">Brief ready</span><span class="td-chev" aria-hidden="true"></span></button>
+          <button type="button" class="td-row" data-i="7"><span class="td-when">Thu 1:00</span><span class="td-sent"><b>Raj Patel</b> &middot; Cash plan</span><span class="td-ok">Brief ready</span><span class="td-chev" aria-hidden="true"></span></button>
         </div>
+        <div class="td-panel" id="tdPanel" aria-live="polite"></div>
       </div>
+      <svg class="td-cur" id="tdCur" viewBox="0 0 18 18" width="18" height="18" aria-hidden="true"><path d="M2 1.5v13.2l3.4-3.1 2.3 5.1 2.2-1-2.3-5h4.6z" fill="#1D1D1F" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg>
+      <div class="td-ring" id="tdRing" aria-hidden="true"></div>
     </div>
-    <p class="day-time" style="margin:12px 0 0;">app.brieflywealth.com &middot; the Briefly web app. Illustrative example, not real client data.</p>
+    <p class="day-time" style="margin:12px 0 0;">Click any alert or meeting to see what Briefly found. Illustrative example, not real client data.</p>
     </div>
   </div>
 </section>
@@ -1853,6 +1892,152 @@
   show(0);
 })();
 
+/* hero: the Today page. Rows open what Briefly found; a demo cursor clicks
+   around until the visitor points at the mockup or clicks it. */
+(function () {
+  var win = document.getElementById('tdWin');
+  var panel = document.getElementById('tdPanel');
+  if (!win || !panel) return;
+  var cur = document.getElementById('tdCur');
+  var ring = document.getElementById('tdRing');
+  var rows = [].slice.call(win.querySelectorAll('button.td-row'));
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var D = [
+    { name: 'Raj Patel', pill: 'Idle cash', head: '$312,000 has been sitting in cash since June 3.', h: 'What Briefly found',
+      lines: [['It came from his RSU sale and never got invested.', 1], ["In July he said he wants this money working before his daughter's tuition starts next fall.", 2], ["You meet Thursday at 1:00, and it's at the top of his brief.", 0]],
+      src: ['Schwab statement, Sep 29', 'Meeting transcript, Jul 16'], act: 'Add to Salesforce', done: '✓ Task in Salesforce' },
+    { name: 'Linda Choi', pill: 'Drift', head: 'Equities are at 67.7% against a 60% target.', h: 'What Briefly found',
+      lines: [['Her tech holdings did most of it. NVDA alone is now 9% of the account.', 1], ["She asked in August to keep this year's tax bill down.", 2], ['Her IRA holds enough equities to rebalance there without realizing gains.', 1]],
+      src: ['Holdings report, Sep 29', 'Email from Linda, Aug 21'], act: 'Add to Salesforce', done: '✓ Task in Salesforce' },
+    { name: 'Tom Brennan', pill: 'Distribution', head: '$48,200 of his $80,000 RMD is still to come out.', h: 'What Briefly found',
+      lines: [['He has taken $31,800 so far this year, and the deadline is December 31.', 1], ['In March he asked to take the rest in December, after his Medicare premium review.', 2]],
+      src: ['Distributions, year to date', 'Call notes, Mar 12'], act: 'Add to Salesforce', done: '✓ Task in Salesforce' },
+    { name: 'David Okafor', pill: 'Maturity', head: 'His $250,000 CD matures October 14.', h: 'What Briefly found',
+      lines: [['It renews on its own unless someone acts before then.', 1], ['In June he mentioned needing about $100,000 for a kitchen renovation next spring.', 2]],
+      src: ['Holdings report, Sep 29', 'Meeting transcript, Jun 18'], act: 'Add to Salesforce', done: '✓ Task in Salesforce' },
+    { name: 'Margaret Whitfield', sub: 'Wed 10:00 · Q2 review', meet: true, h: 'Since you last met on May 14',
+      lines: [['Her portfolio is up 4.2%, a little behind her benchmark.', 1], ['Her attorney confirmed on Sep 22 that the new trust documents are signed.', 2]],
+      h2: 'Worth raising', lines2: [['Last time she asked about gifting $19,000 to each of her four grandchildren this year.', 3]],
+      src: ['Performance report, Sep 29', 'Email from R. Klein, attorney', 'Meeting transcript, May 14'] },
+    { name: 'Maria & Luis Alvarez', sub: 'Wed 2:00 · 529 check-in', meet: true, h: 'Since you last met on June 2',
+      lines: [['The 529 is at $61,400, about $18,000 short of the plan for her first year.', 1], ['Maria mentioned the financial aid paperwork was wearing on her.', 2]],
+      h2: 'Worth raising', lines2: [["Luis's bonus lands in December, and they said they'd consider putting part of it toward school.", 2]],
+      src: ['529 statement, Sep 30', 'Meeting transcript, Jun 2'] },
+    { name: 'John & Jane Smith', sub: 'Thu 9:30 · Annual review', meet: true, h: 'Since you last met on March 18',
+      lines: [['The 401(k) rollover completed at $412,000.', 1], ['Their CPA is still waiting on a K-1 to close the 2025 return.', 2]],
+      h2: 'Worth raising', lines2: [['They want to buy a lake house by 2028 and asked what it would take.', 3]],
+      src: ['Q2 statement, Jun 30', 'Email from M. Hill, CPA', 'Meeting transcript, Mar 18'] },
+    { name: 'Raj Patel', sub: 'Thu 1:00 · Cash plan', meet: true, h: 'Since you last met on July 16',
+      lines: [['$312,000 from his RSU sale is still in cash.', 1], ['His daughter was accepted early, so tuition starts next fall.', 2]],
+      h2: 'Worth raising', lines2: [['He asked for two or three options for the cash, with part of it kept liquid for tuition.', 3]],
+      src: ['Schwab statement, Sep 29', 'Email from Raj, Sep 8', 'Meeting transcript, Jul 16'] }
+  ];
+
+  function esc(t) { return t.replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+  function list(ls) {
+    return '<ul class="td-p-lines">' + ls.map(function (l) {
+      return '<li>' + esc(l[0]) + (l[1] ? '<span class="ak-n">' + l[1] + '</span>' : '') + '</li>';
+    }).join('') + '</ul>';
+  }
+  var openI = -1;
+  function open(i) {
+    var d = D[i]; openI = i;
+    var h = '<div class="td-p-top"><button type="button" class="td-back">Today</button>' +
+      (d.meet ? '<span class="td-ok">Brief ready</span>' : '<span class="td-pill">' + esc(d.pill) + '</span>') + '</div>' +
+      '<div class="td-p-name">' + esc(d.name) + '</div>' +
+      (d.sub ? '<div class="td-p-sub">' + esc(d.sub) + '</div>' : '') +
+      (d.head ? '<div class="td-p-head">' + esc(d.head) + '</div>' : '') +
+      '<div class="td-p-h">' + esc(d.h) + '</div>' + list(d.lines) +
+      (d.lines2 ? '<div class="td-p-h">' + esc(d.h2) + '</div>' + list(d.lines2) : '') +
+      '<div class="td-p-src">' + d.src.map(function (t, k) { return '<span><b>' + (k + 1) + '</b>' + esc(t) + '</span>'; }).join('') + '</div>' +
+      (d.act ? '<button type="button" class="td-act">' + esc(d.act) + '</button>' : '');
+    panel.innerHTML = h;
+    panel.scrollTop = 0;
+    panel.classList.add('on');
+  }
+  function close() { panel.classList.remove('on'); openI = -1; }
+  function act(btn) {
+    var d = D[openI]; if (!d || btn.classList.contains('done')) return;
+    btn.textContent = d.done; btn.classList.add('done');
+  }
+
+  rows.forEach(function (r) {
+    r.addEventListener('click', function () { open(+r.getAttribute('data-i')); });
+  });
+  panel.addEventListener('click', function (e) {
+    var t = e.target.closest('button');
+    if (!t) return;
+    if (t.classList.contains('td-back')) { var back = rows[openI]; close(); if (e.isTrusted && back) back.focus({ preventScroll: true }); }
+    else if (t.classList.contains('td-act')) act(t);
+  });
+
+  if (reduced || !cur || !ring) return;
+
+  /* demo cursor */
+  var timers = [], stopped = false, paused = false, visible = false, running = false, step = 0;
+  var ORDER = [0, 4, 1, 5, 2, 6, 3, 7];
+  function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
+  function clear() { timers.forEach(clearTimeout); timers = []; }
+  function pos(el) {
+    var r = el.getBoundingClientRect(), w = win.getBoundingClientRect();
+    return { x: r.left - w.left + Math.min(r.width * 0.5, 120), y: r.top - w.top + r.height * 0.55 };
+  }
+  function moveTo(el) { var p = pos(el); cur.style.transform = 'translate(' + p.x + 'px,' + p.y + 'px)'; return p; }
+  function click(el, fn) {
+    var p = pos(el);
+    el.classList.add('is-hover');
+    later(function () {
+      ring.style.left = p.x + 'px'; ring.style.top = p.y + 'px';
+      ring.classList.remove('pulse'); void ring.offsetWidth; ring.classList.add('pulse');
+      el.classList.remove('is-hover');
+      fn();
+    }, 260);
+  }
+  function hold() { return !stopped && !paused && visible && !document.hidden; }
+  function run() {
+    clear();
+    if (!hold()) { running = false; return; }
+    running = true;
+    var i = ORDER[step % ORDER.length]; step++;
+    var row = rows[i];
+    cur.classList.add('on');
+    moveTo(row);
+    later(function () {
+      click(row, function () { open(i); });
+      var t = 1200;
+      if (D[i].act) {
+        later(function () {
+          var b = panel.querySelector('.td-act'); if (!b) return;
+          moveTo(b);
+          later(function () { click(b, function () { act(b); }); }, 950);
+        }, t);
+        t += 2300;
+      }
+      later(function () {
+        var back = panel.querySelector('.td-back'); if (!back) return;
+        moveTo(back);
+        later(function () { click(back, close); later(run, 900); }, 950);
+      }, t + 3600);
+    }, 1000);
+  }
+  function halt() { clear(); running = false; cur.classList.remove('on'); }
+  function start() { if (hold() && !running) { running = true; close(); later(run, 400); } }
+
+  win.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') { paused = true; halt(); } });
+  win.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse' && !stopped) { paused = false; setTimeout(start, 2500); } });
+  win.addEventListener('pointerdown', function (e) { if (e.isTrusted) { stopped = true; halt(); } });
+  win.addEventListener('focusin', function () { if (win.matches(':focus-visible, :focus-within')) { stopped = true; halt(); } });
+  document.addEventListener('visibilitychange', function () { if (document.hidden) halt(); else setTimeout(start, 600); });
+  new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      var was = visible; visible = e.isIntersecting;
+      if (visible && !was) setTimeout(start, step ? 600 : 3800);
+      else if (!visible) halt();
+    });
+  }, { threshold: 0.5 }).observe(win);
+})();
+
 /* intake animation: chips swirl, then flow into the Smith file */
 (function () {
   var field = document.getElementById('chipField');
@@ -1871,12 +2056,21 @@
 
   function resetCycle() {
     rows.forEach(function (r) { r.classList.add('hid'); });
-    chips.forEach(function (c) {
+    chips.forEach(function (c, i) {
+      var landed = c.classList.contains('fly');
+      if (landed) c.classList.add('gone');
       c.classList.remove('fly');
       c.style.transform = '';
       c.style.opacity = '';
       void c.offsetWidth;
       c.classList.add('swirl');
+      if (landed) {
+        later(function () {
+          c.classList.add('fade-in');
+          c.classList.remove('gone');
+          later(function () { c.classList.remove('fade-in'); }, 1500);
+        }, 120 + i * 180);
+      }
     });
   }
 
