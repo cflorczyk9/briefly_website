@@ -134,6 +134,41 @@
   /* Briefly column: a little wider and tinted so it reads first */
   .compare-table th:nth-child(2), .compare-table td:nth-child(2) { background: var(--blue-soft); width: 24%; }
   .compare-table thead th:nth-child(2) { color: var(--blue-ink); font-weight: 600; }
+
+  /* Check grid: the quick scan above the detail table */
+  .check-legend { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 0 0 18px; padding: 0; list-style: none; color: var(--ink-muted); font-size: 13px; }
+  .check-legend li { display: flex; align-items: center; gap: 8px; }
+  .check-wrap { overflow-x: auto; background: var(--card); border: 1px solid var(--rule); border-radius: var(--r-card); margin-bottom: 64px; }
+  .check-table { width: 100%; border-collapse: collapse; min-width: 720px; }
+  .check-table th, .check-table td { padding: 12px 16px; border-bottom: 1px solid var(--hairline); vertical-align: top; font-size: 15px; line-height: 1.45; }
+  .check-table thead th { background: var(--paper-2); font-size: 14px; font-weight: 600; color: var(--ink); text-align: center; border-bottom: 1px solid var(--rule); }
+  .check-table thead th:first-child { text-align: left; }
+  .check-table tbody th { text-align: left; font-weight: 500; color: var(--ink); width: 34%; }
+  .check-table tbody th small { display: block; margin-top: 2px; font-size: 13px; font-weight: 400; color: var(--ink-muted); }
+  .check-table td { text-align: center; width: 16.5%; }
+  .check-table td small { display: block; margin-top: 6px; font-size: 12px; line-height: 1.4; color: var(--ink-muted); }
+  .check-table th:nth-child(2), .check-table td:nth-child(2) { background: var(--blue-soft); }
+  .check-table thead th:nth-child(2) { color: var(--blue-ink); }
+  .check-table td:nth-child(2) small { color: var(--ink-soft); }
+  .check-table tr.grp th { padding: 22px 16px 8px; background: var(--card); border-bottom: 1px solid var(--rule); font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-muted); }
+  .check-table tr.grp th:nth-child(2) { background: var(--blue-soft); }
+  .check-table tbody tr:last-child th, .check-table tbody tr:last-child td { border-bottom: 0; }
+  .ck { position: relative; display: inline-flex; width: 24px; height: 24px; border-radius: 50%; align-items: center; justify-content: center; vertical-align: middle; }
+  .ck svg { width: 12px; height: 12px; }
+  .ck-yes { background: var(--blue); color: #fff; }
+  .ck-them { background: #E8E8ED; color: var(--ink); }
+  .ck-part { border: 1.5px solid #AEAEB2; background: linear-gradient(90deg, #AEAEB2 50%, transparent 50%); width: 18px; height: 18px; margin: 3px; }
+  .ck-none { width: 14px; height: 14px; margin: 5px; border: 1.5px solid #C7C7CC; }
+  .details-title { margin: 0 0 6px; font-size: 22px; font-weight: 600; color: var(--ink); }
+  .details-intro { margin: 0 0 18px; color: var(--ink-muted); font-size: 15px; }
+  @media (max-width: 720px) {
+    /* keep the feature names in view while the marks scroll sideways */
+    .check-table { min-width: 600px; }
+    .check-table tbody th, .check-table thead th:first-child { position: sticky; left: 0; z-index: 1; background: var(--card); width: 132px; min-width: 132px; font-size: 14px; box-shadow: 1px 0 0 var(--hairline); }
+    .check-table th, .check-table td { padding: 12px 10px; }
+    .check-table td { width: 117px; }
+    .check-table thead th:first-child { background: var(--paper-2); }
+  }
 </style>
 </head>
 <body>
@@ -168,14 +203,50 @@
   <div class="container">
     <span class="eyebrow">Compare</span>
     <h1>Briefly vs Jump, Zocks and Claude for financial advisors</h1>
-    <p class="lede">Briefly works from a firm's whole client record, including statements, inboxes, meeting notes, old plans, Salesforce and Outlook, and writes briefs, follow-ups, market briefs and prospect analyses around each client with a source on every line. This page sets it beside Jump, Zocks and Claude, using only what each company says on its own site.</p>
+    <p class="lede">Briefly works from a firm's whole client record. It writes briefs that cover what changed since the last meeting, along with agendas, follow-ups, market briefs and prospect analyses, and every line has a source. Idle cash and drift alerts across the book are rolling out firm by firm. This page sets Briefly beside Jump, Zocks and Claude, using only what each company says on its own site.</p>
   </div>
 </section>
 
 <!-- ==================== COMPARISON TABLE ==================== -->
 <section class="compare-table-section" aria-label="Side-by-side comparison">
   <div class="container reveal">
-    <p class="compare-table-intro">Last checked October 2, 2026. Every competitor fact comes from that company's own public site, and the small number beside each claim links to the page we read. A cell that says not found means we did not see it on those pages. Companies change their pages and plans, so confirm anything that matters with each vendor. Briefly's facts come from this site.</p>
+    <p class="compare-table-intro">Last checked October 2, 2026. A check means the company's own site says it does what the row describes, and the note under it says how. Claude here means Anthropic's Claude for Financial Advisors plugin. The small numbers link to the pages we read, so confirm anything that matters with each vendor. Briefly's facts come from this site.</p>
+    <ul class="check-legend" aria-hidden="true">
+      <li><span class="ck ck-them"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Listed on their site</li>
+      <li><span class="ck ck-part"></span>Partly, see the note</li>
+      <li><span class="ck ck-none"></span>Not listed on the pages we read</li>
+    </ul>
+    <div class="check-wrap">
+      <table class="check-table">
+        <caption class="sr-only">Which features Briefly, Jump, Zocks and Claude list on their own sites</caption>
+        <thead>
+          <tr><th scope="col">Feature</th><th scope="col">Briefly</th><th scope="col">Jump</th><th scope="col">Zocks</th><th scope="col">Claude</th></tr>
+        </thead>
+        <tbody>
+          <tr class="grp"><th scope="rowgroup">Client work</th><td></td><td></td><td></td><td></td></tr>
+          <tr><th scope="row">Client briefs before meetings</th><td><span class="ck ck-yes"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only">Yes</span></span><small>In your inbox that morning</small></td><td><span class="ck ck-them"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only">Yes</span></span><small>Arrives in the inbox<sup><a href="#src-7">7</a></sup></small></td><td><span class="ck ck-them"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only">Yes</span></span><small><sup><a href="#src-14">14</a></sup></small></td><td><span class="ck ck-them"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only">Yes</span></span><small><sup><a href="#src-19">19</a></sup></small></td></tr>
+          <tr><th scope="row">What changed since the last meeting</th><td><span class="ck ck-yes"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only">Yes</span></span><small>Part of every brief</small></td><td><span class="ck ck-part"><span class="sr-only">Partly</span></span><small>Past meeting context in prep<sup><a href="#src-7">7</a></sup></small></td><td><span class="ck ck-part"><span class="sr-only">Partly</span></span><small>Summary of recent meetings<sup><a href="#src-14">14</a></sup></small></td><td><span class="ck ck-them"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only">Yes</span></span><small>A "Since We Last Met" section<sup><a href="#src-23">23</a></sup></small></td></tr>
+          <tr><th scope="row">Meeting agendas</th><td><span class="ck ck-yes"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only">Yes</span></span></td><td><span class="ck ck-them"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only">Yes</span></span><small><sup><a href="#src-8">8</a></sup></small></td><td><span class="ck ck-them"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only">Yes</span></span><small><sup><a href="#src-14">14</a></sup></small></td><td><span class="ck ck-them"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only">Yes</span></span><small><sup><a href="#src-23">23</a></sup></small></td></tr>
+          <tr><th scope="row">Follow-up emails</th><td><span class="ck ck-yes"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only">Yes</span></span></td><td><span class="ck ck-them"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only">Yes</span></span><small><sup><a href="#src-9">9</a></sup></small></td><td><span class="ck ck-them"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only">Yes</span></span><small><sup><a href="#src-15">15</a></sup></small></td><td><span class="ck ck-them"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only">Yes</span></span><small>A recap email<sup><a href="#src-19">19</a></sup></small></td></tr>
+          <tr><th scope="row">Prospect analysis from their statements</th><td><span class="ck ck-yes"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only">Yes</span></span><small>Up to nine checks, then what it could not verify</small></td><td><span class="ck ck-none"><span class="sr-only">Not listed on the pages we read</span></span></td><td><span class="ck ck-none"><span class="sr-only">Not listed on the pages we read</span></span></td><td><span class="ck ck-part"><span class="sr-only">Partly</span></span><small>An intake summary and analyst handoff<sup><a href="#src-19">19</a></sup></small></td></tr>
+          <tr><th scope="row">Market briefs</th><td><span class="ck ck-yes"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only">Yes</span></span><small>Web research with numbered sources</small></td><td><span class="ck ck-none"><span class="sr-only">Not listed on the pages we read</span></span></td><td><span class="ck ck-none"><span class="sr-only">Not listed on the pages we read</span></span></td><td><span class="ck ck-none"><span class="sr-only">Not listed on the pages we read</span></span></td></tr>
+          <tr><th scope="row">Quarterly reviews and month-end letters</th><td><span class="ck ck-yes"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only">Yes</span></span><small><a href="/sample-deliverables">See samples</a></small></td><td><span class="ck ck-none"><span class="sr-only">Not listed on the pages we read</span></span></td><td><span class="ck ck-part"><span class="sr-only">Partly</span></span><small>Year-in-review letters through Claude or ChatGPT<sup><a href="#src-18">18</a></sup></small></td><td><span class="ck ck-part"><span class="sr-only">Partly</span></span><small>Client reports through the Black Diamond connector<sup><a href="#src-19">19</a></sup></small></td></tr>
+          <tr class="grp"><th scope="rowgroup">Across the book</th><td></td><td></td><td></td><td></td></tr>
+          <tr><th scope="row">Idle cash alerts</th><td><span class="ck ck-yes"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only">Yes</span></span><small>Rolling out firm by firm</small></td><td><span class="ck ck-none"><span class="sr-only">Not listed on the pages we read</span></span></td><td><span class="ck ck-none"><span class="sr-only">Not listed on the pages we read</span></span></td><td><span class="ck ck-part"><span class="sr-only">Partly</span></span><small>Cash drag, one household at a time<sup><a href="#src-24">24</a></sup></small></td></tr>
+          <tr><th scope="row">Portfolio drift warnings</th><td><span class="ck ck-yes"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only">Yes</span></span><small>Rolling out firm by firm</small></td><td><span class="ck ck-none"><span class="sr-only">Not listed on the pages we read</span></span></td><td><span class="ck ck-none"><span class="sr-only">Not listed on the pages we read</span></span></td><td><span class="ck ck-part"><span class="sr-only">Partly</span></span><small>Per household, or book-wide through Black Diamond<sup><a href="#src-19">19</a>, <a href="#src-24">24</a></sup></small></td></tr>
+          <tr><th scope="row">Ask a question across every client</th><td><span class="ck ck-yes"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only">Yes</span></span><small>Answers with numbered sources</small></td><td><span class="ck ck-them"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only">Yes</span></span><small><sup><a href="#src-6">6</a></sup></small></td><td><span class="ck ck-them"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only">Yes</span></span><small><sup><a href="#src-16">16</a></sup></small></td><td><span class="ck ck-part"><span class="sr-only">Partly</span></span><small>Through the Black Diamond connector<sup><a href="#src-19">19</a></sup></small></td></tr>
+          <tr><th scope="row">Scheduled reports by email</th><td><span class="ck ck-yes"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only">Yes</span></span><small>Each one arrives with a PDF attached</small></td><td><span class="ck ck-part"><span class="sr-only">Partly</span></span><small>Prep sent before each meeting<sup><a href="#src-7">7</a></sup></small></td><td><span class="ck ck-part"><span class="sr-only">Partly</span></span><small>Scheduled client queries<sup><a href="#src-16">16</a></sup></small></td><td><span class="ck ck-part"><span class="sr-only">Partly</span></span><small>Scheduled tasks on paid plans<sup><a href="#src-20">20</a></sup></small></td></tr>
+          <tr class="grp"><th scope="rowgroup">For the firm</th><td></td><td></td><td></td><td></td></tr>
+          <tr><th scope="row">A source on every line</th><td><span class="ck ck-yes"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only">Yes</span></span><small>Every line links to its document</small></td><td><span class="ck ck-them"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only">Yes</span></span><small><sup><a href="#src-7">7</a></sup></small></td><td><span class="ck ck-them"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only">Yes</span></span><small><sup><a href="#src-14">14</a>, <a href="#src-15">15</a></sup></small></td><td><span class="ck ck-part"><span class="sr-only">Partly</span></span><small>Cited in pre-meeting prep<sup><a href="#src-23">23</a></sup></small></td></tr>
+          <tr><th scope="row">One correction updates the whole team</th><td><span class="ck ck-yes"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only">Yes</span></span><small>It becomes a standing rule</small></td><td><span class="ck ck-none"><span class="sr-only">Not listed on the pages we read</span></span></td><td><span class="ck ck-none"><span class="sr-only">Not listed on the pages we read</span></span></td><td><span class="ck ck-none"><span class="sr-only">Not listed on the pages we read</span></span></td></tr>
+          <tr><th scope="row">Firm view from your CIO's notes</th><td><span class="ck ck-yes"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only">Yes</span></span><small>Shows up in the briefs</small></td><td><span class="ck ck-none"><span class="sr-only">Not listed on the pages we read</span></span></td><td><span class="ck ck-none"><span class="sr-only">Not listed on the pages we read</span></span></td><td><span class="ck ck-none"><span class="sr-only">Not listed on the pages we read</span></span></td></tr>
+          <tr><th scope="row">Your logo and colors on outputs</th><td><span class="ck ck-yes"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only">Yes</span></span><small>On every agent output</small></td><td><span class="ck ck-none"><span class="sr-only">Not listed on the pages we read</span></span></td><td><span class="ck ck-part"><span class="sr-only">Partly</span></span><small>On booking pages and invites<sup><a href="#src-17">17</a></sup></small></td><td><span class="ck ck-part"><span class="sr-only">Partly</span></span><small>Skills can follow house style<sup><a href="#src-19">19</a></sup></small></td></tr>
+          <tr><th scope="row">CRM updates</th><td><span class="ck ck-yes"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only">Yes</span></span><small>Only after an advisor approves</small></td><td><span class="ck ck-them"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only">Yes</span></span><small>After advisor approval<sup><a href="#src-2">2</a>, <a href="#src-4">4</a></sup></small></td><td><span class="ck ck-them"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only">Yes</span></span><small><sup><a href="#src-10">10</a></sup></small></td><td><span class="ck ck-them"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only">Yes</span></span><small>Staged for approval<sup><a href="#src-19">19</a></sup></small></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3 class="details-title">Setup, data and price</h3>
+    <p class="details-intro">How each company describes itself, how you get started, where client data goes and what it costs.</p>
     <div class="compare-table-wrap">
       <table class="compare-table">
         <caption class="sr-only">A row by row comparison of Briefly, Jump, Zocks and Claude</caption>
@@ -193,99 +264,36 @@
             <th scope="row">What it is, in their words</th>
             <td>AI software for wealth advisors.</td>
             <td>"enterprise-grade AI platform purpose-built for financial professionals"<sup><a href="#src-1">1</a></sup></td>
-            <td>"The AI Assistant for financial advisors"<sup><a href="#src-8">8</a></sup></td>
-            <td>"a suite of connectors and workflow skills designed to help with research, prep, and documentation tasks"<sup><a href="#src-16">16</a></sup></td>
+            <td>"The AI Assistant for financial advisors"<sup><a href="#src-10">10</a></sup></td>
+            <td>"a suite of connectors and workflow skills designed to help with research, prep, and documentation tasks"<sup><a href="#src-19">19</a></sup></td>
           </tr>
           <tr>
             <th scope="row">Works from</th>
             <td>The firm's whole client record. Statements, inboxes, meeting notes, old plans, Salesforce and Outlook are filed to the right client.</td>
             <td>Meetings, plus CRM, email, planning tools and documents through its AI Associate. Recording is optional.<sup><a href="#src-2">2</a>, <a href="#src-6">6</a></sup></td>
-            <td>Meeting conversations, plus CRM, email, calendar, planning tools, custodian data and uploaded documents.<sup><a href="#src-11">11</a>, <a href="#src-13">13</a>, <a href="#src-15">15</a></sup></td>
-            <td>Partner systems the advisor connects. The advisor plugin works with BlackRock, Charles Schwab, Addepar, Envestnet, iCapital, Orion, Wealthbox, Wealth.com and Zocks, and Salesforce and Microsoft 365 are listed among connectors already available.<sup><a href="#src-16">16</a></sup></td>
-          </tr>
-          <tr>
-            <th scope="row">A source on every line</th>
-            <td>Every fact keeps a link to the page it came from.</td>
-            <td>Describes its pre-meeting briefing as cited.<sup><a href="#src-7">7</a></sup></td>
-            <td>Prep shows the source of the client data it pulls, citing the system or linking the meeting.<sup><a href="#src-13">13</a></sup></td>
-            <td>Anthropic's financial services page says every output is source-attributed, without naming the advisor plugin.<sup><a href="#src-17">17</a></sup> Line-by-line citations in the advisor plugin were not found on the pages we read.</td>
-          </tr>
-          <tr>
-            <th scope="row">Corrections for the whole team</th>
-            <td>Correct it once and the whole team inherits it. A fix becomes a standing rule, and next quarter's brief follows it for everyone.</td>
-            <td>Not found on the pages we read.</td>
-            <td>Not found on the pages we read.</td>
-            <td>Not found on the pages we read.</td>
-          </tr>
-          <tr>
-            <th scope="row">Ask across the whole book</th>
-            <td>Ask about one household or the whole book and get numbered sources, for example "Which households have mentioned selling a business?"</td>
-            <td>The AI Associate queries the CRM, financial plans, portfolio positions, custody records and meeting transcripts. Every action requires advisor approval.<sup><a href="#src-6">6</a></sup></td>
-            <td>Searches CRM records, planning tools, custodian data, meeting notes and archived emails. "Ask a question. Get a client list."<sup><a href="#src-15">15</a></sup></td>
-            <td>Connectors let Claude access custodians, asset managers and wealth technology providers.<sup><a href="#src-16">16</a></sup> A book-wide client query feature was not found on the pages we read.</td>
-          </tr>
-          <tr>
-            <th scope="row">Market briefs</th>
-            <td>A market brief agent does web research with numbered sources, next to outside house views and the firm's own.</td>
-            <td>Not found on the pages we read.</td>
-            <td>Not found on the pages we read.</td>
-            <td>The eight skills include an alternative investments brief and an estate and tax brief.<sup><a href="#src-16">16</a></sup> A market brief skill was not found on the pages we read.</td>
-          </tr>
-          <tr>
-            <th scope="row">Prospect analyses</th>
-            <td>Five intake answers plus the prospect's statements produce up to nine checks, and the analysis ends with what it could not verify.</td>
-            <td>Not found on the pages we read.</td>
-            <td>Not found on the pages we read.</td>
-            <td>Prospect intake is one of the eight skills in the advisor plugin.<sup><a href="#src-16">16</a></sup></td>
-          </tr>
-          <tr>
-            <th scope="row">Firm view from CIO notes</th>
-            <td>The CIO's notes become a dated timeline and one shared summary that appears in the briefs.</td>
-            <td>Not found on the pages we read.</td>
-            <td>Not found on the pages we read.</td>
-            <td>Not found on the pages we read.</td>
-          </tr>
-          <tr>
-            <th scope="row">Scheduled reports</th>
-            <td>Agents run on a schedule and email each finished report with a PDF attached.</td>
-            <td>Delivers its pre-meeting briefing to the advisor's inbox before a meeting.<sup><a href="#src-7">7</a></sup></td>
-            <td>Lets advisors schedule recurring client queries, such as annual reviews and RMD checks, so results are ready ahead of time.<sup><a href="#src-15">15</a></sup> Emailed reports were not found on the pages we read.</td>
-            <td>Anthropic's pricing page lists "Hand off and schedule tasks" on the Pro plan.<sup><a href="#src-18">18</a></sup> Scheduled advisor reports in the plugin were not found on the pages we read.</td>
-          </tr>
-          <tr>
-            <th scope="row">Firm branding on outputs</th>
-            <td>The firm's logo and two colors go on every agent output.</td>
-            <td>Not found on the pages we read.</td>
-            <td>Not found on the pages we read.</td>
-            <td>Firms can adapt the skills to their own workflows, service model and house style.<sup><a href="#src-16">16</a></sup></td>
-          </tr>
-          <tr>
-            <th scope="row">CRM updates with advisor approval</th>
-            <td>Nothing goes into Salesforce until an advisor approves it.</td>
-            <td>Drafts CRM updates and sends structured data to the CRM once an advisor approves.<sup><a href="#src-2">2</a>, <a href="#src-4">4</a></sup></td>
-            <td>CRM updates are listed among its workflows, and it syncs fields to planning tools such as eMoney and RightCapital.<sup><a href="#src-8">8</a>, <a href="#src-12">12</a></sup></td>
-            <td>Stages CRM updates and draft client communications for the advisor's review and approval.<sup><a href="#src-16">16</a></sup></td>
+            <td>Meeting conversations, plus CRM, email, calendar, planning tools, custodian data and uploaded documents.<sup><a href="#src-13">13</a>, <a href="#src-14">14</a>, <a href="#src-16">16</a></sup></td>
+            <td>Partner systems the advisor connects. The advisor plugin works with BlackRock, Charles Schwab, Addepar, Envestnet, iCapital, Orion, Wealthbox, Wealth.com and Zocks, and Salesforce and Microsoft 365 are listed among connectors already available.<sup><a href="#src-19">19</a></sup></td>
           </tr>
           <tr>
             <th scope="row">Getting started</th>
             <td>We set it up for your firm. Nothing for IT to install, because we connect Salesforce and Outlook and build each client's record.</td>
             <td>Meet has a free trial. Onboard and Grow are by demo.<sup><a href="#src-3">3</a></sup></td>
-            <td>A 14-day free trial is listed on the homepage.<sup><a href="#src-8">8</a></sup></td>
-            <td>With an Enterprise license, install the plugin from the plugin browser and follow the guided setup. Without one, you request a license and an Anthropic team member reaches out.<sup><a href="#src-16">16</a></sup></td>
+            <td>A 14-day free trial is listed on the homepage.<sup><a href="#src-10">10</a></sup></td>
+            <td>With an Enterprise license, install the plugin from the plugin browser and follow the guided setup. Without one, you request a license and an Anthropic team member reaches out.<sup><a href="#src-19">19</a></sup></td>
           </tr>
           <tr>
             <th scope="row">Where client data goes</th>
             <td>A private environment for your firm on AWS. Model calls run on zero-retention terms and are never used for training.</td>
             <td>SOC 2 Type II, encryption at rest and in transit, no training on customer data, SSO and SCIM.<sup><a href="#src-4">4</a></sup></td>
-            <td>SOC 2 Type 2 certification from early November 2023. Zocks says client conversations are never recorded. Transcripts and summaries are stored with retention controls that let them be deleted on demand or on a schedule, and data is never used for model training.<sup><a href="#src-10">10</a></sup></td>
-            <td>By default Anthropic does not train on inputs or outputs from its commercial products, and it lists SOC 2 Type I and II, ISO 27001 and ISO 42001.<sup><a href="#src-19">19</a>, <a href="#src-20">20</a></sup> Enterprise includes audit logs and custom data retention.<sup><a href="#src-18">18</a></sup></td>
+            <td>SOC 2 Type 2 certification from early November 2023. Zocks says client conversations are never recorded. Transcripts and summaries are stored with retention controls that let them be deleted on demand or on a schedule, and data is never used for model training.<sup><a href="#src-12">12</a></sup></td>
+            <td>By default Anthropic does not train on inputs or outputs from its commercial products, and it lists SOC 2 Type I and II, ISO 27001 and ISO 42001.<sup><a href="#src-21">21</a>, <a href="#src-22">22</a></sup> Enterprise includes audit logs and custom data retention.<sup><a href="#src-20">20</a></sup></td>
           </tr>
           <tr>
             <th scope="row">Published price</th>
             <td>$150 per seat per month, set up for your firm.</td>
             <td>Meet is listed at $100 per advisor per month, and the page says annual payment saves up to 20%. Onboard and Grow are listed at $50 per advisor per month as add-ons. Enterprise is contact sales.<sup><a href="#src-3">3</a></sup></td>
-            <td>Annual plans are $67, $117 and $184 per user per month. Monthly plans are $80, $140 and $220.<sup><a href="#src-9">9</a></sup></td>
-            <td>Anthropic recommends Enterprise for the advisor plugin, listed at $20 per seat per month plus usage billed at API rates.<sup><a href="#src-16">16</a>, <a href="#src-18">18</a></sup> Whether other plans can run the plugin was not found on the pages we read.</td>
+            <td>Annual plans are $67, $117 and $184 per user per month. Monthly plans are $80, $140 and $220.<sup><a href="#src-11">11</a></sup></td>
+            <td>Anthropic recommends Enterprise for the advisor plugin, listed at $20 per seat per month plus usage billed at API rates.<sup><a href="#src-19">19</a>, <a href="#src-20">20</a></sup> Whether other plans can run the plugin was not found on the pages we read.</td>
           </tr>
         </tbody>
       </table>
@@ -302,7 +310,7 @@
         <article class="card card-lead">
           <h3>Briefly</h3>
           <p>Briefly works from the firm's whole client record. Statements, inboxes, meeting notes, old plans, Salesforce and Outlook are filed to the right client, and every fact keeps a link to the page it came from. An advisor can ask about one household or the whole book and get numbered sources back. A question like "Which households have mentioned selling a business?" returns the households and the conversations behind them.</p>
-          <p>It drafts client briefs, agendas, follow-ups, market briefs and prospect analyses. A prospect analysis takes five intake answers plus the prospect's statements, runs up to nine checks, and ends with what it could not verify. Quarterly reviews and month-end commentary are on the <a href="/sample-deliverables">sample deliverables</a> page.</p>
+          <p>Each brief covers what changed since the last meeting, what the client cares about and how the portfolio did. Briefly also drafts agendas, follow-ups, market briefs and prospect analyses, and a prospect analysis runs up to nine checks on the prospect's statements before ending with what it could not verify. Across the book, it flags households with idle cash and portfolios that have drifted from their model. Those alerts are rolling out firm by firm. Quarterly reviews and month-end commentary are on the <a href="/sample-deliverables">sample deliverables</a> page.</p>
           <p>Corrections reach the whole team. One firm fixed a single phrase, "we call it a planning conversation, never a sales meeting," and every brief that firm has received since says it their way. We set Briefly up for your firm, so there is nothing for IT to install, and the web app is $150 per seat per month.</p>
         </article>
         <article class="card">
@@ -311,11 +319,11 @@
         </article>
         <article class="card">
           <h3>Zocks</h3>
-          <p>Zocks publishes its prices. Annual plans are $67, $117 and $184 per user per month, with unlimited meetings on all three.<sup><a href="#src-9">9</a></sup> It says client conversations are never recorded, and it keeps transcripts and summaries that can be deleted on a schedule.<sup><a href="#src-10">10</a></sup> Client email drafts can be edited before sending or syncing to the mailbox.<sup><a href="#src-14">14</a></sup> On the Ultimate tier, a document tool reads brokerage statements, estate plans and intake forms and syncs to planning tools such as eMoney and RightCapital.<sup><a href="#src-9">9</a>, <a href="#src-11">11</a></sup> Zocks states SOC 2 Type 2 certification from early November 2023.<sup><a href="#src-10">10</a></sup> It works for advisors who want a published price and planning-tool sync.</p>
+          <p>Zocks publishes its prices. Annual plans are $67, $117 and $184 per user per month, with unlimited meetings on all three.<sup><a href="#src-11">11</a></sup> It says client conversations are never recorded, and it keeps transcripts and summaries that can be deleted on a schedule.<sup><a href="#src-12">12</a></sup> Client email drafts can be edited before sending or syncing to the mailbox.<sup><a href="#src-15">15</a></sup> On the Ultimate tier, a document tool reads brokerage statements, estate plans and intake forms and syncs to planning tools such as eMoney and RightCapital.<sup><a href="#src-11">11</a>, <a href="#src-13">13</a></sup> Zocks states SOC 2 Type 2 certification from early November 2023.<sup><a href="#src-12">12</a></sup> It works for advisors who want a published price and planning-tool sync.</p>
         </article>
         <article class="card card-lead">
           <h3>Claude</h3>
-          <p>Claude for Financial Advisors, released September 14, 2026, adds eight skills, among them pre-meeting prep, post-meeting notes and follow-up, and prospect intake.<sup><a href="#src-16">16</a></sup> Anthropic recommends Enterprise plans for registered investment advisers because they include audit logs.<sup><a href="#src-16">16</a></sup> CRM updates and draft client communications are staged for the advisor to approve.<sup><a href="#src-16">16</a></sup> Anthropic names SOC 2 and ISO 27001 certifications.<sup><a href="#src-20">20</a></sup> Firms that want custodian and planning connectors inside Claude are its audience. Firms already on Claude can add Briefly as a connector at $100 per seat per month.</p>
+          <p>Claude for Financial Advisors, released September 14, 2026, adds eight skills, among them pre-meeting prep, post-meeting notes and follow-up, and prospect intake.<sup><a href="#src-19">19</a></sup> Anthropic recommends Enterprise plans for registered investment advisers because they include audit logs.<sup><a href="#src-19">19</a></sup> CRM updates and draft client communications are staged for the advisor to approve.<sup><a href="#src-19">19</a></sup> Anthropic names SOC 2 and ISO 27001 certifications.<sup><a href="#src-22">22</a></sup> Firms that want custodian and planning connectors inside Claude are its audience. Firms already on Claude can add Briefly as a connector at $100 per seat per month.</p>
         </article>
     </div>
   </div>
@@ -340,7 +348,7 @@
     <span class="eyebrow">Choosing</span>
     <h2>How to choose.</h2>
     <ol class="rules">
-      <li>If you mainly want a notetaker in the meeting, look at Jump or Zocks.<sup><a href="#src-1">1</a>, <a href="#src-10">10</a></sup></li>
+      <li>If you mainly want a notetaker in the meeting, look at Jump or Zocks.<sup><a href="#src-1">1</a>, <a href="#src-12">12</a></sup></li>
       <li>If you want briefs, follow-ups, market briefs and prospect analyses written from your whole client record, with a source on every line, look at Briefly.</li>
       <li>Firms that want one correction to reach every advisor, with the setup handled for them, also end up on Briefly. If your firm already works in Claude, Briefly also comes as a Claude connector.</li>
     </ol>
@@ -371,19 +379,23 @@
       <li id="src-5"><a href="https://jump.ai/integrations" rel="noopener">jump.ai/integrations</a></li>
       <li id="src-6"><a href="https://jump.ai/operating-system/ai-associate" rel="noopener">jump.ai/operating-system/ai-associate</a></li>
       <li id="src-7"><a href="https://jump.ai/products/meet/pre-meeting-prep" rel="noopener">jump.ai/products/meet/pre-meeting-prep</a></li>
-      <li id="src-8"><a href="https://www.zocks.io" rel="noopener">zocks.io</a></li>
-      <li id="src-9"><a href="https://www.zocks.io/pricing" rel="noopener">zocks.io/pricing</a></li>
-      <li id="src-10"><a href="https://www.zocks.io/platform/privacy-security" rel="noopener">zocks.io/platform/privacy-security</a></li>
-      <li id="src-11"><a href="https://www.zocks.io/features/document-intelligence" rel="noopener">zocks.io/features/document-intelligence</a></li>
-      <li id="src-12"><a href="https://www.zocks.io/integrations" rel="noopener">zocks.io/integrations</a></li>
-      <li id="src-13"><a href="https://www.zocks.io/features/meeting-preparation" rel="noopener">zocks.io/features/meeting-preparation</a></li>
-      <li id="src-14"><a href="https://www.zocks.io/features/client-email" rel="noopener">zocks.io/features/client-email</a></li>
-      <li id="src-15"><a href="https://www.zocks.io/features/client-queries" rel="noopener">zocks.io/features/client-queries</a></li>
-      <li id="src-16"><a href="https://claude.com/blog/claude-for-financial-advisors" rel="noopener">claude.com/blog/claude-for-financial-advisors</a></li>
-      <li id="src-17"><a href="https://claude.com/solutions/financial-services" rel="noopener">claude.com/solutions/financial-services</a></li>
-      <li id="src-18"><a href="https://claude.com/pricing" rel="noopener">claude.com/pricing</a></li>
-      <li id="src-19"><a href="https://privacy.claude.com/en/articles/7996868-is-my-data-used-for-model-training" rel="noopener">privacy.claude.com, is my data used for model training</a></li>
-      <li id="src-20"><a href="https://privacy.claude.com/en/articles/10015870-what-certifications-has-anthropic-obtained" rel="noopener">privacy.claude.com, what certifications has Anthropic obtained</a></li>
+      <li id="src-8"><a href="https://jump.ai/products/meet/agendas" rel="noopener">jump.ai/products/meet/agendas</a></li>
+      <li id="src-9"><a href="https://jump.ai/products/meet/follow-up" rel="noopener">jump.ai/products/meet/follow-up</a></li>
+      <li id="src-10"><a href="https://www.zocks.io" rel="noopener">zocks.io</a></li>
+      <li id="src-11"><a href="https://www.zocks.io/pricing" rel="noopener">zocks.io/pricing</a></li>
+      <li id="src-12"><a href="https://www.zocks.io/platform/privacy-security" rel="noopener">zocks.io/platform/privacy-security</a></li>
+      <li id="src-13"><a href="https://www.zocks.io/features/document-intelligence" rel="noopener">zocks.io/features/document-intelligence</a></li>
+      <li id="src-14"><a href="https://www.zocks.io/features/meeting-preparation" rel="noopener">zocks.io/features/meeting-preparation</a></li>
+      <li id="src-15"><a href="https://www.zocks.io/features/client-email" rel="noopener">zocks.io/features/client-email</a></li>
+      <li id="src-16"><a href="https://www.zocks.io/features/client-queries" rel="noopener">zocks.io/features/client-queries</a></li>
+      <li id="src-17"><a href="https://www.zocks.io/features/scheduling" rel="noopener">zocks.io/features/scheduling</a></li>
+      <li id="src-18"><a href="https://www.zocks.io/platform/zocks-mcp" rel="noopener">zocks.io/platform/zocks-mcp</a></li>
+      <li id="src-19"><a href="https://claude.com/blog/claude-for-financial-advisors" rel="noopener">claude.com/blog/claude-for-financial-advisors</a></li>
+      <li id="src-20"><a href="https://claude.com/pricing" rel="noopener">claude.com/pricing</a></li>
+      <li id="src-21"><a href="https://privacy.claude.com/en/articles/7996868-is-my-data-used-for-model-training" rel="noopener">privacy.claude.com, is my data used for model training</a></li>
+      <li id="src-22"><a href="https://privacy.claude.com/en/articles/10015870-what-certifications-has-anthropic-obtained" rel="noopener">privacy.claude.com, what certifications has Anthropic obtained</a></li>
+      <li id="src-23"><a href="https://github.com/anthropics/claude-for-financial-advisors/blob/main/skills/pre-meeting/SKILL.md" rel="noopener">github.com/anthropics/claude-for-financial-advisors, pre-meeting skill</a></li>
+      <li id="src-24"><a href="https://github.com/anthropics/claude-for-financial-advisors/blob/main/skills/portfolio-rebalance-review/SKILL.md" rel="noopener">github.com/anthropics/claude-for-financial-advisors, rebalance review skill</a></li>
     </ol>
     <p class="sources-note">All competitor and Anthropic pages fetched October 2, 2026. Briefly facts come from brieflywealth.com home, compare, security and sample deliverables pages. The Claude connector price is on the compare page.</p>
   </div>
