@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AI for Financial Advisors and Wealth Management | Briefly</title>
-<meta name="description" content="Briefly is AI software for wealth advisors. It writes the brief before each meeting and the follow-up after, flags idle cash across your book, and links every line to its source.">
+<meta name="description" content="AI software for wealth advisors. Briefly drafts client briefs, follow-ups, market briefs, prospect analyses and CRM updates, each line linked to its source.">
 <meta name="author" content="Briefly Wealth LLC">
 
 <link rel="canonical" href="https://www.brieflywealth.com/">
@@ -13,7 +13,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="images/briefly_logo_favicon.png?v=2">
 
 <meta property="og:title" content="AI for Financial Advisors and Wealth Management | Briefly">
-<meta property="og:description" content="Briefly is AI software for wealth advisors. It writes the brief before each meeting and the follow-up after, flags idle cash across your book, and links every line to its source.">
+<meta property="og:description" content="AI software for wealth advisors. Briefly drafts client briefs, follow-ups, market briefs, prospect analyses and CRM updates, each line linked to its source.">
 <meta property="og:image" content="https://www.brieflywealth.com/images/briefly-og-main.png?v=5">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -22,7 +22,7 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="AI for Financial Advisors and Wealth Management | Briefly">
-<meta name="twitter:description" content="Briefly is AI software for wealth advisors. It writes the brief before each meeting and the follow-up after, flags idle cash across your book, and links every line to its source.">
+<meta name="twitter:description" content="AI software for wealth advisors. Briefly drafts client briefs, follow-ups, market briefs, prospect analyses and CRM updates, each line linked to its source.">
 <meta name="twitter:image" content="https://www.brieflywealth.com/images/briefly-og-main.png?v=5">
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-92NXKY9W1S"></script>
@@ -36,24 +36,48 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "@id": "https://www.brieflywealth.com/#org",
-  "name": "Briefly",
-  "legalName": "Briefly Wealth LLC",
-  "url": "https://www.brieflywealth.com/",
-  "logo": "https://www.brieflywealth.com/images/briefly_logo_favicon.png",
-  "description": "Briefly is AI software for wealth advisors. It keeps a current picture of each client, and every line links back to its source.",
-  "founder": {
-    "@type": "Person",
-    "name": "Connor Florczyk",
-    "jobTitle": "Founder",
-    "sameAs": ["https://www.linkedin.com/in/connor-florczyk"]
-  },
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "email": "contact@brieflywealth.com",
-    "contactType": "customer support"
-  }
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.brieflywealth.com/#org",
+      "name": "Briefly",
+      "legalName": "Briefly Wealth LLC",
+      "url": "https://www.brieflywealth.com/",
+      "logo": "https://www.brieflywealth.com/images/briefly_logo_favicon.png",
+      "description": "Briefly is AI software for wealth advisors. It drafts client briefs, agendas, follow-ups, market briefs and prospect analyses, pushes updates to your CRM, and links every line to its source.",
+      "founder": { "@id": "https://www.brieflywealth.com/#founder" },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "contact@brieflywealth.com",
+        "contactType": "customer support"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.brieflywealth.com/#founder",
+      "name": "Connor Florczyk",
+      "url": "https://www.brieflywealth.com/about",
+      "jobTitle": "Founder",
+      "worksFor": { "@id": "https://www.brieflywealth.com/#org" },
+      "sameAs": ["https://www.linkedin.com/in/connor-florczyk"]
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://www.brieflywealth.com/#app",
+      "name": "Briefly",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "url": "https://www.brieflywealth.com/",
+      "description": "Briefly is AI software for wealth advisors. It drafts client briefs, agendas, follow-ups, market briefs and prospect analyses, pushes updates to your CRM, and links every line to its source.",
+      "publisher": { "@id": "https://www.brieflywealth.com/#org" },
+      "offers": {
+        "@type": "Offer",
+        "price": "150",
+        "priceCurrency": "USD",
+        "description": "Web app, per seat per month"
+      }
+    }
+  ]
 }
 </script>
 
@@ -64,7 +88,7 @@
   "@id": "https://www.brieflywealth.com/#website",
   "name": "Briefly",
   "url": "https://www.brieflywealth.com/",
-  "description": "Briefly is AI software for wealth advisors. It keeps a current picture of each client, and every line links back to its source.",
+  "description": "Briefly is AI software for wealth advisors. It drafts client briefs, agendas, follow-ups, market briefs and prospect analyses, pushes updates to your CRM, and links every line to its source.",
   "publisher": { "@id": "https://www.brieflywealth.com/#org" },
   "inLanguage": "en"
 }
@@ -391,7 +415,7 @@
     <div>
       <div class="eyebrow">AI software for wealth advisors</div>
       <h1>Know every client like they're your only client.</h1>
-      <p class="lede">Briefly keeps a current picture of each client from your email, CRM, notes and statements, and every line links to its source.<span class="lede-more"> It writes the brief before each meeting and the follow-up after, flags idle cash and drift across your book, and reviews a prospect's statements before the first call.</span></p>
+      <p class="lede">Briefly keeps a current picture of each client from your email, CRM, notes and statements, and every line links to its source.<span class="lede-more"> It drafts client briefs, agendas and follow-ups, keeps client status current, writes market briefs and prospect analyses, and sends approved updates to your CRM.</span></p>
       <div class="hero-ctas">
         <a class="btn" href="#" onclick="openDemoModal();return false;">Book a demo</a>
       </div>

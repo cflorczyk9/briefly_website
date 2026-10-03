@@ -7,7 +7,7 @@ Source: https://www.brieflywealth.com/
 
 # Know every client like they're your only client.
 
-Briefly is a web app your firm signs into from a browser. We set it up for your firm and connect your Salesforce and Outlook. It keeps a current picture of each client, writes the brief before each meeting and the follow-up after, flags idle cash and drift across the book, and reviews a prospect's statements before the first call. Every line links back to the document it came from. Fix something once, and it holds for the whole team from then on.
+Briefly is a web app your firm signs into from a browser. We set it up for your firm and connect your Salesforce and Outlook. It keeps a current picture of each client, drafts briefs, agendas, follow-ups, market briefs and prospect analyses, flags idle cash and drift across the book, and reviews a prospect's statements before the first call. Every line links back to the document it came from. Fix something once, and it holds for the whole team from then on.
 
 $150 per seat per month. Briefly also comes as a connector for Claude, for teams that already work there.
 
@@ -127,11 +127,11 @@ Source: https://www.brieflywealth.com/knowledge-base
 
 **Knowledge Base**
 
-# An AI knowledge base for financial advisors, built from your firm's own records.
+# What an AI knowledge base for financial advisors should do.
 
 By Connor Florczyk. Updated August 5, 2026.
 
-Client documents, email, and meeting notes already sit inside your firm. Briefly turns them into one knowledge base that covers every account in your book. Ask which clients hold a concentrated position over $500K and get an answer with a name, a number, and the statement it came from, the same way you'd get an answer about one household.
+Client documents, email, and meeting notes already sit inside your firm. Briefly turns them into one client picture that covers every account in your book. Ask which clients hold a concentrated position over $500K and get an answer with a name, a number, and the statement it came from, the same way you'd get an answer about one household.
 
 A sample cross-client query, "Which clients hold a concentrated position over $500K?" Patel, $684,300 in employer stock (31%), Q2 statement. Okafor, $558,900 in a single legacy position (24%), Q2 statement. Lindqvist, $511,000 in concentrated equity (22%), Q1 statement.
 
@@ -167,7 +167,7 @@ CRMs are important systems of record, but they are not built to reconstruct a re
 
 Search helps when you already know what to look for. A knowledge base helps when you need the system to surface what matters before you ask.
 
-A CRM also only knows what someone typed into it. It doesn't read the email you forwarded, the PDF you saved to a folder, or the transcript from last week's call, not unless someone copies the details in by hand. Briefly reads those documents directly, so the knowledge base grows every time a document arrives, not every time someone remembers to update a record.
+A CRM also only knows what someone typed into it. It doesn't read the email you forwarded, the PDF you saved to a folder, or the transcript from last week's call, not unless someone copies the details in by hand. Briefly reads those documents directly, so the client picture grows every time a document arrives, not every time someone remembers to update a record.
 
 Neither one learns from being corrected. If an advisor tells a CRM once that a client goes by a nickname, or that the firm calls it a planning conversation and never a sales meeting, someone has to remember to make the same fix again the next time it comes up. Briefly keeps a correction like that as a standing rule instead. One firm did exactly this with a single phrase, telling Briefly to say planning conversation instead of sales meeting, and every brief that firm has received since has followed it, for every advisor on the team.
 
@@ -187,19 +187,19 @@ Source citations so advisors can verify before using anything with a client.
 
 None of this shows up on its own. A knowledge base only holds what gets filed into it, so the categories above are really a checklist for what to point Briefly at first, statements, planning documents, and the emails and notes an advisor already has sitting in a folder.
 
-## A meeting brief is one thing the knowledge base can do.
+## A meeting brief is one thing Briefly drafts.
 
-A meeting brief is useful because it gives the advisor an edge before the conversation starts, but the brief draws on the same knowledge base behind the whole-book questions above it. Open tasks, portfolio changes, client sentiment, life events, and the professional network around a client all come from files that were filed for other reasons first. The brief just pulls the relevant pieces together and cites where each one came from. See an actual brief, with names and firms changed, on the sample deliverables page.
+A meeting brief is useful because it gives the advisor an edge before the conversation starts, but the brief draws on the same client picture behind the whole-book questions above it. Open tasks, portfolio changes, client sentiment, life events, and the professional network around a client all come from files that were filed for other reasons first. The brief just pulls the relevant pieces together and cites where each one came from. See an actual brief, with names and firms changed, on the sample deliverables page.
 
-Each meeting adds more source-backed memory to the knowledge base, and meeting prep gets faster with every cycle because there's less new material to review each time. The client file gets richer, and the firm becomes less dependent on any one person's memory.
+Each meeting adds more source-backed memory to the client picture, and meeting prep gets faster with every cycle because there's less new material to review each time. The client picture gets richer, and the firm becomes less dependent on any one person's memory.
 
 ## What Briefly builds.
 
-Briefly turns fragmented advisor files into a living knowledge base. It keeps every fact traceable to its source, keeps outputs reviewable, and gives each workflow what it needs without forcing a CRM migration.
+Briefly is AI software for wealth advisors. It turns scattered advisor documents into a living picture of each client, then drafts briefs, agendas, follow-ups, market briefs and prospect analyses from it. It keeps every fact traceable to its source, keeps outputs reviewable, and works without forcing a CRM migration.
 
-Each new document, an email forwarded from a client, a statement uploaded after it arrives, a note typed up after a call, gets filed into the household it belongs to and read into the knowledge base right away. Nothing has to be reformatted or copied into a separate system first.
+Each new document, an email forwarded from a client, a statement uploaded after it arrives, a note typed up after a call, gets filed into the household it belongs to and read into the client picture right away. Nothing has to be reformatted or copied into a separate system first.
 
-Briefly is a web app your firm signs into, set up for you with Salesforce and Outlook connected. It also comes as a connector for Claude, for teams that already work there. Either way it is the same knowledge base underneath, with the same citations on every answer. The result is one base of firm memory. It gets better every time an advisor uses it, and it keeps working long after any single meeting ends.
+Briefly is a web app your firm signs into, set up for you with Salesforce and Outlook connected. It also comes as a connector for Claude, for teams that already work there. Either way it is the same client picture underneath, with the same citations on every answer. The result is one base of firm memory. It gets better every time an advisor uses it, and it keeps working long after any single meeting ends.
 
 ### Connor Florczyk
 
@@ -244,7 +244,7 @@ Your team already works in Claude. One client record per household. Every answer
 
 ## Move between them without starting over.
 
-Both options read from the same knowledge base, and a seat can move from one to the other without rebuilding anything.
+Both options read from the same client picture, and a seat can move from one to the other without rebuilding anything.
 
 
 ---
@@ -352,7 +352,7 @@ Need a security review? Contact contact@brieflywealth.com for architecture, vend
 
 
 ---
-# About Briefly | AI Knowledge Base for Financial Advisors
+# About Briefly | AI Software for Wealth Advisors
 Source: https://www.brieflywealth.com/about
 ---
 
@@ -360,7 +360,7 @@ Source: https://www.brieflywealth.com/about
 
 # We exist to give advisors their time back.
 
-So they can spend it on clients instead of hunting for their own files.
+Briefly is the AI software we built to do it. The web app keeps a current picture of each client and links every line to its source, so advisors spend the hour on clients instead of hunting for their own records.
 
 **Our founder**
 
@@ -370,7 +370,7 @@ Founder, Briefly Wealth.
 
 Connor began his career at Crescent Bay Advisors, Inc. (acquired by Evoke Advisors in 2024), a boutique multi-family office serving ultra-high-net-worth families with complex, multi-entity structures. He later joined a top-performing private wealth team at Morgan Stanley, coordinating investment execution across billions in assets for executives, multi-generational families, and family offices.
 
-At both firms he spent hours prepping for client meetings, pulling data from custodians, CRMs, emails, and research platforms to build a clear picture before every conversation. He saw how much advisor time was lost to fragmentation instead of strategic client work, and founded Briefly to turn those scattered records into one knowledge base advisors can just ask, whether that means meeting prep for tomorrow or answering a one-off question, so they can deepen client relationships and make better decisions as books grow and wealth passes to the next generation.
+At both firms he pulled data from custodians, CRMs, emails, and research platforms to build a clear picture of each client. He saw how much of an advisor's day went to stitching those records together for briefs, follow-ups, reviews, and reports. He founded Briefly to turn those scattered records into one client picture advisors can ask about, with every line linked to its source.
 
 **The moment**
 
@@ -881,7 +881,7 @@ AI will handle data-heavy, pattern-matching work that consumes professional time
 
 **But they'll still be needed for what they've always done: building trust, exercising judgment, taking responsibility, and helping people navigate decisions that matter.**
 
-Briefly builds cited client files from documents your firm already has. See a sample brief.
+Briefly keeps a current, cited picture of each client from documents your firm already has. See a sample brief.
 
 
 ---
@@ -911,7 +911,7 @@ The solution isn't to remember everything. It's to get the right information in 
 
 No one can remember everything about 100 people across years of interactions. That's not a personal failure. It's just how humans work. The question is whether we're going to keep pretending otherwise, or build systems that let people focus on what makes them irreplaceable.
 
-Briefly builds cited client files from documents your firm already has. See a sample brief.
+Briefly keeps a current, cited picture of each client from documents your firm already has. See a sample brief.
 
 
 ---
@@ -953,4 +953,4 @@ The next competitive edge goes to firms that can double relationship capacity wi
 
 **The future belongs to firms that scale context and trust.**
 
-Briefly builds cited client files from documents your firm already has. See a sample brief.
+Briefly keeps a current, cited picture of each client from documents your firm already has. See a sample brief.

@@ -1,6 +1,6 @@
 # Briefly
 
-> Briefly is AI software for wealth advisors, a web app a firm signs into from a browser. We set it up for the firm and connect Salesforce and Outlook. It keeps a current picture of each client with every line linked to its source, writes briefs before meetings and follow-ups after, flags idle cash and drift once the custodian or portfolio management system is linked, and reviews a prospect's statements before the first call. $150 per seat per month.
+> Briefly is AI software for wealth advisors. It drafts client briefs, agendas, follow-ups, market briefs and prospect analyses, pushes updates to your CRM, and links every line to its source. It is a web app a firm signs into from a browser, set up for the firm with Salesforce and Outlook connected. $150 per seat per month.
 
 Briefly is a web app your firm signs into. Your client data stays in a private environment for your firm on AWS. The AI models that read it run on zero-retention terms and never train on it. Nothing goes into Salesforce until an advisor approves it. Briefly makes suggestions for the advisor to review, and the advisor makes every decision and every recommendation. Briefly also comes as a connector for Claude Desktop, for teams that already work there.
 
@@ -13,13 +13,14 @@ These files are intended to help LLMs and AI agents accurately ground answers ab
 ## Product
 
 - [Home](https://www.brieflywealth.com/): Briefly is AI software for wealth advisors. A web app set up for your firm, with a current picture of each client, briefs before meetings, follow-ups after, and prospect analyses, every line linked to its source. $150 per seat per month.
-- [Knowledge base](https://www.brieflywealth.com/knowledge-base): How Briefly builds a knowledge base from a firm's own documents, email, meeting notes, and portfolio data, with every fact traceable to its source.
+- [Knowledge base](https://www.brieflywealth.com/knowledge-base): What an AI knowledge base does for financial advisors, and how Briefly builds a client picture from a firm's own documents, email, meeting notes, and portfolio data, with every fact traceable to its source.
 - [Compare](https://www.brieflywealth.com/compare): The Briefly web app and the Claude connector side by side, including scheduled runs with emailed reports, firm view, the market brief agent, and your brand on every agent output. Both read from the same client record, cited and correctable.
 
 ## Guides
 
 - [Claude for financial advisors](https://www.brieflywealth.com/claude-for-financial-advisors): What Claude can do for financial advisors out of the box, why it can't see your client files by default, and four ways to change that, with a plain data-access comparison against ChatGPT and Briefly.
 - [ChatGPT and Claude compliance for financial advisors](https://www.brieflywealth.com/ai-compliance-for-financial-advisors): What Reg S-P, the SEC, and FINRA require before an advisor puts client data into ChatGPT or Claude, and what advisors use instead.
+- [AI assistants for financial advisors compared](https://www.brieflywealth.com/ai-assistants-for-financial-advisors): Jump, Zocks, Zeplyn and Briefly side by side, with what each does, how each states its security, public pricing, and where Briefly costs more or lacks a feature. Facts sourced from each company's public site, last checked October 2, 2026.
 
 ## Company
 

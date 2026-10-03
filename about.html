@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About Briefly | AI Knowledge Base for Financial Advisors</title>
-<meta name="description" content="Founder Connor Florczyk on why he built Briefly, AI software for wealth advisors.">
+<title>About Briefly | AI Software for Wealth Advisors</title>
+<meta name="description" content="At a multi-family office and at Morgan Stanley, Connor Florczyk watched advisors lose hours to scattered client records. He built Briefly to fix that.">
 <meta name="author" content="Briefly Wealth LLC">
 
 <link rel="canonical" href="https://www.brieflywealth.com/about" />
-<meta property="og:title" content="About Briefly | AI Knowledge Base for Financial Advisors">
-<meta property="og:description" content="Founder Connor Florczyk on why he built Briefly, AI software for wealth advisors.">
+<meta property="og:title" content="About Briefly | AI Software for Wealth Advisors">
+<meta property="og:description" content="At a multi-family office and at Morgan Stanley, Connor Florczyk watched advisors lose hours to scattered client records. He built Briefly to fix that.">
 <meta property="og:image" content="https://www.brieflywealth.com/images/briefly-og-main.png?v=5">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -17,8 +17,8 @@
 <meta property="og:url" content="https://www.brieflywealth.com/about">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="About Briefly | AI Knowledge Base for Financial Advisors">
-<meta name="twitter:description" content="Founder Connor Florczyk on why he built an AI knowledge base for financial advisors.">
+<meta name="twitter:title" content="About Briefly | AI Software for Wealth Advisors">
+<meta name="twitter:description" content="At a multi-family office and at Morgan Stanley, Connor Florczyk watched advisors lose hours to scattered client records. He built Briefly to fix that.">
 <meta name="twitter:image" content="https://www.brieflywealth.com/images/briefly-og-main.png?v=5">
 <link rel="icon" type="image/png" sizes="32x32" href="images/briefly_logo_favicon.png?v=2">
 <link rel="icon" type="image/png" sizes="16x16" href="images/briefly_logo_favicon.png?v=2">
@@ -79,38 +79,47 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "AboutPage",
-  "name": "About Briefly",
-  "url": "https://www.brieflywealth.com/about",
-  "description": "Briefly is AI software for wealth advisors. It keeps a current picture of each client, and every line links back to its source.",
-  "isPartOf": { "@id": "https://www.brieflywealth.com/#website" },
-  "breadcrumb": {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.brieflywealth.com/" },
-      { "@type": "ListItem", "position": 2, "name": "About", "item": "https://www.brieflywealth.com/about" }
-    ]
-  },
-  "mainEntity": {
-    "@type": "Organization",
-    "@id": "https://www.brieflywealth.com/#org",
-    "name": "Briefly",
-    "legalName": "Briefly Wealth LLC",
-    "url": "https://www.brieflywealth.com/",
-    "logo": "https://www.brieflywealth.com/images/briefly_logo_favicon.png",
-    "description": "Briefly is AI software for wealth advisors. It keeps a current picture of each client, and every line links back to its source.",
-    "founder": {
-      "@type": "Person",
-      "name": "Connor Florczyk",
-      "jobTitle": "Founder",
-      "sameAs": ["https://www.linkedin.com/in/connor-florczyk"]
+  "@graph": [
+    {
+      "@type": "AboutPage",
+      "name": "About Briefly",
+      "url": "https://www.brieflywealth.com/about",
+      "description": "Briefly is AI software for wealth advisors. It drafts client briefs, agendas, follow-ups, market briefs and prospect analyses, pushes updates to your CRM, and links every line to its source.",
+      "isPartOf": { "@id": "https://www.brieflywealth.com/#website" },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.brieflywealth.com/" },
+          { "@type": "ListItem", "position": 2, "name": "About", "item": "https://www.brieflywealth.com/about" }
+        ]
+      },
+      "mainEntity": { "@id": "https://www.brieflywealth.com/#org" }
     },
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "email": "contact@brieflywealth.com",
-      "contactType": "customer support"
+    {
+      "@type": "Organization",
+      "@id": "https://www.brieflywealth.com/#org",
+      "name": "Briefly",
+      "legalName": "Briefly Wealth LLC",
+      "url": "https://www.brieflywealth.com/",
+      "logo": "https://www.brieflywealth.com/images/briefly_logo_favicon.png",
+      "description": "Briefly is AI software for wealth advisors. It drafts client briefs, agendas, follow-ups, market briefs and prospect analyses, pushes updates to your CRM, and links every line to its source.",
+      "founder": { "@id": "https://www.brieflywealth.com/#founder" },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "contact@brieflywealth.com",
+        "contactType": "customer support"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.brieflywealth.com/#founder",
+      "name": "Connor Florczyk",
+      "url": "https://www.brieflywealth.com/about",
+      "jobTitle": "Founder",
+      "worksFor": { "@id": "https://www.brieflywealth.com/#org" },
+      "sameAs": ["https://www.linkedin.com/in/connor-florczyk"]
     }
-  }
+  ]
 }
 </script>
 </head>
@@ -146,7 +155,7 @@
   <div class="container">
     <div class="eyebrow">Our mission</div>
     <h1>We exist to give advisors their time back.</h1>
-    <p class="lede">Briefly is the AI knowledge base we built to do it. Your firm's files stay organized so Claude can answer from them and cite the source, and advisors spend the hour on clients instead of hunting for their own records.</p>
+    <p class="lede">Briefly is the AI software we built to do it. The web app keeps a current picture of each client and links every line to its source, so advisors spend the hour on clients instead of hunting for their own records.</p>
   </div>
 </section>
 
@@ -162,7 +171,7 @@
       <span class="title">Founder, Briefly Wealth</span>
       <a class="textlink founder-linkedin" href="https://www.linkedin.com/in/connor-florczyk" target="_blank" rel="noopener noreferrer">View LinkedIn &#8599;</a>
       <p>Connor began his career at Crescent Bay Advisors, Inc. (acquired by Evoke Advisors in 2024), a boutique multi-family office serving ultra-high-net-worth families with complex, multi-entity structures. He later joined a top-performing private wealth team at Morgan Stanley, coordinating investment execution across billions in assets for executives, multi-generational families, and family offices.</p>
-      <p>At both firms he spent hours prepping for client meetings, pulling data from custodians, CRMs, emails, and research platforms to build a clear picture before every conversation. He saw how much advisor time was lost to fragmentation instead of strategic client work, and founded Briefly to turn those scattered records into one knowledge base advisors can just ask, whether that means meeting prep for tomorrow or answering a one-off question.</p>
+      <p>At both firms he pulled data from custodians, CRMs, emails, and research platforms to build a clear picture of each client. He saw how much of an advisor's day went to stitching those records together for briefs, follow-ups, reviews, and reports. He founded Briefly to turn those scattered records into one client picture advisors can ask about, with every line linked to its source.</p>
     </div>
   </div>
 </section>
@@ -220,7 +229,7 @@
   <div class="container reveal">
     <div class="eyebrow">Get started</div>
     <h2>See what Briefly does for your team.</h2>
-    <p class="lede">Source-backed client files, built from the records you already have.</p>
+    <p class="lede">A source-backed picture of each client, built from the records you already have.</p>
     <div class="ctas">
       <a class="btn" href="#" onclick="openDemoModal();return false;">Book a demo</a>
       <a class="btn ghost" href="/sample-deliverables">See sample deliverables</a>
