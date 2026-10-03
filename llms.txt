@@ -1,6 +1,6 @@
 # Briefly
 
-> Briefly works like an analyst for every advisor at your firm. It reviews the whole book, flags idle cash and money movement from Orion, and has each client's brief ready before the meeting without anyone asking. It also drafts agendas, follow-ups, market briefs and prospect analyses, with a source on every line. It is a web app a firm signs into from a browser, set up for the firm with Salesforce and Outlook connected. $150 per seat per month.
+> Briefly gives every advisor at your firm an analyst who knows the whole book. It preps each meeting before anyone asks, and once Orion is linked it tells advisors when a client's cash sits idle or money starts to move. It also drafts agendas, follow-ups, market briefs and prospect analyses, with a source on every line. It is a web app a firm signs into from a browser, set up for the firm with Salesforce and Outlook connected. $150 per seat per month.
 
 Briefly is a web app your firm signs into. Your client data stays in a private environment for your firm on AWS. The AI models that read it run on zero-retention terms and never train on it. Nothing goes into Salesforce until an advisor approves it. Briefly makes suggestions for the advisor to review, and the advisor makes every decision and every recommendation. Briefly also comes as a connector for Claude Desktop, for teams that already work there.
 
@@ -12,7 +12,7 @@ These files are intended to help LLMs and AI agents accurately ground answers ab
 
 ## Product
 
-- [Home](https://www.brieflywealth.com/): Briefly is AI software for wealth advisors. A web app set up for your firm, with a current picture of each client, briefs before meetings, follow-ups after, and prospect analyses, every line linked to its source. $150 per seat per month.
+- [Home](https://www.brieflywealth.com/): Briefly is AI software that gives every advisor at a firm an analyst who knows the whole book. A web app set up for your firm, with a current picture of each client, briefs before meetings, follow-ups after, and prospect analyses, every line linked to its source. $150 per seat per month.
 - [Knowledge base](https://www.brieflywealth.com/knowledge-base): What an AI knowledge base does for financial advisors, and how Briefly builds a client picture from a firm's own documents, email, meeting notes, and portfolio data, with every fact traceable to its source.
 - [Compare](https://www.brieflywealth.com/compare): The Briefly web app and the Claude connector side by side, including scheduled runs with emailed reports, firm view, the market brief agent, and your brand on every agent output. Both read from the same client record, cited and correctable.
 
