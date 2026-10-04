@@ -38,7 +38,7 @@
      now come from site.css's shared .hero / .hero-wide scale) ---------- */
   .dl-hero { background: var(--paper); color: var(--ink); position:relative; overflow:hidden; }
   .dl-hero p { margin-top:16px; max-width:600px; font-size:18px; line-height:1.6; color: var(--ink-soft); }
-  .dl-closer { margin-top:72px; }
+  .dl-closer { margin:72px -28px -96px; }
   .dl-closer .dl-btn { margin-top:28px; }
   .dl-cta-row { margin-top:24px; display:flex; align-items:center; gap:22px; flex-wrap:wrap; }
   .dl-btn .arr { font-size:18px; line-height:1; }
@@ -106,6 +106,7 @@
 
   @media (max-width:760px) {
     main { padding: 56px 18px 72px; }
+    .dl-closer { margin:56px -18px -72px; }
     .dl-cta-row { gap:16px; }
   }
 
