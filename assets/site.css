@@ -229,7 +229,7 @@ footer .foot-brand .brand { padding-right: 18px; }
 footer .foot-brand .brand-word { color: var(--cream); font-size: 32px; }
 footer .foot-brand .brand-pin { top: 8px; width: 8px; height: 8px; }
 footer .foot-brand p { margin-top: 14px; font-size: 14px; line-height: 1.6; max-width: 280px; color: var(--cream-soft); }
-footer h4 { font-family: var(--sans); font-size: 13px; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--cream); margin-bottom: 10px; }
+footer h2 { font-family: var(--sans); font-size: 13px; font-weight: 600; line-height: 1.6; letter-spacing: 0; text-transform: none; color: var(--cream); margin-bottom: 10px; max-width: none; }
 footer a { display: block; width: fit-content; color: var(--cream-soft); text-decoration: none; font-size: 14px; line-height: 1.4; padding: 6px 0; }
 footer a:hover { color: var(--cream); }
 footer .foot-bottom { display: flex; justify-content: space-between; gap: 14px; padding-top: 22px; font-size: 13px; color: var(--cream-soft); flex-wrap: wrap; }
