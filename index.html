@@ -351,7 +351,7 @@
   .ap-moves b { font-weight: 600; color: #1D1D1F; }
   .ap-moves .amt { font-weight: 500; font-variant-numeric: tabular-nums; color: #1D1D1F; white-space: nowrap; }
   .ap-x { cursor: pointer; border-radius: 6px; transition: background .25s ease, box-shadow .25s ease; }
-  .ap-x:hover, .ap-x.is-hover { background: #F5F7FA; }
+  .ap-x:hover, .ap-x.is-hover { background: var(--hover-soft, #EEF4FF); box-shadow: var(--hover-ring, inset 0 0 0 1px #CFE2FF); }
   .ap-x.open { background: #FFF6DD; box-shadow: 0 0 0 4px #FFF6DD; }
   .ap-x:focus-visible { outline: 2px solid #2F8CFF; outline-offset: 2px; }
   .ap-note { display: none; margin: 6px 0 8px; border: 1px solid #E5E7EB; border-radius: 8px; background: #fff; box-shadow: 0 6px 18px rgba(29, 29, 31, .08); overflow: hidden; }
@@ -371,7 +371,7 @@
   /* simplified hero: fewer rows, one idea per screen */
   .ap-win .td-list button.td-row, .ap-win .td-list button.td-row:nth-child(even) { background: transparent; font-size: 13.5px; padding: 9px 6px; border-radius: 0; }
   .ap-win .td-list button.td-row + button.td-row { border-top: 1px solid #F0F0F2; }
-  .ap-win .td-list button.td-row:hover, .ap-win .td-list button.td-row.is-hover { background: #F5F7FA; }
+  .ap-win .td-list button.td-row:hover, .ap-win .td-list button.td-row.is-hover { background: var(--hover-soft, #EEF4FF); box-shadow: var(--hover-ring, inset 0 0 0 1px #CFE2FF); }
   .ap-win .td-sent b { font-size: 13.5px; }
   .ap-win .td-top p { font-size: 13px; }
   .ap-win .td-p-name { font-size: 19px; }
