@@ -89,6 +89,8 @@
     transition: background-color .22s ease, color .22s ease, box-shadow .22s ease;
   }
   .start-tab svg { width: 15px; height: 15px; flex-shrink: 0; }
+  .start-tab { position: relative; }
+  .start-tab::after { content: ""; position: absolute; left: 0; right: 0; top: -6px; bottom: -6px; }
   .start-tab:hover { color: var(--ink); }
   .start-tab[aria-selected="true"] {
     background: var(--card); color: var(--ink);
@@ -167,7 +169,7 @@
   .seat-block { margin-top: 32px; }
   .stepper { display: flex; align-items: center; gap: 10px; }
   .stepper-btn {
-    width: 38px; height: 38px; border-radius: var(--r-control); border: 1px solid var(--rule);
+    width: 44px; height: 44px; border-radius: var(--r-control); border: 1px solid var(--rule);
     background: #fff; color: var(--ink); font-size: 18px; line-height: 1; cursor: pointer;
     transition: border-color .15s ease;
   }
@@ -175,13 +177,10 @@
   .stepper-btn:focus-visible { outline: 2px solid var(--blue-ink); outline-offset: 2px; }
   .stepper-btn:disabled { opacity: .35; cursor: not-allowed; }
   .stepper-input {
-    width: 64px; height: 38px; text-align: center; border: 1px solid var(--rule);
+    width: 64px; height: 44px; text-align: center; border: 1px solid var(--rule);
     border-radius: var(--r-control); font-family: var(--sans); font-size: 15px; color: var(--ink); background: #fff;
   }
   .stepper-input:focus { outline: 2px solid var(--blue-ink); outline-offset: 1px; }
-  @media (max-width: 480px) {
-    .stepper-btn, .stepper-input { width: 44px; height: 44px; }
-  }
 
   .checkout-form { margin-top: 28px; }
   .form-field { margin-bottom: 16px; }
