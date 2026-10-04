@@ -127,6 +127,7 @@ nav[aria-label="Primary"] {
 /* 36px to the eye, 44px to the finger */
 .nav-bar .btn { position: relative; }
 .nav-bar .brand::after, .nav-bar .btn::after { content: ""; position: absolute; left: 0; right: 0; top: -4px; bottom: -4px; }
+.nav-bar .btn::after { top: -5px; bottom: -5px; }
 @media (min-width: 861px) {
   .nav-links a, .nav-signin, .nav-start { position: relative; }
   .nav-links a::after, .nav-signin::after, .nav-start::after { content: ""; position: absolute; left: 0; right: 0; top: -4px; bottom: -4px; }
