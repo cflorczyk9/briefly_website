@@ -124,6 +124,13 @@ nav[aria-label="Primary"] {
 .nav-links a:hover, .nav-signin:hover, .nav-start:hover { color: var(--ink); background: var(--paper-2); }
 .nav-actions { display: flex; align-items: center; gap: 2px; }
 .nav-bar .btn { min-height: 36px; padding: 0 16px; font-size: 14px; white-space: nowrap; }
+/* 36px to the eye, 44px to the finger */
+.nav-bar .btn { position: relative; }
+.nav-bar .brand::after, .nav-bar .btn::after { content: ""; position: absolute; left: 0; right: 0; top: -4px; bottom: -4px; }
+@media (min-width: 861px) {
+  .nav-links a, .nav-signin, .nav-start { position: relative; }
+  .nav-links a::after, .nav-signin::after, .nav-start::after { content: ""; position: absolute; left: 0; right: 0; top: -4px; bottom: -4px; }
+}
 .nav-toggle {
   display: none; width: 44px; height: 44px; flex-shrink: 0;
   border: 1px solid var(--rule); border-radius: var(--r-control); background: var(--card); cursor: pointer;
