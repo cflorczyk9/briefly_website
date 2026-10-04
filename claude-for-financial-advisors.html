@@ -239,6 +239,10 @@
           .compare thead th:first-child { display: none; }
           .compare tbody th { grid-column: 1 / -1; padding: 16px 0 10px; }
           .compare td small { font-size: 12px; }
+          .compare td::before { display: block; margin-bottom: 6px; font-size: 12px; font-weight: 600; color: var(--ink-muted); }
+          .compare td:nth-of-type(1)::before { content: "ChatGPT"; }
+          .compare td:nth-of-type(2)::before { content: "Claude"; }
+          .compare td:nth-of-type(3)::before { content: "Briefly"; color: var(--blue-ink); }
         }
         .compare-note { margin: 14px 0 0; font-size: 15px; color: var(--ink-muted); }
         .concession { max-width: 720px; margin: 8px 0 0; }
@@ -313,7 +317,7 @@
             <li><a href="#what-claude-cant-see">Where Briefly fits</a></li>
             <li><a href="#claude-connectors">Claude connectors, in plain English</a></li>
             <li><a href="#comparison">Claude, ChatGPT and Briefly side by side</a></li>
-            <li><a href="#access-methods">Four ways to give Claude access</a></li>
+            <li><a href="#access-methods">How to give Claude access securely</a></li>
             <li><a href="#practical-workflows">What Claude handles well once it can see your files</a></li>
             <li><a href="#getting-started">Getting started</a></li>
             <li><a href="#faq">Frequently asked questions</a></li>
