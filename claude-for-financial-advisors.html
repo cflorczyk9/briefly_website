@@ -215,23 +215,32 @@
         .method-card p a { color: var(--blue-ink); }
 
         /* Comparison table */
-        .compare { width: 100%; table-layout: fixed; border-collapse: collapse; margin: 28px 0 0; }
-        .compare thead th { text-align: left; vertical-align: bottom; padding: 0 16px 14px 0; font-size: 18px; font-weight: 700; color: var(--ink); border-bottom: 1px solid var(--ink); }
+        .article .ck-legend { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 22px 0 0; padding: 0; list-style: none; font-size: 13px; color: var(--ink-muted); }
+        .article .ck-legend li { display: flex; align-items: center; gap: 8px; margin: 0; font-size: 13px; line-height: 1.4; }
+        .ck { display: inline-flex; flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%; align-items: center; justify-content: center; vertical-align: middle; }
+        .ck svg { width: 12px; height: 12px; }
+        .ck-yes { background: var(--blue); color: #fff; }
+        .ck-part { border: 1.5px solid #AEAEB2; background: linear-gradient(90deg, #AEAEB2 50%, transparent 50%); width: 18px; height: 18px; margin: 3px; }
+        .ck-none { width: 14px; height: 14px; margin: 5px; border: 1.5px solid #C7C7CC; }
+        .compare { width: 100%; table-layout: fixed; border-collapse: collapse; margin: 18px 0 0; }
+        .compare th, .compare td { vertical-align: top; padding: 14px 12px 14px 0; border-bottom: 1px solid var(--rule); text-align: left; }
+        .compare thead th { vertical-align: bottom; font-size: 17px; font-weight: 700; color: var(--ink); border-bottom: 1px solid var(--ink); }
+        .compare thead th:first-child { width: 30%; }
         .compare thead th span { display: block; margin-top: 2px; font-size: 13px; font-weight: 400; color: var(--ink-muted); }
         .compare thead th.us { color: var(--blue-ink); }
-        .compare .topic th { text-align: left; padding: 22px 0 8px; font-size: 13px; font-weight: 600; color: var(--ink-muted); }
-        .compare td { vertical-align: top; padding: 0 16px 20px 0; font-size: 15px; line-height: 1.5; color: var(--ink-soft); border-bottom: 1px solid var(--rule); }
-        .compare td strong { display: block; margin-bottom: 4px; font-size: 16px; font-weight: 600; color: var(--ink); }
-        .compare-note { margin: 14px 0 0; font-size: 15px; color: var(--ink-muted); }
+        .compare tbody th { font-size: 15px; font-weight: 600; line-height: 1.4; color: var(--ink); padding-top: 16px; }
+        .compare td small { display: block; margin-top: 6px; font-size: 13px; line-height: 1.45; color: var(--ink-muted); }
+        .compare td.us small { color: var(--ink-soft); }
         @media (max-width: 600px) {
-          .compare, .compare tbody, .compare tr, .compare th, .compare td { display: block; width: 100%; }
-          .compare thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
-          .compare tbody { border-bottom: 1px solid var(--rule); padding-bottom: 8px; }
-          .compare .topic th { padding: 22px 0 6px; }
-          .compare td { display: grid; grid-template-columns: 72px 1fr; gap: 12px; padding: 8px 0; border: 0; }
-          .compare td::before { content: attr(data-name); font-size: 14px; font-weight: 600; color: var(--ink); line-height: 1.5; padding-top: 1px; }
-          .compare td.us::before { color: var(--blue-ink); }
+          .compare thead tr, .compare tbody tr { display: grid; grid-template-columns: repeat(3, 1fr); column-gap: 12px; border-bottom: 1px solid var(--rule); }
+          .compare thead tr { border-bottom-color: var(--ink); }
+          .compare th, .compare td { display: block; border: 0; padding: 0 0 14px; }
+          .compare thead th { padding-bottom: 12px; font-size: 16px; border: 0; }
+          .compare thead th:first-child { display: none; }
+          .compare tbody th { grid-column: 1 / -1; padding: 16px 0 10px; }
+          .compare td small { font-size: 12px; }
         }
+        .compare-note { margin: 14px 0 0; font-size: 15px; color: var(--ink-muted); }
         .concession { max-width: 720px; margin: 8px 0 0; }
         .concession p { margin: 0; font-size: 15px; color: var(--ink-muted); }
 
@@ -371,53 +380,70 @@
         </div>
         <div class="reveal">
         <h2 id="comparison">Claude, ChatGPT and Briefly side by side</h2>
-        <p>ChatGPT as it ships and Claude with the advisor plugin, next to the Briefly web app.</p>
+        <p>ChatGPT on a business plan and Claude with the advisor plugin, next to the Briefly web app. Claude and ChatGPT facts come from the companies' own pages, checked in October 2026.</p>
+        <ul class="ck-legend" aria-hidden="true">
+          <li><span class="ck ck-yes"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sr-only">Yes</span>Yes</li>
+          <li><span class="ck ck-part"></span><span class="sr-only">Partly</span>Partly</li>
+          <li><span class="ck ck-none"></span><span class="sr-only">No or not described</span>No, or not described</li>
+        </ul>
         <table class="compare">
+          <caption class="sr-only">What ChatGPT, Claude with the advisor plugin and Briefly each offer</caption>
           <thead>
             <tr>
-              <th scope="col">ChatGPT<span>As it ships</span></th>
+              <th scope="col"><span class="sr-only">Feature</span></th>
+              <th scope="col">ChatGPT<span>Business plans</span></th>
               <th scope="col">Claude<span>With the advisor plugin</span></th>
               <th scope="col" class="us">Briefly<span>Web app</span></th>
             </tr>
           </thead>
           <tbody>
-            <tr class="topic"><th scope="colgroup" colspan="3">What it can see</th></tr>
             <tr>
-              <td data-name="ChatGPT"><div><strong>What you paste in</strong>Plus files you upload for that one chat.</div></td>
-              <td data-name="Claude"><div><strong>The systems you connect</strong>Such as Orion, Schwab or Wealthbox, plus what you paste in.</div></td>
-              <td data-name="Briefly" class="us"><div><strong>Salesforce and Outlook</strong>Plus documents your firm adds. Every line links to its source.</div></td>
+              <th scope="row">Connects to Salesforce and Outlook</th>
+              <td><span class="ck ck-part"></span><span class="sr-only">Partly</span><small>Outlook on paid plans. Salesforce needs Salesforce's Agentforce add-on.</small></td>
+              <td><span class="ck ck-yes"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sr-only">Yes</span><small>Plus Orion, Schwab, Wealthbox and more.</small></td>
+              <td class="us"><span class="ck ck-yes"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sr-only">Yes</span><small>Advisors link both in a few minutes.</small></td>
             </tr>
-          </tbody>
-          <tbody>
-            <tr class="topic"><th scope="colgroup" colspan="3">Remembers each client</th></tr>
             <tr>
-              <td data-name="ChatGPT"><div><strong>Partly</strong>Memory sits in one person's account, where the firm can't review or cite it.</div></td>
-              <td data-name="Claude"><div><strong>Partly</strong>It reads the connected CRM. Anthropic doesn't describe a client record the firm can correct.</div></td>
-              <td data-name="Briefly" class="us"><div><strong>Yes, for the whole firm</strong>Each client has one current record that every advisor works from.</div></td>
+              <th scope="row">Built for advisor work</th>
+              <td><span class="ck ck-none"></span><span class="sr-only">No or not described</span><small>A general assistant.</small></td>
+              <td><span class="ck ck-yes"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sr-only">Yes</span><small>Eight advisor skills, from meeting prep to follow-up.</small></td>
+              <td class="us"><span class="ck ck-yes"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sr-only">Yes</span><small>Briefs, agendas, follow-ups, market briefs and prospect analyses.</small></td>
             </tr>
-          </tbody>
-          <tbody>
-            <tr class="topic"><th scope="colgroup" colspan="3">Where client data lives</th></tr>
             <tr>
-              <td data-name="ChatGPT"><div><strong>On OpenAI's servers</strong>For the chat, and possibly longer depending on your plan and settings.</div></td>
-              <td data-name="Claude"><div><strong>In your systems</strong>Anthropic's servers handle it while Claude uses the connection.</div></td>
-              <td data-name="Briefly" class="us"><div><strong>In a private AWS environment</strong>The AI models that read it keep nothing and never train on it.</div></td>
+              <th scope="row">Shows where each answer came from</th>
+              <td><span class="ck ck-part"></span><span class="sr-only">Partly</span><small>Cites connected apps on business plans.</small></td>
+              <td><span class="ck ck-part"></span><span class="sr-only">Partly</span><small>Cites sources in meeting prep.</small></td>
+              <td class="us"><span class="ck ck-yes"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sr-only">Yes</span><small>Every line links to its source.</small></td>
             </tr>
-          </tbody>
-          <tbody>
-            <tr class="topic"><th scope="colgroup" colspan="3">Compliance</th></tr>
             <tr>
-              <td data-name="ChatGPT"><div><strong>Up to you</strong>You rely on OpenAI's policies and your own records.</div></td>
-              <td data-name="Claude"><div><strong>Audit logs on Enterprise</strong>CRM updates wait for the advisor to approve them.</div></td>
-              <td data-name="Briefly" class="us"><div><strong>The advisor approves every update</strong>Briefly suggests and the advisor decides. Your firm can export its files for 90 days after leaving.</div></td>
+              <th scope="row">One client record the whole firm shares</th>
+              <td><span class="ck ck-none"></span><span class="sr-only">No or not described</span><small>Memory stays in one person's account.</small></td>
+              <td><span class="ck ck-none"></span><span class="sr-only">No or not described</span><small>Not described on Anthropic's pages.</small></td>
+              <td class="us"><span class="ck ck-yes"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sr-only">Yes</span><small>Every advisor works from the same record, and corrections stick.</small></td>
             </tr>
-          </tbody>
-          <tbody>
-            <tr class="topic"><th scope="colgroup" colspan="3">Setup</th></tr>
             <tr>
-              <td data-name="ChatGPT"><div><strong>None</strong>Sign up and start typing.</div></td>
-              <td data-name="Claude"><div><strong>Enterprise plan recommended</strong>Then a guided setup connects each tool.</div></td>
-              <td data-name="Briefly" class="us"><div><strong>A few minutes</strong>Sign in from a browser and link Salesforce and Outlook.</div></td>
+              <th scope="row">Alerts across the whole book</th>
+              <td><span class="ck ck-none"></span><span class="sr-only">No or not described</span><small>Not described on OpenAI's pages.</small></td>
+              <td><span class="ck ck-part"></span><span class="sr-only">Partly</span><small>Cash drag one household at a time.</small></td>
+              <td class="us"><span class="ck ck-yes"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sr-only">Yes</span><small>Idle cash and money on the move, once Orion is linked.</small></td>
+            </tr>
+            <tr>
+              <th scope="row">CRM updates wait for advisor approval</th>
+              <td><span class="ck ck-none"></span><span class="sr-only">No or not described</span><small>Not described on OpenAI's pages.</small></td>
+              <td><span class="ck ck-yes"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sr-only">Yes</span><small>Staged for the advisor to approve.</small></td>
+              <td class="us"><span class="ck ck-yes"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sr-only">Yes</span><small>Nothing reaches Salesforce until an advisor approves it.</small></td>
+            </tr>
+            <tr>
+              <th scope="row">Doesn't train on client data</th>
+              <td><span class="ck ck-yes"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sr-only">Yes</span><small>Business plans don't train on it by default.</small></td>
+              <td><span class="ck ck-yes"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sr-only">Yes</span><small>Commercial plans don't train on it by default.</small></td>
+              <td class="us"><span class="ck ck-yes"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sr-only">Yes</span><small>The AI models run on zero-retention terms.</small></td>
+            </tr>
+            <tr>
+              <th scope="row">Ready in minutes</th>
+              <td><span class="ck ck-yes"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sr-only">Yes</span><small>Sign up and start typing.</small></td>
+              <td><span class="ck ck-part"></span><span class="sr-only">Partly</span><small>Anthropic recommends Enterprise, then a guided setup.</small></td>
+              <td class="us"><span class="ck ck-yes"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sr-only">Yes</span><small>Sign in from a browser and link your accounts.</small></td>
             </tr>
           </tbody>
         </table>
