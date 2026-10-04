@@ -38,6 +38,8 @@
      now come from site.css's shared .hero / .hero-wide scale) ---------- */
   .dl-hero { background: var(--paper); color: var(--ink); position:relative; overflow:hidden; }
   .dl-hero p { margin-top:16px; max-width:600px; font-size:18px; line-height:1.6; color: var(--ink-soft); }
+  .dl-closer { margin-top:72px; }
+  .dl-closer .dl-btn { margin-top:28px; }
   .dl-cta-row { margin-top:24px; display:flex; align-items:center; gap:22px; flex-wrap:wrap; }
   .dl-btn .arr { font-size:18px; line-height:1; }
   .dl-meta { font-size:15px; line-height:1.55; color: var(--ink-soft); }
@@ -2965,7 +2967,7 @@
               </div>
 
               <div class="bwv4c-brief bwv4c-s5-b2-brief">
-                <div class="bwv4c-brief-line bwv4c-brief-title bwv4c-s5-b2-title">Johnson Family &mdash; Meeting Brief</div>
+                <div class="bwv4c-brief-line bwv4c-brief-title bwv4c-s5-b2-title">Johnson Family · Meeting Brief</div>
                 <div class="bwv4c-brief-line bwv4c-a-hi bwv4c-s5-b2-bottom">Bottom line: net worth <span class="bwv4c-amt">$1,897,246.40</span>, tied to the cent<span class="bwv4c-cite">1</span><span class="bwv4c-cite">2</span></div>
                 <div class="bwv4c-brief-line bwv4c-s5-b2-largest">Largest position: AAPL, 11.2% of brokerage<span class="bwv4c-cite">1</span></div>
                 <div class="bwv4c-brief-line bwv4c-brief-sources bwv4c-s5-b2-sources">Sources:<span class="bwv4c-cite bwv4c-s5-chipglow">1</span> Schwab statement (original) <span class="bwv4c-dotsep">&middot;</span><span class="bwv4c-cite">2</span> Vanguard statement (original)</div>
@@ -3061,12 +3063,12 @@
         </details>
       </div>
     </section>
-
-    <section class="closer reveal">
-      <h2>Ready when you are.</h2>
-      <a class="btn dl-btn" id="dlRepeat" href="briefly-mcp.mcpb" download="briefly_wealth.mcpb">Download Briefly <span class="arr" aria-hidden="true">&darr;</span></a>
-    </section>
   </div>
+
+  <section class="closer dl-closer reveal">
+    <h2>Ready when you are.</h2>
+    <a class="btn dl-btn" id="dlRepeat" href="briefly-mcp.mcpb" download="briefly_wealth.mcpb">Download Briefly <span class="arr" aria-hidden="true">&darr;</span></a>
+  </section>
 </main>
 
 <div class="dl-overlay" id="dlOverlay" role="dialog" aria-modal="true" aria-labelledby="dlOvTitle" hidden>
