@@ -68,6 +68,7 @@ Every app-look card (hero chat, On the day cards, client picture, pricing) share
 - Carousel cards are 420px tall (460px under 620px wide). Content must fit with no clipping at 540x420 and 358x460.
 - Primary button inside a card: ink bg, white text, radius 8px, 28px tall, 12px/500. Secondary: gray #F0F0F2. Flags use the amber chip, status uses the green chip.
 - No gradients, no emoji, no icon fonts, no colored left borders on rows.
+- Sitewide, never put a left bar (blue or gray) on any callout, quote, note, disclaimer or timeline, and never put numbers in filled circles. Connor called the left bar "a dead give away" for AI design (2026-10-04). A note is a plain muted paragraph. A ranked list is plain numbers in the heading with hairlines between items.
 - Pricing card (`.pr-card`): max 880px, two columns 5fr/7fr, left padding 32px with a hairline divider, right panel #FBFBFD, price 48px/600. Stacks to one column at 760px.
 
 ## 5. Mockup animation contract
