@@ -210,6 +210,7 @@
   .hc-dots { display: flex; align-items: center; gap: 2px; padding: 0 16px 12px; }
   .hc-dot { position: relative; height: 20px; min-width: 18px; background: transparent; border: 0; padding: 0 4px; cursor: pointer; }
   .hc-dot::after { content: ""; display: block; width: 8px; height: 8px; border-radius: 999px; background: #D2D2D7; transition: width .35s cubic-bezier(.2, .7, .2, 1), background .35s; }
+  .hc-dot::before { content: ""; position: absolute; left: -3px; right: -3px; top: -12px; bottom: -12px; }
   .hc-dot:hover::after { background: #A1A1A6; }
   .hc-dot.on::after { width: 24px; background: #2F8CFF; }
   @media (prefers-reduced-motion: reduce) {
