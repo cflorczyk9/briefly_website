@@ -215,13 +215,23 @@
         .method-card p a { color: var(--blue-ink); }
 
         /* Comparison table */
-        .compare-wrap { overflow-x: auto; overflow-y: hidden; margin: 26px 0 8px; border: 1px solid var(--rule); border-radius: var(--r-card); -webkit-overflow-scrolling: touch; }
-        .comparison-table { width: 100%; min-width: 640px; border-collapse: collapse; font-size: 15px; }
-        .comparison-table th, .comparison-table td { border: 1px solid var(--rule); padding: 14px 16px; text-align: left; vertical-align: top; color: var(--ink-soft); }
-        .comparison-table thead th { background: var(--paper-2); color: var(--ink); font-size: 13px; font-weight: 600; }
-        .comparison-table tbody th { background: var(--paper-2); color: var(--ink); font-weight: 700; white-space: nowrap; }
-        .comparison-table td.win { background: var(--blue-soft); }
-        .comparison-table a { color: var(--blue-ink); }
+        .compare { width: 100%; table-layout: fixed; border-collapse: collapse; margin: 28px 0 0; }
+        .compare thead th { text-align: left; vertical-align: bottom; padding: 0 16px 14px 0; font-size: 18px; font-weight: 700; color: var(--ink); border-bottom: 1px solid var(--ink); }
+        .compare thead th span { display: block; margin-top: 2px; font-size: 13px; font-weight: 400; color: var(--ink-muted); }
+        .compare thead th.us { color: var(--blue-ink); }
+        .compare .topic th { text-align: left; padding: 22px 0 8px; font-size: 13px; font-weight: 600; color: var(--ink-muted); }
+        .compare td { vertical-align: top; padding: 0 16px 20px 0; font-size: 15px; line-height: 1.5; color: var(--ink-soft); border-bottom: 1px solid var(--rule); }
+        .compare td strong { display: block; margin-bottom: 4px; font-size: 16px; font-weight: 600; color: var(--ink); }
+        .compare-note { margin: 14px 0 0; font-size: 15px; color: var(--ink-muted); }
+        @media (max-width: 600px) {
+          .compare, .compare tbody, .compare tr, .compare th, .compare td { display: block; width: 100%; }
+          .compare thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+          .compare tbody { border-bottom: 1px solid var(--rule); padding-bottom: 8px; }
+          .compare .topic th { padding: 22px 0 6px; }
+          .compare td { display: grid; grid-template-columns: 72px 1fr; gap: 12px; padding: 8px 0; border: 0; }
+          .compare td::before { content: attr(data-name); font-size: 14px; font-weight: 600; color: var(--ink); line-height: 1.5; padding-top: 1px; }
+          .compare td.us::before { color: var(--blue-ink); }
+        }
         .concession { max-width: 720px; margin: 8px 0 0; }
         .concession p { margin: 0; font-size: 15px; color: var(--ink-muted); }
 
@@ -236,7 +246,6 @@
           .article ul, .article ol { margin-left: 18px; }
           .cta { padding: 24px 20px; margin-top: 40px; }
           .cta .btn { display: block; text-align: center; padding: 14px 20px; }
-          .compare-wrap { margin-right: -20px; padding-right: 20px; }
             .author-bio { flex-direction: column; }
         }
 
@@ -363,50 +372,56 @@
         <div class="reveal">
         <h2 id="comparison">Claude, ChatGPT and Briefly side by side</h2>
         <p>ChatGPT as it ships and Claude with the advisor plugin, next to the Briefly web app.</p>
-        <div class="compare-wrap">
-          <table class="comparison-table">
-            <thead>
-              <tr>
-                <th scope="col">&nbsp;</th>
-                <th scope="col">ChatGPT out of the box</th>
-                <th scope="col">Claude with the advisor plugin</th>
-                <th scope="col">Briefly web app</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">Data access</th>
-                <td>Whatever you paste into the chat, plus files you upload for that one session.</td>
-                <td>The systems an advisor connects during setup, such as Orion, Schwab or Wealthbox, plus anything pasted into the chat.</td>
-                <td class="win">Your firm's Salesforce and Outlook, which the advisor links in a few minutes, plus the documents the firm adds. Every line links back to its source.</td>
-              </tr>
-              <tr>
-                <th scope="row">Remembers the client between sessions</th>
-                <td>Partly. ChatGPT's memory can carry details between chats, but it lives in one person's account, with nothing your firm can review or cite.</td>
-                <td>Partly. Claude reads client data from the connected CRM and portfolio systems. Anthropic's pages don't describe a shared client record the firm can correct.</td>
-                <td class="win">Yes. Briefly keeps a current picture of each client that the whole firm works from, so the next conversation starts from the same record.</td>
-              </tr>
-              <tr>
-                <th scope="row">Where files live</th>
-                <td>On OpenAI's servers for that conversation, and potentially longer depending on your plan and settings.</td>
-                <td>In the CRM, custodian or portfolio system Claude connects to, plus Anthropic's infrastructure while it serves the connection.</td>
-                <td class="win">Your client data stays in a private environment for your firm on AWS. The AI models that read it run on zero-retention terms and never train on it.</td>
-              </tr>
-              <tr>
-                <th scope="row">Compliance posture</th>
-                <td>You're relying on OpenAI's data policies and your own recordkeeping. No features built for advisor compliance.</td>
-                <td>Commercial plans don't train on your content by default. Enterprise adds audit logs, and CRM updates wait for the advisor's approval.</td>
-                <td class="win">Nothing goes into Salesforce until an advisor approves it. Briefly makes suggestions for the advisor to review, and the advisor makes every decision and every recommendation. Your firm has ninety days after leaving to export its files in a standard format, and after that window we delete them. See our <a href="/ai-compliance-for-financial-advisors">compliance page</a> for the full accounting.</td>
-              </tr>
-              <tr>
-                <th scope="row">Setup effort</th>
-                <td>None. Sign up and start typing.</td>
-                <td>Anthropic recommends an Enterprise license, then a guided setup connects each tool.</td>
-                <td class="win">Advisors link Salesforce and Outlook in a few minutes. Advisors sign in from a browser.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <table class="compare">
+          <thead>
+            <tr>
+              <th scope="col">ChatGPT<span>As it ships</span></th>
+              <th scope="col">Claude<span>With the advisor plugin</span></th>
+              <th scope="col" class="us">Briefly<span>Web app</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="topic"><th scope="colgroup" colspan="3">What it can see</th></tr>
+            <tr>
+              <td data-name="ChatGPT"><div><strong>What you paste in</strong>Plus files you upload for that one chat.</div></td>
+              <td data-name="Claude"><div><strong>The systems you connect</strong>Such as Orion, Schwab or Wealthbox, plus what you paste in.</div></td>
+              <td data-name="Briefly" class="us"><div><strong>Salesforce and Outlook</strong>Plus documents your firm adds. Every line links to its source.</div></td>
+            </tr>
+          </tbody>
+          <tbody>
+            <tr class="topic"><th scope="colgroup" colspan="3">Remembers each client</th></tr>
+            <tr>
+              <td data-name="ChatGPT"><div><strong>Partly</strong>Memory sits in one person's account, where the firm can't review or cite it.</div></td>
+              <td data-name="Claude"><div><strong>Partly</strong>It reads the connected CRM. Anthropic doesn't describe a client record the firm can correct.</div></td>
+              <td data-name="Briefly" class="us"><div><strong>Yes, for the whole firm</strong>Each client has one current record that every advisor works from.</div></td>
+            </tr>
+          </tbody>
+          <tbody>
+            <tr class="topic"><th scope="colgroup" colspan="3">Where client data lives</th></tr>
+            <tr>
+              <td data-name="ChatGPT"><div><strong>On OpenAI's servers</strong>For the chat, and possibly longer depending on your plan and settings.</div></td>
+              <td data-name="Claude"><div><strong>In your systems</strong>Anthropic's servers handle it while Claude uses the connection.</div></td>
+              <td data-name="Briefly" class="us"><div><strong>In a private AWS environment</strong>The AI models that read it keep nothing and never train on it.</div></td>
+            </tr>
+          </tbody>
+          <tbody>
+            <tr class="topic"><th scope="colgroup" colspan="3">Compliance</th></tr>
+            <tr>
+              <td data-name="ChatGPT"><div><strong>Up to you</strong>You rely on OpenAI's policies and your own records.</div></td>
+              <td data-name="Claude"><div><strong>Audit logs on Enterprise</strong>CRM updates wait for the advisor to approve them.</div></td>
+              <td data-name="Briefly" class="us"><div><strong>The advisor approves every update</strong>Briefly suggests and the advisor decides. Your firm can export its files for 90 days after leaving.</div></td>
+            </tr>
+          </tbody>
+          <tbody>
+            <tr class="topic"><th scope="colgroup" colspan="3">Setup</th></tr>
+            <tr>
+              <td data-name="ChatGPT"><div><strong>None</strong>Sign up and start typing.</div></td>
+              <td data-name="Claude"><div><strong>Enterprise plan recommended</strong>Then a guided setup connects each tool.</div></td>
+              <td data-name="Briefly" class="us"><div><strong>A few minutes</strong>Sign in from a browser and link Salesforce and Outlook.</div></td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="compare-note">The <a href="/ai-compliance-for-financial-advisors">compliance page</a> covers how Briefly handles client data in full.</p>
         <div class="concession">
           <p>ChatGPT still wins in a few places worth naming honestly. It plugs into more outside tools today, its Code Interpreter is genuinely useful for one-off spreadsheet math, and most of your staff have already used it at home, so training time is close to zero. If those three things matter more to your firm than where client files end up, that's a reasonable call.</p>
         </div>
