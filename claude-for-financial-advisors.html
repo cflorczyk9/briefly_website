@@ -175,9 +175,9 @@
         .page-meta .byline { font-weight: 600; color: var(--ink-muted); }
         .page-meta span:not(:first-child)::before { content: "\00b7\00A0"; }
 
-        /* Self-disclosure box: shared .card, page keeps the blue left border */
-        .disclosure { max-width: 720px; margin: 0 auto; border-left: 3px solid var(--blue); }
-        .disclosure p { color: var(--ink-soft); font-size: 15px; margin: 0; }
+        /* Self-disclosure: a plain muted note, no box */
+        .disclosure { max-width: 720px; margin: 0 auto; }
+        .disclosure p { color: var(--ink-muted); font-size: 15px; margin: 0; }
 
         /* Table of contents: shared .card, page keeps the max-width and columns */
         .toc { max-width: 720px; margin: 20px auto 0; }
@@ -201,20 +201,18 @@
         .author-bio p { margin: 0; font-size: 15px; color: var(--ink-soft); }
 
         /* Momentum timeline */
-        .timeline-list { list-style: none; margin: 24px 0 20px; padding: 0; border-left: 2px solid var(--rule); }
-        .timeline-item { position: relative; padding: 0 0 22px 26px; }
-        .timeline-item::before { content: ""; position: absolute; left: -7px; top: 5px; width: 12px; height: 12px; border-radius: 50%; background: var(--blue); border: 2px solid var(--card); box-shadow: 0 0 0 1px var(--blue); }
+        .timeline-list { list-style: none; margin: 24px 0 20px; padding: 0; }
+        .timeline-item { padding: 0 0 20px; }
         .timeline-item .t-date { display: block; font-weight: 600; color: var(--ink); font-size: 13px; margin-bottom: 5px; }
         .timeline-item p { margin: 0; color: var(--ink-soft); font-size: 16px; }
 
         /* Ranked access methods */
         .methods-list { list-style: none; margin: 26px 0 6px; padding: 0; counter-reset: method; }
-        .method-card { position: relative; padding: 22px 22px 20px 68px; margin-bottom: 14px; background: var(--card); border: 1px solid var(--rule); border-radius: var(--r-card); }
-        .method-card::before { counter-increment: method; content: counter(method); position: absolute; left: 20px; top: 22px; width: 30px; height: 30px; border-radius: 50%; background: var(--ink); color: var(--paper); font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; }
+        .method-card { padding: 22px 0 20px; border-top: 1px solid var(--rule); }
+        .method-card:last-child { border-bottom: 1px solid var(--rule); }
+        .method-card h3::before { counter-increment: method; content: counter(method) ". "; color: var(--ink-muted); }
         .method-card p { margin: 0; color: var(--ink-soft); font-size: 16px; }
         .method-card p a { color: var(--blue-ink); }
-        .method-card.local { border-color: var(--blue); background: var(--blue-soft); }
-        .method-card.local::before { background: var(--blue-ink); }
 
         /* Comparison table */
         .compare-wrap { overflow-x: auto; overflow-y: hidden; margin: 26px 0 8px; border: 1px solid var(--rule); border-radius: var(--r-card); -webkit-overflow-scrolling: touch; }
@@ -224,8 +222,8 @@
         .comparison-table tbody th { background: var(--paper-2); color: var(--ink); font-weight: 700; white-space: nowrap; }
         .comparison-table td.win { background: var(--blue-soft); }
         .comparison-table a { color: var(--blue-ink); }
-        .concession { max-width: 720px; margin: 8px 0 0; padding: 18px 22px; border: 1px dashed var(--rule); border-radius: var(--r-card); background: var(--card); }
-        .concession p { margin: 0; font-size: 15px; }
+        .concession { max-width: 720px; margin: 8px 0 0; }
+        .concession p { margin: 0; font-size: 15px; color: var(--ink-muted); }
 
         /* FAQ: recipe now shared from site.css's .faq-list */
 
@@ -239,9 +237,7 @@
           .cta { padding: 24px 20px; margin-top: 40px; }
           .cta .btn { display: block; text-align: center; padding: 14px 20px; }
           .compare-wrap { margin-right: -20px; padding-right: 20px; }
-          .method-card { padding: 20px 18px 18px 58px; }
-          .method-card::before { left: 14px; width: 26px; height: 26px; font-size: 13px; }
-          .author-bio { flex-direction: column; }
+            .author-bio { flex-direction: column; }
         }
 
         @media (max-width: 480px) {
@@ -287,7 +283,7 @@
     <article class="article">
 
         <div class="reveal">
-        <div class="card disclosure">
+        <div class="disclosure">
           <p>A disclosure before we get into it. Briefly is AI software for wealth advisors, and it also comes as a connector for Claude, so we're not a neutral party on this topic. Everything below is written to hold up whether or not you ever use Briefly, and the comparison further down scores our own product the same way it scores everyone else's.</p>
         </div>
 
