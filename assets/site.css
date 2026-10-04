@@ -226,6 +226,10 @@ footer a { display: block; width: fit-content; color: var(--cream-soft); text-de
 footer a:hover { color: var(--cream); }
 footer .foot-bottom { display: flex; justify-content: space-between; gap: 14px; padding-top: 22px; font-size: 13px; color: var(--cream-soft); flex-wrap: wrap; }
 
+/* Article and blog heroes center a bare max-width wrapper, so below its width they need the page gutter */
+@media (max-width: 1320px) { .blog-header-inner { padding-left: 20px; padding-right: 20px; } }
+@media (max-width: 940px) { .hero-inner { padding-left: 20px; padding-right: 20px; } }
+@media (max-width: 760px) { .post-header-inner { padding-left: 20px; padding-right: 20px; } }
 @media (max-width: 880px) {
   footer .foot-grid { grid-template-columns: 1fr 1fr; }
   footer .foot-brand { grid-column: 1 / -1; }
