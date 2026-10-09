@@ -391,6 +391,7 @@ async function handleDemoSubmit(e) {
     var success = document.getElementById('demoModalSuccess');
     success.classList.add('active');
     document.getElementById('demoModal').setAttribute('aria-labelledby', 'demoModalSuccessTitle');
+    if (window.showDemoCalendar) window.showDemoCalendar(name, email, firm);
     success.focus();
   } catch (e) {
     err.style.display = 'block';

@@ -288,6 +288,9 @@ footer .foot-bottom { display: flex; justify-content: space-between; gap: 14px; 
 .demo-modal-success.active { display: block; }
 .demo-modal-success-title { font-family: var(--display); font-weight: 600; font-size: 22px; letter-spacing: -0.01em; margin: 0 0 6px; color: var(--ink); }
 .demo-modal-success-body { font-size: 15px; color: var(--ink-soft); line-height: 1.5; margin: 0 0 16px; }
+.demo-cal { margin: 0 0 16px; }
+.demo-cal-frame { display: block; width: 100%; height: min(660px, 64vh); border: 0; background: var(--paper); }
+.demo-modal-card:has(.demo-modal-success.active .demo-cal) { max-width: 720px; }
 @media (max-width: 480px) {
   .demo-modal { padding: 14px; }
   .demo-modal-card { padding: 26px 22px 22px; }
