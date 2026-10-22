@@ -44,6 +44,10 @@ if (siteTracked && POSTHOG_KEY) {
     autocapture: !pageHasSecret,
     disable_session_recording: pageHasSecret,
     capture_exceptions: true,
+    // The library itself also strips these codes from page addresses, which
+    // covers what it sends past before_send (the stored first landing address).
+    mask_personal_data_properties: true,
+    custom_personal_data_properties: ['t', 'token'],
     enable_heatmaps: HEATMAP_PAGES.indexOf(pagePath) !== -1,
     enable_recording_console_log: false,
     session_recording: {
