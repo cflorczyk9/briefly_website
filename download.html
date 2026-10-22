@@ -27,6 +27,18 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
+  // Invite emails link here with ?t=<private download code>, which the page
+  // copies into its download buttons. On those visits Google is switched off
+  // (its click tracking would record the button link) and links out of the page
+  // send only the site address as referrer. PostHog still counts the visit,
+  // scrubbed, from assets/site.js.
+  if (/[?&]t=/.test(location.search)) {
+    window['ga-disable-G-92NXKY9W1S'] = true;
+    var referrerMeta = document.createElement('meta');
+    referrerMeta.name = 'referrer';
+    referrerMeta.content = 'origin';
+    document.head.appendChild(referrerMeta);
+  }
   gtag('config', 'G-92NXKY9W1S', { 'send_page_view': true });
 </script>
 <link rel="stylesheet" href="/assets/site.css">

@@ -338,6 +338,7 @@
       if (!resp.ok) throw new Error('Server error');
       const data = await resp.json();
       if (data.success) {
+        if (window.brieflyTrack) window.brieflyTrack('subscribed');
         document.getElementById('formSection').style.display = 'none';
         const success = document.getElementById('successSection');
         success.style.display = 'block';

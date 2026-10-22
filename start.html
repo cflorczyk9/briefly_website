@@ -431,7 +431,7 @@
       </form>
 
       <div class="checkout-fallback" id="waCheckoutFallback" role="status" aria-live="assertive" tabindex="-1" hidden>
-        <p id="waFallbackText">Something went wrong sending that. Try again, or <a class="textlink" href="#" onclick="openDemoModal();return false;">book a demo</a> and we'll set your firm up directly.</p>
+        <p id="waFallbackText" class="ph-no-capture">Something went wrong sending that. Try again, or <a class="textlink" href="#" onclick="openDemoModal();return false;">book a demo</a> and we'll set your firm up directly.</p>
       </div>
 
       <p class="fine-print">No card now. We connect your Salesforce and Outlook with you, then invoice.</p>
@@ -611,6 +611,7 @@ function wireCheckout(cfg) {
         })
       }).then(function (res) {
         if (!res.ok) throw new Error('request failed');
+        if (window.brieflyTrack) window.brieflyTrack('access_requested', { plan: cfg.plan });
         checkoutForm.hidden = true;
         var text = document.getElementById(cfg.fallbackText);
         if (text) text.textContent = 'Thanks. We\'ll reach out to ' + email + ' within one business day to set your firm up.';
@@ -638,6 +639,7 @@ function wireCheckout(cfg) {
       if (!res.ok) throw new Error('checkout session request failed');
       return res.json();
     }).then(function (data) {
+      if (data && ((data.clientSecret && cfg.pubKey) || data.url) && window.brieflyTrack) window.brieflyTrack('checkout_started', { plan: cfg.plan });
       if (data && data.clientSecret && cfg.pubKey) {
         mountEmbedded(data.clientSecret, originalText);
       } else if (data && data.url) {
