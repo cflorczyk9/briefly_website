@@ -89,7 +89,9 @@ window.brieflyTrack = function (name, props) {
     props.page = pagePath;
     window.gtag('event', name, props);
     if (window.posthog && POSTHOG_KEY) window.posthog.capture(name, props);
-  } catch (e) { /* counting is best effort */ }
+  } catch (e) {
+    if (window.console) console.warn('Briefly tracking error', e); // counting is best effort
+  }
 };
 
 // The demo modal's open function lives in each page's inline script, which
