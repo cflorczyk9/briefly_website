@@ -3,10 +3,12 @@ document.documentElement.classList.add('js');
 /* Analytics. Every named count goes to both Google Analytics and PostHog.
    PostHog only loads on pages that already load Google's tag, so the legal
    pages and /unsubscribe (which have no tag, on purpose) stay untracked.
-   Visit any page with ?notrack=1 to stop counting this browser (team visits);
-   ?notrack=0 turns it back on. */
+   Only the live site counts: Netlify deploy previews and local copies send
+   nothing to either tool. Visit any page with ?notrack=1 to stop counting this
+   browser (team visits); ?notrack=0 turns it back on. */
 var POSTHOG_KEY = 'phc_BYhWN3s6h3vgmwPfSRMFACZeAiWg6LuBKzqzqvVh8ZVg'; // PostHog project "Briefly website" (write-only, safe in public code). Empty = PostHog off.
 var GA_ID = 'G-92NXKY9W1S';
+var LIVE_HOSTS = ['brieflywealth.com', 'www.brieflywealth.com'];
 var HEATMAP_PAGES = ['/', '/start', '/sample-brief'];
 // Private link codes: /download?t= (personal download) and /unsubscribe?token=.
 var SECRET_PARAM = /([?&](?:t|token)=)[^&#"'\s]*/g;
@@ -22,8 +24,9 @@ var noTrack = (function () {
     return localStorage.getItem('briefly_notrack') === '1';
   } catch (e) { return false; }
 })();
-var siteTracked = typeof window.gtag === 'function' && !noTrack;
-if (noTrack) window['ga-disable-' + GA_ID] = true;
+var liveSite = LIVE_HOSTS.indexOf(location.hostname) !== -1;
+var siteTracked = typeof window.gtag === 'function' && liveSite && !noTrack;
+if (noTrack || !liveSite) window['ga-disable-' + GA_ID] = true;
 
 if (siteTracked && POSTHOG_KEY) {
   !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}p||((p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",p.onerror=function(){p=null},(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r));var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],Object.defineProperty(u,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e}}),Object.defineProperty(u.people,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+".people (stub)"}}),o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagResult isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
