@@ -639,7 +639,7 @@ function wireCheckout(cfg) {
       if (!res.ok) throw new Error('checkout session request failed');
       return res.json();
     }).then(function (data) {
-      if (data && (data.clientSecret || data.url) && window.brieflyTrack) window.brieflyTrack('checkout_started', { plan: cfg.plan });
+      if (data && ((data.clientSecret && cfg.pubKey) || data.url) && window.brieflyTrack) window.brieflyTrack('checkout_started', { plan: cfg.plan });
       if (data && data.clientSecret && cfg.pubKey) {
         mountEmbedded(data.clientSecret, originalText);
       } else if (data && data.url) {
