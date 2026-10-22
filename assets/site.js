@@ -76,12 +76,16 @@ function scrubStrings(value) {
   return value;
 }
 
+// Called from inside form handlers, so a tracking error must never surface as
+// a failed send (the visitor would resubmit and file a duplicate lead).
 window.brieflyTrack = function (name, props) {
   if (!siteTracked) return;
-  props = props || {};
-  props.page = pagePath;
-  window.gtag('event', name, props);
-  if (window.posthog && POSTHOG_KEY) window.posthog.capture(name, props);
+  try {
+    props = props || {};
+    props.page = pagePath;
+    window.gtag('event', name, props);
+    if (window.posthog && POSTHOG_KEY) window.posthog.capture(name, props);
+  } catch (e) { /* counting is best effort */ }
 };
 
 // The demo modal's open function lives in each page's inline script, which
