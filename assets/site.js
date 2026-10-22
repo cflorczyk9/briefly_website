@@ -53,8 +53,13 @@ if (siteTracked && POSTHOG_KEY) {
         return request;
       }
     },
+    // Person fields ($set_once holds the first landing URL) sit beside
+    // properties, so all three are scrubbed.
     before_send: function (event) {
-      if (event) event.properties = scrubStrings(event.properties);
+      if (!event) return event;
+      event.properties = scrubStrings(event.properties);
+      if (event.$set) event.$set = scrubStrings(event.$set);
+      if (event.$set_once) event.$set_once = scrubStrings(event.$set_once);
       return event;
     }
   });
@@ -63,7 +68,7 @@ if (siteTracked && POSTHOG_KEY) {
 function scrubStrings(value) {
   if (typeof value === 'string') return scrubUrl(value);
   if (Array.isArray(value)) return value.map(scrubStrings);
-  if (value && typeof value === 'object') {
+  if (Object.prototype.toString.call(value) === '[object Object]') {
     var out = {};
     for (var key in value) out[key] = scrubStrings(value[key]);
     return out;
