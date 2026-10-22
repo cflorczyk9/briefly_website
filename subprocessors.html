@@ -26,8 +26,10 @@
 <meta name="twitter:image" content="https://www.brieflywealth.com/images/briefly-og-main.png?v=5">
 
 <!-- No analytics on the legal pages. /subprocessors states that Google Analytics
-     is "Not loaded on the Privacy Policy, Terms of Service, Connector EULA, or this page." Do not
-     re-add the GA4 tag here without changing that sentence first. -->
+     and PostHog are "Not loaded on the Privacy Policy, Terms of Service, Connector
+     EULA, or this page." PostHog only starts where the GA4 tag is present
+     (assets/site.js), so do not re-add the GA4 tag here without changing those
+     sentences first. -->
 
 
 <link rel="stylesheet" href="/assets/site.css">
@@ -373,7 +375,7 @@
         <p>The following providers support the public marketing site at brieflywealth.com only. They do not process Client Data or any data submitted through the Web App or the Connector.</p>
         <ul>
           <li><strong>Google LLC (Google Analytics).</strong> Website analytics (GA4) on the marketing site. Collects approximate IP, browser, device, page-view, and session metadata for aggregate traffic measurement. Not loaded on the Privacy Policy, Terms of Service, Connector EULA, or this page.</li>
-          <li><strong>PostHog, Inc.</strong> Website analytics on the marketing site. Collects approximate IP, browser, device, clicks (link and button text, never typed values), page heat maps, error reports, and session recordings with every typed field blanked out. Not loaded on the Privacy Policy, Terms of Service, Connector EULA, or this page. (United States)</li>
+          <li><strong>PostHog, Inc.</strong> Website analytics on the marketing site. Collects IP address, browser, device, pages visited, clicks (link and button text, never typed values), page heat maps, error reports, and session recordings with every typed field blanked out. Sets a first-party cookie to recognize returning visitors. Not loaded on the Privacy Policy, Terms of Service, Connector EULA, or this page. (United States)</li>
           <li><strong>Google LLC (Google Fonts).</strong> Web font delivery. Receives the visitor's IP address solely to serve the font file.</li>
           <li><strong>Formspree, Inc.</strong> Demo and lead form submission handling for the marketing site. Receives the name, work email, and firm entered in a "Book a demo" form. Not connected to Client Data. (United States)</li>
           <li><strong>Supabase, Inc.</strong> Newsletter signup storage for the Morning Brief on the marketing site. Receives the email address entered at signup. Not connected to Client Data. (United States)</li>

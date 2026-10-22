@@ -43,6 +43,7 @@ if (siteTracked && POSTHOG_KEY) {
     disable_session_recording: pageHasSecret,
     capture_exceptions: true,
     enable_heatmaps: HEATMAP_PAGES.indexOf(pagePath) !== -1,
+    enable_recording_console_log: false,
     session_recording: {
       maskAllInputs: true,
       maskCapturedNetworkRequestFn: function (request) {
