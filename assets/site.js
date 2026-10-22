@@ -6,7 +6,8 @@ document.documentElement.classList.add('js');
    Only the live site counts: Netlify deploy previews and local copies send
    nothing to either tool. Visit any page with ?notrack=1 to stop counting this
    browser (team visits); ?notrack=0 turns it back on. */
-var POSTHOG_KEY = 'phc_BYhWN3s6h3vgmwPfSRMFACZeAiWg6LuBKzqzqvVh8ZVg'; // PostHog project "Briefly website" (write-only, safe in public code). Empty = PostHog off.
+// PostHog project "Briefly website" (write-only, safe in public code). Empty = PostHog off.
+var POSTHOG_KEY = 'phc_BYhWN3s6h3vgmwPfSRMFACZeAiWg6LuBKzqzqvVh8ZVg';
 var GA_ID = 'G-92NXKY9W1S';
 var LIVE_HOSTS = ['brieflywealth.com', 'www.brieflywealth.com'];
 var HEATMAP_PAGES = ['/', '/start', '/sample-brief'];
@@ -15,7 +16,8 @@ var SECRET_PARAM = /([?&](?:t|token)=)[^&#"'\s]*/g;
 function scrubUrl(value) { return value.replace(SECRET_PARAM, '$1redacted'); }
 var pageHasSecret = /[?&](?:t|token)=/.test(location.search);
 
-var pagePath = location.pathname.replace(/\.html$/, '').replace(/\/index$/, '/') || '/';
+// One name per page: /start, /start.html and /start/ all count as /start.
+var pagePath = location.pathname.replace(/\.html$/, '').replace(/\/index$/, '/').replace(/(.)\/$/, '$1') || '/';
 var noTrack = (function () {
   try {
     var flag = new URLSearchParams(location.search).get('notrack');
@@ -148,11 +150,11 @@ document.addEventListener('DOMContentLoaded', function () {
   window.addEventListener('beforeprint', showAll);
 });
 
-/* Demo modal: after the form posts (counted as demo_form_sent), show Connor's Calendly inline so the
+/* Demo modal: after the form posts, show Connor's Calendly inline so the
    prospect can book on the spot. Name, email and firm are prefilled. If this
    never runs, the success screen keeps its "we'll be in touch" fallback copy. */
 window.showDemoCalendar = function (name, email, firm) {
-  window.brieflyTrack('demo_form_sent');
+  window.brieflyTrack('demo_form_sent'); // only runs after the form posted OK
   var success = document.getElementById('demoModalSuccess');
   if (!success) return;
   var params = new URLSearchParams({
