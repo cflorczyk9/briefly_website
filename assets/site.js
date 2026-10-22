@@ -1,5 +1,74 @@
 document.documentElement.classList.add('js');
 
+/* Analytics. Every named count goes to both Google Analytics and PostHog.
+   PostHog only loads on pages that already load Google's tag, so the legal
+   pages and /unsubscribe (which have no tag, on purpose) stay untracked.
+   Visit any page with ?notrack=1 to stop counting this browser (team visits);
+   ?notrack=0 turns it back on. */
+var POSTHOG_KEY = ''; // PostHog > Project settings > Project token. Empty = PostHog off.
+var GA_ID = 'G-92NXKY9W1S';
+var HEATMAP_PAGES = ['/', '/start', '/sample-brief'];
+
+var pagePath = location.pathname.replace(/\.html$/, '').replace(/\/index$/, '/') || '/';
+var noTrack = (function () {
+  try {
+    var flag = new URLSearchParams(location.search).get('notrack');
+    if (flag === '1') localStorage.setItem('briefly_notrack', '1');
+    if (flag === '0') localStorage.removeItem('briefly_notrack');
+    return localStorage.getItem('briefly_notrack') === '1';
+  } catch (e) { return false; }
+})();
+var siteTracked = typeof window.gtag === 'function' && !noTrack;
+if (noTrack) window['ga-disable-' + GA_ID] = true;
+
+if (siteTracked && POSTHOG_KEY) {
+  !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}p||((p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",p.onerror=function(){p=null},(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r));var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],Object.defineProperty(u,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e}}),Object.defineProperty(u.people,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+".people (stub)"}}),o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagResult isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+  // Named counts only (no autocapture). Recordings blank every typed field;
+  // elements that echo a visitor's name or email carry class="ph-no-capture".
+  window.posthog.init(POSTHOG_KEY, {
+    api_host: 'https://us.i.posthog.com',
+    defaults: '2026-05-30',
+    autocapture: false,
+    capture_exceptions: true,
+    enable_heatmaps: HEATMAP_PAGES.indexOf(pagePath) !== -1,
+    session_recording: { maskAllInputs: true }
+  });
+}
+
+window.brieflyTrack = function (name, props) {
+  if (!siteTracked) return;
+  props = props || {};
+  props.page = pagePath;
+  window.gtag('event', name, props);
+  if (window.posthog && POSTHOG_KEY) window.posthog.capture(name, props);
+};
+
+// The demo modal's open function lives in each page's inline script, which
+// runs before this deferred file, so wrapping it here covers every page.
+if (typeof window.openDemoModal === 'function') {
+  var openDemoModalUntracked = window.openDemoModal;
+  window.openDemoModal = function () {
+    window.brieflyTrack('demo_form_opened');
+    return openDemoModalUntracked.apply(this, arguments);
+  };
+}
+
+document.addEventListener('click', function (e) {
+  var link = e.target.closest && e.target.closest('a[href]');
+  if (!link) return;
+  var href = link.getAttribute('href');
+  if (/\.mcpb$/.test(href)) window.brieflyTrack('addon_downloaded');
+  else if (/^mailto:/.test(href) && !/subject=Unsubscribe/i.test(href)) window.brieflyTrack('email_clicked');
+});
+
+// Calendly's inline frame posts this message when a time is booked
+// (it needs the embed_domain param set in showDemoCalendar below).
+window.addEventListener('message', function (e) {
+  if (e.origin === 'https://calendly.com' && e.data && e.data.event === 'calendly.event_scheduled') {
+    window.brieflyTrack('demo_booked');
+  }
+});
+
 document.addEventListener('DOMContentLoaded', function () {
   var els = [].slice.call(document.querySelectorAll('.reveal'));
   if (!els.length) return;
@@ -44,10 +113,11 @@ document.addEventListener('DOMContentLoaded', function () {
   window.addEventListener('beforeprint', showAll);
 });
 
-/* Demo modal: after the form posts, show Connor's Calendly inline so the
+/* Demo modal: after the form posts (counted as demo_form_sent), show Connor's Calendly inline so the
    prospect can book on the spot. Name, email and firm are prefilled. If this
    never runs, the success screen keeps its "we'll be in touch" fallback copy. */
 window.showDemoCalendar = function (name, email, firm) {
+  window.brieflyTrack('demo_form_sent');
   var success = document.getElementById('demoModalSuccess');
   if (!success) return;
   var params = new URLSearchParams({
@@ -61,7 +131,7 @@ window.showDemoCalendar = function (name, email, firm) {
   });
   if (firm) params.set('a1', 'Firm: ' + firm);
   var frame = document.createElement('iframe');
-  frame.className = 'demo-cal-frame';
+  frame.className = 'demo-cal-frame ph-no-capture'; // its link carries name and email
   frame.title = 'Pick a time for your Briefly demo';
   frame.src = 'https://calendly.com/connor-florczyk-brieflywealth/30min?' + params.toString();
   var wrap = success.querySelector('.demo-cal');
