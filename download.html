@@ -27,7 +27,8 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-92NXKY9W1S', { 'send_page_view': true });
+  // Invite emails link here with ?t=<private download code>; keep it out of GA.
+  gtag('config', 'G-92NXKY9W1S', { 'send_page_view': true, 'page_location': location.href.replace(/([?&]t=)[^&#]*/, '$1redacted') });
 </script>
 <link rel="stylesheet" href="/assets/site.css">
 <link rel="stylesheet" href="/assets/output-theme.css">

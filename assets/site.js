@@ -8,6 +8,10 @@ document.documentElement.classList.add('js');
 var POSTHOG_KEY = 'phc_BYhWN3s6h3vgmwPfSRMFACZeAiWg6LuBKzqzqvVh8ZVg'; // PostHog project "Briefly website" (write-only, safe in public code). Empty = PostHog off.
 var GA_ID = 'G-92NXKY9W1S';
 var HEATMAP_PAGES = ['/', '/start', '/sample-brief'];
+// Private link codes: /download?t= (personal download) and /unsubscribe?token=.
+var SECRET_PARAM = /([?&](?:t|token)=)[^&#"'\s]*/g;
+function scrubUrl(value) { return value.replace(SECRET_PARAM, '$1redacted'); }
+var pageHasSecret = /[?&](?:t|token)=/.test(location.search);
 
 var pagePath = location.pathname.replace(/\.html$/, '').replace(/\/index$/, '/') || '/';
 var noTrack = (function () {
@@ -26,13 +30,39 @@ if (siteTracked && POSTHOG_KEY) {
   // Autocapture records clicks (link and button text, never typed values) on
   // top of the named counts below. Recordings blank every typed field;
   // elements that echo a visitor's name or email carry class="ph-no-capture".
+  // A page opened from a private link (a customer's personal download link)
+  // gets counts only: no click capture and no recording, because the page
+  // copies the code into its download buttons. Every string sent is scrubbed.
   window.posthog.init(POSTHOG_KEY, {
     api_host: 'https://us.i.posthog.com',
     defaults: '2026-05-30',
+    autocapture: !pageHasSecret,
+    disable_session_recording: pageHasSecret,
     capture_exceptions: true,
     enable_heatmaps: HEATMAP_PAGES.indexOf(pagePath) !== -1,
-    session_recording: { maskAllInputs: true }
+    session_recording: {
+      maskAllInputs: true,
+      maskCapturedNetworkRequestFn: function (request) {
+        if (request.name) request.name = scrubUrl(request.name);
+        return request;
+      }
+    },
+    before_send: function (event) {
+      if (event) event.properties = scrubStrings(event.properties);
+      return event;
+    }
   });
+}
+
+function scrubStrings(value) {
+  if (typeof value === 'string') return scrubUrl(value);
+  if (Array.isArray(value)) return value.map(scrubStrings);
+  if (value && typeof value === 'object') {
+    var out = {};
+    for (var key in value) out[key] = scrubStrings(value[key]);
+    return out;
+  }
+  return value;
 }
 
 window.brieflyTrack = function (name, props) {
