@@ -87,7 +87,8 @@ document.addEventListener('click', function (e) {
   var link = e.target.closest && e.target.closest('a[href]');
   if (!link) return;
   var href = link.getAttribute('href');
-  if (/\.mcpb$/.test(href)) window.brieflyTrack('addon_downloaded');
+  // The download page swaps in /signup/download?t=... for invited customers.
+  if (/\.mcpb$|\/signup\/download\b/.test(href)) window.brieflyTrack('addon_downloaded');
   else if (/^mailto:/.test(href) && !/subject=Unsubscribe/i.test(href)) window.brieflyTrack('email_clicked');
 });
 
