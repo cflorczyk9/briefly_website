@@ -113,14 +113,6 @@ document.addEventListener('click', function (e) {
   else if (/^mailto:/.test(href) && !/subject=Unsubscribe/i.test(href)) window.brieflyTrack('email_clicked');
 });
 
-// Calendly's inline frame posts this message when a time is booked
-// (it needs the embed_domain param set in showDemoCalendar below).
-window.addEventListener('message', function (e) {
-  if (e.origin === 'https://calendly.com' && e.data && e.data.event === 'calendly.event_scheduled') {
-    window.brieflyTrack('demo_booked');
-  }
-});
-
 document.addEventListener('DOMContentLoaded', function () {
   var els = [].slice.call(document.querySelectorAll('.reveal'));
   if (!els.length) return;
@@ -165,38 +157,8 @@ document.addEventListener('DOMContentLoaded', function () {
   window.addEventListener('beforeprint', showAll);
 });
 
-/* Demo modal: after the form posts, show Connor's Calendly inline so the
-   prospect can book on the spot. Name, email and firm are prefilled. If this
-   never runs, the success screen keeps its "we'll be in touch" fallback copy. */
-window.showDemoCalendar = function (name, email, firm) {
-  window.brieflyTrack('demo_form_sent'); // only runs after the form posted OK
-  var success = document.getElementById('demoModalSuccess');
-  if (!success) return;
-  var params = new URLSearchParams({
-    embed_domain: location.hostname,
-    embed_type: 'Inline',
-    hide_gdpr_banner: '1',
-    hide_event_type_details: '1',
-    hide_landing_page_details: '1',
-    name: name || '',
-    email: email || ''
-  });
-  if (firm) params.set('a1', 'Firm: ' + firm);
-  var frame = document.createElement('iframe');
-  frame.className = 'demo-cal-frame ph-no-capture'; // its link carries name and email
-  frame.title = 'Pick a time for your Briefly demo';
-  frame.src = 'https://calendly.com/connor-florczyk-brieflywealth/30min?' + params.toString();
-  var wrap = success.querySelector('.demo-cal');
-  if (!wrap) {
-    wrap = document.createElement('div');
-    wrap.className = 'demo-cal';
-    var body = success.querySelector('.demo-modal-success-body');
-    success.insertBefore(wrap, body ? body.nextSibling : success.firstChild);
-  }
-  wrap.innerHTML = '';
-  wrap.appendChild(frame);
-  var title = success.querySelector('.demo-modal-success-title');
-  var text = success.querySelector('.demo-modal-success-body');
-  if (title) title.textContent = 'Thanks. Pick a time below.';
-  if (text) text.textContent = "Choose a 30-minute time that works for you. If none do, we'll email you shortly to find another.";
+/* Demo modal: runs after the form posts OK. The page's own success screen
+   ("Thanks. We'll be in touch.") stays as is; we follow up by email. */
+window.demoFormSent = function () {
+  window.brieflyTrack('demo_form_sent');
 };
